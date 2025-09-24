@@ -16,7 +16,7 @@ body {
   left: 0;
   top: 0;
   width: 100vw;
-  height: 340px;
+  height: 300px;
   z-index: 0;
   pointer-events: none;
   will-change: transform;
@@ -28,9 +28,9 @@ body {
   justify-content: center;
 }
 .parallax-ellipse {
-  width: 90vw;
-  height: 260px;
-  background: radial-gradient(ellipse 70% 60% at 50% 40%, #00fff7 0%, #ff00cc 40%, #8338ec 80%, transparent 100%);
+  width: 20vw;
+  height: 230px;
+  background: radial-gradient(ellipse 70% 60% at 50% 40%, #00fff7 0%, #ff00cc60 40%, #387dec 80%, transparent 100%);
   opacity: 0.13;
   filter: blur(32px) brightness(1.1);
   border-radius: 50% 50% 60% 60% / 60% 60% 80% 80%;
@@ -59,7 +59,7 @@ main, .hero-section, .container, nav, .quantum-ripple {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   z-index: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 40%, #00fff733 0%, #ff00cc22 60%, transparent 100%);
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, #00fff733 0%, #2204ab22 60%, transparent 100%);
   pointer-events: none;
   filter: blur(8px) brightness(1.1);
 }
@@ -76,7 +76,7 @@ main, .hero-section, .container, nav, .quantum-ripple {
 }
 .hero-title {
   font-family: "Future Z", sans-serif;
-  font-size: clamp(2.1rem, 6vw, 4.2rem);
+    font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 900;
   background: linear-gradient(90deg, #00fff7, #fffb00, #ff00cc, #8338ec, #07429f);
   background-size: 200% 200%;
@@ -84,13 +84,14 @@ main, .hero-section, .container, nav, .quantum-ripple {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: #fff;
-  letter-spacing: 0.08em;
+    letter-spacing: 0.12em;
   margin-bottom: 0.2em;
   line-height: 1.05;
   animation: heroGradientMove 8s linear infinite;
   position: relative;
   display: inline-block;
-  word-break: break-word;
+  white-space: nowrap;
+  word-break: normal;
 }
 .hero-title-alt {
   font-weight: 900;
@@ -110,7 +111,7 @@ main, .hero-section, .container, nav, .quantum-ripple {
   background: linear-gradient(90deg, #00fff7, #fffb00, #ff00cc);
   border-radius: 3px;
   box-shadow: 0 0 16px #00fff7aa, 0 0 32px #ff00cc55;
-  animation: heroUnderlineAnim 2.5s cubic-bezier(.77,0,.18,1) infinite alternate;
+  animation: heroUnderlineAnim 10.5s cubic-bezier(.77,0,.18,1) infinite alternate;
 }
 @keyframes heroGradientMove {
   0% { background-position: 0% 50%; }
@@ -122,15 +123,15 @@ main, .hero-section, .container, nav, .quantum-ripple {
 }
 @keyframes heroUnderlineAnim {
   0% { width: 40%; opacity: 0.7; }
-  60% { width: 70%; opacity: 1; }
+  60% { width: 90%; opacity: 1; }
   100% { width: 60%; opacity: 0.8; }
 }
 .hero-tagline {
   font-family: "Orbitron", sans-serif;
   font-size: 1.2rem;
-  color: #b8eaff;
+  color: #b8eaffc6;
   margin-bottom: 1.5rem;
-  text-shadow: 0 0 8px #00fff7, 0 0 16px #8338ec44;
+  text-shadow: 0 0 8px #00fff79b, 0 0 16px #8338ec44;
   letter-spacing: 0.04em;
 }
 .hero-cta {
@@ -139,15 +140,11 @@ main, .hero-section, .container, nav, .quantum-ripple {
   font-family: "Future Z", sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
-  color: #fff;
-  border-radius:4px;
+  color: #ffffffb6;
+    border-radius: 73% 27% 61% 39% / 41% 69% 31% 59%;
   background: linear-gradient(90deg, #00fff7d7, #ff00ccdc, #fffb00);
   background-size: 200% 200%;
   border: none;
-  /* Polygonal/cutout: left upper and right lower corners only */
-  clip-path: polygon(
-    0 38%, 7.5% 0, 100% 0, 100% 82%, 93% 100%, 0 100%, 0 82%
-  );
   box-shadow: 0 0 16px #00fff7aa, 0 0 32px #ff00cc55;
   text-decoration: none;
   letter-spacing: 0.08em;
@@ -193,7 +190,7 @@ main, .hero-section, .container, nav, .quantum-ripple {
   transition: transform 0.1s ease-out, width 0.3s ease, height 0.3s ease;
   box-shadow: 
     0 0 20px rgba(0, 255, 255, 1),
-    0 0 40px rgba(255, 0, 255, 0.8);
+    0 0 40px rgba(123, 0, 255, 0.8);
   opacity: 1;
   display: block !important;
   visibility: visible !important;
@@ -201,8 +198,8 @@ main, .hero-section, .container, nav, .quantum-ripple {
 
 .cursor-follow {
   position: fixed;
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   background: #ff00ff;
   border-radius: 50%;
   pointer-events: none;
@@ -236,7 +233,7 @@ main, .hero-section, .container, nav, .quantum-ripple {
     rgba(255, 255, 0, 0.02) 60%,
     transparent 100%);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.1s ease;
   filter: blur(10px);
 }
 
@@ -252,7 +249,7 @@ main, .hero-section, .container, nav, .quantum-ripple {
   border-radius: 50%;
   pointer-events: none;
   z-index: 9996;
-  animation: particleFloat 1s ease-out forwards;
+  animation: particleFloat 3s ease-out forwards;
 }
 
 @keyframes particleFloat {
@@ -985,11 +982,11 @@ transition: transform 0.8s ease, box-shadow 0.8s ease;
 .nav-link {
   position: relative;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
-  padding: 12px 24px;
+  padding: 10px 20px;
   border: 1px solid rgba(0, 255, 255, 0.3);
   border-radius: 2px;
   background: rgba(0, 0, 0, 0.4);
