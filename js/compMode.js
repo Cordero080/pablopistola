@@ -14,11 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // Toggle on hover over #myName
   var myName = document.getElementById("myName");
   if (myName) {
-    myName.addEventListener("mouseenter", function () {
-      document.body.classList.add("complementary-colors");
-    });
-    myName.addEventListener("mouseleave", function () {
-      document.body.classList.remove("complementary-colors");
-    });
+    // Removed mouseenter and mouseleave listeners for #myName. Only app.js controls complementary mode.
   }
 });

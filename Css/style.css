@@ -128,9 +128,9 @@ main, .hero-section, .container, nav, .quantum-ripple {
 }
 .hero-tagline {
   font-family: "Orbitron", sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #b8eaffc6;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.5rem; /* Increased spacing below tagline */
   text-shadow: 0 0 8px #00fff79b, 0 0 16px #8338ec44;
   letter-spacing: 0.04em;
 }
@@ -150,7 +150,7 @@ main, .hero-section, .container, nav, .quantum-ripple {
   letter-spacing: 0.08em;
   transition: background 0.5s, box-shadow 0.3s, transform 0.2s, clip-path 0.4s cubic-bezier(.77,0,.18,1);
   cursor: pointer;
-  margin-top: 0.5rem;
+  margin-top: 2.2rem; /* Increased spacing above button */
   animation: heroCtaGlow 3s ease-in-out infinite alternate;
 }
 .hero-cta:hover {
@@ -990,7 +990,7 @@ transition: transform 0.8s ease, box-shadow 0.8s ease;
   border: 1px solid rgba(0, 255, 255, 0.3);
   border-radius: 2px;
   background: rgba(0, 0, 0, 0.4);
-  transition: all 0.3s ease;
+  transition: color 0.3s cubic-bezier(.77,0,.18,1), border-color 0.3s cubic-bezier(.77,0,.18,1), background 0.3s cubic-bezier(.77,0,.18,1), box-shadow 0.3s cubic-bezier(.77,0,.18,1), transform 0.3s cubic-bezier(.77,0,.18,1), text-shadow 0.3s cubic-bezier(.77,0,.18,1);
   overflow: hidden;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -1003,7 +1003,7 @@ transition: transform 0.8s ease, box-shadow 0.8s ease;
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
-  transition: left 0.5s ease;
+  transition: left 0.3s cubic-bezier(.77,0,.18,1);
 }
 .nav-link:hover {
   color: #ffffff;

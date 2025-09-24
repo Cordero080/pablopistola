@@ -256,18 +256,7 @@ document.addEventListener("DOMContentLoaded", function () {
   myNameElement.addEventListener("mouseenter", () => {
     window.piAnimIndex = 0;
     scrambleInterval = setInterval(scrambleName, 100);
-    scrambleTimeout = setTimeout(() => {
-      // Show final static pi sequence and activate complementary mode
-      const piDigits = "3141592653589793238462643".split("");
-      let piSeq = piDigits.concat(piDigits.slice(0, -1).reverse());
-      let display = [];
-      for (let i = 0; i < nameLetters.length; i++) {
-        let idx = i % piSeq.length;
-        display.push(piSeq[idx]);
-      }
-      myNameElement.textContent = display.join(" ");
-      window.toggleComplementaryColors();
-    }, 3000);
+    // Scramble animation is independent, does NOT toggle comp mode
   });
 
   myNameElement.addEventListener("mouseleave", () => {
@@ -283,27 +272,60 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Complementary mode hover functionality
-  myNameElement.addEventListener("mouseenter", () => {
-    // Start the 4-second timer
-    hoverTimer = setTimeout(() => {
-      toggleComplementaryColors();
-    }, 3000);
-  });
-
-  myNameElement.addEventListener("mouseleave", () => {
-    // Clear the timer if mouse leaves before 4 seconds
-    if (hoverTimer) {
-      clearTimeout(hoverTimer);
-      hoverTimer = null;
-    }
-  });
+  let compHoverTimer = null;
+  let isCompMode = false;
+  if (!myNameElement) {
+    console.error("myNameElement not found! Check your selector.");
+  } else {
+    // Complementary mode logic is fully independent from scramble
+    // Remove all click event listeners from myNameElement
+    myNameElement.onclick = null;
+    myNameElement.addEventListener("mouseenter", () => {
+      if (compHoverTimer) {
+        console.log("Comp mode timer already running");
+        return;
+      }
+      // Extra guard: only start timer if not already in comp mode and not already running
+      if (!isCompMode) {
+        console.log("Starting 3s timer to activate comp mode");
+        compHoverTimer = setTimeout(() => {
+          console.log("3s hover complete: activating comp mode");
+          if (
+            !isCompMode &&
+            typeof window.toggleComplementaryColors === "function"
+          ) {
+            window.toggleComplementaryColors();
+            isCompMode = true;
+          }
+          compHoverTimer = null;
+        }, 3000);
+      } else {
+        console.log("Starting 3s timer to deactivate comp mode");
+        compHoverTimer = setTimeout(() => {
+          console.log("3s hover complete: deactivating comp mode");
+          if (
+            isCompMode &&
+            typeof window.toggleComplementaryColors === "function"
+          ) {
+            window.toggleComplementaryColors();
+            isCompMode = false;
+          }
+          compHoverTimer = null;
+        }, 3000);
+      }
+    });
+    myNameElement.addEventListener("mouseleave", () => {
+      if (compHoverTimer) {
+        clearTimeout(compHoverTimer);
+        compHoverTimer = null;
+        console.log("Comp mode timer cancelled on mouseleave");
+      }
+      // Mouseleave does NOT deactivate comp mode
+    });
+  }
 
   // Optional: Click to toggle back to normal
-  myNameElement.addEventListener("click", () => {
-    if (isComplementaryMode) {
-      toggleComplementaryColors();
-    }
-  });
+  // Removed click-to-toggle for complementary mode. Only 3s hover toggles mode.
 });
 
 function updateWaveColors(isComplementary) {
