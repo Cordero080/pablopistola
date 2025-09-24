@@ -514,7 +514,7 @@ position: relative;
 .nav-links a {
   color: #c254f59b;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 400;
   transition: color 0.8s cubic-bezier(.77,0,.18,1), transform 1.2s cubic-bezier(.77,0,.18,1);
   position: relative;
@@ -982,7 +982,7 @@ transition: transform 0.8s ease, box-shadow 0.8s ease;
 .nav-link {
   position: relative;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
+  font-size: 7px;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.8);
   text-decoration: none;

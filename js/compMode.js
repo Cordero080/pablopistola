@@ -1,19 +1,24 @@
 // Complementary Mode JavaScript
 document.addEventListener("DOMContentLoaded", function () {
-  // Add complementary mode toggle functionality here
-  // This file was referenced in index.html but was missing
-
   function toggleComplementaryMode() {
     document.body.classList.toggle("complementary-colors");
   }
 
-  // You can add event listeners here for complementary mode functionality
-  // For example, keyboard shortcuts or UI buttons
-
-  // Example: Toggle with 'C' key
+  // Toggle with 'C' key
   document.addEventListener("keydown", function (event) {
     if (event.key === "c" || event.key === "C") {
       toggleComplementaryMode();
     }
   });
+
+  // Toggle on hover over #myName
+  var myName = document.getElementById("myName");
+  if (myName) {
+    myName.addEventListener("mouseenter", function () {
+      document.body.classList.add("complementary-colors");
+    });
+    myName.addEventListener("mouseleave", function () {
+      document.body.classList.remove("complementary-colors");
+    });
+  }
 });
