@@ -1,3 +1,12 @@
+// Minimal parallax for geometric overlay
+function updateMinimalParallaxOverlay() {
+  const overlay = document.querySelector(".parallax-bg-overlay");
+  if (!overlay) return;
+  const scrollY = window.scrollY;
+  overlay.style.transform = `translateY(${scrollY * 0.25}px)`;
+}
+window.addEventListener("scroll", updateMinimalParallaxOverlay);
+document.addEventListener("DOMContentLoaded", updateMinimalParallaxOverlay);
 const cards = document.querySelectorAll(".card");
 
 // Create the more card and add to container

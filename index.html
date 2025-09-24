@@ -1,3 +1,32 @@
+<!-- Minimal Parallax Background Overlay -->
+<div class="parallax-bg-overlay">
+  <svg
+    class="parallax-geo"
+    viewBox="0 0 1440 320"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M0,240 Q360,120 720,200 T1440,160 L1440,320 L0,320 Z"
+      fill="url(#parallaxGradient)"
+      opacity="0.13"
+    />
+    <defs>
+      <linearGradient
+        id="parallaxGradient"
+        x1="0"
+        y1="0"
+        x2="1440"
+        y2="320"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stop-color="#00fff7" />
+        <stop offset="0.5" stop-color="#ff00cc" />
+        <stop offset="1" stop-color="#8338ec" />
+      </linearGradient>
+    </defs>
+  </svg>
+</div>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -20,6 +49,10 @@
       autoplay
       loop
     ></audio>
+    <!-- Minimal Parallax Background Overlay: obtuse triangle -->
+    <div class="parallax-bg-overlay">
+      <div class="parallax-ellipse"></div>
+    </div>
     <div class="quantum-ripple" id="quantumRipple"></div>
 
     <nav class="quantum-nav">
@@ -35,9 +68,25 @@
         <a class="nav-link" href="#projects">Projects</a>
         <a class="nav-link" href="#contact">Contact</a>
       </div>
-     
+
       <div class="nav-quantum-field"></div>
     </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-bg-glow"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">
+          PABLO <span class="hero-title-alt">PISTOLA</span>
+        </h1>
+        <span class="hero-underline"></span>
+        <p class="hero-tagline">
+          Futuristic Creations. Quantum Code. Digital Artistry.
+        </p>
+        <a href="#projects" class="hero-cta">View Projects</a>
+      </div>
+    </section>
+    <!-- End Hero Section -->
 
     <canvas id="waves"></canvas>
     <div class="container">
