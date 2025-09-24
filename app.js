@@ -272,6 +272,29 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     myNameElement.textContent = originalText;
   });
+
+  // Complementary mode hover functionality
+  myNameElement.addEventListener("mouseenter", () => {
+    // Start the 4-second timer
+    hoverTimer = setTimeout(() => {
+      toggleComplementaryColors();
+    }, 3000);
+  });
+
+  myNameElement.addEventListener("mouseleave", () => {
+    // Clear the timer if mouse leaves before 4 seconds
+    if (hoverTimer) {
+      clearTimeout(hoverTimer);
+      hoverTimer = null;
+    }
+  });
+
+  // Optional: Click to toggle back to normal
+  myNameElement.addEventListener("click", () => {
+    if (isComplementaryMode) {
+      toggleComplementaryColors();
+    }
+  });
 });
 
 function updateWaveColors(isComplementary) {
@@ -381,28 +404,6 @@ function setEtherealWaveComplexity(isEthereal) {
   }
 }
 
-myNameElement.addEventListener("mouseenter", () => {
-  // Start the 4-second timer
-  hoverTimer = setTimeout(() => {
-    toggleComplementaryColors();
-  }, 3000);
-});
-
-myNameElement.addEventListener("mouseleave", () => {
-  // Clear the timer if mouse leaves before 4 seconds
-  if (hoverTimer) {
-    clearTimeout(hoverTimer);
-    hoverTimer = null;
-  }
-});
-
-// Optional: Click to toggle back to normal
-myNameElement.addEventListener("click", () => {
-  if (isComplementaryMode) {
-    toggleComplementaryColors();
-  }
-});
-
 const audio = document.getElementById("site-audio");
 if (audio) {
   audio.volume = 0.3; // set volume
@@ -439,3 +440,138 @@ if (window.waveGen) {
     if (originalDraw) originalDraw.call(window.waveGen);
   };
 }
+
+// Custom Cursor System
+document.addEventListener("DOMContentLoaded", function () {
+  console.log("Creating custom cursor system...");
+
+  // Create cursor elements
+  const cursorMain = document.createElement("div");
+  cursorMain.className = "cursor-main";
+  cursorMain.style.display = "block";
+
+  const cursorFollow = document.createElement("div");
+  cursorFollow.className = "cursor-follow";
+  cursorFollow.style.display = "block";
+
+  const cursorGlow = document.createElement("div");
+  cursorGlow.className = "cursor-glow";
+  cursorGlow.style.display = "block";
+
+  document.body.appendChild(cursorMain);
+  document.body.appendChild(cursorFollow);
+  document.body.appendChild(cursorGlow);
+
+  console.log("Cursor elements created:", cursorMain, cursorFollow, cursorGlow);
+
+  let mouseX = window.innerWidth / 2,
+    mouseY = window.innerHeight / 2;
+  let followerX = mouseX,
+    followerY = mouseY;
+  let glowX = mouseX,
+    glowY = mouseY;
+  let particleTimer = 0;
+
+  // Initial positioning
+  cursorMain.style.left = mouseX - 10 + "px";
+  cursorMain.style.top = mouseY - 10 + "px";
+  cursorFollow.style.left = mouseX - 4 + "px";
+  cursorFollow.style.top = mouseY - 4 + "px";
+
+  // Update cursor position
+  document.addEventListener("mousemove", function (e) {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    cursorMain.style.left = mouseX - 10 + "px";
+    cursorMain.style.top = mouseY - 10 + "px";
+
+    console.log("Mouse position:", mouseX, mouseY);
+
+    // Create particles occasionally
+    particleTimer++;
+    if (particleTimer % 15 === 0) {
+      createParticle(mouseX, mouseY);
+    }
+  });
+
+  // Smooth follow animation
+  function animateFollower() {
+    const speed = 0.15;
+
+    followerX += (mouseX - followerX) * speed;
+    followerY += (mouseY - followerY) * speed;
+
+    cursorFollow.style.left = followerX - 4 + "px";
+    cursorFollow.style.top = followerY - 4 + "px";
+
+    // Glow follows even slower
+    const glowSpeed = 0.08;
+    glowX += (mouseX - glowX) * glowSpeed;
+    glowY += (mouseY - glowY) * glowSpeed;
+
+    cursorGlow.style.left = glowX - 50 + "px";
+    cursorGlow.style.top = glowY - 50 + "px";
+
+    requestAnimationFrame(animateFollower);
+  }
+
+  animateFollower();
+
+  // Hover effects on interactive elements
+  const interactiveElements =
+    'a, button, .card, .nav-links a, #myName, [role="button"], input, textarea';
+
+  document.addEventListener("mouseover", function (e) {
+    if (e.target.matches(interactiveElements)) {
+      cursorMain.classList.add("hover");
+      cursorGlow.classList.add("active");
+    }
+  });
+
+  document.addEventListener("mouseout", function (e) {
+    if (e.target.matches(interactiveElements)) {
+      cursorMain.classList.remove("hover");
+      cursorGlow.classList.remove("active");
+    }
+  });
+
+  // Create particle trail
+  function createParticle(x, y) {
+    const particle = document.createElement("div");
+    particle.className = "cursor-particle";
+
+    // Random color from the neon palette
+    const colors = ["#00ffff", "#ff00ff", "#ffff00"];
+    particle.style.backgroundColor =
+      colors[Math.floor(Math.random() * colors.length)];
+
+    // Random offset position
+    const offsetX = (Math.random() - 0.5) * 20;
+    const offsetY = (Math.random() - 0.5) * 20;
+
+    particle.style.left = x + offsetX + "px";
+    particle.style.top = y + offsetY + "px";
+
+    document.body.appendChild(particle);
+
+    // Remove particle after animation
+    setTimeout(() => {
+      if (particle.parentNode) {
+        particle.parentNode.removeChild(particle);
+      }
+    }, 1000);
+  }
+
+  // Hide cursor when leaving window
+  document.addEventListener("mouseenter", function () {
+    cursorMain.style.opacity = "1";
+    cursorFollow.style.opacity = "0.8";
+  });
+
+  document.addEventListener("mouseleave", function () {
+    cursorMain.style.opacity = "0";
+    cursorFollow.style.opacity = "0";
+    cursorGlow.classList.remove("active");
+  });
+});
