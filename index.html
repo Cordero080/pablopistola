@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="Css/feathers.css" />
     <link rel="stylesheet" href="Css/compMode.css" />
     <script src="js/sineWave.js" defer></script>
-     <script src="js/feathers.js" defer></script>
+    <script src="js/feathers.js" defer></script>
     <script src="app.js" defer></script>
     <script src="js/orb.js" defer></script>
     <script src="js/compMode.js" defer></script>
@@ -21,18 +21,22 @@
       loop
     ></audio>
     <div class="quantum-ripple" id="quantumRipple"></div>
-    <nav class="navbar">
-      <div class="nav-container">
-        <div class="nav-logo">
-          <a href="#"><span id="myName">PABLOPISTOLA</span></a>
-        </div>
-        <div class="nav-links">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
-        </div>
+
+    <nav class="quantum-nav">
+      <div class="nav-logo">
+        <span class="logo-text" id="myName" data-text="PABLOPISTOLA"
+          >PABLOPISTOLA</span
+        >
+        <div class="logo-particles"></div>
       </div>
+      <div class="nav-links">
+        <a class="nav-link" href="#home">Home</a>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </div>
+     
+      <div class="nav-quantum-field"></div>
     </nav>
 
     <canvas id="waves"></canvas>
