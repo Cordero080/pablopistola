@@ -1688,18 +1688,84 @@ body {
   }
 
   .bento-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.85rem;
+  }
+
+  .bento-featured {
+    grid-column: span 6;
+    grid-row: span 1;
+    min-height: 200px;
+    clip-path: none;
+    margin-right: 0;
+  }
+
+  .bento-tall {
+    grid-column: span 6;
+    grid-row: span 1;
+    min-height: 180px;
+    clip-path: none;
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  .bento-puzzle-tl {
+    grid-column: span 6;
+    grid-row: span 1;
+    min-height: 180px;
+    clip-path: none;
+    margin-right: 0;
+  }
+
+  .bento-puzzle-tr {
+    grid-column: span 6;
+    grid-row: span 1;
+    min-height: 180px;
+    clip-path: none;
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  .bento-puzzle-bl {
+    grid-column: span 6;
+    grid-row: span 1;
+    min-height: 180px;
+    clip-path: none;
+    margin-right: 0;
+  }
+
+  .bento-puzzle-br {
+    grid-column: span 6;
+    grid-row: span 1;
+    min-height: 180px;
+    clip-path: none;
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  .bento-standard {
+    grid-column: span 3;
+    grid-row: span 1;
+    min-height: 180px;
+  }
+
+  .bento-wide {
+    grid-column: span 6;
+    grid-row: span 1;
+    min-height: 80px;
+  }
+}
+
+/* ========== RESPONSIVE - MOBILE ========== */
+@media (max-width: 600px) {
+  .bento-section {
+    padding: 1rem;
+    margin-top: 0;
+  }
+
+  .bento-grid {
     grid-template-columns: 1fr;
-    gap: 0;
-  }
-
-  .bento-card-link {
-    display: block;
-    overflow: visible;
-  }
-
-  .bento-card {
-    border-radius: 0 !important;
-    overflow: visible !important;
+    gap: 0.75rem;
   }
 
   /* First card - tab sticking out bottom-left */
@@ -1709,19 +1775,8 @@ body {
     min-height: 200px;
     margin: 0;
     padding: 0;
+    border-radius: 24px;
     margin-bottom: -20px;
-  }
-  .bento-featured .bento-card {
-    -webkit-clip-path: polygon(
-      0% 0%,
-      100% 0%,
-      100% calc(100% - 20px),
-      30% calc(100% - 20px),
-      30% 100%,
-      10% 100%,
-      10% calc(100% - 20px),
-      0% calc(100% - 20px)
-    );
     clip-path: polygon(
       0% 0%,
       100% 0%,
@@ -1741,25 +1796,10 @@ body {
     min-height: 200px;
     margin: 0;
     padding: 0;
+    border-radius: 24px;
     margin-top: -20px;
     margin-bottom: -20px;
-  }
-  .bento-tall .bento-card {
     padding-top: 20px;
-    -webkit-clip-path: polygon(
-      0% 20px,
-      10% 20px,
-      10% 0,
-      30% 0,
-      30% 20px,
-      100% 20px,
-      100% calc(100% - 20px),
-      90% calc(100% - 20px),
-      90% 100%,
-      70% 100%,
-      70% calc(100% - 20px),
-      0% calc(100% - 20px)
-    );
     clip-path: polygon(
       0% 20px,
       10% 20px,
@@ -1783,25 +1823,10 @@ body {
     min-height: 180px;
     margin: 0;
     padding: 0;
+    border-radius: 24px;
     margin-top: -20px;
     margin-bottom: -20px;
-  }
-  .bento-puzzle-tl .bento-card {
     padding-top: 20px;
-    -webkit-clip-path: polygon(
-      0% 20px,
-      70% 20px,
-      70% 0,
-      90% 0,
-      90% 20px,
-      100% 20px,
-      100% calc(100% - 20px),
-      30% calc(100% - 20px),
-      30% 100%,
-      10% 100%,
-      10% calc(100% - 20px),
-      0% calc(100% - 20px)
-    );
     clip-path: polygon(
       0% 20px,
       70% 20px,
@@ -1825,25 +1850,10 @@ body {
     min-height: 180px;
     margin: 0;
     padding: 0;
+    border-radius: 24px;
     margin-top: -20px;
     margin-bottom: -20px;
-  }
-  .bento-puzzle-tr .bento-card {
     padding-top: 20px;
-    -webkit-clip-path: polygon(
-      0% 20px,
-      10% 20px,
-      10% 0,
-      30% 0,
-      30% 20px,
-      100% 20px,
-      100% calc(100% - 20px),
-      90% calc(100% - 20px),
-      90% 100%,
-      70% 100%,
-      70% calc(100% - 20px),
-      0% calc(100% - 20px)
-    );
     clip-path: polygon(
       0% 20px,
       10% 20px,
@@ -1867,25 +1877,10 @@ body {
     min-height: 180px;
     margin: 0;
     padding: 0;
+    border-radius: 24px;
     margin-top: -20px;
     margin-bottom: -20px;
-  }
-  .bento-puzzle-bl .bento-card {
     padding-top: 20px;
-    -webkit-clip-path: polygon(
-      0% 20px,
-      70% 20px,
-      70% 0,
-      90% 0,
-      90% 20px,
-      100% 20px,
-      100% calc(100% - 20px),
-      30% calc(100% - 20px),
-      30% 100%,
-      10% 100%,
-      10% calc(100% - 20px),
-      0% calc(100% - 20px)
-    );
     clip-path: polygon(
       0% 20px,
       70% 20px,
@@ -1909,20 +1904,9 @@ body {
     min-height: 180px;
     margin: 0;
     padding: 0;
+    border-radius: 24px;
     margin-top: -20px;
-  }
-  .bento-puzzle-br .bento-card {
     padding-top: 20px;
-    -webkit-clip-path: polygon(
-      0% 20px,
-      10% 20px,
-      10% 0,
-      30% 0,
-      30% 20px,
-      100% 20px,
-      100% 100%,
-      0% 100%
-    );
     clip-path: polygon(
       0% 20px,
       10% 20px,
@@ -1935,24 +1919,31 @@ body {
     );
   }
 
-  .bento-standard {
+  .bento-standard,
+  .bento-wide {
     grid-column: span 1;
     grid-row: span 1;
     min-height: 180px;
+    clip-path: none;
+    margin: 0;
+    padding: 0;
   }
 
   .bento-wide {
-    grid-column: span 6;
-    grid-row: span 1;
-    min-height: 80px;
+    flex-direction: column;
+    text-align: center;
+    min-height: 120px;
   }
-}
 
-/* ========== RESPONSIVE - MOBILE (smaller phones) ========== */
-@media (max-width: 600px) {
-  .bento-section {
-    padding: 1rem;
-    margin-top: 0;
+  .bento-wide .bento-label {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+  }
+
+  .bento-card {
+    padding: 1.5rem 1rem;
+    border-radius: 16px;
   }
 
   .bento-label {
