@@ -355,7 +355,7 @@ SineWaveGenerator.prototype.loop = function () {
 
 window.waveGen = new SineWaveGenerator({
   el: document.getElementById("waves"),
-  speed: 2.6, // 10% slower than previous value of 4
+  speed: 1.2, // slowed down for a calmer vibe
   waves: [
     {
       timeModifier: 1,

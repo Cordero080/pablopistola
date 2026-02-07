@@ -7,56 +7,18 @@ function updateMinimalParallaxOverlay() {
 }
 window.addEventListener("scroll", updateMinimalParallaxOverlay);
 document.addEventListener("DOMContentLoaded", updateMinimalParallaxOverlay);
-const cards = document.querySelectorAll(".card");
 
-// Create the more card and add to container
-function createMoreCard() {
-  const moreCardContainer = document.getElementById("moreCardContainer");
-  if (!moreCardContainer) return;
-  moreCardContainer.innerHTML = "";
-  const moreCard = document.createElement("div");
-  moreCard.className = "card more-card";
-  moreCard.innerHTML = '<span class="glitch" data-text="more">more</span>';
-  moreCardContainer.appendChild(moreCard);
-}
+// Bento cards - no tilt, just subtle hue shift on scroll
+const bentoCards = document.querySelectorAll(".bento-card");
 
-// Ensure more card is created on DOMContentLoaded
-document.addEventListener("DOMContentLoaded", createMoreCard);
-
-function updateTransforms() {
-  //quick note: this function is called whenever the user scrolls the page. It updates the transforms of each card based on the scroll position.
-  const scrollY = window.scrollY; // simply put, window is the global object in the browser, and scrollY is a property that returns the number of pixels that the document has already been scrolled vertically. This is used to calculate the parallax effect based on the scroll position.
-
+function updateBentoCards() {
+  const scrollY = window.scrollY;
   const maxScroll = document.body.scrollHeight - window.innerHeight;
   const rawProgress = Math.min(scrollY / maxScroll, 1);
-  const cardHue = rawProgress * 260; // Gradual hue shift up to 260deg
+  const cardHue = rawProgress * 180; // Subtle hue shift
 
-  // Sinewave parameters for card motion
-  const waveAmplitude = 24; // Subtle amplitude
-  const waveWavelength = 480; // Match main sinewave wavelength
-  const waveSpeed = window.waveGen ? window.waveGen.speed : 0.7;
-  const waveTime = window.waveGen
-    ? window.waveGen.time
-    : performance.now() / 1000;
-
-  cards.forEach((card, i) => {
+  bentoCards.forEach((card) => {
     card.style.filter = `hue-rotate(${cardHue}deg)`;
-    const speed = parseFloat(card.getAttribute("data-speed")); // parseFloat is used to convert the string value of the data-speed attribute into a floating-point number. This allows for decimal values, which can create a more subtle parallax effect. The data-speed attribute is set in the HTML and determines how fast the card moves relative to the scroll position. To see this in the HTML, you can look for something like <div class="card" data-speed="0.5">. The speed value can be adjusted to make the parallax effect more or less pronounced.
-    const offset = scrollY * speed;
-
-    // Subtle sinewave vertical offset
-    const cardRect = card.getBoundingClientRect();
-    const cardCenterX = cardRect.left + cardRect.width / 2;
-    const waveY =
-      Math.sin(waveTime * waveSpeed + cardCenterX / waveWavelength) *
-      waveAmplitude;
-
-    // Only apply parallax if not being hovered
-    if (!card.matches(":hover")) {
-      card.style.transform = `rotateY(0deg) rotateX(0deg) translateZ(50px) translateY(${
-        offset + waveY
-      }px)`; //this is the transform that will be applied to the card when it is not being hovered. When mouse is not hovering over the card, it will apply a parallax effect based on the scroll position
-    }
   });
 
   // Sinewave hue shift
@@ -66,41 +28,11 @@ function updateTransforms() {
   }
 }
 
-// Handle parallax on scroll
-window.addEventListener("scroll", updateTransforms);
-
-// Rotate card toward mouse position
-cards.forEach((card) => {
-  // this is the loop that adds the event listeners to each card so that they can react to mouse movements
-  card.addEventListener("mousemove", (e) => {
-    const rect = card.getBoundingClientRect(); // this is a built-in method that returns the size of an element and its position relative to the viewport
-    const x = e.clientX - rect.left; // x position within the card
-    const y = e.clientY - rect.top; // y position within the card
-
-    const centerX = rect.width / 2; // this is the center of the card
-    const centerY = rect.height / 2;
-
-    const rotateX = -(y - centerY) / 5; // invert so it tilts correctly. to exxaggerate the effect, you can change the divisor into a smaller number foe example 5 or 3 (it was 10 before)
-    const rotateY = (x - centerX) / 5;
-
-    const scrollY = window.scrollY;
-    const speed = parseFloat(card.getAttribute("data-speed"));
-    const offset = scrollY * speed;
-
-    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(80px) translateY(${offset}px)`;
-  });
-
-  card.addEventListener("mouseleave", () => {
-    const scrollY = window.scrollY;
-    const speed = parseFloat(card.getAttribute("data-speed"));
-    const offset = scrollY * speed;
-
-    card.style.transform = `rotateY(10deg) translateZ(50px) translateY(${offset}px)`;
-  });
-});
+window.addEventListener("scroll", updateBentoCards);
+document.addEventListener("DOMContentLoaded", updateBentoCards);
 
 document.addEventListener("keydown", (e) => {
-  if (e.key === "r") {
+  if (e.key === "r" && window.waveGen) {
     waveGen.direction *= -1; // Reverse animation direction
   }
 });
@@ -334,7 +266,7 @@ function updateWaveColors(isComplementary) {
       0,
       0,
       window.waveGen.width,
-      0
+      0,
     );
 
     if (isComplementary) {

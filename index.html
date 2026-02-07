@@ -27,7 +27,7 @@
     </defs>
   </svg>
 </div>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -55,54 +55,141 @@
     </div>
     <div class="quantum-ripple" id="quantumRipple"></div>
 
-    <nav class="quantum-nav">
-      <div class="nav-logo">
-        <span class="logo-text" id="myName" data-text="PABLOPISTOLA"
-          >PABLOPISTOLA</span
-        >
-        <div class="logo-particles"></div>
+    <nav class="side-nav">
+      <div class="side-nav-logo">
+        <span class="logo-text" id="myName" data-text="PC">PC</span>
       </div>
-      <div class="nav-links">
-        <a class="nav-link" href="#home">Home</a>
-        <a class="nav-link" href="#about">About</a>
-        <a class="nav-link" href="#projects">Projects</a>
-        <a class="nav-link" href="#contact">Contact</a>
+      <div class="side-nav-links">
+        <a class="side-nav-link" href="#home">
+          <span class="link-text">Home</span>
+        </a>
+        <a class="side-nav-link" href="#about">
+          <span class="link-text">About</span>
+        </a>
+        <a class="side-nav-link" href="#projects">
+          <span class="link-text">Projects</span>
+        </a>
+        <a class="side-nav-link" href="#contact">
+          <span class="link-text">Contact</span>
+        </a>
       </div>
-
-      <div class="nav-quantum-field"></div>
+      <div class="side-nav-glow"></div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero-section">
       <div class="hero-bg-glow"></div>
       <div class="hero-content">
-        <h1 class="hero-title">
-          PABLO <span class="hero-title-alt">PISTOLA</span>
-        </h1>
+        <h1 class="hero-title">PVBLO C0RDERO</h1>
         <span class="hero-underline"></span>
-        <p class="hero-tagline">
-          Futuristic Creations. Quantum Code. Digital Artistry.
-        </p>
         <a href="#projects" class="hero-cta">View Projects</a>
       </div>
     </section>
     <!-- End Hero Section -->
 
     <canvas id="waves"></canvas>
-    <div class="container">
-      <div class="card" data-speed="0.3">
-        <h2 class="glitch" data-text="PROJECT I">PROJECT I</h2>
-        <p class="card-description">TRANSCENDNCE PET SIM</p>
+
+    <!-- Bento Grid Layout -->
+    <section class="bento-section" id="projects">
+      <div class="bento-grid">
+        <!-- Featured large card - Transcendence Pet Sim -->
+        <a href="#" class="bento-card-link bento-featured">
+          <article class="bento-card">
+            <img
+              src="public/images/projects/transcendence.png"
+              alt="Transcendence Pet Sim"
+              class="bento-card-image"
+            />
+            <div class="bento-card-overlay">
+              <span class="bento-label">Featured</span>
+              <h2 class="glitch" data-text="Transcendence">Transcendence</h2>
+              <p class="card-description">PET SIM</p>
+            </div>
+            <div class="bento-accent"></div>
+          </article>
+        </a>
+
+        <!-- Tall card - Nucat -->
+        <a href="#" class="bento-card-link bento-tall">
+          <article class="bento-card">
+            <img
+              src="public/images/projects/nucat.png"
+              alt="Nucat"
+              class="bento-card-image"
+            />
+            <div class="bento-card-overlay">
+              <h2 class="glitch" data-text="Nucat">Nucat</h2>
+              <p class="card-description">WEB APP</p>
+            </div>
+            <div class="bento-accent"></div>
+          </article>
+        </a>
+
+        <!-- Bottom 2x2 Puzzle Grid -->
+        <!-- Top-left: Nexus Geom Lab - bump right, bump bottom -->
+        <a href="#" class="bento-card-link bento-puzzle-tl">
+          <article class="bento-card">
+            <img
+              src="public/images/projects/nexus-geom-lab.png"
+              alt="Nexus Geom Lab"
+              class="bento-card-image"
+            />
+            <div class="bento-card-overlay">
+              <h2 class="glitch" data-text="Nexus Geom Lab">Nexus Geom Lab</h2>
+              <p class="card-description">GEOMETRY</p>
+            </div>
+            <div class="bento-accent"></div>
+          </article>
+        </a>
+
+        <!-- Top-right: Dojo Crud - indent left, bump bottom -->
+        <a href="#" class="bento-card-link bento-puzzle-tr">
+          <article class="bento-card">
+            <img
+              src="public/images/projects/dojo-crud.png"
+              alt="Dojo Crud"
+              class="bento-card-image"
+            />
+            <div class="bento-card-overlay">
+              <h2 class="glitch" data-text="Dojo Crud">Dojo Crud</h2>
+              <p class="card-description">CRUD APP</p>
+            </div>
+            <div class="bento-accent"></div>
+          </article>
+        </a>
+
+        <!-- Bottom-left: Numeneon Light - bump right, indent top -->
+        <a href="#" class="bento-card-link bento-puzzle-bl">
+          <article class="bento-card">
+            <img
+              src="public/images/projects/numeneon-light.png"
+              alt="Numeneon Light"
+              class="bento-card-image"
+            />
+            <div class="bento-card-overlay">
+              <h2 class="glitch" data-text="Numeneon">Numeneon</h2>
+              <p class="card-description">LIGHT MODE</p>
+            </div>
+            <div class="bento-accent"></div>
+          </article>
+        </a>
+
+        <!-- Bottom-right: Numeneon Dark - indent left, indent top -->
+        <a href="#" class="bento-card-link bento-puzzle-br">
+          <article class="bento-card">
+            <img
+              src="public/images/projects/numeneon.png"
+              alt="Numeneon Dark"
+              class="bento-card-image"
+            />
+            <div class="bento-card-overlay">
+              <h2 class="glitch" data-text="Numeneon">Numeneon</h2>
+              <p class="card-description">DARK MODE</p>
+            </div>
+            <div class="bento-accent"></div>
+          </article>
+        </a>
       </div>
-      <div class="card" data-speed="-0.4">
-        <h2 class="glitch" data-text="PROJECT II">PROJECT II</h2>
-        <p class="card-description">DOJO APP</p>
-      </div>
-      <div class="card" data-speed="0.3">
-        <h2 class="glitch" data-text="PROJECT III">PROJECT III</h2>
-        <p class="card-description">MAGNUM OPUS</p>
-      </div>
-      <div id="moreCardContainer"></div>
-    </div>
+    </section>
   </body>
 </html>
