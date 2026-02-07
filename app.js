@@ -449,8 +449,6 @@ document.addEventListener("DOMContentLoaded", function () {
     cursorMain.style.left = mouseX - 10 + "px";
     cursorMain.style.top = mouseY - 10 + "px";
 
-    console.log("Mouse position:", mouseX, mouseY);
-
     // Create particles occasionally
     particleTimer++;
     if (particleTimer % 15 === 0) {
