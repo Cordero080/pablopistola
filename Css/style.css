@@ -1695,6 +1695,12 @@ body {
   /* Remove border-radius from cards so clip-path works */
   .bento-card {
     border-radius: 0 !important;
+    overflow: visible !important;
+  }
+
+  .bento-card-link {
+    display: block;
+    overflow: visible;
   }
 
   /* First card - tab sticking out bottom-left */
@@ -1705,6 +1711,16 @@ body {
     margin: 0;
     padding: 0;
     border-radius: 0;
+    -webkit-clip-path: polygon(
+      0% 0%,
+      100% 0%,
+      100% calc(100% - 20px),
+      30% calc(100% - 20px),
+      30% 100%,
+      10% 100%,
+      10% calc(100% - 20px),
+      0% calc(100% - 20px)
+    );
     clip-path: polygon(
       0% 0%,
       100% 0%,
@@ -1726,6 +1742,20 @@ body {
     padding: 0;
     border-radius: 0;
     padding-top: 20px;
+    -webkit-clip-path: polygon(
+      0% 20px,
+      10% 20px,
+      10% 0,
+      30% 0,
+      30% 20px,
+      100% 20px,
+      100% calc(100% - 20px),
+      90% calc(100% - 20px),
+      90% 100%,
+      70% 100%,
+      70% calc(100% - 20px),
+      0% calc(100% - 20px)
+    );
     clip-path: polygon(
       0% 20px,
       10% 20px,
@@ -1751,6 +1781,20 @@ body {
     padding: 0;
     border-radius: 0;
     padding-top: 20px;
+    -webkit-clip-path: polygon(
+      0% 20px,
+      70% 20px,
+      70% 0,
+      90% 0,
+      90% 20px,
+      100% 20px,
+      100% calc(100% - 20px),
+      30% calc(100% - 20px),
+      30% 100%,
+      10% 100%,
+      10% calc(100% - 20px),
+      0% calc(100% - 20px)
+    );
     clip-path: polygon(
       0% 20px,
       70% 20px,
@@ -1776,6 +1820,20 @@ body {
     padding: 0;
     border-radius: 0;
     padding-top: 20px;
+    -webkit-clip-path: polygon(
+      0% 20px,
+      10% 20px,
+      10% 0,
+      30% 0,
+      30% 20px,
+      100% 20px,
+      100% calc(100% - 20px),
+      90% calc(100% - 20px),
+      90% 100%,
+      70% 100%,
+      70% calc(100% - 20px),
+      0% calc(100% - 20px)
+    );
     clip-path: polygon(
       0% 20px,
       10% 20px,
@@ -1801,6 +1859,20 @@ body {
     padding: 0;
     border-radius: 0;
     padding-top: 20px;
+    -webkit-clip-path: polygon(
+      0% 20px,
+      70% 20px,
+      70% 0,
+      90% 0,
+      90% 20px,
+      100% 20px,
+      100% calc(100% - 20px),
+      30% calc(100% - 20px),
+      30% 100%,
+      10% 100%,
+      10% calc(100% - 20px),
+      0% calc(100% - 20px)
+    );
     clip-path: polygon(
       0% 20px,
       70% 20px,
@@ -1826,6 +1898,16 @@ body {
     padding: 0;
     border-radius: 0;
     padding-top: 20px;
+    -webkit-clip-path: polygon(
+      0% 20px,
+      10% 20px,
+      10% 0,
+      30% 0,
+      30% 20px,
+      100% 20px,
+      100% 100%,
+      0% 100%
+    );
     clip-path: polygon(
       0% 20px,
       10% 20px,
