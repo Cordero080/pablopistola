@@ -674,7 +674,7 @@
   }
 
   .project-title {
-    font-size: clamp(2rem, 12vw, 3rem);
+    font-size: clamp(1.25rem, 6vw, 1.75rem);
   }
 
   .colors {
