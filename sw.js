@@ -1,8 +1,8 @@
-const CACHE_NAME = "pablo-pistola-v3";
+const CACHE_NAME = "pablo-pistola-v4";
 const ASSETS_TO_CACHE = [
   "./",
   "./index.html",
-  "./landing.html",
+  "./home.html",
   "./app.js",
   "./Css/style.css",
   "./Css/landing.css",

@@ -1,233 +1,34 @@
-<!-- Minimal Parallax Background Overlay -->
-<div class="parallax-bg-overlay">
-  <svg
-    class="parallax-geo"
-    viewBox="0 0 1440 320"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M0,240 Q360,120 720,200 T1440,160 L1440,320 L0,320 Z"
-      fill="url(#parallaxGradient)"
-      opacity="0.13"
-    />
-    <defs>
-      <linearGradient
-        id="parallaxGradient"
-        x1="0"
-        y1="0"
-        x2="1440"
-        y2="320"
-        gradientUnits="userSpaceOnUse"
-      >
-        <stop stop-color="#00fff7" />
-        <stop offset="0.5" stop-color="#ff00cc" />
-        <stop offset="1" stop-color="#8338ec" />
-      </linearGradient>
-    </defs>
-  </svg>
-</div>
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
-    <title>Pablo Pistola</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Pablo Cordero | Enter</title>
 
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#00fff7" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta
-      name="apple-mobile-web-app-status-bar-style"
-      content="black-translucent"
-    />
-    <meta name="apple-mobile-web-app-title" content="Pablo Pistola" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucент" />
+    <meta name="apple-mobile-web-app-title" content="Pablo Cordero" />
     <link rel="apple-touch-icon" href="/icons/icon-192.png" />
-
-    <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
 
-    <link rel="stylesheet" href="Css/style.css" />
-    <link rel="stylesheet" href="Css/feathers.css" />
-    <link rel="stylesheet" href="Css/compMode.css" />
-    <script src="js/sineWave.js" defer></script>
-    <script src="js/feathers.js" defer></script>
-    <script src="app.js" defer></script>
-    <script src="js/orb.js" defer></script>
-    <script src="js/compMode.js" defer></script>
-
-    <!-- Service Worker Registration -->
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("/sw.js")
-            .then((reg) => console.log("SW registered"))
-            .catch((err) => console.log("SW registration failed:", err));
-        });
-      }
-    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="Css/landing.css" />
   </head>
   <body>
-    <audio
-      id="site-audio"
-      src="./music/Sonata Saeculorum.mp3"
-      autoplay
-      loop
-    ></audio>
-    <!-- Minimal Parallax Background Overlay: obtuse triangle -->
-    <div class="parallax-bg-overlay">
-      <div class="parallax-ellipse"></div>
-    </div>
-    <div class="quantum-ripple" id="quantumRipple"></div>
-
-    <nav class="side-nav">
-      <div class="side-nav-logo">
-        <span class="logo-text" id="myName" data-text="PC">PC</span>
-      </div>
-      <div class="side-nav-links">
-        <a class="side-nav-link" href="#home">
-          <span class="link-text">Home</span>
-        </a>
-        <a class="side-nav-link" href="#about">
-          <span class="link-text">About</span>
-        </a>
-        <a class="side-nav-link" href="#projects">
-          <span class="link-text">Projects</span>
-        </a>
-        <a class="side-nav-link" href="#contact">
-          <span class="link-text">Contact</span>
-        </a>
-      </div>
-      <div class="side-nav-glow"></div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero-section">
-      <div class="hero-bg-glow"></div>
-      <div class="hero-content">
-        <h1 class="hero-title">PVBLO C0RDERO</h1>
-        <span class="hero-underline"></span>
-        <a href="#projects" class="hero-cta">View Projects</a>
-      </div>
-    </section>
-    <!-- End Hero Section -->
-
     <canvas id="waves"></canvas>
+    
+    <div class="landing-container">
+      <h1 class="landing-title" id="landingTitle"></h1>
+      <p class="landing-tagline">Full Stack Developer & Creative Technologist</p>
+      <a href="home.html" class="enter-btn" id="enterBtn">Enter</a>
+    </div>
 
-    <!-- Bento Grid Layout -->
-    <section class="bento-section" id="projects">
-      <div class="bento-grid">
-        <!-- Featured large card - Transcendence Pet Sim -->
-        <a
-          href="projects/transcendence.html"
-          class="bento-card-link bento-featured"
-        >
-          <article class="bento-card">
-            <img
-              src="public/images/projects/transcendence.png"
-              alt="Transcendence Pet Sim"
-              class="bento-card-image"
-            />
-            <div class="bento-card-overlay">
-              <span class="bento-label">Featured</span>
-              <h2 class="glitch" data-text="Transcendence">Transcendence</h2>
-              <p class="card-description">PET SIM</p>
-            </div>
-            <div class="bento-accent"></div>
-          </article>
-        </a>
-
-        <!-- Tall card - Nucat -->
-        <a href="#" class="bento-card-link bento-tall">
-          <article class="bento-card">
-            <img
-              src="public/images/projects/nucat.png"
-              alt="Nucat"
-              class="bento-card-image"
-            />
-            <div class="bento-card-overlay">
-              <h2 class="glitch" data-text="Nucat">Nucat</h2>
-              <p class="card-description">WEB APP</p>
-            </div>
-            <div class="bento-accent"></div>
-          </article>
-        </a>
-
-        <!-- Bottom 2x2 Puzzle Grid -->
-        <!-- Top-left: Nexus Geom Lab - bump right, bump bottom -->
-        <a href="#" class="bento-card-link bento-puzzle-tl">
-          <article class="bento-card">
-            <img
-              src="public/images/projects/nexus-geom-lab.png"
-              alt="Nexus Geom Lab"
-              class="bento-card-image"
-            />
-            <div class="bento-card-overlay">
-              <h2 class="glitch" data-text="Nexus Geom Lab">Nexus Geom Lab</h2>
-              <p class="card-description">GEOMETRY</p>
-            </div>
-            <div class="bento-accent"></div>
-          </article>
-        </a>
-
-        <!-- Top-right: Dojo Crud - indent left, bump bottom -->
-        <a href="#" class="bento-card-link bento-puzzle-tr">
-          <article class="bento-card">
-            <img
-              src="public/images/projects/dojo-crud.png"
-              alt="Dojo Crud"
-              class="bento-card-image"
-            />
-            <div class="bento-card-overlay">
-              <h2 class="glitch" data-text="Dojo Crud">Dojo Crud</h2>
-              <p class="card-description">CRUD APP</p>
-            </div>
-            <div class="bento-accent"></div>
-          </article>
-        </a>
-
-        <!-- Bottom-left: Numeneon Light - bump right, indent top -->
-        <a
-          href="projects/numeneon.html"
-          class="bento-card-link bento-puzzle-bl"
-        >
-          <article class="bento-card">
-            <img
-              src="public/images/projects/numeneon-light.png"
-              alt="Numeneon Light"
-              class="bento-card-image"
-            />
-            <div class="bento-card-overlay">
-              <h2 class="glitch" data-text="Numeneon">Numeneon</h2>
-              <p class="card-description">LIGHT MODE</p>
-            </div>
-            <div class="bento-accent"></div>
-          </article>
-        </a>
-
-        <!-- Bottom-right: Numeneon Dark - indent left, indent top -->
-        <a
-          href="projects/numeneon.html"
-          class="bento-card-link bento-puzzle-br"
-        >
-          <article class="bento-card">
-            <img
-              src="public/images/projects/numeneon.png"
-              alt="Numeneon Dark"
-              class="bento-card-image"
-            />
-            <div class="bento-card-overlay">
-              <h2 class="glitch" data-text="Numeneon">Numeneon</h2>
-              <p class="card-description">DARK MODE</p>
-            </div>
-            <div class="bento-accent"></div>
-          </article>
-        </a>
-      </div>
-    </section>
+    <script src="js/sineWave.js"></script>
+    <script src="js/landing.js"></script>
   </body>
 </html>
