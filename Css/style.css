@@ -1692,15 +1692,14 @@ body {
     gap: 0;
   }
 
-  /* Remove border-radius from cards so clip-path works */
-  .bento-card {
-    border-radius: 0 !important;
-    overflow: visible !important;
-  }
-
   .bento-card-link {
     display: block;
     overflow: visible;
+  }
+
+  .bento-card {
+    border-radius: 0 !important;
+    overflow: visible !important;
   }
 
   /* First card - tab sticking out bottom-left */
@@ -1710,8 +1709,9 @@ body {
     min-height: 200px;
     margin: 0;
     padding: 0;
-    border-radius: 0;
     margin-bottom: -20px;
+  }
+  .bento-featured .bento-card {
     -webkit-clip-path: polygon(
       0% 0%,
       100% 0%,
@@ -1741,10 +1741,11 @@ body {
     min-height: 200px;
     margin: 0;
     padding: 0;
-    border-radius: 0;
-    padding-top: 20px;
     margin-top: -20px;
     margin-bottom: -20px;
+  }
+  .bento-tall .bento-card {
+    padding-top: 20px;
     -webkit-clip-path: polygon(
       0% 20px,
       10% 20px,
@@ -1782,10 +1783,11 @@ body {
     min-height: 180px;
     margin: 0;
     padding: 0;
-    border-radius: 0;
-    padding-top: 20px;
     margin-top: -20px;
     margin-bottom: -20px;
+  }
+  .bento-puzzle-tl .bento-card {
+    padding-top: 20px;
     -webkit-clip-path: polygon(
       0% 20px,
       70% 20px,
@@ -1823,10 +1825,11 @@ body {
     min-height: 180px;
     margin: 0;
     padding: 0;
-    border-radius: 0;
-    padding-top: 20px;
     margin-top: -20px;
     margin-bottom: -20px;
+  }
+  .bento-puzzle-tr .bento-card {
+    padding-top: 20px;
     -webkit-clip-path: polygon(
       0% 20px,
       10% 20px,
@@ -1864,10 +1867,11 @@ body {
     min-height: 180px;
     margin: 0;
     padding: 0;
-    border-radius: 0;
-    padding-top: 20px;
     margin-top: -20px;
     margin-bottom: -20px;
+  }
+  .bento-puzzle-bl .bento-card {
+    padding-top: 20px;
     -webkit-clip-path: polygon(
       0% 20px,
       70% 20px,
@@ -1905,9 +1909,10 @@ body {
     min-height: 180px;
     margin: 0;
     padding: 0;
-    border-radius: 0;
-    padding-top: 20px;
     margin-top: -20px;
+  }
+  .bento-puzzle-br .bento-card {
+    padding-top: 20px;
     -webkit-clip-path: polygon(
       0% 20px,
       10% 20px,
