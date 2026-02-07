@@ -1,0 +1,423 @@
+/* Landing Page Styles */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --font-display: 'Orbitron', sans-serif;
+  --text-primary: #fffdfd;
+  --bg-dark: #0a0a0a;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--bg-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: var(--font-display);
+}
+
+/* Sine wave canvas background */
+#waves {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Landing Container */
+.landing-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Title Container */
+.landing-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 10vw, 6rem);
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.05em;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(180deg, #ffffff 22%, rgba(79, 88, 88, 0.699) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Reset state for replay */
+.landing-title--reset .title-letter {
+  animation: none !important;
+  opacity: 0 !important;
+}
+
+.landing-title--replay .title-letter {
+  animation: letterFadeInGlitch 3.5s linear forwards !important;
+}
+
+/* Base Letter Styles */
+.title-letter {
+  display: inline-block;
+  opacity: 0;
+  animation: letterFadeInGlitch 7s linear forwards;
+  position: relative;
+  background: linear-gradient(180deg, var(--text-primary) 22%, rgba(79, 88, 88, 0.699) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  will-change: transform, opacity, filter;
+}
+
+/* Scanline overlay */
+.title-letter::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.3) 2px,
+    rgba(0, 0, 0, 0.3) 4px
+  );
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Flipped variant (first/last letters) */
+.title-letter--flip {
+  animation: letterFadeInFlipGlitch 4s linear forwards;
+}
+
+/* Space character */
+.title-letter--space {
+  width: 0.3em;
+  opacity: 1 !important;
+  animation: none !important;
+}
+
+/* Hover Effects */
+.title-letter:hover {
+  filter: brightness(1.2);
+  transform: translateX(2px);
+  transition: filter 0.05s, text-shadow 0.05s, transform 0.05s;
+}
+
+.title-letter:hover::before {
+  opacity: 0.6;
+  animation: scanlineSweep 0.3s ease-in-out;
+}
+
+/* Color variants on hover */
+.title-letter--magenta:hover {
+  text-shadow: 3px 0 #ff00ff, -3px 0 #00ffff;
+}
+
+.title-letter--cyan:hover {
+  text-shadow: 3px 0 #1a73e7, -3px 0 #1ae784;
+}
+
+.title-letter--aqua:hover {
+  text-shadow: 3px 0 #1ae784, -3px 0 #dc08bc;
+}
+
+.title-letter--purple:hover {
+  text-shadow: 3px 0 #a783ff, -3px 0 #00ffff;
+}
+
+.title-letter--blue:hover {
+  text-shadow: 3px 0 #0066ff, -3px 0 #ffee00;
+}
+
+.title-letter--orange:hover {
+  text-shadow: 3px 0 #ff8c00, -3px 0 #a783ff;
+}
+
+.title-letter--pink:hover {
+  text-shadow: 3px 0 #ff69b4, -3px 0 #00ffff;
+}
+
+.title-letter--green:hover {
+  text-shadow: 3px 0 #33ff33, -3px 0 #ff00ff;
+}
+
+/* Main Glitch Animation */
+@keyframes letterFadeInGlitch {
+  0%, 5% {
+    opacity: 0;
+    transform: translateX(0);
+    filter: none;
+    text-shadow: none;
+    clip-path: none;
+  }
+
+  /* GLITCH BURST - RGB Cycle: Magenta/Cyan */
+  5.5% {
+    opacity: 1;
+    transform: translateX(3px);
+    filter: blur(4px) brightness(1.5);
+    text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff;
+    clip-path: ellipse(80% 40% at 50% 50%);
+  }
+
+  /* RGB Cycle: Yellow/Blue */
+  5.8% {
+    transform: translateX(-3px);
+    filter: blur(2px) invert(1);
+    text-shadow: 4px 0 #ffee00, -4px 0 #0066ff;
+    clip-path: polygon(0 0, 100% 0, 100% 25%, 0 25%, 0 50%, 100% 50%, 100% 75%, 0 75%, 0 100%, 100% 100%);
+  }
+
+  /* RGB Cycle: Red/Green */
+  6% {
+    transform: translateX(100px) skewX(-20deg);
+    filter: blur(10px);
+    text-shadow: -3px 0 #ff3333, 3px 0 #33ff33;
+    clip-path: polygon(10% 0, 90% 10%, 100% 90%, 0 100%);
+  }
+
+  /* Back to Magenta/Cyan */
+  6.3% {
+    opacity: 0.6;
+    transform: translateX(-50px);
+    filter: blur(3px) invert(0.5);
+    text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff;
+  }
+
+  /* Final flash: Yellow/Blue */
+  6.5% {
+    opacity: 0.4;
+    transform: translateX(100px);
+    filter: blur(0.5px);
+    text-shadow: 4px 0 #ffee00, -4px 0 #0066ff;
+  }
+
+  /* GLITCH END - clean */
+  7% {
+    opacity: 1;
+    transform: translateX(0);
+    filter: none;
+    text-shadow: none;
+    clip-path: none;
+  }
+
+  40%, 100% {
+    opacity: 1;
+    transform: translateX(0);
+    filter: none;
+    text-shadow: none;
+    clip-path: none;
+  }
+}
+
+/* Flipped Letter Animation (for first/last) */
+@keyframes letterFadeInFlipGlitch {
+  0% {
+    opacity: 0;
+    transform: scaleX(-1);
+  }
+
+  15% {
+    opacity: 1;
+    transform: scaleX(-1);
+  }
+
+  /* Glitch while mirrored - Magenta/Cyan */
+  15.5% {
+    opacity: 1;
+    transform: scaleX(-1) translateX(3px);
+    filter: blur(4px) brightness(1.5);
+    text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff;
+  }
+
+  /* Yellow/Blue */
+  16% {
+    transform: scaleX(-1) translateX(-5px);
+    filter: blur(2px) invert(1);
+    text-shadow: 4px 0 #ffee00, -4px 0 #0066ff;
+  }
+
+  /* Red/Green */
+  16.5% {
+    transform: scaleX(-1) translateX(8px) skewX(10deg);
+    filter: blur(6px);
+    text-shadow: -3px 0 #ff3333, 3px 0 #33ff33;
+  }
+
+  17% {
+    opacity: 1;
+    transform: scaleX(-1);
+    filter: none;
+    text-shadow: none;
+  }
+
+  /* Flip transition */
+  48% {
+    opacity: 1;
+    transform: scaleX(-1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+/* Scanline Sweep (hover effect) */
+@keyframes scanlineSweep {
+  0% {
+    opacity: 0;
+    background-position: 0 -100%;
+  }
+  20% {
+    opacity: 0.8;
+    background-position: 0 0%;
+  }
+  80% {
+    opacity: 0.6;
+    background-position: 0 100%;
+  }
+  100% {
+    opacity: 0;
+    background-position: 0 200%;
+  }
+}
+
+/* Tagline */
+.landing-tagline {
+  font-family: var(--font-display);
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.15em;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 2.5s forwards;
+}
+
+/* Enter Button - matches hero-cta style */
+.enter-btn {
+  display: inline-block;
+  padding: 16px 48px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: 73% 27% 61% 39% / 41% 69% 31% 59%;
+  
+  /* Multi-layered dark holographic background */
+  background:
+    linear-gradient(145deg, #221d27, #000000),
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.5), transparent 50%),
+    linear-gradient(45deg, rgba(138, 43, 226, 0.05), rgba(0, 212, 255, 0.05), rgba(138, 43, 226, 0.05));
+  background-size: 100% 100%, 150% 150%, 150% 150%, 200% 200%;
+  background-blend-mode: overlay, multiply, overlay;
+  
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  
+  /* Glowing text shadow with purple/cyan */
+  text-shadow:
+    0 0 5px rgba(138, 43, 226, 0.5),
+    0 0 10px rgba(0, 212, 255, 0.3),
+    0 0 15px rgba(138, 43, 226, 0.2);
+  
+  /* 3D depth with inset shadows */
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.8),
+    inset 0 1px 3px rgba(255, 255, 255, 0.2),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.5);
+  
+  backdrop-filter: blur(10px);
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 3s forwards, dark-holographic-shimmer 3s ease infinite 3s;
+}
+
+.enter-btn:hover {
+  border-color: rgba(0, 212, 255, 0.6);
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 0 20px rgba(0, 212, 255, 0.4),
+    0 0 40px rgba(138, 43, 226, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.8),
+    inset 0 1px 3px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.5);
+  transform: scale(1.05);
+  animation: dark-holographic-shimmer 1.5s ease infinite;
+}
+
+@keyframes dark-holographic-shimmer {
+  0%, 100% {
+    background-position: 0% 50%, 0% 0%, 100% 100%, 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%, 100% 100%, 0% 0%, 100% 50%;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .landing-title {
+    font-size: clamp(2rem, 12vw, 4rem);
+  }
+  
+  .landing-tagline {
+    font-size: clamp(0.75rem, 3vw, 1rem);
+    padding: 0 1rem;
+  }
+  
+  .enter-btn {
+    padding: 14px 36px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .landing-title {
+    font-size: clamp(1.5rem, 14vw, 3rem);
+    gap: 0.02em;
+  }
+  
+  .title-letter--space {
+    width: 0.2em;
+  }
+}
