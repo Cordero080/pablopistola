@@ -1711,6 +1711,7 @@ body {
     margin: 0;
     padding: 0;
     border-radius: 0;
+    margin-bottom: -20px;
     -webkit-clip-path: polygon(
       0% 0%,
       100% 0%,
@@ -1742,6 +1743,8 @@ body {
     padding: 0;
     border-radius: 0;
     padding-top: 20px;
+    margin-top: -20px;
+    margin-bottom: -20px;
     -webkit-clip-path: polygon(
       0% 20px,
       10% 20px,
@@ -1781,6 +1784,8 @@ body {
     padding: 0;
     border-radius: 0;
     padding-top: 20px;
+    margin-top: -20px;
+    margin-bottom: -20px;
     -webkit-clip-path: polygon(
       0% 20px,
       70% 20px,
@@ -1820,6 +1825,8 @@ body {
     padding: 0;
     border-radius: 0;
     padding-top: 20px;
+    margin-top: -20px;
+    margin-bottom: -20px;
     -webkit-clip-path: polygon(
       0% 20px,
       10% 20px,
@@ -1859,6 +1866,8 @@ body {
     padding: 0;
     border-radius: 0;
     padding-top: 20px;
+    margin-top: -20px;
+    margin-bottom: -20px;
     -webkit-clip-path: polygon(
       0% 20px,
       70% 20px,
@@ -1898,6 +1907,7 @@ body {
     padding: 0;
     border-radius: 0;
     padding-top: 20px;
+    margin-top: -20px;
     -webkit-clip-path: polygon(
       0% 20px,
       10% 20px,
