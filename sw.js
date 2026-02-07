@@ -1,17 +1,17 @@
 const CACHE_NAME = "pablo-pistola-v1";
 const ASSETS_TO_CACHE = [
-  "/",
-  "/index.html",
-  "/app.js",
-  "/Css/style.css",
-  "/Css/feathers.css",
-  "/Css/compMode.css",
-  "/js/sineWave.js",
-  "/js/feathers.js",
-  "/js/orb.js",
-  "/js/compMode.js",
-  "/icons/icon-192.png",
-  "/icons/icon-512.png",
+  "./",
+  "./index.html",
+  "./app.js",
+  "./Css/style.css",
+  "./Css/feathers.css",
+  "./Css/compMode.css",
+  "./js/sineWave.js",
+  "./js/feathers.js",
+  "./js/orb.js",
+  "./js/compMode.js",
+  "./icons/icon-192.png",
+  "./icons/icon-512.png",
 ];
 
 // Install event - cache assets
