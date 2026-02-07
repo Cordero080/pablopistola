@@ -31,8 +31,25 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3D Floating Cards with Parallax</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Pablo Pistola</title>
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#00fff7" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Pablo Pistola" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
     <link rel="stylesheet" href="Css/style.css" />
     <link rel="stylesheet" href="Css/feathers.css" />
     <link rel="stylesheet" href="Css/compMode.css" />
@@ -41,6 +58,18 @@
     <script src="app.js" defer></script>
     <script src="js/orb.js" defer></script>
     <script src="js/compMode.js" defer></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/sw.js")
+            .then((reg) => console.log("SW registered"))
+            .catch((err) => console.log("SW registration failed:", err));
+        });
+      }
+    </script>
   </head>
   <body>
     <audio
