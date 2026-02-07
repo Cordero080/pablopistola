@@ -6,12 +6,12 @@ body {
   background: linear-gradient(120deg, #0a0a23 0%, #1a1a3a 100%);
   background-attachment: fixed;
   animation: bgGradientShift 18s ease-in-out infinite alternate;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 /* Hide scrollbars but allow scroll on html */
 html {
-  overflow: hidden;
+  overflow-x: hidden;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE/Edge */
 }
