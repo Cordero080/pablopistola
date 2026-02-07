@@ -1644,6 +1644,10 @@ body {
   );
 }
 
+.bento-puzzle-bl .bento-card-image {
+  object-position: center 15%;
+}
+
 /* Bottom-right - same size as tall */
 .bento-puzzle-br {
   grid-column: span 5;
@@ -1664,6 +1668,10 @@ body {
   );
 }
 
+.bento-puzzle-br .bento-card-image {
+  object-position: center 15%;
+}
+
 /* Wide card - no longer used */
 
 .bento-wide h2 {
@@ -1682,6 +1690,17 @@ body {
 
 /* ========== RESPONSIVE - TABLET ========== */
 @media (max-width: 900px) {
+  /* Disable custom cursor on mobile/tablet */
+  * {
+    cursor: auto !important;
+  }
+  .cursor-main,
+  .cursor-follow,
+  .cursor-glow,
+  .cursor-particle {
+    display: none !important;
+  }
+
   .bento-section {
     padding: 1.5rem;
     margin-top: 10px;

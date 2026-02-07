@@ -1,7 +1,7 @@
 {
-  "name": "paralax-2.0",
+  "name": "pablopistola",
   "version": "1.0.0",
-  "description": "Parallax effect website",
+  "description": "Pablo Pistola personal website",
   "scripts": {
     "dev": "npx live-server --port=3000"
   },
