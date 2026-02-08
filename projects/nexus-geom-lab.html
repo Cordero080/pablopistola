@@ -77,10 +77,82 @@
       <section class="project-gallery">
         <div class="gallery-main">
           <img
-            src="../public/images/projects/nexus-geom-lab.png"
-            alt="Nexus Geom Lab"
+            src="../public/images/projects/nexus-geom-lab/nexus-landing1.jpg"
+            alt="Nexus Geom Lab Landing Page"
             class="gallery-hero-img"
             loading="eager"
+          />
+        </div>
+        <div class="gallery-thumbs">
+          <img
+            src="../public/images/projects/nexus-geom-lab/nexus-landing1.jpg"
+            alt="Landing Page"
+            class="thumb active"
+            data-full="../public/images/projects/nexus-geom-lab/nexus-landing1.jpg"
+            loading="lazy"
+          />
+          <img
+            src="../public/images/projects/nexus-geom-lab/signup.png"
+            alt="Sign Up"
+            class="thumb"
+            data-full="../public/images/projects/nexus-geom-lab/signup.png"
+            loading="lazy"
+          />
+          <img
+            src="../public/images/projects/nexus-geom-lab/homepage-logged-in.png"
+            alt="Homepage Logged In"
+            class="thumb"
+            data-full="../public/images/projects/nexus-geom-lab/homepage-logged-in.png"
+            loading="lazy"
+          />
+          <img
+            src="../public/images/projects/nexus-geom-lab/mega-tesseract.png"
+            alt="Mega Tesseract"
+            class="thumb"
+            data-full="../public/images/projects/nexus-geom-lab/mega-tesseract.png"
+            loading="lazy"
+          />
+          <img
+            src="../public/images/projects/nexus-geom-lab/quantum-manifold.png"
+            alt="Quantum Manifold"
+            class="thumb"
+            data-full="../public/images/projects/nexus-geom-lab/quantum-manifold.png"
+            loading="lazy"
+          />
+          <img
+            src="../public/images/projects/nexus-geom-lab/unlock-modal.png"
+            alt="Character Unlock Modal"
+            class="thumb"
+            data-full="../public/images/projects/nexus-geom-lab/unlock-modal.png"
+            loading="lazy"
+          />
+          <img
+            src="../public/images/projects/nexus-geom-lab/character-showcase.png"
+            alt="Character Showcase Gallery"
+            class="thumb"
+            data-full="../public/images/projects/nexus-geom-lab/character-showcase.png"
+            loading="lazy"
+          />
+          <img
+            src="../public/images/projects/nexus-geom-lab/character-closeup.png"
+            alt="Character Closeup"
+            class="thumb"
+            data-full="../public/images/projects/nexus-geom-lab/character-closeup.png"
+            loading="lazy"
+          />
+          <img
+            src="../public/images/projects/nexus-geom-lab/scene-management.png"
+            alt="Scene Management Dashboard"
+            class="thumb"
+            data-full="../public/images/projects/nexus-geom-lab/scene-management.png"
+            loading="lazy"
+          />
+          <img
+            src="../public/images/projects/nexus-geom-lab/wireframe.png"
+            alt="Wireframe Design"
+            class="thumb"
+            data-full="../public/images/projects/nexus-geom-lab/wireframe.png"
+            loading="lazy"
           />
         </div>
       </section>
@@ -309,6 +381,19 @@
         </div>
       </section>
     </main>
+
+    <!-- Gallery Script -->
+    <script>
+      document.querySelectorAll(".gallery-thumbs .thumb").forEach((thumb) => {
+        thumb.addEventListener("click", () => {
+          document.querySelector(".gallery-hero-img").src = thumb.dataset.full;
+          document
+            .querySelectorAll(".thumb")
+            .forEach((t) => t.classList.remove("active"));
+          thumb.classList.add("active");
+        });
+      });
+    </script>
 
     <script>
       // Initialize sine wave background

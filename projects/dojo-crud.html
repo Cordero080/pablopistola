@@ -52,10 +52,68 @@
       <section class="project-gallery">
         <div class="gallery-main">
           <img
-            src="../public/images/projects/dojo-crud.png"
-            alt="Dojo Crud"
+            src="../public/images/projects/nexus-geom-lab/dojo/main.png"
+            alt="Dojo CRUD Main"
             class="gallery-hero-img"
             loading="eager"
+          />
+        </div>
+        <div class="gallery-thumbs">
+          <img
+            src="../public/images/projects/nexus-geom-lab/dojo/main.png"
+            alt="Main"
+            class="thumb active"
+            data-full="../public/images/projects/nexus-geom-lab/dojo/main.png"
+            loading="lazy"
+          />
+          <img
+            src="../public/images/projects/nexus-geom-lab/dojo/sign-up.png"
+            alt="Sign Up"
+            class="thumb"
+            data-full="../public/images/projects/nexus-geom-lab/dojo/sign-up.png"
+            loading="lazy"
+          />
+          <img
+            src="../public/images/projects/nexus-geom-lab/dojo/login.png"
+            alt="Login"
+            class="thumb"
+            data-full="../public/images/projects/nexus-geom-lab/dojo/login.png"
+            loading="lazy"
+          />
+          <img
+            src="../public/images/projects/nexus-geom-lab/dojo/form.png"
+            alt="Form"
+            class="thumb"
+            data-full="../public/images/projects/nexus-geom-lab/dojo/form.png"
+            loading="lazy"
+          />
+          <img
+            src="../public/images/projects/nexus-geom-lab/dojo/description.png"
+            alt="Description"
+            class="thumb"
+            data-full="../public/images/projects/nexus-geom-lab/dojo/description.png"
+            loading="lazy"
+          />
+          <img
+            src="../public/images/projects/nexus-geom-lab/dojo/index.png"
+            alt="Index"
+            class="thumb"
+            data-full="../public/images/projects/nexus-geom-lab/dojo/index.png"
+            loading="lazy"
+          />
+          <img
+            src="../public/images/projects/nexus-geom-lab/dojo/show.png"
+            alt="Show"
+            class="thumb"
+            data-full="../public/images/projects/nexus-geom-lab/dojo/show.png"
+            loading="lazy"
+          />
+          <img
+            src="../public/images/projects/nexus-geom-lab/dojo/trash.png"
+            alt="Trash"
+            class="thumb"
+            data-full="../public/images/projects/nexus-geom-lab/dojo/trash.png"
+            loading="lazy"
           />
         </div>
       </section>
@@ -77,6 +135,19 @@
         </div>
       </section>
     </main>
+
+    <!-- Gallery Script -->
+    <script>
+      document.querySelectorAll(".gallery-thumbs .thumb").forEach((thumb) => {
+        thumb.addEventListener("click", () => {
+          document.querySelector(".gallery-hero-img").src = thumb.dataset.full;
+          document
+            .querySelectorAll(".thumb")
+            .forEach((t) => t.classList.remove("active"));
+          thumb.classList.add("active");
+        });
+      });
+    </script>
 
     <script>
       // Initialize sine wave background
