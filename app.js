@@ -40,6 +40,39 @@ document.addEventListener("keydown", (e) => {
 // Complementary Color Effect for PABLOPISTOLA hover
 
 document.addEventListener("DOMContentLoaded", function () {
+  // Ensure toggleComplementaryColors is accessible FIRST
+  window.toggleComplementaryColors =
+    window.toggleComplementaryColors ||
+    function () {
+      if (typeof window.isComplementaryMode === "undefined") {
+        window.isComplementaryMode = false;
+      }
+      window.isComplementaryMode = !window.isComplementaryMode;
+      if (window.isComplementaryMode) {
+        document.body.classList.add("complementary-colors");
+        // Use easter egg colors from easterEggSineWave.js
+        if (window.initEasterEggColors) window.initEasterEggColors();
+        if (window.startFeatherEffect) window.startFeatherEffect();
+      } else {
+        document.body.classList.remove("complementary-colors");
+        // Reset to main colors from easterEggSineWave.js
+        if (window.resetMainColors) window.resetMainColors();
+        if (window.stopFeatherEffect) window.stopFeatherEffect();
+      }
+    };
+
+  // Hero title click to toggle comp mode
+  const heroTitle = document.getElementById("heroTitle");
+  if (heroTitle) {
+    heroTitle.style.cursor = "pointer";
+    heroTitle.addEventListener("click", () => {
+      if (typeof window.toggleComplementaryColors === "function") {
+        window.toggleComplementaryColors();
+        console.log("Comp mode toggled via hero title");
+      }
+    });
+  }
+
   const myNameElement = document.getElementById("myName");
   if (!myNameElement) return;
 
@@ -106,27 +139,6 @@ document.addEventListener("DOMContentLoaded", function () {
     y: "ʎ",
     z: "z",
   };
-
-  // Ensure toggleComplementaryColors is accessible
-  window.toggleComplementaryColors =
-    window.toggleComplementaryColors ||
-    function () {
-      if (typeof isComplementaryMode === "undefined") {
-        window.isComplementaryMode = false;
-      }
-      window.isComplementaryMode = !window.isComplementaryMode;
-      if (window.isComplementaryMode) {
-        document.body.classList.add("complementary-colors");
-        updateWaveColors(true);
-        setEtherealWaveComplexity(true);
-        if (window.startFeatherEffect) window.startFeatherEffect();
-      } else {
-        document.body.classList.remove("complementary-colors");
-        updateWaveColors(false);
-        setEtherealWaveComplexity(false);
-        if (window.stopFeatherEffect) window.stopFeatherEffect();
-      }
-    };
 
   function scrambleName() {
     // Scramble using digits from pi and Fibonacci sequence
@@ -202,62 +214,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     myNameElement.textContent = originalText;
   });
-
-  // Complementary mode hover functionality
-  let compHoverTimer = null;
-  let isCompMode = false;
-  if (!myNameElement) {
-    console.error("myNameElement not found! Check your selector.");
-  } else {
-    // Complementary mode logic is fully independent from scramble
-    // Remove all click event listeners from myNameElement
-    myNameElement.onclick = null;
-    myNameElement.addEventListener("mouseenter", () => {
-      if (compHoverTimer) {
-        console.log("Comp mode timer already running");
-        return;
-      }
-      // Extra guard: only start timer if not already in comp mode and not already running
-      if (!isCompMode) {
-        console.log("Starting 3s timer to activate comp mode");
-        compHoverTimer = setTimeout(() => {
-          console.log("3s hover complete: activating comp mode");
-          if (
-            !isCompMode &&
-            typeof window.toggleComplementaryColors === "function"
-          ) {
-            window.toggleComplementaryColors();
-            isCompMode = true;
-          }
-          compHoverTimer = null;
-        }, 3000);
-      } else {
-        console.log("Starting 3s timer to deactivate comp mode");
-        compHoverTimer = setTimeout(() => {
-          console.log("3s hover complete: deactivating comp mode");
-          if (
-            isCompMode &&
-            typeof window.toggleComplementaryColors === "function"
-          ) {
-            window.toggleComplementaryColors();
-            isCompMode = false;
-          }
-          compHoverTimer = null;
-        }, 3000);
-      }
-    });
-    myNameElement.addEventListener("mouseleave", () => {
-      if (compHoverTimer) {
-        clearTimeout(compHoverTimer);
-        compHoverTimer = null;
-        console.log("Comp mode timer cancelled on mouseleave");
-      }
-      // Mouseleave does NOT deactivate comp mode
-    });
-  }
-
-  // Optional: Click to toggle back to normal
-  // Removed click-to-toggle for complementary mode. Only 3s hover toggles mode.
 });
 
 function updateWaveColors(isComplementary) {

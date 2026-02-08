@@ -8,31 +8,20 @@ body.complementary-colors .navbar {
 	transition: box-shadow 0.4s, background 0.4s;
 }
 body.complementary-colors {
-	background: linear-gradient(65deg, 
-		#910240 0%,     /* Darker hot pink */
-		#6829c4 10%,    /* Darker purple */
-		#2d6bcc 20%,    /* Darker blue */
-		#0f9c68 30%,    /* Darker mint green */
-		#cc9909 40%,    /* Darker yellow */
-		#c94505 50%,    /* Darker orange */
-		#cc0058 60%,    /* Darker hot pink */
-		#6829c4 70%,    /* Darker purple */
-		#2d6bcc 80%,    /* Darker blue */
-		#05cc84 90%,    /* Darker mint green */
-		#cc9909 100%    /* Darker yellow */
-	);
-	background-size: 400% 400%;
-	animation: trippyGradient 19.2s ease-in-out infinite;
 	color: #000000;
-	filter: brightness(0.85);
-}
-
-@keyframes trippyGradient {
-	0% { background-position: 0% 50%; }
-	25% { background-position: 100% 25%; }
-	50% { background-position: 100% 75%; }
-	75% { background-position: 0% 100%; }
-	100% { background-position: 0% 50%; }
+	background: linear-gradient(65deg, 
+		#910240 0%,
+		#6829c4 10%,
+		#2d6bcc 20%,
+		#0f9c68 30%,
+		#cc9909 40%,
+		#c94505 50%,
+		#cc0058 60%,
+		#6829c4 70%,
+		#2d6bcc 80%,
+		#05cc84 90%,
+		#cc9909 100%
+	);
 }
 
 body.complementary-colors .navbar {
@@ -119,4 +108,13 @@ body.complementary-colors ::-webkit-scrollbar-thumb {
 		#69f23b
 	);
 	border: 2px solid #fff;
+}
+
+/* Sinewave in comp mode - fixed center, above cards */
+body.complementary-colors #waves {
+	position: fixed;
+	top: 50%;
+	left: 0;
+	transform: translateY(-50%);
+	z-index: 1;
 }

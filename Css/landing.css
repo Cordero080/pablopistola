@@ -333,7 +333,7 @@ body {
 /* Enter Button - organic blob with holographic background */
 .enter-btn {
   display: inline-block;
-  padding: 8px 64px;
+  padding: 8px 100px;
   font-family: 'Orbitron', sans-serif;
   font-size: 0.8rem;
   font-weight: 500;
