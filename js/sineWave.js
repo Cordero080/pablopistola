@@ -243,6 +243,36 @@ function SineWaveGenerator(options) {
     this.mouseX = e.clientX;
     this.mouseY = e.clientY;
   });
+
+  window.addEventListener("keydown", (e) => {
+    if (e.code === "Space") {
+      e.preventDefault();
+      this.direction *= -1;
+    }
+  });
+
+  // Spacebar prompt on scroll
+  let promptShown = false;
+  window.addEventListener(
+    "wheel",
+    () => {
+      if (!promptShown) {
+        promptShown = true;
+        const prompt = document.getElementById("spacebarPrompt");
+        if (prompt) {
+          prompt.classList.add("pulse");
+          prompt.addEventListener(
+            "animationend",
+            () => {
+              prompt.classList.remove("pulse");
+            },
+            { once: true },
+          );
+        }
+      }
+    },
+    { once: true },
+  );
 }
 
 // Defaults

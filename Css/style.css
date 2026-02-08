@@ -2222,3 +2222,32 @@ body {
 #moreCardContainer {
   display: none !important;
 }
+
+/* Spacebar prompt */
+.spacebar-prompt {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-40%);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  color: #fffdfd;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.spacebar-prompt.pulse {
+  animation: fadeInOutSlow 2.5s ease-in-out 3;
+}
+
+@keyframes fadeInOutSlow {
+  0%, 100% {
+    opacity: 0;
+  }
+  40%, 60% {
+    opacity: 0.7;
+  }
+}
