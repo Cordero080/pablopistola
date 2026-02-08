@@ -20,8 +20,9 @@ function SineWaveGenerator(options) {
   }
 
   this.loop();
-  this.mouseX = this.width / 2;
-  this.mouseY = this.height / 2;
+  // Initialize to center in screen coordinates (touch/mouse events use screen coords)
+  this.mouseX = window.innerWidth / 2;
+  this.mouseY = window.innerHeight / 2;
 
   window.addEventListener("mousemove", (e) => {
     this.mouseX = e.clientX;
@@ -149,8 +150,8 @@ SineWaveGenerator.prototype.drawSine = function (time, options) {
     const waveY = Math.sin(waveX);
     const easedAmp = this.ease(i / this.waveWidth, amplitude);
 
-    const cursorX = this.mouseX ?? this.width / 2;
-    const cursorY = this.mouseY ?? this.height / 2;
+    const cursorX = this.mouseX ?? this.width / 2 / this.dpr;
+    const cursorY = this.mouseY ?? this.height / 2 / this.dpr;
     const dpr = this.dpr ?? 1; // where you can control the resolution scaling
 
     // where you can control the acuteness of the wave  when interacted with the mouse would be in the segmentLength, wavelength, and amplitude
@@ -164,7 +165,7 @@ SineWaveGenerator.prototype.drawSine = function (time, options) {
     const centerBias = 1 - Math.abs(i / this.waveWidth - 0.5) * 2;
     const influence = pullStrength * centerBias;
 
-    const mousePull = (cursorY - yAxis) * influence * 0.81; // 19% less reactive
+    const mousePull = (cursorY - yAxis / dpr) * influence * 0.81 * dpr; // 19% less reactive
 
     const finalY = easedAmp * waveY + yAxis + mousePull;
 
