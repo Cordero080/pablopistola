@@ -33,6 +33,7 @@ body {
   height: 100%;
   z-index: 0;
   pointer-events: none;
+  touch-action: none; /* Prevent touch interference */
 }
 
 /* Landing Container */

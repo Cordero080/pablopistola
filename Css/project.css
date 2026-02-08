@@ -624,10 +624,17 @@
    MOBILE RESPONSIVE
    ========================================== */
 @media (max-width: 768px) {
+  /* Fix iOS scroll issues */
+  body {
+    background-attachment: scroll; /* Fixed backgrounds break iOS scroll */
+    -webkit-overflow-scrolling: touch;
+  }
+  
   .project-page {
     margin-left: 0;
     margin-bottom: 80px;
     padding: 1.5rem;
+    touch-action: pan-y; /* Allow vertical scrolling */
   }
 
   .project-hero {
