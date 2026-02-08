@@ -1759,7 +1759,7 @@ body {
 }
 
 .contact-title {
-  font-family: "Orbitron", "Rajdhani", sans-serif;
+  font-family: "Orbitron", "Rajdhani", -apple-system, sans-serif;
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
   color: rgba(255, 255, 255, 0.95);
@@ -1769,6 +1769,8 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .contact-links {
@@ -1786,11 +1788,18 @@ body {
   padding: 1rem 2rem;
   min-width: 280px;
   text-decoration: none;
-  font-family: "Orbitron", "Rajdhani", sans-serif;
+  font-family: "Orbitron", "Rajdhani", -apple-system, sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   color: rgba(255, 255, 255, 0.95);
+  
+  /* iOS Safari fix */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   
   /* Organic blob shape */
   border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
@@ -2210,9 +2219,21 @@ body {
   }
 
   .contact-link {
-    min-width: 100%;
-    padding: 0.875rem 1.5rem;
-    border-radius: 50px;
+    min-width: 80%;
+    padding: 0.6rem 1.5rem;
+    /* Keep organic blob shape on mobile */
+    border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+    /* iOS Safari fix */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .contact-title {
+    /* Ensure font loads on iOS */
+    font-family: "Orbitron", "Rajdhani", -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
 }
 
