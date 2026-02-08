@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dojo Crud | Pablo Cordero</title>
+    <link rel="stylesheet" href="../Css/style.css" />
+    <link rel="stylesheet" href="../Css/project.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="../js/sineWave.js" defer></script>
+  </head>
+  <body>
+    <canvas id="waves"></canvas>
+
+    <!-- Side Navigation -->
+    <nav class="side-nav">
+      <a href="../home.html" class="side-nav-logo">
+        <span class="logo-text">PC</span>
+      </a>
+      <div class="side-nav-links">
+        <a href="../home.html" class="side-nav-link"
+          ><span class="link-text">HOME</span></a
+        >
+        <a href="../home.html#projects" class="side-nav-link"
+          ><span class="link-text">PROJECTS</span></a
+        >
+        <a href="#" class="side-nav-link"
+          ><span class="link-text">ABOUT</span></a
+        >
+        <a href="../home.html#contact" class="side-nav-link"
+          ><span class="link-text">CONTACT</span></a
+        >
+      </div>
+    </nav>
+
+    <main class="project-page">
+      <!-- Hero Section -->
+      <section class="project-hero">
+        <div class="project-hero-content">
+          <a href="../home.html" class="back-link">← Back to Projects</a>
+          <h1 class="project-title">DOJO CRUD</h1>
+          <p class="project-tagline">Coming Soon</p>
+        </div>
+      </section>
+
+      <!-- Screenshot Gallery -->
+      <section class="project-gallery">
+        <div class="gallery-main">
+          <img
+            src="../public/images/projects/dojo-crud.png"
+            alt="Dojo Crud"
+            class="gallery-hero-img"
+          />
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="project-about">
+        <div class="about-grid">
+          <div class="about-description">
+            <h2>About the Project</h2>
+            <p>Details coming soon.</p>
+          </div>
+
+          <div class="about-details">
+            <div class="detail-card">
+              <h3>Project Type</h3>
+              <p>CRUD Application</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      // Initialize sine wave background
+      document.addEventListener("DOMContentLoaded", () => {
+        const canvas = document.getElementById("waves");
+        if (canvas && typeof SineWave !== "undefined") {
+          new SineWave(canvas, {
+            speed: 0.008,
+            amplitude: 40,
+            wavelength: 0.015,
+            strokeStyle: "rgba(0, 255, 247, 0.08)",
+          });
+        }
+      });
+    </script>
+    <script src="../app.js" defer></script>
+    <script src="../js/orb.js" defer></script>
+  </body>
+</html>

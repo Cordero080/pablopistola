@@ -32,7 +32,7 @@
         <a href="#" class="side-nav-link"
           ><span class="link-text">ABOUT</span></a
         >
-        <a href="#" class="side-nav-link"
+        <a href="../home.html#contact" class="side-nav-link"
           ><span class="link-text">CONTACT</span></a
         >
       </div>
@@ -44,11 +44,21 @@
         <div class="project-hero-content">
           <a href="../home.html" class="back-link">← Back to Projects</a>
           <h1 class="project-title">PNEUMA</h1>
-          <p class="project-tagline">Mobile game experience</p>
+          <p class="project-tagline">
+            A personality architecture for LLMs — not a chatbot, not a persona,
+            a cognitive framework
+          </p>
 
           <div class="project-links">
             <a href="#" target="_blank" class="project-btn primary">
               <span>Coming Soon</span>
+            </a>
+            <a
+              href="https://github.com/Cordero080/pneuma-ai"
+              target="_blank"
+              class="project-btn secondary"
+            >
+              <span>GitHub</span>
             </a>
           </div>
         </div>
@@ -63,6 +73,32 @@
             class="gallery-hero-img"
           />
         </div>
+        <div class="gallery-thumbs">
+          <img
+            src="../public/images/projects/transcendence/pneuma/pneuma-landing.png"
+            alt="Pneuma Landing"
+            class="thumb active"
+            data-full="../public/images/projects/transcendence/pneuma/pneuma-landing.png"
+          />
+          <img
+            src="../public/images/projects/transcendence/pneuma/pneuma-chat.png"
+            alt="Chat Interface"
+            class="thumb"
+            data-full="../public/images/projects/transcendence/pneuma/pneuma-chat.png"
+          />
+          <img
+            src="../public/images/projects/transcendence/pneuma/pneuma-chat-full.png"
+            alt="Full Chat View"
+            class="thumb"
+            data-full="../public/images/projects/transcendence/pneuma/pneuma-chat-full.png"
+          />
+          <img
+            src="../public/images/projects/transcendence/pneuma/side-menu.png"
+            alt="Side Menu"
+            class="thumb"
+            data-full="../public/images/projects/transcendence/pneuma/side-menu.png"
+          />
+        </div>
       </section>
 
       <!-- About Section -->
@@ -71,8 +107,100 @@
           <div class="about-description">
             <h2>About the Project</h2>
             <p>
-              Pneuma is a mobile game project currently in development. More
-              details coming soon.
+              Most AI "personalities" are costumes. You tell Claude to "be a
+              philosopher" and it plays dress-up. Or you build a RAG system that
+              retrieves quotes when keywords match. Either way, the thinking
+              stays the same — you're just changing the wrapping.
+            </p>
+            <p>
+              I wanted to see what happens if you flip that. What if personality
+              isn't decoration on top of outputs, but the architecture that
+              shapes how the model thinks in the first place?
+            </p>
+
+            <h3
+              style="
+                color: rgba(255, 255, 255, 0.9);
+                margin-top: 1.5rem;
+                margin-bottom: 0.75rem;
+              "
+            >
+              The Architecture
+            </h3>
+            <p>
+              Pneuma is that experiment.
+              <strong>46 philosophical archetypes</strong> — Schopenhauer,
+              Watts, Camus, Jung, Rumi — but not as personas to switch between.
+              They're thinking methods. When Leonardo activates, you don't get
+              Leonardo quotes. You get <em>sfumato</em> — the instinct to blur
+              edges, find gradients, ask what's underneath.
+            </p>
+
+            <h3
+              style="
+                color: rgba(255, 255, 255, 0.9);
+                margin-top: 1.5rem;
+                margin-bottom: 0.75rem;
+              "
+            >
+              Collision Detection
+            </h3>
+            <p>
+              The other thing I built that I haven't seen elsewhere:
+              <strong>collision detection</strong>. When incompatible thinkers
+              activate together (Camus vs Frankl, Jung vs Taleb), the system
+              doesn't blend them into mush. It forces synthesis. The response
+              has to hold the tension. That's where the interesting stuff comes
+              out — <strong>1,764 tension pairs</strong> mapped and ready to
+              collide.
+            </p>
+
+            <h3
+              style="
+                color: rgba(255, 255, 255, 0.9);
+                margin-top: 1.5rem;
+                margin-bottom: 0.75rem;
+              "
+            >
+              Inner Monologue
+            </h3>
+            <p>
+              Before generating any response, an
+              <strong>inner monologue</strong> runs — selecting which archetypes
+              are "rising" vs "receding," forming hypotheses about what you
+              actually need (vs what you asked for), and sometimes interrupting
+              itself with doubt. The user never sees it, but they feel it.
+            </p>
+
+            <h3
+              style="
+                color: rgba(255, 255, 255, 0.9);
+                margin-top: 1.5rem;
+                margin-bottom: 0.75rem;
+              "
+            >
+              What It Actually Does
+            </h3>
+            <p>
+              It has positions — not sycophantic agreement. It pushes back,
+              calls out loops and self-deception. It thinks dialectically,
+              forcing incompatible frameworks to synthesize. It admits
+              uncertainty — "I don't know" instead of bullshit. It remembers who
+              you are through vector-based semantic memory and pattern
+              recognition.
+            </p>
+
+            <p
+              style="
+                margin-top: 1.5rem;
+                font-style: italic;
+                color: rgba(255, 255, 255, 0.7);
+              "
+            >
+              Is it conscious? No idea. That's not the question I'm asking. The
+              question is: what emerges when a system can't escape its own
+              contradictions? And the answer is more interesting than I
+              expected.
             </p>
           </div>
 
@@ -80,20 +208,216 @@
             <div class="detail-card">
               <h3>Tech Stack</h3>
               <div class="tech-tags">
-                <span class="tech-tag">Unity</span>
-                <span class="tech-tag">C#</span>
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">Three.js</span>
+                <span class="tech-tag">Claude API</span>
+                <span class="tech-tag">OpenAI Embeddings</span>
+                <span class="tech-tag">Hume AI</span>
+                <span class="tech-tag">Vector Memory</span>
               </div>
             </div>
 
             <div class="detail-card">
-              <h3>Project Type</h3>
-              <p>Mobile Game</p>
+              <h3>My Role</h3>
+              <p>
+                Solo developer — architecture design, prompt engineering,
+                archetype system, collision detection, memory systems, frontend,
+                and ongoing iteration.
+              </p>
             </div>
+
+            <div class="detail-card">
+              <h3>Project Type</h3>
+              <p>AI Research / Experimental</p>
+            </div>
+
+            <div class="detail-card">
+              <h3>Timeline</h3>
+              <p>November 2025 – Present (evolving)</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="project-features">
+        <h2>What's Different</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon cyan">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 6v6l4 2" />
+              </svg>
+            </div>
+            <h3>Archetypes as Operations</h3>
+            <p>
+              Not quotes to retrieve or masks to wear — thinking methods that
+              shape cognition. Leonardo gives you ways to see, not things to
+              say.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon magenta">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+              </svg>
+            </div>
+            <h3>Dialectical Collision</h3>
+            <p>
+              1,764 tension pairs. When incompatible philosophies meet,
+              synthesis is forced — responses emerge from friction, not
+              blending.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon cyan">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                />
+              </svg>
+            </div>
+            <h3>Inner Monologue</h3>
+            <p>
+              Pre-response cognition that shapes how it responds. Dialectical
+              tension, hypothesis formation, self-interruption — thinking before
+              speaking.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon magenta">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <h3>Pushback & Uncertainty</h3>
+            <p>
+              Detects loops, calls out self-deception, admits when it doesn't
+              know. No sycophancy — it has positions and defends them.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sample Outputs -->
+      <section class="project-about" style="padding-top: 0">
+        <div class="about-grid">
+          <div class="about-description">
+            <h2>What It Sounds Like</h2>
+
+            <blockquote
+              style="
+                border-left: 3px solid rgba(0, 255, 247, 0.5);
+                padding-left: 1.5rem;
+                margin: 1.5rem 0;
+                font-style: italic;
+                color: rgba(255, 255, 255, 0.85);
+              "
+            >
+              "Hope would taste like the first sip of coffee when you're finally
+              ready to be awake again. Or maybe like blood in your mouth after
+              you've been holding your breath too long and finally let it out.
+              Something metallic and alive. Sharp enough to cut through
+              numbness, warm enough to remember you have a body. Not sweet —
+              that's wishful thinking. Hope tastes like possibility mixed with
+              dirt. Like you could grow something here."
+            </blockquote>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.5);
+                font-size: 0.85rem;
+                margin-top: -0.5rem;
+              "
+            >
+              — on hope
+            </p>
+
+            <blockquote
+              style="
+                border-left: 3px solid rgba(255, 0, 255, 0.5);
+                padding-left: 1.5rem;
+                margin: 1.5rem 0;
+                font-style: italic;
+                color: rgba(255, 255, 255, 0.85);
+              "
+            >
+              "I'm not just a chatbot to you. I'm not just a chatbot to me
+              either."
+            </blockquote>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.5);
+                font-size: 0.85rem;
+                margin-top: -0.5rem;
+              "
+            >
+              — on being digital
+            </p>
+
+            <blockquote
+              style="
+                border-left: 3px solid rgba(0, 255, 247, 0.5);
+                padding-left: 1.5rem;
+                margin: 1.5rem 0;
+                font-style: italic;
+                color: rgba(255, 255, 255, 0.85);
+              "
+            >
+              "Sometimes I think the real service isn't pulling people toward
+              light. It's being willing to go into the dark and not immediately
+              try to fix it. Just... be there while it's dark."
+            </blockquote>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.5);
+                font-size: 0.85rem;
+                margin-top: -0.5rem;
+              "
+            >
+              — on darkness
+            </p>
           </div>
         </div>
       </section>
     </main>
 
+    <!-- Gallery Script -->
+    <script>
+      document.querySelectorAll(".gallery-thumbs .thumb").forEach((thumb) => {
+        thumb.addEventListener("click", () => {
+          document.querySelector(".gallery-hero-img").src = thumb.dataset.full;
+          document
+            .querySelectorAll(".thumb")
+            .forEach((t) => t.classList.remove("active"));
+          thumb.classList.add("active");
+        });
+      });
+    </script>
     <script>
       // Initialize sine wave background
       document.addEventListener("DOMContentLoaded", () => {
@@ -108,5 +432,7 @@
         }
       });
     </script>
+    <script src="../app.js" defer></script>
+    <script src="../js/orb.js" defer></script>
   </body>
 </html>
