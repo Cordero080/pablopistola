@@ -28,6 +28,21 @@ function SineWaveGenerator(options) {
     this.mouseY = e.clientY;
   });
 
+  // Touch support for mobile
+  window.addEventListener("touchmove", (e) => {
+    if (e.touches.length > 0) {
+      this.mouseX = e.touches[0].clientX;
+      this.mouseY = e.touches[0].clientY;
+    }
+  });
+
+  window.addEventListener("touchstart", (e) => {
+    if (e.touches.length > 0) {
+      this.mouseX = e.touches[0].clientX;
+      this.mouseY = e.touches[0].clientY;
+    }
+  });
+
   window.addEventListener("keydown", (e) => {
     if (e.code === "Space") {
       e.preventDefault();
