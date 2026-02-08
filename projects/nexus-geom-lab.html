@@ -29,7 +29,7 @@
         <a href="../home.html#projects" class="side-nav-link"
           ><span class="link-text">PROJECTS</span></a
         >
-        <a href="#" class="side-nav-link"
+        <a href="../about.html" class="side-nav-link"
           ><span class="link-text">ABOUT</span></a
         >
         <a href="../home.html#contact" class="side-nav-link"
@@ -44,7 +44,32 @@
         <div class="project-hero-content">
           <a href="../home.html" class="back-link">← Back to Projects</a>
           <h1 class="project-title">NEXUS GEOM LAB</h1>
-          <p class="project-tagline">Coming Soon</p>
+          <p class="project-tagline">
+            Gamified 4D Mathematics & Character Orchestration — "Make 4D
+            geometry fun to explore, not just educational."
+          </p>
+
+          <div class="project-links">
+            <a
+              href="https://nexus-geom-lab.vercel.app/"
+              target="_blank"
+              class="project-btn primary"
+            >
+              <span>Live Demo (Desktop Only)</span>
+            </a>
+            <a
+              href="https://github.com/Cordero080/nexus-geom-lab"
+              target="_blank"
+              class="project-btn secondary"
+              style="min-width: 180px"
+            >
+              <span>GitHub</span>
+            </a>
+          </div>
+          <p class="project-note">
+            <strong>Desktop Only</strong> — Requires mouse input and GPU
+            acceleration for the full 3D experience.
+          </p>
         </div>
       </section>
 
@@ -55,6 +80,7 @@
             src="../public/images/projects/nexus-geom-lab.png"
             alt="Nexus Geom Lab"
             class="gallery-hero-img"
+            loading="eager"
           />
         </div>
       </section>
@@ -64,14 +90,221 @@
         <div class="about-grid">
           <div class="about-description">
             <h2>About the Project</h2>
-            <p>Details coming soon.</p>
+            <p>
+              Nexus-Geom-Lab is an immersive, full-stack 3D platform for
+              exploring hyperdimensional mathematics. By combining React Three
+              Fiber with a gamified progression system, the application
+              transforms abstract geometrical concepts into a rewarding
+              interactive experience.
+            </p>
+
+            <h3>Technical Architecture</h3>
+            <p>
+              This project represents a significant refactoring achievement,
+              moving from a monolithic 2,700-line component to a highly modular,
+              hook-based architecture.
+            </p>
+
+            <h4>GPU-Offloaded Rendering & Performance</h4>
+            <p>
+              <strong>Zero-Bottleneck Architecture:</strong> The system offloads
+              all 3D computation to the client's GPU, utilizing
+              <code>mergeGeometries()</code> and <code>InstancedMesh</code> to
+              minimize draw calls and maintain a consistent 60fps during complex
+              transformations.
+            </p>
+            <p>
+              <strong>Resource Management:</strong> Strict disposal patterns for
+              geometries and materials prevent GPU memory leaks during
+              high-frequency scene switches.
+            </p>
+
+            <h4>Advanced React Design Patterns</h4>
+            <p>
+              <strong>Custom Hook Orchestration:</strong> The 3D engine breaks
+              down into domain-specific hooks (<code>useAnimationLoop</code>,
+              <code>useObjectManager</code>, <code>useMaterialUpdates</code>),
+              allowing for isolated testing and development.
+            </p>
+            <p>
+              <strong>Props Consolidation:</strong> Replaced massive 42-prop
+              drilling patterns with a streamlined object-based API, reducing
+              JSX boilerplate by 70%.
+            </p>
+
+            <h4>Audio-Reactive Geometry (FFT Analysis)</h4>
+            <p>
+              <strong>Web Audio API Integration:</strong> A real-time Fast
+              Fourier Transform (FFT) analyzer maps audio frequency data to
+              geometry transformations. Bass (20-250 Hz) drives scale pulsing
+              and Z-position, while mid frequencies drive rotational momentum.
+            </p>
           </div>
 
           <div class="about-details">
             <div class="detail-card">
               <h3>Project Type</h3>
-              <p>Geometry Visualization</p>
+              <p>Full-Stack 3D Application</p>
             </div>
+            <div class="detail-card">
+              <h3>Tech Stack</h3>
+              <p>
+                React Three Fiber, Three.js, Express, MongoDB, JWT, Web Audio
+                API, Blender, Mixamo
+              </p>
+            </div>
+            <div class="detail-card">
+              <h3>Role</h3>
+              <p>System Architect & 3D Engineer</p>
+            </div>
+            <div class="detail-card">
+              <h3>Status</h3>
+              <p>Active Development</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Core Systems Section -->
+      <section class="project-about">
+        <div class="about-grid">
+          <div class="about-description">
+            <h2>Core Systems</h2>
+
+            <h3>The Geometry Factory</h3>
+            <p>
+              A modular factory pattern that procedurally generates 24 advanced
+              geometries, including 4D polytopes and quantum manifolds. The
+              system supports real-time manipulation of metalness, emissive
+              intensity, and wireframe blending without rebuilding the scene.
+            </p>
+
+            <h3>Progressive Unlock Engine</h3>
+            <p>
+              The backend (Express/MongoDB) tracks user interaction thresholds
+              to trigger the character unlock system.
+            </p>
+            <p>
+              <strong>Pipeline:</strong> Blender → Mixamo → FBX → React Three
+              Fiber
+            </p>
+            <p>
+              <strong>Result:</strong> A gamified feedback loop where
+              exploration directly rewards the user with originally rigged and
+              animated 3D characters (Nexus Prime, Vectra, Icarus-X).
+            </p>
+
+            <h3>Scene Persistence & CRUD</h3>
+            <p>
+              Full-stack implementation allowing users to save, load, and
+              "transmute" custom 3D environments.
+            </p>
+            <p>
+              <strong>Security:</strong> JWT-based authentication with bcrypt
+              hashing.
+            </p>
+            <p>
+              <strong>UX:</strong> Integrated navigation blocking to prevent
+              data loss on unsaved changes.
+            </p>
+          </div>
+
+          <div class="about-details">
+            <div class="detail-card highlight">
+              <h3>93% Code Reduction</h3>
+              <p>Refactored 2,700 lines into 199 through modular hooks</p>
+            </div>
+            <div class="detail-card highlight">
+              <h3>134 State Variables</h3>
+              <p>
+                Managing real-time synchronized interactions across UI and 3D
+                canvas
+              </p>
+            </div>
+            <div class="detail-card highlight">
+              <h3>39 Passing Tests</h3>
+              <p>
+                Jest coverage across geometry pipeline and state transition
+                utilities
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Grid -->
+      <section class="project-features">
+        <h2>Key Capabilities</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🔮</div>
+            <h3>4D Polytopes</h3>
+            <p>
+              Visualize tesseracts, 24-cells, and hypercubes projected into 3D
+              space with real-time rotation controls.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎵</div>
+            <h3>Audio-Reactive</h3>
+            <p>
+              FFT analysis transforms sound into geometry—bass drives scale,
+              mids control rotation, highs affect emissive glow.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎭</div>
+            <h3>Character Rewards</h3>
+            <p>
+              Unlock originally rigged 3D characters through exploration.
+              Pipeline: Blender → Mixamo → React Three Fiber.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">💾</div>
+            <h3>Scene Persistence</h3>
+            <p>
+              Save, load, and transmute custom environments with JWT-secured
+              CRUD operations and data loss prevention.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>GPU-First Design</h3>
+            <p>
+              InstancedMesh and mergeGeometries() offload computation to GPU,
+              maintaining 60fps during complex transformations.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🧪</div>
+            <h3>Modular Hooks</h3>
+            <p>
+              Domain-specific hooks (useAnimationLoop, useObjectManager) enable
+              isolated testing and component reusability.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Future Vision -->
+      <section class="project-about">
+        <div class="about-grid">
+          <div class="about-description">
+            <h2>Future Vision</h2>
+            <p>
+              <strong>Motion Capture:</strong> Planned integration of
+              Rokoko-recorded human movements for more nuanced character
+              behavior.
+            </p>
+            <p>
+              <strong>Ray Tracing:</strong> Implementation of path-traced
+              rendering for photorealistic materials.
+            </p>
+            <p>
+              <strong>Social Remixing:</strong> A public gallery system to clone
+              and customize community-generated scenes.
+            </p>
           </div>
         </div>
       </section>
