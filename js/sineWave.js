@@ -1,5 +1,3 @@
-
-
 function SineWaveGenerator(options) {
   Object.assign(this, options || {});
 
