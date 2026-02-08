@@ -48,7 +48,11 @@
           <a href="../home.html" class="back-link">← Back to Projects</a>
           <h1 class="project-title">NUMENEON</h1>
           <p class="project-tagline">
-            A neopunk social network built for people, not algorithms
+            A neopunk social network built for people, not algorithms<br />
+            <span style="font-size: 0.9em; opacity: 0.8">Light Mode — Clean Minimal Theme</span>
+          </p>
+          <p class="project-tagline" style="margin-top: 0.5rem; font-size: 0.95rem">
+            See also: <a href="numeneon.html" style="color: #ff00cc">Numeneon Dark Mode</a> — the cyberpunk neon theme
           </p>
 
           <div class="project-links">
@@ -196,6 +200,23 @@
               actually finish catching up instead of doom-scrolling forever.
             </p>
 
+            <h3 style="color: #00fff7; margin-top: 1.5rem">Digital Congestion vs. Traffic Management</h3>
+            <p>
+              Modern social feeds suffer from "Information Congestion"—everything fights for the same narrow vertical space. 
+              The River Timeline treats UI as a traffic management system: <strong>Horizontal Currents</strong> create parallel 
+              flows for Thoughts, Media, and Milestones. The <strong>"Sluice Gate"</strong> limits each row to 12 items, 
+              curating the flood before it becomes overwhelming. The result is a "3-lane highway" of visibility instead of a single-lane jam.
+            </p>
+
+            <h3 style="color: #ff00cc; margin-top: 1.5rem">The Architecture: "The Chain"</h3>
+            <p>
+              The frontend transforms raw data into the River flow in 4 explicit steps:
+              <code style="display: block; margin: 0.5rem 0; padding: 0.5rem; background: rgba(0,255,247,0.1); border-radius: 4px; font-size: 0.9rem">
+                GROUP → SORT → SPLIT → RENDER
+              </code>
+              Posts are grouped by user, sorted by most recent activity, split at the 12-item limit, then rendered as organized rows.
+            </p>
+
             <p>
               The bigger vision is the <strong>Smart Feed Algorithm</strong>—a
               "boost" system that surfaces underseen posts so every voice gets
@@ -207,7 +228,7 @@
 
             <p>
               Add real-time messaging via WebSockets, and below the neon-lit
-              main floor, a hidden <strong>MySpace Basement</strong> with Top 8
+              main floor, a hidden <strong>MyStudio</strong> (a MySpace Basement tribute) with Top 8
               friends, custom themes, and embedded music players. Built for
               people who think the internet should work for you, not extract
               from you.
@@ -372,6 +393,78 @@
             <h3>Global Search</h3>
             <p>Search modal for finding users and posts across the platform.</p>
           </div>
+          <div class="feature-card">
+            <div class="feature-icon cyan">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <polygon points="10,8 16,12 10,16" />
+              </svg>
+            </div>
+            <h3>MyStudio</h3>
+            <p>
+              Nostalgic throwback profile with music player, Top 8 Friends grid,
+              theme picker, and personal mood display.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon purple">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                <path d="M2 17l10 5 10-5" />
+                <path d="M2 12l10 5 10-5" />
+              </svg>
+            </div>
+            <h3>Daily Learning</h3>
+            <p>
+              Built-in study tool: Big O, loops, methods, tech jargon,
+              vocabulary, and mythology (memory palace theme).
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon cyan">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+              </svg>
+            </div>
+            <h3>WebSockets</h3>
+            <p>
+              Real-time notifications for friend requests, messages, and
+              updates—no polling required.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon purple">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+              </svg>
+            </div>
+            <h3>Post Composer</h3>
+            <p>
+              Create posts with category selection: Thoughts, Media, or
+              Milestones—each flows to its own column.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -437,6 +530,38 @@
               <li>Chamfered corners (clip-path)</li>
               <li>Scan line overlays</li>
             </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contributors -->
+      <section class="project-contributors" style="padding: 3rem 2rem; max-width: 900px; margin: 0 auto">
+        <h2 style="text-align: center; margin-bottom: 2rem">Team</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem">
+          <div class="detail-card">
+            <h3>Colin Weir</h3>
+            <p style="color: #00fff7; font-size: 0.85rem; margin-bottom: 0.5rem">Team Lead & Posts System</p>
+            <p style="font-size: 0.9rem">Posts backend/frontend, data flow architecture, PostsContext, code review</p>
+          </div>
+          <div class="detail-card">
+            <h3>Crystal Ruiz</h3>
+            <p style="color: #00fff7; font-size: 0.85rem; margin-bottom: 0.5rem">Friends System</p>
+            <p style="font-size: 0.9rem">Friends backend/frontend, FriendsContext, friend request UI, social features</p>
+          </div>
+          <div class="detail-card">
+            <h3>Natalia Pricop</h3>
+            <p style="color: #00fff7; font-size: 0.85rem; margin-bottom: 0.5rem">Auth & Backend</p>
+            <p style="font-size: 0.9rem">Authentication system, user registration/login, Django migrations, backend APIs</p>
+          </div>
+          <div class="detail-card">
+            <h3>Tito</h3>
+            <p style="color: #00fff7; font-size: 0.85rem; margin-bottom: 0.5rem">Infrastructure</p>
+            <p style="font-size: 0.9rem">API client setup, theme system, app entry points, utilities</p>
+          </div>
+          <div class="detail-card" style="border-color: #ff00cc">
+            <h3>Pablo Cordero</h3>
+            <p style="color: #ff00cc; font-size: 0.85rem; margin-bottom: 0.5rem">UI Architect & Visual Design</p>
+            <p style="font-size: 0.9rem">Timeline River UI, Profile Card flip, Wave Chart + Heatmap, Messaging Modal, Mobile responsiveness, SCSS design system</p>
           </div>
         </div>
       </section>
