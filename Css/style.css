@@ -1906,20 +1906,13 @@ body {
     background-attachment: scroll; /* Fixed backgrounds break iOS scroll */
   }
   
-  /* Convert fixed elements to absolute to prevent mobile scroll lock */
+  /* Hide fixed elements on mobile to prevent scroll lock */
   #waves {
-    position: absolute !important;
-    top: 0;
-    left: 0;
-    pointer-events: none;
+    display: none !important;
   }
   
   .parallax-bg-overlay {
-    position: absolute !important;
-    top: 0;
-    left: 0;
-    height: 100%;
-    pointer-events: none;
+    display: none !important;
   }
   
   /* Disable custom cursor on mobile/tablet */

@@ -443,7 +443,7 @@ body {
   }
   
   .landing-tagline {
-    font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+    font-size: clamp(0.9rem, 3.5vw, 1.1rem);
     padding: 0 1rem;
   }
   
@@ -474,7 +474,7 @@ body {
   }
   
   .landing-tagline {
-    font-size: 0.65rem;
+    font-size: 0.85rem;
   }
   
   .enter-btn {
