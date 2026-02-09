@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Pablo Pistola personal website",
   "scripts": {
-    "dev": "npx live-server --port=3000"
+    "dev": "npx serve -l 3000",
+    "dev:live": "npx live-server --port=3000"
   },
   "keywords": [],
   "author": "",
