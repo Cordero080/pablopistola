@@ -46,18 +46,18 @@ self.addEventListener("fetch", (event) => {
   if (!event.request.url.startsWith(self.location.origin)) {
     return;
   }
-  
+
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       if (cachedResponse) {
         return cachedResponse;
       }
-      return fetch(event.request, { redirect: 'follow' }).then((response) => {
+      return fetch(event.request, { redirect: "follow" }).then((response) => {
         // Don't cache non-successful responses, redirects, or non-GET requests
         if (
           !response ||
           response.status !== 200 ||
-          response.type === 'opaqueredirect' ||
+          response.type === "opaqueredirect" ||
           event.request.method !== "GET"
         ) {
           return response;
