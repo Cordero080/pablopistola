@@ -9,13 +9,14 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(120deg, #0a0a23 0%, #1a1a3a 100%);
+  background: transparent;
   z-index: 9999;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   transition: opacity 0.6s ease, visibility 0.6s ease;
+  pointer-events: none;
 }
 
 .page-loader.hidden {
@@ -30,8 +31,8 @@
   left: 0;
   width: 100%;
   height: 4px;
-  background: linear-gradient(90deg, transparent, #00fff7, #ff00cc, #00fff7, transparent);
-  animation: loaderScan 1.5s ease-in-out infinite;
+  background: linear-gradient(90deg, transparent, #00fff7, #eae4e831, #eff3f268, transparent);
+  animation: loaderScan 7s ease-in-out infinite;
   filter: blur(1px);
   box-shadow: 0 0 20px rgba(0, 255, 247, 0.5);
 }
@@ -43,16 +44,7 @@
 }
 
 .loader-text {
-  font-family: "thornwood-vf", sans-serif;
-  font-variation-settings: "wght" 200, "wdth" 50;
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  background: linear-gradient(90deg, #00fff7, #ff00cc, #00fff7);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: gradientFlow 2s linear infinite;
-  letter-spacing: 0.3em;
+  display: none;
 }
 
 @keyframes gradientFlow {
@@ -61,9 +53,7 @@
 }
 
 .loader-dots {
-  display: flex;
-  gap: 8px;
-  margin-top: 1.5rem;
+  display: none;
 }
 
 .loader-dot {
@@ -137,7 +127,7 @@ html::-webkit-scrollbar {
 .parallax-ellipse {
   width: 20vw;
   height: 230px;
-  background: radial-gradient(ellipse 70% 60% at 50% 40%, #00fff7 0%, #ff00cc60 40%, #387dec 80%, transparent 100%);
+  background: radial-gradient(ellipse 70% 60% at 50% 40%, #00fff756 0%, #ff00cc60 40%, #387decb6 80%, transparent 100%);
   opacity: 0.13;
   filter: blur(32px) brightness(1.1);
   border-radius: 50% 50% 60% 60% / 60% 60% 80% 80%;
