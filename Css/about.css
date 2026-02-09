@@ -166,7 +166,6 @@
   margin-left: auto;
   margin-right: auto;
   max-width: fit-content;
-  transform: translateX(-1.5rem);
 }
 
 .stat-item {
@@ -299,7 +298,6 @@
 
   .proof-stats {
     gap: 1.5rem;
-    transform: none;
   }
 
   .stat-number {
