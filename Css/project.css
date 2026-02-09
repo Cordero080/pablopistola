@@ -634,13 +634,20 @@
     background-attachment: scroll; /* Fixed backgrounds break iOS scroll */
   }
   
-  /* Hide fixed elements that interfere with mobile scroll */
+  /* Convert fixed elements to absolute to prevent mobile scroll lock */
   #waves {
-    display: none !important;
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    pointer-events: none;
   }
   
   .parallax-bg-overlay {
-    display: none !important;
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    height: 100%;
+    pointer-events: none;
   }
   
   .project-page {
