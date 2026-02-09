@@ -1,20 +1,19 @@
-const CACHE_NAME = "pablo-pistola-v7";
+const CACHE_NAME = "pablo-pistola-v8";
 const ASSETS_TO_CACHE = [
-  "./",
-  "./index.html",
-  "./home.html",
-  "./app.js",
-  "./Css/style.css",
-  "./Css/landing.css",
-  "./Css/feathers.css",
-  "./Css/compMode.css",
-  "./js/sineWave.js",
-  "./js/landing.js",
-  "./js/feathers.js",
-  "./js/orb.js",
-  "./js/compMode.js",
-  "./icons/icon-192.png",
-  "./icons/icon-512.png",
+  "/",
+  "/home",
+  "/app.js",
+  "/Css/style.css",
+  "/Css/landing.css",
+  "/Css/feathers.css",
+  "/Css/compMode.css",
+  "/js/sineWave.js",
+  "/js/landing.js",
+  "/js/feathers.js",
+  "/js/orb.js",
+  "/js/compMode.js",
+  "/icons/icon-192.png",
+  "/icons/icon-512.png",
 ];
 
 // Install event - cache assets
@@ -43,16 +42,22 @@ self.addEventListener("activate", (event) => {
 
 // Fetch event - serve from cache, fallback to network
 self.addEventListener("fetch", (event) => {
+  // Skip cross-origin requests
+  if (!event.request.url.startsWith(self.location.origin)) {
+    return;
+  }
+  
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       if (cachedResponse) {
         return cachedResponse;
       }
-      return fetch(event.request).then((response) => {
-        // Don't cache non-successful responses or non-GET requests
+      return fetch(event.request, { redirect: 'follow' }).then((response) => {
+        // Don't cache non-successful responses, redirects, or non-GET requests
         if (
           !response ||
           response.status !== 200 ||
+          response.type === 'opaqueredirect' ||
           event.request.method !== "GET"
         ) {
           return response;
