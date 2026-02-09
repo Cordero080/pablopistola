@@ -443,8 +443,9 @@ body {
   }
   
   .landing-tagline {
-    font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+    font-size: clamp(0.7rem, 2.8vw, 0.95rem);
     padding: 0 1rem;
+    white-space: nowrap;
   }
   
   .enter-btn {
@@ -474,7 +475,8 @@ body {
   }
   
   .landing-tagline {
-    font-size: 0.85rem;
+    font-size: 0.65rem;
+    white-space: nowrap;
   }
   
   .enter-btn {

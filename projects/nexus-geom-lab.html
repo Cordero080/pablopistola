@@ -33,28 +33,151 @@
     <canvas id="waves"></canvas>
 
     <!-- Side Navigation -->
-    <nav class="side-nav">
-      <a href="../home.html" class="side-nav-logo">
-        <span class="logo-text">PC</span>
-      </a>
-      <div class="side-nav-links">
-        <a href="../home.html" class="side-nav-link"
-          ><span class="link-text">HOME</span></a
-        >
-        <a href="../home.html#projects" class="side-nav-link"
-          ><span class="link-text">PROJECTS</span></a
-        >
-        <a href="../about.html" class="side-nav-link"
-          ><span class="link-text">ABOUT</span></a
-        >
-        <a href="../home.html#contact" class="side-nav-link"
-          ><span class="link-text">CONTACT</span></a
-        >
-        <a href="../resume.html" class="side-nav-link"
-          ><span class="link-text">RESUME</span></a
-        >
+    <nav class="side-nav" role="navigation" aria-label="Main navigation">
+      <div class="side-nav-logo">
+        <span class="logo-text" data-text="PC">PC</span>
       </div>
+      <div class="side-nav-links">
+        <a class="side-nav-link" href="../home.html" aria-label="Home">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          <span class="nav-label">Home</span>
+        </a>
+        <a class="side-nav-link" href="../about.html" aria-label="About">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <span class="nav-label">About</span>
+        </a>
+        <a
+          class="side-nav-link"
+          href="../home.html#projects"
+          aria-label="Projects"
+        >
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+          </svg>
+          <span class="nav-label">Projects</span>
+        </a>
+        <a class="side-nav-link" href="../skills.html" aria-label="Skills">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+          </svg>
+          <span class="nav-label">Skills</span>
+        </a>
+        <a class="side-nav-link" href="../art.html" aria-label="Art">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+            <path
+              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"
+            />
+          </svg>
+          <span class="nav-label">Art</span>
+        </a>
+        <a
+          class="side-nav-link"
+          href="../home.html#contact"
+          aria-label="Contact"
+        >
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          <span class="nav-label">Contact</span>
+        </a>
+        <a class="side-nav-link" href="../resume.html" aria-label="Resume">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+          </svg>
+          <span class="nav-label">Resume</span>
+        </a>
+      </div>
+      <div class="side-nav-glow"></div>
     </nav>
+
+    <!-- Mobile Hamburger Button -->
+    <button
+      class="hamburger-btn"
+      id="hamburgerBtn"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <div class="hamburger-icon">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </div>
+    </button>
 
     <main class="project-page">
       <!-- Hero Section -->
@@ -426,6 +549,42 @@
           });
         }
       });
+    </script>
+
+    <!-- Mobile Menu Toggle -->
+    <script>
+      (function () {
+        const hamburgerBtn = document.getElementById("hamburgerBtn");
+        const sideNav = document.querySelector(".side-nav");
+        const navLinks = document.querySelectorAll(".side-nav-link");
+
+        if (hamburgerBtn && sideNav) {
+          hamburgerBtn.addEventListener("click", () => {
+            const isOpen = sideNav.classList.toggle("menu-open");
+            hamburgerBtn.classList.toggle("active");
+            hamburgerBtn.setAttribute("aria-expanded", isOpen);
+            document.body.style.overflow = isOpen ? "hidden" : "";
+          });
+
+          navLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+              sideNav.classList.remove("menu-open");
+              hamburgerBtn.classList.remove("active");
+              hamburgerBtn.setAttribute("aria-expanded", "false");
+              document.body.style.overflow = "";
+            });
+          });
+
+          document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && sideNav.classList.contains("menu-open")) {
+              sideNav.classList.remove("menu-open");
+              hamburgerBtn.classList.remove("active");
+              hamburgerBtn.setAttribute("aria-expanded", "false");
+              document.body.style.overflow = "";
+            }
+          });
+        }
+      })();
     </script>
     <script src="../app.js" defer></script>
     <script src="../js/orb.js" defer></script>
