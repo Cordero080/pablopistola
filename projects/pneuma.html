@@ -2,12 +2,17 @@
 <html lang="en">
   <head>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G4CML32H7J"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G4CML32H7J"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-G4CML32H7J');
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-G4CML32H7J");
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,26 +33,112 @@
     <canvas id="waves"></canvas>
 
     <!-- Side Navigation -->
-    <nav class="side-nav">
+    <nav class="side-nav" role="navigation" aria-label="Main navigation">
       <a href="../home.html" class="side-nav-logo">
         <span class="logo-text">PC</span>
       </a>
       <div class="side-nav-links">
-        <a href="../home.html" class="side-nav-link"
-          ><span class="link-text">HOME</span></a
+        <a
+          class="side-nav-link"
+          href="../home.html"
+          aria-label="Home"
+          data-tooltip="Home"
         >
-        <a href="../home.html#projects" class="side-nav-link"
-          ><span class="link-text">PROJECTS</span></a
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+        </a>
+        <a
+          class="side-nav-link"
+          href="../home.html#projects"
+          aria-label="Projects"
+          data-tooltip="Projects"
         >
-        <a href="../about.html" class="side-nav-link"
-          ><span class="link-text">ABOUT</span></a
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+          </svg>
+        </a>
+        <a
+          class="side-nav-link"
+          href="../about.html"
+          aria-label="About"
+          data-tooltip="About"
         >
-        <a href="../home.html#contact" class="side-nav-link"
-          ><span class="link-text">CONTACT</span></a
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+        </a>
+        <a
+          class="side-nav-link"
+          href="../home.html#contact"
+          aria-label="Contact"
+          data-tooltip="Contact"
         >
-        <a href="../resume.html" class="side-nav-link"
-          ><span class="link-text">RESUME</span></a
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+        </a>
+        <a
+          class="side-nav-link"
+          href="../resume.html"
+          aria-label="Resume"
+          data-tooltip="Resume"
         >
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+          </svg>
+        </a>
       </div>
     </nav>
 

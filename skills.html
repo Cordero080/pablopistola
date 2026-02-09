@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G4CML32H7J"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-G4CML32H7J");
+    </script>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Skills & Tech Stack | Pablo Pistola</title>
+    <link rel="stylesheet" href="Css/style.css" />
+    <style>
+      /* Skills Page Styles */
+      .skills-page {
+        min-height: 100vh;
+        padding: 4rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .skills-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .skills-title {
+        font-family: "thornwood-vf", sans-serif;
+        font-variation-settings:
+          "wght" 200,
+          "wdth" 50;
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        background: linear-gradient(90deg, #00fff7, #ff00cc, #00fff7);
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: titleFlow 4s linear infinite;
+        margin-bottom: 1rem;
+      }
+
+      @keyframes titleFlow {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 200% 50%;
+        }
+      }
+
+      .skills-subtitle {
+        font-family: "Inter", sans-serif;
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.6);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      /* Category Sections */
+      .skills-category {
+        margin-bottom: 3rem;
+      }
+
+      .category-title {
+        font-family: "strelka", sans-serif;
+        font-size: 0.8rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: #00fff7;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .category-title::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(90deg, rgba(0, 255, 247, 0.3), transparent);
+      }
+
+      /* Skills Grid */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 1rem;
+      }
+
+      .skill-card {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.03),
+          rgba(255, 255, 255, 0.01)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 1.25rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .skill-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 255, 247, 0.05),
+          rgba(255, 0, 204, 0.05)
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .skill-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(0, 255, 247, 0.3);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .skill-card:hover::before {
+        opacity: 1;
+      }
+
+      .skill-icon {
+        font-size: 2rem;
+        margin-bottom: 0.75rem;
+        display: block;
+      }
+
+      .skill-name {
+        font-family: "Inter", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.9);
+        position: relative;
+        z-index: 1;
+      }
+
+      .skill-level {
+        font-family: "Inter", sans-serif;
+        font-size: 0.65rem;
+        color: rgba(255, 255, 255, 0.4);
+        margin-top: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Proficiency bars */
+      .skill-bar {
+        width: 100%;
+        height: 3px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 2px;
+        margin-top: 0.75rem;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+      }
+
+      .skill-progress {
+        height: 100%;
+        background: linear-gradient(90deg, #00fff7, #ff00cc);
+        border-radius: 2px;
+        transition: width 1s ease-out;
+      }
+
+      /* Back navigation */
+      .skills-nav {
+        position: fixed;
+        top: 2rem;
+        left: 2rem;
+        z-index: 100;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "Inter", sans-serif;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: none;
+        transition: color 0.3s ease;
+        padding: 10px 18px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 25px;
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+      }
+
+      .back-link:hover {
+        color: #00fff7;
+        border-color: rgba(0, 255, 247, 0.4);
+      }
+
+      .back-link svg {
+        width: 14px;
+        height: 14px;
+        transition: transform 0.3s ease;
+      }
+
+      .back-link:hover svg {
+        transform: translateX(-3px);
+      }
+
+      /* Accessibility */
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: #00fff7;
+        color: #000;
+        padding: 8px 16px;
+        z-index: 1000;
+        text-decoration: none;
+        font-family: "Inter", sans-serif;
+      }
+
+      .skip-link:focus {
+        top: 0;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .skills-title,
+        .skill-card,
+        .skill-progress {
+          animation: none;
+          transition: none;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .skills-page {
+          padding: 6rem 1.5rem 3rem;
+        }
+
+        .skills-nav {
+          top: 1rem;
+          left: 1rem;
+        }
+
+        .skills-grid {
+          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+          gap: 0.75rem;
+        }
+
+        .skill-card {
+          padding: 1rem;
+        }
+
+        .skill-icon {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Parallax Background -->
+    <div class="parallax-bg-overlay" aria-hidden="true">
+      <div class="parallax-ellipse"></div>
+    </div>
+
+    <nav class="skills-nav" aria-label="Page navigation">
+      <a href="home.html" class="back-link" aria-label="Go back to home page">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <path d="M19 12H5M12 19l-7-7 7-7" />
+        </svg>
+        Home
+      </a>
+    </nav>
+
+    <main id="main-content" class="skills-page" role="main">
+      <header class="skills-header">
+        <h1 class="skills-title">Skills & Tech Stack</h1>
+        <p class="skills-subtitle">
+          Technologies, tools, and frameworks I work with to bring ideas to life
+        </p>
+      </header>
+
+      <!-- Languages -->
+      <section class="skills-category" aria-labelledby="languages-title">
+        <h2 id="languages-title" class="category-title">Languages</h2>
+        <div class="skills-grid" role="list">
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">⚡</span>
+            <span class="skill-name">JavaScript</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 95%"></div>
+            </div>
+          </article>
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">🔷</span>
+            <span class="skill-name">TypeScript</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 90%"></div>
+            </div>
+          </article>
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">🐍</span>
+            <span class="skill-name">Python</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 85%"></div>
+            </div>
+          </article>
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">☕</span>
+            <span class="skill-name">Java</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 75%"></div>
+            </div>
+          </article>
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">💎</span>
+            <span class="skill-name">C#</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 80%"></div>
+            </div>
+          </article>
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">🌐</span>
+            <span class="skill-name">HTML/CSS</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 95%"></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Frontend -->
+      <section class="skills-category" aria-labelledby="frontend-title">
+        <h2 id="frontend-title" class="category-title">Frontend</h2>
+        <div class="skills-grid" role="list">
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">⚛️</span>
+            <span class="skill-name">React</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 92%"></div>
+            </div>
+          </article>
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">🔺</span>
+            <span class="skill-name">Next.js</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 88%"></div>
+            </div>
+          </article>
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">💚</span>
+            <span class="skill-name">Vue.js</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 75%"></div>
+            </div>
+          </article>
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">🎨</span>
+            <span class="skill-name">Tailwind CSS</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 90%"></div>
+            </div>
+          </article>
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">🎭</span>
+            <span class="skill-name">Three.js</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 70%"></div>
+            </div>
+          </article>
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">✨</span>
+            <span class="skill-name">GSAP</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 80%"></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Backend -->
+      <section class="skills-category" aria-labelledby="backend-title">
+        <h2 id="backend-title" class="category-title">Backend</h2>
+        <div class="skills-grid" role="list">
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">🟢</span>
+            <span class="skill-name">Node.js</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 90%"></div>
+            </div>
+          </article>
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">🚀</span>
+            <span class="skill-name">Express</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 88%"></div>
+            </div>
+          </article>
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">🐘</span>
+            <span class="skill-name">PostgreSQL</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 82%"></div>
+            </div>
+          </article>
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">🍃</span>
+            <span class="skill-name">MongoDB</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 85%"></div>
+            </div>
+          </article>
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">🔥</span>
+            <span class="skill-name">Firebase</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 80%"></div>
+            </div>
+          </article>
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">🔗</span>
+            <span class="skill-name">GraphQL</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 75%"></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Creative Tools -->
+      <section class="skills-category" aria-labelledby="creative-title">
+        <h2 id="creative-title" class="category-title">Creative Tools</h2>
+        <div class="skills-grid" role="list">
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">🎮</span>
+            <span class="skill-name">Unity</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 85%"></div>
+            </div>
+          </article>
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">🧊</span>
+            <span class="skill-name">Blender</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 78%"></div>
+            </div>
+          </article>
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">🎨</span>
+            <span class="skill-name">Figma</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 88%"></div>
+            </div>
+          </article>
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">📸</span>
+            <span class="skill-name">Photoshop</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 82%"></div>
+            </div>
+          </article>
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">🎬</span>
+            <span class="skill-name">After Effects</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 70%"></div>
+            </div>
+          </article>
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">✏️</span>
+            <span class="skill-name">Illustrator</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 75%"></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- DevOps & Tools -->
+      <section class="skills-category" aria-labelledby="devops-title">
+        <h2 id="devops-title" class="category-title">DevOps & Tools</h2>
+        <div class="skills-grid" role="list">
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">🐙</span>
+            <span class="skill-name">Git/GitHub</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 92%"></div>
+            </div>
+          </article>
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">🐳</span>
+            <span class="skill-name">Docker</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 75%"></div>
+            </div>
+          </article>
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">☁️</span>
+            <span class="skill-name">AWS</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 70%"></div>
+            </div>
+          </article>
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">▲</span>
+            <span class="skill-name">Vercel</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 88%"></div>
+            </div>
+          </article>
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">🔄</span>
+            <span class="skill-name">CI/CD</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 78%"></div>
+            </div>
+          </article>
+          <article class="skill-card" role="listitem">
+            <span class="skill-icon" aria-hidden="true">🧪</span>
+            <span class="skill-name">Testing</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 80%"></div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script src="js/sineWave.js"></script>
+    <script>
+      // Animate skill bars on scroll
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const progress = entry.target.querySelector(".skill-progress");
+              if (progress) {
+                const width = progress.style.width;
+                progress.style.width = "0";
+                setTimeout(() => {
+                  progress.style.width = width;
+                }, 100);
+              }
+            }
+          });
+        },
+        { threshold: 0.2 },
+      );
+
+      document.querySelectorAll(".skill-card").forEach((card) => {
+        observer.observe(card);
+      });
+    </script>
+  </body>
+</html>
