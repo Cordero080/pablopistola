@@ -1430,8 +1430,8 @@ body {
 .hamburger-btn {
   display: none;
   position: fixed;
-  top: 24px;
-  right: 24px;
+  top: max(24px, env(safe-area-inset-top, 24px));
+  right: max(24px, env(safe-area-inset-right, 24px));
   width: 56px;
   height: 56px;
   border: none;
