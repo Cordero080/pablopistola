@@ -1322,24 +1322,19 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 60px;
     height: 100vh;
     height: 100dvh;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-    border-radius: 0;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1.5rem 0;
+    border-radius: 0 0 100% 0 / 0 0 60% 0;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     transform: translateX(-100%);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    background:
-      linear-gradient(145deg, rgba(34, 29, 39, 0.98), rgba(0, 0, 0, 0.98)),
-      radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.05), transparent 50%),
-      radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.5), transparent 50%);
-    backdrop-filter: blur(20px);
   }
   
   .side-nav.menu-open {
@@ -1347,39 +1342,39 @@ body {
     visibility: visible;
     pointer-events: auto;
     transform: translateX(0);
-  }
-  
-  .side-nav:hover {
-    width: 100%;
-    border-radius: 0;
+    width: 130px;
   }
   
   .side-nav-logo {
     display: flex;
     justify-content: center;
-    padding: 0;
-    margin-bottom: 3rem;
+    padding-left: 8px;
+    margin-bottom: 2rem;
+  }
+  
+  .side-nav.menu-open .side-nav-logo {
+    justify-content: flex-start;
+    padding-left: 16px;
   }
   
   .side-nav .logo-text {
-    font-size: 2rem;
+    font-size: 18px;
   }
   
   .side-nav-links {
     flex-direction: column;
     gap: 0.5rem;
-    width: auto;
-    max-width: 280px;
-    justify-content: center;
-    align-items: stretch;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
     padding: 0;
   }
   
   .side-nav-link {
     width: 100%;
-    height: 50px;
-    padding: 0 1.5rem;
-    border-radius: 12px;
+    height: auto;
+    padding: 0.75rem 0;
+    border-radius: 0;
     opacity: 0;
     transform: translateY(20px);
     transition: all 0.3s ease;
@@ -1408,8 +1403,8 @@ body {
   .nav-label {
     opacity: 1;
     transform: translateX(0);
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
   }
   
   .side-nav-link::before {
@@ -1427,7 +1422,7 @@ body {
   
   /* Hamburger Button */
   .hamburger-btn {
-    display: flex;
+    display: flex !important;
   }
 }
 
@@ -1435,7 +1430,7 @@ body {
 .hamburger-btn {
   display: none;
   position: fixed;
-  bottom: 24px;
+  top: 24px;
   right: 24px;
   width: 56px;
   height: 56px;
@@ -2201,15 +2196,6 @@ body {
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
     background-attachment: scroll; /* Fixed backgrounds break iOS scroll */
-  }
-  
-  /* Hide fixed elements on mobile to prevent scroll lock */
-  #waves {
-    display: none !important;
-  }
-  
-  .parallax-bg-overlay {
-    display: none !important;
   }
   
   /* Disable custom cursor on mobile/tablet */
