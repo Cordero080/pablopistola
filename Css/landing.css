@@ -318,7 +318,7 @@ body {
 /* Tagline */
 .landing-tagline {
   font-family: 'Inter', sans-serif;
-  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  font-size: clamp(1rem, 2.3vw, 1.4rem);
   font-weight: 300;
   background: linear-gradient(90deg, rgba(255, 255, 255, 0.5), rgba(0, 212, 255, 0.6), rgba(138, 43, 226, 0.6), rgba(255, 255, 255, 0.5));
   background-size: 200% 100%;
