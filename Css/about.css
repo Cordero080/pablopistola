@@ -262,15 +262,29 @@
    ========================================== */
 @media (max-width: 768px) {
   /* Fix iOS scroll issues */
-  body {
-    background-attachment: scroll;
+  html, body {
+    height: auto;
+    min-height: 100%;
+    overflow-y: auto !important;
+    overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
+    background-attachment: scroll;
+  }
+  
+  /* Hide fixed elements that interfere with mobile scroll */
+  #waves {
+    display: none !important;
+  }
+  
+  .parallax-bg-overlay {
+    display: none !important;
   }
   
   .about-content {
     padding-right: 0;
     padding-left: 0;
-    touch-action: pan-y;
+    position: relative;
+    z-index: 1;
   }
 
   .proof-stats {

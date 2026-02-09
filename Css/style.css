@@ -7,12 +7,15 @@ body {
   background-attachment: fixed;
   animation: bgGradientShift 18s ease-in-out infinite alternate;
   overflow-x: hidden;
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch; /* Smooth iOS scrolling */
 }
 
 /* Hide scrollbars but allow scroll on html */
 html {
   overflow-x: hidden;
+  overflow-y: auto;
+  height: auto;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE/Edge */
   -webkit-overflow-scrolling: touch; /* Smooth iOS scrolling */
@@ -1894,8 +1897,22 @@ body {
 /* ========== RESPONSIVE - TABLET ========== */
 @media (max-width: 900px) {
   /* Fix iOS scroll issues */
-  body {
+  html, body {
+    height: auto;
+    min-height: 100%;
+    overflow-y: auto !important;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
     background-attachment: scroll; /* Fixed backgrounds break iOS scroll */
+  }
+  
+  /* Hide fixed elements that may interfere with touch scroll */
+  #waves {
+    display: none !important;
+  }
+  
+  .parallax-bg-overlay {
+    display: none !important;
   }
   
   /* Disable custom cursor on mobile/tablet */
