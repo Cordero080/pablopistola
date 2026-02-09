@@ -1332,7 +1332,8 @@ body {
     border-radius: 0;
     opacity: 0;
     visibility: hidden;
-    transform: scale(0.95);
+    pointer-events: none;
+    transform: translateX(-100%);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     background:
       linear-gradient(145deg, rgba(34, 29, 39, 0.98), rgba(0, 0, 0, 0.98)),
@@ -1344,7 +1345,8 @@ body {
   .side-nav.menu-open {
     opacity: 1;
     visibility: visible;
-    transform: scale(1);
+    pointer-events: auto;
+    transform: translateX(0);
   }
   
   .side-nav:hover {
