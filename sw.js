@@ -1,7 +1,6 @@
-const CACHE_NAME = "pablo-pistola-v8";
+const CACHE_NAME = "pablo-pistola-v9";
 const ASSETS_TO_CACHE = [
   "/",
-  "/home",
   "/app.js",
   "/Css/style.css",
   "/Css/landing.css",
@@ -40,29 +39,49 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Fetch event - serve from cache, fallback to network
+// Fetch event - network-first for navigation, cache-first for assets
 self.addEventListener("fetch", (event) => {
   // Skip cross-origin requests
   if (!event.request.url.startsWith(self.location.origin)) {
     return;
   }
 
+  // Network-first for navigation requests (HTML pages)
+  if (event.request.mode === "navigate") {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          // Cache successful responses
+          if (response && response.status === 200) {
+            const responseToCache = response.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, responseToCache);
+            });
+          }
+          return response;
+        })
+        .catch(() => {
+          // Fallback to cache if offline
+          return caches.match(event.request);
+        })
+    );
+    return;
+  }
+
+  // Cache-first for static assets
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       if (cachedResponse) {
         return cachedResponse;
       }
-      return fetch(event.request, { redirect: "follow" }).then((response) => {
-        // Don't cache non-successful responses, redirects, or non-GET requests
+      return fetch(event.request).then((response) => {
         if (
           !response ||
           response.status !== 200 ||
-          response.type === "opaqueredirect" ||
           event.request.method !== "GET"
         ) {
           return response;
         }
-        // Clone and cache the response
         const responseToCache = response.clone();
         caches.open(CACHE_NAME).then((cache) => {
           cache.put(event.request, responseToCache);
