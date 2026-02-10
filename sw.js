@@ -63,7 +63,7 @@ self.addEventListener("fetch", (event) => {
         .catch(() => {
           // Fallback to cache if offline
           return caches.match(event.request);
-        })
+        }),
     );
     return;
   }
