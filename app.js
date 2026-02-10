@@ -324,8 +324,25 @@ function setEtherealWaveComplexity(isEthereal) {
 }
 
 const audio = document.getElementById("site-audio");
+const audioToggle = document.getElementById("audio-toggle");
+
 if (audio) {
   audio.volume = 0.3; // set volume
+}
+
+// Audio play/pause toggle
+if (audio && audioToggle) {
+  audioToggle.addEventListener("click", () => {
+    if (audio.paused) {
+      audio.play();
+      audioToggle.classList.remove("muted");
+      audioToggle.setAttribute("aria-label", "Pause music");
+    } else {
+      audio.pause();
+      audioToggle.classList.add("muted");
+      audioToggle.setAttribute("aria-label", "Play music");
+    }
+  });
 }
 
 let cursorY = window.innerHeight / 2;
