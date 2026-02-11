@@ -2273,14 +2273,27 @@ body {
 
 /* ========== RESPONSIVE - TABLET ========== */
 @media (max-width: 900px) {
-  /* Fix iOS scroll issues */
+  /* Fix iOS scroll issues while preserving holographic background */
   html, body {
     height: auto;
     min-height: 100%;
     overflow-y: auto !important;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
-    background-attachment: scroll; /* Fixed backgrounds break iOS scroll */
+  }
+  
+  body {
+    background: 
+      linear-gradient(135deg, rgba(5,5,15,1) 0%, rgba(15,15,30,1) 50%, rgba(5,5,15,1) 100%),
+      linear-gradient(45deg, 
+        rgba(100,100,255,0.08) 0%, 
+        rgba(255,0,255,0.05) 25%, 
+        rgba(0,255,255,0.05) 50%, 
+        rgba(255,100,255,0.08) 75%, 
+        rgba(100,100,255,0.08) 100%);
+    background-size: 100% 100%, 400% 400%;
+    background-attachment: scroll; /* Fixed breaks iOS */
+    animation: holographicShift 15s ease infinite;
   }
   
   /* Disable custom cursor on mobile/tablet */
