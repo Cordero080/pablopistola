@@ -16,12 +16,26 @@
 
 body {
   min-height: 100vh;
-  background: var(--bg-dark);
+  background: 
+    linear-gradient(135deg, rgba(5,5,15,1) 0%, rgba(15,15,30,1) 50%, rgba(5,5,15,1) 100%),
+    linear-gradient(45deg, 
+      rgba(100,100,255,0.08) 0%, 
+      rgba(255,0,255,0.05) 25%, 
+      rgba(0,255,255,0.05) 50%, 
+      rgba(255,100,255,0.08) 75%, 
+      rgba(100,100,255,0.08) 100%);
+  background-size: 100% 100%, 400% 400%;
+  animation: holographicShift 15s ease infinite;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   font-family: var(--font-display);
+}
+
+@keyframes holographicShift {
+  0%, 100% { background-position: 0% 50%, 0% 50%; }
+  50% { background-position: 100% 50%, 100% 50%; }
 }
 
 /* Sine wave canvas background */
@@ -31,7 +45,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0;
+  z-index: 2;
   pointer-events: none;
   touch-action: none; /* Prevent touch interference */
 }
@@ -52,9 +66,11 @@ body {
 
 /* Title Container */
 .landing-title {
+  position: relative;
+  z-index: 3;
   font-family: var(--font-title);
-  font-variation-settings: "wght" 200, "wdth" 50;
-  font-size: clamp(2.5rem, 10vw, 6rem);
+  font-variation-settings: "wght" 100, "wdth" 50;
+  font-size: clamp(1.5rem, 5vw, 3rem);
   letter-spacing: 0.15em;
   display: flex;
   justify-content: center;
@@ -317,6 +333,8 @@ body {
 
 /* Tagline */
 .landing-tagline {
+  position: relative;
+  z-index: 3;
   font-family: 'Inter', sans-serif;
   font-size: clamp(0.95rem, 2vw, 1.25rem);
   font-weight: 300;
@@ -333,6 +351,8 @@ body {
 
 /* Enter Button - organic blob with holographic background */
 .enter-btn {
+  position: relative;
+  z-index: 3;
   display: inline-block;
   padding: 8px 100px;
   font-family: 'Orbitron', sans-serif;

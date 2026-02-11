@@ -3,7 +3,8 @@
    ========================================== */
 
 @keyframes heroGradientMoveAlt {
-  0% { background-position: 100% 50%; }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
@@ -46,12 +47,12 @@
   font-weight: 800;
   letter-spacing: 0.1em;
   margin-bottom: 1rem;
-  background: linear-gradient(90deg, #ff006e, #8338ec, #07429f);
-  background-size: 200% 200%;
+  background: linear-gradient(90deg, #ff006e, #8338ec, #07429f, #8338ec, #ff006e);
+  background-size: 300% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: heroGradientMoveAlt 8s linear infinite;
+  animation: heroGradientMoveAlt 12s ease-in-out infinite;
   -webkit-mask-image: linear-gradient(to bottom, black 60%, rgba(0,0,0,0.3) 100%);
   mask-image: linear-gradient(to bottom, black 60%, rgba(0,0,0,0.3) 100%);
 }
@@ -358,7 +359,7 @@
 }
 
 .detail-card p {
-  font-family: var(--font-body);
+  font-family: "Rajdhani", sans-serif;
   font-size: 0.9375rem;
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
@@ -472,7 +473,7 @@
 }
 
 .feature-card p {
-  font-family: var(--font-body);
+  font-family: "Rajdhani", sans-serif;
   font-size: 0.9375rem;
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.6;

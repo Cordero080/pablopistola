@@ -1,4 +1,5 @@
 @import url("https://use.typekit.net/fpe8zfm.css");
+@import url("https://use.typekit.net/pnd4foc.css");
 
 /* ==========================================
    LOADING SCREEN
@@ -78,15 +79,28 @@
   .loader-scanline, .loader-text, .loader-dot { animation: none; }
 }
 
-/* Minimal, animated gradient background (vinelayer0.com inspired) */
+/* Holographic animated gradient background */
 body {
   min-height: 100vh;
-  background: linear-gradient(120deg, #0a0a23 0%, #1a1a3a 100%);
+  background: 
+    linear-gradient(135deg, rgba(5,5,15,1) 0%, rgba(15,15,30,1) 50%, rgba(5,5,15,1) 100%),
+    linear-gradient(45deg, 
+      rgba(100,100,255,0.08) 0%, 
+      rgba(255,0,255,0.05) 25%, 
+      rgba(0,255,255,0.05) 50%, 
+      rgba(255,100,255,0.08) 75%, 
+      rgba(100,100,255,0.08) 100%);
+  background-size: 100% 100%, 400% 400%;
   background-attachment: fixed;
-  animation: bgGradientShift 18s ease-in-out infinite alternate;
+  animation: holographicShift 15s ease infinite;
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch; /* Smooth iOS scrolling */
+}
+
+@keyframes holographicShift {
+  0%, 100% { background-position: 0% 50%, 0% 50%; }
+  50% { background-position: 100% 50%, 100% 50%; }
 }
 
 /* Hide scrollbars but allow scroll on html */
@@ -100,10 +114,6 @@ html {
 }
 html::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
-}
-@keyframes bgGradientShift {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
 }
 
 /* Parallax geometric overlay */
@@ -173,9 +183,9 @@ main, .hero-section, .container, nav, .quantum-ripple {
   justify-content: center;
 }
 .hero-title {
-  font-family: "thornwood-vf", sans-serif;
-  font-variation-settings: "wght" 200, "wdth" 50;
-  font-size: clamp(2rem, 6vw, 4.5rem);
+  font-family: "strelka", sans-serif;
+  font-variation-settings: "wght" 100, "wdth" 50;
+  font-size: clamp(1.5rem, 5vw, 3rem);
   background: linear-gradient(90deg, #000e0e, #181800b6, #ff00cc92, #03064ff6, #04204d);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -188,6 +198,7 @@ main, .hero-section, .container, nav, .quantum-ripple {
   display: inline-block;
   white-space: nowrap;
   word-break: normal;
+  opacity: 0.85;
 }
 .hero-title-wrapper {
   position: relative;
@@ -351,12 +362,12 @@ main, .hero-section, .container, nav, .quantum-ripple {
 }
 @media (max-width: 900px) {
   .hero-content { margin-left: 0; text-align: center; }
-  .hero-title { font-size: 2.5rem !important; text-align: center !important; }
+  .hero-title { font-size: 1.8rem !important; text-align: center !important; }
   .hero-section { min-height: 24vh; }
 }
 @media (max-width: 600px) {
   .hero-content { margin-left: 0; margin-top: 2vw; text-align: center; }
-  .hero-title { font-size: clamp(2.5rem, 14vw, 3.5rem) !important; text-align: center !important; }
+  .hero-title { font-size: clamp(1.2rem, 8vw, 1.6rem) !important; text-align: center !important; }
   .hero-tagline { font-size: 0.95rem !important; }
   .hero-section { min-height: 18vh; }
 }
@@ -618,7 +629,6 @@ font-style: normal;
  
  
  body {
-background: #111;
 color: white;
 margin: 0;
 font-family: "Orbitron", sans-serif;

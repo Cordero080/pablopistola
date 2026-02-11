@@ -21,6 +21,8 @@ function SineWaveGenerator(options) {
   // Initialize to center in screen coordinates (touch/mouse events use screen coords)
   this.mouseX = window.innerWidth / 2;
   this.mouseY = window.innerHeight / 2;
+  this.smoothMouseX = this.mouseX;
+  this.smoothMouseY = this.mouseY;
 
   window.addEventListener("mousemove", (e) => {
     this.mouseX = e.clientX;
@@ -102,6 +104,11 @@ SineWaveGenerator.prototype.time = 0;
 SineWaveGenerator.prototype.update = function (time) {
   this.time += 0.007 * this.direction; // 👈 dynamic direction
 
+  // Smooth mouse tracking with delay (lerp towards actual mouse)
+  const smoothing = 0.03; // lower = more delay
+  this.smoothMouseX += (this.mouseX - this.smoothMouseX) * smoothing;
+  this.smoothMouseY += (this.mouseY - this.smoothMouseY) * smoothing;
+
   if (typeof time === "undefined") {
     time = this.time;
   }
@@ -148,8 +155,8 @@ SineWaveGenerator.prototype.drawSine = function (time, options) {
     const waveY = Math.sin(waveX);
     const easedAmp = this.ease(i / this.waveWidth, amplitude);
 
-    const cursorX = this.mouseX ?? this.width / 2 / this.dpr;
-    const cursorY = this.mouseY ?? this.height / 2 / this.dpr;
+    const cursorX = this.smoothMouseX ?? this.width / 2 / this.dpr;
+    const cursorY = this.smoothMouseY ?? this.height / 2 / this.dpr;
     const dpr = this.dpr ?? 1; // where you can control the resolution scaling
 
     // where you can control the acuteness of the wave  when interacted with the mouse would be in the segmentLength, wavelength, and amplitude
@@ -157,13 +164,16 @@ SineWaveGenerator.prototype.drawSine = function (time, options) {
     if (isNaN(segmentX) || isNaN(waveY) || isNaN(easedAmp)) continue;
 
     const distanceToMouse = Math.abs(segmentX / dpr - cursorX);
-    const distanceLimit = 80;
-    const pullStrength = Math.max(0, 1 - distanceToMouse / distanceLimit);
+    const distanceLimit = 500;
+    const pullStrength = Math.pow(
+      Math.max(0, 1 - distanceToMouse / distanceLimit),
+      4,
+    );
 
     const centerBias = 1 - Math.abs(i / this.waveWidth - 0.5) * 2;
     const influence = pullStrength * centerBias;
 
-    const mousePull = (cursorY - yAxis / dpr) * influence * 0.81 * dpr; // 19% less reactive
+    const mousePull = (cursorY - yAxis / dpr) * influence * 0.55 * dpr; // gentle delayed pull
 
     const finalY = easedAmp * waveY + yAxis + mousePull;
 
@@ -183,33 +193,33 @@ SineWaveGenerator.prototype.loop = function () {
 
 window.waveGen = new SineWaveGenerator({
   el: document.getElementById("waves"),
-  speed: 1.2, // slowed down for a calmer vibe
+  speed: 0.6, // slowed down for a calmer vibe
   waves: [
     {
       timeModifier: 1,
-      lineWidth: 3,
+      lineWidth: 1.5,
       amplitude: 150,
       wavelength: 300,
       segmentLength: 20,
     },
-    { timeModifier: 1, lineWidth: 2, amplitude: 150, wavelength: 100 },
+    { timeModifier: 1, lineWidth: 1, amplitude: 150, wavelength: 100 },
     {
       timeModifier: 1,
-      lineWidth: 1,
+      lineWidth: 0.5,
       amplitude: -120,
       wavelength: 150,
       segmentLength: 10,
     },
     {
       timeModifier: 1,
-      lineWidth: 0.5,
+      lineWidth: 0.3,
       amplitude: -100,
       wavelength: 100,
       segmentLength: 10,
     },
     {
       timeModifier: 1,
-      lineWidth: 0.5,
+      lineWidth: 0.3,
       amplitude: -50,
       wavelength: 80,
       segmentLength: 20,
