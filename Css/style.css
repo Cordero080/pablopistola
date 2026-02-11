@@ -157,7 +157,7 @@ main, .hero-section, .container, nav, .quantum-ripple {
   align-items: flex-start;
   justify-content: center;
   margin-top: 0;
-  padding-top: 10px;
+  padding-top: 13vh;
   margin-bottom: 0;
   position: relative;
   z-index: 2;
@@ -186,7 +186,7 @@ main, .hero-section, .container, nav, .quantum-ripple {
   font-family: "strelka", sans-serif;
   font-variation-settings: "wght" 100, "wdth" 50;
   font-size: clamp(1.5rem, 5vw, 3rem);
-  background: linear-gradient(90deg, #000e0e, #181800b6, #ff00cc92, #03064ff6, #04204d);
+  background: linear-gradient(90deg, #014242e6, #181800b6, #ff00cc92, #050867f6, #052860);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -366,10 +366,10 @@ main, .hero-section, .container, nav, .quantum-ripple {
   .hero-section { min-height: 24vh; }
 }
 @media (max-width: 600px) {
-  .hero-content { margin-left: 0; margin-top: 2vw; text-align: center; }
+  .hero-content { margin-left: 0; margin-top: 8vh; text-align: center; }
   .hero-title { font-size: clamp(1.2rem, 8vw, 1.6rem) !important; text-align: center !important; }
   .hero-tagline { font-size: 0.95rem !important; }
-  .hero-section { min-height: 18vh; }
+  .hero-section { min-height: 25vh; }
 }
 /* Custom Cursor System */
 * {

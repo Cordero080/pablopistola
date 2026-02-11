@@ -67,11 +67,21 @@
         font-size: 0.85rem;
         letter-spacing: 0.25em;
         text-transform: uppercase;
-        color: #00fff7;
+        color: #00fff7e6;
         margin-bottom: 1.5rem;
         display: flex;
         align-items: center;
         gap: 1rem;
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          black 30%,
+          rgba(0, 0, 0, 0.3) 100%
+        );
+        mask-image: linear-gradient(
+          to bottom,
+          black 30%,
+          rgba(0, 0, 0, 0.3) 100%
+        );
       }
       .category-title::after {
         content: "";

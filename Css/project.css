@@ -308,6 +308,38 @@
   color: var(--accent-cyan);
 }
 
+.about-description h3 {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1rem;
+  background: linear-gradient(90deg, #ff006e, #8338ec, #07429f);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: heroGradientMoveAlt 8s linear infinite;
+  margin: 2rem 0 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  -webkit-mask-image: linear-gradient(to bottom, black 30%, rgba(0,0,0,0.3) 100%);
+  mask-image: linear-gradient(to bottom, black 30%, rgba(0,0,0,0.3) 100%);
+}
+
+.about-description h4 {
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.875rem;
+  background: linear-gradient(90deg, #ff006e, #8338ec, #07429f);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: heroGradientMoveAlt 8s linear infinite;
+  margin: 1.5rem 0 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  -webkit-mask-image: linear-gradient(to bottom, black 30%, rgba(0,0,0,0.3) 100%);
+  mask-image: linear-gradient(to bottom, black 30%, rgba(0,0,0,0.3) 100%);
+}
+
 .about-details {
   display: flex;
   flex-direction: column;
@@ -343,7 +375,7 @@
 }
 
 .detail-card h3 {
-  font-family: "strelka";
+  font-family: "Orbitron", sans-serif;
   font-size: 0.875rem;
   background: linear-gradient(90deg, #ff006e, #8338ec, #07429f);
   background-size: 200% auto;
@@ -354,8 +386,8 @@
   margin-bottom: 1rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  -webkit-mask-image: linear-gradient(to bottom, black 60%, rgba(0,0,0,0.3) 100%);
-  mask-image: linear-gradient(to bottom, black 60%, rgba(0,0,0,0.3) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 30%, rgba(0,0,0,0.3) 100%);
+  mask-image: linear-gradient(to bottom, black 30%, rgba(0,0,0,0.3) 100%);
 }
 
 .detail-card p {
@@ -458,7 +490,7 @@
 }
 
 .feature-card h3 {
-  font-family: "strelka";
+  font-family: "Orbitron", sans-serif;
   font-size: 1.125rem;
   background: linear-gradient(90deg, #ff006e, #8338ec, #07429f);
   background-size: 200% auto;
@@ -468,8 +500,8 @@
   animation: heroGradientMoveAlt 8s linear infinite;
   margin-bottom: 0.75rem;
   letter-spacing: 0.05em;
-  -webkit-mask-image: linear-gradient(to bottom, black 60%, rgba(0,0,0,0.3) 100%);
-  mask-image: linear-gradient(to bottom, black 60%, rgba(0,0,0,0.3) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 30%, rgba(0,0,0,0.3) 100%);
+  mask-image: linear-gradient(to bottom, black 30%, rgba(0,0,0,0.3) 100%);
 }
 
 .feature-card p {
@@ -538,7 +570,7 @@
 
 .color-palette h3,
 .design-effects h3 {
-  font-family: "strelka";
+  font-family: "Orbitron", sans-serif;
   font-size: 1rem;
   background: linear-gradient(90deg, #ff006e, #8338ec, #07429f);
   background-size: 200% auto;
@@ -549,8 +581,8 @@
   margin-bottom: 1.5rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  -webkit-mask-image: linear-gradient(to bottom, black 60%, rgba(0,0,0,0.3) 100%);
-  mask-image: linear-gradient(to bottom, black 60%, rgba(0,0,0,0.3) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 30%, rgba(0,0,0,0.3) 100%);
+  mask-image: linear-gradient(to bottom, black 30%, rgba(0,0,0,0.3) 100%);
 }
 
 .colors {

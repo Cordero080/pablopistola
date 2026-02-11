@@ -104,8 +104,9 @@ SineWaveGenerator.prototype.time = 0;
 SineWaveGenerator.prototype.update = function (time) {
   this.time += 0.007 * this.direction; // 👈 dynamic direction
 
-  // Smooth mouse tracking with delay (lerp towards actual mouse)
-  const smoothing = 0.03; // lower = more delay
+  // Page-aware reactivity: home page is more reactive
+  this.isHomePage = window.location.pathname.includes("home");
+  const smoothing = this.isHomePage ? 0.15 : 0.1; // home more snappy
   this.smoothMouseX += (this.mouseX - this.smoothMouseX) * smoothing;
   this.smoothMouseY += (this.mouseY - this.smoothMouseY) * smoothing;
 
@@ -164,16 +165,19 @@ SineWaveGenerator.prototype.drawSine = function (time, options) {
     if (isNaN(segmentX) || isNaN(waveY) || isNaN(easedAmp)) continue;
 
     const distanceToMouse = Math.abs(segmentX / dpr - cursorX);
-    const distanceLimit = 500;
+    const distanceLimit = this.isHomePage ? 350 : 400;
+    const pullPower = this.isHomePage ? 2 : 2.5;
     const pullStrength = Math.pow(
       Math.max(0, 1 - distanceToMouse / distanceLimit),
-      4,
+      pullPower,
     );
 
     const centerBias = 1 - Math.abs(i / this.waveWidth - 0.5) * 2;
     const influence = pullStrength * centerBias;
 
-    const mousePull = (cursorY - yAxis / dpr) * influence * 0.55 * dpr; // gentle delayed pull
+    const pullMultiplier = this.isHomePage ? 1.0 : 0.85;
+    const mousePull =
+      (cursorY - yAxis / dpr) * influence * pullMultiplier * dpr;
 
     const finalY = easedAmp * waveY + yAxis + mousePull;
 
