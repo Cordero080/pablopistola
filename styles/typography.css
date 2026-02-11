@@ -1,0 +1,75 @@
+/* ==========================================
+   TYPOGRAPHY - UNIFIED HEADING STYLES
+   Change h2/h3/h4 fonts and colors here
+   ========================================== */
+
+/* CSS Variables for easy customization */
+:root {
+  /* Heading fonts - change these to update all headings */
+  --heading-font-primary: "Orbitron", sans-serif;
+  --heading-font-display: "strelka", sans-serif;
+  --heading-font-hero: "thornwood-vf", sans-serif;
+  
+  /* Heading gradient colors */
+  --heading-gradient: linear-gradient(90deg, #ff006e, #8338ec, #07429f);
+  --heading-gradient-alt: linear-gradient(90deg, #ff006e, #8338ec, #07429f, #8338ec, #ff006e);
+  
+  /* Heading fade mask */
+  --heading-mask: linear-gradient(to bottom, black 30%, rgba(0, 0, 0, 0.3) 100%);
+  --heading-mask-soft: linear-gradient(to bottom, black 60%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+/* ==========================================
+   H3 STYLES - All section subheadings
+   ========================================== */
+
+/* Base h3 gradient style mixin (applied via specific selectors) */
+.gradient-heading-h3 {
+  font-family: var(--heading-font-primary);
+  font-size: 1rem;
+  background: var(--heading-gradient);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: heroGradientMoveAlt 8s linear infinite;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  -webkit-mask-image: var(--heading-mask);
+  mask-image: var(--heading-mask);
+}
+
+/* ==========================================
+   H4 STYLES - All sub-subheadings
+   ========================================== */
+
+.gradient-heading-h4 {
+  font-family: var(--heading-font-primary);
+  font-size: 0.875rem;
+  background: var(--heading-gradient);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: heroGradientMoveAlt 8s linear infinite;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  -webkit-mask-image: var(--heading-mask);
+  mask-image: var(--heading-mask);
+}
+
+/* ==========================================
+   GRADIENT ANIMATION
+   ========================================== */
+
+@keyframes heroGradientMoveAlt {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
