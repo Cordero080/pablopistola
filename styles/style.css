@@ -2147,6 +2147,25 @@ body {
   padding-bottom: 2rem;
 }
 
+/* Bookshelf card - full width */
+.bento-bookshelf {
+  grid-column: span 12;
+  grid-row: span 1;
+  min-height: 400px;
+  border-radius: 24px;
+}
+
+.bento-bookshelf .bento-card-image {
+  object-position: center 0%;
+  filter: none;
+}
+
+.bento-bookshelf .bento-card-overlay {
+  opacity: 1;
+  justify-content: flex-end;
+  padding-bottom: 2rem;
+}
+
 /* Wide card - no longer used */
 
 .bento-wide h2 {
@@ -2410,6 +2429,12 @@ body {
     min-height: 200px;
   }
 
+  .bento-bookshelf {
+    grid-column: span 6;
+    grid-row: span 1;
+    min-height: 200px;
+  }
+
   .bento-standard {
     grid-column: span 3;
     grid-row: span 1;
@@ -2588,6 +2613,17 @@ body {
 
   /* Center card - Pneuma */
   .bento-center {
+    grid-column: span 1;
+    grid-row: span 1;
+    min-height: 220px;
+    margin: 0;
+    padding: 0;
+    border-radius: 24px;
+    clip-path: none;
+  }
+
+  /* Bookshelf card */
+  .bento-bookshelf {
     grid-column: span 1;
     grid-row: span 1;
     min-height: 220px;
