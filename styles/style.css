@@ -157,7 +157,7 @@ main, .hero-section, .container, nav, .quantum-ripple {
   align-items: flex-start;
   justify-content: center;
   margin-top: 0;
-  padding-top: 10vh;
+  padding-top: 3vh;
   margin-bottom: 0;
   position: relative;
   z-index: 2;
@@ -187,6 +187,7 @@ main, .hero-section, .container, nav, .quantum-ripple {
   font-variation-settings: "wght" 100, "wdth" 50;
   font-size: clamp(3rem, 10vw, 6rem);
   background: linear-gradient(90deg, #004e4ee6, #181800b6, #ff00cc92, #060a7ff6, #02317d);
+  background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -199,7 +200,25 @@ main, .hero-section, .container, nav, .quantum-ripple {
   white-space: nowrap;
   word-break: normal;
   opacity: 0.85;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
+
+.hero-title:hover {
+  opacity: 1;
+  transform: perspective(500px) rotateX(-2deg) rotateY(3deg) scale(1.02);
+  animation: heroGradientShift 1.5s ease infinite;
+}
+
+@keyframes heroGradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
 .hero-title-wrapper {
   position: relative;
   display: inline-block;
@@ -1222,16 +1241,16 @@ transition: transform 0.8s ease, box-shadow 0.8s ease;
 
 .side-nav-logo {
   margin-bottom: 2rem;
-  padding-left: 8px;
+  padding-left: 18px;
   width: 100%;
   display: flex;
-  justify-content: center;
-  transition: justify-content 0.3s ease;
+  justify-content: flex-start;
+  transition: padding-left 0.3s ease;
 }
 
 .side-nav:hover .side-nav-logo {
   justify-content: flex-start;
-  padding-left: 16px;
+  padding-left: 18px;
 }
 
 .side-nav .logo-text {
@@ -1258,6 +1277,7 @@ transition: transform 0.8s ease, box-shadow 0.8s ease;
   align-items: flex-start;
   width: 100%;
   padding-left: 8px;
+  flex: 1;
 }
 
 .side-nav-link {
@@ -1334,6 +1354,21 @@ transition: transform 0.8s ease, box-shadow 0.8s ease;
 
 .side-nav-link:hover::before {
   height: 70%;
+}
+
+/* Exit link styling */
+.side-nav-link.exit-link {
+  margin-top: auto;
+  opacity: 0.6;
+}
+
+.side-nav-link.exit-link:hover {
+  opacity: 1;
+  color: #ff6b6b;
+}
+
+.side-nav-link.exit-link:hover .nav-icon {
+  stroke: #ff6b6b;
 }
 
 /* Curved glow that follows the nav border-radius */
