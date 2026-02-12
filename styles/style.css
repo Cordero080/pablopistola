@@ -186,7 +186,7 @@ main, .hero-section, .container, nav, .quantum-ripple {
   font-family: "thornwood-vf", sans-serif;
   font-variation-settings: "wght" 100, "wdth" 50;
   font-size: clamp(3rem, 10vw, 6rem);
-  background: linear-gradient(90deg, #004e4ee6, #181800b6, #ff00cc92, #060a7ff6, #02317d);
+  background: linear-gradient(90deg, #004e4ee6 0%, #ff00cc92 25%, #181800b6 50%, #060a7ff6 75%, #02317d 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
