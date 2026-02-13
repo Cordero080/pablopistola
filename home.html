@@ -69,24 +69,35 @@
         const heroContent = document.querySelector(".hero-content");
         const heroGlow = document.querySelector(".hero-bg-glow");
         const wavesCanvas = document.getElementById("waves");
-        const heroSection = document.querySelector(".hero-section");
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-        window.addEventListener(
-          "scroll",
-          () => {
-            const scrollY = window.scrollY;
-            const viewportHeight = window.innerHeight;
-            const scrollProgress = Math.min(
-              scrollY / (viewportHeight * 0.5),
-              1,
-            );
+        let ticking = false;
+        let lastScrollY = 0;
 
+        // Smooth interpolation for mobile
+        let currentTranslateY = 0;
+        let targetTranslateY = 0;
+
+        function updateParallax() {
+          const scrollY = lastScrollY;
+          const viewportHeight = window.innerHeight;
+          const scrollProgress = Math.min(scrollY / (viewportHeight * 0.5), 1);
+
+          if (isMobile) {
+            // Gentler parallax on mobile - just opacity fade, no transforms
             if (heroContent) {
-              // More dramatic parallax: faster movement + scale + subtle rotation
+              heroContent.style.opacity = Math.max(0, 1 - scrollProgress * 1.2);
+            }
+            if (wavesCanvas) {
+              wavesCanvas.style.opacity = Math.max(0, 1 - scrollProgress * 1.5);
+            }
+          } else {
+            // Desktop: full parallax effect
+            if (heroContent) {
               const translateY = scrollY * 0.7;
-              const scale = 1 - scrollProgress * 0.15; // Shrink to 85%
-              const rotateX = scrollProgress * 8; // Tilt back
-              const blur = scrollProgress * 4; // Blur up to 4px
+              const scale = 1 - scrollProgress * 0.15;
+              const rotateX = scrollProgress * 8;
+              const blur = scrollProgress * 4;
               const opacity = Math.max(0, 1 - scrollProgress * 1.2);
 
               heroContent.style.transform = `
@@ -100,16 +111,26 @@
             }
 
             if (heroGlow) {
-              // Glow moves slower, creates depth
               heroGlow.style.transform = `translateY(${scrollY * 0.3}px) scale(${1 + scrollProgress * 0.2})`;
               heroGlow.style.opacity = 1 - scrollProgress * 0.5;
             }
 
             if (wavesCanvas) {
-              // Waves parallax - slightly slower, fade out faster
-              // Preserve the -50% centering transform
               wavesCanvas.style.transform = `translateY(calc(-50% + ${scrollY * 0.5}px))`;
               wavesCanvas.style.opacity = Math.max(0, 1 - scrollProgress * 1.5);
+            }
+          }
+
+          ticking = false;
+        }
+
+        window.addEventListener(
+          "scroll",
+          () => {
+            lastScrollY = window.scrollY;
+            if (!ticking) {
+              requestAnimationFrame(updateParallax);
+              ticking = true;
             }
           },
           { passive: true },
