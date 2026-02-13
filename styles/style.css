@@ -1379,11 +1379,15 @@ transition: transform 0.8s ease, box-shadow 0.8s ease;
 /* Exit link styling */
 .side-nav-link.exit-link {
   margin-top: auto;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
+  margin-right: 20px;
   opacity: 0.8;
+  max-width: 50px;
 }
 
 .side-nav-link.exit-link .nav-icon {
+  width: 20px;
+  height: 20px;
   color: rgba(0, 255, 247, 0.6);
 }
 
