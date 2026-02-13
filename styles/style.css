@@ -1380,6 +1380,7 @@ transition: transform 0.8s ease, box-shadow 0.8s ease;
 .side-nav-link.exit-link {
   margin-top: auto;
   opacity: 0.8;
+  padding-right: 20px;
 }
 
 .side-nav-link.exit-link .nav-icon {
