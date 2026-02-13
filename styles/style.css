@@ -176,6 +176,7 @@ main, .hero-section, .container, nav, .quantum-ripple {
   background: radial-gradient(ellipse 80% 60% at 50% 40%, #02797927 0%, #2304ab1b 60%, transparent 100%);
   pointer-events: none;
   filter: blur(20px) brightness(1);
+  will-change: transform, opacity;
 }
 .hero-content {
   position: relative;
@@ -187,6 +188,9 @@ main, .hero-section, .container, nav, .quantum-ripple {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  will-change: transform, opacity, filter;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 }
 .hero-title {
   font-family: "aktiv-grotesk", sans-serif;
@@ -925,6 +929,7 @@ height: 100vh;
 z-index: -10;
 pointer-events: none;
 touch-action: none; /* Prevent touch interference */
+will-change: transform, opacity;
 }
 
 /* New 'More' Card Styles */
@@ -2496,7 +2501,7 @@ body {
 @media (max-width: 600px) {
   .bento-section {
     padding: 1rem;
-    margin-top: 0;
+    margin-top: 2.5rem;
   }
 
   .bento-grid {
@@ -2633,11 +2638,65 @@ body {
     );
   }
 
-  /* Sixth card - notch top-left */
+  /* Sixth card - notch top-left, tab bottom-right */
   .bento-puzzle-br {
     grid-column: span 1;
     grid-row: span 1;
     min-height: 180px;
+    margin: 0;
+    padding: 0;
+    border-radius: 24px;
+    margin-top: -20px;
+    margin-bottom: -20px;
+    padding-top: 20px;
+    clip-path: polygon(
+      0% 20px,
+      10% 20px,
+      10% 0,
+      30% 0,
+      30% 20px,
+      100% 20px,
+      100% calc(100% - 20px),
+      90% calc(100% - 20px),
+      90% 100%,
+      70% 100%,
+      70% calc(100% - 20px),
+      0% calc(100% - 20px)
+    );
+  }
+
+  /* Center card - Pneuma - notch top-right, tab bottom-left */
+  .bento-center {
+    grid-column: span 1;
+    grid-row: span 1;
+    min-height: 220px;
+    margin: 0;
+    padding: 0;
+    border-radius: 24px;
+    margin-top: -20px;
+    margin-bottom: -20px;
+    padding-top: 20px;
+    clip-path: polygon(
+      0% 20px,
+      70% 20px,
+      70% 0,
+      90% 0,
+      90% 20px,
+      100% 20px,
+      100% calc(100% - 20px),
+      30% calc(100% - 20px),
+      30% 100%,
+      10% 100%,
+      10% calc(100% - 20px),
+      0% calc(100% - 20px)
+    );
+  }
+
+  /* Bookshelf card - notch top-left, no tab at bottom (last card) */
+  .bento-bookshelf {
+    grid-column: span 1;
+    grid-row: span 1;
+    min-height: 220px;
     margin: 0;
     padding: 0;
     border-radius: 24px;
@@ -2653,28 +2712,6 @@ body {
       100% 100%,
       0% 100%
     );
-  }
-
-  /* Center card - Pneuma */
-  .bento-center {
-    grid-column: span 1;
-    grid-row: span 1;
-    min-height: 220px;
-    margin: 0;
-    padding: 0;
-    border-radius: 24px;
-    clip-path: none;
-  }
-
-  /* Bookshelf card */
-  .bento-bookshelf {
-    grid-column: span 1;
-    grid-row: span 1;
-    min-height: 220px;
-    margin: 0;
-    padding: 0;
-    border-radius: 24px;
-    clip-path: none;
   }
 
   .bento-standard,

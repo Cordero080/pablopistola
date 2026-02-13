@@ -70,6 +70,8 @@
     <!-- Curtain reveal overlay -->
     <div class="curtain-overlay" id="curtainOverlay"></div>
 
+    <a href="/home.html" class="skip-link" id="skipLink">skip →</a>
+
     <div class="interaction-hint" id="interactionHint">
       <span class="hint-icon">〰</span>
       <span class="hint-text desktop-hint"
@@ -83,21 +85,35 @@
     <script src="js/sineWave.js"></script>
     <script src="js/landing.js"></script>
     <script>
-      // Auto-transition after 3 seconds with scanline dissolve
+      // Show skip link after 1.5s
       setTimeout(() => {
-        // Add dissolving class to all elements
-        document
-          .querySelector(".landing-container")
-          .classList.add("dissolving");
-        document.querySelector(".interaction-hint").classList.add("dissolving");
-        document.getElementById("waves").classList.add("dissolving");
-        document.querySelector(".spacebar-prompt")?.classList.add("dissolving");
+        document.getElementById('skipLink').classList.add('visible');
+      }, 1500);
 
-        // Navigate after dissolve animation completes
+      // Check for ?stay param - if present, stay on landing (zen mode)
+      const urlParams = new URLSearchParams(window.location.search);
+      const stayMode = urlParams.has('stay');
+
+      if (!stayMode) {
+        // Auto-transition after 5 seconds with scanline dissolve
         setTimeout(() => {
-          window.location.href = "/home.html";
-        }, 2500);
-      }, 3000);
+          // Hide skip link during transition
+          document.getElementById('skipLink').classList.remove('visible');
+          
+          // Add dissolving class to all elements
+          document
+            .querySelector(".landing-container")
+            .classList.add("dissolving");
+          document.querySelector(".interaction-hint").classList.add("dissolving");
+          document.getElementById("waves").classList.add("dissolving");
+          document.querySelector(".spacebar-prompt")?.classList.add("dissolving");
+
+          // Navigate after dissolve animation completes
+          setTimeout(() => {
+            window.location.href = "/home.html";
+          }, 2500);
+        }, 5000);
+      }
     </script>
   </body>
 </html>

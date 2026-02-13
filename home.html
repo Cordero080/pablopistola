@@ -68,19 +68,45 @@
       document.addEventListener("DOMContentLoaded", () => {
         const heroContent = document.querySelector(".hero-content");
         const heroGlow = document.querySelector(".hero-bg-glow");
+        const wavesCanvas = document.getElementById("waves");
+        const heroSection = document.querySelector(".hero-section");
 
         window.addEventListener(
           "scroll",
           () => {
             const scrollY = window.scrollY;
-            const parallaxSpeed = 0.4;
+            const viewportHeight = window.innerHeight;
+            const scrollProgress = Math.min(scrollY / (viewportHeight * 0.5), 1);
 
             if (heroContent) {
-              heroContent.style.transform = `translateY(${scrollY * parallaxSpeed}px)`;
-              heroContent.style.opacity = Math.max(0, 1 - scrollY / 500);
+              // More dramatic parallax: faster movement + scale + subtle rotation
+              const translateY = scrollY * 0.7;
+              const scale = 1 - scrollProgress * 0.15; // Shrink to 85%
+              const rotateX = scrollProgress * 8; // Tilt back
+              const blur = scrollProgress * 4; // Blur up to 4px
+              const opacity = Math.max(0, 1 - scrollProgress * 1.2);
+
+              heroContent.style.transform = `
+                perspective(1000px)
+                translateY(${translateY}px)
+                scale(${scale})
+                rotateX(${rotateX}deg)
+              `;
+              heroContent.style.opacity = opacity;
+              heroContent.style.filter = `blur(${blur}px)`;
             }
+            
             if (heroGlow) {
-              heroGlow.style.transform = `translateY(${scrollY * 0.2}px)`;
+              // Glow moves slower, creates depth
+              heroGlow.style.transform = `translateY(${scrollY * 0.3}px) scale(${1 + scrollProgress * 0.2})`;
+              heroGlow.style.opacity = 1 - scrollProgress * 0.5;
+            }
+
+            if (wavesCanvas) {
+              // Waves parallax - slightly slower, fade out faster
+              // Preserve the -50% centering transform
+              wavesCanvas.style.transform = `translateY(calc(-50% + ${scrollY * 0.5}px))`;
+              wavesCanvas.style.opacity = Math.max(0, 1 - scrollProgress * 1.5);
             }
           },
           { passive: true },
@@ -281,8 +307,8 @@
         </a>
         <a
           class="side-nav-link exit-link"
-          href="/"
-          aria-label="Exit to Landing"
+          href="/?stay"
+          aria-label="Zen Mode - Waves"
         >
           <svg
             class="nav-icon"
@@ -293,11 +319,11 @@
             stroke-linecap="round"
             stroke-linejoin="round"
           >
-            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-            <polyline points="16 17 21 12 16 7" />
-            <line x1="21" y1="12" x2="9" y2="12" />
+            <path d="M2 12c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+            <path d="M2 6c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+            <path d="M2 18c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
           </svg>
-          <span class="nav-label">Exit</span>
+          <span class="nav-label">Zen</span>
         </a>
       </div>
       <div class="side-nav-glow"></div>

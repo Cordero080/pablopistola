@@ -216,7 +216,7 @@ window.waveGen = new SineWaveGenerator({
     },
     {
       timeModifier: 1,
-      lineWidth: 0.3,
+      lineWidth: 1.3,
       amplitude: -100,
       wavelength: 100,
       segmentLength: 10,

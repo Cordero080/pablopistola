@@ -685,3 +685,29 @@ body {
 #waves.dissolving {
   animation: scanlineDissolve 2.5s ease-out forwards;
 }
+
+/* Skip link */
+.skip-link {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 100;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.8s ease, color 0.3s ease;
+  pointer-events: none;
+}
+
+.skip-link.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.skip-link:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
