@@ -1246,11 +1246,11 @@ transition: transform 0.8s ease, box-shadow 0.8s ease;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 1.5rem 0;
+  padding: 1rem 0;
   z-index: 10000;
   transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-radius 0.4s ease;
   border-radius: 0 0 100% 0 / 0 0 60% 0;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .side-nav:hover {
@@ -1292,7 +1292,7 @@ transition: transform 0.8s ease, box-shadow 0.8s ease;
 .side-nav-links {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.25rem;
   align-items: flex-start;
   width: 100%;
   padding-left: 8px;
@@ -1306,7 +1306,7 @@ transition: transform 0.8s ease, box-shadow 0.8s ease;
   justify-content: flex-start;
   gap: 12px;
   width: calc(100% - 16px);
-  height: 44px;
+  height: 38px;
   padding: 0 10px;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -1378,16 +1378,20 @@ transition: transform 0.8s ease, box-shadow 0.8s ease;
 /* Exit link styling */
 .side-nav-link.exit-link {
   margin-top: auto;
-  opacity: 0.6;
+  opacity: 0.8;
+}
+
+.side-nav-link.exit-link .nav-icon {
+  color: rgba(0, 255, 247, 0.6);
 }
 
 .side-nav-link.exit-link:hover {
   opacity: 1;
-  color: #ff6b6b;
+  background: rgba(0, 255, 247, 0.15);
 }
 
 .side-nav-link.exit-link:hover .nav-icon {
-  stroke: #ff6b6b;
+  stroke: #00fff7;
 }
 
 /* Curved glow that follows the nav border-radius */
