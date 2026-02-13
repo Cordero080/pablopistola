@@ -57,6 +57,21 @@ function SineWaveGenerator(options) {
     }
   });
 
+  // Mobile scroll performance - reduce animation during scroll
+  this.isScrolling = false;
+  this.scrollTimeout = null;
+  this.isMobile = window.innerWidth <= 768;
+  
+  if (this.isMobile) {
+    window.addEventListener("scroll", () => {
+      this.isScrolling = true;
+      clearTimeout(this.scrollTimeout);
+      this.scrollTimeout = setTimeout(() => {
+        this.isScrolling = false;
+      }, 150);
+    }, { passive: true });
+  }
+
   // Spacebar prompt on scroll
   let promptShown = false;
   window.addEventListener(
@@ -215,6 +230,12 @@ SineWaveGenerator.prototype.drawSine = function (time, options, waveIndex) {
 };
 
 SineWaveGenerator.prototype.loop = function () {
+  // Skip rendering during mobile scroll for performance
+  if (this.isMobile && this.isScrolling) {
+    requestAnimationFrame(this.loop.bind(this));
+    return;
+  }
+  
   this.clear();
   this.update();
   requestAnimationFrame(this.loop.bind(this));
