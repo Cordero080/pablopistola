@@ -17,12 +17,18 @@ function SineWaveGenerator(options) {
     this.initialize.call(this);
   }
 
-  this.loop();
   // Initialize to center in screen coordinates (touch/mouse events use screen coords)
   this.mouseX = window.innerWidth / 2;
   this.mouseY = window.innerHeight / 2;
   this.smoothMouseX = this.mouseX;
   this.smoothMouseY = this.mouseY;
+
+  // Per-wave smooth mouse tracking for delayed responses
+  this.waveMouseX = this.waves.map(() => this.mouseX);
+  this.waveMouseY = this.waves.map(() => this.mouseY);
+
+  // Start the animation loop AFTER mouse tracking is initialized
+  this.loop();
 
   window.addEventListener("mousemove", (e) => {
     this.mouseX = e.clientX;
@@ -110,6 +116,14 @@ SineWaveGenerator.prototype.update = function (time) {
   this.smoothMouseX += (this.mouseX - this.smoothMouseX) * smoothing;
   this.smoothMouseY += (this.mouseY - this.smoothMouseY) * smoothing;
 
+  // Update per-wave mouse tracking with individual delays
+  for (let i = 0; i < this.waves.length; i++) {
+    const wave = this.waves[i];
+    const waveDelay = wave.attractionDelay ?? 0.15; // default same as global
+    this.waveMouseX[i] += (this.mouseX - this.waveMouseX[i]) * waveDelay;
+    this.waveMouseY[i] += (this.mouseY - this.waveMouseY[i]) * waveDelay;
+  }
+
   if (typeof time === "undefined") {
     time = this.time;
   }
@@ -117,7 +131,7 @@ SineWaveGenerator.prototype.update = function (time) {
   for (let i = 0; i < this.waves.length; i++) {
     const wave = this.waves[i];
     const modifier = wave.timeModifier || 1;
-    this.drawSine(time * modifier, wave);
+    this.drawSine(time * modifier, wave, i);
   }
 };
 
@@ -129,13 +143,17 @@ SineWaveGenerator.prototype.ease = function (percent, amplitude) {
   return amplitude * (Math.sin(percent * PI2 - HALFPI) + 1) * 0.7;
 };
 
-SineWaveGenerator.prototype.drawSine = function (time, options) {
+SineWaveGenerator.prototype.drawSine = function (time, options, waveIndex) {
   const {
     amplitude = this.amplitude,
     wavelength = this.wavelength,
     lineWidth = this.lineWidth,
     strokeStyle = this.strokeStyle,
     segmentLength = this.segmentLength,
+    // Per-wave attraction properties
+    attraction = 1, // 1 = normal pull toward cursor, -1 = repel, 0 = no effect
+    attractionStrength = 1, // multiplier for how strong the attraction is
+    attractionRadius = 350, // how far the influence reaches
   } = options;
 
   const ctx = this.ctx;
@@ -156,16 +174,17 @@ SineWaveGenerator.prototype.drawSine = function (time, options) {
     const waveY = Math.sin(waveX);
     const easedAmp = this.ease(i / this.waveWidth, amplitude);
 
-    const cursorX = this.smoothMouseX ?? this.width / 2 / this.dpr;
-    const cursorY = this.smoothMouseY ?? this.height / 2 / this.dpr;
-    const dpr = this.dpr ?? 1; // where you can control the resolution scaling
+    // Use per-wave delayed mouse position for ribboning effect
+    const cursorX = this.waveMouseX[waveIndex] ?? this.width / 2 / this.dpr;
+    const cursorY = this.waveMouseY[waveIndex] ?? this.height / 2 / this.dpr;
+    const dpr = this.dpr ?? 1;
 
-    // where you can control the acuteness of the wave  when interacted with the mouse would be in the segmentLength, wavelength, and amplitude
-    // to make it less acute when user hovers mouse, you can increase the segmentLength or wavelength, or decrease the amplitude by adjusting these values in the waves array. the waves array in the SineWaveGenerator constructor allows you to customize these parameters for each wave.
     if (isNaN(segmentX) || isNaN(waveY) || isNaN(easedAmp)) continue;
 
     const distanceToMouse = Math.abs(segmentX / dpr - cursorX);
-    const distanceLimit = this.isHomePage ? 350 : 400;
+    const distanceLimit = this.isHomePage
+      ? attractionRadius
+      : attractionRadius * 1.15;
     const pullPower = this.isHomePage ? 2 : 2.5;
     const pullStrength = Math.pow(
       Math.max(0, 1 - distanceToMouse / distanceLimit),
@@ -176,8 +195,14 @@ SineWaveGenerator.prototype.drawSine = function (time, options) {
     const influence = pullStrength * centerBias;
 
     const pullMultiplier = this.isHomePage ? 1.0 : 0.85;
+    // Apply per-wave attraction (positive = toward cursor, negative = away)
     const mousePull =
-      (cursorY - yAxis / dpr) * influence * pullMultiplier * dpr;
+      (cursorY - yAxis / dpr) *
+      influence *
+      pullMultiplier *
+      dpr *
+      attraction *
+      attractionStrength;
 
     const finalY = easedAmp * waveY + yAxis + mousePull;
 
@@ -199,34 +224,64 @@ window.waveGen = new SineWaveGenerator({
   el: document.getElementById("waves"),
   speed: 0.6, // slowed down for a calmer vibe
   waves: [
+    // Wave 1: Heavy, magnetic - strongly attracted, slow to respond (leader wave)
     {
       timeModifier: 1,
       lineWidth: 22.5,
       amplitude: 150,
       wavelength: 300,
       segmentLength: 20,
+      attraction: 1,
+      attractionStrength: 1.3,
+      attractionDelay: 0.08, // slow, heavy - lags behind
+      attractionRadius: 450, // wide influence
     },
-    { timeModifier: 1, lineWidth: 1, amplitude: 150, wavelength: 100 },
+    // Wave 2: Quick follower - normal attraction, fast response
+    {
+      timeModifier: 1,
+      lineWidth: 1,
+      amplitude: 150,
+      wavelength: 100,
+      attraction: 1,
+      attractionStrength: 1,
+      attractionDelay: 0.2, // snappy response
+      attractionRadius: 350,
+    },
+    // Wave 3: Rebel - REPELLED by cursor
     {
       timeModifier: 1,
       lineWidth: 0.5,
       amplitude: -120,
       wavelength: 150,
       segmentLength: 10,
+      attraction: -0.7, // runs away from cursor
+      attractionStrength: 1.2,
+      attractionDelay: 0.15,
+      attractionRadius: 300,
     },
+    // Wave 4: Shy - weak attraction, very delayed (ribboning effect)
     {
       timeModifier: 1,
       lineWidth: 1.3,
       amplitude: -100,
       wavelength: 100,
       segmentLength: 10,
+      attraction: 0.5, // weakly attracted
+      attractionStrength: 0.8,
+      attractionDelay: 0.04, // very slow - creates ribbon trails
+      attractionRadius: 400,
     },
+    // Wave 5: Ambient - minimal reaction, stays calm
     {
       timeModifier: 1,
       lineWidth: 0.3,
       amplitude: -50,
       wavelength: 80,
       segmentLength: 20,
+      attraction: 0.2, // barely reacts
+      attractionStrength: 0.5,
+      attractionDelay: 0.03, // slowest - ghostly trail
+      attractionRadius: 250,
     },
   ],
   resizeEvent: function () {
