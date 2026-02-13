@@ -61,15 +61,19 @@ function SineWaveGenerator(options) {
   this.isScrolling = false;
   this.scrollTimeout = null;
   this.isMobile = window.innerWidth <= 768;
-  
+
   if (this.isMobile) {
-    window.addEventListener("scroll", () => {
-      this.isScrolling = true;
-      clearTimeout(this.scrollTimeout);
-      this.scrollTimeout = setTimeout(() => {
-        this.isScrolling = false;
-      }, 150);
-    }, { passive: true });
+    window.addEventListener(
+      "scroll",
+      () => {
+        this.isScrolling = true;
+        clearTimeout(this.scrollTimeout);
+        this.scrollTimeout = setTimeout(() => {
+          this.isScrolling = false;
+        }, 150);
+      },
+      { passive: true },
+    );
   }
 
   // Spacebar prompt on scroll
@@ -235,7 +239,7 @@ SineWaveGenerator.prototype.loop = function () {
     requestAnimationFrame(this.loop.bind(this));
     return;
   }
-  
+
   this.clear();
   this.update();
   requestAnimationFrame(this.loop.bind(this));
