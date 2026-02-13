@@ -68,15 +68,10 @@
       document.addEventListener("DOMContentLoaded", () => {
         const heroContent = document.querySelector(".hero-content");
         const heroGlow = document.querySelector(".hero-bg-glow");
-        const wavesCanvas = document.getElementById("waves");
         const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
         let ticking = false;
         let lastScrollY = 0;
-
-        // Smooth interpolation for mobile
-        let currentTranslateY = 0;
-        let targetTranslateY = 0;
 
         function updateParallax() {
           const scrollY = lastScrollY;
@@ -84,15 +79,12 @@
           const scrollProgress = Math.min(scrollY / (viewportHeight * 0.5), 1);
 
           if (isMobile) {
-            // Gentler parallax on mobile - just opacity fade, no transforms
+            // Mobile: only fade hero content
             if (heroContent) {
               heroContent.style.opacity = Math.max(0, 1 - scrollProgress * 1.2);
             }
-            if (wavesCanvas) {
-              wavesCanvas.style.opacity = Math.max(0, 1 - scrollProgress * 1.5);
-            }
           } else {
-            // Desktop: full parallax effect
+            // Desktop: parallax on hero only, waves stay fixed
             if (heroContent) {
               const translateY = scrollY * 0.7;
               const scale = 1 - scrollProgress * 0.15;
@@ -114,13 +106,8 @@
               heroGlow.style.transform = `translateY(${scrollY * 0.3}px) scale(${1 + scrollProgress * 0.2})`;
               heroGlow.style.opacity = 1 - scrollProgress * 0.5;
             }
-
-            if (wavesCanvas) {
-              wavesCanvas.style.transform = `translateY(calc(-50% + ${scrollY * 0.5}px))`;
-              wavesCanvas.style.opacity = Math.max(0, 1 - scrollProgress * 1.5);
-            }
           }
-
+          // Waves stay fixed at center - no parallax, always visible
           ticking = false;
         }
 
