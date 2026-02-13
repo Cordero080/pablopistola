@@ -63,12 +63,16 @@
       }
     </script>
 
-    <!-- Parallax Effect -->
+    <!-- Parallax Effect (Desktop only) -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+        
+        // Skip parallax entirely on mobile - prevents scroll jank
+        if (isMobile) return;
+
         const heroContent = document.querySelector(".hero-content");
         const heroGlow = document.querySelector(".hero-bg-glow");
-        const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
         let ticking = false;
         let lastScrollY = 0;
@@ -78,36 +82,29 @@
           const viewportHeight = window.innerHeight;
           const scrollProgress = Math.min(scrollY / (viewportHeight * 0.5), 1);
 
-          if (isMobile) {
-            // Mobile: only fade hero content
-            if (heroContent) {
-              heroContent.style.opacity = Math.max(0, 1 - scrollProgress * 1.2);
-            }
-          } else {
-            // Desktop: parallax on hero only, waves stay fixed
-            if (heroContent) {
-              const translateY = scrollY * 0.7;
-              const scale = 1 - scrollProgress * 0.15;
-              const rotateX = scrollProgress * 8;
-              const blur = scrollProgress * 4;
-              const opacity = Math.max(0, 1 - scrollProgress * 1.2);
+          // Desktop: parallax on hero only, waves stay fixed
+          if (heroContent) {
+            const translateY = scrollY * 0.7;
+            const scale = 1 - scrollProgress * 0.15;
+            const rotateX = scrollProgress * 8;
+            const blur = scrollProgress * 4;
+            const opacity = Math.max(0, 1 - scrollProgress * 1.2);
 
-              heroContent.style.transform = `
-                perspective(1000px)
-                translateY(${translateY}px)
-                scale(${scale})
-                rotateX(${rotateX}deg)
-              `;
-              heroContent.style.opacity = opacity;
-              heroContent.style.filter = `blur(${blur}px)`;
-            }
-
-            if (heroGlow) {
-              heroGlow.style.transform = `translateY(${scrollY * 0.3}px) scale(${1 + scrollProgress * 0.2})`;
-              heroGlow.style.opacity = 1 - scrollProgress * 0.5;
-            }
+            heroContent.style.transform = `
+              perspective(1000px)
+              translateY(${translateY}px)
+              scale(${scale})
+              rotateX(${rotateX}deg)
+            `;
+            heroContent.style.opacity = opacity;
+            heroContent.style.filter = `blur(${blur}px)`;
           }
-          // Waves stay fixed at center - no parallax, always visible
+
+          if (heroGlow) {
+            heroGlow.style.transform = `translateY(${scrollY * 0.3}px) scale(${1 + scrollProgress * 0.2})`;
+            heroGlow.style.opacity = 1 - scrollProgress * 0.5;
+          }
+
           ticking = false;
         }
 
