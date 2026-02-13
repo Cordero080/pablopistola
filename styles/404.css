@@ -162,7 +162,7 @@
 }
 
 .error-message {
-  font-family: "strelka", sans-serif;
+  font-family: "aktiv-grotesk", sans-serif;
   font-size: clamp(1rem, 3vw, 1.5rem);
   color: rgba(255, 255, 255, 0.7);
   margin-top: 1rem;
