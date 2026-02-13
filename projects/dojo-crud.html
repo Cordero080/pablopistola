@@ -279,68 +279,82 @@
           <div class="about-description">
             <h2>The Vision</h2>
             <p>
-              Traditional Goju-Ryu martial arts relies on a complex, hierarchical 
-              syllabus that is often managed through paper logs and manual tracking. 
-              I built the Dojo App to modernize this process—creating a digital mirror 
-              of a physical practice. It is a full-stack forms management system that 
-              handles the rigorous progression from 10th Kyu (White Belt) to 8th Dan 
-              (Black Belt).
+              Traditional Goju-Ryu martial arts relies on a complex,
+              hierarchical syllabus that is often managed through paper logs and
+              manual tracking. I built the Dojo App to modernize this
+              process—creating a digital mirror of a physical practice. It is a
+              full-stack forms management system that handles the rigorous
+              progression from 10th Kyu (White Belt) to 8th Dan (Black Belt).
             </p>
 
             <h3>Core Architectural Achievements</h3>
 
             <h4>1. The Syllabus & Requirements Engine</h4>
             <p>
-              The most difficult part of this build was translating 48+ traditional 
-              forms (Kata, Bunkai, Kumite) into a rigid data schema. I engineered a 
-              requirements system that prevents curriculum inconsistencies, ensuring 
-              that practitioners only see the forms relevant to their specific rank 
-              and lineage.
+              The most difficult part of this build was translating 48+
+              traditional forms (Kata, Bunkai, Kumite) into a rigid data schema.
+              I engineered a requirements system that prevents curriculum
+              inconsistencies, ensuring that practitioners only see the forms
+              relevant to their specific rank and lineage.
             </p>
 
             <h4>2. Soft-Delete & Data Integrity</h4>
             <p>
-              In a training environment, accidental data loss can be demoralizing. 
-              I implemented a Soft-Delete system with a dedicated "Trash" management 
-              interface. This allows for immediate mistake correction and maintains a 
-              permanent audit trail of a practitioner's history without cluttering the 
-              active database.
+              In a training environment, accidental data loss can be
+              demoralizing. I implemented a Soft-Delete system with a dedicated
+              "Trash" management interface. This allows for immediate mistake
+              correction and maintains a permanent audit trail of a
+              practitioner's history without cluttering the active database.
             </p>
 
             <h4>3. Multi-Tenant Data Isolation</h4>
             <p>
-              The application is designed with security as a priority. Using a 
-              multi-tenant architecture with owner-scoped queries and MongoDB indexing, 
-              I ensured that every practitioner manages their own training data in total 
-              isolation, protected by JWT-based authentication and bcrypt hashing.
+              The application is designed with security as a priority. Using a
+              multi-tenant architecture with owner-scoped queries and MongoDB
+              indexing, I ensured that every practitioner manages their own
+              training data in total isolation, protected by JWT-based
+              authentication and bcrypt hashing.
             </p>
 
             <h3>Technical Deep Dive</h3>
             <div class="tech-table">
               <div class="tech-row">
                 <span class="tech-feature">Progress Analytics</span>
-                <span class="tech-impl">Dynamic completion tracking by rank, visualized via Chart.js integration.</span>
+                <span class="tech-impl"
+                  >Dynamic completion tracking by rank, visualized via Chart.js
+                  integration.</span
+                >
               </div>
               <div class="tech-row">
                 <span class="tech-feature">Smart Navigation</span>
-                <span class="tech-impl">A custom combobox with type-to-filter functionality for handling large datasets of authentic form names.</span>
+                <span class="tech-impl"
+                  >A custom combobox with type-to-filter functionality for
+                  handling large datasets of authentic form names.</span
+                >
               </div>
               <div class="tech-row">
                 <span class="tech-feature">Performance</span>
-                <span class="tech-impl">Response compression and strategic indexing to ensure high-speed data loading for requirements and charts.</span>
+                <span class="tech-impl"
+                  >Response compression and strategic indexing to ensure
+                  high-speed data loading for requirements and charts.</span
+                >
               </div>
               <div class="tech-row">
                 <span class="tech-feature">Security Middleware</span>
-                <span class="tech-impl">Integrated Helmet.js for header protection and custom auth-guard middleware for all protected routes.</span>
+                <span class="tech-impl"
+                  >Integrated Helmet.js for header protection and custom
+                  auth-guard middleware for all protected routes.</span
+                >
               </div>
             </div>
 
             <h3>Refining the Narrative</h3>
             <p>
-              As an instructor of Okinawan Goju-Ryu, I didn't just build this to 
-              "code an app"—I built it to solve a logistical hurdle in my own field. 
-              It demonstrates my ability to take a non-linear, traditional human system 
-              and organize it into a performant, secure, and user-centric digital architecture.
+              As an instructor of Okinawan Goju-Ryu, I didn't just build this to
+              "code an app"—I built it to solve a logistical hurdle in my own
+              field. It demonstrates my ability to take a non-linear,
+              traditional human system and organize it into a performant,
+              secure, and user-centric digital architecture.
             </p>
           </div>
 
@@ -352,9 +366,11 @@
             <div class="detail-card">
               <h3>Tech Stack</h3>
               <p>
-                <strong>Backend:</strong> Node.js, Express.js, MongoDB (MEN Stack)<br>
-                <strong>Security:</strong> Bcryptjs, Express-session, Helmet<br>
-                <strong>Frontend:</strong> EJS (Server-side rendering), Custom CSS, Chart.js
+                <strong>Backend:</strong> Node.js, Express.js, MongoDB (MEN
+                Stack)<br />
+                <strong>Security:</strong> Bcryptjs, Express-session, Helmet<br />
+                <strong>Frontend:</strong> EJS (Server-side rendering), Custom
+                CSS, Chart.js
               </p>
             </div>
             <div class="detail-card">
