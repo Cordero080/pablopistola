@@ -85,14 +85,26 @@
     <script src="js/sineWave.js"></script>
     <script src="js/landing.js"></script>
     <script>
+      // Check for ?stay param - if present, stay on landing (zen mode)
+      const urlParams = new URLSearchParams(window.location.search);
+      const stayMode = urlParams.has("stay");
+
+      // If user previously skipped and this isn't zen mode, go straight to home
+      if (!stayMode && sessionStorage.getItem("skippedLanding")) {
+        window.location.replace("/home.html");
+      }
+
       // Show skip link after 1.5s
       setTimeout(() => {
         document.getElementById("skipLink").classList.add("visible");
       }, 1500);
 
-      // Check for ?stay param - if present, stay on landing (zen mode)
-      const urlParams = new URLSearchParams(window.location.search);
-      const stayMode = urlParams.has("stay");
+      // Handle skip click - remember preference
+      document.getElementById("skipLink").addEventListener("click", (e) => {
+        e.preventDefault();
+        sessionStorage.setItem("skippedLanding", "true");
+        window.location.href = "/home.html";
+      });
 
       if (!stayMode) {
         // Auto-transition after 5 seconds with scanline dissolve

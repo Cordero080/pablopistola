@@ -549,9 +549,10 @@ body {
   gap: 0.5rem;
   font-family: var(--font-display);
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.9);
   letter-spacing: 0.15em;
   text-transform: lowercase;
+  text-shadow: 0 0 8px rgba(0, 255, 247, 0.4), 0 2px 4px rgba(0, 0, 0, 0.5);
   animation: hintPulse 6s ease-in-out infinite;
   z-index: 10;
   pointer-events: none;
@@ -695,20 +696,36 @@ body {
   z-index: 100;
   font-family: 'Inter', sans-serif;
   font-size: 0.85rem;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   opacity: 0;
-  transition: opacity 0.8s ease, color 0.3s ease;
+  transition: opacity 0.8s ease, color 0.3s ease, border-color 0.3s ease;
   pointer-events: none;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .skip-link.visible {
   opacity: 1;
   pointer-events: auto;
+  animation: skipPulse 3s ease-in-out infinite;
+}
+
+@keyframes skipPulse {
+  0%, 100% {
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+  50% {
+    border-color: rgba(0, 255, 247, 0.5);
+  }
 }
 
 .skip-link:hover {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 1);
+  border-color: rgba(0, 255, 247, 0.8);
+  animation: none;
 }
