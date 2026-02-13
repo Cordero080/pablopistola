@@ -2,6 +2,8 @@
    PROJECT PAGE STYLES
    ========================================== */
 
+@import url("https://use.typekit.net/pnd4foc.css");
+
 @keyframes heroGradientMoveAlt {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -42,10 +44,10 @@
 }
 
 .project-title {
-  font-family: "strelka", sans-serif;
+  font-family: "aktiv-grotesk", sans-serif;
   font-size: clamp(1.5rem, 5vw, 2.5rem);
-  font-weight: 800;
-  letter-spacing: 0.1em;
+  font-weight: 400;
+  letter-spacing: 0.15em;
   margin-bottom: 1rem;
   background: linear-gradient(90deg, #ff006e, #8338ec, #07429f, #8338ec, #ff006e);
   background-size: 300% 100%;
@@ -275,9 +277,10 @@
 .project-diagram h2,
 .project-design h2,
 .project-cta h2 {
-  font-family: "strelka", sans-serif;
+  font-family: "aktiv-grotesk", sans-serif;
   font-size: clamp(1.5rem, 4vw, 2rem);
-  font-weight: 800;
+  font-weight: 400;
+  letter-spacing: 0.15em;
   background: linear-gradient(90deg, #ff006e, #8338ec, #07429f);
   background-size: 200% 200%;
   -webkit-background-clip: text;
