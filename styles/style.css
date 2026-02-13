@@ -92,10 +92,16 @@ body {
       rgba(100,100,255,0.08) 100%);
   background-size: 100% 100%, 400% 400%;
   background-attachment: fixed;
-  animation: holographicShift 15s ease infinite;
+  animation: holographicShift 15s ease infinite, pageFadeIn 1.5s ease-out;
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch; /* Smooth iOS scrolling */
+  scrollbar-width: none;
+}
+
+@keyframes pageFadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @keyframes holographicShift {
@@ -152,13 +158,13 @@ main, .hero-section, .container, nav, .quantum-ripple {
 /* HERO SECTION (inspired by thei.care, harmonized with site) */
 .hero-section {
   width: 100%;
-  min-height: 25vh;
+  min-height: 30vh;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   margin-top: 0;
-  padding-top: 3vh;
-  margin-bottom: 0;
+  padding-top: 4vh;
+  margin-bottom: 1rem;
   position: relative;
   z-index: 2;
   overflow: visible;
@@ -167,9 +173,9 @@ main, .hero-section, .container, nav, .quantum-ripple {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   z-index: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 40%, #00fff733 0%, #2204ab22 60%, transparent 100%);
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, #02797927 0%, #2304ab1b 60%, transparent 100%);
   pointer-events: none;
-  filter: blur(8px) brightness(1.1);
+  filter: blur(20px) brightness(1);
 }
 .hero-content {
   position: relative;
@@ -183,10 +189,10 @@ main, .hero-section, .container, nav, .quantum-ripple {
   justify-content: center;
 }
 .hero-title {
-  font-family: "thornwood-vf", sans-serif;
-  font-variation-settings: "wght" 100, "wdth" 50;
-  font-size: clamp(3rem, 10vw, 6rem);
-  background: linear-gradient(90deg, #004e4ee6 0%, #ff00cc92 25%, #181800b6 50%, #060a7ff6 75%, #02317d 100%);
+  font-family: "aktiv-grotesk", sans-serif;
+  font-weight: 400;
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  background: linear-gradient(90deg, #004e4ee6 0%, #ff00cc92 25%, #013c54b6 50%, #060a7ff6 75%, #054fc5 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -249,6 +255,17 @@ main, .hero-section, .container, nav, .quantum-ripple {
   color: #fff;
   animation: heroGradientMoveAlt 8s linear infinite;
 }
+
+.hero-subtitle {
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(0.65rem, 1.2vw, 0.85rem);
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0.5em 0 0.8em 0;
+}
+
 .hero-underline {
   display: block;
   width: 60%;
@@ -620,27 +637,11 @@ font-style: normal;
   font-weight: normal;
 font-style: normal;
 }
- /* Custom Scrollbar Styling */
+
+/* Hide scrollbar but allow scrolling */
 ::-webkit-scrollbar {
-  width: 14px;
-}
-
-::-webkit-scrollbar-track {
-  background: #1a1a1a;
-  border-radius: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, 
-    #ff006e,    /* Hot pink */
-    #8338ec,    /* Purple */
-    #07429f,    /* Blue */
-    #124ba6,    /* Mint green */
-    #561197,    /* Yellow */
-    #960dc4     /* Orange */
-  );
-  border-radius: 8px;
-  border: 2px solid #000;
+  width: 0px;
+  display: none;
 }
 
 /* respects width/height allowance*/
@@ -1833,7 +1834,7 @@ body {
   padding: 2rem;
   max-width: 1100px;
   margin: 0 auto;
-  margin-top: 20px;
+  margin-top: 3rem;
 }
 
 .bento-grid {
@@ -2231,12 +2232,13 @@ body {
 }
 
 .contact-title {
-  font-family: "Orbitron", "Rajdhani", -apple-system, sans-serif;
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 700;
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-weight: 400;
   color: rgba(255, 255, 255, 0.95);
   margin-bottom: 2rem;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0.05) 100%);
   -webkit-background-clip: text;
   background-clip: text;

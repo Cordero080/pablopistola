@@ -65,13 +65,10 @@
 
     <div class="spacebar-prompt" id="spacebarPrompt">press spacebar</div>
 
-    <div class="landing-container">
-      <h1 class="landing-title" id="landingTitle"></h1>
-      <p class="landing-tagline">
-        Full Stack Developer & Creative Technologist
-      </p>
-      <a href="/home" class="enter-btn" id="enterBtn">Enter</a>
-    </div>
+    <div class="landing-container"></div>
+
+    <!-- Curtain reveal overlay -->
+    <div class="curtain-overlay" id="curtainOverlay"></div>
 
     <div class="interaction-hint" id="interactionHint">
       <span class="hint-icon">〰</span>
@@ -85,5 +82,22 @@
 
     <script src="js/sineWave.js"></script>
     <script src="js/landing.js"></script>
+    <script>
+      // Auto-transition after 3 seconds with scanline dissolve
+      setTimeout(() => {
+        // Add dissolving class to all elements
+        document
+          .querySelector(".landing-container")
+          .classList.add("dissolving");
+        document.querySelector(".interaction-hint").classList.add("dissolving");
+        document.getElementById("waves").classList.add("dissolving");
+        document.querySelector(".spacebar-prompt")?.classList.add("dissolving");
+
+        // Navigate after dissolve animation completes
+        setTimeout(() => {
+          window.location.href = "/home.html";
+        }, 2500);
+      }, 3000);
+    </script>
   </body>
 </html>

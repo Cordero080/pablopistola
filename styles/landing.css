@@ -1,5 +1,6 @@
 /* Landing Page Styles */
 @import url("https://use.typekit.net/fpe8zfm.css");
+@import url("https://use.typekit.net/pnd4foc.css");
 
 * {
   margin: 0;
@@ -9,7 +10,7 @@
 
 :root {
   --font-display: 'Orbitron', sans-serif;
-  --font-title: 'thornwood-vf', sans-serif;
+  --font-title: 'aktiv-grotesk', sans-serif;
   --text-primary: #fffdfd;
   --bg-dark: #0a0a0a;
 }
@@ -48,6 +49,7 @@ body {
   z-index: 2;
   pointer-events: none;
   touch-action: none; /* Prevent touch interference */
+  opacity: 1;
 }
 
 /* Landing Container */
@@ -69,8 +71,8 @@ body {
   position: relative;
   z-index: 3;
   font-family: var(--font-title);
-  font-variation-settings: "wght" 100, "wdth" 50;
-  font-size: clamp(2.5rem, 8vw, 8rem);
+  font-weight: 400;
+  font-size: clamp(2rem, 6vw, 5rem);
   letter-spacing: 0.15em;
   display: flex;
   justify-content: center;
@@ -118,9 +120,9 @@ body {
   background: repeating-linear-gradient(
     0deg,
     transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.3) 2px,
-    rgba(0, 0, 0, 0.3) 4px
+    transparent 1px,
+    rgba(0, 0, 0, 0.3) 1px,
+    rgba(0, 0, 0, 0.3) 2px
   );
   opacity: 0;
   pointer-events: none;
@@ -590,4 +592,96 @@ body {
   .hint-text.mobile-hint {
     display: inline;
   }
+}
+
+/* Scanline Dissolve Overlay */
+.curtain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.curtain-overlay.curtain-closing {
+  opacity: 1;
+}
+
+/* Scanline dissolve on landing container */
+.landing-container.dissolving {
+  animation: scanlineDissolve 2.5s ease-out forwards;
+}
+
+.landing-container.dissolving::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -10%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(
+    0deg,
+    transparent 0%,
+    transparent 40.5%,
+    rgba(2, 8, 118, 0.213) 49.5%,
+    rgba(0, 24, 24, 0.15) 50.5%,
+    transparent 30.5%,
+    transparent 100%
+  );
+  animation: scanlineSweep 2.5s ease-out forwards;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@keyframes scanlineDissolve {
+  0% {
+    opacity: 1;
+    filter: blur(0px) brightness(1);
+  }
+  20% {
+    opacity: 0.95;
+    filter: blur(0px) brightness(1);
+  }
+  40% {
+    opacity: 0.8;
+    filter: blur(0.3px) brightness(1.02);
+  }
+  60% {
+    opacity: 0.5;
+    filter: blur(0.6px) brightness(1.05);
+  }
+  80% {
+    opacity: 0.25;
+    filter: blur(1px) brightness(1.08);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(2px) brightness(1.1);
+  }
+}
+
+@keyframes scanlineSweep {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+/* Also dissolve the hint and wave canvas */
+.interaction-hint.dissolving,
+#waves.dissolving {
+  animation: scanlineDissolve 2.5s ease-out forwards;
 }
