@@ -76,7 +76,10 @@
           () => {
             const scrollY = window.scrollY;
             const viewportHeight = window.innerHeight;
-            const scrollProgress = Math.min(scrollY / (viewportHeight * 0.5), 1);
+            const scrollProgress = Math.min(
+              scrollY / (viewportHeight * 0.5),
+              1,
+            );
 
             if (heroContent) {
               // More dramatic parallax: faster movement + scale + subtle rotation
@@ -95,7 +98,7 @@
               heroContent.style.opacity = opacity;
               heroContent.style.filter = `blur(${blur}px)`;
             }
-            
+
             if (heroGlow) {
               // Glow moves slower, creates depth
               heroGlow.style.transform = `translateY(${scrollY * 0.3}px) scale(${1 + scrollProgress * 0.2})`;
@@ -373,6 +376,7 @@
               src="public/images/projects/numeneon-light.png"
               alt="Numeneon Light"
               class="bento-card-image"
+              decoding="async"
               loading="lazy"
             />
             <div class="bento-card-overlay">
@@ -390,6 +394,7 @@
               src="public/images/projects/numeneon.png"
               alt="Numeneon Dark"
               class="bento-card-image"
+              decoding="async"
               loading="lazy"
             />
             <div class="bento-card-overlay">
@@ -410,6 +415,7 @@
               src="public/images/projects/transcendence.png"
               alt="Transcendence Pet Sim"
               class="bento-card-image"
+              decoding="async"
               loading="lazy"
             />
             <div class="bento-card-overlay">
@@ -428,6 +434,7 @@
               src="public/images/projects/nucat.png"
               alt="Nucat"
               class="bento-card-image"
+              decoding="async"
               loading="lazy"
             />
             <div class="bento-card-overlay">
@@ -449,6 +456,7 @@
               src="public/images/projects/nexus-geom-lab.png"
               alt="Nexus Geom Lab"
               class="bento-card-image"
+              decoding="async"
               loading="lazy"
             />
             <div class="bento-card-overlay">
@@ -466,6 +474,7 @@
               src="public/images/projects/dojo-crud.png"
               alt="Dojo Crud"
               class="bento-card-image"
+              decoding="async"
               loading="lazy"
             />
             <div class="bento-card-overlay">
@@ -483,6 +492,7 @@
               src="public/images/projects/transcendence/pneuma/pneuma-landing.png"
               alt="Pneuma"
               class="bento-card-image"
+              decoding="async"
               loading="lazy"
             />
             <div class="bento-card-overlay">
@@ -500,6 +510,7 @@
               src="public/images/projects/bookshelf/bookshelf-landing.png"
               alt="Quantum Literary Bookshelf"
               class="bento-card-image"
+              decoding="async"
               loading="lazy"
             />
             <div class="bento-card-overlay">
@@ -580,6 +591,24 @@
             loader.classList.add("hidden");
           }, 800);
         }
+      });
+    </script>
+
+    <!-- Image Lazy Load Fade-in -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const images = document.querySelectorAll(".bento-card-image");
+
+        images.forEach((img) => {
+          // If already loaded (cached), add class immediately
+          if (img.complete && img.naturalHeight !== 0) {
+            img.classList.add("loaded");
+          } else {
+            img.addEventListener("load", () => {
+              img.classList.add("loaded");
+            });
+          }
+        });
       });
     </script>
 

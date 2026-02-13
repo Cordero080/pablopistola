@@ -87,26 +87,30 @@
     <script>
       // Show skip link after 1.5s
       setTimeout(() => {
-        document.getElementById('skipLink').classList.add('visible');
+        document.getElementById("skipLink").classList.add("visible");
       }, 1500);
 
       // Check for ?stay param - if present, stay on landing (zen mode)
       const urlParams = new URLSearchParams(window.location.search);
-      const stayMode = urlParams.has('stay');
+      const stayMode = urlParams.has("stay");
 
       if (!stayMode) {
         // Auto-transition after 5 seconds with scanline dissolve
         setTimeout(() => {
           // Hide skip link during transition
-          document.getElementById('skipLink').classList.remove('visible');
-          
+          document.getElementById("skipLink").classList.remove("visible");
+
           // Add dissolving class to all elements
           document
             .querySelector(".landing-container")
             .classList.add("dissolving");
-          document.querySelector(".interaction-hint").classList.add("dissolving");
+          document
+            .querySelector(".interaction-hint")
+            .classList.add("dissolving");
           document.getElementById("waves").classList.add("dissolving");
-          document.querySelector(".spacebar-prompt")?.classList.add("dissolving");
+          document
+            .querySelector(".spacebar-prompt")
+            ?.classList.add("dissolving");
 
           // Navigate after dissolve animation completes
           setTimeout(() => {
