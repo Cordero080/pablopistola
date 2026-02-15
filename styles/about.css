@@ -445,8 +445,190 @@
   .architecture-panel .panel-label {
     font-size: 0.65rem;
   }
+}
 
-  /* Fix iOS scroll issues */
+/* ==========================================
+   SYSTEM MANIFESTO CARD
+   ========================================== */
+.system-manifesto {
+  position: relative;
+  background:
+    linear-gradient(145deg, #221d27, #000000),
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.05), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.5), transparent 50%),
+    linear-gradient(45deg, rgba(138, 43, 226, 0.05), rgba(0, 212, 255, 0.05), rgba(138, 43, 226, 0.05));
+  background-size: 100% 100%, 150% 150%, 150% 150%, 200% 200%;
+  background-blend-mode: overlay, multiply, overlay;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 800px;
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.8),
+    inset 0 1px 3px rgba(255, 255, 255, 0.1),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.system-manifesto:hover {
+  border-color: rgba(0, 212, 255, 0.6);
+  box-shadow:
+    0 0 20px rgba(0, 212, 255, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.8),
+    inset 0 1px 3px rgba(255, 255, 255, 0.2),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.system-manifesto::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ff006e, #8338ec, #07429f);
+  background-size: 200% auto;
+  animation: heroGradientMoveAlt 8s linear infinite;
+}
+
+.manifesto-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.manifesto-title {
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: rgba(0, 212, 255, 0.9);
+  text-transform: uppercase;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #00ff88;
+  text-transform: uppercase;
+}
+
+.status-light {
+  width: 8px;
+  height: 8px;
+  background: #00ff88;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00ff88, 0 0 16px rgba(0, 255, 136, 0.5);
+  animation: livePulse 1.5s ease-in-out infinite;
+}
+
+/* Reuse livePulse from project.css */
+@keyframes livePulse {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.4; 
+    transform: scale(0.8);
+  }
+}
+
+.manifesto-content {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.system-output {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(138, 43, 226, 0.3);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.output-header {
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: rgba(138, 43, 226, 0.9);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.output-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid rgba(0, 212, 255, 0.3);
+}
+
+.output-item:last-child {
+  margin-bottom: 0;
+}
+
+.output-label {
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: rgba(0, 212, 255, 0.8);
+  text-transform: uppercase;
+  white-space: nowrap;
+  min-width: 120px;
+}
+
+.output-value {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.output-value strong {
+  color: #00ff88;  /* Same green as live indicator */
+}
+
+.output-value em {
+  color: #ff006e;  /* Neon magenta */
+  font-style: normal;
+}
+
+@media (max-width: 768px) {
+  .system-manifesto {
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  .manifesto-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .output-item {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .output-label {
+    min-width: auto;
+  }
+
   html, body {
     height: auto;
     min-height: 100%;
