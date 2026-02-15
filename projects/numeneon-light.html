@@ -345,6 +345,31 @@
             loading="lazy"
           />
         </div>
+
+        <!-- Architecture Section -->
+        <div class="architecture-section">
+          <h3>Architecture</h3>
+          <div class="architecture-grid">
+            <div class="architecture-item wireframe">
+              <img
+                src="../public/images/projects/numeneon/wireframes/numeneon-wireframe-final.png"
+                alt="Wireframe"
+                class="arch-thumb"
+                data-full="../public/images/projects/numeneon/wireframes/numeneon-wireframe-final.png"
+              />
+              <span class="arch-label">Wireframe</span>
+            </div>
+            <div class="architecture-item erd">
+              <img
+                src="../public/images/projects/numeneon/wireframes/erd/numeneon-erd-final.png"
+                alt="ERD"
+                class="arch-thumb"
+                data-full="../public/images/projects/numeneon/wireframes/erd/numeneon-erd-final.png"
+              />
+              <span class="arch-label">ERD</span>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- About Section -->
@@ -1001,13 +1026,39 @@
     <script>
       document.querySelectorAll(".gallery-thumbs .thumb").forEach((thumb) => {
         thumb.addEventListener("click", () => {
-          document.querySelector(".gallery-hero-img").src = thumb.dataset.full;
+          const heroImg = document.querySelector(".gallery-hero-img");
+          const newSrc = thumb.dataset.full;
+          heroImg.src = newSrc;
+
+          // Toggle architecture class for wireframes/ERDs
+          if (newSrc.includes("wireframe") || newSrc.includes("erd")) {
+            heroImg.classList.add("architecture-img");
+          } else {
+            heroImg.classList.remove("architecture-img");
+          }
+
           document
-            .querySelectorAll(".thumb")
+            .querySelectorAll(".thumb, .arch-thumb")
             .forEach((t) => t.classList.remove("active"));
           thumb.classList.add("active");
         });
       });
+
+      // Architecture section thumbnails
+      document
+        .querySelectorAll(".architecture-section .arch-thumb")
+        .forEach((thumb) => {
+          thumb.addEventListener("click", () => {
+            const heroImg = document.querySelector(".gallery-hero-img");
+            heroImg.src = thumb.dataset.full;
+            heroImg.classList.add("architecture-img");
+
+            document
+              .querySelectorAll(".thumb, .arch-thumb")
+              .forEach((t) => t.classList.remove("active"));
+            thumb.classList.add("active");
+          });
+        });
     </script>
     <script src="../app.js" defer></script>
     <script src="../js/orb.js" defer></script>

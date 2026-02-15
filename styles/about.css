@@ -320,9 +320,132 @@
 }
 
 /* ==========================================
+   ARCHITECTURE BRIDGE - Logic to Life
+   ========================================== */
+.architecture-bridge {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: linear-gradient(145deg, rgba(10, 8, 15, 0.8), rgba(20, 15, 30, 0.6));
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 8px;
+  position: relative;
+}
+
+.architecture-bridge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 212, 255, 0.02) 2px,
+      rgba(0, 212, 255, 0.02) 4px
+    );
+  pointer-events: none;
+  border-radius: 8px;
+}
+
+.architecture-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.architecture-panel img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.5),
+    inset 0 0 20px rgba(0, 212, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.architecture-panel img:hover {
+  border-color: rgba(0, 212, 255, 0.6);
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(0, 212, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.architecture-panel .panel-label {
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 0.25rem 0.75rem;
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 4px;
+}
+
+/* Blueprint styling for wireframes/ERDs */
+.architecture-panel.blueprint img {
+  filter: contrast(1.1) brightness(0.95);
+  border-color: rgba(0, 255, 136, 0.3);
+}
+
+.architecture-panel.blueprint .panel-label {
+  background: rgba(0, 255, 136, 0.1);
+  border-color: rgba(0, 255, 136, 0.2);
+  color: rgba(0, 255, 136, 0.7);
+}
+
+/* Execution panel styling */
+.architecture-panel.execution img {
+  border-color: rgba(138, 43, 226, 0.3);
+}
+
+.architecture-panel.execution .panel-label {
+  background: rgba(138, 43, 226, 0.1);
+  border-color: rgba(138, 43, 226, 0.2);
+  color: rgba(138, 43, 226, 0.7);
+}
+
+/* Technical Achievement Highlight */
+.tech-achievement {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  margin-top: 0.75rem;
+  background: linear-gradient(90deg, rgba(255, 0, 110, 0.15), rgba(138, 43, 226, 0.15));
+  border: 1px solid rgba(255, 0, 110, 0.3);
+  border-radius: 4px;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.8rem;
+  color: #ff006e;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.tech-achievement::before {
+  content: "◆";
+  font-size: 0.6rem;
+}
+
+/* ==========================================
    RESPONSIVE
    ========================================== */
 @media (max-width: 768px) {
+  .architecture-bridge {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .architecture-panel .panel-label {
+    font-size: 0.65rem;
+  }
+
   /* Fix iOS scroll issues */
   html, body {
     height: auto;

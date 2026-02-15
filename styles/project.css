@@ -240,6 +240,119 @@
   object-fit: cover;
 }
 
+/* Architecture diagrams - show full image without cropping */
+.gallery-hero-img.architecture-img {
+  aspect-ratio: auto;
+  object-fit: contain;
+  max-height: 600px;
+  background: linear-gradient(145deg, #0a0a0f, #151520);
+}
+
+/* Architecture Section - Wireframe & ERD */
+.architecture-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background:
+    linear-gradient(145deg, rgba(34, 29, 39, 0.4), rgba(0, 0, 0, 0.3)),
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.03), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.3), transparent 50%),
+    linear-gradient(45deg, rgba(138, 43, 226, 0.03), rgba(0, 212, 255, 0.03), rgba(138, 43, 226, 0.03));
+  background-size: 100% 100%, 150% 150%, 150% 150%, 200% 200%;
+  background-blend-mode: overlay, multiply, overlay;
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.05),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.architecture-section:hover {
+  border-color: rgba(0, 212, 255, 0.4);
+  box-shadow:
+    0 0 15px rgba(0, 212, 255, 0.15),
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.1),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.architecture-section h3 {
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.875rem;
+  background: linear-gradient(90deg, #ff006e, #8338ec, #07429f);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: heroGradientMoveAlt 8s linear infinite;
+  margin-bottom: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  -webkit-mask-image: linear-gradient(to bottom, black 30%, rgba(0,0,0,0.3) 100%);
+  mask-image: linear-gradient(to bottom, black 30%, rgba(0,0,0,0.3) 100%);
+}
+
+.architecture-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.architecture-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.architecture-item img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  opacity: 0.7;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.architecture-item img:hover {
+  opacity: 1;
+  border-color: rgba(0, 212, 255, 0.5);
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+}
+
+.architecture-item img.active {
+  opacity: 1;
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 15px rgba(79, 255, 255, 0.4);
+}
+
+.architecture-item .arch-label {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.architecture-item.wireframe .arch-label {
+  color: rgba(0, 255, 136, 0.7);
+}
+
+.architecture-item.erd .arch-label {
+  color: rgba(138, 43, 226, 0.7);
+}
+
+@media (max-width: 480px) {
+  .architecture-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .gallery-thumbs {
   display: flex;
   gap: 1rem;
