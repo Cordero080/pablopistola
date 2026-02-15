@@ -65,6 +65,10 @@
 .hero-title:hover {
   opacity: 1;
   transform: perspective(500px) rotateX(-2deg) rotateY(3deg) scale(1.02);
+  background: linear-gradient(135deg, #00ffff 0%, #006060 20%, #ff20cca0 40%, #00e5ff 60%, #1010dde0 80%, #00ffff 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
   animation: heroGradientShift 1.5s ease infinite;
 }
 
@@ -256,30 +260,30 @@
   .hero-section { min-height: 24vh; }
 }
 @media (max-width: 600px) {
-  .hero-content { margin-left: 0; margin-top: 8vh; text-align: center; }
-  .hero-title { font-size: clamp(2rem, 12vw, 2.5rem) !important; text-align: center !important; }
-  .hero-tagline { font-size: 0.95rem !important; }
-  .hero-section { min-height: 25vh; }
-
-  /* Adjust hero for mobile */
-  .hero-section {
-    min-height: auto;
-    padding-top: 20px;
-    display: flex;
-    justify-content: center;
+  .hero-content { margin-left: 0; margin-top: 2vh; text-align: center; }
+  .hero-title { 
+    font-size: clamp(1.6rem, 8vw, 2.2rem) !important; 
+    text-align: center !important; 
+    letter-spacing: 0.06em !important; 
   }
+  .hero-subtitle { 
+    font-size: 0.55rem !important; 
+    letter-spacing: 0.08em !important;
+    display: inline-block !important;
+    white-space: nowrap !important;
+  }
+  .hero-tagline { 
+    font-size: 0.55rem !important; 
+    letter-spacing: 0.06em !important;
+    display: inline-block !important;
+    white-space: nowrap !important;
+  }
+  .hero-section { min-height: auto; padding-top: 10px; }
 
   .hero-content {
     text-align: center;
     align-items: center;
     justify-content: center;
-    width: 100%;
-  }
-
-  .hero-title {
-    font-size: clamp(3rem, 15vw, 4.5rem);
-    letter-spacing: 0.1em;
-    text-align: center;
     width: 100%;
   }
 

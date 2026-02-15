@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-ZL1CZZKRKD"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-ZL1CZZKRKD");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About | Pablo Cordero</title>
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/icons/icon-192.png"
+    />
+    <!-- Thornwood font from Adobe -->
+    <link rel="stylesheet" href="https://use.typekit.net/fpe8zfm.css" />
+    <!-- Manifold Extended font from Adobe -->
+    <link rel="stylesheet" href="https://use.typekit.net/pnd4foc.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="src/js/sineWave.js" defer></script>
+    <!-- Vercel Analytics (only loads on Vercel) -->
+    <script>
+      if (
+        window.location.hostname !== "localhost" &&
+        window.location.hostname !== "127.0.0.1"
+      ) {
+        const s = document.createElement("script");
+        s.defer = true;
+        s.src = "/_vercel/insights/script.js";
+        document.head.appendChild(s);
+      }
+    </script>
+    <link rel="stylesheet" crossorigin href="/assets/main-PVU4gkBQ.css">
+    <link rel="stylesheet" crossorigin href="/assets/project-C_BTvFQe.css">
+    <link rel="stylesheet" crossorigin href="/assets/about-DrwnlQ08.css">
+  </head>
+  <body>
+    <canvas id="waves"></canvas>
+
+    <!-- Side Navigation -->
+    <nav class="side-nav" role="navigation" aria-label="Main navigation">
+      <div class="side-nav-logo">
+        <span class="logo-text" data-text="PC">PC</span>
+      </div>
+      <div class="side-nav-links">
+        <a class="side-nav-link" href="/home" aria-label="Home">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          <span class="nav-label">Home</span>
+        </a>
+        <a
+          class="side-nav-link active"
+          href="/about"
+          aria-label="About"
+          style="display: none"
+        >
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <span class="nav-label">About</span>
+        </a>
+        <a class="side-nav-link" href="/home#projects" aria-label="Projects">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+          </svg>
+          <span class="nav-label">Projects</span>
+        </a>
+        <a class="side-nav-link" href="/skills" aria-label="Skills">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+          </svg>
+          <span class="nav-label">Skills</span>
+        </a>
+        <a class="side-nav-link" href="/art" aria-label="Art">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+            <path
+              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"
+            />
+          </svg>
+          <span class="nav-label">Art</span>
+        </a>
+        <a class="side-nav-link" href="/home#contact" aria-label="Contact">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          <span class="nav-label">Contact</span>
+        </a>
+        <a class="side-nav-link" href="/resume" aria-label="Resume">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+          </svg>
+          <span class="nav-label">Resume</span>
+        </a>
+        <a
+          class="side-nav-link exit-link"
+          href="/?stay"
+          aria-label="Zen Mode - Waves"
+        >
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M2 12c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+            <path d="M2 6c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+            <path d="M2 18c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+          </svg>
+          <span class="nav-label">Zen</span>
+        </a>
+      </div>
+      <div class="side-nav-glow"></div>
+    </nav>
+
+    <!-- Mobile Hamburger Button -->
+    <button
+      class="hamburger-btn"
+      id="hamburgerBtn"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <div class="hamburger-icon">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </div>
+    </button>
+
+    <main class="project-page">
+      <!-- Hero Section -->
+      <section class="project-hero">
+        <div class="project-hero-content">
+          <a href="/home" class="back-link">← Back to Home</a>
+          <h1 class="about-title">About</h1>
+          <p class="about-name">Pablo Cordero</p>
+        </div>
+      </section>
+
+      <!-- About Content -->
+      <div class="about-content">
+        <!-- How I Think Section -->
+        <section class="about-section">
+          <h2>How I Think About Building</h2>
+          <p>
+            I care a lot about how things look and how they feel to use. The
+            interface is an integral part of the experience, not just a
+            container for it. To me, good design isn't decoration; it's what
+            makes someone want to stay, be curious, and explore. But I also
+            believe that functionality and performance are just as important as
+            aesthetics. I focus on the intersection of aesthetic intent and
+            functional performance.
+          </p>
+        </section>
+
+        <!-- Background Section -->
+        <section class="about-section">
+          <h2>How I Got Here</h2>
+          <p>
+            My path to software was paved through disciplines that rely on
+            structure, perception, and rigorous practice:
+          </p>
+          <ul class="evolution-list">
+            <li>
+              <strong>Artist & Draftsman:</strong> I've spent most of my life as
+              a visual artist. Drawing and painting, then moved into digital
+              art, motion graphics, and light VFX work. My background informs my
+              development process. I approach engineering the same way I
+              approach a canvas: I start with a rough sketch to organize the
+              chaos, follow an impression, and refine until the composition and
+              tone work, in this case, until the system works.
+            </li>
+            <li>
+              <strong>Linguist:</strong> I worked as a Spanish interpreter for
+              almost 20 years. It taught me to think about communication and
+              clarity. In my UI work, I lean toward icons and visual cues over
+              text-heavy interfaces. I use symbols to bypass language barriers,
+              using words only where they provide the most critical clarity.
+            </li>
+            <li>
+              <strong>Martial Artist:</strong> I've practiced Okinawan Goju Ryu
+              for the better part of my life, long enough that I inevitably
+              ended up teaching. The discipline and structure required to excel
+              in traditional training directly influenced my engineering
+              workflow and my workflow in general. I model software the way I
+              model traditional training—through structure, progression, and
+              continuous growth and refinement.
+            </li>
+          </ul>
+        </section>
+
+        <!-- Recent Work Section -->
+        <section class="about-section">
+          <h2>Recent Work</h2>
+          <p>
+            Most of my projects combine 3D graphics, interactive UI, and
+            full-stack development. Here are a few highlights:
+          </p>
+
+          <div class="project-highlight">
+            <h3>Pneuma</h3>
+            <p>
+              An experimental AI personality architecture for LLMs. I wanted to
+              see what would happen if an LLM was forced to hold contradictions
+              instead of smoothing them over. It uses 46 philosophical
+              "archetypes" that collide with each other—pairing thinkers like
+              Camus and Frankl to generate responses that aren't generic or
+              sycophantic.
+            </p>
+            <span class="tech-achievement"
+              >Collision Engine: 1,764 archetype tension pairs</span
+            >
+          </div>
+
+          <div class="project-highlight">
+            <h3>NUCAT</h3>
+            <p>
+              Inspired by the ASCII art of the dial-up era, I built a real-time
+              ASCII point cloud renderer. I designed and rigged the character,
+              then engineered a GPU-efficient pipeline to break it into ~20,000
+              particles using Three.js and instanced rendering. The skeleton
+              animation still runs underneath while the surface dissolves into
+              entropy.
+            </p>
+            <span class="tech-achievement"
+              >GPU Instancing: ~20,000 real-time particles</span
+            >
+          </div>
+
+          <div class="project-highlight">
+            <h3>Nexus Geom Lab</h3>
+            <p>
+              A gamified 4D geometry exploration platform. Users manipulate 24
+              hyperdimensional shapes—tesseracts, quantum manifolds, Hessian
+              polychorons—and save configurations they find appealing. Each save
+              unlocks animated 3D characters (Icarus-X, Vectra, Nexus-Prime)
+              that I modeled and rigged, creating a feedback loop that rewards
+              curiosity. Full-stack with React Three Fiber, MongoDB, JWT auth,
+              and audio-reactive visuals driven by real-time FFT analysis.
+            </p>
+
+            <!-- Architecture Bridge: Logic to Life -->
+            <div class="architecture-bridge">
+              <div class="architecture-panel blueprint">
+                <img
+                  src="/images/projects/nexus-geom-lab/wireframes/wireframe.png"
+                  alt="Nexus Geom Lab System Architecture"
+                />
+                <span class="panel-label">The Architecture</span>
+              </div>
+              <div class="architecture-panel execution">
+                <img
+                  src="/images/projects/nexus-geom-lab.png"
+                  alt="Nexus Geom Lab Final Implementation"
+                />
+                <span class="panel-label">The Execution</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-highlight">
+            <h3>Tamagotchi Transcendence</h3>
+            <p>
+              My first major 3D project. I modeled and rigged a character in
+              Blender, created 32 custom animations, and built the evolution sim
+              in Three.js. The creature evolves based on care, with visual
+              changes in light, color, and size. It includes a hidden Battle
+              Arena built in React Three Fiber.
+            </p>
+          </div>
+
+          <div class="project-highlight">
+            <h3>Dojo — Requirements Engine</h3>
+            <p>
+              A full-stack app modeling traditional Goju-Ryu martial arts
+              curriculum—tracking kata, bunkai, and kumite progression. Built
+              with React and Django, featuring soft-delete recovery and form
+              validation to maintain data integrity across training records.
+            </p>
+
+            <!-- Architecture Bridge: Logic to Life -->
+            <div class="architecture-bridge">
+              <div class="architecture-panel blueprint">
+                <img
+                  src="/images/projects/dojo/wireframes/wireframe-flow-FINAL.2.png"
+                  alt="Dojo System Architecture"
+                />
+                <span class="panel-label">The Architecture</span>
+              </div>
+              <div class="architecture-panel execution">
+                <img
+                  src="/images/projects/dojo-crud.png"
+                  alt="Dojo Final Implementation"
+                />
+                <span class="panel-label">The Execution</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-highlight">
+            <h3>Numeneon — Co-Lead, System Architect & UI Architect</h3>
+            <p>
+              My capstone project. I served as Co-Lead and System
+              Architect—designing the full-stack architecture, writing
+              pseudocode specifications for the team, and building the
+              dual-theme component library. The main feature is a "River"
+              timeline that solves digital congestion by displaying content in
+              parallel currents to keep the feed from feeling overwhelming.
+            </p>
+
+            <!-- Achievement Banner -->
+            <div class="achievement-banner" style="margin-top: 1.5rem">
+              <span class="achievement-icon">◆</span>
+              <p>
+                Solo-engineered and deployed a production-ready MVP with
+                <strong>40+ organic users</strong> and
+                <strong>100% uptime</strong> through self-managed cloud
+                infrastructure.
+              </p>
+            </div>
+
+            <!-- System Metrics Mini -->
+            <div
+              style="
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+                margin-top: 1.5rem;
+              "
+            >
+              <div
+                style="
+                  background: linear-gradient(
+                    145deg,
+                    rgba(26, 21, 37, 0.9),
+                    rgba(10, 5, 16, 0.9)
+                  );
+                  border: 1px solid rgba(0, 212, 255, 0.3);
+                  border-radius: 8px;
+                  padding: 1rem;
+                  text-align: center;
+                "
+              >
+                <div
+                  style="
+                    font-family: &quot;Orbitron&quot;, monospace;
+                    font-size: 1.1rem;
+                    color: #00d4ff;
+                    letter-spacing: 0.05em;
+                  "
+                >
+                  [ 4m 37s ]
+                </div>
+                <div
+                  style="
+                    font-family: &quot;Rajdhani&quot;, sans-serif;
+                    font-size: 0.7rem;
+                    color: rgba(255, 255, 255, 0.6);
+                    text-transform: uppercase;
+                    letter-spacing: 0.1em;
+                    margin-top: 0.25rem;
+                  "
+                >
+                  Neural Retention
+                </div>
+              </div>
+              <div
+                style="
+                  background: linear-gradient(
+                    145deg,
+                    rgba(26, 21, 37, 0.9),
+                    rgba(10, 5, 16, 0.9)
+                  );
+                  border: 1px solid rgba(138, 43, 226, 0.3);
+                  border-radius: 8px;
+                  padding: 1rem;
+                  text-align: center;
+                "
+              >
+                <div
+                  style="
+                    font-family: &quot;Orbitron&quot;, monospace;
+                    font-size: 1.1rem;
+                    color: #8338ec;
+                    letter-spacing: 0.05em;
+                  "
+                >
+                  [ 1.4K ]
+                </div>
+                <div
+                  style="
+                    font-family: &quot;Rajdhani&quot;, sans-serif;
+                    font-size: 0.7rem;
+                    color: rgba(255, 255, 255, 0.6);
+                    text-transform: uppercase;
+                    letter-spacing: 0.1em;
+                    margin-top: 0.25rem;
+                  "
+                >
+                  System Interactivity
+                </div>
+              </div>
+              <div
+                style="
+                  background: linear-gradient(
+                    145deg,
+                    rgba(26, 21, 37, 0.9),
+                    rgba(10, 5, 16, 0.9)
+                  );
+                  border: 1px solid rgba(255, 0, 110, 0.3);
+                  border-radius: 8px;
+                  padding: 1rem;
+                  text-align: center;
+                "
+              >
+                <div
+                  style="
+                    font-family: &quot;Orbitron&quot;, monospace;
+                    font-size: 1.1rem;
+                    color: #ff006e;
+                    letter-spacing: 0.05em;
+                  "
+                >
+                  [ 703 ]
+                </div>
+                <div
+                  style="
+                    font-family: &quot;Rajdhani&quot;, sans-serif;
+                    font-size: 0.7rem;
+                    color: rgba(255, 255, 255, 0.6);
+                    text-transform: uppercase;
+                    letter-spacing: 0.1em;
+                    margin-top: 0.25rem;
+                  "
+                >
+                  Network Reach
+                </div>
+              </div>
+            </div>
+
+            <!-- Architecture Bridge: Logic to Life -->
+            <div class="architecture-bridge">
+              <div class="architecture-panel blueprint">
+                <img
+                  src="/images/projects/numeneon/wireframes/numeneon-wireframe-final.png"
+                  alt="Numeneon System Architecture & Wireframe"
+                />
+                <span class="panel-label">The Architecture</span>
+              </div>
+              <div class="architecture-panel execution">
+                <img
+                  src="/images/projects/numeneon.png"
+                  alt="Numeneon Final Implementation"
+                />
+                <span class="panel-label">The Execution</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Work Section -->
+        <section class="about-section">
+          <h2>Development Velocity</h2>
+          <p>
+            Over the past year, I've built around 43 projects. Most began as
+            experiments or assignments, but I used them as a way to put into
+            practice what I had just understood while it was fresh. Some became
+            full apps; others spawned new projects as byproducts. I focus on
+            taking the basic bounds of a task and discovering how to push the
+            creative limits of the architecture. It's about turning chaos into
+            something that works.
+          </p>
+
+          <div class="proof-stats">
+            <div class="stat-item">
+              <span class="stat-number">43</span>
+              <span class="stat-label">Projects</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">3,000+</span>
+              <span class="stat-label">Contributions</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">46</span>
+              <span class="stat-label">AI Archetypes</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">32</span>
+              <span class="stat-label">Custom Animations</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Technical Philosophy Section -->
+        <section class="about-section">
+          <h2>Technical Philosophy</h2>
+
+          <div class="system-manifesto">
+            <div class="manifesto-header">
+              <span class="manifesto-title">[ PERSPECTIVE ]</span>
+            </div>
+
+            <div class="manifesto-content">
+              Every generation panics that a new tool is the end of human craft
+              — from the screwdriver, to the hand drill, to the entire
+              Industrial Revolution. We've spent centuries inventing things to
+              freak out over. AI's energy cost is real — but so is every light
+              left on in a building where nobody's making anything. The question
+              was never whether to spend the power, but what you build with it.
+            </div>
+
+            <div class="system-output">
+              <div class="output-header">
+                // System Output: Engineering Response
+              </div>
+
+              <div class="output-item">
+                <span class="output-label">Optimization:</span>
+                <span class="output-value"
+                  ><strong>93% code reduction</strong> in Nexus Geom Lab (2,700
+                  → 199 lines) — every keystroke saved is energy not burned.
+                  Efficiency isn't just performance; it's
+                  <em>responsibility</em>.</span
+                >
+              </div>
+
+              <div class="output-item">
+                <span class="output-label">Intentional AI:</span>
+                <span class="output-value"
+                  >Pneuma's orchestration layer ensures AI compute is spent on
+                  <strong>depth and philosophy</strong> rather than generic
+                  output. 1,764 archetype collisions generate tension, not
+                  tokens.</span
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Scripts -->
+    <script>
+      // Initialize sine wave background
+      document.addEventListener("DOMContentLoaded", () => {
+        const canvas = document.getElementById("waves");
+        if (canvas && typeof SineWave !== "undefined") {
+          new SineWave(canvas, {
+            speed: 0.008,
+            amplitude: 40,
+            wavelength: 0.015,
+            strokeStyle: "rgba(0, 255, 247, 0.08)",
+          });
+        }
+      });
+    </script>
+
+    <!-- Mobile Menu Toggle -->
+    <script>
+      (function () {
+        const hamburgerBtn = document.getElementById("hamburgerBtn");
+        const sideNav = document.querySelector(".side-nav");
+        const navLinks = document.querySelectorAll(".side-nav-link");
+
+        if (hamburgerBtn && sideNav) {
+          hamburgerBtn.addEventListener("click", () => {
+            const isOpen = sideNav.classList.toggle("menu-open");
+            hamburgerBtn.classList.toggle("active");
+            hamburgerBtn.setAttribute("aria-expanded", isOpen);
+            document.body.style.overflow = isOpen ? "hidden" : "";
+          });
+
+          navLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+              sideNav.classList.remove("menu-open");
+              hamburgerBtn.classList.remove("active");
+              hamburgerBtn.setAttribute("aria-expanded", "false");
+              document.body.style.overflow = "";
+            });
+          });
+
+          document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && sideNav.classList.contains("menu-open")) {
+              sideNav.classList.remove("menu-open");
+              hamburgerBtn.classList.remove("active");
+              hamburgerBtn.setAttribute("aria-expanded", "false");
+              document.body.style.overflow = "";
+            }
+          });
+        }
+      })();
+    </script>
+    <script src="src/js/app.js" defer></script>
+    <script src="src/js/orb.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,1127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-ZL1CZZKRKD"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-ZL1CZZKRKD");
+    </script>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Art Gallery | Pablo Pistola</title>
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/icons/icon-192.png"
+    />
+    <link rel="stylesheet" crossorigin href="/assets/art-6qEE8gV-.css">
+    <link rel="stylesheet" crossorigin href="/assets/main-PVU4gkBQ.css">
+    <link rel="stylesheet" crossorigin href="/assets/typography-BtfmU3s3.css">
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Sine Wave Canvas -->
+    <canvas id="waves"></canvas>
+
+    <!-- Parallax Background -->
+    <div class="parallax-bg-overlay" aria-hidden="true">
+      <div class="parallax-ellipse"></div>
+    </div>
+
+    <!-- Side Navigation -->
+    <nav class="side-nav" role="navigation" aria-label="Main navigation">
+      <div class="side-nav-logo">
+        <span class="logo-text" data-text="PC">PC</span>
+      </div>
+      <div class="side-nav-links">
+        <a class="side-nav-link" href="/home" aria-label="Home">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          <span class="nav-label">Home</span>
+        </a>
+        <a class="side-nav-link" href="/about" aria-label="About">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <span class="nav-label">About</span>
+        </a>
+        <a class="side-nav-link" href="/home#projects" aria-label="Projects">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+          </svg>
+          <span class="nav-label">Projects</span>
+        </a>
+        <a class="side-nav-link" href="/skills" aria-label="Skills">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+          </svg>
+          <span class="nav-label">Skills</span>
+        </a>
+        <a
+          class="side-nav-link"
+          href="/art"
+          aria-label="Art"
+          style="display: none"
+        >
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+            <path
+              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"
+            />
+          </svg>
+          <span class="nav-label">Art</span>
+        </a>
+        <a class="side-nav-link" href="/home#contact" aria-label="Contact">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          <span class="nav-label">Contact</span>
+        </a>
+        <a class="side-nav-link" href="/resume" aria-label="Resume">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+          </svg>
+          <span class="nav-label">Resume</span>
+        </a>
+        <a
+          class="side-nav-link exit-link"
+          href="/?stay"
+          aria-label="Zen Mode - Waves"
+        >
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M2 12c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+            <path d="M2 6c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+            <path d="M2 18c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+          </svg>
+          <span class="nav-label">Zen</span>
+        </a>
+      </div>
+      <div class="side-nav-glow"></div>
+    </nav>
+
+    <!-- Mobile Hamburger Button -->
+    <button
+      class="hamburger-btn"
+      id="hamburgerBtn"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <div class="hamburger-icon">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </div>
+    </button>
+
+    <main id="main-content" class="gallery-container" role="main">
+      <header class="gallery-header">
+        <h1 class="gallery-title">Art Gallery</h1>
+        <p class="gallery-subtitle">
+          A collection of digital creations and AI-assisted explorations
+        </p>
+      </header>
+
+      <!-- ==================== DIGITAL ART ==================== -->
+
+      <!-- Digital: Glitch -->
+      <section class="gallery-section" aria-labelledby="digital-glitch-heading">
+        <h2 id="digital-glitch-heading" class="section-title">
+          Digital — Glitch
+        </h2>
+        <div
+          class="gallery-slider"
+          role="region"
+          aria-label="Digital glitch art"
+        >
+          <div class="gallery-track">
+            <figure class="gallery-item" data-category="digital-glitch">
+              <img
+                src="/images/art/digital/glitch/Bipolar-invert.png"
+                alt="Bipolar Invert"
+                loading="lazy"
+              />
+              <figcaption>Bipolar Invert</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-glitch">
+              <img
+                src="/images/art/digital/glitch/Bipolar-pink.png"
+                alt="Bipolar Pink"
+                loading="lazy"
+              />
+              <figcaption>Bipolar Pink</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-glitch">
+              <img
+                src="/images/art/digital/glitch/Bipolar-teal.png"
+                alt="Bipolar Teal"
+                loading="lazy"
+              />
+              <figcaption>Bipolar Teal</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-glitch">
+              <img
+                src="/images/art/digital/glitch/Colors-4.8.1.png"
+                alt="Colors 4.8.1"
+                loading="lazy"
+              />
+              <figcaption>Colors 4.8.1</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-glitch">
+              <img
+                src="/images/art/digital/glitch/Colors-magenta.png"
+                alt="Colors Magenta"
+                loading="lazy"
+              />
+              <figcaption>Colors Magenta</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-glitch">
+              <img
+                src="/images/art/digital/glitch/colors-genesis.png"
+                alt="Colors Genesis"
+                loading="lazy"
+              />
+              <figcaption>Colors Genesis</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-glitch">
+              <img
+                src="/images/art/digital/glitch/Coloroffset.png"
+                alt="Color Offset"
+                loading="lazy"
+              />
+              <figcaption>Color Offset</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-glitch">
+              <img
+                src="/images/art/digital/glitch/chaos-glitch.png"
+                alt="Chaos Glitch"
+                loading="lazy"
+              />
+              <figcaption>Chaos Glitch</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-glitch">
+              <img
+                src="/images/art/digital/glitch/horizontal-glitch.png"
+                alt="Horizontal Glitch"
+                loading="lazy"
+              />
+              <figcaption>Horizontal Glitch</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- Digital: Patterns -->
+      <section
+        class="gallery-section"
+        aria-labelledby="digital-patterns-heading"
+      >
+        <h2 id="digital-patterns-heading" class="section-title">
+          Digital — Patterns
+        </h2>
+        <div
+          class="gallery-slider"
+          role="region"
+          aria-label="Digital pattern art"
+        >
+          <div class="gallery-track">
+            <figure class="gallery-item" data-category="digital-patterns">
+              <img
+                src="/images/art/digital/patterns/triad.png"
+                alt="Triad"
+                loading="lazy"
+              />
+              <figcaption>Triad</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-patterns">
+              <img
+                src="/images/art/digital/patterns/triad-2.png"
+                alt="Triad II"
+                loading="lazy"
+              />
+              <figcaption>Triad II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-patterns">
+              <img
+                src="/images/art/digital/patterns/triad-3.png"
+                alt="Triad III"
+                loading="lazy"
+              />
+              <figcaption>Triad III</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-patterns">
+              <img
+                src="/images/art/digital/patterns/triad-3-1.png"
+                alt="Triad III-I"
+                loading="lazy"
+              />
+              <figcaption>Triad III-I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-patterns">
+              <img
+                src="/images/art/digital/patterns/trias-pattern.png"
+                alt="Trias Pattern"
+                loading="lazy"
+              />
+              <figcaption>Trias Pattern</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-patterns">
+              <img
+                src="/images/art/digital/patterns/PEACOCK-warp.png"
+                alt="Peacock Warp"
+                loading="lazy"
+              />
+              <figcaption>Peacock Warp</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- Digital: Figures & Paintings -->
+      <section
+        class="gallery-section"
+        aria-labelledby="digital-figures-heading"
+      >
+        <h2 id="digital-figures-heading" class="section-title">
+          Digital — Figures & Paintings
+        </h2>
+        <div
+          class="gallery-slider"
+          role="region"
+          aria-label="Digital figures and paintings"
+        >
+          <div class="gallery-track">
+            <figure class="gallery-item" data-category="digital-figures">
+              <img
+                src="/images/art/digital/figures/arthur.png"
+                alt="Arthur"
+                loading="lazy"
+              />
+              <figcaption>Arthur</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-figures">
+              <img
+                src="/images/art/digital/figures/africa.png"
+                alt="Africa"
+                loading="lazy"
+              />
+              <figcaption>Africa</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-figures">
+              <img
+                src="/images/art/digital/figures/Bud.png"
+                alt="Bud"
+                loading="lazy"
+              />
+              <figcaption>Bud</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-figures">
+              <img
+                src="/images/art/digital/figures/Kayo.png"
+                alt="Kayo"
+                loading="lazy"
+              />
+              <figcaption>Kayo</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-figures">
+              <img
+                src="/images/art/digital/figures/digital-01.png"
+                alt="Digital Study I"
+                loading="lazy"
+              />
+              <figcaption>Digital Study I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-figures">
+              <img
+                src="/images/art/digital/figures/digital-02.png"
+                alt="Digital Study II"
+                loading="lazy"
+              />
+              <figcaption>Digital Study II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-figures">
+              <img
+                src="/images/art/digital/figures/Cristobal.png"
+                alt="Cristobal"
+                loading="lazy"
+              />
+              <figcaption>Cristobal</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-figures">
+              <img
+                src="/images/art/digital/figures/Boseman.png"
+                alt="Boseman"
+                loading="lazy"
+              />
+              <figcaption>Boseman</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== AI FUSION ==================== -->
+
+      <!-- AI Fusion: Characters -->
+      <section class="gallery-section" aria-labelledby="ai-characters-heading">
+        <h2 id="ai-characters-heading" class="section-title">
+          AI Fusion — Characters
+        </h2>
+        <div class="gallery-slider" role="region" aria-label="AI character art">
+          <div class="gallery-track">
+            <figure class="gallery-item" data-category="ai-characters">
+              <img
+                src="/images/art/ai-fusion/characters/ninja-01.png"
+                alt="Ninja I"
+                loading="lazy"
+              />
+              <figcaption>Ninja I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-characters">
+              <img
+                src="/images/art/ai-fusion/characters/ninja-02.png"
+                alt="Ninja II"
+                loading="lazy"
+              />
+              <figcaption>Ninja II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-characters">
+              <img
+                src="/images/art/ai-fusion/characters/ninja-03.png"
+                alt="Ninja III"
+                loading="lazy"
+              />
+              <figcaption>Ninja III</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-characters">
+              <img
+                src="/images/art/ai-fusion/characters/ninja-04.png"
+                alt="Ninja IV"
+                loading="lazy"
+              />
+              <figcaption>Ninja IV</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-characters">
+              <img
+                src="/images/art/ai-fusion/characters/spy-infiltrator-01.png"
+                alt="Spy Infiltrator I"
+                loading="lazy"
+              />
+              <figcaption>Spy Infiltrator I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-characters">
+              <img
+                src="/images/art/ai-fusion/characters/spy-infiltrator-02.png"
+                alt="Spy Infiltrator II"
+                loading="lazy"
+              />
+              <figcaption>Spy Infiltrator II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-characters">
+              <img
+                src="/images/art/ai-fusion/characters/spy-infiltrator-03.png"
+                alt="Spy Infiltrator III"
+                loading="lazy"
+              />
+              <figcaption>Spy Infiltrator III</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-characters">
+              <img
+                src="/images/art/ai-fusion/characters/engineer-01.png"
+                alt="Engineer I"
+                loading="lazy"
+              />
+              <figcaption>Engineer I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-characters">
+              <img
+                src="/images/art/ai-fusion/characters/engineer-02.png"
+                alt="Engineer II"
+                loading="lazy"
+              />
+              <figcaption>Engineer II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-characters">
+              <img
+                src="/images/art/ai-fusion/characters/engineer-03.png"
+                alt="Engineer III"
+                loading="lazy"
+              />
+              <figcaption>Engineer III</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-characters">
+              <img
+                src="/images/art/ai-fusion/characters/urban-scavenger-01.png"
+                alt="Urban Scavenger I"
+                loading="lazy"
+              />
+              <figcaption>Urban Scavenger I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-characters">
+              <img
+                src="/images/art/ai-fusion/characters/urban-scavenger-02.png"
+                alt="Urban Scavenger II"
+                loading="lazy"
+              />
+              <figcaption>Urban Scavenger II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-characters">
+              <img
+                src="/images/art/ai-fusion/characters/wilderness-tracker.png"
+                alt="Wilderness Tracker"
+                loading="lazy"
+              />
+              <figcaption>Wilderness Tracker</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI Fusion: Portraits -->
+      <section class="gallery-section" aria-labelledby="ai-portraits-heading">
+        <h2 id="ai-portraits-heading" class="section-title">
+          AI Fusion — Portraits
+        </h2>
+        <div class="gallery-slider" role="region" aria-label="AI portrait art">
+          <div class="gallery-track">
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art/ai-fusion/portraits/Oracle.png"
+                alt="Oracle"
+                loading="lazy"
+              />
+              <figcaption>Oracle</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art/ai-fusion/portraits/portrait-godlike.png"
+                alt="Godlike"
+                loading="lazy"
+              />
+              <figcaption>Godlike</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art/ai-fusion/portraits/dual-eyes-01.png"
+                alt="Dual Eyes I"
+                loading="lazy"
+              />
+              <figcaption>Dual Eyes I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art/ai-fusion/portraits/dual-eyes-02.png"
+                alt="Dual Eyes II"
+                loading="lazy"
+              />
+              <figcaption>Dual Eyes II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art/ai-fusion/portraits/future-punk-01.png"
+                alt="Future Punk I"
+                loading="lazy"
+              />
+              <figcaption>Future Punk I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art/ai-fusion/portraits/future-punk-02.png"
+                alt="Future Punk II"
+                loading="lazy"
+              />
+              <figcaption>Future Punk II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art/ai-fusion/portraits/future-punk-03.png"
+                alt="Future Punk III"
+                loading="lazy"
+              />
+              <figcaption>Future Punk III</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art/ai-fusion/portraits/punk-avatar.png"
+                alt="Punk Avatar"
+                loading="lazy"
+              />
+              <figcaption>Punk Avatar</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art/ai-fusion/portraits/portrait-hyperreal-01.png"
+                alt="Hyperreal I"
+                loading="lazy"
+              />
+              <figcaption>Hyperreal I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art/ai-fusion/portraits/portrait-hyperreal-02.png"
+                alt="Hyperreal II"
+                loading="lazy"
+              />
+              <figcaption>Hyperreal II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art/ai-fusion/portraits/portrait-hyperreal-04.png"
+                alt="Hyperreal IV"
+                loading="lazy"
+              />
+              <figcaption>Hyperreal IV</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art/ai-fusion/portraits/portrait-hyperreal-05.png"
+                alt="Hyperreal V"
+                loading="lazy"
+              />
+              <figcaption>Hyperreal V</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art/ai-fusion/portraits/portrait-hyperreal-06.png"
+                alt="Hyperreal VI"
+                loading="lazy"
+              />
+              <figcaption>Hyperreal VI</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art/ai-fusion/portraits/portrait-hyperreal-07.png"
+                alt="Hyperreal VII"
+                loading="lazy"
+              />
+              <figcaption>Hyperreal VII</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art/ai-fusion/portraits/portrait-hyperreal-08.png"
+                alt="Hyperreal VIII"
+                loading="lazy"
+              />
+              <figcaption>Hyperreal VIII</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art/ai-fusion/portraits/portrait-hyperreal-09.png"
+                alt="Hyperreal IX"
+                loading="lazy"
+              />
+              <figcaption>Hyperreal IX</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art/ai-fusion/portraits/portrait-hyperreal-10.png"
+                alt="Hyperreal X"
+                loading="lazy"
+              />
+              <figcaption>Hyperreal X</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI Fusion: Ethereal -->
+      <section class="gallery-section" aria-labelledby="ai-ethereal-heading">
+        <h2 id="ai-ethereal-heading" class="section-title">
+          AI Fusion — Ethereal
+        </h2>
+        <div class="gallery-slider" role="region" aria-label="AI ethereal art">
+          <div class="gallery-track">
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art/ai-fusion/ethereal/luminous-being-01.png"
+                alt="Luminous Being I"
+                loading="lazy"
+              />
+              <figcaption>Luminous Being I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art/ai-fusion/ethereal/luminous-being-02.png"
+                alt="Luminous Being II"
+                loading="lazy"
+              />
+              <figcaption>Luminous Being II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art/ai-fusion/ethereal/luminous-being-03.png"
+                alt="Luminous Being III"
+                loading="lazy"
+              />
+              <figcaption>Luminous Being III</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art/ai-fusion/ethereal/luminous-being-04.png"
+                alt="Luminous Being IV"
+                loading="lazy"
+              />
+              <figcaption>Luminous Being IV</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art/ai-fusion/ethereal/luminous-being-05.png"
+                alt="Luminous Being V"
+                loading="lazy"
+              />
+              <figcaption>Luminous Being V</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art/ai-fusion/ethereal/luminous-being-06.png"
+                alt="Luminous Being VI"
+                loading="lazy"
+              />
+              <figcaption>Luminous Being VI</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art/ai-fusion/ethereal/luminous-being-07.png"
+                alt="Luminous Being VII"
+                loading="lazy"
+              />
+              <figcaption>Luminous Being VII</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art/ai-fusion/ethereal/abstract-humanoid-01.png"
+                alt="Abstract Humanoid I"
+                loading="lazy"
+              />
+              <figcaption>Abstract Humanoid I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art/ai-fusion/ethereal/abstract-humanoid-02.png"
+                alt="Abstract Humanoid II"
+                loading="lazy"
+              />
+              <figcaption>Abstract Humanoid II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art/ai-fusion/ethereal/abstract-humanoid-03.png"
+                alt="Abstract Humanoid III"
+                loading="lazy"
+              />
+              <figcaption>Abstract Humanoid III</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art/ai-fusion/ethereal/abstract-humanoid-04.png"
+                alt="Abstract Humanoid IV"
+                loading="lazy"
+              />
+              <figcaption>Abstract Humanoid IV</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art/ai-fusion/ethereal/abstract-humanoid-05.png"
+                alt="Abstract Humanoid V"
+                loading="lazy"
+              />
+              <figcaption>Abstract Humanoid V</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art/ai-fusion/ethereal/abstract-humanoid-06.png"
+                alt="Abstract Humanoid VI"
+                loading="lazy"
+              />
+              <figcaption>Abstract Humanoid VI</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art/ai-fusion/ethereal/colossal-arm-01.png"
+                alt="Colossal Arm I"
+                loading="lazy"
+              />
+              <figcaption>Colossal Arm I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art/ai-fusion/ethereal/colossal-arm-02.png"
+                alt="Colossal Arm II"
+                loading="lazy"
+              />
+              <figcaption>Colossal Arm II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art/ai-fusion/ethereal/colossal-arm-03.png"
+                alt="Colossal Arm III"
+                loading="lazy"
+              />
+              <figcaption>Colossal Arm III</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art/ai-fusion/ethereal/colossal-arm-04.png"
+                alt="Colossal Arm IV"
+                loading="lazy"
+              />
+              <figcaption>Colossal Arm IV</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art/ai-fusion/ethereal/grounded-figure-01.png"
+                alt="Grounded Figure I"
+                loading="lazy"
+              />
+              <figcaption>Grounded Figure I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art/ai-fusion/ethereal/grounded-figure-02.png"
+                alt="Grounded Figure II"
+                loading="lazy"
+              />
+              <figcaption>Grounded Figure II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art/ai-fusion/ethereal/futuristic-humanoid-01.png"
+                alt="Futuristic Humanoid I"
+                loading="lazy"
+              />
+              <figcaption>Futuristic Humanoid I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art/ai-fusion/ethereal/futuristic-humanoid-02.png"
+                alt="Futuristic Humanoid II"
+                loading="lazy"
+              />
+              <figcaption>Futuristic Humanoid II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art/ai-fusion/ethereal/futuristic-figure-01.png"
+                alt="Futuristic Figure I"
+                loading="lazy"
+              />
+              <figcaption>Futuristic Figure I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art/ai-fusion/ethereal/futuristic-figure-02.png"
+                alt="Futuristic Figure II"
+                loading="lazy"
+              />
+              <figcaption>Futuristic Figure II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art/ai-fusion/ethereal/surreal-humanoid.png"
+                alt="Surreal Humanoid"
+                loading="lazy"
+              />
+              <figcaption>Surreal Humanoid</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art/ai-fusion/ethereal/translucent-metallic.png"
+                alt="Translucent Metallic"
+                loading="lazy"
+              />
+              <figcaption>Translucent Metallic</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art/ai-fusion/ethereal/dynamic-web-bg.png"
+                alt="Dynamic Web"
+                loading="lazy"
+              />
+              <figcaption>Dynamic Web</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI Fusion: Sketches -->
+      <section class="gallery-section" aria-labelledby="ai-sketches-heading">
+        <h2 id="ai-sketches-heading" class="section-title">
+          AI Fusion — Sketches
+        </h2>
+        <div class="gallery-slider" role="region" aria-label="AI sketch art">
+          <div class="gallery-track">
+            <figure class="gallery-item" data-category="ai-sketches">
+              <img
+                src="/images/art/ai-fusion/sketches/sketch-pencil.png"
+                alt="Pencil Sketch"
+                loading="lazy"
+              />
+              <figcaption>Pencil Sketch</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-sketches">
+              <img
+                src="/images/art/ai-fusion/sketches/sketch-complete-01.png"
+                alt="Complete Sketch I"
+                loading="lazy"
+              />
+              <figcaption>Complete Sketch I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-sketches">
+              <img
+                src="/images/art/ai-fusion/sketches/sketch-complete-02.png"
+                alt="Complete Sketch II"
+                loading="lazy"
+              />
+              <figcaption>Complete Sketch II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-sketches">
+              <img
+                src="/images/art/ai-fusion/sketches/sketch-complete-03.png"
+                alt="Complete Sketch III"
+                loading="lazy"
+              />
+              <figcaption>Complete Sketch III</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-sketches">
+              <img
+                src="/images/art/ai-fusion/sketches/sketch-complete-04.png"
+                alt="Complete Sketch IV"
+                loading="lazy"
+              />
+              <figcaption>Complete Sketch IV</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-sketches">
+              <img
+                src="/images/art/ai-fusion/sketches/sketch-complete-05.png"
+                alt="Complete Sketch V"
+                loading="lazy"
+              />
+              <figcaption>Complete Sketch V</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-sketches">
+              <img
+                src="/images/art/ai-fusion/sketches/sketch-complete-06.png"
+                alt="Complete Sketch VI"
+                loading="lazy"
+              />
+              <figcaption>Complete Sketch VI</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-sketches">
+              <img
+                src="/images/art/ai-fusion/sketches/sketch-complete-07.png"
+                alt="Complete Sketch VII"
+                loading="lazy"
+              />
+              <figcaption>Complete Sketch VII</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <a href="/home" class="back-link" aria-label="Go back to home page">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <path d="M19 12H5M12 19l-7-7 7-7" />
+        </svg>
+        Back to Home
+      </a>
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div
+      class="lightbox"
+      id="lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Image viewer"
+    >
+      <button class="lightbox-close" aria-label="Close image viewer">
+        &times;
+      </button>
+      <button class="lightbox-prev" aria-label="Previous image">
+        &#10094;
+      </button>
+      <button class="lightbox-next" aria-label="Next image">&#10095;</button>
+      <figure class="lightbox-content">
+        <img src="" alt="" id="lightbox-img" />
+        <figcaption id="lightbox-caption"></figcaption>
+      </figure>
+    </div>
+
+    <script src="src/js/sineWave.js"></script>
+    <script src="src/js/app.js" defer></script>
+    <script>
+      // Initialize sine wave background
+      document.addEventListener("DOMContentLoaded", () => {
+        const canvas = document.getElementById("waves");
+        if (canvas && typeof SineWave !== "undefined") {
+          new SineWave(canvas, {
+            speed: 0.008,
+            amplitude: 40,
+            wavelength: 0.015,
+            strokeStyle: "rgba(0, 255, 247, 0.08)",
+          });
+        }
+
+        // Lightbox functionality
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const lightboxCaption = document.getElementById("lightbox-caption");
+        const galleryItems = document.querySelectorAll(".gallery-item img");
+        let currentIndex = 0;
+        let images = [];
+
+        galleryItems.forEach((img, index) => {
+          images.push({
+            src: img.src,
+            alt: img.alt,
+            caption:
+              img.closest(".gallery-item").querySelector("figcaption")
+                ?.textContent || "",
+          });
+
+          img.addEventListener("click", () => {
+            currentIndex = index;
+            openLightbox(images[currentIndex]);
+          });
+        });
+
+        function openLightbox(image) {
+          lightboxImg.src = image.src;
+          lightboxImg.alt = image.alt;
+          lightboxCaption.textContent = image.caption;
+          lightbox.classList.add("active");
+          document.body.style.overflow = "hidden";
+        }
+
+        function closeLightbox() {
+          lightbox.classList.remove("active");
+          document.body.style.overflow = "";
+        }
+
+        function navigate(direction) {
+          currentIndex =
+            (currentIndex + direction + images.length) % images.length;
+          openLightbox(images[currentIndex]);
+        }
+
+        document
+          .querySelector(".lightbox-close")
+          .addEventListener("click", closeLightbox);
+        document
+          .querySelector(".lightbox-prev")
+          .addEventListener("click", () => navigate(-1));
+        document
+          .querySelector(".lightbox-next")
+          .addEventListener("click", () => navigate(1));
+
+        lightbox.addEventListener("click", (e) => {
+          if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (!lightbox.classList.contains("active")) return;
+          if (e.key === "Escape") closeLightbox();
+          if (e.key === "ArrowLeft") navigate(-1);
+          if (e.key === "ArrowRight") navigate(1);
+        });
+      });
+    </script>
+  </body>
+</html>

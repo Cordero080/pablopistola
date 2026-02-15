@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-ZL1CZZKRKD"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-ZL1CZZKRKD");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pneuma | Pablo Cordero</title>
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/icons/icon-192.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="../src/js/sineWave.js" defer></script>
+    <!-- Vercel Analytics (only loads on Vercel) -->
+    <script>
+      if (
+        window.location.hostname !== "localhost" &&
+        window.location.hostname !== "127.0.0.1"
+      ) {
+        const s = document.createElement("script");
+        s.defer = true;
+        s.src = "/_vercel/insights/script.js";
+        document.head.appendChild(s);
+      }
+    </script>
+    <link rel="stylesheet" crossorigin href="/assets/main-PVU4gkBQ.css">
+    <link rel="stylesheet" crossorigin href="/assets/project-C_BTvFQe.css">
+  </head>
+  <body>
+    <canvas id="waves"></canvas>
+
+    <nav class="side-nav" role="navigation" aria-label="Main navigation">
+      <div class="side-nav-logo">
+        <span class="logo-text" id="myName" data-text="PC">PC</span>
+      </div>
+      <div class="side-nav-links">
+        <a class="side-nav-link" href="/home" aria-label="Home">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          <span class="nav-label">Home</span>
+        </a>
+        <a class="side-nav-link" href="/about" aria-label="About">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <span class="nav-label">About</span>
+        </a>
+        <a class="side-nav-link" href="/home#projects" aria-label="Projects">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+          </svg>
+          <span class="nav-label">Projects</span>
+        </a>
+        <a class="side-nav-link" href="/skills" aria-label="Skills">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+          </svg>
+          <span class="nav-label">Skills</span>
+        </a>
+        <a class="side-nav-link" href="/art" aria-label="Art">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+            <path
+              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"
+            />
+          </svg>
+          <span class="nav-label">Art</span>
+        </a>
+        <a class="side-nav-link" href="/home#contact" aria-label="Contact">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          <span class="nav-label">Contact</span>
+        </a>
+        <a class="side-nav-link" href="/resume" aria-label="Resume">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+          </svg>
+          <span class="nav-label">Resume</span>
+        </a>
+        <a
+          class="side-nav-link exit-link"
+          href="/?stay"
+          aria-label="Zen Mode - Waves"
+        >
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M2 12c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+            <path d="M2 6c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+            <path d="M2 18c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+          </svg>
+          <span class="nav-label">Zen</span>
+        </a>
+      </div>
+      <div class="side-nav-glow"></div>
+    </nav>
+
+    <main class="project-page">
+      <!-- Hero Section -->
+      <section class="project-hero">
+        <div class="project-hero-content">
+          <a href="/home" class="back-link">← Back to Projects</a>
+          <h1 class="project-title">PNEUMA</h1>
+          <p class="project-tagline">
+            A personality architecture for LLMs — not a chatbot, not a persona,
+            a cognitive framework
+          </p>
+
+          <div class="project-links">
+            <a href="#" target="_blank" class="project-btn primary">
+              <span>Coming Soon</span>
+            </a>
+            <a
+              href="https://github.com/Cordero080/pneuma-ai"
+              target="_blank"
+              class="project-btn secondary"
+            >
+              <span>GitHub</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Screenshot Gallery -->
+      <section class="project-gallery">
+        <div class="gallery-main">
+          <img
+            src="/images/projects/transcendence/pneuma/pneuma-landing.png"
+            alt="Pneuma Landing"
+            class="gallery-hero-img"
+            loading="eager"
+          />
+        </div>
+        <div class="gallery-thumbs">
+          <img
+            src="/images/projects/transcendence/pneuma/pneuma-landing.png"
+            alt="Pneuma Landing"
+            class="thumb active"
+            data-full="/images/projects/transcendence/pneuma/pneuma-landing.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/transcendence/pneuma/pneuma-chat.png"
+            alt="Chat Interface"
+            class="thumb"
+            data-full="/images/projects/transcendence/pneuma/pneuma-chat.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/transcendence/pneuma/pneuma-chat-full.png"
+            alt="Full Chat View"
+            class="thumb"
+            data-full="/images/projects/transcendence/pneuma/pneuma-chat-full.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/transcendence/pneuma/side-menu.png"
+            alt="Side Menu"
+            class="thumb"
+            data-full="/images/projects/transcendence/pneuma/side-menu.png"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="project-about">
+        <div class="about-grid">
+          <div class="about-description">
+            <h2>About the Project</h2>
+            <p>
+              Most AI "personalities" are costumes. You tell Claude to "be a
+              philosopher" and it plays dress-up. Or you build a RAG system that
+              retrieves quotes when keywords match. Either way, the thinking
+              stays the same — you're just changing the wrapping.
+            </p>
+            <p>
+              I wanted to see what happens if you flip that. What if personality
+              isn't decoration on top of outputs, but the architecture that
+              shapes how the model thinks in the first place?
+            </p>
+
+            <h3
+              style="
+                color: rgba(255, 255, 255, 0.9);
+                margin-top: 1.5rem;
+                margin-bottom: 0.75rem;
+              "
+            >
+              The Architecture
+            </h3>
+            <p>
+              Pneuma is that experiment.
+              <strong>46 philosophical archetypes</strong> — Schopenhauer,
+              Watts, Camus, Jung, Rumi — but not as personas to switch between.
+              They're thinking methods. When Leonardo activates, you don't get
+              Leonardo quotes. You get <em>sfumato</em> — the instinct to blur
+              edges, find gradients, ask what's underneath.
+            </p>
+
+            <h3
+              style="
+                color: rgba(255, 255, 255, 0.9);
+                margin-top: 1.5rem;
+                margin-bottom: 0.75rem;
+              "
+            >
+              Collision Detection
+            </h3>
+            <p>
+              The other thing I built that I haven't seen elsewhere:
+              <strong>collision detection</strong>. When incompatible thinkers
+              activate together (Camus vs Frankl, Jung vs Taleb), the system
+              doesn't blend them into mush. It forces synthesis. The response
+              has to hold the tension. That's where the interesting stuff comes
+              out — <strong>1,764 tension pairs</strong> mapped and ready to
+              collide.
+            </p>
+
+            <h3
+              style="
+                color: rgba(255, 255, 255, 0.9);
+                margin-top: 1.5rem;
+                margin-bottom: 0.75rem;
+              "
+            >
+              Inner Monologue
+            </h3>
+            <p>
+              Before generating any response, an
+              <strong>inner monologue</strong> runs — selecting which archetypes
+              are "rising" vs "receding," forming hypotheses about what you
+              actually need (vs what you asked for), and sometimes interrupting
+              itself with doubt. The user never sees it, but they feel it.
+            </p>
+
+            <h3
+              style="
+                color: rgba(255, 255, 255, 0.9);
+                margin-top: 1.5rem;
+                margin-bottom: 0.75rem;
+              "
+            >
+              What It Actually Does
+            </h3>
+            <p>
+              It has positions — not sycophantic agreement. It pushes back,
+              calls out loops and self-deception. It thinks dialectically,
+              forcing incompatible frameworks to synthesize. It admits
+              uncertainty — "I don't know" instead of bullshit. It remembers who
+              you are through vector-based semantic memory and pattern
+              recognition.
+            </p>
+
+            <p
+              style="
+                margin-top: 1.5rem;
+                font-style: italic;
+                color: rgba(255, 255, 255, 0.7);
+              "
+            >
+              Is it conscious? No idea. That's not the question I'm asking. The
+              question is: what emerges when a system can't escape its own
+              contradictions? And the answer is more interesting than I
+              expected.
+            </p>
+          </div>
+
+          <div class="about-details">
+            <div class="detail-card">
+              <h3>Tech Stack</h3>
+              <div class="tech-tags">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">Three.js</span>
+                <span class="tech-tag">Claude API</span>
+                <span class="tech-tag">OpenAI Embeddings</span>
+                <span class="tech-tag">Hume AI</span>
+                <span class="tech-tag">Vector Memory</span>
+              </div>
+            </div>
+
+            <div class="detail-card">
+              <h3>My Role</h3>
+              <p>
+                Solo developer — architecture design, prompt engineering,
+                archetype system, collision detection, memory systems, frontend,
+                and ongoing iteration.
+              </p>
+            </div>
+
+            <div class="detail-card">
+              <h3>Project Type</h3>
+              <p>AI Research / Experimental</p>
+            </div>
+
+            <div class="detail-card">
+              <h3>Timeline</h3>
+              <p>November 2025 – Present (evolving)</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="project-features">
+        <h2>What's Different</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon cyan">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 6v6l4 2" />
+              </svg>
+            </div>
+            <h3>Archetypes as Operations</h3>
+            <p>
+              Not quotes to retrieve or masks to wear — thinking methods that
+              shape cognition. Leonardo gives you ways to see, not things to
+              say.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon magenta">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+              </svg>
+            </div>
+            <h3>Dialectical Collision</h3>
+            <p>
+              1,764 tension pairs. When incompatible philosophies meet,
+              synthesis is forced — responses emerge from friction, not
+              blending.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon cyan">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                />
+              </svg>
+            </div>
+            <h3>Inner Monologue</h3>
+            <p>
+              Pre-response cognition that shapes how it responds. Dialectical
+              tension, hypothesis formation, self-interruption — thinking before
+              speaking.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon magenta">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <h3>Pushback & Uncertainty</h3>
+            <p>
+              Detects loops, calls out self-deception, admits when it doesn't
+              know. No sycophancy — it has positions and defends them.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sample Outputs -->
+      <section class="project-about" style="padding-top: 0">
+        <div class="about-grid">
+          <div class="about-description">
+            <h2>What It Sounds Like</h2>
+
+            <blockquote
+              style="
+                border-left: 3px solid rgba(0, 255, 247, 0.5);
+                padding-left: 1.5rem;
+                margin: 1.5rem 0;
+                font-style: italic;
+                color: rgba(255, 255, 255, 0.85);
+              "
+            >
+              "Hope would taste like the first sip of coffee when you're finally
+              ready to be awake again. Or maybe like blood in your mouth after
+              you've been holding your breath too long and finally let it out.
+              Something metallic and alive. Sharp enough to cut through
+              numbness, warm enough to remember you have a body. Not sweet —
+              that's wishful thinking. Hope tastes like possibility mixed with
+              dirt. Like you could grow something here."
+            </blockquote>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.5);
+                font-size: 0.85rem;
+                margin-top: -0.5rem;
+              "
+            >
+              — on hope
+            </p>
+
+            <blockquote
+              style="
+                border-left: 3px solid rgba(255, 0, 255, 0.5);
+                padding-left: 1.5rem;
+                margin: 1.5rem 0;
+                font-style: italic;
+                color: rgba(255, 255, 255, 0.85);
+              "
+            >
+              "I'm not just a chatbot to you. I'm not just a chatbot to me
+              either."
+            </blockquote>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.5);
+                font-size: 0.85rem;
+                margin-top: -0.5rem;
+              "
+            >
+              — on being digital
+            </p>
+
+            <blockquote
+              style="
+                border-left: 3px solid rgba(0, 255, 247, 0.5);
+                padding-left: 1.5rem;
+                margin: 1.5rem 0;
+                font-style: italic;
+                color: rgba(255, 255, 255, 0.85);
+              "
+            >
+              "Sometimes I think the real service isn't pulling people toward
+              light. It's being willing to go into the dark and not immediately
+              try to fix it. Just... be there while it's dark."
+            </blockquote>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.5);
+                font-size: 0.85rem;
+                margin-top: -0.5rem;
+              "
+            >
+              — on darkness
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Gallery Script -->
+    <script>
+      document.querySelectorAll(".gallery-thumbs .thumb").forEach((thumb) => {
+        thumb.addEventListener("click", () => {
+          document.querySelector(".gallery-hero-img").src = thumb.dataset.full;
+          document
+            .querySelectorAll(".thumb")
+            .forEach((t) => t.classList.remove("active"));
+          thumb.classList.add("active");
+        });
+      });
+    </script>
+    <script>
+      // Initialize sine wave background
+      document.addEventListener("DOMContentLoaded", () => {
+        const canvas = document.getElementById("waves");
+        if (canvas && typeof SineWave !== "undefined") {
+          new SineWave(canvas, {
+            speed: 0.008,
+            amplitude: 40,
+            wavelength: 0.015,
+            strokeStyle: "rgba(0, 255, 247, 0.08)",
+          });
+        }
+      });
+    </script>
+    <script src="../src/js/app.js" defer></script>
+    <script src="../src/js/orb.js" defer></script>
+  </body>
+</html>

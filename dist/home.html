@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-ZL1CZZKRKD"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-ZL1CZZKRKD");
+    </script>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Pablo Pistola</title>
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#00fff7" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Pablo Pistola" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/icons/icon-192.png"
+    />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/assets/manifest-CPwuCC7F.json" />
+
+    <script src="src/js/sineWave.js" defer></script>
+    <script src="src/js/easterEggSineWave.js" defer></script>
+    <script src="src/js/feathers.js" defer></script>
+    <script src="src/js/app.js?v=5" defer></script>
+    <script src="src/js/orb.js" defer></script>
+    <script src="src/js/compMode.js" defer></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/sw.js")
+            .then((reg) => console.log("SW registered"))
+            .catch((err) => console.log("SW registration failed:", err));
+        });
+      }
+    </script>
+
+    <!-- Parallax Effect (Desktop only) -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+        // Skip parallax entirely on mobile - prevents scroll jank
+        if (isMobile) return;
+
+        const heroContent = document.querySelector(".hero-content");
+        const heroGlow = document.querySelector(".hero-bg-glow");
+
+        let ticking = false;
+        let lastScrollY = 0;
+
+        function updateParallax() {
+          const scrollY = lastScrollY;
+          const viewportHeight = window.innerHeight;
+          const scrollProgress = Math.min(scrollY / (viewportHeight * 0.5), 1);
+
+          // Desktop: parallax on hero only, waves stay fixed
+          if (heroContent) {
+            const translateY = scrollY * 0.7;
+            const scale = 1 - scrollProgress * 0.15;
+            const rotateX = scrollProgress * 8;
+            const blur = scrollProgress * 4;
+            const opacity = Math.max(0, 1 - scrollProgress * 1.2);
+
+            heroContent.style.transform = `
+              perspective(1000px)
+              translateY(${translateY}px)
+              scale(${scale})
+              rotateX(${rotateX}deg)
+            `;
+            heroContent.style.opacity = opacity;
+            heroContent.style.filter = `blur(${blur}px)`;
+          }
+
+          if (heroGlow) {
+            heroGlow.style.transform = `translateY(${scrollY * 0.3}px) scale(${1 + scrollProgress * 0.2})`;
+            heroGlow.style.opacity = 1 - scrollProgress * 0.5;
+          }
+
+          ticking = false;
+        }
+
+        window.addEventListener(
+          "scroll",
+          () => {
+            lastScrollY = window.scrollY;
+            if (!ticking) {
+              requestAnimationFrame(updateParallax);
+              ticking = true;
+            }
+          },
+          { passive: true },
+        );
+      });
+    </script>
+    <!-- Vercel Analytics (only loads on Vercel) -->
+    <script>
+      if (
+        window.location.hostname !== "localhost" &&
+        window.location.hostname !== "127.0.0.1"
+      ) {
+        const s = document.createElement("script");
+        s.defer = true;
+        s.src = "/_vercel/insights/script.js";
+        document.head.appendChild(s);
+      }
+    </script>
+    <link rel="stylesheet" crossorigin href="/assets/home-cMva08cJ.css">
+    <link rel="stylesheet" crossorigin href="/assets/main-PVU4gkBQ.css">
+  </head>
+  <body>
+    <!-- Accessibility: Skip to main content -->
+    <a href="#projects" class="skip-link">Skip to main content</a>
+
+    <!-- Loading Screen -->
+    <div class="page-loader" id="pageLoader" aria-hidden="true">
+      <div class="loader-scanline"></div>
+      <span class="loader-text">Loading</span>
+      <div class="loader-dots">
+        <span class="loader-dot"></span>
+        <span class="loader-dot"></span>
+        <span class="loader-dot"></span>
+      </div>
+    </div>
+
+    <div class="spacebar-prompt" id="spacebarPrompt">press spacebar</div>
+    <audio id="site-audio" src="./music/Sonata Saeculorum.mp3" loop></audio>
+
+    <!-- Audio Play Toggle -->
+    <button
+      id="audio-toggle"
+      class="audio-toggle muted"
+      aria-label="Play music"
+      title="Toggle music"
+    >
+      <svg
+        class="audio-icon audio-on"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+      </svg>
+      <svg
+        class="audio-icon audio-off"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+        <line x1="23" y1="9" x2="17" y2="15" />
+        <line x1="17" y1="9" x2="23" y2="15" />
+      </svg>
+    </button>
+
+    <!-- Minimal Parallax Background Overlay: obtuse triangle -->
+    <div class="parallax-bg-overlay" aria-hidden="true">
+      <div class="parallax-ellipse"></div>
+    </div>
+    <div class="quantum-ripple" id="quantumRipple" aria-hidden="true"></div>
+
+    <nav class="side-nav" role="navigation" aria-label="Main navigation">
+      <div class="side-nav-logo">
+        <span class="logo-text" id="myName" data-text="PC">PC</span>
+      </div>
+      <div class="side-nav-links">
+        <a
+          class="side-nav-link"
+          href="#home"
+          aria-label="Home"
+          style="display: none"
+        >
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          <span class="nav-label">Home</span>
+        </a>
+        <a class="side-nav-link" href="/about" aria-label="About">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <span class="nav-label">About</span>
+        </a>
+        <a class="side-nav-link" href="#projects" aria-label="Projects">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+          </svg>
+          <span class="nav-label">Projects</span>
+        </a>
+        <a class="side-nav-link" href="/skills" aria-label="Skills">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+          </svg>
+          <span class="nav-label">Skills</span>
+        </a>
+        <a class="side-nav-link" href="/art" aria-label="Art">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+            <path
+              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"
+            />
+          </svg>
+          <span class="nav-label">Art</span>
+        </a>
+        <a class="side-nav-link" href="#contact" aria-label="Contact">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          <span class="nav-label">Contact</span>
+        </a>
+        <a class="side-nav-link" href="/resume" aria-label="Resume">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+          </svg>
+          <span class="nav-label">Resume</span>
+        </a>
+        <a
+          class="side-nav-link exit-link"
+          href="/?stay"
+          aria-label="Zen Mode - Waves"
+          title="Return to wave playground"
+        >
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M2 12c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+            <path d="M2 6c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+            <path d="M2 18c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+          </svg>
+          <span class="nav-label">Zen</span>
+          <span class="zen-tooltip">Interactive wave experience</span>
+        </a>
+      </div>
+      <div class="side-nav-glow"></div>
+    </nav>
+
+    <!-- Mobile Hamburger Button -->
+    <button
+      class="hamburger-btn"
+      id="hamburgerBtn"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <div class="hamburger-icon">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </div>
+    </button>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-bg-glow"></div>
+      <div class="hero-content">
+        <h1 class="hero-title" id="heroTitle">PVBLO C0RDERO</h1>
+        <p class="hero-subtitle">
+          Full Stack Developer & Creative Technologist
+        </p>
+        <span class="hero-underline"></span>
+        <a href="#projects" class="hero-cta">Projects</a>
+      </div>
+    </section>
+    <!-- End Hero Section -->
+
+    <canvas id="waves"></canvas>
+
+    <!-- Bento Grid Layout -->
+    <section class="bento-section" id="projects">
+      <div class="bento-grid">
+        <!-- Top 2x2 Puzzle Grid - Numeneons first -->
+        <!-- Top-left: Numeneon Light - bump right, bump bottom -->
+        <a
+          href="/projects/numeneon-light"
+          class="bento-card-link bento-puzzle-tl"
+        >
+          <article class="bento-card">
+            <img
+              src="/images/projects/numeneon-light.webp"
+              alt="Numeneon Light"
+              class="bento-card-image"
+              decoding="async"
+              loading="lazy"
+            />
+            <div class="bento-card-overlay">
+              <h2 class="glitch" data-text="Numeneon">Numeneon</h2>
+              <p class="card-description">Cyberpunk Social Platform</p>
+            </div>
+            <div class="bento-accent"></div>
+          </article>
+        </a>
+
+        <!-- Top-right: Numeneon Dark - indent left, bump bottom -->
+        <a href="/projects/numeneon" class="bento-card-link bento-puzzle-tr">
+          <article class="bento-card">
+            <img
+              src="/images/projects/numeneon.webp"
+              alt="Numeneon Dark"
+              class="bento-card-image"
+              decoding="async"
+              loading="lazy"
+            />
+            <div class="bento-card-overlay">
+              <h2 class="glitch" data-text="Numeneon">Numeneon</h2>
+              <p class="card-description">React • Django • WebSockets</p>
+            </div>
+            <div class="bento-accent"></div>
+          </article>
+        </a>
+
+        <!-- Featured large card - Transcendence Pet Sim -->
+        <a
+          href="/projects/transcendence"
+          class="bento-card-link bento-featured"
+        >
+          <article class="bento-card">
+            <img
+              src="/images/projects/transcendence.webp"
+              alt="Transcendence Pet Sim"
+              class="bento-card-image"
+              decoding="async"
+              loading="lazy"
+            />
+            <div class="bento-card-overlay">
+              <span class="bento-label">Featured</span>
+              <h2 class="glitch" data-text="Transcendence">Transcendence</h2>
+              <p class="card-description">
+                3D Virtual Pet • Three.js + Blender
+              </p>
+            </div>
+            <div class="bento-accent"></div>
+          </article>
+        </a>
+
+        <!-- Tall card - Nucat -->
+        <a href="/projects/nucat" class="bento-card-link bento-tall">
+          <article class="bento-card">
+            <img
+              src="/images/projects/nucat.webp"
+              alt="Nucat"
+              class="bento-card-image"
+              decoding="async"
+              loading="lazy"
+            />
+            <div class="bento-card-overlay">
+              <h2 class="glitch" data-text="Nucat">Nucat</h2>
+              <p class="card-description">AI Cat Generator • React</p>
+            </div>
+            <div class="bento-accent"></div>
+          </article>
+        </a>
+
+        <!-- Bottom 2x2 Puzzle Grid -->
+        <!-- Bottom-left: Nexus Geom Lab - bump right, indent top -->
+        <a
+          href="/projects/nexus-geom-lab"
+          class="bento-card-link bento-puzzle-bl"
+        >
+          <article class="bento-card">
+            <img
+              src="/images/projects/nexus-geom-lab.webp"
+              alt="Nexus Geom Lab"
+              class="bento-card-image"
+              decoding="async"
+              loading="lazy"
+            />
+            <div class="bento-card-overlay">
+              <h2 class="glitch" data-text="Nexus Geom Lab">Nexus Geom Lab</h2>
+              <p class="card-description">Interactive 4D Shapes • WebGL</p>
+            </div>
+            <div class="bento-accent"></div>
+          </article>
+        </a>
+
+        <!-- Bottom-right: Dojo Crud - indent left, indent top -->
+        <a href="/projects/dojo-crud" class="bento-card-link bento-puzzle-br">
+          <article class="bento-card">
+            <img
+              src="/images/projects/dojo-crud.webp"
+              alt="Dojo Crud"
+              class="bento-card-image"
+              decoding="async"
+              loading="lazy"
+            />
+            <div class="bento-card-overlay">
+              <h2 class="glitch" data-text="Dojo Crud">Dojo Crud</h2>
+              <p class="card-description">Martial Arts Tracker • Django</p>
+            </div>
+            <div class="bento-accent"></div>
+          </article>
+        </a>
+
+        <!-- Center card - Pneuma -->
+        <a href="/projects/pneuma" class="bento-card-link bento-center">
+          <article class="bento-card">
+            <img
+              src="/images/projects/transcendence/pneuma/pneuma-landing.webp"
+              alt="Pneuma"
+              class="bento-card-image"
+              decoding="async"
+              loading="lazy"
+            />
+            <div class="bento-card-overlay">
+              <h2 class="glitch" data-text="Pneuma">Pneuma</h2>
+              <p class="card-description">
+                AI Personality Engine • 46 Archetypes
+              </p>
+            </div>
+            <div class="bento-accent"></div>
+          </article>
+        </a>
+
+        <!-- Bookshelf -->
+        <a href="/projects/bookshelf" class="bento-card-link bento-bookshelf">
+          <article class="bento-card">
+            <img
+              src="/images/projects/bookshelf/add-book-light.webp"
+              alt="Quantum Literary Bookshelf"
+              class="bento-card-image"
+              decoding="async"
+              loading="lazy"
+            />
+            <div class="bento-card-overlay">
+              <h2 class="glitch" data-text="Bookshelf">Bookshelf</h2>
+              <p class="card-description">Particle System • Three.js</p>
+            </div>
+            <div class="bento-accent"></div>
+          </article>
+        </a>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+      <div class="contact-content">
+        <h2 class="contact-title">Contact</h2>
+        <div class="contact-links">
+          <a
+            href="mailto:cordero080@gmail.com"
+            class="contact-link contact-email"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+              />
+              <path d="M22 6l-10 7L2 6" />
+            </svg>
+            <span>cordero080@gmail.com</span>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/pablo-cordero-305191153"
+            target="_blank"
+            class="contact-link contact-linkedin"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+              />
+              <rect x="2" y="9" width="4" height="12" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
+            <span>LinkedIn</span>
+          </a>
+          <a
+            href="https://github.com/Cordero080"
+            target="_blank"
+            class="contact-link contact-github"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+              />
+            </svg>
+            <span>GitHub</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Loading Screen Script -->
+    <script>
+      window.addEventListener("load", () => {
+        const loader = document.getElementById("pageLoader");
+        if (loader) {
+          setTimeout(() => {
+            loader.classList.add("hidden");
+          }, 800);
+        }
+      });
+    </script>
+
+    <!-- Image Lazy Load Fade-in -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const images = document.querySelectorAll(".bento-card-image");
+
+        images.forEach((img) => {
+          // If already loaded (cached), add class immediately
+          if (img.complete && img.naturalHeight !== 0) {
+            img.classList.add("loaded");
+          } else {
+            img.addEventListener("load", () => {
+              img.classList.add("loaded");
+            });
+          }
+        });
+      });
+    </script>
+
+    <!-- Mobile Menu Toggle -->
+    <script>
+      (function () {
+        const hamburgerBtn = document.getElementById("hamburgerBtn");
+        const sideNav = document.querySelector(".side-nav");
+        const navLinks = document.querySelectorAll(".side-nav-link");
+
+        if (hamburgerBtn && sideNav) {
+          hamburgerBtn.addEventListener("click", () => {
+            const isOpen = sideNav.classList.toggle("menu-open");
+            hamburgerBtn.classList.toggle("active");
+            hamburgerBtn.setAttribute("aria-expanded", isOpen);
+
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = isOpen ? "hidden" : "";
+          });
+
+          // Close menu when clicking a link
+          navLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+              sideNav.classList.remove("menu-open");
+              hamburgerBtn.classList.remove("active");
+              hamburgerBtn.setAttribute("aria-expanded", "false");
+              document.body.style.overflow = "";
+            });
+          });
+
+          // Close menu on escape key
+          document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && sideNav.classList.contains("menu-open")) {
+              sideNav.classList.remove("menu-open");
+              hamburgerBtn.classList.remove("active");
+              hamburgerBtn.setAttribute("aria-expanded", "false");
+              document.body.style.overflow = "";
+            }
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

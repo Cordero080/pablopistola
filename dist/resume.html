@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-ZL1CZZKRKD"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-ZL1CZZKRKD");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume | Pablo Cordero</title>
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/icons/icon-192.png"
+    />
+    <!-- Thornwood font from Adobe -->
+    <link rel="stylesheet" href="https://use.typekit.net/fpe8zfm.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="src/js/sineWave.js" defer></script>
+    <!-- Vercel Analytics (only loads on Vercel) -->
+    <script>
+      if (
+        window.location.hostname !== "localhost" &&
+        window.location.hostname !== "127.0.0.1"
+      ) {
+        const s = document.createElement("script");
+        s.defer = true;
+        s.src = "/_vercel/insights/script.js";
+        document.head.appendChild(s);
+      }
+    </script>
+    <link rel="stylesheet" crossorigin href="/assets/main-PVU4gkBQ.css">
+    <link rel="stylesheet" crossorigin href="/assets/project-C_BTvFQe.css">
+    <link rel="stylesheet" crossorigin href="/assets/about-DrwnlQ08.css">
+  </head>
+  <body>
+    <canvas id="waves"></canvas>
+
+    <!-- Side Navigation -->
+    <nav class="side-nav" role="navigation" aria-label="Main navigation">
+      <div class="side-nav-logo">
+        <span class="logo-text" data-text="PC">PC</span>
+      </div>
+      <div class="side-nav-links">
+        <a class="side-nav-link" href="/home" aria-label="Home">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          <span class="nav-label">Home</span>
+        </a>
+        <a class="side-nav-link" href="/about" aria-label="About">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <span class="nav-label">About</span>
+        </a>
+        <a class="side-nav-link" href="/home#projects" aria-label="Projects">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+          </svg>
+          <span class="nav-label">Projects</span>
+        </a>
+        <a class="side-nav-link" href="/skills" aria-label="Skills">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+          </svg>
+          <span class="nav-label">Skills</span>
+        </a>
+        <a class="side-nav-link" href="/art" aria-label="Art">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+            <path
+              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"
+            />
+          </svg>
+          <span class="nav-label">Art</span>
+        </a>
+        <a class="side-nav-link" href="/home#contact" aria-label="Contact">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          <span class="nav-label">Contact</span>
+        </a>
+        <a class="side-nav-link active" href="/resume" aria-label="Resume">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+          </svg>
+          <span class="nav-label">Resume</span>
+        </a>
+        <a
+          class="side-nav-link exit-link"
+          href="/"
+          aria-label="Exit to Landing"
+        >
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+            <polyline points="16 17 21 12 16 7" />
+            <line x1="21" y1="12" x2="9" y2="12" />
+          </svg>
+          <span class="nav-label">Exit</span>
+        </a>
+      </div>
+      <div class="side-nav-glow"></div>
+    </nav>
+
+    <!-- Mobile Hamburger Button -->
+    <button
+      class="hamburger-btn"
+      id="hamburgerBtn"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <div class="hamburger-icon">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </div>
+    </button>
+
+    <main class="project-page">
+      <!-- Hero Section -->
+      <section class="project-hero">
+        <div class="project-hero-content">
+          <a href="/home" class="back-link">← Back to Home</a>
+          <h1 class="about-title">Resume</h1>
+          <p class="about-name">Pablo Cordero</p>
+          <p class="project-tagline">
+            Full-Stack Software Engineer • Creative Technologist<br />
+            Visual & Digital Artist • Immersive 3D Interfaces
+          </p>
+          <div class="project-links" style="margin-top: 1.5rem">
+            <a
+              href="https://drive.google.com/file/d/1n73xpUlwtRf9bH4PsdHJ5gTY40TQ6lnn/view?usp=drive_link"
+              target="_blank"
+              class="project-btn primary"
+            >
+              <span>View PDF</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Resume Content -->
+      <div class="about-content">
+        <!-- Profile Section -->
+        <section class="about-section">
+          <h2>Profile</h2>
+          <p>
+            Full-Stack Developer & Creative Technologist specialized in building
+            high-performance web applications where technical precision meets
+            experimental design. Expert in React, Django, and Three.js, with a
+            proven ability to architect interactive 3D interfaces and AI-driven
+            cognitive systems. Bringing a disciplined, high-velocity workflow
+            backed by 3,000+ GitHub contributions and experience leading
+            technical architecture and UI strategy in collaborative team
+            environments.
+          </p>
+        </section>
+
+        <!-- Technical Skills Section -->
+        <section class="about-section">
+          <h2>Technical Skills</h2>
+          <ul class="evolution-list">
+            <li>
+              <strong>Languages & Frameworks:</strong> JavaScript, Python,
+              React, Django, Node.js, Express.js
+            </li>
+            <li>
+              <strong>3D & Creative:</strong> Three.js, React Three Fiber,
+              Blender, GLSL Shaders, Web Audio API
+            </li>
+            <li>
+              <strong>Design:</strong> Photoshop, Illustrator, Digital Painting,
+              Classical Drawing, UI/UX
+            </li>
+            <li>
+              <strong>Backend & Data:</strong> PostgreSQL, MongoDB, RESTful
+              APIs, Django REST Framework, JWT Auth, WebSockets
+            </li>
+            <li>
+              <strong>Development:</strong> Git, Vite, SCSS, Jest, Responsive
+              Design, Mobile-First Architecture
+            </li>
+          </ul>
+        </section>
+
+        <!-- Featured Projects Section -->
+        <section class="about-section">
+          <h2>Featured Projects</h2>
+
+          <!-- Key Achievement Banner -->
+          <div class="achievement-banner">
+            <span class="achievement-icon">◆</span>
+            <p>
+              Solo-engineered and deployed a production-ready MVP with
+              <strong>40+ organic users</strong> and
+              <strong>100% uptime</strong> through self-managed cloud
+              infrastructure.
+            </p>
+          </div>
+
+          <div class="project-highlight">
+            <h3>Numeneon — Co-Lead & System Architect (Capstone)</h3>
+            <p class="project-stack">
+              React • Django • PostgreSQL • WebSockets
+            </p>
+            <p>
+              Cyberpunk social platform — 807 GitHub clones |
+              <strong>4m 37s avg. session</strong>
+            </p>
+            <ul class="project-bullets">
+              <li>
+                Co-led team as System Architect: designed full-stack
+                architecture for both frontend and backend, authored pseudocode
+                specifications guiding the entire team's implementation
+              </li>
+              <li>
+                Engineered River Timeline achieving 4m 37s average session
+                duration—validating the architecture's ability to mitigate
+                cognitive load and encourage deep exploration
+              </li>
+              <li>
+                Led wireframing and UI strategy; architected dual-theme system
+                (light/dark modes) with glassmorphic design system and neon
+                accents
+              </li>
+              <li>
+                Built Profile Flip Card with contribution heatmap; authored
+                comprehensive SCSS design system with responsive mobile
+                navigation
+              </li>
+            </ul>
+          </div>
+
+          <div class="project-highlight">
+            <h3>Pneuma — Cognitive Orchestration Layer</h3>
+            <p class="project-stack">
+              React • Node.js • Three.js • Claude API • Vector DB
+            </p>
+            <p>
+              AI framework eliminating sycophancy via philosophical tension —
+              467 GitHub clones
+            </p>
+            <ul class="project-bullets">
+              <li>
+                Architected Cognitive Orchestration Layer using 46 philosophical
+                archetypes as thinking methods, not personas—eliminating AI
+                sycophancy through dialectical tension
+              </li>
+              <li>
+                Built collision system pairing conflicting philosophies (Camus ×
+                Frankl) with tension mapping across 1,764 archetype pairs
+              </li>
+              <li>
+                Implemented vector-based memory using RAG for context recall and
+                conversation continuity
+              </li>
+            </ul>
+          </div>
+
+          <div class="project-highlight">
+            <h3>Transcendence — 3D Virtual Pet Engine</h3>
+            <p class="project-stack">Three.js • React • Blender • GLSL</p>
+            <ul class="project-bullets">
+              <li>
+                Engineered complete Blender → FBX → Three.js production
+                pipeline: modeled, rigged, and exported character with 32
+                synchronized animation states
+              </li>
+              <li>
+                Built hidden Battle Arena with 3 interactive scenes, particle
+                systems, and dynamic audio orchestration
+              </li>
+            </ul>
+          </div>
+
+          <div class="project-highlight">
+            <h3>Nexus Geom Lab — Interactive 3D Geometry Platform</h3>
+            <p class="project-stack">Three.js • React • GLSL • MongoDB</p>
+            <p>
+              Geometry visualization app with user accounts and scene saving
+              (174 GitHub clones)
+            </p>
+            <ul class="project-bullets">
+              <li>
+                Built 24 interactive geometries including tesseracts and other
+                4D shapes with custom wireframe rendering
+              </li>
+              <li>
+                Added gamification layer with progressive unlocks tied to user
+                engagement
+              </li>
+            </ul>
+          </div>
+
+          <div class="project-highlight">
+            <h3>Dojo — Requirements Engine</h3>
+            <p class="project-stack">React • Django • PostgreSQL</p>
+            <ul class="project-bullets">
+              <li>
+                Built Requirements Engine modeling traditional Goju-Ryu
+                syllabus—kata, bunkai, and kumite progression tracking
+              </li>
+              <li>
+                Implemented soft-delete recovery system with form validation to
+                maintain data integrity across training records
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="about-section">
+          <h2>Education</h2>
+          <ul class="evolution-list">
+            <li>
+              <strong>General Assembly</strong> — Software Engineering Immersive
+              Bootcamp
+              <span class="date-range">Feb 2026</span>
+            </li>
+            <li>
+              <strong>Fashion Institute of Technology</strong> — Humanities &
+              Fine Arts
+              <span class="date-range">2006–2008</span>
+            </li>
+            <li>
+              <strong>College of Staten Island</strong> — Humanities & Sciences
+              <span class="date-range">2002–2004</span>
+            </li>
+            <li>
+              <strong>Art Students League & Grand Central Academy</strong> —
+              Classical realism, anatomy, life drawing
+            </li>
+          </ul>
+        </section>
+
+        <!-- Professional Experience Section -->
+        <section class="about-section">
+          <h2>Professional Experience</h2>
+          <ul class="evolution-list">
+            <li>
+              <strong>Martial Arts Instructor</strong> — Traditional Okinawan
+              Martial Arts
+              <span class="date-range">2018 — Present</span>
+              <br />
+              <span class="experience-detail"
+                >3rd-degree black belt in Okinawan Goju Ryu; curriculum
+                development and progression tracking</span
+              >
+            </li>
+            <li>
+              <strong>Legal Interpreter, Spanish</strong> — NY Public School
+              System / UFCIS
+              <span class="date-range">2006–2020</span>
+              <br />
+              <span class="experience-detail"
+                >Simultaneous/consecutive translation for legal proceedings and
+                educational settings</span
+              >
+            </li>
+            <li>
+              <strong>Fine Artist</strong> — Independent/Freelance
+              <span class="date-range">2005 — 2024</span>
+              <br />
+              <span class="experience-detail"
+                >Oil painting, digital art, sculpture, photography; gallery
+                exhibitions and commissioned work</span
+              >
+            </li>
+            <li>
+              <strong>Fine Art Restorer</strong> — Gallery 69
+              <span class="date-range">2007 — 2018</span>
+              <br />
+              <span class="experience-detail"
+                >Cleaned and repaired damage to artwork, restored damaged canvas
+                and paintings</span
+              >
+            </li>
+            <li>
+              <strong>Artist Assistant</strong> — Oliver Vernon Studios
+              <span class="date-range">2012</span>
+              <br />
+              <span class="experience-detail"
+                >Studio assistance for professional painter—panel fabrication,
+                surface preparation, painting</span
+              >
+            </li>
+            <li>
+              <strong>Gallery Host</strong> — Chapel of Sacred Mirrors (Alex
+              Grey)
+              <span class="date-range">2008 — 2009</span>
+              <br />
+              <span class="experience-detail"
+                >Gallery operations, sales, event coordination, live
+                demonstrations</span
+              >
+            </li>
+            <li>
+              <strong>Technical Designer</strong> K.H. (Kids Headquarters)
+              <span class="date-range">2005 — 2006</span>
+              <br />
+              <span class="experience-detail"
+                >Technical specifications, fittings, quality control, design
+                placement, production standards for teens & children's
+                apparel</span
+              >
+            </li>
+          </ul>
+        </section>
+
+        <!-- Additional Section -->`
+        <section class="about-section">
+          <h2>Additional</h2>
+          <p>
+            Classical drawing & painting (realism, anatomy) • Digital art &
+            photography • Bilingual English/Spanish (professional) • 20+ years
+            martial arts • Adobe Creative Suite • Guitar & bass
+          </p>
+        </section>
+      </div>
+    </main>
+
+    <!-- Scripts -->
+    <script>
+      // Initialize sine wave background
+      document.addEventListener("DOMContentLoaded", () => {
+        const canvas = document.getElementById("waves");
+        if (canvas && typeof SineWave !== "undefined") {
+          new SineWave(canvas, {
+            speed: 0.008,
+            amplitude: 40,
+            wavelength: 0.015,
+            strokeStyle: "rgba(0, 255, 247, 0.08)",
+          });
+        }
+      });
+    </script>
+    <script src="src/js/app.js" defer></script>
+    <script src="src/js/orb.js" defer></script>
+  </body>
+</html>

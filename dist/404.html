@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-ZL1CZZKRKD"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-ZL1CZZKRKD");
+    </script>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>404 - Signal Lost | Pablo Pistola</title>
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/icons/icon-192.png"
+    />
+    <link rel="stylesheet" crossorigin href="/assets/404-DHPrunsL.css">
+    <link rel="stylesheet" crossorigin href="/assets/main-PVU4gkBQ.css">
+    <link rel="stylesheet" crossorigin href="/assets/typography-BtfmU3s3.css">
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Scan effects -->
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="scan-beam" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <!-- Parallax Background -->
+    <div class="parallax-bg-overlay" aria-hidden="true">
+      <div class="parallax-ellipse"></div>
+    </div>
+
+    <main id="main-content" class="error-container" role="main">
+      <div class="error-code" aria-label="Error 404">404</div>
+      <p class="error-message" role="status">Signal Lost</p>
+      <p class="error-description">
+        The page you're looking for has drifted into the void. It may have been
+        moved, deleted, or never existed in this timeline.
+      </p>
+      <a href="/home" class="error-cta" aria-label="Return to home page"
+        >Return Home</a
+      >
+    </main>
+
+    <script src="src/js/sineWave.js"></script>
+    <script>
+      // Initialize sine wave if available
+      document.addEventListener("DOMContentLoaded", () => {
+        const canvas = document.getElementById("waves");
+        if (canvas && typeof SineWave !== "undefined") {
+          new SineWave(canvas, {
+            speed: 0.008,
+            amplitude: 40,
+            wavelength: 0.015,
+            strokeStyle: "rgba(0, 255, 247, 0.08)",
+          });
+        }
+      });
+    </script>
+    <script src="src/js/app.js" defer></script>
+  </body>
+</html>

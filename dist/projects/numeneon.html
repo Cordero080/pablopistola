@@ -1,0 +1,1059 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-ZL1CZZKRKD"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-ZL1CZZKRKD");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Numeneon Dark Mode | Pablo Cordero</title>
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/icons/icon-192.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="../src/js/sineWave.js" defer></script>
+    <!-- Vercel Analytics (only loads on Vercel) -->
+    <script>
+      if (
+        window.location.hostname !== "localhost" &&
+        window.location.hostname !== "127.0.0.1"
+      ) {
+        const s = document.createElement("script");
+        s.defer = true;
+        s.src = "/_vercel/insights/script.js";
+        document.head.appendChild(s);
+      }
+    </script>
+    <link rel="stylesheet" crossorigin href="/assets/main-PVU4gkBQ.css">
+    <link rel="stylesheet" crossorigin href="/assets/project-C_BTvFQe.css">
+  </head>
+  <body>
+    <canvas id="waves"></canvas>
+
+    <nav class="side-nav" role="navigation" aria-label="Main navigation">
+      <div class="side-nav-logo">
+        <span class="logo-text" id="myName" data-text="PC">PC</span>
+      </div>
+      <div class="side-nav-links">
+        <a class="side-nav-link" href="/home" aria-label="Home">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          <span class="nav-label">Home</span>
+        </a>
+        <a class="side-nav-link" href="/about" aria-label="About">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <span class="nav-label">About</span>
+        </a>
+        <a class="side-nav-link" href="/home#projects" aria-label="Projects">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+          </svg>
+          <span class="nav-label">Projects</span>
+        </a>
+        <a class="side-nav-link" href="/skills" aria-label="Skills">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+          </svg>
+          <span class="nav-label">Skills</span>
+        </a>
+        <a class="side-nav-link" href="/art" aria-label="Art">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+            <path
+              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"
+            />
+          </svg>
+          <span class="nav-label">Art</span>
+        </a>
+        <a class="side-nav-link" href="/home#contact" aria-label="Contact">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          <span class="nav-label">Contact</span>
+        </a>
+        <a class="side-nav-link" href="/resume" aria-label="Resume">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+          </svg>
+          <span class="nav-label">Resume</span>
+        </a>
+        <a
+          class="side-nav-link exit-link"
+          href="/?stay"
+          aria-label="Zen Mode - Waves"
+        >
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M2 12c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+            <path d="M2 6c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+            <path d="M2 18c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+          </svg>
+          <span class="nav-label">Zen</span>
+        </a>
+      </div>
+      <div class="side-nav-glow"></div>
+    </nav>
+
+    <main class="project-page">
+      <!-- Hero Section -->
+      <section class="project-hero">
+        <div class="project-hero-content">
+          <a href="/home" class="back-link">← Back to Projects</a>
+          <h1 class="project-title">NUMENEON</h1>
+          <p class="project-tagline">
+            A neopunk social network built for people, not algorithms<br />
+            <span style="font-size: 0.9em; opacity: 0.8"
+              >Dark Mode — Cyberpunk Neon Theme</span
+            >
+          </p>
+          <p
+            class="project-tagline"
+            style="margin-top: 0.5rem; font-size: 0.95rem"
+          >
+            See also:
+            <a href="/projects/numeneon-light" style="color: #00fff7"
+              >Numeneon Light Mode</a
+            >
+            — platinum brushed aluminum theme
+          </p>
+
+          <div class="project-links">
+            <a
+              href="https://numeneon-frontend.vercel.app/"
+              target="_blank"
+              class="project-btn primary"
+            >
+              <span>Live Demo</span>
+            </a>
+            <a
+              href="https://github.com/Cordero080/Numeneon-frontend"
+              target="_blank"
+              class="project-btn secondary"
+            >
+              <span>GitHub</span>
+            </a>
+            <a
+              href="https://www.youtube.com/watch?v=_Ik2eKy-sOY"
+              target="_blank"
+              class="project-btn secondary"
+            >
+              <span>YouTube Demo</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Screenshot Gallery -->
+      <section class="project-gallery">
+        <div class="gallery-main">
+          <img
+            src="/images/projects/numeneon-dark/story-learning-dark.png"
+            alt="Numeneon Dark Mode - Story Learning"
+            class="gallery-hero-img"
+            loading="eager"
+          />
+        </div>
+        <div class="gallery-thumbs">
+          <img
+            src="/images/projects/numeneon-dark/story-learning-dark.png"
+            alt="Story Learning"
+            class="thumb active"
+            data-full="/images/projects/numeneon-dark/story-learning-dark.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/numeneon-dark/daily-learning-dark.png"
+            alt="Daily Learning"
+            class="thumb"
+            data-full="/images/projects/numeneon-dark/daily-learning-dark.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/numeneon-dark/profile-dark.png"
+            alt="Profile"
+            class="thumb"
+            data-full="/images/projects/numeneon-dark/profile-dark.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/numeneon-dark/wave-chart-dark.png"
+            alt="Wave Chart"
+            class="thumb"
+            data-full="/images/projects/numeneon-dark/wave-chart-dark.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/numeneon-dark/heatmap-dark.png"
+            alt="Heatmap"
+            class="thumb"
+            data-full="/images/projects/numeneon-dark/heatmap-dark.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/numeneon-dark/about-dark.png"
+            alt="About"
+            class="thumb"
+            data-full="/images/projects/numeneon-dark/about-dark.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/numeneon-dark/friends-dark.png"
+            alt="Friends"
+            class="thumb"
+            data-full="/images/projects/numeneon-dark/friends-dark.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/numeneon-dark/mystudio.png"
+            alt="My Studio"
+            class="thumb"
+            data-full="/images/projects/numeneon-dark/mystudio.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/numeneon-dark/mystudio-dark-friends.png"
+            alt="My Studio Friends"
+            class="thumb"
+            data-full="/images/projects/numeneon-dark/mystudio-dark-friends.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/numeneon-dark/message-dark.png"
+            alt="Message"
+            class="thumb"
+            data-full="/images/projects/numeneon-dark/message-dark.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/numeneon-dark/bio-darkmode.png"
+            alt="Bio"
+            class="thumb"
+            data-full="/images/projects/numeneon-dark/bio-darkmode.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/numeneon-dark/search-dark.png"
+            alt="Search"
+            class="thumb"
+            data-full="/images/projects/numeneon-dark/search-dark.png"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Architecture Section -->
+        <div class="architecture-section">
+          <h3>Architecture</h3>
+          <div class="architecture-grid">
+            <div class="architecture-item wireframe">
+              <img
+                src="/images/projects/numeneon/wireframes/numeneon-wireframe-final.png"
+                alt="Wireframe"
+                class="arch-thumb"
+                data-full="/images/projects/numeneon/wireframes/numeneon-wireframe-final.png"
+              />
+              <span class="arch-label">Wireframe</span>
+            </div>
+            <div class="architecture-item erd">
+              <img
+                src="/images/projects/numeneon/wireframes/erd/numeneon-erd-final.png"
+                alt="ERD"
+                class="arch-thumb"
+                data-full="/images/projects/numeneon/wireframes/erd/numeneon-erd-final.png"
+              />
+              <span class="arch-label">ERD</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="project-about">
+        <div class="about-grid">
+          <div class="about-description">
+            <h2>About the Project</h2>
+            <p>
+              Numeneon is a "neopunk" social media platform built on the belief
+              that feeds should serve people, not harvest attention. At its core
+              is the <strong>River Timeline</strong>—a three-column
+              chronological feed (Thoughts, Media, Milestones) where each friend
+              gets their own row, capping at 12 posts per category so you can
+              actually finish catching up instead of doom-scrolling forever.
+            </p>
+
+            <h3 style="color: #00fff7; margin-top: 1.5rem">
+              Digital Congestion vs. Traffic Management
+            </h3>
+            <p>
+              Modern social feeds suffer from "Information
+              Congestion"—everything fights for the same narrow vertical space.
+              The River Timeline treats UI as a traffic management system:
+              <strong>Horizontal Currents</strong> create parallel flows for
+              Thoughts, Media, and Milestones. The
+              <strong>"Sluice Gate"</strong> limits each row to 12 items,
+              curating the flood before it becomes overwhelming. The result is a
+              "3-lane highway" of visibility instead of a single-lane jam.
+            </p>
+
+            <h3 style="color: #ff00cc; margin-top: 1.5rem">
+              The Architecture: "The Chain"
+            </h3>
+            <p>
+              The frontend transforms raw data into the River flow in 4 explicit
+              steps:
+              <code
+                style="
+                  display: block;
+                  margin: 0.5rem 0;
+                  padding: 0.5rem;
+                  background: rgba(0, 255, 247, 0.1);
+                  border-radius: 4px;
+                  font-size: 0.9rem;
+                "
+              >
+                GROUP → SORT → SPLIT → RENDER
+              </code>
+              Posts are grouped by user, sorted by most recent activity, split
+              at the 12-item limit, then rendered as organized rows.
+            </p>
+
+            <p>
+              The bigger vision is the <strong>Smart Feed Algorithm</strong>—a
+              "boost" system that surfaces underseen posts so every voice gets
+              heard, blending 30% boosted (underexposed creators), 20% hot (high
+              engagement), and 50% chronological. It's anti-viral by design: the
+              more something goes viral, the more it gets throttled, because
+              outrage shouldn't win.
+            </p>
+
+            <p>
+              Add real-time messaging via WebSockets, and below the neon-lit
+              main floor, a hidden <strong>MyStudio</strong> (a MySpace Basement
+              tribute) with Top 8 friends, custom themes, and embedded music
+              players. Built for people who think the internet should work for
+              you, not extract from you.
+            </p>
+
+            <p>
+              The platform also includes a <strong>Daily Learning</strong> page
+              featuring methods, loops, Big O notation, mythology culture
+              curated weekly, plus a word of the day and tech term of the
+              day—because I wanted to build something I would actually use.
+            </p>
+          </div>
+
+          <div class="about-details">
+            <div class="detail-card">
+              <h3>Tech Stack</h3>
+              <div class="tech-tags">
+                <span class="tech-tag">React 18</span>
+                <span class="tech-tag">Vite</span>
+                <span class="tech-tag">React Router</span>
+                <span class="tech-tag">Django</span>
+                <span class="tech-tag">Django REST</span>
+                <span class="tech-tag">Simple JWT</span>
+                <span class="tech-tag">PostgreSQL</span>
+                <span class="tech-tag">WebSockets</span>
+                <span class="tech-tag">SCSS</span>
+                <span class="tech-tag">Vercel</span>
+                <span class="tech-tag">Render</span>
+              </div>
+            </div>
+
+            <div class="detail-card">
+              <h3>My Role</h3>
+              <p>
+                <strong>Co-Lead & System Architect</strong> on a 4-person team.
+                Designed full-stack architecture for both frontend and backend,
+                authored pseudocode specifications guiding the entire team's
+                implementation. Led wireframing and UI strategy, architected
+                dual-theme system (light/dark modes). Built the River Timeline
+                UI, Profile Card flip with contribution heatmap, Activity
+                Visualization (Wave Chart + Heatmap), Messaging Modal, mobile
+                responsiveness, and the comprehensive SCSS design system with
+                glassmorphic styling.
+              </p>
+            </div>
+
+            <div class="detail-card">
+              <h3>Project Type</h3>
+              <p>Collaborative Bootcamp Project</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="project-features">
+        <h2>Key Features</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon cyan">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M2 12C2 12 5 6 12 6C19 6 22 12 22 12C22 12 19 18 12 18C5 18 2 12 2 12Z"
+                />
+                <path d="M2 6C6 10 10 12 12 12C14 12 18 10 22 6" />
+                <path d="M2 18C6 14 10 12 12 12C14 12 18 14 22 18" />
+              </svg>
+            </div>
+            <h3>River Timeline</h3>
+            <p>
+              Three-column feed with epoch-based grouping and carousel
+              navigation. One user, one row—no infinite scroll chaos.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon purple">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <path d="M12 8v8M8 12h8" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </div>
+            <h3>Profile Flip Card</h3>
+            <p>
+              Dual-sided card showing profile info on front, analytics dashboard
+              with wave chart and heatmap on back.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon cyan">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+            </div>
+            <h3>Real-time Messaging</h3>
+            <p>
+              WebSocket-powered DMs with conversation list and instant
+              notifications.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon purple">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="5" />
+                <path
+                  d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+                />
+              </svg>
+            </div>
+            <h3>Theme Toggle</h3>
+            <p>
+              Dark mode (cyberpunk neon) and light mode (platinum brushed
+              aluminum) with persistent preferences.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon cyan">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                <line x1="12" y1="18" x2="12.01" y2="18" />
+              </svg>
+            </div>
+            <h3>Mobile Responsive</h3>
+            <p>
+              Tab-based navigation and optimized layouts for mobile viewing.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon purple">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <path d="M21 21l-4.35-4.35" />
+              </svg>
+            </div>
+            <h3>Global Search</h3>
+            <p>Search modal for finding users and posts across the platform.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon cyan">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <polygon points="10,8 16,12 10,16" />
+              </svg>
+            </div>
+            <h3>MyStudio</h3>
+            <p>
+              Nostalgic throwback profile with music player, Top 8 Friends grid,
+              theme picker, and personal mood display.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon purple">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                <path d="M2 17l10 5 10-5" />
+                <path d="M2 12l10 5 10-5" />
+              </svg>
+            </div>
+            <h3>Daily Learning</h3>
+            <p>
+              Bilingual study tool (EN/ES): Big O, loops, methods, tech jargon,
+              948 SAT/GRE + Pulitzer vocabulary, mythology. Mark as known, daily
+              rotation, deep linking.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon cyan">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+              </svg>
+            </div>
+            <h3>WebSockets</h3>
+            <p>
+              Real-time notifications for friend requests, messages, and
+              updates—no polling required.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon purple">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                />
+                <path
+                  d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                />
+              </svg>
+            </div>
+            <h3>Post Composer</h3>
+            <p>
+              Create posts with category selection: Thoughts, Media, or
+              Milestones—each flows to its own column.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon cyan">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0014.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"
+                />
+              </svg>
+            </div>
+            <h3>Bilingual Support</h3>
+            <p>
+              English/Spanish toggle for Daily Learning with embedded
+              translations using the _es field pattern.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon purple">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <circle cx="8.5" cy="8.5" r="1.5" />
+                <path d="M21 15l-5-5L5 21" />
+              </svg>
+            </div>
+            <h3>Media Lightbox</h3>
+            <p>
+              Full-screen image and video viewer with smooth transitions and
+              keyboard navigation.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon cyan">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <path d="M3 9h18M9 21V9" />
+              </svg>
+            </div>
+            <h3>Post Detail Modal</h3>
+            <p>
+              Expanded view of any post with full content, replies, and
+              engagement options.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon purple">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            </div>
+            <h3>User Navigation</h3>
+            <p>
+              Click any avatar or username anywhere in the app to view that
+              user's full profile.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon cyan">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <path d="M3 9h18" />
+                <circle cx="7" cy="6" r="1" />
+              </svg>
+            </div>
+            <h3>Card User Headers</h3>
+            <p>
+              Every post card shows who posted it with avatar and username
+              visible inside the card.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon purple">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+            <h3>Collapsible Categories</h3>
+            <p>
+              Collapse any category you don't want to see. Preference saves to
+              localStorage; auto-expands when new posts arrive.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- River Timeline Diagram -->
+      <section class="project-diagram">
+        <h2>The River Timeline</h2>
+        <div class="diagram-container">
+          <pre class="ascii-diagram">
+┌─────────────────────────────────────────────────────────┐
+│                    RIVER TIMELINE                        │
+├───────────────┬───────────────┬─────────────────────────┤
+│ 💭 THOUGHTS   │ 🖼️ MEDIA      │ 🏆 MILESTONES           │
+│ Text posts    │ Photos/videos │ Achievements            │
+├───────────────┼───────────────┼─────────────────────────┤
+│ User A Ep2    │ User A Ep2    │ User A Ep2              │
+│ [◀ 2/12 ▶]    │ [◀ 1/12 ▶]    │                         │
+├───────────────┼───────────────┼─────────────────────────┤
+│ User B        │ User B        │ User B                  │
+│ [◀ 5/12 ▶]    │ [◀ 3/12 ▶]    │ [◀ 1/12 ▶]              │
+├───────────────┼───────────────┼─────────────────────────┤
+│ User A Ep1    │ User A Ep1    │ User A Ep1              │
+│ [12/12 full]  │ [◀ 3/12 ▶]    │                         │
+└───────────────┴───────────────┴─────────────────────────┘
+        </pre
+          >
+          <p class="diagram-caption">
+            Posts grouped by user, capped at 12 per category. Smart Overflow
+            creates separate rows when exceeded—so you can actually finish your
+            feed.
+          </p>
+        </div>
+      </section>
+
+      <!-- Design System -->
+      <section class="project-design">
+        <h2>Design System</h2>
+        <div class="design-grid">
+          <div class="color-palette">
+            <h3>Colors</h3>
+            <div class="colors">
+              <div class="color-swatch" style="background: #4fffff">
+                <span>Cyan</span>
+                <code>#4fffff</code>
+              </div>
+              <div class="color-swatch" style="background: #c9a8ff">
+                <span>Purple</span>
+                <code>#c9a8ff</code>
+              </div>
+              <div class="color-swatch" style="background: #1ae784">
+                <span>Green</span>
+                <code>#1ae784</code>
+              </div>
+              <div class="color-swatch" style="background: #e94ec8">
+                <span>Magenta</span>
+                <code>#e94ec8</code>
+              </div>
+            </div>
+          </div>
+          <div class="design-effects">
+            <h3>Effects</h3>
+            <ul>
+              <li>Glassmorphic surfaces with backdrop blur</li>
+              <li>Neon glow shadows</li>
+              <li>Chamfered corners (clip-path)</li>
+              <li>Scan line overlays</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contributors -->
+      <section
+        class="project-contributors"
+        style="padding: 3rem 2rem; max-width: 900px; margin: 0 auto"
+      >
+        <h2 style="text-align: center; margin-bottom: 2rem">Team</h2>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+          "
+        >
+          <div class="detail-card">
+            <h3>Colin Weir</h3>
+            <p
+              style="color: #00fff7; font-size: 0.85rem; margin-bottom: 0.5rem"
+            >
+              Team Lead & Posts System
+            </p>
+            <p style="font-size: 0.9rem">
+              Posts backend/frontend, data flow architecture, PostsContext, code
+              review
+            </p>
+          </div>
+          <div class="detail-card" style="border-color: #ff00cc">
+            <h3>Pablo Cordero</h3>
+            <p
+              style="color: #ff00cc; font-size: 0.85rem; margin-bottom: 0.5rem"
+            >
+              Co-Lead, System Architect & UI Architect
+            </p>
+            <p style="font-size: 0.9rem">
+              Full-stack architecture design, pseudocode specs, wireframing,
+              dual-theme system, River Timeline UI, Profile Card flip, Wave
+              Chart + Heatmap, SCSS design system
+            </p>
+          </div>
+          <div class="detail-card">
+            <h3>Cristal Ruiz</h3>
+            <p
+              style="color: #00fff7; font-size: 0.85rem; margin-bottom: 0.5rem"
+            >
+              Friends System
+            </p>
+            <p style="font-size: 0.9rem">
+              Friends backend/frontend, FriendsContext, friend request UI,
+              social features
+            </p>
+          </div>
+          <div class="detail-card">
+            <h3>Natalia Pricop</h3>
+            <p
+              style="color: #00fff7; font-size: 0.85rem; margin-bottom: 0.5rem"
+            >
+              Auth & Backend
+            </p>
+            <p style="font-size: 0.9rem">
+              Authentication system, user registration/login, Django migrations,
+              backend APIs
+            </p>
+          </div>
+          <div class="detail-card">
+            <h3>Tito</h3>
+            <p
+              style="color: #00fff7; font-size: 0.85rem; margin-bottom: 0.5rem"
+            >
+              Infrastructure
+            </p>
+            <p style="font-size: 0.9rem">
+              API client setup, theme system, app entry points, utilities
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- System Metrics -->
+      <section class="system-metrics">
+        <div class="metrics-header">
+          <h2>System Diagnostics</h2>
+          <span class="live-indicator">
+            <span class="pulse"></span>
+            Live Data
+          </span>
+        </div>
+        <div class="metrics-grid">
+          <div class="metric-node">
+            <div class="metric-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12,6 12,12 16,14" />
+              </svg>
+            </div>
+            <div class="metric-value">[ 4m 37s ]</div>
+            <div class="metric-label">Neural Retention</div>
+            <div class="metric-sublabel">Verified Session Depth</div>
+          </div>
+          <div class="metric-node">
+            <div class="metric-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+              </svg>
+            </div>
+            <div class="metric-value">[ 1.4K ]</div>
+            <div class="metric-label">System Interactivity</div>
+            <div class="metric-sublabel">Event Pulses</div>
+          </div>
+          <div class="metric-node">
+            <div class="metric-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </div>
+            <div class="metric-value">[ 703 ]</div>
+            <div class="metric-label">Network Reach</div>
+            <div class="metric-sublabel">Unique Terminal Views</div>
+          </div>
+        </div>
+        <div class="metrics-footer">
+          <span class="data-source">Source: Google Analytics 4</span>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="project-cta">
+        <h2>Check it out</h2>
+        <div class="cta-buttons">
+          <a
+            href="https://numeneon-frontend.vercel.app/"
+            target="_blank"
+            class="project-btn primary large"
+          >
+            <span>Visit Live Site →</span>
+          </a>
+          <a
+            href="https://www.youtube.com/watch?v=_Ik2eKy-sOY"
+            target="_blank"
+            class="project-btn secondary large"
+          >
+            <span>Watch Demo Video</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Gallery Script -->
+    <script>
+      document.querySelectorAll(".gallery-thumbs .thumb").forEach((thumb) => {
+        thumb.addEventListener("click", () => {
+          const heroImg = document.querySelector(".gallery-hero-img");
+          const newSrc = thumb.dataset.full;
+          heroImg.src = newSrc;
+
+          // Toggle architecture class for wireframes/ERDs
+          if (newSrc.includes("wireframe") || newSrc.includes("erd")) {
+            heroImg.classList.add("architecture-img");
+          } else {
+            heroImg.classList.remove("architecture-img");
+          }
+
+          document
+            .querySelectorAll(".thumb, .arch-thumb")
+            .forEach((t) => t.classList.remove("active"));
+          thumb.classList.add("active");
+        });
+      });
+
+      // Architecture section thumbnails
+      document
+        .querySelectorAll(".architecture-section .arch-thumb")
+        .forEach((thumb) => {
+          thumb.addEventListener("click", () => {
+            const heroImg = document.querySelector(".gallery-hero-img");
+            heroImg.src = thumb.dataset.full;
+            heroImg.classList.add("architecture-img");
+
+            document
+              .querySelectorAll(".thumb, .arch-thumb")
+              .forEach((t) => t.classList.remove("active"));
+            thumb.classList.add("active");
+          });
+        });
+    </script>
+    <script src="../src/js/app.js" defer></script>
+    <script src="../src/js/orb.js" defer></script>
+  </body>
+</html>

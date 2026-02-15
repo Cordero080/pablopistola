@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-ZL1CZZKRKD"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-ZL1CZZKRKD");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NUCAT | Pablo Cordero</title>
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/icons/icon-192.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="../src/js/sineWave.js" defer></script>
+    <!-- Vercel Analytics (only loads on Vercel) -->
+    <script>
+      if (
+        window.location.hostname !== "localhost" &&
+        window.location.hostname !== "127.0.0.1"
+      ) {
+        const s = document.createElement("script");
+        s.defer = true;
+        s.src = "/_vercel/insights/script.js";
+        document.head.appendChild(s);
+      }
+    </script>
+    <link rel="stylesheet" crossorigin href="/assets/main-PVU4gkBQ.css">
+    <link rel="stylesheet" crossorigin href="/assets/project-C_BTvFQe.css">
+  </head>
+  <body>
+    <canvas id="waves"></canvas>
+
+    <nav class="side-nav" role="navigation" aria-label="Main navigation">
+      <div class="side-nav-logo">
+        <span class="logo-text" id="myName" data-text="PC">PC</span>
+      </div>
+      <div class="side-nav-links">
+        <a class="side-nav-link" href="/home" aria-label="Home">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          <span class="nav-label">Home</span>
+        </a>
+        <a class="side-nav-link" href="/about" aria-label="About">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <span class="nav-label">About</span>
+        </a>
+        <a class="side-nav-link" href="/home#projects" aria-label="Projects">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+          </svg>
+          <span class="nav-label">Projects</span>
+        </a>
+        <a class="side-nav-link" href="/skills" aria-label="Skills">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+          </svg>
+          <span class="nav-label">Skills</span>
+        </a>
+        <a class="side-nav-link" href="/art" aria-label="Art">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+            <path
+              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"
+            />
+          </svg>
+          <span class="nav-label">Art</span>
+        </a>
+        <a class="side-nav-link" href="/home#contact" aria-label="Contact">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          <span class="nav-label">Contact</span>
+        </a>
+        <a class="side-nav-link" href="/resume" aria-label="Resume">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+          </svg>
+          <span class="nav-label">Resume</span>
+        </a>
+        <a
+          class="side-nav-link exit-link"
+          href="/?stay"
+          aria-label="Zen Mode - Waves"
+        >
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M2 12c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+            <path d="M2 6c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+            <path d="M2 18c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+          </svg>
+          <span class="nav-label">Zen</span>
+        </a>
+      </div>
+      <div class="side-nav-glow"></div>
+    </nav>
+
+    <main class="project-page">
+      <!-- Hero Section -->
+      <section class="project-hero">
+        <div class="project-hero-content">
+          <a href="/home" class="back-link">← Back to Projects</a>
+          <h1 class="project-title">NUCAT</h1>
+          <p class="project-tagline">
+            Real-Time ASCII Point Cloud Orchestration — "When your character
+            wants to be a point cloud, you let them."
+          </p>
+
+          <div class="project-links">
+            <a href="#" target="_blank" class="project-btn primary">
+              <span>Live Demo</span>
+            </a>
+            <a
+              href="https://github.com/Cordero080/nucat"
+              target="_blank"
+              class="project-btn secondary"
+            >
+              <span>GitHub</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Screenshot Gallery -->
+      <section class="project-gallery">
+        <div class="gallery-main">
+          <img
+            src="/images/projects/nucat/nucat-bloom-and-glow.png"
+            alt="NUCAT Bloom and Glow"
+            class="gallery-hero-img"
+            loading="eager"
+          />
+        </div>
+        <div class="gallery-thumbs">
+          <img
+            src="/images/projects/nucat/nucat-bloom-and-glow.png"
+            alt="Bloom and Glow"
+            class="thumb active"
+            data-full="/images/projects/nucat/nucat-bloom-and-glow.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/nucat/nucat-blue-spiral.png"
+            alt="Spiral Effect"
+            class="thumb"
+            data-full="/images/projects/nucat/nucat-blue-spiral.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/nucat/nucat-blue-disperse.png"
+            alt="Dispersion Effect"
+            class="thumb"
+            data-full="/images/projects/nucat/nucat-blue-disperse.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/nucat/nucat-blue-chaos.png"
+            alt="Chaos Mix"
+            class="thumb"
+            data-full="/images/projects/nucat/nucat-blue-chaos.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/nucat/color-shift.png"
+            alt="Color Shift"
+            class="thumb"
+            data-full="/images/projects/nucat/color-shift.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/nucat/cube-n-bloom.png"
+            alt="Cube and Bloom"
+            class="thumb"
+            data-full="/images/projects/nucat/cube-n-bloom.png"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="project-about">
+        <div class="about-grid">
+          <div class="about-description">
+            <h2>About the Project</h2>
+            <p>
+              NUCAT is an experimental real-time ASCII point cloud renderer that
+              explores the deconstruction of form. It takes rigged 3D characters
+              and "explodes" them into ~20,000 floating particles that dance,
+              spiral, and disperse—all while maintaining the underlying skeletal
+              animation in real-time.
+            </p>
+
+            <h3>The Technical Achievement</h3>
+            <p>
+              Most browser-based particle systems struggle with high counts.
+              NUCAT achieves 60fps performance through a
+              <strong>GPU-first architecture</strong>:
+            </p>
+            <p>
+              <strong>InstancedMesh Pipeline:</strong> Instead of rendering
+              20,000 individual objects, I utilized THREE.InstancedMesh to
+              offload all particle transformations to the GPU.
+            </p>
+            <p>
+              <strong>Vertex Skinning Sampler:</strong> I engineered a custom
+              sampling system that reads the transformation matrices of a rigged
+              FBX character (Mixamo-rigged) in every frame. The particles
+              "tether" to the animated bones, allowing them to disperse and
+              return without losing the character's movement.
+            </p>
+            <p>
+              <strong>Layered State Management:</strong> A centralized state
+              machine manages concurrent effects (Hover, Wave, Spiral) so
+              parameters can be adjusted independently without affecting the
+              base animation.
+            </p>
+
+            <h3>Chaos Mix: Generative Evolution</h3>
+            <p>
+              The "Crown Jewel" of the system. This isn't random jitter; it is
+              <strong>mathematically driven entropy</strong>:
+            </p>
+            <p>
+              <strong>Golden Ratio (φ):</strong> Used to drive harmonious color
+              shifts and intensity gradients.
+            </p>
+            <p>
+              <strong>Fibonacci Timing:</strong> Sequences are timed to organic
+              intervals, ensuring the "chaos" feels alive rather than
+              mechanical.
+            </p>
+            <p>
+              <strong>Quantum Interference:</strong> Effects are blended using
+              probability patterns, creating emergent behaviors beyond explicit
+              programming.
+            </p>
+          </div>
+
+          <div class="about-details">
+            <div class="detail-card">
+              <h3>Tech Stack</h3>
+              <div class="tech-tags">
+                <span class="tech-tag">Three.js</span>
+                <span class="tech-tag">InstancedMesh</span>
+                <span class="tech-tag">WebGL</span>
+                <span class="tech-tag">GLSL Shaders</span>
+                <span class="tech-tag">Mixamo</span>
+                <span class="tech-tag">Blender</span>
+                <span class="tech-tag">UnrealBloomPass</span>
+              </div>
+            </div>
+
+            <div class="detail-card">
+              <h3>My Role</h3>
+              <p>
+                Solo developer — character design, rigging, GPU optimization,
+                particle systems, shader programming, and generative algorithm
+                design.
+              </p>
+            </div>
+
+            <div class="detail-card">
+              <h3>Project Type</h3>
+              <p>Technical Experimentation / WebGL</p>
+            </div>
+
+            <div class="detail-card">
+              <h3>Particle Count</h3>
+              <p>~20,000 @ 60fps</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="project-features">
+        <h2>Core Features</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon cyan">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                <path d="M2 17l10 5 10-5" />
+                <path d="M2 12l10 5 10-5" />
+              </svg>
+            </div>
+            <h3>Cinematic Landing</h3>
+            <p>
+              Custom 3D text intro using TextGeometry and animated camera paths.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon magenta">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <path d="M3 9h18" />
+                <path d="M9 21V9" />
+              </svg>
+            </div>
+            <h3>Incubation Chamber</h3>
+            <p>
+              A holographic cube enclosure featuring translucent panels with
+              animated edges.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon cyan">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M4 7V4h16v3" />
+                <path d="M9 20h6" />
+                <path d="M12 4v16" />
+              </svg>
+            </div>
+            <h3>ASCII Customization</h3>
+            <p>
+              Dynamic swapping of Block (█), Symbol (@), and Letter geometries
+              in real-time.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon magenta">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 6v6l4 2" />
+              </svg>
+            </div>
+            <h3>Mystique Return</h3>
+            <p>
+              Custom easing-function library that handles the "smooth fade" back
+              to the original form.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon cyan">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="5" />
+                <path
+                  d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+                />
+              </svg>
+            </div>
+            <h3>Bloom Pipeline</h3>
+            <p>
+              UnrealBloomPass integration for that signature "Quantum Glow"
+              aesthetic.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon magenta">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+              </svg>
+            </div>
+            <h3>GPU-First Architecture</h3>
+            <p>
+              Matrix-based skeleton sampling with InstancedMesh for maximum
+              performance.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Creative Pedigree -->
+      <section class="project-about">
+        <div class="about-grid">
+          <div class="about-description">
+            <h2>Creative Pedigree</h2>
+            <p>
+              <strong
+                >Designed, Rigged, and Engineered by Pablo Cordero.</strong
+              >
+            </p>
+            <p>
+              Full creative ownership from concept to execution: character
+              design, skeleton rigging, and the "out-of-body" movement
+              philosophy. This project sits at the intersection of
+              <strong>Linguistics</strong> (ASCII symbols),
+              <strong>Art</strong> (3D Character Design), and
+              <strong>Engineering</strong> (GPU Optimization).
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Gallery Script -->
+    <script>
+      document.querySelectorAll(".gallery-thumbs .thumb").forEach((thumb) => {
+        thumb.addEventListener("click", () => {
+          document.querySelector(".gallery-hero-img").src = thumb.dataset.full;
+          document
+            .querySelectorAll(".thumb")
+            .forEach((t) => t.classList.remove("active"));
+          thumb.classList.add("active");
+        });
+      });
+    </script>
+    <script>
+      // Initialize sine wave background
+      document.addEventListener("DOMContentLoaded", () => {
+        const canvas = document.getElementById("waves");
+        if (canvas && typeof SineWave !== "undefined") {
+          new SineWave(canvas, {
+            speed: 0.008,
+            amplitude: 40,
+            wavelength: 0.015,
+            strokeStyle: "rgba(0, 255, 247, 0.08)",
+          });
+        }
+      });
+    </script>
+    <script src="../src/js/app.js" defer></script>
+    <script src="../src/js/orb.js" defer></script>
+  </body>
+</html>
