@@ -21,12 +21,14 @@
 .back-link {
   display: inline-block;
   color: var(--accent-cyan);
-  font-family: var(--font-display);
+  font-family: "aktiv-grotesk", sans-serif;
   font-size: 0.875rem;
   text-decoration: none;
   margin-bottom: 2rem;
   transition: all 0.3s ease;
   letter-spacing: 0.05em;
+  position: relative;
+  left: -1%;
 }
 
 .back-link:hover {
@@ -49,7 +51,7 @@
   font-weight: 400;
   letter-spacing: 0.15em;
   margin-bottom: 1rem;
-  background: linear-gradient(90deg, #ff006e, #8338ec, #07429f, #8338ec, #ff006e);
+  background: linear-gradient(90deg, #ff207a, #9050ff, #00d4ff, #1060c0, #9050ff, #ff207a);
   background-size: 300% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -81,7 +83,7 @@
   align-items: center;
   justify-content: center;
   padding: 10px 36px;
-  font-family: var(--font-display);
+  font-family: "aktiv-grotesk", sans-serif;
   font-size: 0.75rem;
   font-weight: 500;
   text-decoration: none;
@@ -286,7 +288,7 @@
   font-size: clamp(1.5rem, 4vw, 2rem);
   font-weight: 400;
   letter-spacing: 0.15em;
-  background: linear-gradient(90deg, #ff006e, #8338ec, #07429f);
+  background: linear-gradient(90deg, #ff207a, #9050ff, #00d4ff, #1060c0);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

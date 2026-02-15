@@ -249,7 +249,7 @@ window.waveGen = new SineWaveGenerator({
   el: document.getElementById("waves"),
   speed: 0.6, // slowed down for a calmer vibe
   waves: [
-    // Wave 1: Heavy, magnetic - strongly attracted, slow to respond (leader wave)
+    // Wave 1: Heavy leader - slow to follow, creates the pull
     {
       timeModifier: 1,
       lineWidth: 22.5,
@@ -257,56 +257,56 @@ window.waveGen = new SineWaveGenerator({
       wavelength: 300,
       segmentLength: 20,
       attraction: 1,
-      attractionStrength: 1.3,
-      attractionDelay: 0.08, // slow, heavy - lags behind
-      attractionRadius: 450, // wide influence
+      attractionStrength: 1.4,
+      attractionDelay: 0.06, // very slow - heavy, lags behind
+      attractionRadius: 500,
     },
-    // Wave 2: Quick follower - normal attraction, fast response
+    // Wave 2: First follower - medium speed
     {
       timeModifier: 1,
       lineWidth: 1,
       amplitude: 150,
       wavelength: 100,
       attraction: 1,
-      attractionStrength: 1,
-      attractionDelay: 0.2, // snappy response
-      attractionRadius: 350,
+      attractionStrength: 1.2,
+      attractionDelay: 0.12, // medium
+      attractionRadius: 400,
     },
-    // Wave 3: Rebel - REPELLED by cursor
+    // Wave 3: Quick responder
     {
       timeModifier: 1,
       lineWidth: 0.5,
       amplitude: -120,
       wavelength: 150,
       segmentLength: 10,
-      attraction: -0.7, // runs away from cursor
-      attractionStrength: 1.2,
-      attractionDelay: 0.15,
-      attractionRadius: 300,
+      attraction: 1,
+      attractionStrength: 1,
+      attractionDelay: 0.22, // faster
+      attractionRadius: 350,
     },
-    // Wave 4: Shy - weak attraction, very delayed (ribboning effect)
+    // Wave 4: Snappy ribbon
     {
       timeModifier: 1,
       lineWidth: 1.3,
       amplitude: -100,
       wavelength: 100,
       segmentLength: 10,
-      attraction: 0.5, // weakly attracted
-      attractionStrength: 0.8,
-      attractionDelay: 0.04, // very slow - creates ribbon trails
-      attractionRadius: 400,
+      attraction: 1,
+      attractionStrength: 0.9,
+      attractionDelay: 0.04, // slow trail
+      attractionRadius: 380,
     },
-    // Wave 5: Ambient - minimal reaction, stays calm
+    // Wave 5: Ghostly trail - slowest, creates depth
     {
       timeModifier: 1,
       lineWidth: 0.3,
       amplitude: -50,
       wavelength: 80,
       segmentLength: 20,
-      attraction: 0.2, // barely reacts
-      attractionStrength: 0.5,
-      attractionDelay: 0.03, // slowest - ghostly trail
-      attractionRadius: 250,
+      attraction: 1,
+      attractionStrength: 0.7,
+      attractionDelay: 0.025, // slowest - ghostly trail
+      attractionRadius: 300,
     },
   ],
   resizeEvent: function () {

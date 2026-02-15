@@ -70,7 +70,7 @@
     <!-- Curtain reveal overlay -->
     <div class="curtain-overlay" id="curtainOverlay"></div>
 
-    <a href="/home.html" class="skip-link" id="skipLink">skip →</a>
+    <a href="/home.html" class="enter-btn" id="enterBtn"><span>enter</span></a>
 
     <div class="interaction-hint" id="interactionHint">
       <span class="hint-icon">〰</span>
@@ -94,13 +94,13 @@
         window.location.replace("/home.html");
       }
 
-      // Show skip link after 1.5s
+      // Show enter button after 1.5s
       setTimeout(() => {
-        document.getElementById("skipLink").classList.add("visible");
+        document.getElementById("enterBtn").classList.add("visible");
       }, 1500);
 
-      // Handle skip click - remember preference
-      document.getElementById("skipLink").addEventListener("click", (e) => {
+      // Handle enter click - remember preference
+      document.getElementById("enterBtn").addEventListener("click", (e) => {
         e.preventDefault();
         sessionStorage.setItem("skippedLanding", "true");
         window.location.href = "/home.html";
@@ -109,8 +109,8 @@
       if (!stayMode) {
         // Auto-transition after 5 seconds with scanline dissolve
         setTimeout(() => {
-          // Hide skip link during transition
-          document.getElementById("skipLink").classList.remove("visible");
+          // Hide enter button during transition
+          document.getElementById("enterBtn").classList.remove("visible");
 
           // Add dissolving class to all elements
           document

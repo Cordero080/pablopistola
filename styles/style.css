@@ -210,7 +210,7 @@ main, .hero-section, .container, nav, .quantum-ripple {
   font-family: "aktiv-grotesk", sans-serif;
   font-weight: 400;
   font-size: clamp(1.5rem, 5vw, 3rem);
-  background: linear-gradient(90deg, #004e4ee6 0%, #ff00cc92 25%, #013c54b6 50%, #060a7ff6 75%, #054fc5 100%);
+  background: linear-gradient(135deg, #006060 0%, #ff20cca0 25%, #045080 50%, #1010dde0 75%, #0660c0 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -223,7 +223,7 @@ main, .hero-section, .container, nav, .quantum-ripple {
   display: inline-block;
   white-space: nowrap;
   word-break: normal;
-  opacity: 0.85;
+  opacity: 0.88;
   cursor: pointer;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
@@ -2340,7 +2340,7 @@ body {
   padding: 1rem 2rem;
   min-width: 280px;
   text-decoration: none;
-  font-family: "Orbitron", "Rajdhani", -apple-system, sans-serif;
+  font-family: "aktiv-grotesk", sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.08em;
