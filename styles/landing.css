@@ -357,7 +357,7 @@ body {
   z-index: 3;
   display: inline-block;
   padding: 8px 100px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'aktiv-grotesk', sans-serif;
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.15em;
@@ -814,7 +814,7 @@ body.zen-mode .spacebar-prompt {
 }
 
 .enter-btn.visible {
-  opacity: 1;
+  opacity: 0.6;
   pointer-events: auto;
   animation: enterPulse 3s ease-in-out infinite;
 }
@@ -842,7 +842,7 @@ body.zen-mode .spacebar-prompt {
 .enter-btn:hover {
   color: rgba(255, 255, 255, 1);
   border-color: rgba(0, 212, 255, 0.8);
-  transform: translateX(-50%) translateY(-3px) scale(1.03);
+  transform: translateY(-3px) scale(1.03);
   box-shadow:
     0 4px 12px rgba(0, 212, 255, 0.35),
     0 6px 16px rgba(138, 43, 226, 0.25);
@@ -850,7 +850,7 @@ body.zen-mode .spacebar-prompt {
 }
 
 .enter-btn:active {
-  transform: translateX(-50%) translateY(3px) scale(0.97);
+  transform: translateY(3px) scale(0.97);
   box-shadow:
     0 2px 6px rgba(0, 212, 255, 0.25),
     0 3px 8px rgba(138, 43, 226, 0.15);

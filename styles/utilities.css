@@ -1,0 +1,67 @@
+/**
+ * utilities.css
+ * Spacebar prompt, skip link, focus styles, and accessibility utilities
+ */
+
+/* Spacebar prompt */
+.spacebar-prompt {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-40%);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  color: #fffdfd;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.spacebar-prompt.pulse {
+  animation: fadeInOutSlow 2.5s ease-in-out 3;
+}
+
+@keyframes fadeInOutSlow {
+  0%, 100% {
+    opacity: 0;
+  }
+  40%, 60% {
+    opacity: 0.7;
+  }
+}
+
+/* ==========================================
+   ACCESSIBILITY - SKIP LINK
+   ========================================== */
+.skip-link {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #00fff7, #ff00cc);
+  color: #000;
+  padding: 12px 24px;
+  z-index: 10000;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 0 0 8px 8px;
+  transition: top 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 255, 247, 0.4);
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Focus styles for better accessibility */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #00fff7;
+  outline-offset: 3px;
+}
