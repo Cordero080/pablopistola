@@ -3,12 +3,16 @@
  * Master stylesheet that imports all modular CSS files in the correct order
  * 
  * STRUCTURE:
- * 1. Base styles (fonts, body, html, scrollbar, parallax)
- * 2. Page components (loader, hero, cursor, glitch, waves)
- * 3. Navigation (side nav, hamburger, audio toggle)
- * 4. Content sections (bento grid, contact)
- * 5. Utilities (accessibility, spacebar prompt)
+ * 1. Design tokens (colors, fonts, spacing, variables)
+ * 2. Base styles (body, html, scrollbar, parallax)
+ * 3. Page components (loader, hero, cursor, glitch, waves)
+ * 4. Navigation (side nav, hamburger, audio toggle)
+ * 5. Content sections (bento grid, contact)
+ * 6. Utilities (accessibility, spacebar prompt)
  */
+
+/* === DESIGN TOKENS === */
+@import url('./tokens.css');
 
 /* === BASE === */
 @import url('./base.css');

@@ -1,10 +1,8 @@
 /**
  * base.css
- * Foundation styles: TypeKit imports, body, html, scrollbar, parallax overlay
+ * Foundation styles: body, html, scrollbar, parallax overlay
+ * Note: TypeKit fonts loaded via tokens.css
  */
-
-@import url("https://use.typekit.net/fpe8zfm.css");
-@import url("https://use.typekit.net/pnd4foc.css");
 
 /* Holographic animated gradient background */
 body {

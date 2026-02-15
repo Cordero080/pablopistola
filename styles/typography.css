@@ -1,23 +1,8 @@
 /* ==========================================
    TYPOGRAPHY - UNIFIED HEADING STYLES
    Change h2/h3/h4 fonts and colors here
+   Note: Variables defined in tokens.css
    ========================================== */
-
-/* CSS Variables for easy customization */
-:root {
-  /* Heading fonts - change these to update all headings */
-  --heading-font-primary: "Orbitron", sans-serif;
-  --heading-font-display: "aktiv-grotesk", sans-serif;
-  --heading-font-hero: "thornwood-vf", sans-serif;
-  
-  /* Heading gradient colors */
-  --heading-gradient: linear-gradient(90deg, #ff006e, #8338ec, #07429f);
-  --heading-gradient-alt: linear-gradient(90deg, #ff006e, #8338ec, #07429f, #8338ec, #ff006e);
-  
-  /* Heading fade mask */
-  --heading-mask: linear-gradient(to bottom, black 30%, rgba(0, 0, 0, 0.3) 100%);
-  --heading-mask-soft: linear-gradient(to bottom, black 60%, rgba(0, 0, 0, 0.3) 100%);
-}
 
 /* ==========================================
    H3 STYLES - All section subheadings
