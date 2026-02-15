@@ -528,6 +528,55 @@ body {
   animation: fadeInOutSlow 2.5s ease-in-out 3;
 }
 
+/* Zen mode - position return button in upper right */
+body.zen-mode .enter-btn {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  left: auto;
+  bottom: auto;
+  transform: none !important;
+  padding: 10px 28px;
+  font-size: 0.75rem;
+  width: auto;
+  height: auto;
+  writing-mode: horizontal-tb;
+}
+
+body.zen-mode .enter-btn:hover {
+  transform: scale(1.05) !important;
+}
+
+/* In zen mode, show spacebar prompt then fade out - desktop only */
+body.zen-mode .spacebar-prompt {
+  opacity: 0;
+  animation: zenSpacebarFade 15s ease-in-out forwards;
+}
+
+@media (max-width: 768px), (hover: none) {
+  body.zen-mode .spacebar-prompt {
+    display: none;
+  }
+}
+
+@keyframes zenSpacebarFade {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  40% {
+    opacity: 0.5;
+  }
+  70% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 @keyframes fadeInOutSlow {
   0%, 100% {
     opacity: 0;

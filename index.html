@@ -94,6 +94,12 @@
         window.location.replace("/home.html");
       }
 
+      // Zen mode: reposition button and change text
+      if (stayMode) {
+        document.body.classList.add("zen-mode");
+        document.querySelector("#enterBtn span").textContent = "back";
+      }
+
       // Show enter button after 1.5s
       setTimeout(() => {
         document.getElementById("enterBtn").classList.add("visible");
