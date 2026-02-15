@@ -29,7 +29,7 @@
       content="black-translucент"
     />
     <meta name="apple-mobile-web-app-title" content="Pablo Cordero" />
-    <link rel="apple-touch-icon" href="icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
     <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
     <link
       rel="icon"
@@ -46,7 +46,7 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="styles/landing.css" />
+    <link rel="stylesheet" href="src/styles/landing.css" />
     <!-- Vercel Analytics (only loads on Vercel) -->
     <script>
       if (
@@ -65,7 +65,9 @@
 
     <div class="spacebar-prompt" id="spacebarPrompt">press spacebar</div>
 
-    <div class="landing-container"></div>
+    <div class="landing-container">
+      <h1 id="landingTitle" class="landing-title"></h1>
+    </div>
 
     <!-- Curtain reveal overlay -->
     <div class="curtain-overlay" id="curtainOverlay"></div>
@@ -82,8 +84,8 @@
       >
     </div>
 
-    <script src="js/sineWave.js"></script>
-    <script src="js/landing.js"></script>
+    <script src="src/js/sineWave.js"></script>
+    <script src="src/js/landing.js"></script>
     <script>
       // Check for ?stay param - if present, stay on landing (zen mode)
       const urlParams = new URLSearchParams(window.location.search);

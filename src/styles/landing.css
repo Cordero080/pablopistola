@@ -1,5 +1,13 @@
 /* Landing Page Styles */
-/* Note: Fonts and tokens loaded via tokens.css */
+@import url("https://use.typekit.net/fpe8zfm.css");
+@import url("https://use.typekit.net/pnd4foc.css");
+
+:root {
+  --font-display: 'Orbitron', sans-serif;
+  --font-title: 'aktiv-grotesk', sans-serif;
+  --text-primary: #fffdfd;
+  --bg-dark: #0a0a0a;
+}
 
 * {
   margin: 0;

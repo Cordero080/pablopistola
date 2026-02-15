@@ -2,14 +2,19 @@
   "name": "pablopistola",
   "version": "1.0.0",
   "description": "Pablo Pistola personal website",
+  "type": "module",
   "scripts": {
-    "dev": "npx serve -l 3000",
-    "dev:live": "npx live-server --port=3000"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "npx serve dist -l 3000"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "sharp": "^0.34.5"
+    "glob": "^13.0.3",
+    "sharp": "^0.34.5",
+    "vite": "^5.0.0"
   }
 }
