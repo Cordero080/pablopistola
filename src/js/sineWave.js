@@ -187,6 +187,8 @@ SineWaveGenerator.prototype.drawSine = function (time, options, waveIndex) {
   ctx.moveTo(0, yAxis);
   ctx.lineTo(this.waveLeft, yAxis);
 
+  // Build points array first for smooth curve rendering
+  const points = [];
   for (let i = 0; i < this.waveWidth; i += segmentLength) {
     const segmentX = i + this.waveLeft;
     const waveX = time * this.speed + (-yAxis + i) / wavelength;
@@ -226,9 +228,23 @@ SineWaveGenerator.prototype.drawSine = function (time, options, waveIndex) {
     const finalY = easedAmp * waveY + yAxis + mousePull;
 
     if (!isNaN(finalY)) {
-      ctx.lineTo(segmentX, finalY);
+      points.push({ x: segmentX, y: finalY });
     }
   }
+
+  // Draw smooth curve through points using quadratic bezier
+  if (points.length > 1) {
+    ctx.lineTo(points[0].x, points[0].y);
+    for (let i = 0; i < points.length - 1; i++) {
+      const xMid = (points[i].x + points[i + 1].x) / 2;
+      const yMid = (points[i].y + points[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points[i].x, points[i].y, xMid, yMid);
+    }
+    // Connect to last point
+    const last = points[points.length - 1];
+    ctx.lineTo(last.x, last.y);
+  }
+
   ctx.lineTo(this.width, yAxis);
   ctx.stroke();
 };
@@ -249,7 +265,7 @@ window.waveGen = new SineWaveGenerator({
   el: document.getElementById("waves"),
   speed: 0.6, // slowed down for a calmer vibe
   waves: [
-    // Wave 1: Heavy leader - slow to follow, creates the pull
+    // Wave 1: Heavy leader - very slow due to mass
     {
       timeModifier: 1,
       lineWidth: 22.5,
@@ -257,55 +273,55 @@ window.waveGen = new SineWaveGenerator({
       wavelength: 300,
       segmentLength: 20,
       attraction: 1,
-      attractionStrength: 1.4,
-      attractionDelay: 0.06, // very slow - heavy, lags behind
-      attractionRadius: 500,
+      attractionStrength: 0.12,
+      attractionDelay: 0.004, // extremely slow - massive, barely reacts
+      attractionRadius: 350,
     },
-    // Wave 2: First follower - medium speed
+    // Wave 2: Light ribbon - quick to respond
     {
       timeModifier: 1,
       lineWidth: 1,
       amplitude: 150,
       wavelength: 100,
       attraction: 1,
-      attractionStrength: 1.2,
-      attractionDelay: 0.12, // medium
+      attractionStrength: 0.8,
+      attractionDelay: 0.12, // faster - light
       attractionRadius: 400,
     },
-    // Wave 3: Quick responder
+    // Wave 3: Snappy thin line
     {
       timeModifier: 1,
       lineWidth: 0.5,
-      amplitude: -120,
+      amplitude: 120,
       wavelength: 150,
       segmentLength: 10,
       attraction: 1,
-      attractionStrength: 1,
-      attractionDelay: 0.22, // faster
+      attractionStrength: 0.7,
+      attractionDelay: 0.18, // snappy - very light
       attractionRadius: 350,
     },
-    // Wave 4: Snappy ribbon
+    // Wave 4: Medium ribbon
     {
       timeModifier: 1,
       lineWidth: 1.3,
-      amplitude: -100,
+      amplitude: 100,
       wavelength: 100,
       segmentLength: 10,
       attraction: 1,
-      attractionStrength: 0.9,
-      attractionDelay: 0.04, // slow trail
+      attractionStrength: 0.6,
+      attractionDelay: 0.09, // medium-fast
       attractionRadius: 380,
     },
-    // Wave 5: Ghostly trail - slowest, creates depth
+    // Wave 5: Ghostly trail - light but subtle
     {
       timeModifier: 1,
       lineWidth: 0.3,
-      amplitude: -50,
+      amplitude: 50,
       wavelength: 80,
       segmentLength: 20,
       attraction: 1,
-      attractionStrength: 0.7,
-      attractionDelay: 0.025, // slowest - ghostly trail
+      attractionStrength: 0.5,
+      attractionDelay: 0.06, // lighter than thick wave
       attractionRadius: 300,
     },
   ],
