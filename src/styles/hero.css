@@ -44,10 +44,11 @@
   font-family: "aktiv-grotesk", sans-serif;
   font-weight: 400;
   font-size: clamp(1.5rem, 5vw, 3rem);
-  background: linear-gradient(135deg, #006060 0%, #ff20cca0 25%, #045080 50%, #1010dde0 75%, #0660c0 100%);
+  background: linear-gradient(135deg, #02a4a4 0%, #ff20cbc0 25%, #066dac 50%, #1010dde0 75%, #0660c0 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  
   background-clip: text;
   color: #fff;
   letter-spacing: 0.15em;
@@ -57,7 +58,7 @@
   display: inline-block;
   white-space: nowrap;
   word-break: normal;
-  opacity: 0.88;
+  opacity: 0.99;
   cursor: pointer;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }

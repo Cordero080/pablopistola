@@ -275,7 +275,7 @@ window.waveGen = new SineWaveGenerator({
       attraction: 1,
       attractionStrength: 0.12,
       attractionDelay: 0.004, // extremely slow - massive, barely reacts
-      attractionRadius: 350,
+      attractionRadius: 280,
     },
     // Wave 2: Light ribbon - quick to respond
     {

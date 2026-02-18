@@ -10,7 +10,7 @@
 .bento-section {
   position: relative;
   z-index: 2;
-  padding: 2rem;
+  padding: 3rem;
   max-width: 1100px;
   margin: 0 auto;
   margin-top: 3rem;
@@ -25,12 +25,6 @@
 }
 
 /* Card link wrapper */
-.bento-card-link {
-  display: block;
-  text-decoration: none;
-  overflow: hidden;
-  transition: transform 0.4s ease, border-radius 0.4s ease;
-}
 
 .bento-card-link:hover {
   transform: translateY(-4px);
@@ -216,7 +210,7 @@
 .bento-tall {
   grid-column: span 5;
   grid-row: span 2;
-  min-height: 280px;
+  min-height: 380px;
   border-radius: 24px;
   margin-left: -20px;
   padding-left: 20px;
@@ -257,7 +251,7 @@
 .bento-puzzle-tr {
   grid-column: span 7;
   grid-row: span 2;
-  min-height: 280px;
+  min-height: 380px;
   border-radius: 24px;
   margin-left: -20px;
   padding-left: 20px;
@@ -300,7 +294,7 @@
 .bento-puzzle-br {
   grid-column: span 5;
   grid-row: span 2;
-  min-height: 280px;
+  min-height: 380px;
   border-radius: 24px;
   margin-left: -20px;
   margin-bottom: -20px;
@@ -536,8 +530,8 @@
   }
   
   .bento-section {
-    padding: 1rem;
-    margin-top: 2.5rem;
+    padding: 1.5rem;
+    margin-top: 3rem;
   }
 
   .bento-grid {
@@ -549,7 +543,7 @@
   .bento-featured {
     grid-column: span 1;
     grid-row: span 1;
-    min-height: 200px;
+    min-height: 300px;
     margin: 0;
     padding: 0;
     border-radius: 24px;
@@ -570,7 +564,7 @@
   .bento-tall {
     grid-column: span 1;
     grid-row: span 1;
-    min-height: 200px;
+    min-height: 300px;
     margin: 0;
     padding: 0;
     border-radius: 24px;
@@ -597,7 +591,7 @@
   .bento-puzzle-tl {
     grid-column: span 1;
     grid-row: span 1;
-    min-height: 180px;
+    min-height: 300px;
     margin: 0;
     padding: 0;
     border-radius: 24px;
@@ -624,7 +618,7 @@
   .bento-puzzle-tr {
     grid-column: span 1;
     grid-row: span 1;
-    min-height: 180px;
+    min-height: 300px;
     margin: 0;
     padding: 0;
     border-radius: 24px;
@@ -651,7 +645,7 @@
   .bento-puzzle-bl {
     grid-column: span 1;
     grid-row: span 1;
-    min-height: 180px;
+    min-height: 300px;
     margin: 0;
     padding: 0;
     border-radius: 24px;
@@ -678,7 +672,7 @@
   .bento-puzzle-br {
     grid-column: span 1;
     grid-row: span 1;
-    min-height: 180px;
+    min-height: 300px;
     margin: 0;
     padding: 0;
     border-radius: 24px;
@@ -705,7 +699,7 @@
   .bento-center {
     grid-column: span 1;
     grid-row: span 1;
-    min-height: 220px;
+    min-height: 300px;
     margin: 0;
     padding: 0;
     border-radius: 24px;
@@ -732,7 +726,7 @@
   .bento-bookshelf {
     grid-column: span 1;
     grid-row: span 1;
-    min-height: 220px;
+    min-height: 300px;
     margin: 0;
     padding: 0;
     border-radius: 24px;
@@ -780,5 +774,32 @@
   .bento-label {
     font-size: 0.55rem;
     padding: 0.25rem 0.5rem;
+  }
+}
+
+
+/* IntersectionObserver entry animation */
+.bento-card-link {
+  display: block;
+  text-decoration: none;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: transform 0.6s ease, border-radius 0.4s ease, opacity 0.6s ease;
+}
+
+.bento-card-link.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Accessibility: Respect prefers-reduced-motion for users sensitive to animations */
+/* Disables card entry animations for users with motion sensitivity preferences */
+/* Cards display instantly at full opacity without any transitions or transforms */
+@media (prefers-reduced-motion: reduce) {
+  .bento-card-link {
+    transition: none;
+    opacity: 1;
+    transform: none;
   }
 }
