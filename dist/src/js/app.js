@@ -509,3 +509,44 @@ document.addEventListener("DOMContentLoaded", function () {
     cursorGlow.classList.remove("active");
   });
 });
+// IntersectionObserver for bento card entry animations
+const cardLinks = document.querySelectorAll(".bento-card-link");
+
+const cardObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add("visible");
+        }, i * 100);
+        cardObserver.unobserve(entry.target);
+      }
+    });
+  },
+  {
+    threshold: 0.15,
+    rootMargin: "0px 0px -50px 0px",
+  },
+);
+
+cardLinks.forEach((card) => cardObserver.observe(card));
+
+
+// Hamburger menu toggle
+const hamburgerBtn = document.getElementById("hamburgerBtn");
+const sideNav = document.querySelector(".side-nav");
+
+if (hamburgerBtn && sideNav) {
+  hamburgerBtn.addEventListener("click", () => {
+    hamburgerBtn.classList.toggle("active");
+    sideNav.classList.toggle("menu-open");
+  });
+
+  // Close menu when a nav link is tapped
+  sideNav.querySelectorAll(".side-nav-link").forEach((link) => {
+    link.addEventListener("click", () => {
+      hamburgerBtn.classList.remove("active");
+      sideNav.classList.remove("menu-open");
+    });
+  });
+}
