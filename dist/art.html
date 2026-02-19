@@ -19,7 +19,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-    <title>Art Gallery | Pablo Pistola</title>
+    <title>Art Gallery | Pvblo Pistola</title>
     <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
     <link
       rel="icon"
@@ -27,9 +27,9 @@
       sizes="192x192"
       href="/icons/icon-192.webp"
     />
-    <link rel="stylesheet" crossorigin href="/assets/art-6qEE8gV-.css">
-    <link rel="stylesheet" crossorigin href="/assets/main-vjVgxY-5.css">
-    <link rel="stylesheet" crossorigin href="/assets/typography-BtfmU3s3.css">
+    <link rel="stylesheet" crossorigin href="/assets/art-6qEE8gV-.css" />
+    <link rel="stylesheet" crossorigin href="/assets/main-vjVgxY-5.css" />
+    <link rel="stylesheet" crossorigin href="/assets/typography-BtfmU3s3.css" />
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -207,7 +207,7 @@
     </button>
 
     <main id="main-content" class="gallery-container" role="main">
-       <a href="/home" class="back-link">← Back </a>
+      <a href="/home" class="back-link">← Back </a>
       <header class="gallery-header">
         <h1 class="gallery-title">Art Gallery</h1>
         <p class="gallery-subtitle">
@@ -1009,19 +1009,6 @@
           </div>
         </div>
       </section>
-
-      <a href="/home" class="back-link" aria-label="Go back to home page">
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          aria-hidden="true"
-        >
-          <path d="M19 12H5M12 19l-7-7 7-7" />
-        </svg>
-        Back to Home
-      </a>
     </main>
 
     <!-- Lightbox Modal -->
@@ -1124,5 +1111,41 @@
         });
       });
     </script>
+    <script>
+      (function () {
+        const hamburgerBtn = document.getElementById("hamburgerBtn");
+        const sideNav = document.querySelector(".side-nav");
+        const navLinks = document.querySelectorAll(".side-nav-link");
+
+        if (hamburgerBtn && sideNav) {
+          hamburgerBtn.addEventListener("click", () => {
+            const isOpen = sideNav.classList.toggle("menu-open");
+            hamburgerBtn.classList.toggle("active");
+            hamburgerBtn.setAttribute("aria-expanded", isOpen);
+            document.body.style.overflow = isOpen ? "hidden" : "";
+          });
+
+          navLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+              sideNav.classList.remove("menu-open");
+              hamburgerBtn.classList.remove("active");
+              hamburgerBtn.setAttribute("aria-expanded", "false");
+              document.body.style.overflow = "";
+            });
+          });
+
+          document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && sideNav.classList.contains("menu-open")) {
+              sideNav.classList.remove("menu-open");
+              hamburgerBtn.classList.remove("active");
+              hamburgerBtn.setAttribute("aria-expanded", "false");
+              document.body.style.overflow = "";
+            }
+          });
+        }
+      })();
+    </script>
+    
+
   </body>
 </html>
