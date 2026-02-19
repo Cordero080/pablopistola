@@ -30,7 +30,7 @@ function SineWaveGenerator(options) {
   // Start the animation loop AFTER mouse tracking is initialized
   this.loop();
 
-  window.addEventListener("mousemove", (e) => {
+ window.addEventListener("mousemove", (e) => {
     this.mouseX = e.clientX;
     this.mouseY = e.clientY;
   });
@@ -41,14 +41,19 @@ function SineWaveGenerator(options) {
       this.mouseX = e.touches[0].clientX;
       this.mouseY = e.touches[0].clientY;
     }
-  });
+  }, { passive: true });
 
   window.addEventListener("touchstart", (e) => {
     if (e.touches.length > 0) {
       this.mouseX = e.touches[0].clientX;
       this.mouseY = e.touches[0].clientY;
     }
-  });
+  }, { passive: true });
+
+  window.addEventListener("touchend", () => {
+    this.mouseX = window.innerWidth / 2;
+    this.mouseY = window.innerHeight / 2;
+  }, { passive: true });
 
   window.addEventListener("keydown", (e) => {
     if (e.code === "Space") {
@@ -56,7 +61,6 @@ function SineWaveGenerator(options) {
       this.direction *= -1;
     }
   });
-
   // Mobile scroll performance - reduce animation during scroll
   this.isScrolling = false;
   this.scrollTimeout = null;
@@ -70,7 +74,7 @@ function SineWaveGenerator(options) {
         clearTimeout(this.scrollTimeout);
         this.scrollTimeout = setTimeout(() => {
           this.isScrolling = false;
-        }, 150);
+        }, 80);
       },
       { passive: true },
     );
@@ -127,6 +131,9 @@ SineWaveGenerator.prototype.clear = function () {
 SineWaveGenerator.prototype.time = 0;
 
 SineWaveGenerator.prototype.update = function (time) {
+  const now = performance.now();
+  const dt = Math.min((now - (this._lastFrame || now)) / 16.667, 3);
+  this._lastFrame = now;
   this.time += 0.007 * this.direction; // 👈 dynamic direction
 
   // Page-aware reactivity: home page is more reactive
@@ -138,9 +145,10 @@ SineWaveGenerator.prototype.update = function (time) {
   // Update per-wave mouse tracking with individual delays
   for (let i = 0; i < this.waves.length; i++) {
     const wave = this.waves[i];
-    const waveDelay = wave.attractionDelay ?? 0.15; // default same as global
-    this.waveMouseX[i] += (this.mouseX - this.waveMouseX[i]) * waveDelay;
-    this.waveMouseY[i] += (this.mouseY - this.waveMouseY[i]) * waveDelay;
+    const waveDelay = wave.attractionDelay ?? 0.15;
+    const frameAdjusted = 1 - Math.pow(1 - waveDelay, dt);
+    this.waveMouseX[i] += (this.mouseX - this.waveMouseX[i]) * frameAdjusted;
+    this.waveMouseY[i] += (this.mouseY - this.waveMouseY[i]) * frameAdjusted;
   }
 
   if (typeof time === "undefined") {
