@@ -20,8 +20,9 @@
 }
 
 .gallery-title {
-  font-family: "thornwood-vf", sans-serif;
-  font-variation-settings: "wght" 200, "wdth" 50;
+  font-family: "omnium-wide", sans-serif;
+  font-weight: 700;
+  font-style: normal;
   font-size: clamp(3rem, 10vw, 6rem);
   background: linear-gradient(90deg, #ff207a, #9050ff, #00d4ff, #1060c0, #9050ff, #ff207a);
   background-size: 300% 100%;

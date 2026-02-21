@@ -46,10 +46,11 @@
 }
 
 .project-title {
-  font-family: "aktiv-grotesk", sans-serif;
+  font-family: "omnium-wide", sans-serif;
+  font-weight: 700;
+  font-style: normal;
   font-size: clamp(1.5rem, 5vw, 2.5rem);
-  font-weight: 400;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.05em;
   margin-bottom: 1rem;
   background: linear-gradient(90deg, #ff207a, #9050ff, #00d4ff, #1060c0, #9050ff, #ff207a);
   background-size: 300% 100%;

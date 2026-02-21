@@ -1,5 +1,7 @@
 // Minimal parallax for geometric overlay
+// (home page sets window.homeParallaxActive to take over this transform)
 function updateMinimalParallaxOverlay() {
+  if (window.homeParallaxActive) return;
   const overlay = document.querySelector(".parallax-bg-overlay");
   if (!overlay) return;
   const scrollY = window.scrollY;
