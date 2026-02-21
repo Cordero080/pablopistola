@@ -118,7 +118,57 @@
           scrollY = window.scrollY;
         }, { passive: true });
 
-        // === Unified RAF loop — three depth layers ===
+        // === Letter decomposition setup ===
+        const heroTitleEl = document.getElementById("heroTitle");
+        const originalTitleHTML = heroTitleEl ? heroTitleEl.innerHTML : "";
+        const accentColors = ["#00d4ff", "#ff00cc", "#8338ec", "#00fff7", "#ff006e"];
+        let decomposed = false;
+        let letterSpans = [];
+        let letterVectors = [];
+
+        // Scroll velocity tracking
+        let lastScrollForVelocity = 0;
+        let scrollVelocity = 0;
+        window.addEventListener("scroll", () => {
+          scrollVelocity = Math.abs(window.scrollY - lastScrollForVelocity);
+          lastScrollForVelocity = window.scrollY;
+        }, { passive: true });
+
+        function buildDecomposition() {
+          if (decomposed || !heroTitleEl) return;
+          decomposed = true;
+          const chars = originalTitleHTML.split("");
+          let vecIdx = 0;
+          heroTitleEl.innerHTML = chars.map((char) => {
+            if (char === " ") return `<span style="display:inline-block;width:0.35em"> </span>`;
+            const angle = Math.random() * Math.PI * 2;
+            const dist = 70 + Math.random() * 130;
+            const color = accentColors[vecIdx % accentColors.length];
+            // Each letter gets its own stagger threshold offset (0–0.18 range)
+            const staggerOffset = (vecIdx / chars.filter(c => c !== " ").length) * 0.18 * Math.random();
+            letterVectors.push({
+              x: Math.cos(angle) * dist,
+              y: Math.sin(angle) * dist * 0.6 - Math.random() * 40,
+              r: (Math.random() - 0.5) * 55,
+              color,
+              staggerOffset,
+            });
+            vecIdx++;
+            return `<span class="d-ltr" style="display:inline-block;-webkit-text-fill-color:${color};color:${color}">${char}</span>`;
+          }).join("");
+          letterSpans = Array.from(heroTitleEl.querySelectorAll(".d-ltr"));
+        }
+
+        function resetDecomposition() {
+          if (!decomposed || !heroTitleEl) return;
+          decomposed = false;
+          letterSpans = [];
+          letterVectors = [];
+          heroTitleEl.innerHTML = originalTitleHTML;
+          heroTitleEl.style.textShadow = "";
+        }
+
+        // === Unified RAF loop — three depth layers + decomposition ===
         function loop() {
           const lerpFactor = isMobile ? 0.04 : 0.07;
           currentX += (targetX - currentX) * lerpFactor;
@@ -164,6 +214,60 @@
               // Mobile: gyro offset only, no scroll transforms (prevents jank)
               heroContent.style.transform = `translateX(${hx}px) translateY(${hy}px)`;
             }
+          }
+
+          // === Letter decomposition — triggers as title scrolls behind content ===
+          const GLITCH_START = 0.18;
+          const glitchRaw = Math.max(0, (scrollProgress - GLITCH_START) / (1 - GLITCH_START));
+          const glitchEased = glitchRaw * glitchRaw; // quadratic — slow start, accelerates
+
+          // Velocity multiplier: fast scroll = more violent effect (capped at 3x)
+          const velocityMult = Math.min(1 + scrollVelocity * 0.04, 3);
+
+          if (glitchRaw > 0.02) {
+            buildDecomposition();
+
+            // Chromatic aberration — scales with velocity
+            const ab = glitchEased * 9 * velocityMult;
+            heroTitleEl.style.textShadow = `${ab}px 0 #ff00cc80, ${-ab}px 0 #00d4ff80`;
+
+            const jitterActive = glitchRaw > 0.2 && glitchRaw < 0.8;
+
+            letterSpans.forEach((span, i) => {
+              const v = letterVectors[i];
+              if (!v) return;
+
+              // Stagger: each letter has its own effective progress
+              const letterProgress = Math.max(0, glitchRaw - v.staggerOffset);
+              const letterEased = letterProgress * letterProgress;
+
+              // Color flash: cycle accent colors rapidly during jitter phase
+              if (jitterActive && Math.random() < glitchEased * 0.4) {
+                const flashColor = accentColors[Math.floor(Math.random() * accentColors.length)];
+                span.style.webkitTextFillColor = flashColor;
+                span.style.color = flashColor;
+              }
+
+              // Scale pop: briefly enlarges as letter starts ejecting
+              const popScale = letterProgress < 0.15
+                ? 1 + letterProgress * 2
+                : 1;
+
+              // Jitter amplified by velocity
+              const jMag = glitchEased * 12 * velocityMult;
+              const jx = jitterActive ? (Math.random() - 0.5) * jMag : 0;
+              const jy = jitterActive ? (Math.random() - 0.5) * jMag : 0;
+
+              span.style.transform = `translateX(${v.x * letterEased + jx}px) translateY(${v.y * letterEased + jy}px) rotate(${v.r * letterEased}deg) scale(${popScale})`;
+              span.style.opacity = Math.max(0, 1 - letterEased * 1.6);
+
+              // Blur only on desktop — too expensive per-letter on mobile
+              if (!isMobile) {
+                span.style.filter = `blur(${letterEased * 5}px)`;
+              }
+            });
+          } else {
+            resetDecomposition();
           }
 
           requestAnimationFrame(loop);
