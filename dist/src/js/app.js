@@ -1,5 +1,7 @@
 // Minimal parallax for geometric overlay
+// (home page sets window.homeParallaxActive to take over this transform)
 function updateMinimalParallaxOverlay() {
+  if (window.homeParallaxActive) return;
   const overlay = document.querySelector(".parallax-bg-overlay");
   if (!overlay) return;
   const scrollY = window.scrollY;
@@ -327,16 +329,43 @@ const audio = document.getElementById("site-audio");
 const audioToggle = document.getElementById("audio-toggle");
 
 if (audio) {
-  audio.volume = 0.3; // set volume
+  audio.volume = 0.3;
 }
 
-// Audio play/pause toggle
-if (audio && audioToggle) {
-  audioToggle.addEventListener("click", () => {
-    if (audio.paused) {
-      audio.play();
+// Autoplay on first user interaction (browsers block autoplay without it)
+let audioStarted = false;
+function tryAutoplay() {
+  if (audioStarted || !audio) return;
+  audioStarted = true;
+  audio.play().then(() => {
+    // Successfully playing — update button state to show "playing"
+    if (audioToggle) {
       audioToggle.classList.remove("muted");
       audioToggle.setAttribute("aria-label", "Pause music");
+    }
+  }).catch(() => {
+    // Autoplay blocked — stay muted, user can click button manually
+    audioStarted = false;
+  });
+  // Remove listeners after first successful attempt
+  ["click", "keydown", "mousemove"].forEach((evt) =>
+    document.removeEventListener(evt, tryAutoplay)
+  );
+}
+["click", "keydown", "mousemove"].forEach((evt) =>
+  document.addEventListener(evt, tryAutoplay, { once: false, passive: true })
+);
+
+// Manual toggle — play/pause
+if (audio && audioToggle) {
+  audioToggle.addEventListener("click", (e) => {
+    e.stopPropagation(); // don't trigger tryAutoplay as well
+    if (audio.paused) {
+      audio.play().then(() => {
+        audioStarted = true;
+        audioToggle.classList.remove("muted");
+        audioToggle.setAttribute("aria-label", "Pause music");
+      }).catch(() => {});
     } else {
       audio.pause();
       audioToggle.classList.add("muted");
@@ -408,6 +437,11 @@ document.addEventListener("DOMContentLoaded", function () {
     glowY = mouseY;
   let particleTimer = 0;
 
+  // Velocity tracking
+  let prevMouseX = mouseX, prevMouseY = mouseY;
+  let velX = 0, velY = 0;
+  let speed = 0;
+
   // Initial positioning
   cursorMain.style.left = mouseX - 10 + "px";
   cursorMain.style.top = mouseY - 10 + "px";
@@ -416,16 +450,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Update cursor position
   document.addEventListener("mousemove", function (e) {
+    velX = e.clientX - mouseX;
+    velY = e.clientY - mouseY;
+    speed = Math.sqrt(velX * velX + velY * velY);
+
     mouseX = e.clientX;
     mouseY = e.clientY;
 
     cursorMain.style.left = mouseX - 10 + "px";
     cursorMain.style.top = mouseY - 10 + "px";
 
-    // Create particles occasionally
+    // Velocity-based particle spawning — more particles when moving fast
     particleTimer++;
-    if (particleTimer % 15 === 0) {
-      createParticle(mouseX, mouseY);
+    const spawnRate = speed > 20 ? 4 : speed > 8 ? 8 : 15;
+    if (particleTimer % spawnRate === 0) {
+      createParticle(mouseX, mouseY, velX, velY, speed);
     }
   });
 
@@ -470,31 +509,42 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Create particle trail
-  function createParticle(x, y) {
+  // Create velocity-aware particle trail
+  function createParticle(x, y, vx = 0, vy = 0, spd = 0) {
     const particle = document.createElement("div");
     particle.className = "cursor-particle";
 
-    // Random color from the neon palette
-    const colors = ["#00ffff", "#ff00ff", "#ffff00"];
+    // Neon palette — bias toward cyan/magenta at speed
+    const colors = ["#00ffff", "#ff00ff", "#ffff00", "#6b7bff", "#ff006e"];
     particle.style.backgroundColor =
       colors[Math.floor(Math.random() * colors.length)];
 
-    // Random offset position
-    const offsetX = (Math.random() - 0.5) * 20;
-    const offsetY = (Math.random() - 0.5) * 20;
+    // At high speed: elongate particle in direction of travel
+    if (spd > 12) {
+      const angle = Math.atan2(vy, vx) * (180 / Math.PI);
+      const stretch = Math.min(1 + spd * 0.12, 5);
+      const size = Math.min(2 + spd * 0.1, 6);
+      particle.style.width = size + "px";
+      particle.style.height = size * stretch + "px";
+      particle.style.transform = `rotate(${angle + 90}deg)`;
+      particle.style.opacity = "0.85";
+    }
+
+    // Offset: trail behind cursor based on velocity direction
+    const trailFactor = Math.min(spd * 0.4, 14);
+    const offsetX = (Math.random() - 0.5) * 14 - (vx / Math.max(spd, 1)) * trailFactor;
+    const offsetY = (Math.random() - 0.5) * 14 - (vy / Math.max(spd, 1)) * trailFactor;
 
     particle.style.left = x + offsetX + "px";
     particle.style.top = y + offsetY + "px";
 
-    document.body.appendChild(particle);
+    // Faster movement = shorter particle lifetime (more energetic feel)
+    const lifetime = spd > 15 ? 500 : 1000;
 
-    // Remove particle after animation
+    document.body.appendChild(particle);
     setTimeout(() => {
-      if (particle.parentNode) {
-        particle.parentNode.removeChild(particle);
-      }
-    }, 1000);
+      if (particle.parentNode) particle.parentNode.removeChild(particle);
+    }, lifetime);
   }
 
   // Hide cursor when leaving window
@@ -531,22 +581,43 @@ const cardObserver = new IntersectionObserver(
 
 cardLinks.forEach((card) => cardObserver.observe(card));
 
+// ── SVG Circuit Trace — scroll-triggered path draw ─────────────────────────
+document.addEventListener("DOMContentLoaded", function () {
+  const traceSvg  = document.querySelector(".svg-trace");
+  const tracePath = document.querySelector(".trace-path");
+  if (!traceSvg || !tracePath) return;
 
-// Hamburger menu toggle
-const hamburgerBtn = document.getElementById("hamburgerBtn");
-const sideNav = document.querySelector(".side-nav");
+  // Measure the full path length and set up dash
+  const pathLen = tracePath.getTotalLength();
+  tracePath.style.strokeDasharray  = pathLen;
+  tracePath.style.strokeDashoffset = pathLen;
+  tracePath.style.transition = "none";
 
-if (hamburgerBtn && sideNav) {
-  hamburgerBtn.addEventListener("click", () => {
-    hamburgerBtn.classList.toggle("active");
-    sideNav.classList.toggle("menu-open");
-  });
+  let drawn = false;
 
-  // Close menu when a nav link is tapped
-  sideNav.querySelectorAll(".side-nav-link").forEach((link) => {
-    link.addEventListener("click", () => {
-      hamburgerBtn.classList.remove("active");
-      sideNav.classList.remove("menu-open");
-    });
-  });
-}
+  const traceObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !drawn) {
+          drawn = true;
+
+          // Animate the draw over ~1.4s
+          tracePath.style.transition = "stroke-dashoffset 1.4s cubic-bezier(0.4, 0, 0.2, 1)";
+          tracePath.style.strokeDashoffset = "0";
+
+          // After path is drawn, reveal decorations
+          setTimeout(() => {
+            traceSvg.classList.add("trace-drawn");
+          }, 1200);
+
+          traceObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.4 }
+  );
+
+  traceObserver.observe(traceSvg);
+});
+
+
