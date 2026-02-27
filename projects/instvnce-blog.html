@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-ZL1CZZKRKD"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-ZL1CZZKRKD");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>INSTVNCE Blog | Pablo Cordero</title>
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/icons/icon-192.png"
+    />
+    <link rel="stylesheet" href="../src/styles/main.css" />
+    <link rel="stylesheet" href="../src/styles/project.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="../src/js/sineWave.js" defer></script>
+    <!-- Vercel Analytics (only loads on Vercel) -->
+    <script>
+      if (
+        window.location.hostname !== "localhost" &&
+        window.location.hostname !== "127.0.0.1"
+      ) {
+        const s = document.createElement("script");
+        s.defer = true;
+        s.src = "/_vercel/insights/script.js";
+        document.head.appendChild(s);
+      }
+    </script>
+  </head>
+  <body>
+    <canvas id="waves"></canvas>
+
+    <nav class="side-nav" role="navigation" aria-label="Main navigation">
+      <div class="side-nav-logo">
+        <span class="logo-text" id="myName" data-text="PC">PC</span>
+      </div>
+      <div class="side-nav-links">
+        <a class="side-nav-link" href="/home" aria-label="Home">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          <span class="nav-label">Home</span>
+        </a>
+        <a class="side-nav-link" href="/about" aria-label="About">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <span class="nav-label">About</span>
+        </a>
+        <a class="side-nav-link" href="/home#projects" aria-label="Projects">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+          </svg>
+          <span class="nav-label">Projects</span>
+        </a>
+        <a class="side-nav-link" href="/skills" aria-label="Skills">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+          </svg>
+          <span class="nav-label">Skills</span>
+        </a>
+        <a class="side-nav-link" href="/art" aria-label="Art">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+            <path
+              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"
+            />
+          </svg>
+          <span class="nav-label">Art</span>
+        </a>
+        <a class="side-nav-link" href="/home#contact" aria-label="Contact">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          <span class="nav-label">Contact</span>
+        </a>
+        <a class="side-nav-link" href="/resume" aria-label="Resume">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+          </svg>
+          <span class="nav-label">Resume</span>
+        </a>
+        <a
+          class="side-nav-link exit-link"
+          href="/?stay"
+          aria-label="Zen Mode - Waves"
+        >
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M2 12c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+            <path d="M2 6c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+            <path d="M2 18c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+          </svg>
+          <span class="nav-label">Zen</span>
+        </a>
+      </div>
+      <div class="side-nav-glow"></div>
+    </nav>
+
+    <main class="project-page">
+      <!-- Hero Section -->
+      <section class="project-hero">
+        <div class="project-hero-content">
+          <a href="/home" class="back-link">← Back to Projects</a>
+          <h1 class="project-title">INSTVNCE</h1>
+          <p class="project-tagline">
+            A developer's log — not a publication, a terminal
+          </p>
+        </div>
+      </section>
+
+      <!-- Screenshot Gallery -->
+      <section class="project-gallery">
+        <div class="gallery-main">
+          <img
+            src="/images/projects/instvnce-blog/instance-home.png"
+            alt="INSTVNCE Blog Home"
+            class="gallery-hero-img"
+            loading="eager"
+          />
+        </div>
+        <div class="gallery-thumbs">
+          <img
+            src="/images/projects/instvnce-blog/instance-home.png"
+            alt="Home — dashboard view"
+            class="thumb active"
+            data-full="/images/projects/instvnce-blog/instance-home.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/instvnce-blog/instance-nav.png"
+            alt="Expanded navigation"
+            class="thumb"
+            data-full="/images/projects/instvnce-blog/instance-nav.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/instvnce-blog/instance-input.png"
+            alt="Architect input — post creation"
+            class="thumb"
+            data-full="/images/projects/instvnce-blog/instance-input.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/instvnce-blog/instance-post.png"
+            alt="Deployed instance — post view"
+            class="thumb"
+            data-full="/images/projects/instvnce-blog/instance-post.png"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="project-about">
+        <div class="about-grid">
+          <div class="about-description">
+            <h2>The Concept</h2>
+            <p>
+              INSTVNCE is built around one idea: every post is an instance — a
+              deployed unit of thought. You write it, you fire it, you can
+              terminate it. The interface reflects that. It's not a polished
+              publication — it's an active terminal window into how I think,
+              build, and decide.
+            </p>
+            <p>
+              Most dev blogs look like Medium. This one looks like a monitoring
+              dashboard. The aesthetic is neopunk terminal: CRT scanline
+              overlays, holographic post cards with chamfered corners, neon
+              green on cosmic black, monospace everywhere. It's not
+              decoration — it's a philosophy. The medium should feel like the
+              work.
+            </p>
+
+            <h3>Design System</h3>
+
+            <h4>1. Neopunk Terminal Aesthetic</h4>
+            <p>
+              Built from scratch in SCSS — no component libraries, no design
+              frameworks. Animated CRT scanlines, clip-path chamfered cards,
+              multi-layer holographic backgrounds, and golden-ratio bottom
+              accent lines that expand on hover. Every visual decision is a
+              deliberate choice, not a default.
+            </p>
+
+            <h4>2. The Architect Voice</h4>
+            <p>
+              Posts are <code>ACTIVE_LOG</code> instances. The input prompt
+              says <code>AIM</code>. Delete says <code>TERMINATE</code>. The
+              tone is not content marketing — it's raw operational log. The
+              blog format is designed for the things you actually think about
+              while building: reasoning behind choices, things that broke and
+              what they revealed, mental models, tools worth preserving.
+            </p>
+
+            <h4>3. Full Ownership</h4>
+            <p>
+              Self-hosted, no CMS, no platform risk. Every instance is owned.
+              The backend is a clean Express API connected to MongoDB — posts
+              are stored, retrieved, and terminated entirely under your control.
+            </p>
+
+            <h3>Technical Details</h3>
+            <div class="tech-table">
+              <div class="tech-row">
+                <span class="tech-feature">Design System</span>
+                <span class="tech-impl"
+                  >Custom SCSS — CRT scanlines, chamfered clip-path cards,
+                  holographic multi-layer backgrounds, no external UI
+                  libraries.</span
+                >
+              </div>
+              <div class="tech-row">
+                <span class="tech-feature">Post Model</span>
+                <span class="tech-impl"
+                  >Each post is an "instance" — created, deployed, and
+                  terminable. Stored in MongoDB with full CRUD via Express
+                  API.</span
+                >
+              </div>
+              <div class="tech-row">
+                <span class="tech-feature">Frontend</span>
+                <span class="tech-impl"
+                  >React + Vite SPA. Component-driven architecture with
+                  TopNav and post card system.</span
+                >
+              </div>
+              <div class="tech-row">
+                <span class="tech-feature">Typography</span>
+                <span class="tech-impl"
+                  >Omnium (Adobe Fonts) — monospace-forward, chosen to
+                  reinforce the terminal aesthetic throughout.</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="about-details">
+            <div class="detail-card">
+              <h3>Project Type</h3>
+              <p>Personal Developer Blog — Full-Stack</p>
+            </div>
+            <div class="detail-card">
+              <h3>Tech Stack</h3>
+              <p>
+                <strong>Frontend:</strong> React, Vite, SCSS<br />
+                <strong>Backend:</strong> Node.js, Express<br />
+                <strong>Database:</strong> MongoDB<br />
+                <strong>Typography:</strong> Omnium (Adobe Fonts)
+              </p>
+            </div>
+            <div class="detail-card">
+              <h3>Role</h3>
+              <p>Solo — Full-Stack Engineer & Designer</p>
+            </div>
+            <div class="detail-card">
+              <h3>Aesthetic</h3>
+              <p>
+                Neopunk terminal • CRT scanlines • Holographic cards •
+                Chamfered clip-paths • Monospace-first
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Gallery Script -->
+    <script>
+      document.querySelectorAll(".gallery-thumbs .thumb").forEach((thumb) => {
+        thumb.addEventListener("click", () => {
+          const heroImg = document.querySelector(".gallery-hero-img");
+          heroImg.src = thumb.dataset.full;
+          document
+            .querySelectorAll(".thumb")
+            .forEach((t) => t.classList.remove("active"));
+          thumb.classList.add("active");
+        });
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const canvas = document.getElementById("waves");
+        if (canvas && typeof SineWave !== "undefined") {
+          new SineWave(canvas, {
+            speed: 0.008,
+            amplitude: 40,
+            wavelength: 0.015,
+            strokeStyle: "rgba(0, 255, 247, 0.08)",
+          });
+        }
+      });
+    </script>
+    <script src="../src/js/app.js" defer></script>
+    <script src="../src/js/orb.js" defer></script>
+  </body>
+</html>
