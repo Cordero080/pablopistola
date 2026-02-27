@@ -581,43 +581,4 @@ const cardObserver = new IntersectionObserver(
 
 cardLinks.forEach((card) => cardObserver.observe(card));
 
-// ── SVG Circuit Trace — scroll-triggered path draw ─────────────────────────
-document.addEventListener("DOMContentLoaded", function () {
-  const traceSvg  = document.querySelector(".svg-trace");
-  const tracePath = document.querySelector(".trace-path");
-  if (!traceSvg || !tracePath) return;
-
-  // Measure the full path length and set up dash
-  const pathLen = tracePath.getTotalLength();
-  tracePath.style.strokeDasharray  = pathLen;
-  tracePath.style.strokeDashoffset = pathLen;
-  tracePath.style.transition = "none";
-
-  let drawn = false;
-
-  const traceObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && !drawn) {
-          drawn = true;
-
-          // Animate the draw over ~1.4s
-          tracePath.style.transition = "stroke-dashoffset 1.4s cubic-bezier(0.4, 0, 0.2, 1)";
-          tracePath.style.strokeDashoffset = "0";
-
-          // After path is drawn, reveal decorations
-          setTimeout(() => {
-            traceSvg.classList.add("trace-drawn");
-          }, 1200);
-
-          traceObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.4 }
-  );
-
-  traceObserver.observe(traceSvg);
-});
-
 

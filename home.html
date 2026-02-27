@@ -531,56 +531,6 @@
 
     <canvas id="waves"></canvas>
 
-    <!-- SVG Circuit Trace — draws itself as it enters viewport -->
-    <div class="svg-trace-container" aria-hidden="true">
-      <svg class="svg-trace" viewBox="0 0 1100 90" preserveAspectRatio="xMidYMid meet" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Left anchor dot -->
-        <circle class="trace-dot trace-dot--left"  cx="30"  cy="45" r="4" />
-        <!-- Right anchor dot -->
-        <circle class="trace-dot trace-dot--right" cx="1070" cy="45" r="4" />
-
-        <!-- Main horizontal trace with circuit jogs -->
-        <path class="trace-path" d="
-          M 30 45
-          L 120 45
-          L 140 25
-          L 200 25
-          L 220 45
-          L 340 45
-          L 360 65
-          L 420 65
-          L 440 45
-          L 520 45
-          L 540 25
-          L 580 25
-          L 600 45
-          L 680 45
-          L 700 65
-          L 740 65
-          L 760 45
-          L 860 45
-          L 880 25
-          L 940 25
-          L 960 45
-          L 1070 45
-        " />
-
-        <!-- Decorative tick marks -->
-        <line class="trace-tick" x1="220" y1="38" x2="220" y2="52" />
-        <line class="trace-tick" x1="440" y1="38" x2="440" y2="52" />
-        <line class="trace-tick" x1="600" y1="38" x2="600" y2="52" />
-        <line class="trace-tick" x1="760" y1="38" x2="760" y2="52" />
-        <line class="trace-tick" x1="960" y1="38" x2="960" y2="52" />
-
-        <!-- Node circles at jog points -->
-        <circle class="trace-node" cx="220" cy="45" r="3" />
-        <circle class="trace-node" cx="440" cy="45" r="3" />
-        <circle class="trace-node" cx="600" cy="45" r="3" />
-        <circle class="trace-node" cx="760" cy="45" r="3" />
-        <circle class="trace-node" cx="960" cy="45" r="3" />
-      </svg>
-    </div>
-
     <!-- Bento Grid Layout -->
     <section class="bento-section" id="projects">
       <div class="bento-grid">
