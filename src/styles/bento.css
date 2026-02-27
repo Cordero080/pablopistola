@@ -290,24 +290,19 @@
   object-position: center 15%;
 }
 
-/* Bottom-right - same size as tall, connects to Pneuma below */
+/* Bottom-right - same size as tall */
 .bento-puzzle-br {
   grid-column: span 5;
   grid-row: span 2;
   min-height: 380px;
   border-radius: 24px;
   margin-left: -20px;
-  margin-bottom: -20px;
   padding-left: 20px;
   clip-path: polygon(
     20px 0%,
     100% 0%,
-    100% calc(100% - 20px),
-    70% calc(100% - 20px),
-    70% 100%,
-    30% 100%,
-    30% calc(100% - 20px),
-    20px calc(100% - 20px),
+    100% 100%,
+    20px 100%,
     20px 60%,
     0px 60%,
     0px 40%,
@@ -319,29 +314,12 @@
   object-position: center 15%;
 }
 
-/* Center card - Pneuma - full width, connects to Numeneon above and Bookshelf below */
+/* Center card - Pneuma - full width, sits beneath Numeneon pair */
 .bento-center {
   grid-column: span 12;
   grid-row: span 1;
   min-height: 400px;
   border-radius: 24px;
-  margin-top: -20px;
-  margin-bottom: -20px;
-  padding-top: 20px;
-  clip-path: polygon(
-    0% 0%,
-    72% 0%,
-    72% 20px,
-    80% 20px,
-    80% 0%,
-    100% 0%,
-    100% calc(100% - 20px),
-    60% calc(100% - 20px),
-    60% 100%,
-    40% 100%,
-    40% calc(100% - 20px),
-    0% calc(100% - 20px)
-  );
 }
 
 .bento-center .bento-card-image {
@@ -355,24 +333,12 @@
   padding-bottom: 2rem;
 }
 
-/* Bookshelf card - full width, connects to pneuma above */
+/* Bookshelf card - full width */
 .bento-bookshelf {
   grid-column: span 12;
   grid-row: span 1;
   min-height: 400px;
   border-radius: 24px;
-  margin-top: -20px;
-  padding-top: 20px;
-  clip-path: polygon(
-    0% 20px,
-    40% 20px,
-    40% 0%,
-    60% 0%,
-    60% 20px,
-    100% 20px,
-    100% 100%,
-    0% 100%
-  );
 }
 
 .bento-bookshelf .bento-card-image {
@@ -752,62 +718,8 @@
     );
   }
 
-  /* Sixth card - notch top-left, tab bottom-right */
+  /* Sixth card - notch top-left, clean bottom */
   .bento-puzzle-br {
-    grid-column: span 1;
-    grid-row: span 1;
-    min-height: 300px;
-    margin: 0;
-    padding: 0;
-    border-radius: 24px;
-    margin-top: -20px;
-    margin-bottom: -20px;
-    padding-top: 20px;
-    clip-path: polygon(
-      0% 20px,
-      10% 20px,
-      10% 0,
-      30% 0,
-      30% 20px,
-      100% 20px,
-      100% calc(100% - 20px),
-      90% calc(100% - 20px),
-      90% 100%,
-      70% 100%,
-      70% calc(100% - 20px),
-      0% calc(100% - 20px)
-    );
-  }
-
-  /* Center card - Pneuma - notch top-right, tab bottom-left */
-  .bento-center {
-    grid-column: span 1;
-    grid-row: span 1;
-    min-height: 300px;
-    margin: 0;
-    padding: 0;
-    border-radius: 24px;
-    margin-top: -20px;
-    margin-bottom: -20px;
-    padding-top: 20px;
-    clip-path: polygon(
-      0% 20px,
-      70% 20px,
-      70% 0,
-      90% 0,
-      90% 20px,
-      100% 20px,
-      100% calc(100% - 20px),
-      30% calc(100% - 20px),
-      30% 100%,
-      10% 100%,
-      10% calc(100% - 20px),
-      0% calc(100% - 20px)
-    );
-  }
-
-  /* Bookshelf card - notch top-left, no tab at bottom (last card) */
-  .bento-bookshelf {
     grid-column: span 1;
     grid-row: span 1;
     min-height: 300px;
@@ -826,6 +738,28 @@
       100% 100%,
       0% 100%
     );
+  }
+
+  /* Center card - Pneuma - clean, no connecting geometry */
+  .bento-center {
+    grid-column: span 1;
+    grid-row: span 1;
+    min-height: 300px;
+    margin: 0;
+    padding: 0;
+    border-radius: 24px;
+    clip-path: none;
+  }
+
+  /* Bookshelf card - clean */
+  .bento-bookshelf {
+    grid-column: span 1;
+    grid-row: span 1;
+    min-height: 300px;
+    margin: 0;
+    padding: 0;
+    border-radius: 24px;
+    clip-path: none;
   }
 
   .bento-new-left,
