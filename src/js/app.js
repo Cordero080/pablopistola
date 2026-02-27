@@ -435,12 +435,6 @@ document.addEventListener("DOMContentLoaded", function () {
     followerY = mouseY;
   let glowX = mouseX,
     glowY = mouseY;
-  let particleTimer = 0;
-
-  // Velocity tracking
-  let prevMouseX = mouseX, prevMouseY = mouseY;
-  let velX = 0, velY = 0;
-  let speed = 0;
 
   // Initial positioning
   cursorMain.style.left = mouseX - 10 + "px";
@@ -450,22 +444,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Update cursor position
   document.addEventListener("mousemove", function (e) {
-    velX = e.clientX - mouseX;
-    velY = e.clientY - mouseY;
-    speed = Math.sqrt(velX * velX + velY * velY);
-
     mouseX = e.clientX;
     mouseY = e.clientY;
 
     cursorMain.style.left = mouseX - 10 + "px";
     cursorMain.style.top = mouseY - 10 + "px";
-
-    // Velocity-based particle spawning — more particles when moving fast
-    particleTimer++;
-    const spawnRate = speed > 20 ? 4 : speed > 8 ? 8 : 15;
-    if (particleTimer % spawnRate === 0) {
-      createParticle(mouseX, mouseY, velX, velY, speed);
-    }
   });
 
   // Smooth follow animation
@@ -508,44 +491,6 @@ document.addEventListener("DOMContentLoaded", function () {
       cursorGlow.classList.remove("active");
     }
   });
-
-  // Create velocity-aware particle trail
-  function createParticle(x, y, vx = 0, vy = 0, spd = 0) {
-    const particle = document.createElement("div");
-    particle.className = "cursor-particle";
-
-    // Neon palette — bias toward cyan/magenta at speed
-    const colors = ["#00ffff", "#ff00ff", "#ffff00", "#6b7bff", "#ff006e"];
-    particle.style.backgroundColor =
-      colors[Math.floor(Math.random() * colors.length)];
-
-    // At high speed: elongate particle in direction of travel
-    if (spd > 12) {
-      const angle = Math.atan2(vy, vx) * (180 / Math.PI);
-      const stretch = Math.min(1 + spd * 0.12, 5);
-      const size = Math.min(2 + spd * 0.1, 6);
-      particle.style.width = size + "px";
-      particle.style.height = size * stretch + "px";
-      particle.style.transform = `rotate(${angle + 90}deg)`;
-      particle.style.opacity = "0.85";
-    }
-
-    // Offset: trail behind cursor based on velocity direction
-    const trailFactor = Math.min(spd * 0.4, 14);
-    const offsetX = (Math.random() - 0.5) * 14 - (vx / Math.max(spd, 1)) * trailFactor;
-    const offsetY = (Math.random() - 0.5) * 14 - (vy / Math.max(spd, 1)) * trailFactor;
-
-    particle.style.left = x + offsetX + "px";
-    particle.style.top = y + offsetY + "px";
-
-    // Faster movement = shorter particle lifetime (more energetic feel)
-    const lifetime = spd > 15 ? 500 : 1000;
-
-    document.body.appendChild(particle);
-    setTimeout(() => {
-      if (particle.parentNode) particle.parentNode.removeChild(particle);
-    }, lifetime);
-  }
 
   // Hide cursor when leaving window
   document.addEventListener("mouseenter", function () {
