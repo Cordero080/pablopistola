@@ -72,17 +72,7 @@
 
     <a href="/home.html" class="enter-btn" id="enterBtn"><span>enter</span></a>
 
-    <div class="interaction-hint" id="interactionHint">
-      <span class="hint-icon">〰</span>
-      <span class="hint-text desktop-hint"
-        >Move your mouse to play with the waves</span
-      >
-      <span class="hint-text mobile-hint"
-        >Touch to interact with the waves</span
-      >
-    </div>
-
-    <script src="src/js/sineWave.js"></script>
+<script src="src/js/sineWave.js"></script>
     <script>
       // Check for ?stay param - if present, stay on landing (zen mode)
       const urlParams = new URLSearchParams(window.location.search);
@@ -120,9 +110,6 @@
           // Add dissolving class to all elements
           document
             .querySelector(".landing-container")
-            .classList.add("dissolving");
-          document
-            .querySelector(".interaction-hint")
             .classList.add("dissolving");
           document.getElementById("waves").classList.add("dissolving");
           document

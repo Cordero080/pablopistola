@@ -1,16 +1,6 @@
-const CACHE_NAME = "pablo-pistola-v9";
+const CACHE_NAME = "pablo-pistola-v10";
 const ASSETS_TO_CACHE = [
-  "/",
-  "/app.js",
-  "/Css/style.css",
-  "/Css/landing.css",
-  "/Css/feathers.css",
-  "/Css/compMode.css",
-  "/js/sineWave.js",
-  "/js/landing.js",
-  "/js/feathers.js",
-  "/js/orb.js",
-  "/js/compMode.js",
+  "/home.html",
   "/icons/icon-192.png",
   "/icons/icon-512.png",
 ];

@@ -478,64 +478,6 @@ body.zen-mode .spacebar-prompt {
   }
 }
 
-/* Interaction Hint */
-.interaction-hint {
-  position: fixed;
-  bottom: 35%;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  font-family: var(--font-display);
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.9);
-  letter-spacing: 0.15em;
-  text-transform: lowercase;
-  text-shadow: 0 0 8px rgba(0, 255, 247, 0.4), 0 2px 4px rgba(0, 0, 0, 0.5);
-  animation: hintPulse 6s ease-in-out infinite;
-  z-index: 10;
-  pointer-events: none;
-  white-space: nowrap;
-}
-
-.hint-icon {
-  font-size: 1.2rem;
-}
-
-.hint-text.desktop-hint {
-  display: inline;
-}
-
-.hint-text.mobile-hint {
-  display: none;
-}
-
-@keyframes hintPulse {
-  0%, 100% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-/* Mobile: change hint text */
-@media (max-width: 768px) {
-  .interaction-hint {
-    font-size: 0.65rem;
-    bottom: 40%;
-  }
-  
-  .hint-text.desktop-hint {
-    display: none;
-  }
-  
-  .hint-text.mobile-hint {
-    display: inline;
-  }
-}
 
 /* Scanline Dissolve Overlay */
 .curtain-overlay {
@@ -623,148 +565,62 @@ body.zen-mode .spacebar-prompt {
   }
 }
 
-/* Also dissolve the hint and wave canvas */
-.interaction-hint.dissolving,
+/* Also dissolve the wave canvas */
 #waves.dissolving {
   animation: scanlineDissolve 2.5s ease-out forwards;
 }
 
-/* Enter button - using project button styles */
+/* Enter button — minimal, barely-there */
 .enter-btn {
   position: fixed;
-  bottom: 2rem;
+  bottom: 2.5rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 40px;
+  padding: 0;
   font-family: 'aktiv-grotesk', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 500;
+  font-size: 0.7rem;
+  font-weight: 400;
   text-decoration: none;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.3);
   cursor: pointer;
-  
-  /* Organic blob shape */
-  border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
-  
-  /* Multi-layered dark holographic background */
-  background:
-    linear-gradient(145deg, #221d27, #000000),
-    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1), transparent 50%),
-    radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.5), transparent 50%),
-    linear-gradient(45deg, rgba(138, 43, 226, 0.05), rgba(0, 212, 255, 0.05), rgba(138, 43, 226, 0.05));
-  background-size: 100% 100%, 150% 150%, 150% 150%, 200% 200%;
-  background-blend-mode: overlay, multiply, overlay;
-  
-  border: 2px solid rgba(0, 212, 255, 0.4);
-  
-  /* Glowing text shadow */
-  text-shadow:
-    0 0 5px rgba(138, 43, 226, 0.5),
-    0 0 10px rgba(0, 212, 255, 0.3),
-    0 0 15px rgba(138, 43, 226, 0.2);
-  
-  /* Subtle glow shadow */
-  box-shadow:
-    0 2px 8px rgba(138, 43, 226, 0.3),
-    0 1px 6px rgba(0, 212, 255, 0.2);
-  
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  
-  /* Bouncy animation easing */
-  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.8s ease;
-  
-  position: fixed;
-  overflow: hidden;
-  
+  background: none;
+  border: none;
+  box-shadow: none;
+  text-shadow: none;
+  border-radius: 0;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  overflow: visible;
+  transition: color 0.4s ease, opacity 0.8s ease, letter-spacing 0.4s ease;
   opacity: 0;
   pointer-events: none;
 }
 
-.enter-btn::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: radial-gradient(
-    circle,
-    rgba(0, 212, 255, 0.25),
-    rgba(138, 43, 226, 0.2)
-  );
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
-  z-index: -1;
-}
-
 .enter-btn.visible {
-  opacity: 0.6;
+  opacity: 1;
   pointer-events: auto;
-  animation: enterPulse 3s ease-in-out infinite;
+  animation: enterPulse 4s ease-in-out infinite;
 }
 
 @keyframes enterPulse {
-  0%, 100% {
-    border-color: rgba(0, 212, 255, 0.4);
-    box-shadow:
-      0 2px 8px rgba(138, 43, 226, 0.3),
-      0 1px 6px rgba(0, 212, 255, 0.2);
-  }
-  50% {
-    border-color: rgba(0, 255, 247, 0.7);
-    box-shadow:
-      0 4px 16px rgba(138, 43, 226, 0.4),
-      0 2px 12px rgba(0, 212, 255, 0.35);
-  }
-}
-
-.enter-btn:hover::before {
-  width: 200px;
-  height: 200px;
+  0%, 100% { color: rgba(255, 255, 255, 0.25); }
+  50%       { color: rgba(255, 255, 255, 0.45); }
 }
 
 .enter-btn:hover {
-  color: rgba(255, 255, 255, 1);
-  border-color: rgba(0, 212, 255, 0.8);
-  transform: translateX(-50%) translateY(-3px) scale(1.03);
-  box-shadow:
-    0 4px 12px rgba(0, 212, 255, 0.35),
-    0 6px 16px rgba(138, 43, 226, 0.25);
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.36em;
   animation: none;
+  transform: translateX(-50%);
 }
 
 .enter-btn:active {
-  transform: translateX(-50%) translateY(3px) scale(0.97);
-  box-shadow:
-    0 2px 6px rgba(0, 212, 255, 0.25),
-    0 3px 8px rgba(138, 43, 226, 0.15);
-  transition: all 0.1s ease;
-}
-
-/* Mobile enter button - must come after base styles */
-@media (max-width: 768px) {
-  .enter-btn {
-    padding: 6px 32px;
-    font-size: 0.7rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .enter-btn {
-    padding: 5px 28px;
-  }
-}
-
-@media (max-width: 360px) {
-  .enter-btn {
-    padding: 5px 24px;
-  }
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.1s ease;
 }

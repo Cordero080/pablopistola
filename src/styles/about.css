@@ -21,8 +21,8 @@
 }
 
 .about-name {
-  font-family: "thornwood-vf", sans-serif;
-  font-variation-settings: "wght" 200, "wdth" 50;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 600;
   font-size: clamp(1.75rem, 5vw, 3rem);
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -38,9 +38,9 @@
 }
 
 .about-section h2 {
-  font-family: "aktiv-grotesk", sans-serif;
+  font-family: "Rajdhani", sans-serif;
   font-size: clamp(1.5rem, 4vw, 2rem);
-  font-weight: 800;
+  font-weight: 700;
   background: linear-gradient(90deg, #ff207a, #9050ff, #00d4ff, #1060c0);
   background-size: 200% 200%;
   -webkit-background-clip: text;
@@ -165,6 +165,30 @@
 
 /* Project Highlight Cards */
 .project-highlight {
+  position: relative;
+  isolation: isolate;
+  clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+  padding: 2rem;
+  margin: 2rem 0;
+  backdrop-filter: blur(10px);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
+  transition: all 0.3s ease;
+}
+
+.project-highlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 0, 110, 0.7), rgba(131, 56, 236, 0.7), rgba(0, 212, 255, 0.7));
+  z-index: -2;
+  transition: background 0.3s ease;
+}
+
+.project-highlight::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  clip-path: polygon(13px 0, 100% 0, 100% calc(100% - 13px), calc(100% - 13px) 100%, 0 100%, 0 13px);
   background:
     linear-gradient(145deg, #221d27, #000000),
     radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.05), transparent 50%),
@@ -172,29 +196,19 @@
     linear-gradient(45deg, rgba(138, 43, 226, 0.05), rgba(0, 212, 255, 0.05), rgba(138, 43, 226, 0.05));
   background-size: 100% 100%, 150% 150%, 150% 150%, 200% 200%;
   background-blend-mode: overlay, multiply, overlay;
-  border: 1px solid rgba(0, 212, 255, 0.3);
-  border-radius: 12px;
-  padding: 2rem;
-  margin: 2rem 0;
-  backdrop-filter: blur(10px);
-  box-shadow:
-    0 4px 8px rgba(0, 0, 0, 0.8),
-    inset 0 1px 3px rgba(255, 255, 255, 0.1),
-    inset 0 -1px 3px rgba(0, 0, 0, 0.5);
-  transition: all 0.3s ease;
+  z-index: -1;
 }
 
 .project-highlight:hover {
-  border-color: rgba(0, 212, 255, 0.6);
-  box-shadow:
-    0 0 20px rgba(0, 212, 255, 0.3),
-    0 4px 8px rgba(0, 0, 0, 0.8),
-    inset 0 1px 3px rgba(255, 255, 255, 0.2),
-    inset 0 -1px 3px rgba(0, 0, 0, 0.5);
+  filter: drop-shadow(0 0 10px rgba(131, 56, 236, 0.5)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8));
+}
+
+.project-highlight:hover::before {
+  background: linear-gradient(135deg, rgba(255, 0, 110, 1), rgba(131, 56, 236, 1), rgba(0, 212, 255, 1));
 }
 
 .project-highlight h3 {
-  font-family: "aktiv-grotesk", sans-serif;
+  font-family: "Rajdhani", sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
   background: linear-gradient(90deg, #ff207a, #9050ff, #00d4ff, #1060c0);
@@ -453,6 +467,30 @@
    ========================================== */
 .system-manifesto {
   position: relative;
+  isolation: isolate;
+  clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 800px;
+  backdrop-filter: blur(10px);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
+  transition: all 0.3s ease;
+}
+
+.system-manifesto::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 0, 110, 0.7), rgba(131, 56, 236, 0.7), rgba(0, 212, 255, 0.7));
+  z-index: -2;
+  transition: background 0.3s ease;
+}
+
+.system-manifesto::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  clip-path: polygon(13px 0, 100% 0, 100% calc(100% - 13px), calc(100% - 13px) 100%, 0 100%, 0 13px);
   background:
     linear-gradient(145deg, #221d27, #000000),
     radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.05), transparent 50%),
@@ -460,39 +498,15 @@
     linear-gradient(45deg, rgba(138, 43, 226, 0.05), rgba(0, 212, 255, 0.05), rgba(138, 43, 226, 0.05));
   background-size: 100% 100%, 150% 150%, 150% 150%, 200% 200%;
   background-blend-mode: overlay, multiply, overlay;
-  border: 1px solid rgba(0, 212, 255, 0.3);
-  border-radius: 12px;
-  padding: 2rem;
-  margin: 2rem auto;
-  max-width: 800px;
-  backdrop-filter: blur(10px);
-  box-shadow:
-    0 4px 8px rgba(0, 0, 0, 0.8),
-    inset 0 1px 3px rgba(255, 255, 255, 0.1),
-    inset 0 -1px 3px rgba(0, 0, 0, 0.5);
-  transition: all 0.3s ease;
-  overflow: hidden;
+  z-index: -1;
 }
 
 .system-manifesto:hover {
-  border-color: rgba(0, 212, 255, 0.6);
-  box-shadow:
-    0 0 20px rgba(0, 212, 255, 0.3),
-    0 4px 8px rgba(0, 0, 0, 0.8),
-    inset 0 1px 3px rgba(255, 255, 255, 0.2),
-    inset 0 -1px 3px rgba(0, 0, 0, 0.5);
+  filter: drop-shadow(0 0 10px rgba(131, 56, 236, 0.5)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8));
 }
 
-.system-manifesto::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #ff006e, #8338ec, #07429f);
-  background-size: 200% auto;
-  animation: heroGradientMoveAlt 8s linear infinite;
+.system-manifesto:hover::before {
+  background: linear-gradient(135deg, rgba(255, 0, 110, 1), rgba(131, 56, 236, 1), rgba(0, 212, 255, 1));
 }
 
 .manifesto-header {
