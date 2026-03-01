@@ -118,3 +118,21 @@ body.complementary-colors #waves {
 	transform: translateY(-50%);
 	z-index: 1;
 }
+
+/* Hero title: solid black in comp mode — high contrast against vivid background */
+body.complementary-colors .hero-title {
+	background: none;
+	-webkit-background-clip: unset;
+	background-clip: unset;
+	-webkit-text-fill-color: #000;
+	color: #000;
+	text-shadow: none;
+	animation: none;
+}
+
+body.complementary-colors .hero-title:hover {
+	background: none;
+	-webkit-text-fill-color: #000;
+	color: #000;
+	animation: none;
+}
