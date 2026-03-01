@@ -218,30 +218,51 @@
         <div class="gallery-thumbs">
           <img
             src="/images/projects/instvnce-blog/instance-home.png"
-            alt="Home — dashboard view"
+            alt="Landing — logo, diagnostics bar, 3D braces, input form"
             class="thumb active"
             data-full="/images/projects/instvnce-blog/instance-home.png"
             loading="lazy"
           />
           <img
             src="/images/projects/instvnce-blog/instance-nav.png"
-            alt="Expanded navigation"
+            alt="Navigation bar — FEED, ARCHIVE, ABOUT, [?] syntax ref, ONLINE indicator"
             class="thumb"
             data-full="/images/projects/instvnce-blog/instance-nav.png"
             loading="lazy"
           />
           <img
-            src="/images/projects/instvnce-blog/instance-input.png"
-            alt="Architect input — post creation"
+            src="/images/projects/instvnce-blog/instance-home-post.png"
+            alt="Home feed — input form above deployed instance cards"
             class="thumb"
-            data-full="/images/projects/instvnce-blog/instance-input.png"
+            data-full="/images/projects/instvnce-blog/instance-home-post.png"
             loading="lazy"
           />
           <img
-            src="/images/projects/instvnce-blog/instance-post.png"
-            alt="Deployed instance — post view"
+            src="/images/projects/instvnce-blog/instance-feed.png"
+            alt="Post detail — full holographic card view with back link"
             class="thumb"
-            data-full="/images/projects/instvnce-blog/instance-post.png"
+            data-full="/images/projects/instvnce-blog/instance-feed.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/instvnce-blog/instance-edit.png"
+            alt="Edit mode — heavy-load yellow state, content pre-filled, FIRE button"
+            class="thumb"
+            data-full="/images/projects/instvnce-blog/instance-edit.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/instvnce-blog/instance-syntax.png"
+            alt="Markdown syntax reference modal"
+            class="thumb"
+            data-full="/images/projects/instvnce-blog/instance-syntax.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/instvnce-blog/instance-about.png"
+            alt="About page — 2×2 philosophy grid"
+            class="thumb"
+            data-full="/images/projects/instvnce-blog/instance-about.png"
             loading="lazy"
           />
         </div>
@@ -302,8 +323,17 @@
                 <span class="tech-feature">Design System</span>
                 <span class="tech-impl"
                   >Custom SCSS — CRT scanlines, chamfered clip-path cards,
-                  holographic multi-layer backgrounds, no external UI
-                  libraries.</span
+                  holographic multi-layer backgrounds, golden-ratio accent
+                  lines. No external UI libraries.</span
+                >
+              </div>
+              <div class="tech-row">
+                <span class="tech-feature">3D Elements</span>
+                <span class="tech-impl"
+                  >Three.js via @react-three/fiber and @react-three/drei —
+                  metallic holographic <code>{ }</code> braces rendered in
+                  WebGL with Float hover animation, point lighting, and
+                  environment mapping.</span
                 >
               </div>
               <div class="tech-row">
@@ -311,14 +341,16 @@
                 <span class="tech-impl"
                   >Each post is an "instance" — created, deployed, and
                   terminable. Stored in MongoDB with full CRUD via Express
-                  API.</span
+                  API. Full Markdown support with syntax-highlighted code
+                  blocks via react-markdown and rehype-highlight.</span
                 >
               </div>
               <div class="tech-row">
                 <span class="tech-feature">Frontend</span>
                 <span class="tech-impl"
-                  >React + Vite SPA. Component-driven architecture with
-                  TopNav and post card system.</span
+                  >React + Vite SPA with React Router v6. Multi-page
+                  routing: feed, post detail, and about. Component-driven
+                  architecture with TopNav, SyntaxModal, and Braces3D.</span
                 >
               </div>
               <div class="tech-row">
@@ -339,7 +371,9 @@
             <div class="detail-card">
               <h3>Tech Stack</h3>
               <p>
-                <strong>Frontend:</strong> React, Vite, SCSS<br />
+                <strong>Frontend:</strong> React, Vite, SCSS, React Router v6<br />
+                <strong>3D:</strong> Three.js, @react-three/fiber, drei<br />
+                <strong>Markdown:</strong> react-markdown, rehype-highlight<br />
                 <strong>Backend:</strong> Node.js, Express<br />
                 <strong>Database:</strong> MongoDB<br />
                 <strong>Typography:</strong> Omnium (Adobe Fonts)
