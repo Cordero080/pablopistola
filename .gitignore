@@ -15,3 +15,6 @@ Thumbs.db
 
 .vercel
 .env*.local
+
+# Local docs/notes (kept out of git by default)
+docs/

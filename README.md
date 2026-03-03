@@ -17,6 +17,13 @@ Personal portfolio website showcasing software engineering projects, art, and cr
 - **Nexus Geom Lab** — Interactive 3D polytope visualization platform
 - **Dojo** — Martial arts training tracker
 
+## SEO Stretch Goals (Learning)
+
+- Add automatic `lastmod` values in `sitemap.xml` based on each page's real file modification time.
+- Add JSON-LD structured data (`Person`, `WebSite`, `CreativeWork`) for richer search results.
+- Keep generated `robots.txt` and `sitemap.xml` tied to production domain (`https://pvblocordero.com`).
+- Submit sitemap in Google Search Console and monitor indexing/crawl coverage.
+
 ## Copyright & Usage
 
 © 2026 Pablo Cordero. All Rights Reserved.

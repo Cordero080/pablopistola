@@ -20,6 +20,28 @@
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
     <title>Pablo Pistola</title>
+    <meta
+      name="description"
+      content="Portfolio of Pablo Cordero, full-stack software engineer and creative technologist building interactive web experiences, AI projects, and digital art."
+    />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="/home" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Pablo Pistola" />
+    <meta property="og:title" content="Pablo Pistola" />
+    <meta
+      property="og:description"
+      content="Portfolio of Pablo Cordero, full-stack software engineer and creative technologist building interactive web experiences, AI projects, and digital art."
+    />
+    <meta property="og:url" content="/home" />
+    <meta property="og:image" content="/images/projects/transcendence.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Pablo Pistola" />
+    <meta
+      name="twitter:description"
+      content="Portfolio of Pablo Cordero, full-stack software engineer and creative technologist building interactive web experiences, AI projects, and digital art."
+    />
+    <meta name="twitter:image" content="/images/projects/transcendence.webp" />
 
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#00fff7" />
@@ -55,9 +77,11 @@
 
     <!-- Service Worker Registration (production only — skip on localhost to avoid stale cache during dev) -->
     <script>
-      if ("serviceWorker" in navigator &&
-          window.location.hostname !== "localhost" &&
-          window.location.hostname !== "127.0.0.1") {
+      if (
+        "serviceWorker" in navigator &&
+        window.location.hostname !== "localhost" &&
+        window.location.hostname !== "127.0.0.1"
+      ) {
         window.addEventListener("load", () => {
           navigator.serviceWorker
             .register("/sw.js")
@@ -80,26 +104,36 @@
 
         let scrollY = 0;
         // Normalized pointer offset: -1 to 1 from viewport center
-        let targetX = 0, targetY = 0;
-        let currentX = 0, currentY = 0;
+        let targetX = 0,
+          targetY = 0;
+        let currentX = 0,
+          currentY = 0;
 
         // === DESKTOP: mouse-move parallax ===
         if (!isMobile) {
-          window.addEventListener("mousemove", (e) => {
-            targetX = (e.clientX / window.innerWidth - 0.5) * 2;
-            targetY = (e.clientY / window.innerHeight - 0.5) * 2;
-          }, { passive: true });
+          window.addEventListener(
+            "mousemove",
+            (e) => {
+              targetX = (e.clientX / window.innerWidth - 0.5) * 2;
+              targetY = (e.clientY / window.innerHeight - 0.5) * 2;
+            },
+            { passive: true },
+          );
         }
 
         // === MOBILE: gyroscope parallax ===
         if (isMobile) {
           const enableGyro = () => {
-            window.addEventListener("deviceorientation", (e) => {
-              const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
-              // gamma = left/right tilt, beta = front/back (offset by natural hold angle ~30°)
-              targetX = clamp((e.gamma || 0) / 20, -1, 1);
-              targetY = clamp(((e.beta || 0) - 30) / 20, -1, 1);
-            }, { passive: true });
+            window.addEventListener(
+              "deviceorientation",
+              (e) => {
+                const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+                // gamma = left/right tilt, beta = front/back (offset by natural hold angle ~30°)
+                targetX = clamp((e.gamma || 0) / 20, -1, 1);
+                targetY = clamp(((e.beta || 0) - 30) / 20, -1, 1);
+              },
+              { passive: true },
+            );
           };
 
           if (
@@ -107,25 +141,41 @@
             typeof DeviceOrientationEvent.requestPermission === "function"
           ) {
             // iOS 13+ requires explicit permission — request on first touch
-            window.addEventListener("touchstart", () => {
-              DeviceOrientationEvent.requestPermission()
-                .then((state) => { if (state === "granted") enableGyro(); })
-                .catch(() => {});
-            }, { once: true, passive: true });
+            window.addEventListener(
+              "touchstart",
+              () => {
+                DeviceOrientationEvent.requestPermission()
+                  .then((state) => {
+                    if (state === "granted") enableGyro();
+                  })
+                  .catch(() => {});
+              },
+              { once: true, passive: true },
+            );
           } else {
             enableGyro();
           }
         }
 
         // Scroll listener
-        window.addEventListener("scroll", () => {
-          scrollY = window.scrollY;
-        }, { passive: true });
+        window.addEventListener(
+          "scroll",
+          () => {
+            scrollY = window.scrollY;
+          },
+          { passive: true },
+        );
 
         // === Letter decomposition setup ===
         const heroTitleEl = document.getElementById("heroTitle");
         const originalTitleHTML = heroTitleEl ? heroTitleEl.innerHTML : "";
-        const accentColors = ["#00d4ff", "#ff00cc", "#8338ec", "#00fff7", "#ff006e"];
+        const accentColors = [
+          "#00d4ff",
+          "#ff00cc",
+          "#8338ec",
+          "#00fff7",
+          "#ff006e",
+        ];
         let decomposed = false;
         let letterSpans = [];
         let letterVectors = [];
@@ -133,33 +183,43 @@
         // Scroll velocity tracking
         let lastScrollForVelocity = 0;
         let scrollVelocity = 0;
-        window.addEventListener("scroll", () => {
-          scrollVelocity = Math.abs(window.scrollY - lastScrollForVelocity);
-          lastScrollForVelocity = window.scrollY;
-        }, { passive: true });
+        window.addEventListener(
+          "scroll",
+          () => {
+            scrollVelocity = Math.abs(window.scrollY - lastScrollForVelocity);
+            lastScrollForVelocity = window.scrollY;
+          },
+          { passive: true },
+        );
 
         function buildDecomposition() {
           if (decomposed || !heroTitleEl) return;
           decomposed = true;
           const chars = originalTitleHTML.split("");
           let vecIdx = 0;
-          heroTitleEl.innerHTML = chars.map((char) => {
-            if (char === " ") return `<span style="display:inline-block;width:0.35em"> </span>`;
-            const angle = Math.random() * Math.PI * 2;
-            const dist = 70 + Math.random() * 130;
-            const color = accentColors[vecIdx % accentColors.length];
-            // Each letter gets its own stagger threshold offset (0–0.18 range)
-            const staggerOffset = (vecIdx / chars.filter(c => c !== " ").length) * 0.18 * Math.random();
-            letterVectors.push({
-              x: Math.cos(angle) * dist,
-              y: Math.sin(angle) * dist * 0.6 - Math.random() * 40,
-              r: (Math.random() - 0.5) * 55,
-              color,
-              staggerOffset,
-            });
-            vecIdx++;
-            return `<span class="d-ltr" style="display:inline-block;-webkit-text-fill-color:${color};color:${color}">${char}</span>`;
-          }).join("");
+          heroTitleEl.innerHTML = chars
+            .map((char) => {
+              if (char === " ")
+                return `<span style="display:inline-block;width:0.35em"> </span>`;
+              const angle = Math.random() * Math.PI * 2;
+              const dist = 70 + Math.random() * 130;
+              const color = accentColors[vecIdx % accentColors.length];
+              // Each letter gets its own stagger threshold offset (0–0.18 range)
+              const staggerOffset =
+                (vecIdx / chars.filter((c) => c !== " ").length) *
+                0.18 *
+                Math.random();
+              letterVectors.push({
+                x: Math.cos(angle) * dist,
+                y: Math.sin(angle) * dist * 0.6 - Math.random() * 40,
+                r: (Math.random() - 0.5) * 55,
+                color,
+                staggerOffset,
+              });
+              vecIdx++;
+              return `<span class="d-ltr" style="display:inline-block;-webkit-text-fill-color:${color};color:${color}">${char}</span>`;
+            })
+            .join("");
           letterSpans = Array.from(heroTitleEl.querySelectorAll(".d-ltr"));
         }
 
@@ -178,7 +238,10 @@
           currentX += (targetX - currentX) * lerpFactor;
           currentY += (targetY - currentY) * lerpFactor;
 
-          const scrollProgress = Math.min(scrollY / (window.innerHeight * 0.5), 1);
+          const scrollProgress = Math.min(
+            scrollY / (window.innerHeight * 0.5),
+            1,
+          );
 
           // Layer 1: overlay ellipse — slowest, deepest background
           if (overlay) {
@@ -222,7 +285,10 @@
 
           // === Letter decomposition — triggers as title scrolls behind content ===
           const GLITCH_START = 0.18;
-          const glitchRaw = Math.max(0, (scrollProgress - GLITCH_START) / (1 - GLITCH_START));
+          const glitchRaw = Math.max(
+            0,
+            (scrollProgress - GLITCH_START) / (1 - GLITCH_START),
+          );
           const glitchEased = glitchRaw * glitchRaw; // quadratic — slow start, accelerates
 
           // Velocity multiplier: fast scroll = more violent effect (capped at 3x)
@@ -247,15 +313,15 @@
 
               // Color flash: cycle accent colors rapidly during jitter phase
               if (jitterActive && Math.random() < glitchEased * 0.4) {
-                const flashColor = accentColors[Math.floor(Math.random() * accentColors.length)];
+                const flashColor =
+                  accentColors[Math.floor(Math.random() * accentColors.length)];
                 span.style.webkitTextFillColor = flashColor;
                 span.style.color = flashColor;
               }
 
               // Scale pop: briefly enlarges as letter starts ejecting
-              const popScale = letterProgress < 0.15
-                ? 1 + letterProgress * 2
-                : 1;
+              const popScale =
+                letterProgress < 0.15 ? 1 + letterProgress * 2 : 1;
 
               // Jitter amplified by velocity
               const jMag = glitchEased * 12 * velocityMult;
@@ -559,7 +625,11 @@
         </a>
 
         <!-- Top-right: Numeneon Dark - indent left, bump bottom -->
-        <a href="/projects/numeneon" class="bento-card-link bento-puzzle-tr" style="--card-accent: #9050ff">
+        <a
+          href="/projects/numeneon"
+          class="bento-card-link bento-puzzle-tr"
+          style="--card-accent: #9050ff"
+        >
           <article class="bento-card">
             <img
               src="/images/projects/numeneon.webp"
@@ -576,7 +646,11 @@
         </a>
 
         <!-- Center card - Pneuma - full width beneath Numeneons -->
-        <a href="/projects/pneuma" class="bento-card-link bento-center" style="--card-accent: #00d4ff">
+        <a
+          href="/projects/pneuma"
+          class="bento-card-link bento-center"
+          style="--card-accent: #00d4ff"
+        >
           <article class="bento-card">
             <img
               src="/images/projects/transcendence/pneuma/pneuma-landing.webp"
@@ -619,7 +693,11 @@
         </a>
 
         <!-- Tall card - Nucat -->
-        <a href="/projects/nucat" class="bento-card-link bento-tall" style="--card-accent: #00ff88">
+        <a
+          href="/projects/nucat"
+          class="bento-card-link bento-tall"
+          style="--card-accent: #00ff88"
+        >
           <article class="bento-card">
             <img
               src="/images/projects/nucat.webp"
@@ -658,7 +736,11 @@
         </a>
 
         <!-- Bottom-right: Dojo Crud - indent left, indent top -->
-        <a href="/projects/dojo-crud" class="bento-card-link bento-puzzle-br" style="--card-accent: #ff4500">
+        <a
+          href="/projects/dojo-crud"
+          class="bento-card-link bento-puzzle-br"
+          style="--card-accent: #ff4500"
+        >
           <article class="bento-card">
             <img
               src="/images/projects/dojo-crud.webp"
@@ -675,7 +757,11 @@
         </a>
 
         <!-- Bookshelf -->
-        <a href="/projects/bookshelf" class="bento-card-link bento-bookshelf" style="--card-accent: #ffd700">
+        <a
+          href="/projects/bookshelf"
+          class="bento-card-link bento-bookshelf"
+          style="--card-accent: #ffd700"
+        >
           <article class="bento-card">
             <img
               src="/images/projects/bookshelf/add-book-light.webp"

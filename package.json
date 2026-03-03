@@ -4,6 +4,8 @@
   "description": "Pablo Pistola personal website",
   "type": "module",
   "scripts": {
+    "generate:sitemap": "node scripts/generate-sitemap.js",
+    "prebuild": "npm run generate:sitemap",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
