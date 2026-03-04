@@ -50,7 +50,8 @@ async function getProjectRoutes() {
 function buildSitemapXml(routes) {
   const body = routes
     .map(
-      (route) => `  <url>\n    <loc>${xmlEscape(`${siteUrl}${route.path}`)}</loc>\n    <changefreq>${route.changefreq}</changefreq>\n    <priority>${route.priority}</priority>\n  </url>`,
+      (route) =>
+        `  <url>\n    <loc>${xmlEscape(`${siteUrl}${route.path}`)}</loc>\n    <changefreq>${route.changefreq}</changefreq>\n    <priority>${route.priority}</priority>\n  </url>`,
     )
     .join("\n");
 
@@ -65,10 +66,16 @@ async function main() {
   const projectRoutes = await getProjectRoutes();
   const routes = [...staticRoutes, ...projectRoutes];
 
-  await writeFile(path.join(ROOT_DIR, "sitemap.xml"), buildSitemapXml(routes), "utf8");
+  await writeFile(
+    path.join(ROOT_DIR, "sitemap.xml"),
+    buildSitemapXml(routes),
+    "utf8",
+  );
   await writeFile(path.join(ROOT_DIR, "robots.txt"), buildRobotsTxt(), "utf8");
 
-  console.log(`Generated sitemap.xml (${routes.length} URLs) and robots.txt for ${siteUrl}`);
+  console.log(
+    `Generated sitemap.xml (${routes.length} URLs) and robots.txt for ${siteUrl}`,
+  );
 }
 
 main().catch((error) => {

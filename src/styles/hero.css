@@ -66,7 +66,7 @@
 
 .hero-title:hover {
   opacity: 1;
-  transform: perspective(500px) rotateX(-2deg) rotateY(3deg) scale(1.02);
+  transform: scale(1.03) translateY(-2px);
   background: linear-gradient(135deg, #00ffff 0%, #006060 20%, #ff20cca0 40%, #00e5ff 60%, #1010dde0 80%, #00ffff 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;

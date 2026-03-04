@@ -92,6 +92,11 @@
     <!-- Curtain reveal overlay -->
     <div class="curtain-overlay" id="curtainOverlay"></div>
 
+    <div class="enter-identity" aria-hidden="true">
+      <h1 class="enter-identity-title">PVBLO CORDERO</h1>
+      <p class="enter-identity-subtitle">FULL-STACK ENGINEER · AI SYSTEMS</p>
+    </div>
+
     <a href="/home.html" class="enter-btn" id="enterBtn"><span>enter</span></a>
 
     <script src="src/js/sineWave.js"></script>
@@ -136,6 +141,9 @@
           document.getElementById("waves").classList.add("dissolving");
           document
             .querySelector(".spacebar-prompt")
+            ?.classList.add("dissolving");
+          document
+            .querySelector(".enter-identity")
             ?.classList.add("dissolving");
 
           // Navigate after dissolve animation completes
