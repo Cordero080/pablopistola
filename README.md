@@ -30,7 +30,7 @@ Personal portfolio website showcasing software engineering projects, art, and cr
 
 This repository contains proprietary source code for my personal portfolio website. The code, design, and implementation are protected by copyright law and may not be copied, modified, distributed, or used without explicit written permission from the author.
 
-**Viewing the deployed site:** [your-site-url.vercel.app]
+**Viewing the deployed site:** [pvblocordero.com](https://pvblocordero.com)
 
 For inquiries about collaboration or licensing, please contact me directly.
 
