@@ -2,6 +2,13 @@
 @import url("https://use.typekit.net/fpe8zfm.css");
 @import url("https://use.typekit.net/pnd4foc.css");
 
+@font-face {
+  font-family: 'Future Z';
+  src: url('/fonts/Future Z.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   --font-display: 'Orbitron', sans-serif;
   --font-title: 'aktiv-grotesk', sans-serif;
@@ -578,40 +585,45 @@ body.zen-mode .spacebar-prompt {
 /* Identity text — anchored in upper half, above the wave */
 .enter-identity {
   position: fixed;
-  top: 22%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 90;
   text-align: center;
   pointer-events: none;
-  width: min(92vw, 760px);
+  width: min(96vw, 1000px);
   opacity: 0.85;
 }
 
 .enter-identity-title {
-  font-family: "omnium-wide", sans-serif;
+  font-family: "Future Z", sans-serif;
   font-weight: 700;
   font-style: normal;
-  font-size: clamp(1.2rem, 3.8vw, 2.5rem);
-  background: linear-gradient(180deg, #ffffff 22%, rgba(79, 88, 88, 0.7) 100%);
+  font-size: clamp(1.6rem, 5vw, 3.2rem);
+  text-align: center;
+  width: 100%;
+  background: linear-gradient(180deg, #ffffff 30%, rgba(180, 190, 195, 0.9) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: #fff;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   line-height: 1.05;
   margin: 0;
-  white-space: nowrap;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.8));
 }
 
 .enter-identity-subtitle {
   font-family: "Rajdhani", sans-serif;
-  font-size: clamp(0.58rem, 1vw, 0.74rem);
-  font-weight: 300;
+  font-size: clamp(0.75rem, 1.4vw, 1rem);
+  font-weight: 400;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
-  margin: 0.36em 0 0;
+  background: linear-gradient(90deg, rgba(0, 212, 255, 0.8), rgba(200, 80, 255, 0.8), rgba(0, 212, 255, 0.8));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0.5em 0 0;
 }
 
 .enter-btn {
@@ -668,13 +680,38 @@ body.zen-mode .spacebar-prompt {
   transition: color 0.1s ease;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 769px) and (max-width: 1100px) {
   .enter-identity {
-    top: 18%;
-    opacity: 0.75;
+    top: 38%;
   }
 
   .enter-identity-title {
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    letter-spacing: 0.08em;
+  }
+}
+
+@media (max-width: 768px) {
+  .spacebar-prompt {
+    display: none;
+  }
+
+  .enter-identity {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+  }
+
+  .enter-identity-title {
+    display: block;
+    font-size: clamp(1.4rem, 6.5vw, 2.4rem);
     white-space: normal;
+    letter-spacing: 0.06em;
+  }
+
+  .enter-identity-subtitle {
+    font-size: clamp(0.55rem, 2vw, 0.8rem);
+    letter-spacing: 0.15em;
   }
 }
