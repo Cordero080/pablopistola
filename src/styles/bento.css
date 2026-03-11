@@ -367,22 +367,6 @@
   );
 }
 
-/* Wide card - no longer used */
-
-.bento-wide h2 {
-  margin: 0;
-}
-
-.bento-wide .card-description {
-  margin: 0;
-}
-
-.bento-wide .bento-label {
-  position: relative;
-  top: auto;
-  left: auto;
-}
-
 /* ========== RESPONSIVE - TABLET ========== */
 @media (max-width: 900px) {
   .bento-section {
@@ -510,17 +494,6 @@
     );
   }
 
-  .bento-standard {
-    grid-column: span 3;
-    grid-row: span 1;
-    min-height: 180px;
-  }
-
-  .bento-wide {
-    grid-column: span 6;
-    grid-row: span 1;
-    min-height: 80px;
-  }
 }
 
 /* ========== RESPONSIVE - MOBILE ========== */
@@ -746,28 +719,6 @@
     margin: 0;
     padding: 0;
     border-radius: 24px;
-  }
-
-  .bento-standard,
-  .bento-wide {
-    grid-column: span 1;
-    grid-row: span 1;
-    min-height: 180px;
-    clip-path: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .bento-wide {
-    flex-direction: column;
-    text-align: center;
-    min-height: 120px;
-  }
-
-  .bento-wide .bento-label {
-    position: absolute;
-    top: 0.75rem;
-    left: 0.75rem;
   }
 
   .bento-card {

@@ -276,7 +276,7 @@ window.waveGen = new SineWaveGenerator({
     // Wave 1: Heavy leader - very slow due to mass
     {
       timeModifier: 1,
-      lineWidth: 22.5,
+      lineWidth: 20.5,
       amplitude: 150,
       wavelength: 300,
       segmentLength: 20,
@@ -289,7 +289,7 @@ window.waveGen = new SineWaveGenerator({
     {
       timeModifier: 1,
       lineWidth: 1,
-      amplitude: 150,
+      amplitude: 100,
       wavelength: 100,
       attraction: 1,
       attractionStrength: 0.8,
@@ -340,7 +340,19 @@ window.waveGen = new SineWaveGenerator({
     gradient.addColorStop(0.5, "blue");
     gradient.addColorStop(1, "turquoise");
 
-    this.waves.forEach((w) => (w.strokeStyle = gradient));
+    const isHomePage = window.location.pathname.includes("home");
+    if (isHomePage) {
+      const dimGradient = this.ctx.createLinearGradient(0, 0, this.width, 0);
+      dimGradient.addColorStop(0, "rgba(255, 182, 193, 0.3)");
+      dimGradient.addColorStop(0.2, "rgba(255, 0, 255, 0.3)");
+      dimGradient.addColorStop(0.5, "rgba(0, 0, 255, 0.3)");
+      dimGradient.addColorStop(1, "rgba(64, 224, 208, 0.3)");
+      this.waves.forEach((w, i) => {
+        w.strokeStyle = i === 0 ? gradient : dimGradient;
+      });
+    } else {
+      this.waves.forEach((w) => (w.strokeStyle = gradient));
+    }
   },
 });
 
