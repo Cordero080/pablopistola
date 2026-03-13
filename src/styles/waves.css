@@ -13,14 +13,7 @@
   z-index: 1;
   pointer-events: none;
   touch-action: none; /* Prevent touch interference */
-  opacity: 0.7;
+  opacity: 0.55;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-}
-
-/* Mobile waves */
-@media (max-width: 768px) {
-  #waves {
-    opacity: 0.6;
-  }
 }

@@ -21,7 +21,7 @@
 }
 
 .contact-title {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: clamp(1rem, 3vw, 1.5rem);
   font-weight: 400;
   color: rgba(255, 255, 255, 0.95);
@@ -205,7 +205,7 @@
 
   .contact-title {
     /* Ensure font loads on iOS */
-    font-family: "Orbitron", "Rajdhani", -apple-system, sans-serif;
+    font-family: "Orbitron", "IBM Plex Sans", -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
 }

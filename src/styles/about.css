@@ -21,7 +21,7 @@
 }
 
 .about-name {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-weight: 600;
   font-size: clamp(1.75rem, 5vw, 3rem);
   letter-spacing: 0.15em;
@@ -38,7 +38,7 @@
 }
 
 .about-section h2 {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: clamp(1.5rem, 4vw, 2rem);
   font-weight: 700;
   background: linear-gradient(90deg, #ff207a, #9050ff, #00d4ff, #1060c0);
@@ -55,7 +55,7 @@
 }
 
 .about-section p {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 1.0625rem;
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.85);
@@ -78,7 +78,7 @@
 }
 
 .evolution-list li {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 1.0625rem;
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.85);
@@ -149,7 +149,7 @@
 }
 
 .achievement-banner p {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.9);
   margin: 0;
@@ -208,7 +208,7 @@
 }
 
 .project-highlight h3 {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
   background: linear-gradient(90deg, #ff207a, #9050ff, #00d4ff, #1060c0);
@@ -223,7 +223,7 @@
 }
 
 .project-highlight p {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 0.9375rem;
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
@@ -287,7 +287,7 @@
    RESUME PAGE STYLES
    ========================================== */
 .project-stack {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 0.9rem;
   color: var(--accent-cyan, #00fff7);
   margin-bottom: 0.5rem;
@@ -304,7 +304,7 @@
   position: relative;
   padding-left: 1.5rem;
   margin-bottom: 0.5rem;
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 0.95rem;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.85);
@@ -320,7 +320,7 @@
 
 .date-range {
   float: right;
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.5);
   font-weight: 400;
@@ -436,7 +436,7 @@
   background: linear-gradient(90deg, rgba(255, 0, 110, 0.15), rgba(138, 43, 226, 0.15));
   border: 1px solid rgba(255, 0, 110, 0.3);
   border-radius: 4px;
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 0.8rem;
   color: #ff006e;
   font-weight: 500;
@@ -530,7 +530,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -560,7 +560,7 @@
 }
 
 .manifesto-content {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 1.0625rem;
   line-height: 1.9;
   color: rgba(255, 255, 255, 0.85);
@@ -608,7 +608,7 @@
 }
 
 .output-value {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 0.95rem;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.75);

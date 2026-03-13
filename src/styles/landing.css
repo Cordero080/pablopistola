@@ -56,7 +56,7 @@ body {
   z-index: 2;
   pointer-events: none;
   touch-action: none; /* Prevent touch interference */
-  opacity: 1;
+  opacity: 0.55;
 }
 
 /* Landing Container */
@@ -71,26 +71,6 @@ body {
   width: 100%;
   max-width: 100vw;
   box-sizing: border-box;
-}
-
-/* Spacebar prompt */
-.spacebar-prompt {
-  position: fixed;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-40%);
-  font-family: var(--font-display);
-  font-size: 0.9rem;
-  color: var(--text-primary);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  opacity: 0;
-  z-index: 10;
-  pointer-events: none;
-}
-
-.spacebar-prompt.pulse {
-  animation: fadeInOutSlow 2.5s ease-in-out 3;
 }
 
 /* Zen mode - position return button in upper right */
@@ -112,44 +92,6 @@ body.zen-mode .enter-btn:hover {
   transform: scale(1.05) !important;
 }
 
-/* In zen mode, show spacebar prompt then fade out - desktop only */
-body.zen-mode .spacebar-prompt {
-  opacity: 0;
-  animation: zenSpacebarFade 15s ease-in-out forwards;
-}
-
-@media (max-width: 768px), (hover: none) {
-  body.zen-mode .spacebar-prompt {
-    display: none;
-  }
-}
-
-@keyframes zenSpacebarFade {
-  0% {
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.6;
-  }
-  40% {
-    opacity: 0.5;
-  }
-  70% {
-    opacity: 0.4;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes fadeInOutSlow {
-  0%, 100% {
-    opacity: 0;
-  }
-  40%, 60% {
-    opacity: 0.7;
-  }
-}
 
 
 /* Scanline Dissolve Overlay */
@@ -280,7 +222,7 @@ body.zen-mode .spacebar-prompt {
 }
 
 .enter-identity-subtitle {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: clamp(0.75rem, 1.4vw, 1rem);
   font-weight: 400;
   letter-spacing: 0.25em;
@@ -301,26 +243,47 @@ body.zen-mode .spacebar-prompt {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
+  padding: 1.5px;
   font-family: 'aktiv-grotesk', sans-serif;
   font-size: 0.7rem;
   font-weight: 400;
   text-decoration: none;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.3);
   cursor: pointer;
-  background: none;
+  background: linear-gradient(90deg, #00fff7, #ff00ff);
   border: none;
   box-shadow: none;
   text-shadow: none;
   border-radius: 0;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
-  overflow: visible;
-  transition: color 0.4s ease, opacity 0.8s ease, letter-spacing 0.4s ease;
+  clip-path: polygon(
+    8px 0%,
+    calc(100% - 8px) 0%,
+    calc(100% - 8px) 25%,
+    100% 25%,
+    100% 75%,
+    calc(100% - 8px) 75%,
+    calc(100% - 8px) 100%,
+    8px 100%,
+    8px 75%,
+    0% 75%,
+    0% 25%,
+    8px 25%
+  );
+  transition: opacity 0.8s ease, letter-spacing 0.4s ease, filter 0.4s ease;
   opacity: 0;
   pointer-events: none;
+}
+
+.enter-btn span {
+  display: block;
+  padding: 0.55rem 2rem;
+  background: rgba(4, 4, 18, 0.88);
+  color: rgba(255, 255, 255, 0.45);
+  transition: color 0.4s ease, letter-spacing 0.4s ease;
+  letter-spacing: inherit;
 }
 
 .enter-btn.visible {
@@ -330,20 +293,23 @@ body.zen-mode .spacebar-prompt {
 }
 
 @keyframes enterPulse {
-  0%, 100% { color: rgba(255, 255, 255, 0.25); }
-  50%       { color: rgba(255, 255, 255, 0.45); }
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(0, 255, 247, 0.3)); }
+  50%       { filter: drop-shadow(0 0 10px rgba(255, 0, 255, 0.5)); }
 }
 
 .enter-btn:hover {
-  color: rgba(255, 255, 255, 0.75);
   letter-spacing: 0.36em;
   animation: none;
   transform: translateX(-50%);
+  filter: drop-shadow(0 0 12px rgba(0, 255, 247, 0.6));
 }
 
-.enter-btn:active {
+.enter-btn:hover span {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.enter-btn:active span {
   color: rgba(255, 255, 255, 0.5);
-  transition: color 0.1s ease;
 }
 
 @media (min-width: 769px) and (max-width: 1100px) {
@@ -358,10 +324,6 @@ body.zen-mode .spacebar-prompt {
 }
 
 @media (max-width: 768px) {
-  .spacebar-prompt {
-    display: none;
-  }
-
   .enter-identity {
     top: 50%;
     left: 50%;

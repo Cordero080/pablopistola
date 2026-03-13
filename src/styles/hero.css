@@ -84,7 +84,7 @@
 }
 
 .hero-subtitle {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: clamp(0.65rem, 1.2vw, 0.85rem);
   font-weight: 300;
   letter-spacing: 0.25em;

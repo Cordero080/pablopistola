@@ -152,7 +152,7 @@
 }
 
 .bento-card .card-description {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: clamp(0.9rem, 1.6vw, 1.2rem);
   margin: 0;
   background: linear-gradient(90deg, var(--card-accent, #00f7ff), #ea47ff);

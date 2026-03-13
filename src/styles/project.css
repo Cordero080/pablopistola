@@ -63,7 +63,7 @@
 }
 
 .project-tagline {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: clamp(0.875rem, 2vw, 1.125rem);
   color: rgba(255, 255, 255, 0.5);
   max-width: 600px;
@@ -182,7 +182,7 @@
 .project-note {
   margin-top: 1.5rem;
   padding: 0.75rem 1.25rem;
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.85);
   background:
@@ -333,7 +333,7 @@
 }
 
 .architecture-item .arch-label {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -398,8 +398,9 @@
 .project-diagram h2,
 .project-design h2,
 .project-cta h2 {
-  font-family: "Rajdhani", sans-serif;
-  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-family: "Future Z", sans-serif;
+  font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+  white-space: nowrap;
   font-weight: 700;
   letter-spacing: 0.15em;
   background: linear-gradient(90deg, #ff207a, #9050ff, #00d4ff, #1060c0);
@@ -421,8 +422,9 @@
 }
 
 .about-description p {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 1.0625rem;
+  font-weight: 300;
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.85);
   margin-bottom: 1.5rem;
@@ -433,8 +435,8 @@
 }
 
 .about-description h3 {
-  font-family: "Rajdhani", sans-serif;
-  font-size: 1rem;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 1.2rem;
   background: linear-gradient(90deg, #ff006e, #8338ec, #07429f);
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -449,7 +451,7 @@
 }
 
 .about-description h4 {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 0.875rem;
   background: linear-gradient(90deg, #ff006e, #8338ec, #07429f);
   background-size: 200% auto;
@@ -503,8 +505,9 @@
 }
 
 .tech-impl {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 0.9375rem;
+  font-weight: 300;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.8);
   padding: 1rem 1.25rem;
@@ -591,8 +594,9 @@
 }
 
 .detail-card p {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 0.9375rem;
+  font-weight: 300;
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
 }
@@ -719,8 +723,9 @@
 }
 
 .feature-card p {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 0.9375rem;
+  font-weight: 300;
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.6;
 }
@@ -778,7 +783,7 @@
 }
 
 .diagram-caption {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 0.9375rem;
   color: rgba(255, 255, 255, 0.6);
   text-align: center;
@@ -852,8 +857,9 @@
 }
 
 .design-effects li {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 1rem;
+  font-weight: 300;
   color: rgba(255, 255, 255, 0.8);
   padding: 0.75rem 0;
   border-bottom: 1px solid rgba(79, 255, 255, 0.1);
@@ -920,7 +926,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 0.75rem;
   color: #00ff88;
   text-transform: uppercase;
@@ -1072,7 +1078,7 @@
 }
 
 .metric-sublabel {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.5);
   letter-spacing: 0.05em;
@@ -1086,7 +1092,7 @@
 }
 
 .data-source {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 0.7rem;
   color: rgba(255, 255, 255, 0.35);
   text-transform: uppercase;

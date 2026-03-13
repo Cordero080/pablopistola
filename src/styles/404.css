@@ -183,7 +183,7 @@
 }
 
 .error-description {
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.5);
   margin-top: 2rem;
@@ -315,7 +315,7 @@
   padding: 8px 16px;
   z-index: 1000;
   text-decoration: none;
-  font-family: "Rajdhani", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
 }
 
 .skip-link:focus {

@@ -85,8 +85,6 @@
   <body>
     <canvas id="waves"></canvas>
 
-    <div class="spacebar-prompt" id="spacebarPrompt">press spacebar</div>
-
     <div class="landing-container"></div>
 
     <!-- Curtain reveal overlay -->
@@ -121,37 +119,20 @@
         document.getElementById("enterBtn").classList.add("visible");
       }, 1500);
 
-      // Handle enter click - remember preference
+      // Handle enter click - dissolve then navigate
       document.getElementById("enterBtn").addEventListener("click", (e) => {
         e.preventDefault();
         sessionStorage.setItem("skippedLanding", "true");
-        window.location.href = "/home.html";
-      });
 
-      if (!stayMode) {
-        // Auto-transition after 5 seconds with scanline dissolve
+        document.getElementById("enterBtn").classList.remove("visible");
+        document.querySelector(".landing-container").classList.add("dissolving");
+        document.getElementById("waves").classList.add("dissolving");
+document.querySelector(".enter-identity")?.classList.add("dissolving");
+
         setTimeout(() => {
-          // Hide enter button during transition
-          document.getElementById("enterBtn").classList.remove("visible");
-
-          // Add dissolving class to all elements
-          document
-            .querySelector(".landing-container")
-            .classList.add("dissolving");
-          document.getElementById("waves").classList.add("dissolving");
-          document
-            .querySelector(".spacebar-prompt")
-            ?.classList.add("dissolving");
-          document
-            .querySelector(".enter-identity")
-            ?.classList.add("dissolving");
-
-          // Navigate after dissolve animation completes
-          setTimeout(() => {
-            window.location.href = "/home.html";
-          }, 2500);
-        }, 5000);
-      }
+          window.location.href = "/home.html";
+        }, 2500);
+      });
     </script>
   </body>
 </html>
