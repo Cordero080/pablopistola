@@ -68,19 +68,9 @@
       rel="stylesheet"
     />
 
+    <link rel="prefetch" href="/home.html" />
     <link rel="stylesheet" href="src/styles/landing.css" />
-    <!-- Vercel Analytics (only loads on Vercel) -->
-    <script>
-      if (
-        window.location.hostname !== "localhost" &&
-        window.location.hostname !== "127.0.0.1"
-      ) {
-        const s = document.createElement("script");
-        s.defer = true;
-        s.src = "/_vercel/insights/script.js";
-        document.head.appendChild(s);
-      }
-    </script>
+    <script src="src/js/utils/analytics.js" defer></script>
   </head>
   <body>
     <canvas id="waves"></canvas>
@@ -97,42 +87,7 @@
 
     <a href="/home.html" class="enter-btn" id="enterBtn"><span>enter</span></a>
 
-    <script src="src/js/sineWave.js"></script>
-    <script>
-      // Check for ?stay param - if present, stay on landing (zen mode)
-      const urlParams = new URLSearchParams(window.location.search);
-      const stayMode = urlParams.has("stay");
-
-      // If user previously skipped and this isn't zen mode, go straight to home
-      if (!stayMode && sessionStorage.getItem("skippedLanding")) {
-        window.location.replace("/home.html");
-      }
-
-      // Zen mode: reposition button and change text
-      if (stayMode) {
-        document.body.classList.add("zen-mode");
-        document.querySelector("#enterBtn span").textContent = "back";
-      }
-
-      // Show enter button after 1.5s
-      setTimeout(() => {
-        document.getElementById("enterBtn").classList.add("visible");
-      }, 1500);
-
-      // Handle enter click - dissolve then navigate
-      document.getElementById("enterBtn").addEventListener("click", (e) => {
-        e.preventDefault();
-        sessionStorage.setItem("skippedLanding", "true");
-
-        document.getElementById("enterBtn").classList.remove("visible");
-        document.querySelector(".landing-container").classList.add("dissolving");
-        document.getElementById("waves").classList.add("dissolving");
-document.querySelector(".enter-identity")?.classList.add("dissolving");
-
-        setTimeout(() => {
-          window.location.href = "/home.html";
-        }, 2500);
-      });
-    </script>
+    <script src="src/js/effects/sineWave.js"></script>
+    <script src="src/js/pages/landing/index.js" defer></script>
   </body>
 </html>

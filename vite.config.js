@@ -1,27 +1,29 @@
 import { defineConfig } from "vite";
 import { resolve } from "path";
 import { globSync } from "glob";
-import { copyFileSync, mkdirSync, readdirSync } from "fs";
+import { copyFileSync, mkdirSync } from "fs";
 
 // Find all HTML files at root and in projects/
 const rootHtmlFiles = globSync("*.html");
 const projectHtmlFiles = globSync("projects/*.html");
 const allHtmlFiles = [...rootHtmlFiles, ...projectHtmlFiles];
 
-// Plugin to copy src/js to dist/src/js
+// Plugin to copy src/js (including subdirectories) to dist/src/js
 function copyJsPlugin() {
   return {
     name: "copy-js",
     closeBundle() {
       const srcDir = resolve(__dirname, "src/js");
       const destDir = resolve(__dirname, "dist/src/js");
-      mkdirSync(destDir, { recursive: true });
-      readdirSync(srcDir).forEach((file) => {
-        if (file.endsWith(".js")) {
-          copyFileSync(resolve(srcDir, file), resolve(destDir, file));
-        }
+      // Recursively copy all .js files preserving directory structure
+      const jsFiles = globSync("**/*.js", { cwd: srcDir });
+      jsFiles.forEach((file) => {
+        const src = resolve(srcDir, file);
+        const dest = resolve(destDir, file);
+        mkdirSync(resolve(dest, ".."), { recursive: true });
+        copyFileSync(src, dest);
       });
-      console.log("Copied src/js to dist/src/js");
+      console.log(`Copied ${jsFiles.length} files from src/js to dist/src/js`);
     },
   };
 }

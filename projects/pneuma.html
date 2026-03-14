@@ -32,19 +32,9 @@
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <script src="../src/js/sineWave.js" defer></script>
+    <script src="../src/js/effects/sineWave.js" defer></script>
     <!-- Vercel Analytics (only loads on Vercel) -->
-    <script>
-      if (
-        window.location.hostname !== "localhost" &&
-        window.location.hostname !== "127.0.0.1"
-      ) {
-        const s = document.createElement("script");
-        s.defer = true;
-        s.src = "/_vercel/insights/script.js";
-        document.head.appendChild(s);
-      }
-    </script>
+    <script src="../src/js/utils/analytics.js" defer></script>
   </head>
   <body>
     <canvas id="waves"></canvas>
@@ -656,33 +646,12 @@
       </section>
     </main>
 
-    <!-- Gallery Script -->
-    <script>
-      document.querySelectorAll(".gallery-thumbs .thumb").forEach((thumb) => {
-        thumb.addEventListener("click", () => {
-          document.querySelector(".gallery-hero-img").src = thumb.dataset.full;
-          document
-            .querySelectorAll(".thumb")
-            .forEach((t) => t.classList.remove("active"));
-          thumb.classList.add("active");
-        });
-      });
-    </script>
-    <script>
-      // Initialize sine wave background
-      document.addEventListener("DOMContentLoaded", () => {
-        const canvas = document.getElementById("waves");
-        if (canvas && typeof SineWave !== "undefined") {
-          new SineWave(canvas, {
-            speed: 0.008,
-            amplitude: 40,
-            wavelength: 0.015,
-            strokeStyle: "rgba(0, 255, 247, 0.08)",
-          });
-        }
-      });
-    </script>
-    <script src="../src/js/app.js" defer></script>
-    <script src="../src/js/orb.js" defer></script>
+    
+    
+
+    <script src="../src/js/pages/gallery.js" defer></script>
+    <script src="../src/js/pages/projectInit.js" defer></script>
+    <script src="../src/js/components/cursor.js" defer></script>
+    <script src="../src/js/effects/orb.js" defer></script>
   </body>
 </html>

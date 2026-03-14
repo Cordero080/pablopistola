@@ -3,15 +3,15 @@
 @import url("https://use.typekit.net/pnd4foc.css");
 
 @font-face {
-  font-family: 'Future Z';
-  src: url('/fonts/Future Z.otf') format('opentype');
+  font-family: "Future Z";
+  src: url("/fonts/Future Z.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
 
 :root {
-  --font-display: 'Orbitron', sans-serif;
-  --font-title: 'aktiv-grotesk', sans-serif;
+  --font-display: "Orbitron", sans-serif;
+  --font-title: "aktiv-grotesk", sans-serif;
   --text-primary: #fffdfd;
   --bg-dark: #0a0a0a;
 }
@@ -24,15 +24,24 @@
 
 body {
   min-height: 100vh;
-  background: 
-    linear-gradient(135deg, rgba(5,5,15,1) 0%, rgba(15,15,30,1) 50%, rgba(5,5,15,1) 100%),
-    linear-gradient(45deg, 
-      rgba(100,100,255,0.08) 0%, 
-      rgba(255,0,255,0.05) 25%, 
-      rgba(0,255,255,0.05) 50%, 
-      rgba(255,100,255,0.08) 75%, 
-      rgba(100,100,255,0.08) 100%);
-  background-size: 100% 100%, 400% 400%;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(5, 5, 15, 1) 0%,
+      rgba(15, 15, 30, 1) 50%,
+      rgba(5, 5, 15, 1) 100%
+    ),
+    linear-gradient(
+      45deg,
+      rgba(100, 100, 255, 0.08) 0%,
+      rgba(255, 0, 255, 0.05) 25%,
+      rgba(0, 255, 255, 0.05) 50%,
+      rgba(255, 100, 255, 0.08) 75%,
+      rgba(100, 100, 255, 0.08) 100%
+    );
+  background-size:
+    100% 100%,
+    400% 400%;
   animation: holographicShift 15s ease infinite;
   display: flex;
   align-items: center;
@@ -42,8 +51,17 @@ body {
 }
 
 @keyframes holographicShift {
-  0%, 100% { background-position: 0% 50%, 0% 50%; }
-  50% { background-position: 100% 50%, 100% 50%; }
+  0%,
+  100% {
+    background-position:
+      0% 50%,
+      0% 50%;
+  }
+  50% {
+    background-position:
+      100% 50%,
+      100% 50%;
+  }
 }
 
 /* Sine wave canvas background */
@@ -92,8 +110,6 @@ body.zen-mode .enter-btn:hover {
   transform: scale(1.05) !important;
 }
 
-
-
 /* Scanline Dissolve Overlay */
 .curtain-overlay {
   position: fixed;
@@ -116,7 +132,7 @@ body.zen-mode .enter-btn:hover {
 }
 
 .landing-container.dissolving::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -10%;
@@ -210,7 +226,17 @@ body.zen-mode .enter-btn:hover {
   font-size: clamp(1.6rem, 5vw, 3.2rem);
   text-align: center;
   width: 100%;
-  background: linear-gradient(135deg, #f0f4f6 5%, #7a8f9e 15%, #ffffff 30%, #6b7e8e 45%, #e8edf2 60%, #708494 75%, #f2f5f7 90%, #8a9dac 100%);
+  background: linear-gradient(
+    135deg,
+    #f0f4f6 5%,
+    #7a8f9e 15%,
+    #ffffff 30%,
+    #889eb0 45%,
+    #e8edf2 60%,
+    #708494 75%,
+    #f2f5f7 90%,
+    #8a9dac 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -218,7 +244,8 @@ body.zen-mode .enter-btn:hover {
   letter-spacing: 0.12em;
   line-height: 1.05;
   margin: 0;
-  filter: drop-shadow(0 0 12px rgba(0, 0, 0, 1)) drop-shadow(0 2px 20px rgba(0, 0, 0, 0.95));
+  filter: drop-shadow(0 0 12px rgba(0, 0, 0, 1))
+    drop-shadow(0 2px 20px rgba(0, 0, 0, 0.95));
 }
 
 .enter-identity-subtitle {
@@ -227,7 +254,12 @@ body.zen-mode .enter-btn:hover {
   font-weight: 400;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  background: linear-gradient(90deg, rgba(0, 212, 255, 0.8), rgba(200, 80, 255, 0.8), rgba(0, 212, 255, 0.8));
+  background: linear-gradient(
+    90deg,
+    rgba(0, 212, 255, 0.8),
+    rgba(200, 80, 255, 0.8),
+    rgba(0, 212, 255, 0.8)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -244,14 +276,18 @@ body.zen-mode .enter-btn:hover {
   align-items: center;
   justify-content: center;
   padding: 1.5px;
-  font-family: 'aktiv-grotesk', sans-serif;
+  font-family: "aktiv-grotesk", sans-serif;
   font-size: 0.7rem;
   font-weight: 400;
   text-decoration: none;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   cursor: pointer;
-  background: linear-gradient(90deg, #00fff7, #ff00ff);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 255, 247, 0.6),
+    rgba(255, 0, 255, 0.6)
+  );
   border: none;
   box-shadow: none;
   text-shadow: none;
@@ -259,20 +295,21 @@ body.zen-mode .enter-btn:hover {
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   clip-path: polygon(
-    8px 0%,
-    calc(100% - 8px) 0%,
-    calc(100% - 8px) 25%,
-    100% 25%,
-    100% 75%,
-    calc(100% - 8px) 75%,
-    calc(100% - 8px) 100%,
-    8px 100%,
-    8px 75%,
-    0% 75%,
-    0% 25%,
-    8px 25%
+    14px 0%,
+    calc(100% - 14px) 0%,
+    100% 14px,
+    100% calc(100% - 14px),
+    calc(100% - 14px) 100%,
+    14px 100%,
+    0% calc(100% - 14px),
+    0% 14px
   );
-  transition: opacity 0.8s ease, letter-spacing 0.4s ease, filter 0.4s ease;
+  transition:
+    opacity 0.8s ease,
+    letter-spacing 0.4s ease,
+    filter 0.4s ease;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.85))
+    drop-shadow(0 2px 2px rgba(0, 0, 0, 0.95));
   opacity: 0;
   pointer-events: none;
 }
@@ -280,10 +317,41 @@ body.zen-mode .enter-btn:hover {
 .enter-btn span {
   display: block;
   padding: 0.55rem 2rem;
-  background: rgba(4, 4, 18, 0.88);
+  background:
+    linear-gradient(145deg, #221d27, #000000),
+    radial-gradient(
+      circle at 30% 30%,
+      rgba(255, 255, 255, 0.08),
+      transparent 50%
+    ),
+    radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.5), transparent 50%),
+    linear-gradient(
+      45deg,
+      rgba(138, 43, 226, 0.06),
+      rgba(0, 212, 255, 0.05),
+      rgba(138, 43, 226, 0.06)
+    );
+  background-size:
+    100% 100%,
+    150% 150%,
+    150% 150%,
+    200% 200%;
+  background-blend-mode: overlay, multiply, overlay;
   color: rgba(255, 255, 255, 0.45);
-  transition: color 0.4s ease, letter-spacing 0.4s ease;
+  transition:
+    color 0.4s ease,
+    letter-spacing 0.4s ease;
   letter-spacing: inherit;
+  clip-path: polygon(
+    12px 0%,
+    calc(100% - 12px) 0%,
+    100% 12px,
+    100% calc(100% - 12px),
+    calc(100% - 12px) 100%,
+    12px 100%,
+    0% calc(100% - 12px),
+    0% 12px
+  );
 }
 
 .enter-btn.visible {
@@ -293,12 +361,17 @@ body.zen-mode .enter-btn:hover {
 }
 
 @keyframes enterPulse {
-  0%, 100% { filter: drop-shadow(0 0 4px rgba(0, 255, 247, 0.3)); }
-  50%       { filter: drop-shadow(0 0 10px rgba(255, 0, 255, 0.5)); }
+  0%,
+  100% {
+    filter: drop-shadow(0 0 4px rgba(0, 255, 247, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 10px rgba(255, 0, 255, 0.5));
+  }
 }
 
 .enter-btn:hover {
-  letter-spacing: 0.36em;
+  letter-spacing: 0.55em;
   animation: none;
   transform: translateX(-50%);
   filter: drop-shadow(0 0 12px rgba(0, 255, 247, 0.6));

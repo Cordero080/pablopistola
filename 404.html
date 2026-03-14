@@ -78,21 +78,7 @@
       >
     </main>
 
-    <script src="src/js/sineWave.js"></script>
-    <script>
-      // Initialize sine wave if available
-      document.addEventListener("DOMContentLoaded", () => {
-        const canvas = document.getElementById("waves");
-        if (canvas && typeof SineWave !== "undefined") {
-          new SineWave(canvas, {
-            speed: 0.008,
-            amplitude: 40,
-            wavelength: 0.015,
-            strokeStyle: "rgba(0, 255, 247, 0.08)",
-          });
-        }
-      });
-    </script>
-    <script src="src/js/app.js" defer></script>
+    <script src="src/js/effects/sineWave.js"></script>
+    <script src="src/js/pages/sineWaveInit.js" defer></script>
   </body>
 </html>
