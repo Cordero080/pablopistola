@@ -20,6 +20,28 @@
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
     <title>Pablo Cordero | Enter</title>
+    <meta
+      name="description"
+      content="Enter the interactive portfolio of Pablo Cordero, showcasing full-stack software engineering, creative technology, and immersive web projects."
+    />
+    <meta name="robots" content="noindex,follow" />
+    <link rel="canonical" href="https://pvblocordero.com/home" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Pablo Pistola" />
+    <meta property="og:title" content="Pablo Cordero | Enter" />
+    <meta
+      property="og:description"
+      content="Enter the interactive portfolio of Pablo Cordero, showcasing full-stack software engineering, creative technology, and immersive web projects."
+    />
+    <meta property="og:url" content="https://pvblocordero.com/" />
+    <meta property="og:image" content="/images/projects/transcendence.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Pablo Cordero | Enter" />
+    <meta
+      name="twitter:description"
+      content="Enter the interactive portfolio of Pablo Cordero, showcasing full-stack software engineering, creative technology, and immersive web projects."
+    />
+    <meta name="twitter:image" content="/images/projects/transcendence.webp" />
 
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#00fff7" />
@@ -46,82 +68,26 @@
       rel="stylesheet"
     />
 
-    <!-- Vercel Analytics (only loads on Vercel) -->
-    <script>
-      if (
-        window.location.hostname !== "localhost" &&
-        window.location.hostname !== "127.0.0.1"
-      ) {
-        const s = document.createElement("script");
-        s.defer = true;
-        s.src = "/_vercel/insights/script.js";
-        document.head.appendChild(s);
-      }
-    </script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DVWnTi7A.css">
+    <link rel="prefetch" href="/assets/home-BXRYBhau.html" />
+    <script src="src/js/utils/analytics.js" defer></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-_adUo0Za.css">
   </head>
   <body>
     <canvas id="waves"></canvas>
-
-    <div class="spacebar-prompt" id="spacebarPrompt">press spacebar</div>
 
     <div class="landing-container"></div>
 
     <!-- Curtain reveal overlay -->
     <div class="curtain-overlay" id="curtainOverlay"></div>
 
+    <div class="enter-identity" aria-hidden="true">
+      <h1 class="enter-identity-title">PVBLO CORDERO</h1>
+      <p class="enter-identity-subtitle">FULL-STACK ENGINEER · AI SYSTEMS</p>
+    </div>
+
     <a href="/home.html" class="enter-btn" id="enterBtn"><span>enter</span></a>
 
-<script src="src/js/sineWave.js"></script>
-    <script>
-      // Check for ?stay param - if present, stay on landing (zen mode)
-      const urlParams = new URLSearchParams(window.location.search);
-      const stayMode = urlParams.has("stay");
-
-      // If user previously skipped and this isn't zen mode, go straight to home
-      if (!stayMode && sessionStorage.getItem("skippedLanding")) {
-        window.location.replace("/home.html");
-      }
-
-      // Zen mode: reposition button and change text
-      if (stayMode) {
-        document.body.classList.add("zen-mode");
-        document.querySelector("#enterBtn span").textContent = "back";
-      }
-
-      // Show enter button after 1.5s
-      setTimeout(() => {
-        document.getElementById("enterBtn").classList.add("visible");
-      }, 1500);
-
-      // Handle enter click - remember preference
-      document.getElementById("enterBtn").addEventListener("click", (e) => {
-        e.preventDefault();
-        sessionStorage.setItem("skippedLanding", "true");
-        window.location.href = "/home.html";
-      });
-
-      if (!stayMode) {
-        // Auto-transition after 5 seconds with scanline dissolve
-        setTimeout(() => {
-          // Hide enter button during transition
-          document.getElementById("enterBtn").classList.remove("visible");
-
-          // Add dissolving class to all elements
-          document
-            .querySelector(".landing-container")
-            .classList.add("dissolving");
-          document.getElementById("waves").classList.add("dissolving");
-          document
-            .querySelector(".spacebar-prompt")
-            ?.classList.add("dissolving");
-
-          // Navigate after dissolve animation completes
-          setTimeout(() => {
-            window.location.href = "/home.html";
-          }, 2500);
-        }, 5000);
-      }
-    </script>
+    <script src="src/js/effects/sineWave.js"></script>
+    <script src="src/js/pages/landing/index.js" defer></script>
   </body>
 </html>

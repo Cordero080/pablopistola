@@ -20,6 +20,28 @@
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
     <title>404 - Signal Lost | Pablo Pistola</title>
+    <meta
+      name="description"
+      content="Page not found on Pablo Pistola's portfolio. Return to the homepage to explore projects, skills, and contact information."
+    />
+    <meta name="robots" content="noindex,follow" />
+    <link rel="canonical" href="https://pvblocordero.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Pablo Pistola" />
+    <meta property="og:title" content="404 - Signal Lost | Pablo Pistola" />
+    <meta
+      property="og:description"
+      content="Page not found on Pablo Pistola's portfolio. Return to the homepage to explore projects, skills, and contact information."
+    />
+    <meta property="og:url" content="https://pvblocordero.com/" />
+    <meta property="og:image" content="/images/projects/transcendence.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="404 - Signal Lost | Pablo Pistola" />
+    <meta
+      name="twitter:description"
+      content="Page not found on Pablo Pistola's portfolio. Return to the homepage to explore projects, skills, and contact information."
+    />
+    <meta name="twitter:image" content="/images/projects/transcendence.webp" />
     <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
     <link
       rel="icon"
@@ -27,8 +49,8 @@
       sizes="192x192"
       href="/icons/icon-192.png"
     />
-    <link rel="stylesheet" crossorigin href="/assets/404-DHPrunsL.css">
-    <link rel="stylesheet" crossorigin href="/assets/main-BW6S03Ga.css">
+    <link rel="stylesheet" crossorigin href="/assets/404-XOWCw17K.css">
+    <link rel="stylesheet" crossorigin href="/assets/main-DrgzMY-6.css">
     <link rel="stylesheet" crossorigin href="/assets/typography-BtfmU3s3.css">
   </head>
   <body>
@@ -56,21 +78,7 @@
       >
     </main>
 
-    <script src="src/js/sineWave.js"></script>
-    <script>
-      // Initialize sine wave if available
-      document.addEventListener("DOMContentLoaded", () => {
-        const canvas = document.getElementById("waves");
-        if (canvas && typeof SineWave !== "undefined") {
-          new SineWave(canvas, {
-            speed: 0.008,
-            amplitude: 40,
-            wavelength: 0.015,
-            strokeStyle: "rgba(0, 255, 247, 0.08)",
-          });
-        }
-      });
-    </script>
-    <script src="src/js/app.js" defer></script>
+    <script src="src/js/effects/sineWave.js"></script>
+    <script src="src/js/pages/sineWaveInit.js" defer></script>
   </body>
 </html>

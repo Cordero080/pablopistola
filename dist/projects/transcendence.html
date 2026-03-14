@@ -27,24 +27,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <script src="../src/js/sineWave.js" defer></script>
+    <script src="../src/js/effects/sineWave.js" defer></script>
     <!-- Vercel Analytics (only loads on Vercel) -->
-    <script>
-      if (
-        window.location.hostname !== "localhost" &&
-        window.location.hostname !== "127.0.0.1"
-      ) {
-        const s = document.createElement("script");
-        s.defer = true;
-        s.src = "/_vercel/insights/script.js";
-        document.head.appendChild(s);
-      }
-    </script>
-    <link rel="stylesheet" crossorigin href="/assets/main-BW6S03Ga.css">
-    <link rel="stylesheet" crossorigin href="/assets/project-DKP1C7is.css">
+    <script src="../src/js/utils/analytics.js" defer></script>
+    <link rel="stylesheet" crossorigin href="/assets/main-DrgzMY-6.css">
+    <link rel="stylesheet" crossorigin href="/assets/project-VIph6MvY.css">
   </head>
   <body>
     <canvas id="waves"></canvas>
@@ -311,7 +301,7 @@
       <section class="project-about">
         <div class="about-grid">
           <div class="about-description">
-            <h2>About the Project</h2>
+            <h2>About</h2>
             <p>
               Tamagotchi Transcendence is an evolution simulator where a digital
               creature progresses through stages of color and consciousness,
@@ -746,19 +736,12 @@
       </section>
     </main>
 
-    <!-- Gallery Script -->
-    <script>
-      document.querySelectorAll(".gallery-thumbs .thumb").forEach((thumb) => {
-        thumb.addEventListener("click", () => {
-          document.querySelector(".gallery-hero-img").src = thumb.dataset.full;
-          document
-            .querySelectorAll(".thumb")
-            .forEach((t) => t.classList.remove("active"));
-          thumb.classList.add("active");
-        });
-      });
-    </script>
-    <script src="../src/js/app.js" defer></script>
-    <script src="../src/js/orb.js" defer></script>
+    
+    
+
+    <script src="../src/js/pages/gallery.js" defer></script>
+    <script src="../src/js/pages/projectInit.js" defer></script>
+    <script src="../src/js/components/cursor.js" defer></script>
+    <script src="../src/js/effects/orb.js" defer></script>
   </body>
 </html>

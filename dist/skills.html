@@ -19,6 +19,28 @@
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
     <title>Tech Stack | Pablo Cordero</title>
+    <meta
+      name="description"
+      content="Explore Pablo Cordero's technical stack across frontend, backend, AI, tooling, and creative development workflows."
+    />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://pvblocordero.com/skills" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Pablo Pistola" />
+    <meta property="og:title" content="Tech Stack | Pablo Cordero" />
+    <meta
+      property="og:description"
+      content="Explore Pablo Cordero's technical stack across frontend, backend, AI, tooling, and creative development workflows."
+    />
+    <meta property="og:url" content="https://pvblocordero.com/skills" />
+    <meta property="og:image" content="/images/projects/transcendence.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Tech Stack | Pablo Cordero" />
+    <meta
+      name="twitter:description"
+      content="Explore Pablo Cordero's technical stack across frontend, backend, AI, tooling, and creative development workflows."
+    />
+    <meta name="twitter:image" content="/images/projects/transcendence.webp" />
     <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
     <link
       rel="icon"
@@ -26,9 +48,9 @@
       sizes="192x192"
       href="/icons/icon-192.png"
     />
-    <script src="src/js/sineWave.js" defer></script>
-    <link rel="stylesheet" crossorigin href="/assets/skills-B_mq7tVi.css">
-    <link rel="stylesheet" crossorigin href="/assets/main-BW6S03Ga.css">
+    <script src="src/js/effects/sineWave.js" defer></script>
+    <link rel="stylesheet" crossorigin href="/assets/skills-mH9jVOAl.css">
+    <link rel="stylesheet" crossorigin href="/assets/main-DrgzMY-6.css">
     <link rel="stylesheet" crossorigin href="/assets/typography-BtfmU3s3.css">
   </head>
   <body>
@@ -413,43 +435,8 @@
       </section>
     </main>
 
-    <script>
-      const hamburgerBtn = document.getElementById("hamburgerBtn");
-      const sideNav = document.querySelector(".side-nav");
-      if (hamburgerBtn && sideNav) {
-        hamburgerBtn.addEventListener("click", () => {
-          sideNav.classList.toggle("menu-open");
-          hamburgerBtn.classList.toggle("active");
-          document.body.style.overflow = sideNav.classList.contains("menu-open")
-            ? "hidden"
-            : "";
-        });
-        document.querySelectorAll(".side-nav-link").forEach((link) => {
-          link.addEventListener("click", () => {
-            sideNav.classList.remove("menu-open");
-            hamburgerBtn.classList.remove("active");
-            document.body.style.overflow = "";
-          });
-        });
-      }
-      // Animate bars on scroll
-      const obs = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              const p = e.target.querySelector(".skill-progress");
-              if (p) {
-                const w = p.style.width;
-                p.style.width = "0";
-                setTimeout(() => (p.style.width = w), 100);
-              }
-            }
-          });
-        },
-        { threshold: 0.2 },
-      );
-      document.querySelectorAll(".skill-card").forEach((c) => obs.observe(c));
-    </script>
-    <script src="src/js/app.js" defer></script>
+    <script src="src/js/pages/skills.js" defer></script>
+    <script src="src/js/pages/sineWaveInit.js" defer></script>
+    <script src="src/js/components/cursor.js" defer></script>
   </body>
 </html>
