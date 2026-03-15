@@ -203,8 +203,9 @@
           <a href="/home" class="back-link">← Back to Projects</a>
           <h1 class="project-title">TIC-TRAP-TOE</h1>
           <p class="project-tagline">
-            Six faces. One rotating cube. First to win 3 boards wins the match —
-            the rotation is the mechanic, not the decoration.
+            Tic-tac-toe is a solved game. This isn't. Six boards, one rotating
+            cube — the rotation takes away your ability to stall, force a draw,
+            or even choose which game you're in.
           </p>
 
           <div class="project-links">
@@ -290,38 +291,39 @@
       <section class="project-about">
         <div class="about-grid">
           <div class="about-description">
-            <h2>The Concept</h2>
+            <h2>Why It Works</h2>
             <p>
-              A standard tic-tac-toe board has one game. This has six — one on
-              each face of a cube that never stops rotating. As faces rotate
-              toward the camera their boards become available to play. As they
-              rotate away, you lose access. There is no timer and no forced turn
-              order between faces. If you can see the cells, you can play them.
+              Normal tic-tac-toe ends in a draw every time against anyone paying
+              attention — it's solved. The rotation breaks that. You can't
+              stall, you can't force a draw, and the board you were about to win
+              might spin away before your turn comes back. There is no timer and
+              no forced turn order between faces. If you can see the cells, you
+              can play them.
             </p>
             <p>
-              Each face maintains its own independent game state — its own
-              board, its own X/O turn, its own win condition. At any moment you
-              may be mid-game on two or three faces simultaneously, each at a
-              different tempo. Knowing when to commit to a face versus letting
-              it rotate away is the core skill.
+              Each face runs its own independent game — its own board, its own
+              X/O turn, its own win condition. At any moment you may be mid-game
+              on two or three faces at once, each at a different stage. Knowing
+              when to commit to a face versus letting it rotate away is the core
+              skill.
             </p>
 
-            <h3>How the Rotation Works</h3>
+            <h3>How the Rotation Enforces the Rules</h3>
             <p>
-              Three.js raycasting handles click detection natively — FrontSide
-              backface culling means you physically cannot click a cell that is
-              rotating away from you. No artificial threshold needed. The
-              physics enforce the rules.
+              Three.js raycasting with FrontSide backface culling means you
+              physically cannot click a cell that is rotating away from you — no
+              artificial threshold needed. The physics are the rules.
             </p>
 
             <h3>Won Face Visuals</h3>
             <p>
-              When a player wins a face: confetti bursts from the exact winning
-              cell in world space (44 neon particles scatter along the face
-              normal, arc under gravity, fade out). The face surface shifts to a
+              When a player wins a face: a golden 3D bar strikes through the
+              winning cells, confetti bursts from the exact winning cell in
+              world space (44 neon particles scatter along the face normal, arc
+              under gravity, fade out), and the face surface shifts to a
               metallic white holographic overlay that color-cycles continuously.
-              The three winning marks turn red with emissive glow; the losing
-              marks go near-black. The score digit scrambles before landing.
+              Winning marks glow red; losing marks go near-black. The score
+              digit scrambles before landing.
             </p>
             <p>
               On match win, the cube decelerates exponentially and fires a
