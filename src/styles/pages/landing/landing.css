@@ -128,7 +128,7 @@ body.zen-mode .enter-btn:hover {
 
 /* Scanline dissolve on landing container */
 .landing-container.dissolving {
-  animation: scanlineDissolve 2.5s ease-out forwards;
+  animation: scanlineDissolve 1s ease-out forwards;
 }
 
 .landing-container.dissolving::before {
@@ -198,12 +198,12 @@ body.zen-mode .enter-btn:hover {
 
 /* Also dissolve the wave canvas */
 #waves.dissolving {
-  animation: scanlineDissolve 2.5s ease-out forwards;
+  animation: scanlineDissolve 1s ease-out forwards;
 }
 
 /* Also dissolve the identity text */
 .enter-identity.dissolving {
-  animation: scanlineDissolve 2.5s ease-out forwards;
+  animation: scanlineDissolve 1s ease-out forwards;
 }
 
 /* Identity text — anchored in upper half, above the wave */

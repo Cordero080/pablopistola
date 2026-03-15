@@ -32,5 +32,5 @@ document.getElementById("enterBtn").addEventListener("click", (e) => {
 
   setTimeout(() => {
     window.location.href = "/home.html";
-  }, 2500);
+  }, 1000);
 });
