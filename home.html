@@ -316,249 +316,260 @@
 
     <canvas id="waves"></canvas>
 
-    <!-- Bento Grid Layout -->
-    <section class="bento-section" id="projects">
-      <div class="bento-grid">
-        <!-- Top 2x2 Puzzle Grid - Numeneons first -->
-        <!-- Top-left: Numeneon Light - bump right, bump bottom -->
-        <a
-          href="/projects/numeneon-light"
-          class="bento-card-link bento-puzzle-tl"
-          style="--card-accent: #ff207a"
-        >
-          <article class="bento-card">
+    <!-- Projects Zig-Zag Layout -->
+    <section class="projects-section" id="projects">
+      <!-- Row 1: image LEFT, text RIGHT -->
+      <div class="project-row project-row--left" style="--card-accent: #ff207a">
+        <a href="/projects/numeneon-light" class="project-card-link">
+          <div class="project-card-media">
             <img
               src="/images/projects/numeneon-light.webp"
               alt="Numeneon Light"
-              class="bento-card-image"
-              decoding="async"
               loading="lazy"
+              decoding="async"
             />
-            <div class="bento-card-overlay">
-              <h2 class="glitch" data-text="Numeneon">Numeneon</h2>
-              <p class="card-description">Neopunk Social Platform</p>
-            </div>
-          </article>
+          </div>
         </a>
+        <div class="project-card-info">
+          <h2 class="project-card-title">Numeneon</h2>
+          <p class="project-card-description">Neopunk Social Platform</p>
+          <a href="/projects/numeneon-light" class="project-card-cta"
+            >View Project</a
+          >
+        </div>
+      </div>
 
-        <!-- Top-right: Numeneon Dark - indent left, bump bottom -->
-        <a
-          href="/projects/numeneon"
-          class="bento-card-link bento-puzzle-tr"
-          style="--card-accent: #9050ff"
-        >
-          <article class="bento-card">
+      <!-- Row 2: image RIGHT, text LEFT -->
+      <div
+        class="project-row project-row--right"
+        style="--card-accent: #9050ff"
+      >
+        <a href="/projects/numeneon" class="project-card-link">
+          <div class="project-card-media">
             <img
               src="/images/projects/numeneon.webp"
               alt="Numeneon Dark"
-              class="bento-card-image"
-              decoding="async"
               loading="lazy"
+              decoding="async"
             />
-            <div class="bento-card-overlay">
-              <h2 class="glitch" data-text="Numeneon">Numeneon</h2>
-              <p class="card-description">React • Django • WebSockets</p>
-            </div>
-          </article>
+          </div>
         </a>
+        <div class="project-card-info">
+          <h2 class="project-card-title">Numeneon</h2>
+          <p class="project-card-description">React • Django • WebSockets</p>
+          <a href="/projects/numeneon" class="project-card-cta">View Project</a>
+        </div>
+      </div>
 
-        <!-- Center card - Pneuma - full width beneath Numeneons -->
-        <a
-          href="/projects/pneuma"
-          class="bento-card-link bento-center"
-          style="--card-accent: #00d4ff"
-        >
-          <article class="bento-card">
+      <!-- Row 3: image LEFT, text RIGHT -->
+      <div class="project-row project-row--left" style="--card-accent: #00d4ff">
+        <a href="/projects/pneuma" class="project-card-link">
+          <div class="project-card-media">
             <img
               src="/images/projects/transcendence/pneuma/pneuma-landing.webp"
               alt="Pneuma"
-              class="bento-card-image"
-              decoding="async"
               loading="lazy"
+              decoding="async"
+              style="filter: brightness(1.05)"
             />
-            <div class="bento-card-overlay">
-              <h2 class="glitch" data-text="Pneuma">Pneuma</h2>
-              <p class="card-description">
-                AI Personality Engine • 46 Archetypes
-              </p>
-            </div>
-          </article>
+          </div>
         </a>
+        <div class="project-card-info">
+          <h2 class="project-card-title">Pneuma</h2>
+          <p class="project-card-description">
+            AI Personality Engine • 46 Archetypes
+          </p>
+          <a href="/projects/pneuma" class="project-card-cta">View Project</a>
+        </div>
+      </div>
 
-        <!-- Featured large card - Transcendence Pet Sim -->
-        <a
-          href="/projects/transcendence"
-          class="bento-card-link bento-featured"
-          style="--card-accent: #ff8c00"
-        >
-          <article class="bento-card">
+      <!-- Row 4: image RIGHT, text LEFT (Featured) -->
+      <div
+        class="project-row project-row--right"
+        style="--card-accent: #ff8c00"
+      >
+        <a href="/projects/transcendence" class="project-card-link">
+          <div class="project-card-media">
+            <span class="project-card-label">Featured</span>
             <img
               src="/images/projects/transcendence.webp"
               alt="Transcendence Pet Sim"
-              class="bento-card-image"
-              decoding="async"
               loading="lazy"
+              decoding="async"
             />
-            <div class="bento-card-overlay">
-              <span class="bento-label">Featured</span>
-              <h2 class="glitch" data-text="Transcendence">Transcendence</h2>
-              <p class="card-description">
-                3D Virtual Pet • Three.js + Blender
-              </p>
-            </div>
-          </article>
+          </div>
         </a>
+        <div class="project-card-info">
+          <h2 class="project-card-title">Transcendence</h2>
+          <p class="project-card-description">
+            3D Virtual Pet • Three.js + Blender
+          </p>
+          <a href="/projects/transcendence" class="project-card-cta"
+            >View Project</a
+          >
+        </div>
+      </div>
 
-        <!-- Tall card - Nucat -->
-        <a
-          href="/projects/nucat"
-          class="bento-card-link bento-tall"
-          style="--card-accent: #00ff88"
-        >
-          <article class="bento-card">
+      <!-- Row 5: image LEFT, text RIGHT -->
+      <div class="project-row project-row--left" style="--card-accent: #00ff88">
+        <a href="/projects/nucat" class="project-card-link">
+          <div class="project-card-media">
             <img
               src="/images/projects/nucat.webp"
               alt="Nucat"
-              class="bento-card-image"
-              decoding="async"
               loading="lazy"
+              decoding="async"
+              style="filter: brightness(1.05)"
             />
-            <div class="bento-card-overlay">
-              <h2 class="glitch" data-text="Nucat">Nucat</h2>
-              <p class="card-description">AI Cat Generator • React</p>
-            </div>
-          </article>
+          </div>
         </a>
+        <div class="project-card-info">
+          <h2 class="project-card-title">Nucat</h2>
+          <p class="project-card-description">AI Cat Generator • React</p>
+          <a href="/projects/nucat" class="project-card-cta">View Project</a>
+        </div>
+      </div>
 
-        <!-- Bottom 2x2 Puzzle Grid -->
-        <!-- Bottom-left: Nexus Geom Lab - bump right, indent top -->
-        <a
-          href="/projects/nexus-geom-lab"
-          class="bento-card-link bento-puzzle-bl"
-          style="--card-accent: #00fff7"
-        >
-          <article class="bento-card">
+      <!-- Row 6: image RIGHT, text LEFT -->
+      <div
+        class="project-row project-row--right"
+        style="--card-accent: #00fff7"
+      >
+        <a href="/projects/nexus-geom-lab" class="project-card-link">
+          <div class="project-card-media">
             <img
               src="/images/projects/nexus-geom-lab.webp"
               alt="Nexus Geom Lab"
-              class="bento-card-image"
-              decoding="async"
               loading="lazy"
+              decoding="async"
             />
-            <div class="bento-card-overlay">
-              <h2 class="glitch" data-text="Nexus Geom Lab">Nexus Geom Lab</h2>
-              <p class="card-description">Interactive 4D Shapes • WebGL</p>
-            </div>
-          </article>
+          </div>
         </a>
+        <div class="project-card-info">
+          <h2 class="project-card-title">Nexus Geom Lab</h2>
+          <p class="project-card-description">Interactive 4D Shapes • WebGL</p>
+          <a href="/projects/nexus-geom-lab" class="project-card-cta"
+            >View Project</a
+          >
+        </div>
+      </div>
 
-        <!-- Bottom-right: Dojo Crud - indent left, indent top -->
-        <a
-          href="/projects/dojo-crud"
-          class="bento-card-link bento-puzzle-br"
-          style="--card-accent: #ff4500"
-        >
-          <article class="bento-card">
+      <!-- Row 7: image LEFT, text RIGHT -->
+      <div class="project-row project-row--left" style="--card-accent: #ff4500">
+        <a href="/projects/dojo-crud" class="project-card-link">
+          <div class="project-card-media">
             <img
               src="/images/projects/dojo-crud.webp"
               alt="Dojo Crud"
-              class="bento-card-image"
-              decoding="async"
               loading="lazy"
+              decoding="async"
             />
-            <div class="bento-card-overlay">
-              <h2 class="glitch" data-text="Dojo Crud">Dojo Crud</h2>
-              <p class="card-description">Martial Arts Tracker • Django</p>
-            </div>
-          </article>
+          </div>
         </a>
+        <div class="project-card-info">
+          <h2 class="project-card-title">Dojo Crud</h2>
+          <p class="project-card-description">Martial Arts Tracker • Django</p>
+          <a href="/projects/dojo-crud" class="project-card-cta"
+            >View Project</a
+          >
+        </div>
+      </div>
 
-        <!-- Bookshelf -->
-        <a
-          href="/projects/bookshelf"
-          class="bento-card-link bento-bookshelf"
-          style="--card-accent: #ffd700"
-        >
-          <article class="bento-card">
+      <!-- Row 8: image RIGHT, text LEFT -->
+      <div
+        class="project-row project-row--right"
+        style="--card-accent: #ffd700"
+      >
+        <a href="/projects/bookshelf" class="project-card-link">
+          <div class="project-card-media">
             <img
               src="/images/projects/bookshelf/add-book-light.webp"
               alt="Quantum Literary Bookshelf"
-              class="bento-card-image"
-              decoding="async"
               loading="lazy"
+              decoding="async"
             />
-            <div class="bento-card-overlay">
-              <h2 class="glitch" data-text="Bookshelf">Bookshelf</h2>
-              <p class="card-description">Particle System • Three.js</p>
-            </div>
-          </article>
+          </div>
         </a>
+        <div class="project-card-info">
+          <h2 class="project-card-title">Bookshelf</h2>
+          <p class="project-card-description">Particle System • Three.js</p>
+          <a href="/projects/bookshelf" class="project-card-cta"
+            >View Project</a
+          >
+        </div>
+      </div>
 
-        <!-- La Dolce Vita -->
-        <a
-          href="/projects/la-dolce-vita"
-          class="bento-card-link bento-new-left"
-          style="--card-accent: #ff9ec8"
-        >
-          <article class="bento-card">
+      <!-- Row 9: image LEFT, text RIGHT (Client) -->
+      <div class="project-row project-row--left" style="--card-accent: #ff9ec8">
+        <a href="/projects/la-dolce-vita" class="project-card-link">
+          <div class="project-card-media">
+            <span class="project-card-label">Client</span>
             <img
               src="/images/projects/la-dolce-vita/dolce-home.png"
               alt="La Dolce Vita"
-              class="bento-card-image"
-              decoding="async"
               loading="lazy"
+              decoding="async"
             />
-            <div class="bento-card-overlay">
-              <span class="bento-label">Client</span>
-              <h2 class="glitch" data-text="La Dolce Vita">La Dolce Vita</h2>
-              <p class="card-description">AI Concierge • React + OpenAI</p>
-            </div>
-          </article>
+          </div>
         </a>
+        <div class="project-card-info">
+          <h2 class="project-card-title">La Dolce Vita</h2>
+          <p class="project-card-description">AI Concierge • React + OpenAI</p>
+          <a href="/projects/la-dolce-vita" class="project-card-cta"
+            >View Project</a
+          >
+        </div>
+      </div>
 
-        <!-- INSTVNCE Blog -->
-        <a
-          href="/projects/instvnce-blog"
-          class="bento-card-link bento-new-right"
-          style="--card-accent: #a8f0ac"
-        >
-          <article class="bento-card">
+      <!-- Row 10: image RIGHT, text LEFT -->
+      <div
+        class="project-row project-row--right"
+        style="--card-accent: #a8f0ac"
+      >
+        <a href="/projects/instvnce-blog" class="project-card-link">
+          <div class="project-card-media">
             <img
               src="/images/projects/instvnce-blog/instance-home.png"
               alt="INSTVNCE Blog"
-              class="bento-card-image"
-              decoding="async"
               loading="lazy"
+              decoding="async"
+              style="filter: brightness(1.05)"
             />
-            <div class="bento-card-overlay">
-              <h2 class="glitch" data-text="INSTVNCE">INSTVNCE</h2>
-              <p class="card-description">Developer Log • Neopunk Terminal</p>
-            </div>
-          </article>
+          </div>
         </a>
-        <!-- Tic-Trap-Toe -->
-        <a
-          href="/projects/tic-trap-toe"
-          class="bento-card-link bento-center"
-          style="--card-accent: #5500ff"
-        >
-          <article class="bento-card">
+        <div class="project-card-info">
+          <h2 class="project-card-title">INSTVNCE</h2>
+          <p class="project-card-description">
+            Developer Log • Neopunk Terminal
+          </p>
+          <a href="/projects/instvnce-blog" class="project-card-cta"
+            >View Project</a
+          >
+        </div>
+      </div>
+
+      <!-- Row 11: image LEFT, text RIGHT (Game) -->
+      <div class="project-row project-row--left" style="--card-accent: #5500ff">
+        <a href="/projects/tic-trap-toe" class="project-card-link">
+          <div class="project-card-media">
+            <span class="project-card-label">Game</span>
             <img
               src="/images/projects/tic-trap-toe/rotation-angle.jpg"
               alt="Tic-Trap-Toe"
-              class="bento-card-image"
-              decoding="async"
               loading="lazy"
+              decoding="async"
             />
-            <div class="bento-card-overlay">
-              <span class="bento-label">Game</span>
-              <h2 class="glitch" data-text="Tic-Trap-Toe">Tic-Trap-Toe</h2>
-              <p class="card-description">
-                6-Face Cube • Three.js • Vanilla JS
-              </p>
-            </div>
-          </article>
+          </div>
         </a>
+        <div class="project-card-info">
+          <h2 class="project-card-title">Tic-Trap-Toe</h2>
+          <p class="project-card-description">
+            6-Face Cube • Three.js • Vanilla JS
+          </p>
+          <a href="/projects/tic-trap-toe" class="project-card-cta"
+            >View Project</a
+          >
+        </div>
       </div>
     </section>
 

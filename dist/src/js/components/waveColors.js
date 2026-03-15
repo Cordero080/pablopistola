@@ -10,8 +10,8 @@ function updateMinimalParallaxOverlay() {
 window.addEventListener("scroll", updateMinimalParallaxOverlay);
 document.addEventListener("DOMContentLoaded", updateMinimalParallaxOverlay);
 
-// Bento cards - no tilt, just subtle hue shift on scroll
-const bentoCards = document.querySelectorAll(".bento-card");
+// Project cards - subtle hue shift on scroll
+const bentoCards = document.querySelectorAll(".project-card-media");
 
 function updateBentoCards() {
   const scrollY = window.scrollY;

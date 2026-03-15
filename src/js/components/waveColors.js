@@ -10,20 +10,13 @@ function updateMinimalParallaxOverlay() {
 window.addEventListener("scroll", updateMinimalParallaxOverlay);
 document.addEventListener("DOMContentLoaded", updateMinimalParallaxOverlay);
 
-// Bento cards - no tilt, just subtle hue shift on scroll
-const bentoCards = document.querySelectorAll(".bento-card");
-
 function updateBentoCards() {
   const scrollY = window.scrollY;
   const maxScroll = document.body.scrollHeight - window.innerHeight;
   const rawProgress = Math.min(scrollY / maxScroll, 1);
-  const cardHue = rawProgress * 180; // Subtle hue shift
+  const cardHue = rawProgress * 180;
 
-  bentoCards.forEach((card) => {
-    card.style.filter = `hue-rotate(${cardHue}deg)`;
-  });
-
-  // Sinewave hue shift
+  // Sinewave hue shift only — project cards are not affected
   const sineWaveCanvas = document.getElementById("waves");
   if (sineWaveCanvas) {
     sineWaveCanvas.style.filter = `hue-rotate(${cardHue}deg)`;

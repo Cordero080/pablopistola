@@ -16,7 +16,7 @@
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dojo App | Pablo Cordero</title>
+    <title>Tic-Trap-Toe | Pablo Cordero</title>
     <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
     <link
       rel="icon"
@@ -31,7 +31,6 @@
       rel="stylesheet"
     />
     <script src="../src/js/effects/sineWave.js" defer></script>
-    <!-- Vercel Analytics (only loads on Vercel) -->
     <script src="../src/js/utils/analytics.js" defer></script>
     <link rel="stylesheet" crossorigin href="/assets/main-CixxfnkN.css">
     <link rel="stylesheet" crossorigin href="/assets/project-VIph6MvY.css">
@@ -183,13 +182,44 @@
       <div class="side-nav-glow"></div>
     </nav>
 
+    <!-- Mobile Hamburger Button -->
+    <button
+      class="hamburger-btn"
+      id="hamburgerBtn"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <div class="hamburger-icon">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </div>
+    </button>
+
     <main class="project-page">
       <!-- Hero Section -->
       <section class="project-hero">
         <div class="project-hero-content">
           <a href="/home" class="back-link">← Back to Projects</a>
-          <h1 class="project-title">DOJO APP</h1>
-          <p class="project-tagline">Engineering Traditional Discipline</p>
+          <h1 class="project-title">TIC-TRAP-TOE</h1>
+          <p class="project-tagline">
+            Six faces. One rotating cube. First to win 3 boards wins the match —
+            the rotation is the mechanic, not the decoration.
+          </p>
+
+          <div class="project-links">
+            <a
+              href="https://github.com/Cordero080/tic-trap-toe"
+              target="_blank"
+              class="project-btn primary"
+            >
+              <span>GitHub</span>
+            </a>
+          </div>
+          <p class="project-note">
+            <strong>Desktop Only</strong> — Requires mouse input for raycasting
+            click detection on the 3D cube faces.
+          </p>
         </div>
       </section>
 
@@ -197,94 +227,38 @@
       <section class="project-gallery">
         <div class="gallery-main">
           <img
-            src="/images/projects/nexus-geom-lab/dojo/main.png"
-            alt="Dojo CRUD Main"
+            src="/images/projects/tic-trap-toe/rotation-angle.jpg"
+            alt="Tic-Trap-Toe rotating cube"
             class="gallery-hero-img"
+            style="object-fit: contain; aspect-ratio: auto; background: #0a0a0f"
             loading="eager"
           />
         </div>
         <div class="gallery-thumbs">
           <img
-            src="/images/projects/nexus-geom-lab/dojo/main.png"
-            alt="Main"
+            src="/images/projects/tic-trap-toe/rotation-angle.jpg"
+            alt="Rotating cube with multiple active boards"
             class="thumb active"
-            data-full="/images/projects/nexus-geom-lab/dojo/main.png"
+            data-full="/images/projects/tic-trap-toe/rotation-angle.jpg"
+            style="object-fit: contain; background: #0a0a0f"
             loading="lazy"
           />
           <img
-            src="/images/projects/nexus-geom-lab/dojo/sign-up.png"
-            alt="Sign Up"
+            src="/images/projects/tic-trap-toe/confetti.jpg"
+            alt="Confetti burst on face win"
             class="thumb"
-            data-full="/images/projects/nexus-geom-lab/dojo/sign-up.png"
+            data-full="/images/projects/tic-trap-toe/confetti.jpg"
+            style="object-fit: contain; background: #0a0a0f"
             loading="lazy"
           />
           <img
-            src="/images/projects/nexus-geom-lab/dojo/login.png"
-            alt="Login"
+            src="/images/projects/tic-trap-toe/win-match.jpg"
+            alt="Match win state"
             class="thumb"
-            data-full="/images/projects/nexus-geom-lab/dojo/login.png"
+            data-full="/images/projects/tic-trap-toe/win-match.jpg"
+            style="object-fit: contain; background: #0a0a0f"
             loading="lazy"
           />
-          <img
-            src="/images/projects/nexus-geom-lab/dojo/form.png"
-            alt="Form"
-            class="thumb"
-            data-full="/images/projects/nexus-geom-lab/dojo/form.png"
-            loading="lazy"
-          />
-          <img
-            src="/images/projects/nexus-geom-lab/dojo/description.png"
-            alt="Description"
-            class="thumb"
-            data-full="/images/projects/nexus-geom-lab/dojo/description.png"
-            loading="lazy"
-          />
-          <img
-            src="/images/projects/nexus-geom-lab/dojo/index.png"
-            alt="Index"
-            class="thumb"
-            data-full="/images/projects/nexus-geom-lab/dojo/index.png"
-            loading="lazy"
-          />
-          <img
-            src="/images/projects/nexus-geom-lab/dojo/show.png"
-            alt="Show"
-            class="thumb"
-            data-full="/images/projects/nexus-geom-lab/dojo/show.png"
-            loading="lazy"
-          />
-          <img
-            src="/images/projects/nexus-geom-lab/dojo/trash.png"
-            alt="Trash"
-            class="thumb"
-            data-full="/images/projects/nexus-geom-lab/dojo/trash.png"
-            loading="lazy"
-          />
-        </div>
-
-        <!-- Architecture Section -->
-        <div class="architecture-section">
-          <h3>Architecture</h3>
-          <div class="architecture-grid">
-            <div class="architecture-item wireframe">
-              <img
-                src="/images/projects/dojo/wireframes/wireframe-flow-FINAL.2.png"
-                alt="Wireframe"
-                class="arch-thumb"
-                data-full="/images/projects/dojo/wireframes/wireframe-flow-FINAL.2.png"
-              />
-              <span class="arch-label">Wireframe</span>
-            </div>
-            <div class="architecture-item erd">
-              <img
-                src="/images/projects/dojo/wireframes/erd/dojoApp-erd.png"
-                alt="ERD"
-                class="arch-thumb"
-                data-full="/images/projects/dojo/wireframes/erd/dojoApp-erd.png"
-              />
-              <span class="arch-label">ERD</span>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -292,117 +266,121 @@
       <section class="project-about">
         <div class="about-grid">
           <div class="about-description">
-            <h2>The Vision</h2>
+            <h2>The Concept</h2>
             <p>
-              Traditional Goju-Ryu martial arts relies on a complex,
-              hierarchical syllabus that is often managed through paper logs and
-              manual tracking. I built the Dojo App to modernize this
-              process—creating a digital mirror of a physical practice. It is a
-              full-stack forms management system that handles the rigorous
-              progression from 10th Kyu (White Belt) to 8th Dan (Black Belt).
+              A standard tic-tac-toe board has one game. This has six — one on
+              each face of a cube that never stops rotating. As faces rotate
+              toward the camera their boards become available to play. As they
+              rotate away, you lose access. There is no timer and no forced turn
+              order between faces. If you can see the cells, you can play them.
+            </p>
+            <p>
+              Each face maintains its own independent game state — its own
+              board, its own X/O turn, its own win condition. At any moment you
+              may be mid-game on two or three faces simultaneously, each at a
+              different tempo. Knowing when to commit to a face versus letting
+              it rotate away is the core skill.
             </p>
 
-            <h3>Core Architectural Achievements</h3>
-
-            <h4>1. The Syllabus & Requirements Engine</h4>
+            <h3>How the Rotation Works</h3>
             <p>
-              The most difficult part of this build was translating 48+
-              traditional forms (Kata, Bunkai, Kumite) into a rigid data schema.
-              I engineered a requirements system that prevents curriculum
-              inconsistencies, ensuring that practitioners only see the forms
-              relevant to their specific rank and lineage.
+              Three.js raycasting handles click detection natively — FrontSide
+              backface culling means you physically cannot click a cell that is
+              rotating away from you. No artificial threshold needed. The
+              physics enforce the rules.
             </p>
 
-            <h4>2. Soft-Delete & Data Integrity</h4>
+            <h3>Won Face Visuals</h3>
             <p>
-              In a training environment, accidental data loss can be
-              demoralizing. I implemented a Soft-Delete system with a dedicated
-              "Trash" management interface. This allows for immediate mistake
-              correction and maintains a permanent audit trail of a
-              practitioner's history without cluttering the active database.
+              When a player wins a face: confetti bursts from the exact winning
+              cell in world space (44 neon particles scatter along the face
+              normal, arc under gravity, fade out). The face surface shifts to a
+              metallic white holographic overlay that color-cycles continuously.
+              The three winning marks turn red with emissive glow; the losing
+              marks go near-black. The score digit scrambles before landing.
             </p>
-
-            <h4>3. Multi-Tenant Data Isolation</h4>
             <p>
-              The application is designed with security as a priority. Using a
-              multi-tenant architecture with owner-scoped queries and MongoDB
-              indexing, I ensured that every practitioner manages their own
-              training data in total isolation, protected by JWT-based
-              authentication and bcrypt hashing.
-            </p>
-
-            <h3>Technical Deep Dive</h3>
-            <div class="tech-table">
-              <div class="tech-row">
-                <span class="tech-feature">Progress Analytics</span>
-                <span class="tech-impl"
-                  >Dynamic completion tracking by rank, visualized via Chart.js
-                  integration.</span
-                >
-              </div>
-              <div class="tech-row">
-                <span class="tech-feature">Smart Navigation</span>
-                <span class="tech-impl"
-                  >A custom combobox with type-to-filter functionality for
-                  handling large datasets of authentic form names.</span
-                >
-              </div>
-              <div class="tech-row">
-                <span class="tech-feature">Performance</span>
-                <span class="tech-impl"
-                  >Response compression and strategic indexing to ensure
-                  high-speed data loading for requirements and charts.</span
-                >
-              </div>
-              <div class="tech-row">
-                <span class="tech-feature">Security Middleware</span>
-                <span class="tech-impl"
-                  >Integrated Helmet.js for header protection and custom
-                  auth-guard middleware for all protected routes.</span
-                >
-              </div>
-            </div>
-
-            <h3>Refining the Narrative</h3>
-            <p>
-              As an instructor of Okinawan Goju-Ryu, I didn't just build this to
-              "code an app"—I built it to solve a logistical hurdle in my own
-              field. It demonstrates my ability to take a non-linear,
-              traditional human system and organize it into a performant,
-              secure, and user-centric digital architecture.
+              On match win, the cube decelerates exponentially and fires a
+              damped scale pulse — two sharp thumps, then stillness.
             </p>
           </div>
 
           <div class="about-details">
             <div class="detail-card">
               <h3>Project Type</h3>
-              <p>Full-Stack CRUD Application</p>
+              <p>Browser Game</p>
             </div>
             <div class="detail-card">
               <h3>Tech Stack</h3>
-              <p>
-                <strong>Backend:</strong> Node.js, Express.js, MongoDB (MEN
-                Stack)<br />
-                <strong>Security:</strong> Bcryptjs, Express-session, Helmet<br />
-                <strong>Frontend:</strong> EJS (Server-side rendering), Custom
-                CSS, Chart.js
-              </p>
+              <p>Three.js, Vanilla JavaScript ES Modules, CSS3</p>
             </div>
             <div class="detail-card">
               <h3>Role</h3>
-              <p>Full-Stack Developer & Domain Expert</p>
+              <p>Solo — Design, Game Logic, 3D Engineering</p>
             </div>
             <div class="detail-card">
-              <h3>Methodology</h3>
-              <p>RESTful CRUD, Soft-delete patterns, Database seeding</p>
+              <h3>Status</h3>
+              <p>Complete</p>
             </div>
           </div>
         </div>
       </section>
-    </main>
 
-    
-    
+      <!-- Features -->
+      <section class="project-features">
+        <h2>Key Features</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🎲</div>
+            <h3>6 Independent Boards</h3>
+            <p>
+              Each cube face tracks its own board state, turn, and winner — play
+              on multiple fronts simultaneously.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <h3>Rotation as Mechanic</h3>
+            <p>
+              The cube's spin is the access control. No timer needed — physics
+              enforces which faces are playable.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎊</div>
+            <h3>World-Space Confetti</h3>
+            <p>
+              Confetti bursts from the exact winning cell in 3D space,
+              scattering along the face normal with gravity.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">✨</div>
+            <h3>Holographic Win State</h3>
+            <p>
+              Won faces shift to a metallic white overlay with HSL color
+              cycling. Winning marks glow red; losers go black.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🤖</div>
+            <h3>vs Computer AI</h3>
+            <p>
+              AI plays O on whichever face you just moved on — win, block,
+              center, corner, random.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>No Build Step</h3>
+            <p>
+              Three.js via importmap CDN. Vanilla ES modules. Open index.html
+              and play.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
 
     <script src="../src/js/pages/gallery.js" defer></script>
     <script src="../src/js/pages/projectInit.js" defer></script>
