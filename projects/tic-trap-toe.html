@@ -314,6 +314,24 @@
               physically cannot click a cell that is rotating away from you — no
               artificial threshold needed. The physics are the rules.
             </p>
+            <p>
+              As faces get claimed, the cube stops giving equal time to all six
+              sides. When 3 or fewer faces remain, the rotation biases toward
+              showing the unfinished ones — arriving faster, lingering longer.
+              The fewer faces left, the stronger the pull. It never stops
+              spinning; it just stops being equally fair to faces that are
+              already done.
+            </p>
+
+            <h3>Adaptive AI</h3>
+            <p>
+              The computer starts at Rookie and gets smarter every time you win
+              a face — across rounds. Win a match, hit Next Round, and the AI
+              picks up at the difficulty you earned. Five levels: Rookie (70%
+              random), Casual (40%), Focused (15%), Sharp (full heuristic), and
+              Unbeatable (minimax — provably optimal, can never be beaten, only
+              drawn). The difficulty only resets when you hit Reset Game.
+            </p>
 
             <h3>Won Face Visuals</h3>
             <p>
@@ -390,10 +408,27 @@
           </div>
           <div class="feature-card">
             <div class="feature-icon">🤖</div>
-            <h3>vs Computer AI</h3>
+            <h3>Adaptive AI — 5 Levels</h3>
             <p>
-              AI plays O on whichever face you just moved on — win, block,
-              center, corner, random.
+              Starts at Rookie, escalates with every face you win — across
+              rounds. Tops out at Unbeatable: full minimax, provably optimal,
+              can only be drawn with perfect play.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔄</div>
+            <h3>Multi-Round Progression</h3>
+            <p>
+              Win a match and hit Next Round — the boards reset but the AI keeps
+              its difficulty. Only Reset Game brings it back to Rookie.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🧲</div>
+            <h3>Adaptive Cube Steering</h3>
+            <p>
+              When few faces remain, the rotation biases toward them — drifting
+              to unfinished angles faster and lingering there longer.
             </p>
           </div>
           <div class="feature-card">
