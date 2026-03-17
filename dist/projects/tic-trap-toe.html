@@ -32,7 +32,7 @@
     />
     <script src="../src/js/effects/sineWave.js" defer></script>
     <script src="../src/js/utils/analytics.js" defer></script>
-    <link rel="stylesheet" crossorigin href="/assets/main-B7ufl5gt.css">
+    <link rel="stylesheet" crossorigin href="/assets/main-Cr9kBVg-.css">
     <link rel="stylesheet" crossorigin href="/assets/project-VIph6MvY.css">
   </head>
   <body>
@@ -203,8 +203,9 @@
           <a href="/home" class="back-link">← Back to Projects</a>
           <h1 class="project-title">TIC-TRAP-TOE</h1>
           <p class="project-tagline">
-            Six faces. One rotating cube. First to win 3 boards wins the match —
-            the rotation is the mechanic, not the decoration.
+            Tic-tac-toe is a solved game. This isn't. Six boards, one rotating
+            cube — the rotation takes away your ability to stall, force a draw,
+            or even choose which game you're in.
           </p>
 
           <div class="project-links">
@@ -227,8 +228,8 @@
       <section class="project-gallery">
         <div class="gallery-main">
           <img
-            src="/images/projects/tic-trap-toe/rotation-angle.jpg"
-            alt="Tic-Trap-Toe rotating cube"
+            src="/images/projects/tic-trap-toe/title-cube-overview.png"
+            alt="Tic-Trap-Toe title and rotating cube overview"
             class="gallery-hero-img"
             style="object-fit: contain; aspect-ratio: auto; background: #0a0a0f"
             loading="eager"
@@ -236,26 +237,50 @@
         </div>
         <div class="gallery-thumbs">
           <img
-            src="/images/projects/tic-trap-toe/rotation-angle.jpg"
-            alt="Rotating cube with multiple active boards"
+            src="/images/projects/tic-trap-toe/title-cube-overview.png"
+            alt="3D title and cube overview"
             class="thumb active"
-            data-full="/images/projects/tic-trap-toe/rotation-angle.jpg"
+            data-full="/images/projects/tic-trap-toe/title-cube-overview.png"
             style="object-fit: contain; background: #0a0a0f"
             loading="lazy"
           />
           <img
-            src="/images/projects/tic-trap-toe/confetti.jpg"
+            src="/images/projects/tic-trap-toe/active-face-gameplay.png"
+            alt="Active face with X and O marks placed"
+            class="thumb"
+            data-full="/images/projects/tic-trap-toe/active-face-gameplay.png"
+            style="object-fit: contain; background: #0a0a0f"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/tic-trap-toe/gold-win-bar.png"
+            alt="Golden win bar striking through winning marks"
+            class="thumb"
+            data-full="/images/projects/tic-trap-toe/gold-win-bar.png"
+            style="object-fit: contain; background: #0a0a0f"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/tic-trap-toe/confetti-face-win.png"
             alt="Confetti burst on face win"
             class="thumb"
-            data-full="/images/projects/tic-trap-toe/confetti.jpg"
+            data-full="/images/projects/tic-trap-toe/confetti-face-win.png"
             style="object-fit: contain; background: #0a0a0f"
             loading="lazy"
           />
           <img
-            src="/images/projects/tic-trap-toe/win-match.jpg"
-            alt="Match win state"
+            src="/images/projects/tic-trap-toe/holographic-won-face.png"
+            alt="Holographic metallic overlay on won face"
             class="thumb"
-            data-full="/images/projects/tic-trap-toe/win-match.jpg"
+            data-full="/images/projects/tic-trap-toe/holographic-won-face.png"
+            style="object-fit: contain; background: #0a0a0f"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/tic-trap-toe/match-win-score.jpg"
+            alt="Match win score with yellow-red stripe"
+            class="thumb"
+            data-full="/images/projects/tic-trap-toe/match-win-score.jpg"
             style="object-fit: contain; background: #0a0a0f"
             loading="lazy"
           />
@@ -266,38 +291,57 @@
       <section class="project-about">
         <div class="about-grid">
           <div class="about-description">
-            <h2>The Concept</h2>
+            <h2>Why It Works</h2>
             <p>
-              A standard tic-tac-toe board has one game. This has six — one on
-              each face of a cube that never stops rotating. As faces rotate
-              toward the camera their boards become available to play. As they
-              rotate away, you lose access. There is no timer and no forced turn
-              order between faces. If you can see the cells, you can play them.
+              Normal tic-tac-toe ends in a draw every time against anyone paying
+              attention — it's solved. The rotation breaks that. You can't
+              stall, you can't force a draw, and the board you were about to win
+              might spin away before your turn comes back. There is no timer and
+              no forced turn order between faces. If you can see the cells, you
+              can play them.
             </p>
             <p>
-              Each face maintains its own independent game state — its own
-              board, its own X/O turn, its own win condition. At any moment you
-              may be mid-game on two or three faces simultaneously, each at a
-              different tempo. Knowing when to commit to a face versus letting
-              it rotate away is the core skill.
+              Each face runs its own independent game — its own board, its own
+              X/O turn, its own win condition. At any moment you may be mid-game
+              on two or three faces at once, each at a different stage. Knowing
+              when to commit to a face versus letting it rotate away is the core
+              skill.
             </p>
 
-            <h3>How the Rotation Works</h3>
+            <h3>How the Rotation Enforces the Rules</h3>
             <p>
-              Three.js raycasting handles click detection natively — FrontSide
-              backface culling means you physically cannot click a cell that is
-              rotating away from you. No artificial threshold needed. The
-              physics enforce the rules.
+              Three.js raycasting with FrontSide backface culling means you
+              physically cannot click a cell that is rotating away from you — no
+              artificial threshold needed. The physics are the rules.
+            </p>
+            <p>
+              As faces get claimed, the cube stops giving equal time to all six
+              sides. When 3 or fewer faces remain, the rotation biases toward
+              showing the unfinished ones — arriving faster, lingering longer.
+              The fewer faces left, the stronger the pull. It never stops
+              spinning; it just stops being equally fair to faces that are
+              already done.
+            </p>
+
+            <h3>Adaptive AI</h3>
+            <p>
+              The computer starts at Rookie and gets smarter every time you win
+              a face — across rounds. Win a match, hit Next Round, and the AI
+              picks up at the difficulty you earned. Five levels: Rookie (70%
+              random), Casual (40%), Focused (15%), Sharp (full heuristic), and
+              Unbeatable (minimax — provably optimal, can never be beaten, only
+              drawn). The difficulty only resets when you hit Reset Game.
             </p>
 
             <h3>Won Face Visuals</h3>
             <p>
-              When a player wins a face: confetti bursts from the exact winning
-              cell in world space (44 neon particles scatter along the face
-              normal, arc under gravity, fade out). The face surface shifts to a
+              When a player wins a face: a golden 3D bar strikes through the
+              winning cells, confetti bursts from the exact winning cell in
+              world space (44 neon particles scatter along the face normal, arc
+              under gravity, fade out), and the face surface shifts to a
               metallic white holographic overlay that color-cycles continuously.
-              The three winning marks turn red with emissive glow; the losing
-              marks go near-black. The score digit scrambles before landing.
+              Winning marks glow red; losing marks go near-black. The score
+              digit scrambles before landing.
             </p>
             <p>
               On match win, the cube decelerates exponentially and fires a
@@ -364,10 +408,27 @@
           </div>
           <div class="feature-card">
             <div class="feature-icon">🤖</div>
-            <h3>vs Computer AI</h3>
+            <h3>Adaptive AI — 5 Levels</h3>
             <p>
-              AI plays O on whichever face you just moved on — win, block,
-              center, corner, random.
+              Starts at Rookie, escalates with every face you win — across
+              rounds. Tops out at Unbeatable: full minimax, provably optimal,
+              can only be drawn with perfect play.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔄</div>
+            <h3>Multi-Round Progression</h3>
+            <p>
+              Win a match and hit Next Round — the boards reset but the AI keeps
+              its difficulty. Only Reset Game brings it back to Rookie.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🧲</div>
+            <h3>Adaptive Cube Steering</h3>
+            <p>
+              When few faces remain, the rotation biases toward them — drifting
+              to unfinished angles faster and lingering there longer.
             </p>
           </div>
           <div class="feature-card">
