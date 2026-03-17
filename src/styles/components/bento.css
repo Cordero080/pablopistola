@@ -235,6 +235,12 @@
     text-align: left;
     align-items: flex-start;
   }
+  /* Override horizontal gradient fade — fade to bottom instead */
+  .project-row--left .project-card-media,
+  .project-row--right .project-card-media {
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  }
   /* No horizontal slide on mobile — just fade up */
   .project-card-link,
   .project-card-info {
