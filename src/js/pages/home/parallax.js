@@ -155,10 +155,8 @@ document.addEventListener("DOMContentLoaded", () => {
       heroGlow.style.opacity = 1 - scrollProgress * 0.5;
     }
 
-    // Layer 3: hero content — foreground
+    // Layer 3: hero content — foreground (scroll effects only, no mouse follow)
     if (heroContent) {
-      const hx = currentX * 16;
-      const hy = currentY * 10;
       if (!isMobile) {
         const translateY = scrollY * 0.7;
         const scale = 1 - scrollProgress * 0.15;
@@ -167,16 +165,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const opacity = Math.max(0, 1 - scrollProgress * 1.2);
         heroContent.style.transform = `
           perspective(1000px)
-          translateX(${hx}px)
-          translateY(${translateY + hy}px)
+          translateY(${translateY}px)
           scale(${scale})
           rotateX(${rotateX}deg)
         `;
         heroContent.style.opacity = opacity;
         heroContent.style.filter = `blur(${blur}px)`;
-      } else {
-        // Mobile: gyro offset only, no scroll transforms (prevents jank)
-        heroContent.style.transform = `translateX(${hx}px) translateY(${hy}px)`;
       }
     }
 
