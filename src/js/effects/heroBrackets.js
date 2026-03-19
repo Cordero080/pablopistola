@@ -53,9 +53,9 @@ if (heroSection) {
   // ── Bracket geometry ────────────────────────────────────────────────────────
   function makeBracketShape() {
     const shape = new THREE.Shape();
-    const w = 0.32; // horizontal span
+    const w = 0.38; // horizontal span
     const h = 2.0; // total height
-    const t = 0.13; // bar + stem thickness
+    const t = 0.18; // bar + stem thickness
 
     // [ shape — opening faces RIGHT (positive X)
     shape.moveTo(0, 0);
@@ -71,11 +71,11 @@ if (heroSection) {
   }
 
   const extrudeSettings = {
-    depth: 0.28,
+    depth: 0.36,
     bevelEnabled: true,
     bevelSegments: 4,
-    bevelSize: 0.03,
-    bevelThickness: 0.03,
+    bevelSize: 0.04,
+    bevelThickness: 0.04,
   };
 
   const geo = new THREE.ExtrudeGeometry(makeBracketShape(), extrudeSettings);
