@@ -223,7 +223,7 @@ body.zen-mode .enter-btn:hover {
   font-family: "Future Z", sans-serif;
   font-weight: 700;
   font-style: normal;
-  font-size: clamp(1.2rem, 3.2vw, 2.2rem);
+  font-size: clamp(2rem, 4vw, 4rem);
   text-align: center;
   width: 100%;
   background: linear-gradient(
@@ -249,16 +249,16 @@ body.zen-mode .enter-btn:hover {
 }
 
 .enter-identity-subtitle {
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-size: clamp(0.75rem, 1.4vw, 1rem);
   font-weight: 400;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   background: linear-gradient(
     90deg,
-    rgba(0, 212, 255, 0.8),
-    rgba(200, 80, 255, 0.8),
-    rgba(0, 212, 255, 0.8)
+    rgba(0, 212, 255, 1),
+    rgba(200, 80, 255, 1),
+    rgba(0, 212, 255, 1)
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -386,13 +386,9 @@ body.zen-mode .enter-btn:hover {
 }
 
 @media (min-width: 769px) and (max-width: 1100px) {
-  .enter-identity {
-    top: 38%;
-  }
-
   .enter-identity-title {
-    font-size: clamp(1.2rem, 3vw, 2rem);
-    letter-spacing: 0.08em;
+    font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+    letter-spacing: 0.1em;
   }
 }
 
@@ -405,9 +401,9 @@ body.zen-mode .enter-btn:hover {
   }
 
   .enter-identity-title {
-    display: block;
-    font-size: clamp(1rem, 5vw, 1.8rem);
-    white-space: normal;
+    display: inline;
+    font-size: clamp(1rem, 6vw, 2.4rem);
+    white-space: nowrap;
     letter-spacing: 0.06em;
   }
 

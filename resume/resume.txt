@@ -1,0 +1,98 @@
+%!TEX TS-program = xelatex
+\documentclass[a4paper,online]{adcv}
+
+\usepackage[english]{babel}
+\usepackage{xcolor}
+\definecolor{gray}{HTML}{333333}
+
+\title{Pablo Cordero's Resume}
+
+\adcvname{Pablo}{Cordero}{}
+\adcvtitle{Full-Stack Software Engineer · AI Systems \& LLM Architecture}
+\adcvaddress{}{}{Charlotte}{NC}
+\adcvwebsite{https://pvblocordero.com}{pvblocordero.com • github.com/Cordero080 • linkedin.com/in/pvblo-corder080}
+\adcvemail{Cordero080}{gmail}{com}
+\adcvphone{646.641.7959}
+\adcvdate{February 2026}
+
+\begin{document}
+
+Full-Stack Software Engineer with production experience building AI-integrated web applications for clients. Combines strong front-end craft (React, Three.js, SCSS design systems) with backend architecture (Django, Node.js, PostgreSQL) and hands-on AI systems work including RAG pipelines, semantic routing, and LLM orchestration. Seeking a full-stack or AI engineering role where I can ship at a high pace in a collaborative environment.
+
+\section{Technical Skills}
+
+\textbf{Languages \& Frameworks}: JavaScript (ES6+), Python, React, Django, Node.js, Express.js
+
+\textbf{3D \& Creative}: Three.js, React Three Fiber, Blender, GLSL Shaders, Web Audio API, FFT Audio Analysis, Audio-Reactive Visuals
+
+\textbf{Design \& Product}: UI/UX Strategy, Product Roadmapping, Adobe Creative Suite, Technical Spec Writing
+
+\textbf{Backend \& Data}: PostgreSQL, MongoDB, RESTful APIs, Django REST Framework, JWT Auth, WebSockets
+
+\textbf{Development}: Git, Vite, SCSS, Jest, Responsive Design, Mobile-First Architecture
+
+\section{Professional Experience}
+
+\begin{adcvtabletwo}
+  \adcvrowtwo{\textbf{Independent Software Consultant}, Self-Employed}{2025--Present}
+  \adcvrowmulti{Shipping production AI and full-stack systems for clients, from scoping through delivery}
+  \adcvrowskip
+
+  \adcvrowtwo{\textbf{Full-Stack Engineer}, La Dolce Vita}{2025}
+  \adcvrowmulti{Built production AI concierge platform for a luxury vacation rental client}
+  \adcvrowmulti{• Integrated OpenAI GPT-4o with Google Sheets API for multilingual guest support}
+  \adcvrowmulti{• Engineered natural language date parser and iCal checker for live Airbnb calendar sync}
+  \adcvrowmulti{• Deployed React on Vercel and Express on Render with full CI/CD pipeline}
+  \adcvrowskip
+
+  \adcvrowtwo{\textbf{Technical Product Manager}, NUMENEON}{2025--2026}
+  \adcvrowmulti{Led architecture and UI strategy for a 5-person team shipping a full-stack cyberpunk social media platform}
+  \adcvrowmulti{• Defined product roadmap, wrote pseudocode specs, and sized tasks across XL/L/M/S tiers}
+  \adcvrowmulti{• Designed 3-column "River Timeline" layout and glassmorphic SCSS design system}
+  \adcvrowmulti{• Coordinated cross-functional delivery across backend, auth, friends, and messaging workstreams}
+  \adcvrowskip
+
+  \adcvrowtwo{\textbf{Martial Arts Instructor}, Traditional Okinawan Martial Arts}{2018--Present}
+  \adcvrowmulti{3rd-degree black belt; developed curriculum roadmaps and student progression systems}
+  \adcvrowskip
+
+  \adcvrowtwo{\textbf{Legal Interpreter (Spanish)}, NY Public School System / USCIS}{2005--2024}
+  \adcvrowmulti{Managed high-stakes simultaneous translation for legal proceedings and educational settings}
+\end{adcvtabletwo}
+
+\section{Featured Projects}
+
+\begin{adcvtabletwo}
+   \adcvrowtwo{\textbf{Pneuma-ai} --- LLM Cognitive Orchestration System}{Node.js • React • Claude API}
+  \adcvrowmulti{Cognitive architecture shaping LLM reasoning before generation}
+  \adcvrowmulti{• Implemented 3-layer archetype routing (cosine similarity $\rightarrow$ momentum $\rightarrow$ fusion history) across 46 thinkers}
+  \adcvrowmulti{• Built 525-passage RAG knowledge base from 21 primary source texts, retrieved by semantic similarity}
+  \adcvrowmulti{• Engineered tiered prompt architecture reducing token load from 18k to $\sim$2k via conditional block loading}
+  \adcvrowmulti{• Designed dialectical synthesis engine with antithetical, complementary, and cross-domain collision modes}
+  \adcvrowmulti{• Integrated 3-layer memory: vector embeddings, structured cross-session memory, and conversation persistence}
+  \adcvrowskip
+
+  \adcvrowtwo{\textbf{NUMENEON} --- Full-Stack Engineer \& UI Lead}{React • Django • PostgreSQL}
+  \adcvrowmulti{Neopunk social media platform --- team capstone project}
+  \adcvrowmulti{• Built 3-column "River Timeline" with real-time post rendering and optimized content flow}
+  \adcvrowmulti{• Created cohesive SCSS design system with glassmorphic components and neon visual accents}
+  \adcvrowskip
+
+  \adcvrowtwo{\textbf{Nexus Geom Lab} --- Lead Developer}{Three.js • React • Web Audio API}
+  \adcvrowmulti{• Rendered 24 interactive 4D geometries with custom wireframe shaders and orbital camera controls}
+  \adcvrowmulti{• Built real-time FFT audio analyzer (bass/mids/highs at 60fps) driving audio-reactive 3D geometry via Web Audio API}
+\end{adcvtabletwo}
+
+\section{Education}
+
+\begin{adcvtabletwo}
+  \adcvrowtwo{\textbf{Software Engineering Immersive}, General Assembly}{Feb 2026}
+  \adcvrowtwo{\textbf{Humanities \& Fine Arts}, Fashion Institute of Technology}{2006--2008}
+  \adcvrowtwo{\textbf{Classical Realism \& Anatomy}, Art Students League}{2006--2020}
+\end{adcvtabletwo}
+
+\section{Additional}
+
+3,000+ GitHub contributions across 10+ shipped projects • Bilingual English/Spanish (Professional) • 20+ Years Martial Arts (Shorei-kan Lineage) • Visual Artist 2006--2024 (commission, restoration, gallery, digital) • Classical Oil Painting • Guitar \& Bass
+
+\end{document}

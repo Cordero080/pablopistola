@@ -109,14 +109,15 @@ if (heroSection) {
     camera.aspect = W / H;
     camera.updateProjectionMatrix();
 
-    const isMobileView = W <= 768;
+    const isMobileView = W <= 600;
 
     const vFov = (camera.fov * Math.PI) / 180;
     const worldH = 2 * Math.tan(vFov / 2) * camera.position.z;
     const worldW = worldH * camera.aspect;
     const pxToWorld = worldH / H;
 
-    const s = (H * 0.24 * pxToWorld) / 2.2;
+    const scaleFactor = isMobileView ? 0.19 : W <= 900 ? 0.2 : 0.18;
+    const s = (H * scaleFactor * pxToWorld) / 2.2;
     leftBracket.scale.set(s, s, s);
     rightBracket.scale.set(s, s, s);
 
@@ -125,20 +126,21 @@ if (heroSection) {
       // ── MOBILE TWEAKS ─────────────────────────────────────────────────────
       // Horizontal spread: fraction of world width (0 = center, 0.5 = viewport edge)
       // Increase to push brackets further apart, decrease to bring them closer
-      offsetWorld = worldW * 0.38;
+      offsetWorld = worldW * 0.46;
       // ─────────────────────────────────────────────────────────────────────
     } else {
-      const heroContent = heroSection.querySelector(".hero-content");
-      const halfContentPx = heroContent
-        ? heroContent.getBoundingClientRect().width / 2
+      const heroTitle = heroSection.querySelector(".hero-title");
+      const halfContentPx = heroTitle
+        ? heroTitle.getBoundingClientRect().width / 2
         : W * 0.28;
-      offsetWorld = (halfContentPx + 24) * pxToWorld;
+      offsetWorld = Math.min((halfContentPx + 32) * pxToWorld, worldW * 0.46);
     }
 
     leftBracket.position.x = -offsetWorld;
     rightBracket.position.x = offsetWorld;
-    leftBracket.position.y = 0.1;
-    rightBracket.position.y = 0.1;
+    const bracketY = isMobileView ? -0.05 : W <= 900 ? 0.05 : 0.02;
+    leftBracket.position.y = bracketY;
+    rightBracket.position.y = bracketY;
     rightBracket.position.z = -0.23;
   }
 
