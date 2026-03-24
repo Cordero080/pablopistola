@@ -126,7 +126,7 @@ if (heroSection) {
       // ── MOBILE TWEAKS ─────────────────────────────────────────────────────
       // Horizontal spread: fraction of world width (0 = center, 0.5 = viewport edge)
       // Increase to push brackets further apart, decrease to bring them closer
-      offsetWorld = worldW * 0.46;
+      offsetWorld = worldW * 0.465;
       // ─────────────────────────────────────────────────────────────────────
     } else {
       const heroTitle = heroSection.querySelector(".hero-title");
