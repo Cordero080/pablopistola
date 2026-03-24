@@ -579,8 +579,11 @@
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
       <div class="contact-content">
+        <div class="contact-uplink">
+          <span class="uplink-dot"></span>
+        </div>
         <h2 class="contact-title">Contact</h2>
-        <div class="contact-links">
+        <div class="contact-links" id="contactLinks">
           <a
             href="mailto:cordero080@gmail.com"
             class="contact-link contact-email"
@@ -596,7 +599,7 @@
               />
               <path d="M22 6l-10 7L2 6" />
             </svg>
-            <span>cordero080@gmail.com</span>
+            <span>Email</span>
           </a>
           <a
             href="https://www.linkedin.com/in/pablo-cordero-305191153"
@@ -646,5 +649,22 @@
     <script src="src/js/components/nameScramble.js" defer></script>
     <script src="src/js/components/bentoCards.js" defer></script>
     <script src="src/js/pages/home/index.js" defer></script>
+    <script>
+      // Contact buttons parallax on scroll
+      (function () {
+        const section = document.getElementById("contact");
+        const links = document.querySelectorAll("#contactLinks .contact-link");
+        const speeds = [0.04, 0.07, 0.1];
+        function onScroll() {
+          const rect = section.getBoundingClientRect();
+          const centerOffset =
+            rect.top + rect.height / 2 - window.innerHeight / 2;
+          links.forEach((el, i) => {
+            el.style.transform = `translateY(${centerOffset * -speeds[i]}px)`;
+          });
+        }
+        window.addEventListener("scroll", onScroll, { passive: true });
+      })();
+    </script>
   </body>
 </html>
