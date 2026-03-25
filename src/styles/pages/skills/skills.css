@@ -5,12 +5,12 @@
 .skills-page {
   margin-left: 60px;
   min-height: 100vh;
-  padding: 3rem 0 6rem;
+  padding: 3rem 0 2rem;
 }
 
 .skills-hero {
   text-align: center;
-  padding: 2rem 4rem 4rem;
+  padding: 2rem 4rem 2rem;
 }
 
 .skills-title {
@@ -89,13 +89,16 @@
 /* Category label */
 .ticker-cat {
   flex: 0 0 180px;
-  padding-left: 2rem;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--row-accent);
+  margin-left: 0.5rem;
   font-family: "Orbitron", sans-serif;
   font-size: 0.72rem;
-  letter-spacing: 0.2em;
+  font-weight: 600;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--row-accent);
-  opacity: 0.85;
+  color: color-mix(in srgb, var(--row-accent) 45%, white);
+  opacity: 1;
   white-space: nowrap;
   user-select: none;
 }
@@ -151,9 +154,11 @@
 }
 .ticker-item:hover .ticker-icon {
   opacity: 1;
+  filter: drop-shadow(0 0 8px var(--row-accent));
 }
 .ticker-item:hover .ticker-name {
   color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 0 12px color-mix(in srgb, var(--row-accent) 50%, transparent);
 }
 
 .ticker-icon {
@@ -162,15 +167,21 @@
   flex-shrink: 0;
   fill: var(--row-accent);
   opacity: 0.75;
-  transition: opacity 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    filter 0.2s ease;
 }
 
 .ticker-name {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.82rem;
-  letter-spacing: 0.08em;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: rgba(255, 255, 255, 0.65);
-  transition: color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    text-shadow 0.2s ease;
 }
 
 /* Dot separator */
@@ -204,8 +215,11 @@
 @media (max-width: 900px) {
   .ticker-cat {
     flex: 0 0 130px;
-    padding-left: 1.5rem;
-    font-size: 0.66rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--row-accent);
+    margin-left: 0.4rem;
+    font-size: 0.62rem;
+    font-weight: 600;
     letter-spacing: 0.18em;
   }
   .ticker-row {
@@ -219,26 +233,29 @@
     height: 20px;
   }
   .ticker-name {
-    font-size: 0.76rem;
+    font-size: 0.88rem;
   }
 }
 
 @media (max-width: 600px) {
   .skills-page {
     margin-left: 0;
-    padding: 5rem 0 3rem;
+    padding: 5rem 0 1.5rem;
   }
   .skills-hero {
-    padding: 2rem 1.5rem 3rem;
+    padding: 2rem 1.5rem 1.5rem;
   }
   .skills-title {
     font-size: clamp(1.2rem, 6vw, 1.8rem);
   }
   .ticker-cat {
     flex: 0 0 82px;
-    padding-left: 0.75rem;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
+    padding-left: 0.6rem;
+    border-left: 2px solid var(--row-accent);
+    margin-left: 0.3rem;
+    font-size: 0.55rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
   }
   .ticker-row {
     padding: 1.8rem 0;
@@ -251,7 +268,7 @@
     height: 18px;
   }
   .ticker-name {
-    font-size: 0.72rem;
+    font-size: 0.78rem;
   }
 }
 
