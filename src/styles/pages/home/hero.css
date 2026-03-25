@@ -128,10 +128,10 @@
   width: 60%;
   height: 3px;
   margin: 0.18em auto 1.2em auto;
-  background: linear-gradient(90deg, #00fff7, #fffb00, #ff00cc);
+  background: linear-gradient(90deg, #00fff7, #cc00ff);
+  background-size: 200% 100%;
   border-radius: 3px;
-  animation: heroUnderlineAnim 18s cubic-bezier(0.77, 0, 0.18, 1) infinite
-    alternate;
+  animation: heroUnderlineSlide 8s ease infinite alternate;
 }
 @keyframes heroGradientMoveAlt {
   0% {
@@ -139,6 +139,14 @@
   }
   100% {
     background-position: 0% 50%;
+  }
+}
+@keyframes heroUnderlineSlide {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
   }
 }
 @keyframes heroUnderlineAnim {
@@ -155,6 +163,15 @@
     opacity: 0.8;
   }
 }
+
+.projects-scroll-cta {
+  display: block;
+  text-align: center;
+  margin: 0 auto 2rem;
+  position: relative;
+  z-index: 3;
+}
+
 .hero-cta {
   display: inline-block;
   padding: 8px 28px;
@@ -265,5 +282,10 @@
   .hero-cta {
     font-size: 0.65rem;
     padding: 7px 22px;
+  }
+
+  .projects-scroll-cta {
+    margin: 0 auto 2rem;
+    transform: translateY(3rem);
   }
 }

@@ -101,7 +101,7 @@
 /* ── TITLE ── */
 .project-card-title {
   font-family: "IBM Plex Sans", sans-serif;
-  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -233,7 +233,7 @@
     aspect-ratio: 21 / 9;
   }
   .project-card-title {
-    font-size: 0.9rem;
+    font-size: 1.4rem;
   }
   .project-card-description {
     font-size: 0.72rem;

@@ -311,8 +311,7 @@
         <p class="hero-subtitle">
           FULL-STACK SOFTWARE ENGINEER · AI SYSTEMS & LLM ARCHITECTURE
         </p>
-        <span class="hero-underline"></span>
-        <a href="#projects" class="hero-cta">[ PROJECTS ]</a>
+        <span class="hero-underline" id="heroUnderline"></span>
       </div>
     </section>
     <!-- End Hero Section -->
@@ -320,6 +319,9 @@
     <canvas id="waves"></canvas>
 
     <!-- Projects Zig-Zag Layout -->
+    <div class="projects-scroll-cta">
+      <a href="#projects" class="hero-cta">[ PROJECTS ]</a>
+    </div>
     <section class="projects-section" id="projects">
       <!-- Row 1: image LEFT, text RIGHT -->
       <div class="project-row project-row--left" style="--card-accent: #ff207a">
@@ -337,7 +339,7 @@
           <h2 class="project-card-title">Numeneon</h2>
           <p class="project-card-description">Neopunk Social Platform</p>
           <a href="/projects/numeneon-light" class="project-card-cta"
-            >View Project</a
+            >[ View Project ]</a
           >
         </div>
       </div>
@@ -360,7 +362,9 @@
         <div class="project-card-info">
           <h2 class="project-card-title">Numeneon</h2>
           <p class="project-card-description">React • Django • WebSockets</p>
-          <a href="/projects/numeneon" class="project-card-cta">View Project</a>
+          <a href="/projects/numeneon" class="project-card-cta"
+            >[ View Project ]</a
+          >
         </div>
       </div>
 
@@ -382,7 +386,9 @@
           <p class="project-card-description">
             AI Personality Engine • 46 Archetypes
           </p>
-          <a href="/projects/pneuma" class="project-card-cta">View Project</a>
+          <a href="/projects/pneuma" class="project-card-cta"
+            >[ View Project ]</a
+          >
         </div>
       </div>
 
@@ -408,7 +414,7 @@
             3D Virtual Pet • Three.js + Blender
           </p>
           <a href="/projects/transcendence" class="project-card-cta"
-            >View Project</a
+            >[ View Project ]</a
           >
         </div>
       </div>
@@ -429,7 +435,9 @@
         <div class="project-card-info">
           <h2 class="project-card-title">Nucat</h2>
           <p class="project-card-description">AI Cat Generator • React</p>
-          <a href="/projects/nucat" class="project-card-cta">View Project</a>
+          <a href="/projects/nucat" class="project-card-cta"
+            >[ View Project ]</a
+          >
         </div>
       </div>
 
@@ -452,7 +460,7 @@
           <h2 class="project-card-title">Nexus Geom Lab</h2>
           <p class="project-card-description">Interactive 4D Shapes • WebGL</p>
           <a href="/projects/nexus-geom-lab" class="project-card-cta"
-            >View Project</a
+            >[ View Project ]</a
           >
         </div>
       </div>
@@ -473,7 +481,7 @@
           <h2 class="project-card-title">Dojo Crud</h2>
           <p class="project-card-description">Martial Arts Tracker • Django</p>
           <a href="/projects/dojo-crud" class="project-card-cta"
-            >View Project</a
+            >[ View Project ]</a
           >
         </div>
       </div>
@@ -497,7 +505,7 @@
           <h2 class="project-card-title">Bookshelf</h2>
           <p class="project-card-description">Particle System • Three.js</p>
           <a href="/projects/bookshelf" class="project-card-cta"
-            >View Project</a
+            >[ View Project ]</a
           >
         </div>
       </div>
@@ -519,7 +527,7 @@
           <h2 class="project-card-title">La Dolce Vita</h2>
           <p class="project-card-description">AI Concierge • React + OpenAI</p>
           <a href="/projects/la-dolce-vita" class="project-card-cta"
-            >View Project</a
+            >[ View Project ]</a
           >
         </div>
       </div>
@@ -546,7 +554,7 @@
             Developer Log • Neopunk Terminal
           </p>
           <a href="/projects/instvnce-blog" class="project-card-cta"
-            >View Project</a
+            >[ View Project ]</a
           >
         </div>
       </div>
@@ -570,7 +578,7 @@
             6-Face Cube • Three.js • Vanilla JS
           </p>
           <a href="/projects/tic-trap-toe" class="project-card-cta"
-            >View Project</a
+            >[ View Project ]</a
           >
         </div>
       </div>
@@ -649,6 +657,19 @@
     <script src="src/js/components/nameScramble.js" defer></script>
     <script src="src/js/components/bentoCards.js" defer></script>
     <script src="src/js/pages/home/index.js" defer></script>
+    <script>
+      // Match underline width to subtitle
+      (function () {
+        const subtitle = document.querySelector(".hero-subtitle");
+        const underline = document.getElementById("heroUnderline");
+        if (!subtitle || !underline) return;
+        function syncWidth() {
+          underline.style.width = subtitle.getBoundingClientRect().width + "px";
+        }
+        syncWidth();
+        window.addEventListener("resize", syncWidth);
+      })();
+    </script>
     <script>
       // Contact buttons parallax on scroll
       (function () {
