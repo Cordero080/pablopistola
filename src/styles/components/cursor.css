@@ -197,7 +197,7 @@
 }
 
 /* Disable custom cursor on mobile/tablet */
-@media (max-width: 900px) {
+@media (max-width: 900px), (pointer: coarse) {
   * {
     cursor: auto !important;
   }
