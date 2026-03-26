@@ -1421,8 +1421,18 @@ body:has(.project-page) #waves {
     height: 54px;
   }
 
+  .diagram-container {
+    flex-direction: column;
+    align-items: center;
+  }
   .ascii-diagram {
     font-size: 0.625rem;
+    overflow-x: auto;
+    max-width: 100%;
+  }
+  .diagram-caption {
+    margin-top: 1rem;
+    font-size: 0.85rem;
   }
 
   .system-metrics {
