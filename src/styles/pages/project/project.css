@@ -459,10 +459,9 @@ body:has(.project-page) #waves {
 .project-design h2,
 .project-cta h2 {
   font-family: "Future Z", sans-serif;
-  font-size: clamp(1.3rem, 3.5vw, 1.8rem);
-  white-space: nowrap;
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
   background: linear-gradient(90deg, #ff207a, #9050ff, #00d4ff, #1060c0);
   background-size: 200% 200%;
   -webkit-background-clip: text;
@@ -470,13 +469,6 @@ body:has(.project-page) #waves {
   background-clip: text;
   animation: heroGradientMoveAlt 8s linear infinite;
   margin-bottom: 2rem;
-  letter-spacing: 0.1em;
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    black 60%,
-    rgba(0, 0, 0, 0.3) 100%
-  );
-  mask-image: linear-gradient(to bottom, black 60%, rgba(0, 0, 0, 0.3) 100%);
 }
 
 .about-grid {
