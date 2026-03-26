@@ -138,7 +138,7 @@ if (heroSection) {
 
     leftBracket.position.x = -offsetWorld;
     rightBracket.position.x = offsetWorld;
-    const bracketY = isMobileView ? -0.45 : W <= 900 ? 0.05 : -0.28;
+    const bracketY = isMobileView ? -0.6 : W <= 900 ? 0.05 : -0.28;
     leftBracket.position.y = bracketY;
     rightBracket.position.y = bracketY;
     rightBracket.position.z = -0.23;

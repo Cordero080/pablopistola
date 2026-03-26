@@ -280,8 +280,9 @@
   }
 
   .hero-cta {
-    font-size: 0.65rem;
-    padding: 7px 22px;
+    font-size: 0.72rem;
+    padding: 11px 32px;
+    letter-spacing: 0.28em;
   }
 
   .projects-scroll-cta {
