@@ -1,0 +1,226 @@
+%-------------------------
+% Resume in Latex - ATS Version
+% Based on Jake Gutierrez template
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Pablo Cordero} \\ \vspace{1pt}
+    \small Full-Stack Software Engineer $\cdot$ AI Systems \& LLM Architecture \\ \vspace{4pt}
+    \small 646-641-7959 $|$ 
+    \href{mailto:Cordero080@gmail.com}{\underline{Cordero080@gmail.com}} $|$ 
+    \href{https://linkedin.com/in/pvblo-corder080}{\underline{linkedin.com/in/pvblo-corder080}} $|$
+    \href{https://github.com/Cordero080}{\underline{github.com/Cordero080}} $|$
+    \href{https://pvblocordero.com}{\underline{pvblocordero.com}} \\ \vspace{1pt}
+    \small Charlotte, NC
+\end{center}
+
+%-----------SUMMARY-----------
+\section{Summary}
+  \small{Full-Stack Software Engineer specializing in AI systems and interactive interfaces. Bridging design instinct with technical architecture. Nearly 20 years as a visual artist trained the eye — software engineering gave it a system to build in. I build systems where the interface is a living extension of the architecture. From AI-driven systems and interactive 3D, to semantic routing and RAG pipelines, glassmorphic design systems, and real-time WebGL. Proficient in React, Node.js, Django, and Three.js.}
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages \& Frameworks}{: JavaScript (ES6+), Python, React, Django, Node.js, Express.js} \\
+     \textbf{AI \& Data}{: Anthropic Claude API, OpenAI API, RAG Pipelines, Vector Embeddings, Cosine Similarity, MongoDB, PostgreSQL} \\
+     \textbf{3D \& Creative}{: Three.js, React Three Fiber, Blender, GLSL Shaders, Web Audio API} \\
+     \textbf{Backend \& Infrastructure}{: RESTful APIs, Django REST Framework, JWT Auth, WebSockets, Vercel, CI/CD} \\
+     \textbf{Development}{: Git, Vite, SCSS, Jest, Responsive Design, Mobile-First Architecture}
+    }}
+ \end{itemize}
+
+%-----------CERTIFICATIONS-----------
+\section{Certifications}
+  \resumeSubHeadingListStart
+    \resumeProjectHeading
+      {\textbf{Building with the Claude API} $|$ \emph{Anthropic Academy}}{2026}
+    \resumeProjectHeading
+      {\textbf{Claude Code in Action} $|$ \emph{Anthropic Academy}}{2026}
+    \resumeProjectHeading
+      {\textbf{Claude 101} $|$ \emph{Anthropic Academy}}{2026}
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{Pneuma-AI} --- LLM Cognitive Orchestration System $|$ \emph{Node.js, React, Claude API}}{2025 -- Present}
+          \resumeItemListStart
+            \resumeItem{Cognitive reasoning layer that shapes LLM behavior before generation}
+            \resumeItem{3-layer archetype routing (cosine similarity, momentum weighting, fusion history) across 46 thinkers}
+            \resumeItem{525-passage RAG from verbatim primary source texts across 21 thinkers, retrieved by semantic similarity}
+            \resumeItem{Tiered prompt architecture reducing token load from 18k to 2k via intent-scored conditional block loading}
+            \resumeItem{Dialectical synthesis engine with antithetical, complementary, and cross-domain collision modes}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{La Dolce Vita} --- Full-Stack AI Hospitality Platform $|$ \emph{React, Node.js, OpenAI API}}{2025}
+          \resumeItemListStart
+            \resumeItem{Production web app for a luxury Dominican Republic villa with AI-powered guest concierge}
+            \resumeItem{Built embedded AI chat widget powered by GPT-4o with dynamic system prompts injecting live property data and calendar availability at request time}
+            \resumeItem{Integrated Airbnb iCal feed parsed server-side for real-time booking awareness in both UI and AI context}
+            \resumeItem{Connected Google Sheets API for client-editable property content without code changes}
+            \resumeItem{Implemented trilingual support (EN/ES/FR) with automatic language detection from guest messages}
+            \resumeItem{Deployed React on Vercel with Node.js/MongoDB Atlas backend and full CI/CD pipeline}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{NUMENEON} --- Full-Stack Engineer \& UI Lead $|$ \emph{React, Django, PostgreSQL}}{2025 -- 2026}
+          \resumeItemListStart
+            \resumeItem{Cyberpunk social media platform --- 5-person team capstone (800+ GitHub clones)}
+            \resumeItem{Led architecture and UI strategy; defined product roadmap and sized tasks across XL/L/M/S tiers}
+            \resumeItem{Built 3-column River Timeline with real-time post rendering and optimized content flow}
+            \resumeItem{Created cohesive SCSS design system with glassmorphic components and neon visual accents}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Nexus Geom Lab} --- Lead Developer $|$ \emph{Three.js, React, MongoDB}}{2025}
+          \resumeItemListStart
+            \resumeItem{Interactive 3D visualization platform for 4D geometry exploration (174+ GitHub clones)}
+            \resumeItem{Rendered 24 interactive 4D geometries with custom wireframe shaders and orbital camera controls}
+            \resumeItem{Implemented progressive unlock system and gamification layer to drive user engagement}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Independent Software Consultant}{2025 -- Present}
+      {Self-Employed}{Charlotte, NC}
+      \resumeItemListStart
+        \resumeItem{Scoping, building, and shipping production AI and full-stack systems for clients end-to-end}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Martial Arts Instructor}{2018 -- Present}
+      {Traditional Okinawan Martial Arts}{}
+      \resumeItemListStart
+        \resumeItem{3rd-degree black belt; developed curriculum roadmaps and student progression systems}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Visual Artist}{2006 -- 2024}
+      {Independent}{}
+      \resumeItemListStart
+        \resumeItem{Commission painting, fine art restoration, gallery hosting, and digital art}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Legal Interpreter (Spanish)}{2005 -- 2024}
+      {NY Public School System / USCIS}{}
+      \resumeItemListStart
+        \resumeItem{High-stakes simultaneous translation for legal proceedings and educational settings}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {General Assembly}{Feb 2026}
+      {Software Engineering Immersive (95.8\%)}{Charlotte, NC}
+    \resumeSubheading
+      {Fashion Institute of Technology}{2006 -- 2008}
+      {Humanities \& Fine Arts}{}
+    \resumeSubheading
+      {Art Students League}{2006 -- 2020}
+      {Classical Realism \& Anatomy}{}
+  \resumeSubHeadingListEnd
+
+%-----------ADDITIONAL-----------
+\section{Additional}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     Bilingual English/Spanish (Professional) $\cdot$ 20+ Years Martial Arts (Goju-Ryu Lineage) $\cdot$ Classical Oil Painting $\cdot$ Guitar \& Bass
+    }}
+ \end{itemize}
+
+%-------------------------------------------
+\end{document}

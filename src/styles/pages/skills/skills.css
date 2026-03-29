@@ -246,7 +246,7 @@
     padding: 2rem 1.5rem 1.5rem;
   }
   .skills-title {
-    font-size: clamp(1.2rem, 6vw, 1.8rem);
+    font-size: clamp(1.6rem, 8vw, 2.3rem);
   }
   .ticker-cat {
     flex: 0 0 82px;

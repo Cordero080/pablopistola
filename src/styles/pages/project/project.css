@@ -458,9 +458,9 @@ body:has(.project-page) #waves {
 .project-diagram h2,
 .project-design h2,
 .project-cta h2 {
-  font-family: "Future Z", sans-serif;
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 700;
+  font-family: "shimano-square", sans-serif;
+  font-size: clamp(2.4rem, 7vw, 3.5rem);
+  font-weight: 300;
   letter-spacing: 0.1em;
   background: linear-gradient(90deg, #ff207a, #9050ff, #00d4ff, #1060c0);
   background-size: 200% 200%;
@@ -491,8 +491,8 @@ body:has(.project-page) #waves {
 }
 
 .about-description h3 {
-  font-family: "IBM Plex Sans", sans-serif;
-  font-size: clamp(1.3rem, 3vw, 1.7rem);
+  font-family: "shimano-square", sans-serif;
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
   font-weight: 700;
   background: linear-gradient(90deg, #ff006e, #8338ec, #07429f);
   background-size: 200% auto;
@@ -502,7 +502,6 @@ body:has(.project-page) #waves {
   animation: heroGradientMoveAlt 8s linear infinite;
   margin: 2.5rem 0 1rem;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .about-description h4 {
@@ -1360,6 +1359,7 @@ body:has(.project-page) #waves {
 
   .project-title {
     text-align: center;
+    font-size: clamp(2rem, 10vw, 2.8rem);
   }
 
   .project-tagline {
@@ -1447,7 +1447,7 @@ body:has(.project-page) #waves {
   }
 
   .project-title {
-    font-size: clamp(1.25rem, 6vw, 1.75rem);
+    font-size: clamp(2rem, 10vw, 2.8rem);
   }
 
   .colors {
