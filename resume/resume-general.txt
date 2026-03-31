@@ -117,9 +117,13 @@
 \section{Certifications}
   \resumeSubHeadingListStart
     \resumeProjectHeading
+      {\textbf{AI Fluency: Framework \& Foundations} $|$ \emph{Anthropic Academy}}{2026}
+    \resumeProjectHeading
       {\textbf{Building with the Claude API} $|$ \emph{Anthropic Academy}}{2026}
     \resumeProjectHeading
       {\textbf{Claude Code in Action} $|$ \emph{Anthropic Academy}}{2026}
+    \resumeProjectHeading
+      {\textbf{Introduction to Model Context Protocol}, Anthropic Academy}{2026}
     \resumeProjectHeading
       {\textbf{Claude 101} $|$ \emph{Anthropic Academy}}{2026}
   \resumeSubHeadingListEnd
