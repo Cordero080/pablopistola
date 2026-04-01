@@ -30,33 +30,47 @@ function SineWaveGenerator(options) {
   // Start the animation loop AFTER mouse tracking is initialized
   this.loop();
 
- window.addEventListener("mousemove", (e) => {
+  window.addEventListener("mousemove", (e) => {
     this.mouseX = e.clientX;
     this.mouseY = e.clientY;
   });
 
   // Touch support for mobile
-  window.addEventListener("touchmove", (e) => {
-    if (e.touches.length > 0) {
-      this.mouseX = e.touches[0].clientX;
-      this.mouseY = e.touches[0].clientY;
-    }
-  }, { passive: true });
+  window.addEventListener(
+    "touchmove",
+    (e) => {
+      if (e.touches.length > 0) {
+        this.mouseX = e.touches[0].clientX;
+        this.mouseY = e.touches[0].clientY;
+      }
+    },
+    { passive: true },
+  );
 
-  window.addEventListener("touchstart", (e) => {
-    if (e.touches.length > 0) {
-      this.mouseX = e.touches[0].clientX;
-      this.mouseY = e.touches[0].clientY;
-    }
-  }, { passive: true });
+  window.addEventListener(
+    "touchstart",
+    (e) => {
+      if (e.touches.length > 0) {
+        this.mouseX = e.touches[0].clientX;
+        this.mouseY = e.touches[0].clientY;
+      }
+    },
+    { passive: true },
+  );
 
-  window.addEventListener("touchend", () => {
-    this.mouseX = window.innerWidth / 2;
-    this.mouseY = window.innerHeight / 2;
-  }, { passive: true });
+  window.addEventListener(
+    "touchend",
+    () => {
+      this.mouseX = window.innerWidth / 2;
+      this.mouseY = window.innerHeight / 2;
+    },
+    { passive: true },
+  );
 
   window.addEventListener("keydown", (e) => {
     if (e.code === "Space") {
+      const tag = document.activeElement?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA") return;
       e.preventDefault();
       this.direction *= -1;
     }
@@ -79,7 +93,6 @@ function SineWaveGenerator(options) {
       { passive: true },
     );
   }
-
 }
 
 // Defaults

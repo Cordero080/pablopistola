@@ -16,5 +16,11 @@ Thumbs.db
 .vercel
 .env*.local
 
+# MCP server secrets + Python artifacts
+mcp-server/.env
+mcp-server/venv/
+mcp-server/__pycache__/
+mcp-server/*.pyc
+
 # Local docs/notes (kept out of git by default)
 docs/

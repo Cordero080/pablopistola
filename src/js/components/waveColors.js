@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", updateBentoCards);
 
 document.addEventListener("keydown", (e) => {
   if (e.key === "r" && window.waveGen) {
+    const tag = document.activeElement?.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA") return;
     waveGen.direction *= -1; // Reverse animation direction
   }
 });
