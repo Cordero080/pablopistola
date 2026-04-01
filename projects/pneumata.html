@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-ZL1CZZKRKD"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-ZL1CZZKRKD");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pneumata | Pablo Cordero</title>
+    <meta
+      name="description"
+      content="Interactive 3D anatomical model mapping every human organ to its hardware analog. 37 nodes, color-coded by system, with bidirectional spinal highlighting."
+    />
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/icons/icon-192.png"
+    />
+    <link rel="stylesheet" href="../src/styles/main.css" />
+    <link rel="stylesheet" href="../src/styles/pages/project/project.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="../src/js/effects/sineWave.js" defer></script>
+    <script src="../src/js/utils/analytics.js" defer></script>
+  </head>
+  <body>
+    <canvas id="waves"></canvas>
+
+    <nav class="side-nav" role="navigation" aria-label="Main navigation">
+      <div class="side-nav-logo">
+        <span class="logo-text" id="myName" data-text="PC">PC</span>
+      </div>
+      <div class="side-nav-links">
+        <a class="side-nav-link" href="/home" aria-label="Home">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          <span class="nav-label">Home</span>
+        </a>
+        <a class="side-nav-link" href="/about" aria-label="About">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <span class="nav-label">About</span>
+        </a>
+        <a class="side-nav-link" href="/home#projects" aria-label="Projects">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+          </svg>
+          <span class="nav-label">Projects</span>
+        </a>
+        <a class="side-nav-link" href="/skills" aria-label="Skills">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+          </svg>
+          <span class="nav-label">Skills</span>
+        </a>
+        <a class="side-nav-link" href="/art" aria-label="Art">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+            <path
+              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"
+            />
+          </svg>
+          <span class="nav-label">Art</span>
+        </a>
+        <a class="side-nav-link" href="/home#contact" aria-label="Contact">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          <span class="nav-label">Contact</span>
+        </a>
+        <a class="side-nav-link" href="/resume" aria-label="Resume">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+          </svg>
+          <span class="nav-label">Resume</span>
+        </a>
+        <a
+          class="side-nav-link exit-link"
+          href="/?stay"
+          aria-label="Zen Mode - Waves"
+        >
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M2 12c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+            <path d="M2 6c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+            <path d="M2 18c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+          </svg>
+          <span class="nav-label">Zen</span>
+        </a>
+      </div>
+      <div class="side-nav-glow"></div>
+    </nav>
+
+    <main class="project-page">
+      <!-- Hero Section -->
+      <section class="project-hero">
+        <div class="project-hero-content">
+          <a href="/home" class="back-link">← Back to Projects</a>
+          <h1 class="project-title">PNEUMATA</h1>
+          <p class="project-tagline">
+            Interactive 3D anatomical model — every human organ mapped to its
+            hardware analog, with bidirectional spinal highlighting
+          </p>
+
+          <div class="project-links">
+            <a
+              href="https://github.com/Cordero080/Pneumata"
+              target="_blank"
+              class="project-btn secondary"
+            >
+              <span>GitHub</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Screenshot Gallery -->
+      <section class="project-gallery">
+        <div class="gallery-main">
+          <img
+            src="/images/projects/pneumata/01-logic-mode.png"
+            alt="Pneumata Logic Mode"
+            class="gallery-hero-img"
+            loading="eager"
+          />
+        </div>
+        <div class="gallery-thumbs">
+          <img
+            src="/images/projects/pneumata/01-logic-mode.png"
+            alt="Logic Mode"
+            class="thumb active"
+            data-full="/images/projects/pneumata/01-logic-mode.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/pneumata/02-power-mode.png"
+            alt="Power Mode"
+            class="thumb"
+            data-full="/images/projects/pneumata/02-power-mode.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/pneumata/03-unified-mode.png"
+            alt="Unified Mode"
+            class="thumb"
+            data-full="/images/projects/pneumata/03-unified-mode.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/pneumata/05-about-modal.png"
+            alt="About Modal"
+            class="thumb"
+            data-full="/images/projects/pneumata/05-about-modal.png"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="project-about">
+        <div class="about-grid">
+          <div class="about-description">
+            <h2>About</h2>
+            <p>
+              The human body and a computer are not metaphorically similar —
+              they are architecturally isomorphic. The heart is a PSU. The
+              spinal cord is a PCIe bus. The kidneys are a virtual memory
+              manager. The immune system is an IDS with edge nodes, a SIEM, and
+              a definition update engine.
+            </p>
+            <p>
+              Pneumata makes that argument visual and interactive. Every organ
+              node in the model corresponds to a specific hardware component.
+              Every spinal disc corresponds to a bus arbitration layer. The
+              relationship is functional, not decorative — the same engineering
+              problem solved twice, in different substrates, separated by 500
+              million years.
+            </p>
+
+            <h3
+              style="
+                color: rgba(255, 255, 255, 0.9);
+                margin-top: 1.5rem;
+                margin-bottom: 0.75rem;
+              "
+            >
+              The Architecture
+            </h3>
+            <p>
+              <strong>37 organ nodes</strong> are placed in 3D space using
+              vertex-sampled coordinates from a real GLB anatomical mesh —
+              positions derived from the actual model geometry, not hardcoded
+              guesses. Each node belongs to one of 8 categories: Logic, Power,
+              Thermal, Digestive, Sensory, Renal, Immune, Spirit.
+            </p>
+            <p>
+              The spinal column is auto-traced at runtime using a y-band
+              bucketing algorithm across the mesh's vertex data.
+              <strong>24 vertebral disc markers</strong> (C2 through S2) are
+              placed along that traced geometry and color-coded by the organ
+              system they innervate.
+            </p>
+
+            <h3
+              style="
+                color: rgba(255, 255, 255, 0.9);
+                margin-top: 1.5rem;
+                margin-bottom: 0.75rem;
+              "
+            >
+              Bidirectional Highlighting
+            </h3>
+            <p>
+              Hovering any organ node illuminates its spinal bus lanes — the
+              disc markers for the vertebral levels that innervate that organ
+              system light up with its category color. Hovering any disc
+              illuminates the organ nodes it innervates in return. The signal
+              flows both ways, the way nerve conduction actually does.
+            </p>
+            <p>
+              This is implemented through a single
+              <code
+                style="
+                  background: rgba(255, 255, 255, 0.06);
+                  padding: 0.1rem 0.4rem;
+                  border-radius: 4px;
+                  font-size: 0.85rem;
+                "
+                >hoveredCategory</code
+              >
+              state in Scene that both OrganNode and SpinalCord consume
+              simultaneously — no prop drilling maze, no global store.
+            </p>
+
+            <h3
+              style="
+                color: rgba(255, 255, 255, 0.9);
+                margin-top: 1.5rem;
+                margin-bottom: 0.75rem;
+              "
+            >
+              View Modes
+            </h3>
+            <p>
+              <strong>Logic</strong> — the neural network. Processing, memory,
+              signal. <strong>Power</strong> — the circulatory grid, with two
+              energy orbs traveling the full body circuit and the heart
+              radiating expanding rings on each pass. <strong>Unified</strong>
+              — all systems simultaneously.
+            </p>
+            <p>
+              The source of this project's philosophy is Federico Faggin's
+              observation:
+              <em>we did not invent the computer. We remembered it.</em>
+            </p>
+          </div>
+
+          <div class="about-details">
+            <div class="detail-card">
+              <h3>Tech Stack</h3>
+              <div class="tech-tags">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Vite</span>
+                <span class="tech-tag">React Three Fiber</span>
+                <span class="tech-tag">Three.js</span>
+                <span class="tech-tag">@react-three/drei</span>
+                <span class="tech-tag">SCSS</span>
+              </div>
+            </div>
+
+            <div class="detail-card">
+              <h3>My Role</h3>
+              <p>
+                Solo developer — 3D scene architecture, organ data system,
+                spinal auto-trace algorithm, bidirectional highlight logic, view
+                mode animations, and all UI.
+              </p>
+            </div>
+
+            <div class="detail-card">
+              <h3>Project Type</h3>
+              <p>Interactive 3D Visualization / Philosophy</p>
+            </div>
+
+            <div class="detail-card">
+              <h3>Timeline</h3>
+              <p>March 2026</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="project-features">
+        <h2>What's in It</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon cyan">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 8v4l3 3" />
+              </svg>
+            </div>
+            <h3>37 Organ Nodes</h3>
+            <p>
+              Every major organ mapped to a hardware analog across 8 categories.
+              Positions sampled from GLB mesh vertex data — no hardcoded
+              coordinates.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon magenta">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <h3>Auto-Traced Spine</h3>
+            <p>
+              Vertebral column geometry sampled directly from the GLB mesh at
+              runtime using vertex filtering and y-band bucketing. 24 disc
+              markers placed along the real anatomical curve.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon cyan">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+              </svg>
+            </div>
+            <h3>Bidirectional Highlighting</h3>
+            <p>
+              Hover an organ — its spinal bus lanes light up. Hover a disc — its
+              innervated organs glow. Category color propagates across both
+              directions simultaneously.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon magenta">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+              </svg>
+            </div>
+            <h3>Traveling Circulation Orbs</h3>
+            <p>
+              Two energy nodes circuit the full body on closed loops. The heart
+              node radiates expanding rings on each pass — a clock cycle
+              distributing power to the network.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon cyan">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                />
+              </svg>
+            </div>
+            <h3>Organ + Disc Modals</h3>
+            <p>
+              Clicking any node opens a glassmorphism panel with biological
+              function, hardware analog, synthesis, and spinal bus lane
+              assignment. Disc clicks show level, innervation target, and PCIe
+              lane analogy.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon magenta">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="3" />
+                <path
+                  d="M12 2v4M12 18v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M2 12h4M18 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"
+                />
+              </svg>
+            </div>
+            <h3>Three View Modes</h3>
+            <p>
+              Logic (neural network), Power (circulatory grid with live
+              animation), Unified (all systems). Each mode selectively renders
+              its subsystems.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="../src/js/pages/gallery.js" defer></script>
+    <script src="../src/js/pages/projectInit.js" defer></script>
+    <script src="../src/js/components/cursor.js" defer></script>
+    <script src="../src/js/effects/orb.js" defer></script>
+  </body>
+</html>

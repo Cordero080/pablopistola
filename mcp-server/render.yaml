@@ -7,6 +7,6 @@ services:
     startCommand: python server.py
     envVars:
       - key: ANTHROPIC_API_KEY
-        sync: false          # Render will prompt you to enter this manually (keeps it secret)
+        sync: false # Render will prompt you to enter this manually (keeps it secret)
       - key: PYTHON_VERSION
         value: "3.11"
