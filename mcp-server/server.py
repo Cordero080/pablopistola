@@ -443,4 +443,6 @@ async def chat(request: ChatRequest):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)
+    port = int(os.getenv("PORT", 8000))
+    is_dev = os.getenv("RENDER") is None  # RENDER env var is set automatically by Render
+    uvicorn.run("server:app", host="0.0.0.0", port=port, reload=is_dev)

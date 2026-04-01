@@ -25,7 +25,9 @@
 //  CONFIG
 // ─────────────────────────────────────────────────────────
 
-const MCP_BASE_URL = "http://localhost:8000";
+const MCP_BASE_URL =
+  (typeof import.meta !== "undefined" && import.meta.env?.VITE_MCP_URL) ||
+  "http://localhost:8000";
 
 // ─────────────────────────────────────────────────────────
 //  SSE BRIDGE  — listens to /stream for MCP tool events
