@@ -27,7 +27,9 @@ function copyJsPlugin() {
         contents = contents.replace(/__VITE_MCP_URL__/g, mcpUrl);
         writeFileSync(dest, contents, "utf8");
       });
-      console.log(`Copied ${jsFiles.length} files from src/js to dist/src/js (MCP_URL: ${mcpUrl})`);
+      console.log(
+        `Copied ${jsFiles.length} files from src/js to dist/src/js (MCP_URL: ${mcpUrl})`,
+      );
     },
   };
 }

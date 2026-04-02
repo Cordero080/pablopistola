@@ -5,8 +5,14 @@ document.querySelectorAll(".gallery-thumbs .thumb").forEach((thumb) => {
     const newSrc = thumb.dataset.full;
     heroImg.src = newSrc;
 
-    // Toggle architecture class for wireframes/ERDs
-    if (newSrc && (newSrc.includes("wireframe") || newSrc.includes("erd"))) {
+    // Toggle architecture class for wireframes/ERDs, or galleries flagged to always contain
+    const gallerySection = document.querySelector(".project-gallery");
+    const alwaysContain =
+      gallerySection && gallerySection.dataset.contain === "true";
+    if (
+      alwaysContain ||
+      (newSrc && (newSrc.includes("wireframe") || newSrc.includes("erd")))
+    ) {
       heroImg.classList.add("architecture-img");
     } else {
       heroImg.classList.remove("architecture-img");

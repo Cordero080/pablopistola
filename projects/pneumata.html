@@ -19,7 +19,7 @@
     <title>Pneumata | Pablo Cordero</title>
     <meta
       name="description"
-      content="Interactive 3D anatomical model mapping every human organ to its hardware analog. 37 nodes, color-coded by system, with bidirectional spinal highlighting."
+      content="Interactive 3D anatomical model mapping every human organ to its hardware analog. 37 nodes, 24 vertebral bus lanes, bidirectional spinal highlighting, four view modes."
     />
     <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
     <link
@@ -193,8 +193,9 @@
           <a href="/home" class="back-link">← Back to Projects</a>
           <h1 class="project-title">PNEUMATA</h1>
           <p class="project-tagline">
-            Interactive 3D anatomical model — every human organ mapped to its
-            hardware analog, with bidirectional spinal highlighting
+            The human body is not a metaphor for a computer — it is the first
+            one. 37 organ nodes. 24 vertebral bus lanes. Four view modes. One
+            argument.
           </p>
 
           <div class="project-links">
@@ -210,40 +211,61 @@
       </section>
 
       <!-- Screenshot Gallery -->
-      <section class="project-gallery">
+      <section class="project-gallery" data-contain="true">
         <div class="gallery-main">
           <img
-            src="/images/projects/pneumata/01-logic-mode.png"
-            alt="Pneumata Logic Mode"
-            class="gallery-hero-img"
+            src="/images/projects/pneumata/09-unified-dramatic.png"
+            alt="Pneumata — Unified mode, all systems active"
+            class="gallery-hero-img architecture-img"
             loading="eager"
           />
         </div>
         <div class="gallery-thumbs">
           <img
-            src="/images/projects/pneumata/01-logic-mode.png"
-            alt="Logic Mode"
+            src="/images/projects/pneumata/09-unified-dramatic.png"
+            alt="Unified mode — all systems active"
             class="thumb active"
+            data-full="/images/projects/pneumata/09-unified-dramatic.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/pneumata/01-logic-mode.png"
+            alt="Logic mode — 37 nodes color-coded by category"
+            class="thumb"
             data-full="/images/projects/pneumata/01-logic-mode.png"
             loading="lazy"
           />
           <img
             src="/images/projects/pneumata/02-power-mode.png"
-            alt="Power Mode"
+            alt="Power mode — circulatory grid with red emissive glow"
             class="thumb"
             data-full="/images/projects/pneumata/02-power-mode.png"
             loading="lazy"
           />
           <img
-            src="/images/projects/pneumata/03-unified-mode.png"
-            alt="Unified Mode"
+            src="/images/projects/pneumata/06-breathing-mode.png"
+            alt="Breathing mode — body mesh shifts blue to cyan with each breath cycle"
             class="thumb"
-            data-full="/images/projects/pneumata/03-unified-mode.png"
+            data-full="/images/projects/pneumata/06-breathing-mode.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/pneumata/07-ribcage-closeup.png"
+            alt="Ribcage close-up — Power mode red volumetric glow"
+            class="thumb"
+            data-full="/images/projects/pneumata/07-ribcage-closeup.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/pneumata/10-breathing-closeup.png"
+            alt="Breathing mode chest close-up — blue-cyan oxygen pulse"
+            class="thumb"
+            data-full="/images/projects/pneumata/10-breathing-closeup.png"
             loading="lazy"
           />
           <img
             src="/images/projects/pneumata/05-about-modal.png"
-            alt="About Modal"
+            alt="About modal — Philosophy and How to Navigate tabs"
             class="thumb"
             data-full="/images/projects/pneumata/05-about-modal.png"
             loading="lazy"
@@ -265,86 +287,54 @@
             </p>
             <p>
               Pneumata makes that argument visual and interactive. Every organ
-              node in the model corresponds to a specific hardware component.
-              Every spinal disc corresponds to a bus arbitration layer. The
-              relationship is functional, not decorative — the same engineering
-              problem solved twice, in different substrates, separated by 500
-              million years.
+              node corresponds to a specific hardware component. Every spinal
+              disc corresponds to a bus arbitration layer. The relationship is
+              functional, not decorative — the same engineering problem solved
+              twice, in different substrates, separated by 500 million years.
             </p>
 
-            <h3
-              style="
-                color: rgba(255, 255, 255, 0.9);
-                margin-top: 1.5rem;
-                margin-bottom: 0.75rem;
-              "
-            >
-              The Architecture
-            </h3>
+            <h3>Node Placement</h3>
             <p>
-              <strong>37 organ nodes</strong> are placed in 3D space using
-              vertex-sampled coordinates from a real GLB anatomical mesh —
-              positions derived from the actual model geometry, not hardcoded
-              guesses. Each node belongs to one of 8 categories: Logic, Power,
-              Thermal, Digestive, Sensory, Renal, Immune, Spirit.
+              <strong>37 organ nodes</strong> are positioned in 3D space using
+              vertex-sampled coordinates extracted directly from the GLB
+              anatomical mesh at runtime — no hardcoded positions. Each belongs
+              to one of 8 color-coded categories: Logic, Power, Thermal,
+              Digestive, Sensory, Renal, Immune, Spirit.
             </p>
             <p>
-              The spinal column is auto-traced at runtime using a y-band
-              bucketing algorithm across the mesh's vertex data.
+              The spinal column is auto-traced using a y-band bucketing
+              algorithm across the mesh's vertex data.
               <strong>24 vertebral disc markers</strong> (C2 through S2) are
-              placed along that traced geometry and color-coded by the organ
-              system they innervate.
+              distributed along that traced geometry and color-coded by the
+              organ system innervated at each spinal level — derived from actual
+              anatomical innervation data.
             </p>
 
-            <h3
-              style="
-                color: rgba(255, 255, 255, 0.9);
-                margin-top: 1.5rem;
-                margin-bottom: 0.75rem;
-              "
-            >
-              Bidirectional Highlighting
-            </h3>
+            <h3>Bidirectional Signaling</h3>
             <p>
-              Hovering any organ node illuminates its spinal bus lanes — the
-              disc markers for the vertebral levels that innervate that organ
-              system light up with its category color. Hovering any disc
-              illuminates the organ nodes it innervates in return. The signal
-              flows both ways, the way nerve conduction actually does.
-            </p>
-            <p>
-              This is implemented through a single
-              <code
-                style="
-                  background: rgba(255, 255, 255, 0.06);
-                  padding: 0.1rem 0.4rem;
-                  border-radius: 4px;
-                  font-size: 0.85rem;
-                "
-                >hoveredCategory</code
-              >
-              state in Scene that both OrganNode and SpinalCord consume
-              simultaneously — no prop drilling maze, no global store.
+              Hover an organ node — its spinal bus lanes illuminate. Hover a
+              disc — its innervated organs respond in kind. Signal propagates
+              both directions simultaneously, the way nerve conduction actually
+              does. This is implemented through a single
+              <code>hoveredCategory</code> state consumed by both
+              <code>OrganNode</code> and <code>SpinalCord</code> in parallel —
+              no prop drilling, no global store.
             </p>
 
-            <h3
-              style="
-                color: rgba(255, 255, 255, 0.9);
-                margin-top: 1.5rem;
-                margin-bottom: 0.75rem;
-              "
-            >
-              View Modes
-            </h3>
+            <h3>View Modes</h3>
             <p>
-              <strong>Logic</strong> — the neural network. Processing, memory,
-              signal. <strong>Power</strong> — the circulatory grid, with two
-              energy orbs traveling the full body circuit and the heart
-              radiating expanding rings on each pass. <strong>Unified</strong>
-              — all systems simultaneously.
+              <strong>Logic</strong> renders the neural network — processing,
+              memory, signal. <strong>Power</strong> activates the circulatory
+              grid: two energy orbs circuit the full body on closed loops while
+              the heart node radiates expanding rings on each pass, marking each
+              clock cycle. <strong>Breathing</strong> shifts the body mesh from
+              blue (deoxygenated, inhale) to cyan (oxygenated, peak) in sync
+              with a 0.25Hz breath cycle, lung nodes flashing at the moment of
+              oxygenation. <strong>Unified</strong> runs all systems
+              simultaneously.
             </p>
             <p>
-              The source of this project's philosophy is Federico Faggin's
+              The philosophical source of this project is Federico Faggin's
               observation:
               <em>we did not invent the computer. We remembered it.</em>
             </p>
@@ -366,9 +356,9 @@
             <div class="detail-card">
               <h3>My Role</h3>
               <p>
-                Solo developer — 3D scene architecture, organ data system,
-                spinal auto-trace algorithm, bidirectional highlight logic, view
-                mode animations, and all UI.
+                Solo — 3D scene architecture, organ data system, spinal
+                auto-trace algorithm, bidirectional highlight logic, view mode
+                animations, modal system, and all UI.
               </p>
             </div>
 
@@ -387,7 +377,7 @@
 
       <!-- Features Section -->
       <section class="project-features">
-        <h2>What's in It</h2>
+        <h2>System Architecture</h2>
         <div class="features-grid">
           <div class="feature-card">
             <div class="feature-icon cyan">
@@ -404,8 +394,8 @@
             <h3>37 Organ Nodes</h3>
             <p>
               Every major organ mapped to a hardware analog across 8 categories.
-              Positions sampled from GLB mesh vertex data — no hardcoded
-              coordinates.
+              Positions sampled from GLB mesh vertex data at runtime — no
+              hardcoded coordinates, no guesswork.
             </p>
           </div>
 
@@ -422,9 +412,9 @@
             </div>
             <h3>Auto-Traced Spine</h3>
             <p>
-              Vertebral column geometry sampled directly from the GLB mesh at
-              runtime using vertex filtering and y-band bucketing. 24 disc
-              markers placed along the real anatomical curve.
+              Vertebral column geometry extracted from the GLB mesh at runtime
+              via vertex filtering and y-band bucketing. 24 disc markers placed
+              along the real anatomical curve, C2 through S2.
             </p>
           </div>
 
@@ -442,8 +432,8 @@
             <h3>Bidirectional Highlighting</h3>
             <p>
               Hover an organ — its spinal bus lanes light up. Hover a disc — its
-              innervated organs glow. Category color propagates across both
-              directions simultaneously.
+              innervated organs glow back. Category color propagates in both
+              directions, mirroring the bidirectionality of nerve conduction.
             </p>
           </div>
 
@@ -460,14 +450,40 @@
             </div>
             <h3>Traveling Circulation Orbs</h3>
             <p>
-              Two energy nodes circuit the full body on closed loops. The heart
-              node radiates expanding rings on each pass — a clock cycle
-              distributing power to the network.
+              Two energy nodes circuit the full body on closed loops in Power
+              mode. The heart radiates expanding rings on each pass — a PSU
+              distributing charge across the network on every clock cycle.
             </p>
           </div>
 
           <div class="feature-card">
             <div class="feature-icon cyan">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M2 12 Q6 6 12 12 Q18 18 22 12" />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="2"
+                  fill="currentColor"
+                  stroke="none"
+                />
+              </svg>
+            </div>
+            <h3>Breathing Mode</h3>
+            <p>
+              The body mesh cycles blue (deoxygenated, inhale) to cyan
+              (oxygenated, peak) at 0.25Hz. Lung nodes flash at the moment of
+              oxygenation — the pulmonary system rendered as a live signal.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon magenta">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -481,32 +497,10 @@
             </div>
             <h3>Organ + Disc Modals</h3>
             <p>
-              Clicking any node opens a glassmorphism panel with biological
-              function, hardware analog, synthesis, and spinal bus lane
-              assignment. Disc clicks show level, innervation target, and PCIe
-              lane analogy.
-            </p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon magenta">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <circle cx="12" cy="12" r="3" />
-                <path
-                  d="M12 2v4M12 18v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M2 12h4M18 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"
-                />
-              </svg>
-            </div>
-            <h3>Three View Modes</h3>
-            <p>
-              Logic (neural network), Power (circulatory grid with live
-              animation), Unified (all systems). Each mode selectively renders
-              its subsystems.
+              Clicking any node opens a panel with biological function, hardware
+              analog, synthesis, and spinal bus lane assignment with PCIe lane
+              analogy. Disc clicks surface level, innervation target, and
+              arbitration layer description.
             </p>
           </div>
         </div>

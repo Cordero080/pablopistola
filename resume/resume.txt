@@ -34,6 +34,7 @@ Full-Stack Software Engineer specializing in AI systems and interactive interfac
 \section{Certifications}
 
 \begin{adcvtabletwo}
+  \adcvrowtwo{\textbf{Model Context Protocol: Advanced Topics}, Anthropic Academy}{2026}
   \adcvrowtwo{\textbf{Introduction to Model Context Protocol}, Anthropic Academy}{2026}
   \adcvrowtwo{\textbf{AI Fluency: Framework \& Foundations}, Anthropic Academy}{2026}
   \adcvrowtwo{\textbf{Building with the Claude API}, Anthropic Academy}{2026}

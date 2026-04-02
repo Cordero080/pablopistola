@@ -288,7 +288,7 @@ body:has(.project-page) #waves {
 .gallery-hero-img.architecture-img {
   aspect-ratio: auto;
   object-fit: contain;
-  max-height: 600px;
+  max-height: 800px;
   background: linear-gradient(145deg, #0a0a0f, #151520);
 }
 
