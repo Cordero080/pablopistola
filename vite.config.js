@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import { resolve } from "path";
 import { globSync } from "glob";
-import { copyFileSync, mkdirSync } from "fs";
+import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 
 // Find all HTML files at root and in projects/
 const rootHtmlFiles = globSync("*.html");
@@ -9,21 +9,25 @@ const projectHtmlFiles = globSync("projects/*.html");
 const allHtmlFiles = [...rootHtmlFiles, ...projectHtmlFiles];
 
 // Plugin to copy src/js (including subdirectories) to dist/src/js
+// Also substitutes __VITE_*__ placeholders with actual env vars at build time.
 function copyJsPlugin() {
   return {
     name: "copy-js",
     closeBundle() {
       const srcDir = resolve(__dirname, "src/js");
       const destDir = resolve(__dirname, "dist/src/js");
+      const mcpUrl = process.env.VITE_MCP_URL || "http://localhost:8000";
       // Recursively copy all .js files preserving directory structure
       const jsFiles = globSync("**/*.js", { cwd: srcDir });
       jsFiles.forEach((file) => {
         const src = resolve(srcDir, file);
         const dest = resolve(destDir, file);
         mkdirSync(resolve(dest, ".."), { recursive: true });
-        copyFileSync(src, dest);
+        let contents = readFileSync(src, "utf8");
+        contents = contents.replace(/__VITE_MCP_URL__/g, mcpUrl);
+        writeFileSync(dest, contents, "utf8");
       });
-      console.log(`Copied ${jsFiles.length} files from src/js to dist/src/js`);
+      console.log(`Copied ${jsFiles.length} files from src/js to dist/src/js (MCP_URL: ${mcpUrl})`);
     },
   };
 }
