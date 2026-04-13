@@ -2,7 +2,7 @@
 
 ## Who he is
 
-Pablo Cordero (also known as Pablo Pistola) is a full-stack software engineer and creative technologist based in New York. He specializes in AI systems architecture, LLM orchestration, interactive 3D web experiences, and full-stack product development.
+Pablo Cordero (also known as Pablo Pistola) is a full-stack software engineer and creative technologist based in North Carolina, originally from New York. He specializes in AI systems architecture, LLM orchestration, interactive 3D web experiences, and full-stack product development.
 
 His background is unusual: two decades as a visual artist and draftsman, nearly twenty years as a Spanish interpreter, and a long practice in Okinawan Goju-Ryu martial arts. These disciplines directly shape how he engineers — with an emphasis on structure, clarity, and systems that feel intentional rather than assembled.
 
