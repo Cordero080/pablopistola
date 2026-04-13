@@ -1,0 +1,61 @@
+# Pablo Cordero — Full-Stack Software Engineer & AI Systems Developer
+
+## Who he is
+
+Pablo Cordero (also known as Pablo Pistola) is a full-stack software engineer and creative technologist based in New York. He specializes in AI systems architecture, LLM orchestration, interactive 3D web experiences, and full-stack product development.
+
+His background is unusual: two decades as a visual artist and draftsman, nearly twenty years as a Spanish interpreter, and a long practice in Okinawan Goju-Ryu martial arts. These disciplines directly shape how he engineers — with an emphasis on structure, clarity, and systems that feel intentional rather than assembled.
+
+Portfolio: https://pvblocordero.com
+
+## What he builds
+
+- **AI systems & LLM architecture** — custom orchestration layers, personality engines, multi-agent routing, archetype-based cognitive systems
+- **Interactive 3D web** — Three.js, React Three Fiber, WebGL, Blender-to-web pipelines, real-time audio-reactive visuals
+- **Full-stack applications** — React, Django, Express, MongoDB, PostgreSQL, REST APIs, WebSockets
+- **Creative technology** — generative art, procedural animation, immersive UI systems
+
+## Selected projects
+
+**Pneuma — AI Personality Engine**
+An experimental LLM orchestration architecture. 46 philosophical archetypes selected via 3-layer routing (cosine similarity → momentum weighting → fusion history), forced into dialectical collision across 1,764 pre-mapped tension pairs. Personality evolves across sessions through archetype momentum decay. 3-layer memory: vector embeddings, structured cross-session memory, full conversation persistence. Between sessions, archetypes run private dialectic dialogues that write silently to system state.
+
+**Transcendence — 3D Virtual Pet**
+A real-time 3D virtual pet built with Three.js and Blender. Custom-rigged character models, procedural animation, and persistent state. Featured project.
+
+**Nexus Geom Lab — 4D Geometry Explorer**
+A gamified platform for manipulating 24 hyperdimensional shapes (tesseracts, quantum manifolds, Hessian polychorons) in real-time WebGL. Audio-reactive visuals via FFT analysis. MongoDB + JWT auth. 93% code reduction from v1 to v2 (2,700 → 199 lines).
+
+**Numeneon — Neopunk Social Platform**
+A full-stack social media platform with a 3-column "River Timeline" feed architecture. Built with React and Django. Pablo served as Technical Product Manager and UI Lead on a 4-person team. 40+ organic users, 58% engagement rate, 100% uptime on self-managed cloud infrastructure.
+
+**La Dolce Vita — AI Concierge**
+A luxury vacation rental platform for a real client in Las Terrenas, Dominican Republic. AI chatbot powered by GPT-4o-mini with live iCal availability checking, natural language date parsing, multilingual support (EN/ES/FR), and Google Sheets property data integration. React + Vercel + Express + MongoDB.
+
+**INSTVNCE Blog — Neopunk Developer Log**
+A self-hosted developer blog with a terminal/monitoring dashboard aesthetic. CRT scanlines, holographic cards, floating 3D metallic braces in WebGL via Three.js. Full Markdown with syntax-highlighted code blocks.
+
+## Skills
+
+**Languages:** JavaScript, TypeScript, Python, HTML, CSS/SCSS
+**Frontend:** React, Three.js, React Three Fiber, WebGL, Vite, vanilla JS
+**Backend:** Node.js, Express, Django, REST APIs, WebSockets
+**Databases:** MongoDB, PostgreSQL
+**AI/ML:** OpenAI API, LLM orchestration, vector embeddings, prompt engineering, LLM architecture design
+**3D/Creative:** Blender, Three.js, WebGL, procedural animation, generative art
+**DevOps:** Vercel, Render, GitHub CI/CD, cloud infrastructure
+
+## Background
+
+- Visual artist for 20+ years — drawing, painting, digital art, motion graphics, light VFX
+- Spanish interpreter 2005–2024
+- Okinawan Goju-Ryu martial artist and instructor
+- 43+ projects built over the past year
+- 3,000+ GitHub contributions
+
+## Contact
+
+- **Email:** cordero080@gmail.com
+- **LinkedIn:** https://www.linkedin.com/in/pablo-cordero-305191153
+- **GitHub:** https://github.com/Cordero080
+- **Portfolio:** https://pvblocordero.com
