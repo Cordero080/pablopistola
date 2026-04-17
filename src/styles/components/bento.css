@@ -265,6 +265,55 @@
   }
 }
 
+/* ── DEMO LINK ── */
+.project-card-demo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.28);
+  margin-top: 0.4rem;
+  transition:
+    color 0.3s ease,
+    letter-spacing 0.3s ease;
+}
+.project-card-demo svg {
+  width: 0.85em;
+  height: 0.85em;
+  flex-shrink: 0;
+  transition: color 0.3s ease;
+}
+.project-card-demo:hover {
+  color: #ff3e3e;
+  letter-spacing: 0.28em;
+}
+
+/* ── COMING SOON ── */
+.project-card-coming-soon {
+  display: inline-block;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.18);
+  margin-top: 0.4rem;
+  animation: comingSoonPulse 2.8s ease-in-out infinite alternate;
+}
+@keyframes comingSoonPulse {
+  from {
+    opacity: 0.25;
+  }
+  to {
+    opacity: 0.55;
+  }
+}
+
 /* ── REDUCED MOTION ── */
 @media (prefers-reduced-motion: reduce) {
   .project-card-link,
@@ -272,5 +321,9 @@
     transition: none;
     opacity: 1;
     transform: none;
+  }
+  .project-card-coming-soon {
+    animation: none;
+    opacity: 0.4;
   }
 }
