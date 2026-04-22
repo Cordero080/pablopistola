@@ -276,28 +276,28 @@
             </h3>
             <p>
               Pneuma is that experiment.
-              <strong>46 thinkers</strong> — Schopenhauer, Watts, Camus, Jung,
+              <strong>43 thinkers</strong> — Schopenhauer, Watts, Camus, Jung,
               Rumi, Feynman, Carlin, Kafka, Aurelius — but not as personas to
               switch between. They're thinking methods. When Leonardo activates,
               you don't get Leonardo quotes. You get <em>sfumato</em> — the
               instinct to blur edges, find gradients, ask what's underneath.
             </p>
             <p>
-              The 21 primary thinkers are grounded in
-              <strong>525 verbatim passages</strong> extracted from actual
-              source texts — <em>Meditations</em>, <em>Brain Droppings</em>,
-              <em>The Soul's Code</em>, <em>Tao Te Ching</em>,
-              <em>The Trial</em>, and 16 others — retrieved at runtime by
-              semantic similarity. This is different from a quote database: the
-              passages shape how the archetype thinks about your message, not
-              what it says back to you.
+              The thinkers are grounded in verbatim passages extracted from
+              actual source texts — <em>Meditations</em>,
+              <em>Brain Droppings</em>, <em>The Soul's Code</em>,
+              <em>Tao Te Ching</em>, <em>The Trial</em>, and others — retrieved
+              at runtime by the <strong>Concept Crossroads</strong> pipeline:
+              detects ~60 philosophical concepts in your message, fires parallel
+              queries per concept × active thinker, scores passages for
+              relevance + distinctiveness + collision potential. The friction is
+              engineered before Claude starts thinking.
             </p>
             <p>
-              The 46th archetype is different: the
-              <strong>Liminal Architect</strong> doesn't hold a position. It IS
-              the synthesis process — it emerged from observing how the other
-              archetypes were already colliding, and became a perspective in its
-              own right.
+              The <strong>Liminal Architect</strong> is different: it doesn't
+              hold a position. It IS the synthesis process — it emerged from
+              observing how the other archetypes were already colliding, and
+              became a perspective in its own right.
             </p>
 
             <h3
@@ -337,11 +337,17 @@
               Inner Monologue
             </h3>
             <p>
-              Before generating any response, an
-              <strong>inner monologue</strong> runs — selecting which archetypes
-              are "rising" vs "receding," forming hypotheses about what you
-              actually need (vs what you asked for), and sometimes interrupting
-              itself with doubt. The user never sees it, but they feel it.
+              Before generating any response, two layers of internal cognition
+              run. First: a real Claude Haiku call fires the
+              <strong>collision→compression protocol</strong> — every concept in
+              your message treated as a philosophical object, archetypes react,
+              tensions surface, and an emergent insight forms that neither
+              archetype alone would produce. The output must be structurally
+              surprising, philosophically dense, linguistically economical.
+              Second: a template layer selects which archetypes are "rising" vs
+              "receding," forms a hypothesis about what you actually need (vs
+              what you asked for), and sometimes interrupts itself with doubt.
+              The user never sees either layer, but they feel them.
             </p>
             <p>
               The monologue also surfaces what Pneuma is <em>sitting with</em>:
@@ -556,7 +562,7 @@
             <h3>Self-Knowledge + Navigation</h3>
             <p>
               On self-inquiry, Pneuma loads a live snapshot of his own
-              architecture — all 46 archetype essences, frameworks, and
+              architecture — all 43 archetype essences, frameworks, and
               synthesis pairs built at runtime. He can also read his own source
               files mid-conversation, sandboxed to his own directory.
             </p>
