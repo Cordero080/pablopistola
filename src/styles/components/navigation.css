@@ -173,7 +173,7 @@
 }
 
 .side-nav-logo {
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
   padding-left: 18px;
   width: 100%;
   display: flex;
@@ -211,11 +211,11 @@
 .side-nav-links {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  justify-content: space-evenly;
   align-items: flex-start;
   width: 100%;
   padding-left: 8px;
-  padding-bottom: 120px; /* Space for curved bottom border */
+  padding-bottom: 170px;
   flex: 1;
 }
 
@@ -299,8 +299,7 @@
 
 /* Exit link styling */
 .side-nav-link.exit-link {
-  margin-top: auto;
-  margin-bottom: 60px;
+  margin-left: -2px;
   margin-right: 20px;
   opacity: 0.8;
   max-width: 50px;
