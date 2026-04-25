@@ -232,6 +232,41 @@
             ctx.fillStyle = 'rgba(' + rgb + ', ' + op + ')';
             ctx.fillText(cell.char, cell.gridX, cell.gridY + CELL_H);
           }
+          ctx.shadowBlur = 0;
+
+          // ── glitch: chromatic aberration + data corruption ────
+          var GLITCH_PROB       = 0.045; // chance per frame of a burst
+          var GLITCH_SLICES     = 3;     // scan-line slices per burst
+          var GLITCH_MAX_SHIFT  = 22;    // max px shift per slice
+          var GLITCH_MAX_H      = 10;    // max slice height (in cells)
+          var CORRUPT_CELLS     = 6;     // cells to corrupt per burst
+          var CORRUPT_CHARS     = '▓█▀▄░▒┼╬╫╪';
+
+          if (Math.random() < GLITCH_PROB) {
+            // 1. scan-line slice shift
+            for (var gi = 0; gi < GLITCH_SLICES; gi++) {
+              var sliceY = Math.floor(Math.random() * CANVAS_H);
+              var sliceH = (1 + Math.floor(Math.random() * GLITCH_MAX_H)) * CELL_H;
+              var shift  = (Math.random() < 0.5 ? 1 : -1) * (4 + Math.floor(Math.random() * GLITCH_MAX_SHIFT));
+              var slice  = ctx.getImageData(0, sliceY, CANVAS_W, Math.min(sliceH, CANVAS_H - sliceY));
+              ctx.putImageData(slice, shift, sliceY);
+            }
+
+            // 2. data corruption — random cells flash block chars
+            ctx.font = 'bold 14px "Courier New", monospace';
+            ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+            for (var ci = 0; ci < CORRUPT_CELLS; ci++) {
+              var rc = cells[Math.floor(Math.random() * cells.length)];
+              if (!rc || !rc.inMask) continue;
+              var corruptChar = CORRUPT_CHARS[Math.floor(Math.random() * CORRUPT_CHARS.length)];
+              var corruptRgb  = Math.random() < 0.5 ? '0, 255, 255' : '255, 0, 200';
+              ctx.shadowColor = 'rgba(' + corruptRgb + ', 0.9)';
+              ctx.shadowBlur  = 10;
+              ctx.fillStyle   = 'rgba(' + corruptRgb + ', 1)';
+              ctx.fillText(corruptChar, rc.gridX, rc.gridY + CELL_H);
+            }
+            ctx.shadowBlur = 0;
+          }
         }
 
         function init() {

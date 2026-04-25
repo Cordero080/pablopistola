@@ -9,15 +9,39 @@
   z-index: 5;
   pointer-events: none;
 
-  /* ── desktop default ─────────────────────────── */
-  top: 45.9%; /* vertical center */
+  /* ── desktop default (> 1440px) ──────────────── */
+  top: 45.95%; /* vertical center */
   left: 49.7%; /* horizontal center */
 }
 
-/* ── tablet (≤ 1100px) ───────────────────────────── */
+/* ── large desktop (≤ 1440px) ───────────────────── */
+@media (max-width: 1440px) {
+  #landing-ascii-canvas {
+    top: 45.95%;
+    left: 49.7%;
+  }
+}
+
+/* ── desktop (≤ 1280px) ──────────────────────────── */
+@media (max-width: 1280px) {
+  #landing-ascii-canvas {
+    top: 45.95%;
+    left: 49.7%;
+  }
+}
+
+/* ── tablet landscape (≤ 1100px) ─────────────────── */
 @media (max-width: 1100px) {
   #landing-ascii-canvas {
-    top: 45.5%;
+    top: 44.5%;
+    left: 50%;
+  }
+}
+
+/* ── tablet portrait (≤ 900px) ───────────────────── */
+@media (max-width: 900px) {
+  #landing-ascii-canvas {
+    top: 44.5%;
     left: 50%;
   }
 }
@@ -32,6 +56,14 @@
 
 /* ── small mobile (≤ 480px) ──────────────────────── */
 @media (max-width: 480px) {
+  #landing-ascii-canvas {
+    top: 46.8%;
+    left: 50%;
+  }
+}
+
+/* ── tiny mobile (≤ 375px) ───────────────────────── */
+@media (max-width: 375px) {
   #landing-ascii-canvas {
     top: 46.8%;
     left: 50%;
