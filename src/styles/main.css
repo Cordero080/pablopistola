@@ -21,8 +21,8 @@
 @import url("./components/loader.css");
 @import url("./pages/home/hero.css");
 @import url("./components/cursor.css");
-@import url("./components/glitch.css");
-@import url("./components/waves.css");
+@import url("./effects/glitch.css");
+@import url("./effects/waves.css");
 
 /* === NAVIGATION === */
 @import url("./components/navigation.css");
