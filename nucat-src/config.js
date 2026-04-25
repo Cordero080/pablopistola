@@ -1,0 +1,159 @@
+/**
+ * Configuration & Constants
+ * All settings in one place for easy customization
+ */
+
+export const CONFIG = {
+  // Available ASCII characters for point cloud
+  characterSets: {
+    // Block characters
+    "Block Full": "█",
+    "Block Dark": "▓",
+    "Block Medium": "▒",
+    "Block Light": "░",
+    // Punctuation & Symbols
+    "Question ?": "?",
+    "Exclaim !": "!",
+    "At @": "@",
+    "Hash #": "#",
+    "Dollar $": "$",
+    "Percent %": "%",
+    "Ampersand &": "&",
+    "Asterisk *": "*",
+    "Plus +": "+",
+    "Equals =": "=",
+    // Letters
+    "Letter X": "X",
+    "Letter O": "O",
+    "Letter A": "A",
+    "Letter Z": "Z",
+    "Letter M": "M",
+    "Letter W": "W",
+    // Numbers
+    "Number 0": "0",
+    "Number 1": "1",
+    "Number 8": "8",
+    // Special
+    "Bullet •": "•",
+    "Cross ×": "×",
+    "Tilde ~": "~",
+    "Caret ^": "^",
+    "Colon :": ":",
+    "Dot .": ".",
+    "Comma ,": ",",
+    "Slash /": "/",
+    "Backslash \\": "\\",
+    "Pipe |": "|",
+    "Underscore _": "_",
+    "Hyphen -": "-",
+  },
+
+  // Color presets with cyberpunk aesthetic
+  colorPresets: {
+    Cyan: "#00ffff",
+    Magenta: "#ff00ff",
+    "Neon Green": "#00ff66",
+    White: "#ffffff",
+    "Hot Pink": "#ff0066",
+    "Electric Blue": "#0066ff",
+  },
+
+  // Default settings - adjust these to change initial values on page load
+  defaults: {
+    character: "█",
+    samplingDensity: 1,
+    characterSize: 10.8,
+    color: "#00ffff",
+    animationSpeed: 1.0,
+    billboardMode: true,
+    maxCharacters: 200000,
+    emissiveIntensity: 0.3,
+    bloomStrength: 0.8,
+    bloomRadius: 0.3,
+    bloomThreshold: 0.5,
+  },
+
+  // Scene settings
+  scene: {
+    backgroundColor: 0x000000,
+  },
+
+  // Available models
+  models: {
+    "Slow Qi": "./models/SLOW_QI.fbx",
+    "Green Smoke": "./models/green_smoke.fbx",
+    "Cat Fight": "./models/red_cat_fight.fbx",
+  },
+
+  // Model settings
+  model: {
+    path: "./models/SLOW_QI.fbx",
+    rotationY: Math.PI / 3, // 60 degrees
+  },
+
+  // Camera settings
+  camera: {
+    fov: 60,
+    near: 0.1,
+    far: 1000,
+    initialPosition: { x: 0, y: 100, z: 200 },
+    lookAt: { x: 0, y: 50, z: 0 },
+  },
+
+  // Font URL
+  fontUrl:
+    "https://cdn.jsdelivr.net/npm/three@0.182.0/examples/fonts/helvetiker_regular.typeface.json",
+};
+
+// GUI-controlled parameters (mutable at runtime)
+export const params = {
+  character: CONFIG.defaults.character,
+  samplingDensity: CONFIG.defaults.samplingDensity,
+  characterSize: CONFIG.defaults.characterSize,
+  color: CONFIG.defaults.color,
+  backgroundColor: "#00000000",
+  animationSpeed: CONFIG.defaults.animationSpeed,
+  billboardMode: CONFIG.defaults.billboardMode,
+  emissiveIntensity: CONFIG.defaults.emissiveIntensity,
+  bloomStrength: CONFIG.defaults.bloomStrength,
+  bloomRadius: CONFIG.defaults.bloomRadius,
+  bloomThreshold: CONFIG.defaults.bloomThreshold,
+
+  // Character effects - supports layering multiple effects
+  effectType: "none", // Legacy - kept for dropdown
+  activeEffects: {
+    hover: false,
+    noise: false,
+    wave: false,
+    spiral: false,
+    disperse: false,
+    spiralFlow: false,
+  },
+  // Currently focused effect (for parameter editing)
+  _focusedEffect: null,
+
+  // Per-effect parameters - each effect stores its own settings
+  effectParams: {
+    hover: { intensity: 5.0, speed: 1.0 },
+    noise: { intensity: 5.0, speed: 1.0 },
+    wave: { intensity: 5.0, speed: 1.0 },
+    spiral: { intensity: 5.0, speed: 1.0 },
+    disperse: { intensity: 5.0, speed: 1.0 },
+    spiralFlow: { intensity: 5.0, speed: 1.0, flowSpeed: 1.0, waves: 5 },
+  },
+
+  // Current editing values (bound to GUI)
+  effectIntensity: 5.0,
+  effectSpeed: 1.0,
+  disperseAmount: 0.0,
+  _disperseTarget: 0,
+
+  // Spiral Flow effect
+  spiralFlowProgress: 0.0,
+  spiralFlowSpeed: 1.0,
+  spiralFlowWaves: 5,
+  _spiralFlowActive: false,
+
+  // Return control
+  _isReturning: false,
+};

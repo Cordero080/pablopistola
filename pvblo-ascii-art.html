@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PVBLO PISTOLA — ASCII</title>
+  <style>
+    @font-face {
+      font-family: 'Future Z';
+      src: url('/fonts/Future%20Z.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #080808;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    #ascii-canvas { display: block; max-width: 100vw; }
+  </style>
+</head>
+<body>
+  <canvas id="ascii-canvas"></canvas>
+  <script>
+    const CANVAS_W    = 1950;
+    const CANVAS_H    = 250;
+    const CELL_W      = 12;
+    const CELL_H      = 20;
+    const TEXT        = 'PVBLO CORDERO';
+    const TICK_MS     = 80;
+    const ASSEMBLE_MS = 5000;
+    const DISSOLVE_STAGGER = 1800;
+    const FADE_IN_MS  = 300;
+    const FADE_OUT_MS = 600;
+
+    const SPEED_GROUPS = [
+      { chars: '0123456789ABCDEF', every: 1  },
+      { chars: 'pvblo@#!&$?~^|;',  every: 22 },
+      { chars: '.,_-+=<>()[]{}',   every: 50 },
+    ];
+
+    const canvas = document.getElementById('ascii-canvas');
+    const ctx    = canvas.getContext('2d');
+    let mask, maskW, maskH, cells, tickCount = 0, tickTimer = null, startTime = 0;
+
+    function setCanvasSize() {
+      const scale = Math.min(1, window.innerWidth / CANVAS_W);
+      canvas.width  = CANVAS_W;
+      canvas.height = CANVAS_H;
+      canvas.style.width  = Math.floor(CANVAS_W * scale) + 'px';
+      canvas.style.height = Math.floor(CANVAS_H * scale) + 'px';
+    }
+
+    function buildMask() {
+      const off = document.createElement('canvas');
+      off.width = CANVAS_W; off.height = CANVAS_H;
+      const octx = off.getContext('2d');
+      octx.fillStyle = '#000'; octx.fillRect(0, 0, CANVAS_W, CANVAS_H);
+      octx.font = "100px 'Future Z', monospace";
+      const testW = octx.measureText(TEXT).width;
+      const fontSize = Math.max(10, Math.floor(100 * (CANVAS_W * 0.90) / testW));
+      octx.font = fontSize + "px 'Future Z', monospace";
+      octx.fillStyle = '#fff'; octx.textAlign = 'center'; octx.textBaseline = 'middle';
+      octx.fillText(TEXT, CANVAS_W / 2, CANVAS_H / 2);
+      const data = octx.getImageData(0, 0, CANVAS_W, CANVAS_H).data;
+      maskW = CANVAS_W; maskH = CANVAS_H;
+      mask = new Uint8Array(maskW * maskH);
+      for (let i = 0; i < maskW * maskH; i++) mask[i] = data[i * 4] > 128 ? 1 : 0;
+    }
+
+    function buildCells() {
+      const cols = Math.ceil(CANVAS_W / CELL_W), rows = Math.ceil(CANVAS_H / CELL_H), mid = rows >> 1;
+      const DIRS = ['top-down', 'bottom-up', 'center-out'], BAND_W = 4;
+      const numBands = Math.ceil(cols / BAND_W);
+      const bandDir = Array.from({ length: numBands }, () => DIRS[Math.floor(Math.random() * DIRS.length)]);
+      cells = [];
+      let ci = 0;
+      for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++, ci++) {
+          const gIdx = ci % SPEED_GROUPS.length, g = SPEED_GROUPS[gIdx];
+          const dir = bandDir[Math.floor(col / BAND_W)];
+          const order = dir === 'top-down' ? row : dir === 'bottom-up' ? rows-1-row : Math.abs(row-mid);
+          let t = (order / Math.max(1, rows - 1)) * ASSEMBLE_MS;
+          const r = Math.random();
+          if (r > 0.80) t += Math.random() * ASSEMBLE_MS * 0.35;
+          else if (r > 0.55) t += Math.random() * ASSEMBLE_MS * 0.08;
+          t += (Math.random() - 0.5) * ASSEMBLE_MS * 0.04;
+          cells.push({
+            group: gIdx, char: g.chars[Math.floor(Math.random() * g.chars.length)],
+            gridX: col * CELL_W, gridY: row * CELL_H,
+            revealAt: Math.max(0, Math.min(ASSEMBLE_MS, t)),
+            dissolveAt: ASSEMBLE_MS + Math.random() * DISSOLVE_STAGGER,
+          });
+        }
+      }
+    }
+
+    function drawFrame() {
+      tickCount++;
+      const elapsed = Date.now() - startTime;
+      ctx.fillStyle = '#080808'; ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
+      ctx.font = 'bold 14px "Courier New", monospace';
+      ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+      for (let i = 0; i < cells.length; i++) {
+        const cell = cells[i];
+        if (elapsed < cell.revealAt) continue;
+        const sx = Math.min(cell.gridX + (CELL_W >> 1), maskW - 1);
+        const sy = Math.min(cell.gridY + (CELL_H >> 1), maskH - 1);
+        if (!mask[sy * maskW + sx]) continue;
+        const g = SPEED_GROUPS[cell.group];
+        if (tickCount % g.every === 0) cell.char = g.chars[Math.floor(Math.random() * g.chars.length)];
+        const age = elapsed - cell.revealAt;
+        let op;
+        if (elapsed < cell.dissolveAt) {
+          op = Math.min(1, age / FADE_IN_MS) * 0.90;
+        } else {
+          const out = elapsed - cell.dissolveAt;
+          if (out > FADE_OUT_MS) continue;
+          op = (1 - out / FADE_OUT_MS) * 0.90;
+        }
+        ctx.fillStyle = 'rgba(235, 225, 205, ' + op + ')';
+        ctx.fillText(cell.char, cell.gridX, cell.gridY + CELL_H);
+      }
+    }
+
+    function init() {
+      setCanvasSize(); buildMask(); buildCells();
+      startTime = Date.now(); tickCount = 0;
+      if (tickTimer) clearInterval(tickTimer);
+      drawFrame();
+      tickTimer = setInterval(drawFrame, TICK_MS);
+    }
+
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => { clearInterval(tickTimer); init(); }, 150);
+    });
+
+    document.fonts.load("100px 'Future Z'").then(init);
+  </script>
+</body>
+</html>
