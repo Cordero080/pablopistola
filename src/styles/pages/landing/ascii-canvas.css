@@ -49,7 +49,7 @@
 /* ── mobile (≤ 768px) ────────────────────────────── */
 @media (max-width: 768px) {
   #landing-ascii-canvas {
-    top: 46.8%;
+    top: 47%;
     left: 50%;
   }
 }
@@ -57,7 +57,7 @@
 /* ── small mobile (≤ 480px) ──────────────────────── */
 @media (max-width: 480px) {
   #landing-ascii-canvas {
-    top: 46.8%;
+    top: 46.9%;
     left: 50%;
   }
 }
