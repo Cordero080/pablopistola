@@ -27,6 +27,9 @@
 
 const MCP_BASE_URL = "__VITE_MCP_URL__";
 
+// ── Session ID — persisted in localStorage so conversation history survives page reloads ──
+let sessionId = localStorage.getItem("mcp_session_id") || null;
+
 // ─────────────────────────────────────────────────────────
 //  SSE BRIDGE  — listens to /stream for MCP tool events
 //
@@ -85,11 +88,19 @@ async function sendChatMessage(message) {
     const res = await fetch(`${MCP_BASE_URL}/chat`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message }),
+      body: JSON.stringify({ message, session_id: sessionId }),
     });
 
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    return await res.json(); // { response, tool_called }
+    const data = await res.json(); // { response, tool_called, session_id }
+
+    // Persist session ID so follow-up messages continue the same conversation
+    if (data.session_id) {
+      sessionId = data.session_id;
+      localStorage.setItem("mcp_session_id", sessionId);
+    }
+
+    return data;
   } catch (err) {
     console.error("[MCP Bridge] /chat error:", err);
     return {

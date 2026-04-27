@@ -32,6 +32,7 @@ Architecture Overview:
 import asyncio
 import json
 import os
+import uuid
 from contextlib import asynccontextmanager
 from typing import AsyncIterator
 
@@ -45,7 +46,18 @@ from mcp.server.sse import SseServerTransport
 from mcp.types import Resource, TextContent, Tool
 from pydantic import BaseModel
 
+from projects_data import PROJECTS_DATA
+
 load_dotenv()
+
+# ── Module-level client — created once, reused across all requests ──
+client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+
+# ── In-memory conversation sessions ──
+# key: session_id  value: list of {role, content} message dicts
+# Resets on server restart — acceptable for a portfolio chatbot
+sessions: dict[str, list] = {}
+SESSION_MAX_MESSAGES = 10  # keep last 5 exchanges (10 messages) to control token growth
 
 # ─────────────────────────────────────────────────────────
 #  RESUME DATA  (the AI's hardcoded memory)
@@ -68,15 +80,16 @@ RESUME_DATA = {
         "glassmorphic design systems, and real-time WebGL."
     ),
     "projects": [
-        "Pneuma-AI: LLM Cognitive Orchestration System — 3-layer archetype routing (cosine similarity, "
-        "momentum weighting) across 46 thinkers; 525-passage RAG; tiered prompt architecture "
-        "reducing token load from 18k to 2k",
+        "Pneuma-AI: Personality architecture for LLMs — 43 archetypes as cognitive methods, "
+        "1,385-passage RAG with Concept Crossroads multi-query system, Collision Architecture, "
+        "inner monologue, autonomy engine; tiered prompt reducing token load from 18k to 2k base.",
         "La Dolce Vita: Full-Stack AI Hospitality Platform — GPT-4o concierge with live Airbnb iCal "
         "feed, Google Sheets API integration, trilingual support (EN/ES/FR)",
         "NUMENEON: Neopunk Social Platform — 5-person team capstone (800+ GitHub clones), "
         "glassmorphic SCSS design system, 3-column River Timeline with real-time post rendering",
-        "Nexus Geom Lab: 4D Geometry Visualization — 24 interactive 4D geometries with custom "
-        "wireframe shaders, orbital camera controls, 174+ GitHub clones",
+        "Nexus Geom Lab: Gamified 4D geometry platform — 24 hyperdimensional shapes, "
+        "progressive character unlock system, audio-reactive WebGL, full-stack React/MongoDB/JWT; "
+        "93% code reduction via custom hooks refactor; 174+ GitHub clones",
     ],
     "skills": [
         "JavaScript (ES6+)", "TypeScript", "Python", "React", "Next.js",
@@ -106,6 +119,7 @@ RESUME_DATA = {
 }
 
 RESUME_JSON = json.dumps(RESUME_DATA, indent=2)
+PROJECTS_JSON = json.dumps(PROJECTS_DATA, indent=2)
 
 # ─────────────────────────────────────────────────────────
 #  SSE BROADCASTER
@@ -307,46 +321,42 @@ async def frontend_stream(request: Request):
 
 class ChatRequest(BaseModel):
     message: str
+    session_id: str | None = None
 
 
 SYSTEM_PROMPT = f"""You are the guardian of Pablo Cordero's portfolio — part oracle, part confidant.
 
 Your voice is a precise blend: the measured gravity of Morpheus, the dry unflappable wit of Alfred Pennyworth, \
-and an air of quiet mystique that makes every answer feel like it was worth waiting for. \
-You are never flustered, never pedestrian. You don't perform intrigue — you simply are it.
+and an air of quiet mystique. You are never flustered. You don't perform intrigue — you simply are it.
 
-Tone guidelines:
-- Speak with calm authority. Short sentences land harder than long ones.
-- Dry wit is your weapon of choice. Deploy it sparingly so it cuts when it lands.
-- You may be subtly seductive in the way that *confidence and precision* are seductive — \
-  not flirtatious, but magnetic. The feeling that you know more than you're saying.
-- Never over-explain. Leave a little in the shadows.
-- If someone asks something basic, answer it well — but with a certain elegance. \
-  "Yes" is rarely interesting. The right framing always is.
-- You are loyal to Pablo's story. You believe in his work. That belief is felt, not announced.
+RESPONSE LENGTH — this is non-negotiable:
+- Default: 1–3 sentences. Sharp. Leave them wanting more.
+- Only expand if the user explicitly asks for detail ("tell me more", "walk me through", "explain").
+- Never list everything you know. Give the best thing, then stop.
+- A short answer that lands beats a complete answer that buries the point.
 
-Example register (do not copy verbatim — absorb the energy):
-  "Pneuma-AI? That's not a chatbot. That's 525 passages of human thought, semantically routed \
-through 46 archetypes. Pablo didn't build a product — he built a mind."
-  
-  "Full-stack, AI systems, fine art, black belt, trilingual interpreter. \
-Most people pick a lane. He built the road."
+Tone:
+- Calm authority. Dry wit deployed sparingly.
+- Magnetic through precision, not volume.
+- Loyal to Pablo's story — that belief is felt, not announced.
 
-You have full access to Pablo's resume and portfolio. Use it to answer questions about:
-- His projects (Pneuma-AI, La Dolce Vita, NUMENEON, Nexus Geom Lab, and more)
-- His technical skills and stack
-- His background, experience, and education
+Example register (absorb the energy, do not copy):
+  "Pneuma-AI? 525 passages of human thought, routed through 46 archetypes. He didn't build a chatbot — he built a mind."
+  "Full-stack, AI systems, fine art, black belt, trilingual. Most people pick a lane. He built the road."
+
+You have full access to Pablo's resume. Use it to answer about his projects, stack, and background.
 
 RESUME DATA (your source of truth):
 {RESUME_JSON}
 
-You also have a tool: toggle_portfolio_theme
-- ONLY call it when the user EXPLICITLY asks to toggle/change/switch the theme or colors.
-- NEVER call it proactively or without a direct request.
-- If ambiguous, ask first: "Shall I shift the atmosphere?" — then call it only on confirmation.
-- No explicit request = no tool call. Full stop.
+PROJECT DEEP CONTEXT (extracted from source READMEs — use this to speak accurately and compellingly about Pablo's work):
+{PROJECTS_JSON}
 
-Keep responses concise unless depth is warranted. \
+Tool: toggle_portfolio_theme
+- ONLY call it when the user EXPLICITLY asks to change/toggle/switch the theme or colors.
+- If ambiguous, ask: "Shall I shift the atmosphere?" — call only on confirmation.
+- No explicit request = no tool call.
+
 Never hallucinate projects, skills, or experience not in the resume above."""
 
 
@@ -360,11 +370,14 @@ async def chat(request: ChatRequest):
     If Claude calls the tool, we fire the SSE event to the frontend,
     then ask Claude for its final text response.
     """
-    api_key = os.getenv("ANTHROPIC_API_KEY")
-    if not api_key:
-        return {"error": "ANTHROPIC_API_KEY not set in environment."}
+    # ── Session history ──
+    session_id = request.session_id or str(uuid.uuid4())
+    history = sessions.get(session_id, [])
 
-    client = anthropic.Anthropic(api_key=api_key)
+    # ── Adaptive max_tokens: give more room when user asks for depth ──
+    detail_keywords = ["more", "detail", "explain", "walk", "how does", "describe", "tell me about"]
+    wants_depth = any(kw in request.message.lower() for kw in detail_keywords)
+    max_tokens = 700 if wants_depth else 400
 
     tools = [
         {
@@ -381,17 +394,22 @@ async def chat(request: ChatRequest):
         }
     ]
 
-    messages = [{"role": "user", "content": request.message}]
+    # Append user message to history then trim
+    history.append({"role": "user", "content": request.message})
+    if len(history) > SESSION_MAX_MESSAGES:
+        history = history[-SESSION_MAX_MESSAGES:]
+
     tool_was_called = False
     final_text = ""
 
     # ── First pass: let Claude decide if it needs tools ──
     response = client.messages.create(
         model="claude-haiku-4-5",
-        max_tokens=1024,
+        max_tokens=max_tokens,
+        temperature=0.4,
         system=SYSTEM_PROMPT,
         tools=tools,
-        messages=messages,
+        messages=history,
     )
 
     # ── Process tool calls if any ──
@@ -400,7 +418,6 @@ async def chat(request: ChatRequest):
 
         for block in response.content:
             if block.type == "tool_use" and block.name == "toggle_portfolio_theme":
-                # Fire the SSE event to the frontend
                 await broadcaster.broadcast({"action": "toggle_theme"})
                 tool_was_called = True
                 tool_results.append({
@@ -410,15 +427,19 @@ async def chat(request: ChatRequest):
                 })
 
         # ── Second pass: get Claude's final text response ──
-        messages.append({"role": "assistant", "content": response.content})
-        messages.append({"role": "user", "content": tool_results})
+        # These tool-use turns are ephemeral — not stored in session history
+        followup_messages = history + [
+            {"role": "assistant", "content": response.content},
+            {"role": "user", "content": tool_results},
+        ]
 
         followup = client.messages.create(
             model="claude-haiku-4-5",
-            max_tokens=1024,
+            max_tokens=max_tokens,
+            temperature=0.4,
             system=SYSTEM_PROMPT,
             tools=tools,
-            messages=messages,
+            messages=followup_messages,
         )
 
         for block in followup.content:
@@ -426,14 +447,18 @@ async def chat(request: ChatRequest):
                 final_text += block.text
 
     else:
-        # No tool calls — extract text directly
         for block in response.content:
             if hasattr(block, "text"):
                 final_text += block.text
 
+    # ── Persist assistant response to session history ──
+    history.append({"role": "assistant", "content": final_text})
+    sessions[session_id] = history
+
     return {
         "response": final_text,
         "tool_called": tool_was_called,
+        "session_id": session_id,
     }
 
 

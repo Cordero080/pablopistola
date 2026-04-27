@@ -723,36 +723,6 @@
     <script src="src/js/components/nameScramble.js" defer></script>
     <script src="src/js/components/bentoCards.js" defer></script>
     <script src="src/js/pages/home/index.js" defer></script>
-    <script>
-      // Match underline width to subtitle
-      (function () {
-        const subtitle = document.querySelector(".hero-subtitle");
-        const underline = document.getElementById("heroUnderline");
-        if (!subtitle || !underline) return;
-        function syncWidth() {
-          underline.style.width = subtitle.getBoundingClientRect().width + "px";
-        }
-        syncWidth();
-        window.addEventListener("resize", syncWidth);
-      })();
-    </script>
-    <script>
-      // Contact buttons parallax on scroll
-      (function () {
-        const section = document.getElementById("contact");
-        const links = document.querySelectorAll("#contactLinks .contact-link");
-        const speeds = [0.04, 0.07, 0.1];
-        function onScroll() {
-          const rect = section.getBoundingClientRect();
-          const centerOffset =
-            rect.top + rect.height / 2 - window.innerHeight / 2;
-          links.forEach((el, i) => {
-            el.style.transform = `translateY(${centerOffset * -speeds[i]}px)`;
-          });
-        }
-        window.addEventListener("scroll", onScroll, { passive: true });
-      })();
-    </script>
     <script src="src/js/utils/mcpBridge.js" defer></script>
   </body>
 </html>
