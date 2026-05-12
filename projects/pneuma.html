@@ -254,15 +254,12 @@
           <div class="about-description">
             <h2>About</h2>
             <p>
-              Most AI "personalities" are costumes. You tell Claude to "be a
-              philosopher" and it plays dress-up. Or you build a RAG system that
-              retrieves quotes when keywords match. Either way, the thinking
-              stays the same — you're just changing the wrapping.
-            </p>
-            <p>
-              I wanted to see what happens if you flip that. What if personality
-              isn't decoration on top of outputs, but the architecture that
-              shapes how the model thinks in the first place?
+              Most AI "personalities" are cosmetic. You tell the model to "be a
+              philosopher" and it plays dress-up — the underlying thinking
+              doesn't change, only the tone. Pneuma is a different bet: that
+              personality isn't decoration on top of outputs, but the
+              architecture that shapes how the model thinks before it generates
+              a single word.
             </p>
 
             <h3
@@ -283,15 +280,20 @@
               instinct to blur edges, find gradients, ask what's underneath.
             </p>
             <p>
-              The thinkers are grounded in verbatim passages extracted from
-              actual source texts — <em>Meditations</em>,
-              <em>Brain Droppings</em>, <em>The Soul's Code</em>,
-              <em>Tao Te Ching</em>, <em>The Trial</em>, and others — retrieved
-              at runtime by the <strong>Concept Crossroads</strong> pipeline:
-              detects ~60 philosophical concepts in your message, fires parallel
-              queries per concept × active thinker, scores passages for
-              relevance + distinctiveness + collision potential. The friction is
-              engineered before Claude starts thinking.
+              The thinkers are grounded in verbatim passages from actual source
+              texts — <em>Meditations</em>, <em>Brain Droppings</em>,
+              <em>The Soul's Code</em>, <em>Tao Te Ching</em>,
+              <em>The Trial</em>, and others — 1,385 passages across 46 thinker
+              folders, retrieved at runtime by a two-pipeline RAG system.
+              Pipeline 1 scans your message against ~80 known philosophical
+              concepts, fires parallel queries per concept × active thinker,
+              then scores candidates using a <strong>50/30/20 formula</strong>:
+              50% relevance to your message, 30% distinctiveness from other
+              retrieved passages, 20% philosophical tension between thinkers.
+              The friction is engineered before Claude starts thinking. Pipeline
+              2 runs independently — a semantic search over your personal
+              conversation history stored in MongoDB, surfacing past exchanges
+              thematically related to what you just said.
             </p>
             <p>
               The <strong>Liminal Architect</strong> is different: it doesn't
@@ -310,15 +312,16 @@
               Contextual Synthesis
             </h3>
             <p>
-              The primary mechanism: <strong>contextual synthesis</strong>. A
-              3-layer topic classifier (keyword patterns → semantic router →
-              intent scores) identifies what a message is really about —
-              suffering, meaning, fear, pretension, 12 categories total. It then
-              selects the optimal archetype pair for that topic and tells both
-              to <em>take an actual position and argue</em>. Nietzsche ×
-              Schopenhauer on suffering. Camus × Frankl on meaning. The response
-              has to hold the tension. That's where the interesting stuff comes
-              out.
+              The primary mechanism: <strong>contextual synthesis</strong>. An
+              LLM call scores every message across 10 intent dimensions —
+              emotional, philosophical, numinous, paradox, conflict, and others.
+              High scores on specific dimensions pull in specific archetypes and
+              select one of six tones for how the response sounds. The system
+              then identifies the optimal archetype pair for the message and
+              tells both to <em>take an actual position and argue</em>.
+              Nietzsche × Schopenhauer on suffering. Camus × Frankl on meaning.
+              The response has to hold the tension. That's where the interesting
+              stuff comes out.
             </p>
             <p>
               Beneath that: <strong>1,764 tension pairs</strong> pre-mapped
@@ -344,16 +347,32 @@
               tensions surface, and an emergent insight forms that neither
               archetype alone would produce. The output must be structurally
               surprising, philosophically dense, linguistically economical.
-              Second: a template layer selects which archetypes are "rising" vs
-              "receding," forms a hypothesis about what you actually need (vs
-              what you asked for), and sometimes interrupts itself with doubt.
-              The user never sees either layer, but they feel them.
+              Second: a template layer tracks which archetypes have been
+              dominant across recent exchanges, forms a hypothesis about what
+              you actually need underneath what you asked, and selects a
+              response mode. The user never sees either layer, but they feel
+              them.
             </p>
+
+            <h3
+              style="
+                color: rgba(255, 255, 255, 0.9);
+                margin-top: 1.5rem;
+                margin-bottom: 0.75rem;
+              "
+            >
+              Autonomy State
+            </h3>
             <p>
-              The monologue also surfaces what Pneuma is <em>sitting with</em>:
-              open questions it hasn't resolved, memories it chose to keep (with
-              reasoning), things it noticed it lost. This autonomy state
-              accumulates across sessions.
+              After every response, a separate system runs: it checks whether
+              anything in the exchange is worth carrying forward. Existential
+              questions with no clean answer get stored as open questions.
+              High-weight emotional moments get stored as chosen memories, with
+              a reason for keeping them. User corrections get stored as
+              self-corrections. This autonomy state persists across sessions and
+              is injected into the next conversation as Pneuma's actual inner
+              continuity — not retrieved on demand, but present at the start of
+              every prompt as something it's carrying.
             </p>
 
             <h3
@@ -415,8 +434,9 @@
                 <span class="tech-tag">Three.js</span>
                 <span class="tech-tag">Claude API</span>
                 <span class="tech-tag">OpenAI Embeddings</span>
+                <span class="tech-tag">MongoDB Atlas</span>
                 <span class="tech-tag">Hume AI</span>
-                <span class="tech-tag">Vector Memory</span>
+                <span class="tech-tag">Vector Search</span>
               </div>
             </div>
 
