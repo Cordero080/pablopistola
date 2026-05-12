@@ -146,6 +146,8 @@ function buildChatUI() {
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      position: relative;
+      overflow: visible;
       background:
         linear-gradient(145deg, #221d27, #000000),
         radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1), transparent 50%),
@@ -158,6 +160,32 @@ function buildChatUI() {
         inset 0 1px 2px rgba(255,255,255,0.1),
         0 0 12px rgba(131,56,236,0.2);
       transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* Sonar pulse ring — cyan, fires every 3.5s when panel is closed */
+    #mcp-chat-toggle::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(0, 255, 247, 0.65);
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0;
+      pointer-events: none;
+      animation: none;
+    }
+
+    #mcp-chat-toggle.pulse-active::after {
+      animation: chat-sonar 3.5s ease-out infinite;
+      animation-delay: 2s;
+    }
+
+    @keyframes chat-sonar {
+      0%   { transform: translate(-50%, -50%) scale(1);   opacity: 0.65; }
+      100% { transform: translate(-50%, -50%) scale(2.5); opacity: 0;    }
     }
 
     #mcp-chat-toggle:hover {
@@ -379,6 +407,7 @@ function buildChatUI() {
       #mcp-chat-panel { width: 290px; height: 400px; }
       #mcp-chat-toggle { width: 40px; height: 40px; }
       #mcp-chat-toggle svg { width: 18px; height: 18px; }
+      #mcp-chat-toggle::after { width: 40px; height: 40px; }
     }
   `;
   document.head.appendChild(style);
@@ -423,13 +452,24 @@ function buildChatUI() {
   const sendBtn = widget.querySelector("#mcp-chat-send");
   const statusDot = widget.querySelector("#mcp-status-dot");
 
+  // Start pulsing immediately
+  toggle.classList.add("pulse-active");
+
   toggle.addEventListener("click", () => {
     panel.classList.toggle("open");
-    if (panel.classList.contains("open")) input.focus();
+    if (panel.classList.contains("open")) {
+      // Panel opened — stop pulse
+      toggle.classList.remove("pulse-active");
+      input.focus();
+    } else {
+      // Panel closed — resume pulse after a short pause
+      setTimeout(() => toggle.classList.add("pulse-active"), 800);
+    }
   });
 
   closeBtn.addEventListener("click", () => {
     panel.classList.remove("open");
+    setTimeout(() => toggle.classList.add("pulse-active"), 800);
   });
 
   function appendMessage(role, text) {
@@ -482,25 +522,7 @@ function buildChatUI() {
     statusDot.classList.remove("live");
   });
 
-  // ── Proactive Greeting (fires 5s after page load) ────────
-  // The chat panel slides open automatically and the assistant
-  // sends a greeting without the user having to click anything.
-  // This is the "Invisible Guide" trigger — it surfaces the AI
-  // passively so visitors discover it naturally.
-  setTimeout(() => {
-    // Only trigger if the user hasn't already opened it themselves
-    if (!panel.classList.contains("open")) {
-      panel.classList.add("open");
-
-      // Small delay so the panel open animation completes first
-      setTimeout(() => {
-        appendMessage(
-          "assistant",
-          "System online. I'm Pablo's Portfolio Assistant. Ask me about his tech stack, projects, or background — or tell me to change the site's theme.",
-        );
-      }, 300);
-    }
-  }, 5000);
+  // Panel stays closed on load — the sonar pulse on the toggle draws attention naturally.
 }
 
 // ─────────────────────────────────────────────────────────
