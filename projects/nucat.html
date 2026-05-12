@@ -280,47 +280,24 @@
 
             <h3>The Technical Achievement</h3>
             <p>
-              Most browser-based particle systems struggle with high counts.
-              NUCAT achieves 60fps performance through a
-              <strong>GPU-first architecture</strong>:
-            </p>
-            <p>
-              <strong>InstancedMesh Pipeline:</strong> Instead of rendering
-              20,000 individual objects, I utilized THREE.InstancedMesh to
-              offload all particle transformations to the GPU.
-            </p>
-            <p>
-              <strong>Vertex Skinning Sampler:</strong> I engineered a custom
-              sampling system that reads the transformation matrices of a rigged
-              FBX character (Mixamo-rigged) in every frame. The particles
-              "tether" to the animated bones, allowing them to disperse and
-              return without losing the character's movement.
-            </p>
-            <p>
-              <strong>Layered State Management:</strong> A centralized state
-              machine manages concurrent effects (Hover, Wave, Spiral) so
-              parameters can be adjusted independently without affecting the
-              base animation.
+              Most browser particle systems collapse at high counts. NUCAT hits
+              60fps with 20,000 particles via
+              <strong>THREE.InstancedMesh</strong>
+              — all transformations offloaded to the GPU. A custom vertex
+              skinning sampler reads the bone matrices of a Mixamo-rigged FBX
+              character every frame, so particles tether to the skeleton and
+              disperse without losing the underlying animation. A centralized
+              state machine handles concurrent effects (Hover, Wave, Spiral)
+              independently without touching the base animation.
             </p>
 
             <h3>Chaos Mix: Generative Evolution</h3>
             <p>
-              The "Crown Jewel" of the system. This isn't random jitter; it is
-              <strong>mathematically driven entropy</strong>:
-            </p>
-            <p>
-              <strong>Golden Ratio (φ):</strong> Used to drive harmonious color
-              shifts and intensity gradients.
-            </p>
-            <p>
-              <strong>Fibonacci Timing:</strong> Sequences are timed to organic
-              intervals, ensuring the "chaos" feels alive rather than
-              mechanical.
-            </p>
-            <p>
-              <strong>Quantum Interference:</strong> Effects are blended using
-              probability patterns, creating emergent behaviors beyond explicit
-              programming.
+              Not random jitter —
+              <strong>mathematically driven entropy</strong>. The Golden Ratio
+              (φ) drives color shifts and intensity gradients. Fibonacci timing
+              keeps intervals organic. Probability-pattern blending creates
+              emergent behaviors that weren't explicitly programmed.
             </p>
           </div>
 
@@ -505,9 +482,6 @@
         </div>
       </section>
     </main>
-
-    
-    
 
     <script src="../src/js/pages/project/gallery.js" defer></script>
     <script src="../src/js/pages/project/index.js" defer></script>

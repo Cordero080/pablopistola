@@ -302,33 +302,24 @@
               progression from 10th Kyu (White Belt) to 8th Dan (Black Belt).
             </p>
 
-            <h3>Core Architectural Achievements</h3>
-
-            <h4>1. The Syllabus & Requirements Engine</h4>
+            <h3>Three Engineering Decisions That Mattered</h3>
             <p>
-              The most difficult part of this build was translating 48+
-              traditional forms (Kata, Bunkai, Kumite) into a rigid data schema.
-              I engineered a requirements system that prevents curriculum
-              inconsistencies, ensuring that practitioners only see the forms
-              relevant to their specific rank and lineage.
+              <strong>Syllabus Engine</strong> — translating 48+ traditional
+              forms (Kata, Bunkai, Kumite) into a rigid data schema was the
+              hardest part. The requirements system prevents curriculum
+              inconsistencies: practitioners only see forms relevant to their
+              rank and lineage.
             </p>
-
-            <h4>2. Soft-Delete & Data Integrity</h4>
             <p>
-              In a training environment, accidental data loss can be
-              demoralizing. I implemented a Soft-Delete system with a dedicated
-              "Trash" management interface. This allows for immediate mistake
-              correction and maintains a permanent audit trail of a
-              practitioner's history without cluttering the active database.
+              <strong>Soft-Delete</strong> — accidental data loss in a training
+              environment is demoralizing. A dedicated Trash interface allows
+              immediate correction while maintaining a permanent audit trail
+              without cluttering the active database.
             </p>
-
-            <h4>3. Multi-Tenant Data Isolation</h4>
             <p>
-              The application is designed with security as a priority. Using a
-              multi-tenant architecture with owner-scoped queries and MongoDB
-              indexing, I ensured that every practitioner manages their own
-              training data in total isolation, protected by JWT-based
-              authentication and bcrypt hashing.
+              <strong>Multi-Tenant Isolation</strong> — owner-scoped queries and
+              MongoDB indexing ensure every practitioner's data is completely
+              isolated, protected by JWT authentication and bcrypt hashing.
             </p>
 
             <h3>Technical Deep Dive</h3>
@@ -363,13 +354,15 @@
               </div>
             </div>
 
-            <h3>Refining the Narrative</h3>
-            <p>
-              As an instructor of Okinawan Goju-Ryu, I didn't just build this to
-              "code an app"—I built it to solve a logistical hurdle in my own
-              field. It demonstrates my ability to take a non-linear,
-              traditional human system and organize it into a performant,
-              secure, and user-centric digital architecture.
+            <p
+              style="
+                margin-top: 1.5rem;
+                font-style: italic;
+                color: rgba(255, 255, 255, 0.7);
+              "
+            >
+              As an instructor of Okinawan Goju-Ryu, I built this to solve a
+              real problem in my own field — not to code an app.
             </p>
           </div>
 
@@ -400,9 +393,6 @@
         </div>
       </section>
     </main>
-
-    
-    
 
     <script src="../src/js/pages/project/gallery.js" defer></script>
     <script src="../src/js/pages/project/index.js" defer></script>
