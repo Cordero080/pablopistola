@@ -184,16 +184,16 @@ function buildChatUI() {
     }
 
     #mcp-chat-toggle.pulse-active .ring:nth-child(1) {
-      animation: chat-ripple 5s ease-out infinite;
+      animation: chat-ripple 7s ease-out infinite;
       animation-delay: 0s;
     }
     #mcp-chat-toggle.pulse-active .ring:nth-child(2) {
-      animation: chat-ripple 5s ease-out infinite;
-      animation-delay: 1.8s;
+      animation: chat-ripple 7s ease-out infinite;
+      animation-delay: 2.5s;
     }
     #mcp-chat-toggle.pulse-active .ring:nth-child(3) {
-      animation: chat-ripple 5s ease-out infinite;
-      animation-delay: 3.6s;
+      animation: chat-ripple 7s ease-out infinite;
+      animation-delay: 5s;
     }
 
     @keyframes chat-ripple {
