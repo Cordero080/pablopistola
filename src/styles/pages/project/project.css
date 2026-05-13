@@ -92,7 +92,6 @@ body:has(.project-page) #waves {
   max-width: 600px;
   margin: 0 auto 2rem;
   line-height: 1.6;
-  white-space: nowrap;
 }
 
 /* Project Links / Buttons */
