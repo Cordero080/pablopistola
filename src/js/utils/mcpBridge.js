@@ -162,7 +162,13 @@ function buildChatUI() {
       transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    /* Ripple rings — 3 spans staggered so all 3 are always visible at different sizes */
+    /*
+     * Ripple rings — 3 rings cascade outward from the chat button.
+     * Tune these two values to control feel:
+     *   duration  — how long each ring takes to expand and fade (longer = slower/calmer)
+     *   delay gap — time between each ring firing (larger = more breathing room)
+     * Current: 5s duration, 1.8s stagger → one ring every 1.8s, never overlapping aggressively.
+     */
     #mcp-chat-toggle .ring {
       position: absolute;
       top: 50%;
@@ -170,7 +176,7 @@ function buildChatUI() {
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      border: 1.5px solid rgba(0, 255, 247, 0.6);
+      border: 1.5px solid rgba(0, 255, 247, 0.45);
       transform: translate(-50%, -50%) scale(1);
       opacity: 0;
       pointer-events: none;
@@ -178,21 +184,21 @@ function buildChatUI() {
     }
 
     #mcp-chat-toggle.pulse-active .ring:nth-child(1) {
-      animation: chat-ripple 2.4s ease-out infinite;
+      animation: chat-ripple 5s ease-out infinite;
       animation-delay: 0s;
     }
     #mcp-chat-toggle.pulse-active .ring:nth-child(2) {
-      animation: chat-ripple 2.4s ease-out infinite;
-      animation-delay: 0.8s;
+      animation: chat-ripple 5s ease-out infinite;
+      animation-delay: 1.8s;
     }
     #mcp-chat-toggle.pulse-active .ring:nth-child(3) {
-      animation: chat-ripple 2.4s ease-out infinite;
-      animation-delay: 1.6s;
+      animation: chat-ripple 5s ease-out infinite;
+      animation-delay: 3.6s;
     }
 
     @keyframes chat-ripple {
-      0%   { transform: translate(-50%, -50%) scale(1);   opacity: 0.6; }
-      100% { transform: translate(-50%, -50%) scale(2.2); opacity: 0;   }
+      0%   { transform: translate(-50%, -50%) scale(1);   opacity: 0.45; }
+      100% { transform: translate(-50%, -50%) scale(2.2); opacity: 0;    }
     }
 
     #mcp-chat-toggle:hover {
