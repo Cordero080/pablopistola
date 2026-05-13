@@ -356,6 +356,19 @@ body.zen-mode .enter-btn {
     0% calc(100% - 12px),
     0% 12px
   );
+  /* Fade edges so the gradient border bleeds through softly */
+  -webkit-mask-image: radial-gradient(
+    ellipse 88% 78% at center,
+    black 55%,
+    rgba(0, 0, 0, 0.5) 78%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 88% 78% at center,
+    black 55%,
+    rgba(0, 0, 0, 0.5) 78%,
+    transparent 100%
+  );
 }
 
 .enter-btn.visible {
