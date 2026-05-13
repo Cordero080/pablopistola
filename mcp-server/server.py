@@ -85,7 +85,7 @@ RESUME_DATA = {
         "inner monologue, autonomy engine; tiered prompt reducing token load from 18k to 2k base.",
         "La Dolce Vita: Full-Stack AI Hospitality Platform — GPT-4o concierge with live Airbnb iCal "
         "feed, Google Sheets API integration, trilingual support (EN/ES/FR)",
-        "NUMENEON: Neopunk Social Platform — 5-person team capstone (800+ GitHub clones), "
+        "NUMENEON: Full-Stack Social Network — 5-person team capstone (800+ GitHub clones), "
         "glassmorphic SCSS design system, 3-column River Timeline with real-time post rendering",
         "Nexus Geom Lab: Gamified 4D geometry platform — 24 hyperdimensional shapes, "
         "progressive character unlock system, audio-reactive WebGL, full-stack React/MongoDB/JWT; "

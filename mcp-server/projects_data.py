@@ -127,7 +127,7 @@ PROJECTS_DATA = {
 
     "numeneon": {
         "name": "NUMENEON",
-        "tagline": "Neopunk social platform — capstone project with a 5-person team.",
+        "tagline": "Full-stack social network — capstone project with a 5-person team.",
         "stack": ["React", "Node.js/Express", "MongoDB", "SCSS", "JWT"],
         "highlights": [
             "5-person team capstone, 800+ GitHub clones.",

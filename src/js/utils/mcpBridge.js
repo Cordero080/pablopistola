@@ -203,9 +203,31 @@ function buildChatUI() {
     }
 
     @keyframes chat-ripple {
-      0%    { transform: translate(-50%, -50%) scale(1);   opacity: 0.4; }
-      25%   { transform: translate(-50%, -50%) scale(2.2); opacity: 0;   }
-      100%  { transform: translate(-50%, -50%) scale(2.2); opacity: 0;   }
+      0%   {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.4;
+        border-radius: 50%;
+        border-color: rgba(0, 255, 247, 0.4);
+      }
+      /* organic wobble as ring expands — no opacity jumps, just shape and color shift */
+      8%   { border-radius: 48% 52% 50% 50% / 50% 50% 52% 48%; }
+      15%  {
+        border-radius: 52% 48% 49% 51% / 48% 52% 50% 50%;
+        border-color: rgba(180, 0, 255, 0.35);
+      }
+      22%  {
+        border-radius: 50%;
+        border-color: rgba(0, 255, 247, 0.15);
+      }
+      25%  {
+        transform: translate(-50%, -50%) scale(2.2);
+        opacity: 0;
+        border-radius: 50%;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(2.2);
+        opacity: 0;
+      }
     }
 
     #mcp-chat-toggle:hover {
