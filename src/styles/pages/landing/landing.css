@@ -91,23 +91,14 @@ body {
   box-sizing: border-box;
 }
 
-/* Zen mode - position return button in upper right */
+/* Zen mode - keep button at bottom center, same as normal landing */
 body.zen-mode .enter-btn {
-  position: fixed;
-  top: 1.5rem;
-  right: 1.5rem;
-  left: auto;
-  bottom: auto;
-  transform: none !important;
-  padding: 10px 28px;
-  font-size: 0.75rem;
-  width: auto;
-  height: auto;
+  top: auto;
+  right: auto;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
   writing-mode: horizontal-tb;
-}
-
-body.zen-mode .enter-btn:hover {
-  transform: scale(1.05) !important;
 }
 
 /* Scanline Dissolve Overlay */
