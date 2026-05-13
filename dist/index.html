@@ -64,13 +64,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Orbitron:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Orbitron:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
 
-    <link rel="prefetch" href="/assets/home-BjZqZ7qE.html" />
+    <link rel="prefetch" href="/assets/home-BPcjwTd-.html" />
     <script src="src/js/utils/analytics.js" defer></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BdMVWQNH.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-CyITR1u-.css">
   </head>
   <body>
     <canvas id="waves"></canvas>
@@ -81,13 +81,208 @@
     <div class="curtain-overlay" id="curtainOverlay"></div>
 
     <div class="enter-identity" aria-hidden="true">
-      <h1 class="enter-identity-title">PVBLO CORDERO</h1>
-      <p class="enter-identity-subtitle">FULL-STACK ENGINEER · AI SYSTEMS</p>
+      <h1 class="enter-identity-title" id="landingTitle"></h1>
+      <p class="enter-identity-subtitle">
+        FULL-STACK SOFTWARE ENGINEER · AI SYSTEMS & LLM ARCHITECTURE
+      </p>
     </div>
+
+    <canvas id="landing-ascii-canvas" aria-hidden="true"></canvas>
 
     <a href="/home.html" class="enter-btn" id="enterBtn"><span>enter</span></a>
 
     <script src="src/js/effects/sineWave.js"></script>
+    <script>
+      (function () {
+        var CANVAS_W = 1950,
+          CANVAS_H = 300;
+        var CELL_W = 12,
+          CELL_H = 20,
+          TEXT = "PVBLO CORDERO";
+        var TICK_MS = 80,
+          ASSEMBLE_MS = 2500,
+          DISSOLVE_STAGGER = 600;
+        var FADE_IN_MS = 100,
+          FADE_OUT_MS = 300;
+        var SPEED_GROUPS = [
+          { chars: "01", every: 1 },
+          { chars: "pvblo@#!&$?~^|;", every: 22 },
+          { chars: ".,_-+=<>()[]{}", every: 50 },
+        ];
+        var canvas = document.getElementById("landing-ascii-canvas");
+        var ctx = canvas.getContext("2d");
+        var mask,
+          maskW,
+          maskH,
+          cells,
+          tickCount = 0,
+          tickTimer = null,
+          startTime = 0;
+
+        function setCanvasSize() {
+          // ── mobile scaling ──────────────────────────────
+          var MOBILE_BREAKPOINT = 768;  // breakpoint px
+          var MOBILE_SCALE     = 0.86;  // % of viewport width on mobile
+          var DESKTOP_SCALE    = 0.61;  // % of viewport width on desktop
+          var multiplier = window.innerWidth < MOBILE_BREAKPOINT ? MOBILE_SCALE : DESKTOP_SCALE;
+          var scale = Math.min(1, (window.innerWidth * multiplier) / CANVAS_W);
+
+          canvas.width = CANVAS_W;
+          canvas.height = CANVAS_H;
+          canvas.style.width = Math.floor(CANVAS_W * scale) + "px";
+          canvas.style.height = Math.floor(CANVAS_H * scale) + "px";
+        }
+
+        function buildMask() {
+          var off = document.createElement("canvas");
+          off.width = CANVAS_W;
+          off.height = CANVAS_H;
+          var octx = off.getContext("2d");
+          octx.fillStyle = "#000";
+          octx.fillRect(0, 0, CANVAS_W, CANVAS_H);
+          octx.font = "100px 'Future Z', monospace";
+          var testW = octx.measureText(TEXT).width;
+          var fontSize = Math.max(
+            10,
+            Math.floor((100 * (CANVAS_W * 0.9)) / testW),
+          );
+          octx.font = fontSize + "px 'Future Z', monospace";
+          octx.fillStyle = "#fff";
+          octx.textAlign = "center";
+          octx.textBaseline = "alphabetic";
+          octx.fillText(TEXT, CANVAS_W / 2, Math.floor(CANVAS_H * 0.78));
+          var data = octx.getImageData(0, 0, CANVAS_W, CANVAS_H).data;
+          maskW = CANVAS_W;
+          maskH = CANVAS_H;
+          mask = new Uint8Array(maskW * maskH);
+          for (var i = 0; i < maskW * maskH; i++)
+            mask[i] = data[i * 4] > 128 ? 1 : 0;
+        }
+
+        function buildCells() {
+          var cols = Math.ceil(CANVAS_W / CELL_W),
+            rows = Math.ceil(CANVAS_H / CELL_H),
+            mid = rows >> 1;
+          var DIRS = ["top-down", "bottom-up", "center-out"],
+            BAND_W = 4;
+          var numBands = Math.ceil(cols / BAND_W);
+          var bandDir = Array.from({ length: numBands }, function () {
+            return DIRS[Math.floor(Math.random() * DIRS.length)];
+          });
+          cells = [];
+          var ci = 0;
+          for (var row = 0; row < rows; row++) {
+            for (var col = 0; col < cols; col++, ci++) {
+              var gIdx = ci % SPEED_GROUPS.length,
+                g = SPEED_GROUPS[gIdx];
+              var dir = bandDir[Math.floor(col / BAND_W)];
+              var order =
+                dir === "top-down"
+                  ? row
+                  : dir === "bottom-up"
+                    ? rows - 1 - row
+                    : Math.abs(row - mid);
+              var t = (order / Math.max(1, rows - 1)) * ASSEMBLE_MS;
+              var r = Math.random();
+              if (r > 0.8) t += Math.random() * ASSEMBLE_MS * 0.35;
+              else if (r > 0.55) t += Math.random() * ASSEMBLE_MS * 0.08;
+              t += (Math.random() - 0.5) * ASSEMBLE_MS * 0.04;
+              cells.push({
+                group: gIdx,
+                char: g.chars[Math.floor(Math.random() * g.chars.length)],
+                gridX: col * CELL_W,
+                gridY: row * CELL_H,
+                revealAt: Math.max(0, Math.min(ASSEMBLE_MS, t)),
+                dissolveAt: 1500 + Math.random() * DISSOLVE_STAGGER,
+              });
+            }
+          }
+        }
+
+        function drawFrame() {
+          tickCount++;
+          var elapsed = Date.now() - startTime;
+          ctx.clearRect(0, 0, CANVAS_W, CANVAS_H);
+          ctx.font = 'bold 14px "Courier New", monospace';
+          ctx.textAlign = "left";
+          ctx.textBaseline = "alphabetic";
+          for (var i = 0; i < cells.length; i++) {
+            var cell = cells[i];
+            if (elapsed < cell.revealAt) continue;
+            var sx = Math.min(cell.gridX + (CELL_W >> 1), maskW - 1);
+            var sy = Math.min(cell.gridY + (CELL_H >> 1), maskH - 1);
+            if (!mask[sy * maskW + sx]) continue;
+            var g = SPEED_GROUPS[cell.group];
+            if (tickCount % g.every === 0)
+              cell.char = g.chars[Math.floor(Math.random() * g.chars.length)];
+            var age = elapsed - cell.revealAt,
+              op;
+            if (elapsed < cell.dissolveAt) {
+              op = Math.min(1, age / FADE_IN_MS) * 0.92;
+            } else {
+              var out = elapsed - cell.dissolveAt;
+              if (out > FADE_OUT_MS) continue;
+              op = (1 - out / FADE_OUT_MS) * 0.72;
+            }
+            var colors = ['0, 212, 255', '200, 80, 255', '0, 212, 255'];
+            var rgb = colors[cell.group % 3];
+            ctx.shadowColor = 'rgba(' + rgb + ', ' + (op * 0.8) + ')';
+            ctx.shadowBlur = 6;
+            ctx.fillStyle = 'rgba(' + rgb + ', ' + op + ')';
+            ctx.fillText(cell.char, cell.gridX, cell.gridY + CELL_H);
+          }
+          ctx.shadowBlur = 0;
+
+          // ── glitch: chromatic aberration + data corruption ────
+          var GLITCH_PROB       = 0.045; // chance per frame of a burst
+          var GLITCH_SLICES     = 3;     // scan-line slices per burst
+          var GLITCH_MAX_SHIFT  = 22;    // max px shift per slice
+          var GLITCH_MAX_H      = 10;    // max slice height (in cells)
+          var CORRUPT_CELLS     = 6;     // cells to corrupt per burst
+          var CORRUPT_CHARS     = '▓█▀▄░▒┼╬╫╪';
+
+          if (Math.random() < GLITCH_PROB) {
+            // 1. scan-line slice shift
+            for (var gi = 0; gi < GLITCH_SLICES; gi++) {
+              var sliceY = Math.floor(Math.random() * CANVAS_H);
+              var sliceH = (1 + Math.floor(Math.random() * GLITCH_MAX_H)) * CELL_H;
+              var shift  = (Math.random() < 0.5 ? 1 : -1) * (4 + Math.floor(Math.random() * GLITCH_MAX_SHIFT));
+              var slice  = ctx.getImageData(0, sliceY, CANVAS_W, Math.min(sliceH, CANVAS_H - sliceY));
+              ctx.putImageData(slice, shift, sliceY);
+            }
+
+            // 2. data corruption — random cells flash block chars
+            ctx.font = 'bold 14px "Courier New", monospace';
+            ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+            for (var ci = 0; ci < CORRUPT_CELLS; ci++) {
+              var rc = cells[Math.floor(Math.random() * cells.length)];
+              if (!rc || !rc.inMask) continue;
+              var corruptChar = CORRUPT_CHARS[Math.floor(Math.random() * CORRUPT_CHARS.length)];
+              var corruptRgb  = Math.random() < 0.5 ? '0, 255, 255' : '255, 0, 200';
+              ctx.shadowColor = 'rgba(' + corruptRgb + ', 0.9)';
+              ctx.shadowBlur  = 10;
+              ctx.fillStyle   = 'rgba(' + corruptRgb + ', 1)';
+              ctx.fillText(corruptChar, rc.gridX, rc.gridY + CELL_H);
+            }
+            ctx.shadowBlur = 0;
+          }
+        }
+
+        function init() {
+          setCanvasSize();
+          buildMask();
+          buildCells();
+          startTime = Date.now();
+          tickCount = 0;
+          if (tickTimer) clearInterval(tickTimer);
+          drawFrame();
+          tickTimer = setInterval(drawFrame, TICK_MS);
+        }
+
+        document.fonts.load("100px 'Future Z'").then(init);
+      })();
+    </script>
+    <script src="src/js/pages/landing/glitch.js" defer></script>
     <script src="src/js/pages/landing/index.js" defer></script>
   </body>
 </html>

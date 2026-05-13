@@ -4,9 +4,11 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.classList.toggle("complementary-colors");
   }
 
-  // Toggle with 'C' key
+  // Toggle with 'C' key (skip when typing in an input/textarea)
   document.addEventListener("keydown", function (event) {
     if (event.key === "c" || event.key === "C") {
+      const tag = document.activeElement?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA") return;
       toggleComplementaryMode();
     }
   });

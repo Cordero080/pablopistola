@@ -33,8 +33,8 @@
     <script src="../src/js/effects/sineWave.js" defer></script>
     <!-- Vercel Analytics (only loads on Vercel) -->
     <script src="../src/js/utils/analytics.js" defer></script>
-    <link rel="stylesheet" crossorigin href="/assets/main-SIxsfU-v.css">
-    <link rel="stylesheet" crossorigin href="/assets/project-VIph6MvY.css">
+    <link rel="stylesheet" crossorigin href="/assets/main-BANZByUO.css">
+    <link rel="stylesheet" crossorigin href="/assets/project-BLC6Z8Y8.css">
   </head>
   <body>
     <canvas id="waves"></canvas>
@@ -222,7 +222,7 @@
               <span>GitHub</span>
             </a>
             <a
-              href="https://www.youtube.com/watch?v=_Ik2eKy-sOY"
+              href="https://youtu.be/J5xXlOPNZAQ"
               target="_blank"
               class="project-btn secondary"
             >
@@ -361,72 +361,60 @@
           <div class="about-description">
             <h2>About</h2>
             <p>
-              Numeneon is a "neopunk" social media platform built on the belief
-              that feeds should serve people, not harvest attention. At its core
-              is the <strong>River Timeline</strong>—a three-column
-              chronological feed (Thoughts, Media, Milestones) where each friend
-              gets their own row, capping at 12 posts per category so you can
-              actually finish catching up instead of doom-scrolling forever.
+              Numeneon is a neopunk social platform built on a simple premise:
+              feeds should serve people, not harvest attention. It replaces the
+              standard infinite scroll with the
+              <strong>River Timeline</strong> — a three-column chronological
+              feed where each friend gets their own row, capped at 12 posts per
+              category. You can actually finish catching up.
             </p>
 
             <h3 style="color: #00fff7; margin-top: 1.5rem">
-              Digital Congestion vs. Traffic Management
+              The River Timeline
             </h3>
             <p>
-              Modern social feeds suffer from "Information
-              Congestion"—everything fights for the same narrow vertical space.
-              The River Timeline treats UI as a traffic management system:
-              <strong>Horizontal Currents</strong> create parallel flows for
-              Thoughts, Media, and Milestones. The
-              <strong>"Sluice Gate"</strong> limits each row to 12 items,
-              curating the flood before it becomes overwhelming. The result is a
-              "3-lane highway" of visibility instead of a single-lane jam.
-            </p>
-
-            <h3 style="color: #ff00cc; margin-top: 1.5rem">
-              The Architecture: "The Chain"
-            </h3>
-            <p>
-              The frontend transforms raw data into the River flow in 4 explicit
-              steps:
+              Standard feeds have one problem: everything competes for the same
+              vertical lane. The River Timeline solves this with parallel
+              horizontal currents — Thoughts, Media, Milestones — one row per
+              friend. The <strong>Sluice Gate</strong> caps each row at 12 items
+              before overflow. The frontend processes this in 4 steps:
               <code
                 style="
                   display: block;
                   margin: 0.5rem 0;
                   padding: 0.5rem;
-                  background: rgba(0, 255, 247, 0.1);
-                  border-radius: 4px;
+                  background: rgba(0, 0, 0, 0.55);
+                  border: 1px solid rgba(0, 255, 247, 0.3);
+                  border-radius: 6px;
                   font-size: 0.9rem;
+                  letter-spacing: 0.12em;
+                  color: rgba(0, 255, 247, 0.9);
                 "
               >
                 GROUP → SORT → SPLIT → RENDER
               </code>
-              Posts are grouped by user, sorted by most recent activity, split
-              at the 12-item limit, then rendered as organized rows.
             </p>
 
+            <h3 style="color: #ff00cc; margin-top: 1.5rem">
+              Anti-Viral Feed Algorithm
+            </h3>
             <p>
-              The bigger vision is the <strong>Smart Feed Algorithm</strong>—a
-              "boost" system that surfaces underseen posts so every voice gets
-              heard, blending 30% boosted (underexposed creators), 20% hot (high
-              engagement), and 50% chronological. It's anti-viral by design: the
-              more something goes viral, the more it gets throttled, because
-              outrage shouldn't win.
+              The Smart Feed surfaces underseen posts — 50% chronological, 30%
+              boosted (underexposed creators), 20% hot. Anti-viral by design:
+              the more something spreads, the more it gets throttled. Outrage
+              doesn't win the algorithm here.
             </p>
 
+            <h3 style="color: #00fff7; margin-top: 1.5rem">
+              What Else Lives Here
+            </h3>
             <p>
-              Add real-time messaging via WebSockets, and below the neon-lit
-              main floor, a hidden <strong>MyStudio</strong> (a MySpace Basement
-              tribute) with Top 8 friends, custom themes, and embedded music
-              players. Built for people who think the internet should work for
-              you, not extract from you.
-            </p>
-
-            <p>
-              The platform also includes a <strong>Daily Learning</strong> page
-              featuring methods, loops, Big O notation, mythology culture
-              curated weekly, plus a word of the day and tech term of the
-              day—because I wanted to build something I would actually use.
+              Real-time messaging via WebSockets. A hidden
+              <strong>MyStudio</strong> — a MySpace Basement tribute with Top 8
+              friends, custom themes, and embedded music players. A
+              <strong>Daily Learning</strong> page with Big O notation,
+              mythology, and a rotating tech term — built because I wanted to
+              use it myself.
             </p>
           </div>
 
@@ -995,7 +983,7 @@
             <span>Visit Live Site →</span>
           </a>
           <a
-            href="https://www.youtube.com/watch?v=_Ik2eKy-sOY"
+            href="https://youtu.be/J5xXlOPNZAQ"
             target="_blank"
             class="project-btn secondary large"
           >
@@ -1004,11 +992,9 @@
         </div>
       </section>
     </main>
-    
-    
 
-    <script src="../src/js/pages/gallery.js" defer></script>
-    <script src="../src/js/pages/projectInit.js" defer></script>
+    <script src="../src/js/pages/project/gallery.js" defer></script>
+    <script src="../src/js/pages/project/index.js" defer></script>
     <script src="../src/js/components/cursor.js" defer></script>
     <script src="../src/js/effects/orb.js" defer></script>
   </body>

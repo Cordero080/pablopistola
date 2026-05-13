@@ -33,8 +33,8 @@
     <script src="../src/js/effects/sineWave.js" defer></script>
     <!-- Vercel Analytics (only loads on Vercel) -->
     <script src="../src/js/utils/analytics.js" defer></script>
-    <link rel="stylesheet" crossorigin href="/assets/main-SIxsfU-v.css">
-    <link rel="stylesheet" crossorigin href="/assets/project-VIph6MvY.css">
+    <link rel="stylesheet" crossorigin href="/assets/main-BANZByUO.css">
+    <link rel="stylesheet" crossorigin href="/assets/project-BLC6Z8Y8.css">
   </head>
   <body>
     <canvas id="waves"></canvas>
@@ -355,53 +355,38 @@
           <div class="about-description">
             <h2>About</h2>
             <p>
-              Nexus-Geom-Lab is an immersive, full-stack 3D platform for
-              exploring hyperdimensional mathematics. By combining React Three
-              Fiber with a gamified progression system, the application
-              transforms abstract geometrical concepts into a rewarding
-              interactive experience.
+              A full-stack 3D platform for exploring hyperdimensional
+              mathematics — 24 procedurally generated geometries, a gamified
+              unlock system, and audio-reactive rendering, all running at 60fps
+              in the browser. The real technical story is the architecture: a
+              monolithic 2,700-line component refactored into a modular
+              hook-based system with 93% less code.
             </p>
 
-            <h3>Technical Architecture</h3>
+            <h3>GPU-First Rendering</h3>
             <p>
-              This project represents a significant refactoring achievement,
-              moving from a monolithic 2,700-line component to a highly modular,
-              hook-based architecture.
+              All 3D computation offloads to the client's GPU via
+              <code>InstancedMesh</code> and <code>mergeGeometries()</code> —
+              minimal draw calls, consistent 60fps through complex
+              transformations. Strict disposal patterns prevent GPU memory leaks
+              across high-frequency scene switches.
             </p>
 
-            <h4>GPU-Offloaded Rendering & Performance</h4>
+            <h3>Audio-Reactive Geometry</h3>
             <p>
-              <strong>Zero-Bottleneck Architecture:</strong> The system offloads
-              all 3D computation to the client's GPU, utilizing
-              <code>mergeGeometries()</code> and <code>InstancedMesh</code> to
-              minimize draw calls and maintain a consistent 60fps during complex
-              transformations.
-            </p>
-            <p>
-              <strong>Resource Management:</strong> Strict disposal patterns for
-              geometries and materials prevent GPU memory leaks during
-              high-frequency scene switches.
+              A real-time FFT analyzer maps audio frequency data directly to
+              geometry. Bass (20–250 Hz) drives scale pulsing and Z-position;
+              mid frequencies drive rotational momentum. The geometry responds
+              to sound in real time.
             </p>
 
-            <h4>Advanced React Design Patterns</h4>
+            <h3>React Architecture</h3>
             <p>
-              <strong>Custom Hook Orchestration:</strong> The 3D engine breaks
-              down into domain-specific hooks (<code>useAnimationLoop</code>,
-              <code>useObjectManager</code>, <code>useMaterialUpdates</code>),
-              allowing for isolated testing and development.
-            </p>
-            <p>
-              <strong>Props Consolidation:</strong> Replaced massive 42-prop
-              drilling patterns with a streamlined object-based API, reducing
-              JSX boilerplate by 70%.
-            </p>
-
-            <h4>Audio-Reactive Geometry (FFT Analysis)</h4>
-            <p>
-              <strong>Web Audio API Integration:</strong> A real-time Fast
-              Fourier Transform (FFT) analyzer maps audio frequency data to
-              geometry transformations. Bass (20-250 Hz) drives scale pulsing
-              and Z-position, while mid frequencies drive rotational momentum.
+              The 3D engine breaks into domain-specific hooks
+              (<code>useAnimationLoop</code>, <code>useObjectManager</code>,
+              <code>useMaterialUpdates</code>) — isolated, testable, and
+              composable. Replaced 42-prop drilling with a streamlined
+              object-based API, reducing JSX boilerplate by 70%.
             </p>
           </div>
 
@@ -445,30 +430,16 @@
 
             <h3>Progressive Unlock Engine</h3>
             <p>
-              The backend (Express/MongoDB) tracks user interaction thresholds
-              to trigger the character unlock system.
-            </p>
-            <p>
-              <strong>Pipeline:</strong> Blender → Mixamo → FBX → React Three
-              Fiber
-            </p>
-            <p>
-              <strong>Result:</strong> A gamified feedback loop where
-              exploration directly rewards the user with originally rigged and
-              animated 3D characters (Nexus Prime, Vectra, Icarus-X).
+              Exploration earns rewards. The backend tracks interaction
+              thresholds and unlocks originally rigged and animated 3D
+              characters — Nexus Prime, Vectra, Icarus-X — built in Blender,
+              rigged in Mixamo, loaded via FBX into React Three Fiber.
             </p>
 
             <h3>Scene Persistence & CRUD</h3>
             <p>
-              Full-stack implementation allowing users to save, load, and
-              "transmute" custom 3D environments.
-            </p>
-            <p>
-              <strong>Security:</strong> JWT-based authentication with bcrypt
-              hashing.
-            </p>
-            <p>
-              <strong>UX:</strong> Integrated navigation blocking to prevent
+              Users save, load, and "transmute" custom 3D environments. JWT
+              authentication, bcrypt hashing, and navigation blocking to prevent
               data loss on unsaved changes.
             </p>
           </div>
@@ -574,13 +545,8 @@
       </section>
     </main>
 
-
-
-    
-    
-
-    <script src="../src/js/pages/gallery.js" defer></script>
-    <script src="../src/js/pages/projectInit.js" defer></script>
+    <script src="../src/js/pages/project/gallery.js" defer></script>
+    <script src="../src/js/pages/project/index.js" defer></script>
     <script src="../src/js/components/cursor.js" defer></script>
     <script src="../src/js/effects/orb.js" defer></script>
   </body>

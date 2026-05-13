@@ -51,14 +51,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <script src="src/js/effects/sineWave.js" defer></script>
     <script src="src/js/utils/analytics.js" defer></script>
-    <link rel="stylesheet" crossorigin href="/assets/main-SIxsfU-v.css">
-    <link rel="stylesheet" crossorigin href="/assets/project-VIph6MvY.css">
-    <link rel="stylesheet" crossorigin href="/assets/about-CSePynpH.css">
+    <link rel="stylesheet" crossorigin href="/assets/main-BANZByUO.css">
+    <link rel="stylesheet" crossorigin href="/assets/project-BLC6Z8Y8.css">
+    <link rel="stylesheet" crossorigin href="/assets/about-DoUB7iMx.css">
   </head>
   <body>
     <canvas id="waves"></canvas>
@@ -229,15 +229,16 @@
           <a href="/home" class="back-link">← Back to Home</a>
           <h1 class="about-title">Resume</h1>
           <p class="about-name">Pablo Cordero</p>
-          <p class="project-tagline">Full-Stack Engineer · AI Systems</p>
+          <p class="project-tagline">
+            Full-Stack Software Engineer · AI Systems & LLM Architecture
+          </p>
           <div class="project-links" style="margin-top: 1.5rem">
             <a
-              href="https://drive.google.com/file/d/1DkpGuIK9OkUn01QMpW1tS3LM8pdHfKnm/view?usp=sharing"
+              href="https://drive.google.com/file/d/1iEoQCp3m2ZZDaxE2-epOEPVpB-fXCUP2/view?usp=sharing"
               target="_blank"
-              class="project-btn primary"
+              class="hero-cta"
+              >[ VIEW PDF ]</a
             >
-              <span>View PDF</span>
-            </a>
           </div>
         </div>
       </section>
@@ -248,13 +249,13 @@
         <section class="about-section">
           <h2>Profile</h2>
           <p>
-            Full-Stack Software Engineer with a product management background,
-            specializing in high-performance web applications, interactive 3D
-            interfaces, and AI-driven systems. Proficient in React, Django, and
-            Three.js. Proven track record directing technical architecture, UI
-            strategy, and product roadmaps across collaborative teams — backed
-            by 3,000+ GitHub contributions and consistent daily shipping
-            practice.
+            Full-Stack Software Engineer with production experience building
+            AI-integrated web applications for clients. Combines strong
+            front-end craft (React, Three.js, SCSS design systems) with backend
+            architecture (Django, Node.js, PostgreSQL) and hands-on AI systems
+            work including RAG pipelines, semantic routing, and LLM
+            orchestration. Seeking a full-stack or AI engineering role where I
+            can ship at a high pace in a collaborative environment.
           </p>
         </section>
 
@@ -268,7 +269,8 @@
             </li>
             <li>
               <strong>3D & Creative:</strong> Three.js, React Three Fiber,
-              Blender, GLSL Shaders, Web Audio API
+              Blender, GLSL Shaders, Web Audio API, FFT Audio Analysis,
+              Audio-Reactive Visuals
             </li>
             <li>
               <strong>Design & Product:</strong> UI/UX Strategy, Product
@@ -279,9 +281,36 @@
               APIs, Django REST Framework, JWT Auth, WebSockets
             </li>
             <li>
-              <strong>Tooling & Workflow:</strong> Git, Vite, SCSS, Jest,
-              Responsive Design, Mobile-First Architecture
+              <strong>Development:</strong> Git, Vite, SCSS, Jest, Responsive
+              Design, Mobile-First Architecture
             </li>
+          </ul>
+        </section>
+
+        <!-- Certifications Section -->
+        <section class="about-section">
+          <h2>Certifications</h2>
+          <ul class="evolution-list">
+            <li>
+              <strong>Model Context Protocol: Advanced Topics</strong>,
+              Anthropic Academy — 2026
+            </li>
+            <li>
+              <strong>Introduction to Model Context Protocol</strong>, Anthropic
+              Academy — 2026
+            </li>
+            <li>
+              <strong>AI Fluency: Framework & Foundations</strong>, Anthropic
+              Academy — 2026
+            </li>
+            <li>
+              <strong>Building with the Claude API</strong>, Anthropic Academy —
+              2026
+            </li>
+            <li>
+              <strong>Claude Code in Action</strong>, Anthropic Academy — 2026
+            </li>
+            <li><strong>Claude 101</strong>, Anthropic Academy — 2026</li>
           </ul>
         </section>
 
@@ -313,13 +342,13 @@
           </div>
 
           <div class="project-highlight">
-            <h3>NUMENEON — Full-Stack Engineer & UI Lead (Capstone)</h3>
+            <h3>NUMENEON — Full-Stack Engineer & UI Lead</h3>
             <p class="project-stack">
               React • Django • PostgreSQL • WebSockets
             </p>
             <p>
-              Neopunk social media platform — 800+ GitHub clones, 58% engagement
-              rate, 4m 37s avg. session
+              Full-stack neopunk social media platform — 58% engagement rate, 4m
+              37s avg. session
             </p>
             <ul class="project-bullets">
               <li>
@@ -335,52 +364,55 @@
           </div>
 
           <div class="project-highlight">
-            <h3>Pneuma — Cognitive Architect & Lead Engineer</h3>
+            <h3>Pneuma — LLM Cognitive Orchestration System</h3>
             <p class="project-stack">React • Node.js • Claude API</p>
             <p>
-              Experimental AI personality architecture featuring 46
-              philosophical archetypes (467 GitHub clones)
+              Production cognitive architecture that intercepts and shapes LLM
+              reasoning before generation — not a wrapper, a reasoning layer
             </p>
             <ul class="project-bullets">
               <li>
                 Implemented 3-layer archetype routing (cosine similarity →
-                momentum weighting → fusion history) across 46 philosophical
-                frameworks for dynamic persona selection
+                momentum → fusion history) across 46 thinkers
               </li>
               <li>
-                Built personality evolution system using archetype momentum
-                decay — weights shift across sessions producing an emergent
-                default voice
+                Built 525-passage RAG knowledge base from 21 primary source
+                texts, retrieved at runtime by semantic similarity
               </li>
               <li>
-                Engineered pre-mapped collision system pairing conflicting
-                philosophies across 1,764 archetype combinations to eliminate
-                sycophantic AI output
+                Engineered tiered prompt architecture reducing token load from
+                18k to ~2k via intent-scored conditional block loading
               </li>
               <li>
-                Integrated 3-layer memory system: vector embeddings (semantic
-                recall), structured cross-session memory, and full conversation
-                persistence
+                Designed dialectical synthesis engine with antithetical,
+                complementary, and cross-domain collision modes
+              </li>
+              <li>
+                Integrated 3-layer memory: vector embeddings (semantic recall),
+                structured cross-session memory, and conversation persistence
               </li>
             </ul>
           </div>
 
           <div class="project-highlight">
             <h3>Nexus Geom Lab — Lead Developer</h3>
-            <p class="project-stack">Three.js • React • MongoDB</p>
+            <p class="project-stack">Three.js • React • Web Audio API</p>
             <p>
-              Interactive 3D visualization platform for 4D geometry (174 GitHub
-              clones)
+              Interactive 3D visualization platform for 4D geometry exploration
             </p>
             <ul class="project-bullets">
               <li>
-                Engineered 24 interactive 4D geometries — tesseracts, quantum
-                manifolds, polychorons — with custom wireframe rendering in
-                Three.js
+                Rendered 24 interactive 4D geometries — tesseracts, quantum
+                manifolds, polychorons — with custom wireframe shaders and
+                orbital camera controls
               </li>
               <li>
-                Implemented progressive unlock system tied to user saves,
-                driving sustained engagement through gamification
+                Built real-time FFT audio analyzer (bass/mids/highs at 60fps)
+                driving audio-reactive 3D geometry via Web Audio API
+              </li>
+              <li>
+                Implemented progressive unlock system and gamification layer to
+                drive user engagement
               </li>
             </ul>
           </div>
@@ -428,22 +460,23 @@
           <h2>Professional Experience</h2>
           <ul class="evolution-list">
             <li>
-              <strong>Freelance Software Engineer</strong> — Self-Employed
+              <strong>Independent Software Consultant</strong> — Self-Employed
               <span class="date-range">2025–Present</span>
               <br />
               <span class="experience-detail"
-                >Built and deployed production AI-powered web applications for
-                real clients — including a multilingual concierge chatbot with
-                live booking integration (OpenAI, MongoDB, Vercel/Render)</span
+                >Shipping production AI and full-stack systems for clients, from
+                scoping through delivery — including a multilingual AI concierge
+                with live booking integration (OpenAI, MongoDB,
+                Vercel/Render)</span
               >
             </li>
             <li>
-              <strong>Technical Product Manager</strong> — NUMENEON (Capstone)
+              <strong>Technical Product Manager</strong> — NUMENEON
               <span class="date-range">2025–2026</span>
               <br />
               <span class="experience-detail"
                 >Directed architecture, UI strategy, and product roadmap for a
-                4-person team — wrote pseudocode specs, sized tasks across
+                5-person team — wrote pseudocode specs, sized tasks across
                 XL/L/M/S tiers, and coordinated delivery across backend, auth,
                 and messaging workstreams; platform reached 800+ GitHub clones
                 and 58% engagement rate post-launch</span
@@ -463,7 +496,7 @@
             </li>
             <li>
               <strong>Legal Interpreter (Spanish)</strong> — NY Public School
-              System / UFCIS
+              System / USCIS
               <span class="date-range">2005–2024</span>
               <br />
               <span class="experience-detail"
@@ -490,16 +523,17 @@
         <section class="about-section">
           <h2>Additional</h2>
           <p>
-            Bilingual English/Spanish (Professional) • 20+ Years Martial Arts
-            (Shorei-kan Lineage) • Fine Art Restoration • Classical Oil Painting
-            • Guitar & Bass
+            3,000+ GitHub contributions across 10+ shipped projects • Bilingual
+            English/Spanish (Professional) • 20+ Years Martial Arts (Shorei-kan
+            Lineage) • Visual Artist 2006–2024 (commission, restoration,
+            gallery, digital) • Classical Oil Painting • Guitar & Bass
           </p>
         </section>
       </div>
     </main>
 
     <!-- Scripts -->
-    <script src="src/js/pages/aboutInit.js" defer></script>
+    <script src="src/js/pages/about/index.js" defer></script>
     <script src="src/js/components/cursor.js" defer></script>
     <script src="src/js/effects/orb.js" defer></script>
   </body>

@@ -3,7 +3,7 @@ const audio = document.getElementById("site-audio");
 const audioToggle = document.getElementById("audio-toggle");
 
 if (audio) {
-  audio.volume = 0.3;
+  audio.volume = 0.08;
 }
 
 // Autoplay on first user interaction (browsers block autoplay without it)
