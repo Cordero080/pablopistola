@@ -162,30 +162,37 @@ function buildChatUI() {
       transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    /* Sonar pulse ring — cyan, fires every 3.5s when panel is closed */
-    #mcp-chat-toggle::after {
-      content: '';
+    /* Ripple rings — 3 spans staggered so all 3 are always visible at different sizes */
+    #mcp-chat-toggle .ring {
       position: absolute;
       top: 50%;
       left: 50%;
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      border: 1.5px solid rgba(0, 255, 247, 0.65);
+      border: 1.5px solid rgba(0, 255, 247, 0.6);
       transform: translate(-50%, -50%) scale(1);
       opacity: 0;
       pointer-events: none;
       animation: none;
     }
 
-    #mcp-chat-toggle.pulse-active::after {
-      animation: chat-sonar 3.5s ease-out infinite;
-      animation-delay: 2s;
+    #mcp-chat-toggle.pulse-active .ring:nth-child(1) {
+      animation: chat-ripple 2.4s ease-out infinite;
+      animation-delay: 0s;
+    }
+    #mcp-chat-toggle.pulse-active .ring:nth-child(2) {
+      animation: chat-ripple 2.4s ease-out infinite;
+      animation-delay: 0.8s;
+    }
+    #mcp-chat-toggle.pulse-active .ring:nth-child(3) {
+      animation: chat-ripple 2.4s ease-out infinite;
+      animation-delay: 1.6s;
     }
 
-    @keyframes chat-sonar {
-      0%   { transform: translate(-50%, -50%) scale(1);   opacity: 0.65; }
-      100% { transform: translate(-50%, -50%) scale(2.5); opacity: 0;    }
+    @keyframes chat-ripple {
+      0%   { transform: translate(-50%, -50%) scale(1);   opacity: 0.6; }
+      100% { transform: translate(-50%, -50%) scale(2.2); opacity: 0;   }
     }
 
     #mcp-chat-toggle:hover {
@@ -435,7 +442,9 @@ function buildChatUI() {
     </div>
 
     <button id="mcp-chat-toggle" aria-label="Open AI Assistant" title="Portfolio AI">
-      <!-- AI/chat icon — matches the neopunk aesthetic -->
+      <span class="ring"></span>
+      <span class="ring"></span>
+      <span class="ring"></span>
       <svg viewBox="0 0 24 24">
         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
       </svg>
