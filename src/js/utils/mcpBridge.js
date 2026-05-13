@@ -183,22 +183,29 @@ function buildChatUI() {
       animation: none;
     }
 
+    /*
+     * Sequential rings — each ring expands and fully fades (0-25% of cycle),
+     * then holds invisible for the rest (25-100%). Stagger = 1/3 of duration
+     * so rings fire one after the other with no overlap.
+     * Tune: increase duration to slow the whole sequence down.
+     */
     #mcp-chat-toggle.pulse-active .ring:nth-child(1) {
-      animation: chat-ripple 7s ease-out infinite;
+      animation: chat-ripple 12s ease-out infinite;
       animation-delay: 0s;
     }
     #mcp-chat-toggle.pulse-active .ring:nth-child(2) {
-      animation: chat-ripple 7s ease-out infinite;
-      animation-delay: 2.5s;
+      animation: chat-ripple 12s ease-out infinite;
+      animation-delay: 4s;
     }
     #mcp-chat-toggle.pulse-active .ring:nth-child(3) {
-      animation: chat-ripple 7s ease-out infinite;
-      animation-delay: 5s;
+      animation: chat-ripple 12s ease-out infinite;
+      animation-delay: 8s;
     }
 
     @keyframes chat-ripple {
-      0%   { transform: translate(-50%, -50%) scale(1);   opacity: 0.45; }
-      100% { transform: translate(-50%, -50%) scale(2.2); opacity: 0;    }
+      0%    { transform: translate(-50%, -50%) scale(1);   opacity: 0.4; }
+      25%   { transform: translate(-50%, -50%) scale(2.2); opacity: 0;   }
+      100%  { transform: translate(-50%, -50%) scale(2.2); opacity: 0;   }
     }
 
     #mcp-chat-toggle:hover {
