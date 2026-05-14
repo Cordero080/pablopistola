@@ -126,10 +126,18 @@
 }
 
 /* ── CTA ── */
+.project-card-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
 .project-card-cta {
   display: inline-block;
   font-family: "IBM Plex Sans", sans-serif;
-  font-size: 0.75rem;
+  font-size: 0.95rem;
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -138,11 +146,24 @@
   transition:
     color 0.3s ease,
     letter-spacing 0.3s ease;
-  margin-top: 0.5rem;
 }
 .project-card-cta:hover {
   color: var(--card-accent, #00fff7);
   letter-spacing: 0.32em;
+}
+
+.project-card-github {
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.35);
+  transition: color 0.3s ease;
+}
+.project-card-github:hover {
+  color: var(--card-accent, #00fff7);
+}
+.project-card-github svg {
+  width: 28px;
+  height: 28px;
 }
 
 /* ── LABEL BADGE ── */
@@ -271,20 +292,19 @@
   align-items: center;
   gap: 0.35em;
   font-family: "IBM Plex Sans", sans-serif;
-  font-size: 0.65rem;
+  font-size: 0.95rem;
   font-weight: 500;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
   color: rgba(255, 255, 255, 0.28);
-  margin-top: 0.4rem;
   transition:
     color 0.3s ease,
     letter-spacing 0.3s ease;
 }
 .project-card-demo svg {
-  width: 0.85em;
-  height: 0.85em;
+  width: 1em;
+  height: 1em;
   flex-shrink: 0;
   transition: color 0.3s ease;
 }
