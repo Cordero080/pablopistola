@@ -158,6 +158,19 @@ if (heroSection) {
     renderer.render(scene, camera);
   }
 
+  // ── Fade out on scroll — disappear instead of sliding up ───────────────────
+  window.addEventListener(
+    "scroll",
+    () => {
+      const rect = heroSection.getBoundingClientRect();
+      const heroH = heroSection.offsetHeight;
+      // fade starts when hero top reaches 0, fully gone at 40% scrolled
+      const ratio = Math.max(0, Math.min(1, -rect.top / (heroH * 0.4)));
+      canvas.style.opacity = 1 - ratio;
+    },
+    { passive: true },
+  );
+
   // ── Init ────────────────────────────────────────────────────────────────────
   window.addEventListener("resize", resize);
   requestAnimationFrame(() => {
