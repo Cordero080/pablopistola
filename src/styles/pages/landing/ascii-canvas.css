@@ -10,62 +10,70 @@
   pointer-events: none;
 
   /* ── desktop default (> 1440px) ──────────────── */
-  top: 45.95%; /* vertical center */
-  left: 49.7%; /* horizontal center */
+  top: calc(45.95% + 1px);
+  left: calc(50% + 2px);
 }
 
 /* ── large desktop (≤ 1440px) ───────────────────── */
 @media (max-width: 1440px) {
   #landing-ascii-canvas {
-    top: 45.95%;
-    left: 49.7%;
+    top: calc(45.95% + 1px);
+    left: calc(50% + 2px);
   }
 }
 
 /* ── desktop (≤ 1280px) ──────────────────────────── */
 @media (max-width: 1280px) {
   #landing-ascii-canvas {
-    top: 45.95%;
-    left: 49.7%;
+    top: calc(45.95% + 1px);
+    left: calc(50% + 2px);
   }
 }
 
 /* ── tablet landscape (≤ 1100px) ─────────────────── */
 @media (max-width: 1100px) {
   #landing-ascii-canvas {
-    top: 44.5%;
-    left: 50%;
+    top: calc(44.5% + 1px);
+    left: calc(50% + 2px);
   }
 }
 
 /* ── tablet portrait (≤ 900px) ───────────────────── */
 @media (max-width: 900px) {
   #landing-ascii-canvas {
-    top: 44.5%;
-    left: 50%;
+    top: calc(44.5% + 1px);
+    left: calc(50% + 2px);
   }
 }
+
+/* ====================================================
+   MOBILE VERTICAL ALIGNMENT — TUNE THIS
+   top: XX% controls where the ASCII canvas sits on screen.
+   The name text (.enter-identity) is fixed at top: 50%.
+   Increase top to move canvas DOWN, decrease to move UP.
+   left: 50% should stay as-is.
+   ==================================================== */
 
 /* ── mobile (≤ 768px) ────────────────────────────── */
 @media (max-width: 768px) {
   #landing-ascii-canvas {
-    top: 50%;
-    left: 50%;
+    top: calc(50% + 1px);
+    left: calc(50% + 2px);
   }
 }
 
 /* ── small mobile (≤ 480px) ──────────────────────── */
 @media (max-width: 480px) {
   #landing-ascii-canvas {
-    top: 50%;
-    left: 50%;
+    top: calc(50% + 1px);
+    left: calc(50% + 2px);
   }
 }
 
 /* ── tiny mobile (≤ 375px) ───────────────────────── */
 @media (max-width: 375px) {
   #landing-ascii-canvas {
-    top: 50%;
-    left: 50%;
+    top: calc(50% + 1px);
+    left: calc(50% + 2px);
   }
 }

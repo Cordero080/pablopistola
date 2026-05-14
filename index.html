@@ -121,17 +121,25 @@
           startTime = 0;
 
         function setCanvasSize() {
-          // ── mobile scaling ──────────────────────────────
-          var MOBILE_BREAKPOINT = 768;  // breakpoint px
-          var MOBILE_SCALE     = 0.86;  // % of viewport width on mobile
-          var DESKTOP_SCALE    = 0.61;  // % of viewport width on desktop
-          var multiplier = window.innerWidth < MOBILE_BREAKPOINT ? MOBILE_SCALE : DESKTOP_SCALE;
-          var scale = Math.min(1, (window.innerWidth * multiplier) / CANVAS_W);
+          // Size canvas to match .enter-identity so ASCII glitches into the title.
+          // Tune LEFT in ascii-canvas.css to shift horizontally.
+          var identity = document.querySelector(".enter-identity");
+          var titleW;
 
+          if (identity && identity.offsetWidth > 0) {
+            titleW = identity.offsetWidth;
+          } else {
+            titleW =
+              window.innerWidth <= 768
+                ? window.innerWidth * 0.9
+                : Math.min(window.innerWidth * 0.96, 1000);
+          }
+
+          var scale = titleW / CANVAS_W;
           canvas.width = CANVAS_W;
           canvas.height = CANVAS_H;
-          canvas.style.width = Math.floor(CANVAS_W * scale) + "px";
-          canvas.style.height = Math.floor(CANVAS_H * scale) + "px";
+          canvas.style.width = Math.round(titleW) + "px";
+          canvas.style.height = Math.round(CANVAS_H * scale) + "px";
         }
 
         function buildMask() {
@@ -194,7 +202,7 @@
                 gridX: col * CELL_W,
                 gridY: row * CELL_H,
                 revealAt: Math.max(0, Math.min(ASSEMBLE_MS, t)),
-                dissolveAt: 1500 + Math.random() * DISSOLVE_STAGGER,
+                dissolveAt: 700 + Math.random() * 400,
               });
             }
           }
@@ -225,44 +233,55 @@
               if (out > FADE_OUT_MS) continue;
               op = (1 - out / FADE_OUT_MS) * 0.72;
             }
-            var colors = ['0, 212, 255', '200, 80, 255', '0, 212, 255'];
+            var colors = ["0, 212, 255", "200, 80, 255", "0, 212, 255"];
             var rgb = colors[cell.group % 3];
-            ctx.shadowColor = 'rgba(' + rgb + ', ' + (op * 0.8) + ')';
+            ctx.shadowColor = "rgba(" + rgb + ", " + op * 0.8 + ")";
             ctx.shadowBlur = 6;
-            ctx.fillStyle = 'rgba(' + rgb + ', ' + op + ')';
+            ctx.fillStyle = "rgba(" + rgb + ", " + op + ")";
             ctx.fillText(cell.char, cell.gridX, cell.gridY + CELL_H);
           }
           ctx.shadowBlur = 0;
 
           // ── glitch: chromatic aberration + data corruption ────
-          var GLITCH_PROB       = 0.045; // chance per frame of a burst
-          var GLITCH_SLICES     = 3;     // scan-line slices per burst
-          var GLITCH_MAX_SHIFT  = 22;    // max px shift per slice
-          var GLITCH_MAX_H      = 10;    // max slice height (in cells)
-          var CORRUPT_CELLS     = 6;     // cells to corrupt per burst
-          var CORRUPT_CHARS     = '▓█▀▄░▒┼╬╫╪';
+          var GLITCH_PROB = 0.045; // chance per frame of a burst
+          var GLITCH_SLICES = 3; // scan-line slices per burst
+          var GLITCH_MAX_SHIFT = 22; // max px shift per slice
+          var GLITCH_MAX_H = 10; // max slice height (in cells)
+          var CORRUPT_CELLS = 6; // cells to corrupt per burst
+          var CORRUPT_CHARS = "▓█▀▄░▒┼╬╫╪";
 
           if (Math.random() < GLITCH_PROB) {
             // 1. scan-line slice shift
             for (var gi = 0; gi < GLITCH_SLICES; gi++) {
               var sliceY = Math.floor(Math.random() * CANVAS_H);
-              var sliceH = (1 + Math.floor(Math.random() * GLITCH_MAX_H)) * CELL_H;
-              var shift  = (Math.random() < 0.5 ? 1 : -1) * (4 + Math.floor(Math.random() * GLITCH_MAX_SHIFT));
-              var slice  = ctx.getImageData(0, sliceY, CANVAS_W, Math.min(sliceH, CANVAS_H - sliceY));
+              var sliceH =
+                (1 + Math.floor(Math.random() * GLITCH_MAX_H)) * CELL_H;
+              var shift =
+                (Math.random() < 0.5 ? 1 : -1) *
+                (4 + Math.floor(Math.random() * GLITCH_MAX_SHIFT));
+              var slice = ctx.getImageData(
+                0,
+                sliceY,
+                CANVAS_W,
+                Math.min(sliceH, CANVAS_H - sliceY),
+              );
               ctx.putImageData(slice, shift, sliceY);
             }
 
             // 2. data corruption — random cells flash block chars
             ctx.font = 'bold 14px "Courier New", monospace';
-            ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+            ctx.textAlign = "left";
+            ctx.textBaseline = "alphabetic";
             for (var ci = 0; ci < CORRUPT_CELLS; ci++) {
               var rc = cells[Math.floor(Math.random() * cells.length)];
               if (!rc || !rc.inMask) continue;
-              var corruptChar = CORRUPT_CHARS[Math.floor(Math.random() * CORRUPT_CHARS.length)];
-              var corruptRgb  = Math.random() < 0.5 ? '0, 255, 255' : '255, 0, 200';
-              ctx.shadowColor = 'rgba(' + corruptRgb + ', 0.9)';
-              ctx.shadowBlur  = 10;
-              ctx.fillStyle   = 'rgba(' + corruptRgb + ', 1)';
+              var corruptChar =
+                CORRUPT_CHARS[Math.floor(Math.random() * CORRUPT_CHARS.length)];
+              var corruptRgb =
+                Math.random() < 0.5 ? "0, 255, 255" : "255, 0, 200";
+              ctx.shadowColor = "rgba(" + corruptRgb + ", 0.9)";
+              ctx.shadowBlur = 10;
+              ctx.fillStyle = "rgba(" + corruptRgb + ", 1)";
               ctx.fillText(corruptChar, rc.gridX, rc.gridY + CELL_H);
             }
             ctx.shadowBlur = 0;
