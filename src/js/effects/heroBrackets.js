@@ -10,13 +10,14 @@ if (heroSection) {
   // ── Canvas overlay ──────────────────────────────────────────────────────────
   const canvas = document.createElement("canvas");
   canvas.style.cssText = `
-    position: absolute;
+    position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
     pointer-events: none;
     z-index: 1;
   `;
-  heroSection.appendChild(canvas);
+  // Append to body so fixed positioning is relative to viewport, not hero
+  document.body.appendChild(canvas);
 
   // ── Renderer ────────────────────────────────────────────────────────────────
   const renderer = new THREE.WebGLRenderer({
@@ -99,13 +100,10 @@ if (heroSection) {
 
   // ── Sizing & positioning ────────────────────────────────────────────────────
   function resize() {
-    const rect = heroSection.getBoundingClientRect();
-    const W = rect.width;
-    // On mobile the hero section can be very short — enforce a minimum so brackets are visible
-    const H = Math.max(rect.height, 180);
+    const W = window.innerWidth;
+    const H = window.innerHeight;
 
     renderer.setSize(W, H);
-    canvas.style.height = H + "px";
     camera.aspect = W / H;
     camera.updateProjectionMatrix();
 
