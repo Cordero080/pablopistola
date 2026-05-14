@@ -176,7 +176,7 @@ function buildChatUI() {
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      border: 1.5px solid rgba(0, 255, 247, 0.45);
+      border: 1.5px solid rgba(0, 255, 247, 0.75);
       transform: translate(-50%, -50%) scale(1);
       opacity: 0;
       pointer-events: none;
@@ -202,12 +202,30 @@ function buildChatUI() {
       animation-delay: 8s;
     }
 
+    /* Icon glow tracks each ring exactly:
+       ring 1 fires at 0s  → 0–25%  (0–3s)
+       ring 2 fires at 4s  → 33–58% (4–7s)
+       ring 3 fires at 8s  → 66–91% (8–11s) */
+    #mcp-chat-toggle.pulse-active svg {
+      animation: icon-glow 12s linear infinite;
+    }
+
+    @keyframes icon-glow {
+      0%   { color: rgba(0, 255, 136, 0.95); filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.9)); }
+      25%  { color: rgba(255, 255, 255, 0.5); filter: none; }
+      33%  { color: rgba(0, 255, 136, 0.95); filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.9)); }
+      58%  { color: rgba(255, 255, 255, 0.5); filter: none; }
+      66%  { color: rgba(0, 255, 136, 0.95); filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.9)); }
+      91%  { color: rgba(255, 255, 255, 0.5); filter: none; }
+      100% { color: rgba(255, 255, 255, 0.5); filter: none; }
+    }
+
     @keyframes chat-ripple {
       0%   {
         transform: translate(-50%, -50%) scale(1);
-        opacity: 0.4;
+        opacity: 0.75;
         border-radius: 50%;
-        border-color: rgba(0, 255, 247, 0.4);
+        border-color: rgba(0, 255, 247, 0.75);
       }
       /* organic wobble as ring expands — no opacity jumps, just shape and color shift */
       8%   { border-radius: 48% 52% 50% 50% / 50% 50% 52% 48%; }
