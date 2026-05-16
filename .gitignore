@@ -24,3 +24,4 @@ mcp-server/*.pyc
 
 # Local docs/notes (kept out of git by default)
 docs/
+.playwright-mcp/
