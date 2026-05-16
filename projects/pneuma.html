@@ -280,20 +280,14 @@
               instinct to blur edges, find gradients, ask what's underneath.
             </p>
             <p>
-              The thinkers are grounded in verbatim passages from actual source
-              texts — <em>Meditations</em>, <em>Brain Droppings</em>,
+              Each thinker is grounded in verbatim passages from their actual
+              source texts — <em>Meditations</em>, <em>Brain Droppings</em>,
               <em>The Soul's Code</em>, <em>Tao Te Ching</em>,
-              <em>The Trial</em>, and others — 1,385 passages across 46 thinker
-              folders, retrieved at runtime by a two-pipeline RAG system.
-              Pipeline 1 scans your message against ~80 known philosophical
-              concepts, fires parallel queries per concept × active thinker,
-              then scores candidates using a <strong>50/30/20 formula</strong>:
-              50% relevance to your message, 30% distinctiveness from other
-              retrieved passages, 20% philosophical tension between thinkers.
-              The friction is engineered before Claude starts thinking. Pipeline
-              2 runs independently — a semantic search over your personal
-              conversation history stored in MongoDB, surfacing past exchanges
-              thematically related to what you just said.
+              <em>The Trial</em>, and others. A dual-pipeline RAG system
+              retrieves these at runtime — one pipeline scanning the message for
+              philosophical concepts, another running semantic search over
+              conversation history. The friction between thinkers is engineered
+              before Claude starts generating.
             </p>
             <p>
               The <strong>Liminal Architect</strong> is different: it doesn't
@@ -312,22 +306,14 @@
               Contextual Synthesis
             </h3>
             <p>
-              The primary mechanism: <strong>contextual synthesis</strong>. An
-              LLM call scores every message across 10 intent dimensions —
+              Every message is scored across multiple intent dimensions —
               emotional, philosophical, numinous, paradox, conflict, and others.
-              High scores on specific dimensions pull in specific archetypes and
-              select one of six tones for how the response sounds. The system
-              then identifies the optimal archetype pair for the message and
+              The scores pull in specific archetypes and select a tone. The
+              system identifies the optimal archetype pair for the message and
               tells both to <em>take an actual position and argue</em>.
               Nietzsche × Schopenhauer on suffering. Camus × Frankl on meaning.
               The response has to hold the tension. That's where the interesting
               stuff comes out.
-            </p>
-            <p>
-              Beneath that: <strong>1,764 tension pairs</strong> pre-mapped
-              across all archetype combinations. When topic classification can't
-              fire, collision detection runs as fallback — incompatibility
-              scored, synthesis forced from friction.
             </p>
 
             <h3
@@ -340,18 +326,13 @@
               Inner Monologue
             </h3>
             <p>
-              Before generating any response, two layers of internal cognition
-              run. First: a real Claude Haiku call fires the
-              <strong>collision→compression protocol</strong> — every concept in
-              your message treated as a philosophical object, archetypes react,
-              tensions surface, and an emergent insight forms that neither
-              archetype alone would produce. The output must be structurally
-              surprising, philosophically dense, linguistically economical.
-              Second: a template layer tracks which archetypes have been
-              dominant across recent exchanges, forms a hypothesis about what
-              you actually need underneath what you asked, and selects a
-              response mode. The user never sees either layer, but they feel
-              them.
+              Before generating any response, internal cognition runs first —
+              archetypes react to your message, tensions surface, and an
+              emergent insight forms that neither archetype alone would produce.
+              A second layer tracks archetype patterns across the conversation,
+              forms a hypothesis about what you actually need underneath what
+              you asked, and selects a response mode. The user never sees either
+              layer, but they feel them.
             </p>
 
             <h3
@@ -481,9 +462,8 @@
             <h3>Archetypes as Operations</h3>
             <p>
               Not quotes to retrieve or masks to wear — thinking methods that
-              shape cognition. Selected via 3-layer routing: cosine similarity →
-              momentum weighting → fusion history. Leonardo gives you ways to
-              see, not things to say.
+              shape cognition before a word is generated. Leonardo gives you
+              ways to see, not things to say.
             </p>
           </div>
 
@@ -500,9 +480,9 @@
             </div>
             <h3>Dialectical Collision</h3>
             <p>
-              1,764 tension pairs. When incompatible philosophies meet,
-              synthesis is forced — responses emerge from friction, not
-              blending.
+              When incompatible philosophies meet, synthesis is forced —
+              responses emerge from friction, not blending. The collisions are
+              pre-mapped and intentional.
             </p>
           </div>
 
@@ -582,9 +562,8 @@
             <h3>Self-Knowledge + Navigation</h3>
             <p>
               On self-inquiry, Pneuma loads a live snapshot of his own
-              architecture — all 43 archetype essences, frameworks, and
-              synthesis pairs built at runtime. He can also read his own source
-              files mid-conversation, sandboxed to his own directory.
+              architecture — archetype essences, frameworks, and synthesis pairs
+              built at runtime. He knows what he's made of.
             </p>
           </div>
 
@@ -601,9 +580,9 @@
             </div>
             <h3>Personality That Evolves</h3>
             <p>
-              Archetype momentum decay — weights shift across sessions based on
-              what worked. Over time, a default voice emerges from successful
-              interaction patterns. Not hard-coded. Earned.
+              Archetype weights shift across sessions based on what resonated.
+              Over time, a default voice emerges from the interaction. Not
+              hard-coded. Earned.
             </p>
           </div>
 
@@ -625,87 +604,6 @@
               Vector embeddings for semantic recall, structured cross-session
               memory for facts and patterns, full conversation persistence.
               Three independent systems — each doing a different job.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Architecture Roadmap -->
-      <section class="project-about" style="padding-top: 0">
-        <div class="about-grid">
-          <div class="about-description">
-            <h2>Architecture Roadmap</h2>
-            <p>
-              Pneuma is an active system under iteration. The current
-              architecture has known coupling points — hardcoded integrations
-              that work but create fragility when providers change. The
-              migration plan below is the next structural layer: replacing those
-              integrations with standardized
-              <strong>Model Context Protocol (MCP)</strong> servers so the core
-              AI loop has no direct knowledge of the services it depends on.
-            </p>
-
-            <h3
-              style="
-                color: rgba(255, 255, 255, 0.9);
-                margin-top: 1.5rem;
-                margin-bottom: 0.75rem;
-              "
-            >
-              1. Wikipedia → Ready-Made MCP Server
-            </h3>
-            <p>
-              <code
-                style="
-                  background: rgba(255, 255, 255, 0.06);
-                  padding: 0.1rem 0.4rem;
-                  border-radius: 4px;
-                  font-size: 0.85rem;
-                "
-                >search_wikipedia</code
-              >
-              is currently a custom Anthropic tool definition with a two-stage
-              fetch loop baked into the intelligence layer (~75 lines). This
-              will be replaced by an official open-source Wikipedia MCP server —
-              deleting the hardcoded integration entirely and making Pneuma
-              immune to Wikipedia API changes.
-            </p>
-
-            <h3
-              style="
-                color: rgba(255, 255, 255, 0.9);
-                margin-top: 1.5rem;
-                margin-bottom: 0.75rem;
-              "
-            >
-              2. Pneuma-Cognition → Custom MCP Server
-            </h3>
-            <p>
-              Three modules each instantiate their own OpenAI client for
-              embeddings, and all MongoDB vector search logic is distributed
-              across them. These will be extracted into a single MCP server.
-              Pneuma (client) sends a string; the server handles embedding,
-              querying, and database connection; it returns only the final
-              semantic context. The core AI loop will have no direct knowledge
-              of the database or embedding model.
-            </p>
-
-            <h3
-              style="
-                color: rgba(255, 255, 255, 0.9);
-                margin-top: 1.5rem;
-                margin-bottom: 0.75rem;
-              "
-            >
-              3. Sensory / I/O → Custom MCP Server
-            </h3>
-            <p>
-              ElevenLabs TTS, Hume AI emotion detection, and OpenAI Whisper
-              transcription are hardcoded fetch calls tied to specific
-              providers. Moving these to a dedicated sensory MCP server makes
-              provider swaps transparent to the rest of the system — swap
-              ElevenLabs for a different TTS provider without touching any
-              conversational logic.
             </p>
           </div>
         </div>
