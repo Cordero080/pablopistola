@@ -1402,6 +1402,10 @@ body:has(.project-page) #waves {
     justify-content: center;
   }
 
+  .desktop-only {
+    display: none !important;
+  }
+
   .gallery-thumbs .thumb {
     width: 80px;
     height: 54px;
