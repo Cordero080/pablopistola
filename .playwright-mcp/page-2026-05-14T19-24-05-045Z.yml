@@ -1,0 +1,181 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2]:
+    - /url: "#projects"
+  - generic: press spacebar
+  - navigation "Main navigation" [ref=e3]:
+    - generic [ref=e5]: PC
+    - generic [ref=e6]:
+      - link "About" [ref=e7]:
+        - /url: /about
+        - img [ref=e8]
+        - generic [ref=e11]: About
+      - link "Projects" [ref=e12]:
+        - /url: "#projects"
+        - img [ref=e13]
+        - generic [ref=e16]: Projects
+      - link "Skills" [ref=e17]:
+        - /url: /skills
+        - img [ref=e18]
+        - generic [ref=e20]: Skills
+      - link "Art" [ref=e21]:
+        - /url: /art
+        - img [ref=e22]
+        - generic [ref=e28]: Art
+      - link "Contact" [ref=e29]:
+        - /url: "#contact"
+        - img [ref=e30]
+        - generic [ref=e33]: Contact
+      - link "Resume" [ref=e34]:
+        - /url: /resume
+        - img [ref=e35]
+        - generic [ref=e38]: Resume
+      - link "Zen Mode - Waves" [ref=e39]:
+        - /url: /?stay
+        - img [ref=e40]
+        - generic [ref=e44]: Z
+  - text: ×
+  - generic [ref=e46]:
+    - heading "PVBLO C0RDERO" [level=1] [ref=e47]
+    - paragraph [ref=e48]: FULL-STACK SOFTWARE ENGINEER · AI SYSTEMS & LLM ARCHITECTURE
+  - link "PROJECTS" [ref=e51]:
+    - /url: "#projects"
+  - generic [ref=e52]:
+    - generic [ref=e53]:
+      - link "Numeneon Dark" [ref=e54]:
+        - /url: /projects/numeneon
+        - img "Numeneon Dark" [ref=e56]
+      - generic [ref=e57]:
+        - heading "Numeneon" [level=2] [ref=e58]
+        - paragraph [ref=e59]: React • Django • WebSockets
+        - link "View Project" [ref=e60]:
+          - /url: /projects/numeneon
+        - link "Watch demo on YouTube" [ref=e61]:
+          - /url: https://youtu.be/J5xXlOPNZAQ
+          - img [ref=e62]
+          - text: Watch Demo
+    - generic [ref=e64]:
+      - link "Pneuma" [ref=e65]:
+        - /url: /projects/pneuma
+        - img "Pneuma" [ref=e67]
+      - generic [ref=e68]:
+        - heading "Pneuma" [level=2] [ref=e69]
+        - paragraph [ref=e70]: AI cognitive Engine
+        - link "View Project" [ref=e71]:
+          - /url: /projects/pneuma
+        - generic [ref=e72]: Coming Soon
+    - generic [ref=e73]:
+      - link "Pneumata" [ref=e74]:
+        - /url: /projects/pneumata
+        - img "Pneumata" [ref=e76]
+      - generic [ref=e77]:
+        - heading "Pneumata" [level=2] [ref=e78]
+        - paragraph [ref=e79]: Interactive 3D Anatomy • React Three Fiber
+        - link "View Project" [ref=e80]:
+          - /url: /projects/pneumata
+        - link "Watch demo on YouTube" [ref=e81]:
+          - /url: https://youtu.be/Xkbkwlv8HA4
+          - img [ref=e82]
+          - text: Watch Demo
+    - generic [ref=e84]:
+      - link "Featured Transcendence Pet Sim" [ref=e85]:
+        - /url: /projects/transcendence
+        - generic [ref=e86]:
+          - generic [ref=e87]: Featured
+          - img "Transcendence Pet Sim" [ref=e88]
+      - generic [ref=e89]:
+        - heading "Transcendence" [level=2] [ref=e90]
+        - paragraph [ref=e91]: 3D Virtual Pet • Three.js + Blender
+        - link "View Project" [ref=e92]:
+          - /url: /projects/transcendence
+        - generic [ref=e93]: Coming Soon
+    - generic [ref=e94]:
+      - link "Nucat" [ref=e95]:
+        - /url: /projects/nucat
+        - img "Nucat" [ref=e97]
+      - generic [ref=e98]:
+        - heading "Nucat" [level=2] [ref=e99]
+        - paragraph [ref=e100]: AI Cat Generator • React
+        - link "View Project" [ref=e101]:
+          - /url: /projects/nucat
+        - generic [ref=e102]: Coming Soon
+    - generic [ref=e103]:
+      - link "Nexus Geom Lab" [ref=e104]:
+        - /url: /projects/nexus-geom-lab
+        - img "Nexus Geom Lab" [ref=e106]
+      - generic [ref=e107]:
+        - heading "Nexus Geom Lab" [level=2] [ref=e108]
+        - paragraph [ref=e109]: Interactive 4D Shapes • WebGL
+        - link "View Project" [ref=e110]:
+          - /url: /projects/nexus-geom-lab
+        - generic [ref=e111]: Coming Soon
+    - generic [ref=e112]:
+      - link "Dojo Crud" [ref=e113]:
+        - /url: /projects/dojo-crud
+        - img "Dojo Crud" [ref=e115]
+      - generic [ref=e116]:
+        - heading "Dojo Crud" [level=2] [ref=e117]
+        - paragraph [ref=e118]: Martial Arts Tracker • Django
+        - link "View Project" [ref=e119]:
+          - /url: /projects/dojo-crud
+        - generic [ref=e120]: Coming Soon
+    - generic [ref=e121]:
+      - link "Quantum Literary Bookshelf" [ref=e122]:
+        - /url: /projects/bookshelf
+        - img "Quantum Literary Bookshelf" [ref=e124]
+      - generic [ref=e125]:
+        - heading "Bookshelf" [level=2] [ref=e126]
+        - paragraph [ref=e127]: Particle System • Three.js
+        - link "View Project" [ref=e128]:
+          - /url: /projects/bookshelf
+        - generic [ref=e129]: Coming Soon
+    - generic [ref=e130]:
+      - link "Client La Dolce Vita" [ref=e131]:
+        - /url: /projects/la-dolce-vita
+        - generic [ref=e132]:
+          - generic [ref=e133]: Client
+          - img "La Dolce Vita" [ref=e134]
+      - generic [ref=e135]:
+        - heading "La Dolce Vita" [level=2] [ref=e136]
+        - paragraph [ref=e137]: AI Concierge • React + OpenAI
+        - link "View Project" [ref=e138]:
+          - /url: /projects/la-dolce-vita
+        - generic [ref=e139]: Coming Soon
+    - generic [ref=e140]:
+      - link "INSTVNCE Blog" [ref=e141]:
+        - /url: /projects/instvnce-blog
+        - img "INSTVNCE Blog" [ref=e143]
+      - generic [ref=e144]:
+        - heading "INSTVNCE" [level=2] [ref=e145]
+        - paragraph [ref=e146]: Developer Log • Neopunk Terminal
+        - link "View Project" [ref=e147]:
+          - /url: /projects/instvnce-blog
+        - generic [ref=e148]: Coming Soon
+    - generic [ref=e149]:
+      - link "Game Tic-Trap-Toe" [ref=e150]:
+        - /url: /projects/tic-trap-toe
+        - generic [ref=e151]:
+          - generic [ref=e152]: Game
+          - img "Tic-Trap-Toe" [ref=e153]
+      - generic [ref=e154]:
+        - heading "Tic-Trap-Toe" [level=2] [ref=e155]
+        - paragraph [ref=e156]: 6-Face Cube • Three.js • Vanilla JS
+        - link "View Project" [ref=e157]:
+          - /url: /projects/tic-trap-toe
+        - generic [ref=e158]: Coming Soon
+  - generic [ref=e160]:
+    - heading "Contact" [level=2] [ref=e163]
+    - generic [ref=e164]:
+      - link "Email" [ref=e165]:
+        - /url: mailto:cordero080@gmail.com
+        - img [ref=e166]
+        - generic [ref=e169]: Email
+      - link "LinkedIn" [ref=e170]:
+        - /url: https://www.linkedin.com/in/pablo-cordero-305191153
+        - img [ref=e171]
+        - generic [ref=e175]: LinkedIn
+      - link "GitHub" [ref=e176]:
+        - /url: https://github.com/Cordero080
+        - img [ref=e177]
+        - generic [ref=e179]: GitHub
+  - button "Open AI Assistant" [ref=e181]:
+    - img [ref=e182]

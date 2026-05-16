@@ -157,15 +157,18 @@ if (heroSection) {
     renderer.render(scene, camera);
   }
 
-  // ── Fade out on scroll — disappear instead of sliding up ───────────────────
+  // ── Fade out on scroll — counterscroll keeps brackets pinned while fading ──
   window.addEventListener(
     "scroll",
     () => {
       const rect = heroSection.getBoundingClientRect();
       const heroH = heroSection.offsetHeight;
-      // fade starts when hero top reaches 0, fully gone at 40% scrolled
-      const ratio = Math.max(0, Math.min(1, -rect.top / (heroH * 0.4)));
+      const scrolledPx = Math.max(0, -rect.top);
+      // fade starts when hero top hits 0, fully gone at 40% scrolled
+      const ratio = Math.min(1, scrolledPx / (heroH * 0.4));
       canvas.style.opacity = 1 - ratio;
+      // counteract parent scroll so brackets stay visually fixed in place
+      canvas.style.transform = `translateY(${scrolledPx}px)`;
     },
     { passive: true },
   );
