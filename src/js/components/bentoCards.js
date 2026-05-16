@@ -17,7 +17,10 @@ const rowObserver = new IntersectionObserver(
   },
 );
 
-projectRows.forEach((row) => rowObserver.observe(row));
+// Small delay so first cards are painted in hidden state before observer fires
+setTimeout(() => {
+  projectRows.forEach((row) => rowObserver.observe(row));
+}, 100);
 
 // Subtle image parallax on scroll — desktop only
 if (!isMobile) {
