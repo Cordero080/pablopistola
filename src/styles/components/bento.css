@@ -286,6 +286,25 @@
   }
 }
 
+/* ── DESKTOP-ONLY LIVE SITE ── */
+.project-card-desktop-note {
+  display: none;
+}
+@media (max-width: 600px) {
+  .project-card-cta--desktop-only {
+    display: none;
+  }
+  .project-card-desktop-note {
+    display: inline-block;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 0.6rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.22);
+  }
+}
+
 /* ── DEMO LINK ── */
 .project-card-demo {
   display: inline-flex;
