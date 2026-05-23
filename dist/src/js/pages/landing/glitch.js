@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const letters = TITLE_TEXT.split("");
   const letterDelays = letters.map((_, i) => {
     const weyl = ((i + 1) * PHI) % 1;
-    return BASE_DELAY + weyl * 0.6; // 0.6s max spread
+    return BASE_DELAY + weyl * 0.1; // 0.6s max spread
   });
 
   // Track hovered letters for replay feature
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
           );
           letterSpans.forEach((span, i) => {
             const weyl = ((i + 1) * PHI) % 1;
-            span.style.animationDelay = `${weyl * 0.4}s`;
+            span.style.animationDelay = `${weyl * 0.3}s`;
           });
 
           setTimeout(() => {

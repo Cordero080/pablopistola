@@ -92,7 +92,7 @@ PROJECTS_DATA = {
     },
 
     "nexus_geom_lab": {
-        "name": "Nexus Geom Lab",
+        "name": "Manifold",
         "tagline": "Gamified 4D geometry exploration platform. 24 hyperdimensional shapes, progressive character unlocks, full-stack scene management.",
         "stack": ["React 19.1", "React Three Fiber", "Three.js 0.180", "Blender", "Express.js", "MongoDB", "JWT", "Vite", "Web Audio API", "Jest"],
         "scale": "336 files, 119 directories, 36,366 lines, 81 components, 14 custom hooks, 39 passing tests.",
@@ -105,7 +105,7 @@ PROJECTS_DATA = {
             "JWT auth with bcrypt, rate limiting, navigation blocking for unsaved changes.",
         ],
         "architecture_highlight": "93% code reduction: 2,700-line monolith refactored into 14 custom hooks (useSceneInitialization, useObjectManager, useAnimationLoop, etc.). Props consolidated from 42 individual props to 2 objects.",
-        "live": "https://nexus-geom-3d.vercel.app",
+        "live": "https://manifold-3d.vercel.app",
         "notable": "174+ GitHub clones.",
     },
 

@@ -101,7 +101,6 @@ if (heroSection) {
   function resize() {
     const rect = heroSection.getBoundingClientRect();
     const W = rect.width;
-    // On mobile the hero section can be very short — enforce a minimum so brackets are visible
     const H = Math.max(rect.height, 180);
 
     renderer.setSize(W, H);
@@ -157,6 +156,22 @@ if (heroSection) {
 
     renderer.render(scene, camera);
   }
+
+  // ── Fade out on scroll — counterscroll keeps brackets pinned while fading ──
+  window.addEventListener(
+    "scroll",
+    () => {
+      const rect = heroSection.getBoundingClientRect();
+      const heroH = heroSection.offsetHeight;
+      const scrolledPx = Math.max(0, -rect.top);
+      // fade starts when hero top hits 0, fully gone at 40% scrolled
+      const ratio = Math.min(1, scrolledPx / (heroH * 0.4));
+      canvas.style.opacity = 1 - ratio;
+      // counteract parent scroll so brackets stay visually fixed in place
+      canvas.style.transform = `translateY(${scrolledPx}px)`;
+    },
+    { passive: true },
+  );
 
   // ── Init ────────────────────────────────────────────────────────────────────
   window.addEventListener("resize", resize);

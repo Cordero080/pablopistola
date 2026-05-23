@@ -4,8 +4,13 @@
 const urlParams = new URLSearchParams(window.location.search);
 const stayMode = urlParams.has("stay");
 
-// If user previously skipped and this isn't zen mode, go straight to home
-if (!stayMode && sessionStorage.getItem("skippedLanding")) {
+// In PWA standalone mode, always show the landing — sessionStorage persists across launches on iOS
+const isStandalone =
+  window.matchMedia("(display-mode: standalone)").matches ||
+  window.navigator.standalone === true;
+
+// If user previously skipped and this isn't zen mode or standalone, go straight to home
+if (!stayMode && !isStandalone && sessionStorage.getItem("skippedLanding")) {
   window.location.replace("/home.html");
 }
 

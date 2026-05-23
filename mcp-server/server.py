@@ -87,7 +87,7 @@ RESUME_DATA = {
         "feed, Google Sheets API integration, trilingual support (EN/ES/FR)",
         "NUMENEON: Full-Stack Social Network — 5-person team capstone (800+ GitHub clones), "
         "glassmorphic SCSS design system, 3-column River Timeline with real-time post rendering",
-        "Nexus Geom Lab: Gamified 4D geometry platform — 24 hyperdimensional shapes, "
+        "Manifold: Gamified 4D geometry platform — 24 hyperdimensional shapes, "
         "progressive character unlock system, audio-reactive WebGL, full-stack React/MongoDB/JWT; "
         "93% code reduction via custom hooks refactor; 174+ GitHub clones",
     ],
@@ -102,7 +102,7 @@ RESUME_DATA = {
     "experience": [
         "Independent Software Consultant (2025–Present): scoping and shipping production AI + full-stack systems",
         "Martial Arts Instructor (2018–Present): 3rd-degree black belt, Goju-Ryu lineage; curriculum design",
-        "Visual Artist (2006–2024): commission painting, fine art restoration, gallery hosting",
+        "Visual Artist & Painter (2006–2024): original paintings, commissioned works, gallery exhibitions; fine art conservation as secondary practice",
         "Legal Interpreter — Spanish (2005–2024): NY Public Schools / USCIS simultaneous translation",
     ],
     "education": [

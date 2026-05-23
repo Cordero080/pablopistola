@@ -1,5 +1,6 @@
 // IntersectionObserver for project row entry animations
 const projectRows = document.querySelectorAll(".project-row");
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
 const rowObserver = new IntersectionObserver(
   (entries) => {
@@ -11,28 +12,33 @@ const rowObserver = new IntersectionObserver(
     });
   },
   {
-    threshold: 0.12,
-    rootMargin: "0px 0px -40px 0px",
+    threshold: isMobile ? 0.05 : 0.12,
+    rootMargin: isMobile ? "0px 0px 0px 0px" : "0px 0px -40px 0px",
   },
 );
 
-projectRows.forEach((row) => rowObserver.observe(row));
+// Small delay so first cards are painted in hidden state before observer fires
+setTimeout(() => {
+  projectRows.forEach((row) => rowObserver.observe(row));
+}, 100);
 
-// Subtle image parallax on scroll
-function updateParallax() {
-  const viewportCenter = window.innerHeight / 2;
-  projectRows.forEach((row) => {
-    const img = row.querySelector(".project-card-media img");
-    if (!img) return;
-    const rect = row.getBoundingClientRect();
-    const rowCenter = rect.top + rect.height / 2;
-    const offset = rowCenter - viewportCenter;
-    img.style.transform = `scale(1.08) translateY(${offset * 0.07}px)`;
-  });
+// Subtle image parallax on scroll — desktop only
+if (!isMobile) {
+  function updateParallax() {
+    const viewportCenter = window.innerHeight / 2;
+    projectRows.forEach((row) => {
+      const img = row.querySelector(".project-card-media img");
+      if (!img) return;
+      const rect = row.getBoundingClientRect();
+      const rowCenter = rect.top + rect.height / 2;
+      const offset = rowCenter - viewportCenter;
+      img.style.transform = `scale(1.08) translateY(${offset * 0.07}px)`;
+    });
+  }
+
+  window.addEventListener("scroll", updateParallax, { passive: true });
+  document.addEventListener("DOMContentLoaded", updateParallax);
 }
-
-window.addEventListener("scroll", updateParallax, { passive: true });
-document.addEventListener("DOMContentLoaded", updateParallax);
 
 // Inject WATCH DEMO or COMING SOON below each View Project CTA
 function injectDemoLinks() {
