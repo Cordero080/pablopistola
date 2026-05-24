@@ -9,7 +9,7 @@
   bottom: 2rem;
   left: 50%;
   transform: translateX(-40%);
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   font-size: 0.9rem;
   color: #fffdfd;
   letter-spacing: 0.2em;
@@ -24,10 +24,12 @@
 }
 
 @keyframes fadeInOutSlow {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0;
   }
-  40%, 60% {
+  40%,
+  60% {
     opacity: 0.7;
   }
 }
@@ -45,7 +47,7 @@
   padding: 12px 24px;
   z-index: 10000;
   text-decoration: none;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
   border-radius: 0 0 8px 8px;
@@ -70,29 +72,65 @@ button:focus-visible {
    KONAMI CODE EASTER EGG
    ========================================== */
 
-
 /* ── Scanline flicker ─────────────────────────────────────────── */
 @keyframes konami-scan-flicker {
-  0%   { opacity: 0.7; transform: translateY(0); }
-  25%  { opacity: 0.3; transform: translateY(-2px); }
-  50%  { opacity: 0.9; transform: translateY(1px); }
-  75%  { opacity: 0.2; transform: translateY(-1px); }
-  100% { opacity: 0.8; transform: translateY(0); }
+  0% {
+    opacity: 0.7;
+    transform: translateY(0);
+  }
+  25% {
+    opacity: 0.3;
+    transform: translateY(-2px);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translateY(1px);
+  }
+  75% {
+    opacity: 0.2;
+    transform: translateY(-1px);
+  }
+  100% {
+    opacity: 0.8;
+    transform: translateY(0);
+  }
 }
 
 /* ── Body filter chaos ────────────────────────────────────────── */
 @keyframes konami-filter-cycle {
-  0%   { filter: hue-rotate(0deg)   invert(0)   saturate(1)   brightness(1); }
-  10%  { filter: hue-rotate(90deg)  invert(0.8) saturate(3)   brightness(1.4); }
-  20%  { filter: hue-rotate(180deg) invert(0)   saturate(0.2) brightness(0.7); }
-  30%  { filter: hue-rotate(270deg) invert(0.6) saturate(4)   brightness(1.6); }
-  40%  { filter: hue-rotate(45deg)  invert(0)   saturate(2)   brightness(1.1); }
-  50%  { filter: hue-rotate(320deg) invert(0.9) saturate(1)   brightness(0.8); }
-  60%  { filter: hue-rotate(200deg) invert(0)   saturate(3)   brightness(1.3); }
-  70%  { filter: hue-rotate(130deg) invert(0.4) saturate(2)   brightness(1.5); }
-  80%  { filter: hue-rotate(60deg)  invert(0)   saturate(1.5) brightness(1); }
-  90%  { filter: hue-rotate(350deg) invert(0.2) saturate(1)   brightness(0.9); }
-  100% { filter: hue-rotate(0deg)   invert(0)   saturate(1)   brightness(1); }
+  0% {
+    filter: hue-rotate(0deg) invert(0) saturate(1) brightness(1);
+  }
+  10% {
+    filter: hue-rotate(90deg) invert(0.8) saturate(3) brightness(1.4);
+  }
+  20% {
+    filter: hue-rotate(180deg) invert(0) saturate(0.2) brightness(0.7);
+  }
+  30% {
+    filter: hue-rotate(270deg) invert(0.6) saturate(4) brightness(1.6);
+  }
+  40% {
+    filter: hue-rotate(45deg) invert(0) saturate(2) brightness(1.1);
+  }
+  50% {
+    filter: hue-rotate(320deg) invert(0.9) saturate(1) brightness(0.8);
+  }
+  60% {
+    filter: hue-rotate(200deg) invert(0) saturate(3) brightness(1.3);
+  }
+  70% {
+    filter: hue-rotate(130deg) invert(0.4) saturate(2) brightness(1.5);
+  }
+  80% {
+    filter: hue-rotate(60deg) invert(0) saturate(1.5) brightness(1);
+  }
+  90% {
+    filter: hue-rotate(350deg) invert(0.2) saturate(1) brightness(0.9);
+  }
+  100% {
+    filter: hue-rotate(0deg) invert(0) saturate(1) brightness(1);
+  }
 }
 
 .konami-filter-chaos {
@@ -111,7 +149,9 @@ button:focus-visible {
   align-items: center;
   gap: 4px;
   opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
   pointer-events: none;
 }
 
@@ -121,7 +161,7 @@ button:focus-visible {
 }
 
 .konami-code-line {
-  font-family: 'Orbitron', monospace, sans-serif;
+  font-family: "Orbitron", monospace, sans-serif;
   font-size: 0.72rem;
   letter-spacing: 0.12em;
   color: #6b7bff;

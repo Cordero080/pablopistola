@@ -12,6 +12,44 @@
   z-index: 2;
 }
 
+/* Full-width glass panel behind the projects content */
+.projects-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  top: -80px;
+  /* Expand to full viewport width from a centered parent */
+  left: calc(-50vw + 50%);
+  width: 100vw;
+  background: rgba(6, 8, 18, 0.45);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  /* Long gradual fade — starts 80px above section, fully opaque 200px in */
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0px,
+    rgba(0, 0, 0, 0.1) 60px,
+    rgba(0, 0, 0, 0.6) 140px,
+    black 280px
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0px,
+    rgba(0, 0, 0, 0.1) 60px,
+    rgba(0, 0, 0, 0.6) 140px,
+    black 280px
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-section::before {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
 /* ── ROW ── */
 .project-row {
   display: flex;
