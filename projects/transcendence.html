@@ -16,7 +16,7 @@
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tamagotchi Transcendence | Pablo Cordero</title>
+    <title>XENOCHI | Pablo Cordero</title>
     <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
     <link
       rel="icon"
@@ -187,7 +187,7 @@
       <section class="project-hero">
         <div class="project-hero-content">
           <a href="/home" class="back-link">← Back to Projects</a>
-          <h1 class="project-title">TAMAGOTCHI TRANSCENDENCE</h1>
+          <h1 class="project-title">XENOCHI</h1>
           <p class="project-tagline">
             Tamagotchi-style evolution simulator — 5 stages, 32 Blender
             animations, Three.js rendering, hidden Battle Arena easter egg.
@@ -302,12 +302,12 @@
           <div class="about-description">
             <h2>About</h2>
             <p>
-              Tamagotchi Transcendence is an evolution simulator where a digital
-              creature progresses through stages of color and consciousness,
-              ultimately reaching a state of transcendence. This project
-              represents a complete reimagining of my earlier
-              <strong>transcendence-pet-sim</strong>, rebuilt from the ground up
-              with a full 3D pipeline and expanded gameplay systems.
+              XENOCHI is an evolution simulator rebuilt from scratch with a full
+              3D pipeline — creature modeled, rigged, and animated in
+              <strong>Blender</strong> (32 unique animations), loaded into the
+              browser via <strong>Three.js FBX</strong>. The main game is
+              vanilla JavaScript with no framework overhead; game state, stat
+              decay timers, and evolution transitions are all hand-rolled.
             </p>
 
             <h3
@@ -317,63 +317,18 @@
                 margin-bottom: 0.75rem;
               "
             >
-              Technical Implementation
+              Engineering Highlights
             </h3>
             <p>
-              I modeled, rigged, and animated the creature in
-              <strong>Blender</strong>, creating 32 unique animations that flow
-              through <strong>Three.js via FBX</strong>. The game features
-              incremental size scaling with each evolution and a complete audio
-              pass including contextual music switching and training sound
-              effects.
-            </p>
-
-            <h3
-              style="
-                color: rgba(255, 255, 255, 0.9);
-                margin-top: 1.5rem;
-                margin-bottom: 0.75rem;
-              "
-            >
-              Core Mechanics & The Arc
-            </h3>
-            <p>
-              Four care actions — feeding, dancing, sleeping, training — must
-              all complete each cycle while managing stat decay. The creature
-              moves through five color stages from blue to translucent white.
-              Neglect leads to deletion. Balanced care leads to the final white
-              form, where only training remains and the creature exists in a
-              state of near-transparency with a qi-gong idle animation.
-            </p>
-
-            <h3
-              style="
-                color: rgba(255, 255, 255, 0.9);
-                margin-top: 1.5rem;
-                margin-bottom: 0.75rem;
-              "
-            >
-              Easter Egg: Battle Arena
-            </h3>
-            <p>
-              A hidden button reveals a <strong>React Three Fiber</strong>
-              experience featuring four distinct scenes: a dance battle with
-              chrome cats under neon spotlights, a neopunk fighting arena, a
-              Japanese training dojo with animated cherry blossoms and
-              lantern-lit bamboo poles, and the Indigo Claw Dojo with its
-              darker, meditative atmosphere.
-            </p>
-
-            <p
-              style="
-                margin-top: 1.5rem;
-                font-style: italic;
-                color: rgba(255, 255, 255, 0.7);
-              "
-            >
-              This project synthesizes my backgrounds in visual art, martial
-              arts philosophy, and software development into a meditation on
-              growth, discipline, and letting go.
+              Shipped as a <strong>PWA</strong> with a service worker for
+              offline support. Fully responsive — portrait and landscape layouts
+              on mobile handled through a dedicated CSS layer that wins cascade
+              without <code>!important</code>. Contextual audio management
+              (music switching, training SFX) via the Web Audio API. The hidden
+              Battle Arena easter egg is a separate
+              <strong>React Three Fiber</strong>
+              app with four hand-built 3D scenes, demonstrating the ability to
+              work across both vanilla and React stacks.
             </p>
           </div>
 
@@ -388,21 +343,23 @@
                 <span class="tech-tag">JavaScript</span>
                 <span class="tech-tag">SCSS</span>
                 <span class="tech-tag">Web Audio API</span>
+                <span class="tech-tag">PWA</span>
+                <span class="tech-tag">Service Worker</span>
               </div>
             </div>
 
             <div class="detail-card">
               <h3>My Role</h3>
               <p>
-                Solo developer — 3D modeling, rigging, animation (32 unique
-                animations), game logic, audio design, and frontend
-                implementation.
+                Solo — full pipeline from Blender (modeling, rigging, 32
+                animations) through game logic, state management, audio, and
+                responsive frontend.
               </p>
             </div>
 
             <div class="detail-card">
               <h3>Project Type</h3>
-              <p>Personal Project / Game Development</p>
+              <p>Personal Project — Full-Stack Web Engineering & 3D</p>
             </div>
           </div>
         </div>
@@ -516,15 +473,15 @@
                 stroke="currentColor"
                 stroke-width="2"
               >
-                <path
-                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
-                />
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                <line x1="12" y1="18" x2="12.01" y2="18" />
               </svg>
             </div>
-            <h3>Open Source</h3>
+            <h3>PWA & Mobile</h3>
             <p>
-              Full codebase available on GitHub — explore the Three.js/R3F
-              integration and Blender workflow.
+              Installable via service worker with offline support. Fully
+              responsive across portrait, landscape, and tablet — no framework,
+              pure CSS cascade.
             </p>
           </div>
         </div>
@@ -556,11 +513,6 @@
 │  FINAL STAGE:  🧘 Meditation Only                                │
 └─────────────────────────────────────────────────────────────────┘
           </pre>
-          <p class="diagram-caption">
-            Starting from a glitched egg, the creature grows through each color
-            stage. Neglect leads to deletion; balanced care leads to
-            transcendence.
-          </p>
         </div>
       </section>
 
@@ -651,43 +603,6 @@
             </div>
             <h3>Indigo Claw Dojo</h3>
             <p>Darker, meditative atmosphere for focused training.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Design System -->
-      <section class="project-design">
-        <h2>Design System</h2>
-        <div class="design-grid">
-          <div class="color-palette">
-            <h3>Evolution Colors</h3>
-            <div class="colors">
-              <div class="color-swatch" style="background: #4a90d9">
-                <span>Blue</span>
-                <code>Stage 1</code>
-              </div>
-              <div class="color-swatch" style="background: #f4d03f">
-                <span>Yellow</span>
-                <code>Stage 2</code>
-              </div>
-              <div class="color-swatch" style="background: #27ae60">
-                <span>Green</span>
-                <code>Stage 3</code>
-              </div>
-              <div class="color-swatch" style="background: #e74c3c">
-                <span>Red</span>
-                <code>Stage 4</code>
-              </div>
-            </div>
-          </div>
-          <div class="design-effects">
-            <h3>Visual Effects</h3>
-            <ul>
-              <li>Incremental size scaling per evolution</li>
-              <li>Translucent white final form</li>
-              <li>Glitched egg spawn animation</li>
-              <li>Qi-gong meditation idle loop</li>
-            </ul>
           </div>
         </div>
       </section>

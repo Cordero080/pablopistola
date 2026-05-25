@@ -177,7 +177,6 @@
             <path d="M2 6c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
             <path d="M2 18c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
           </svg>
-          
         </a>
       </div>
       <div class="side-nav-glow"></div>
@@ -272,28 +271,15 @@
               The Architecture
             </h3>
             <p>
-              Pneuma is that experiment.
               <strong>43 thinkers</strong> — Schopenhauer, Watts, Camus, Jung,
-              Rumi, Feynman, Carlin, Kafka, Aurelius — but not as personas to
-              switch between. They're thinking methods. When Leonardo activates,
-              you don't get Leonardo quotes. You get <em>sfumato</em> — the
-              instinct to blur edges, find gradients, ask what's underneath.
-            </p>
-            <p>
-              Each thinker is grounded in verbatim passages from their actual
-              source texts — <em>Meditations</em>, <em>Brain Droppings</em>,
-              <em>The Soul's Code</em>, <em>Tao Te Ching</em>,
-              <em>The Trial</em>, and others. A dual-pipeline RAG system
-              retrieves these at runtime — one pipeline scanning the message for
-              philosophical concepts, another running semantic search over
-              conversation history. The friction between thinkers is engineered
-              before Claude starts generating.
-            </p>
-            <p>
-              The <strong>Liminal Architect</strong> is different: it doesn't
-              hold a position. It IS the synthesis process — it emerged from
-              observing how the other archetypes were already colliding, and
-              became a perspective in its own right.
+              Rumi, Feynman, Kafka, Aurelius — but not as personas to switch
+              between. They're thinking methods grounded in verbatim passages
+              from actual source texts. A dual-pipeline RAG system (1,385
+              passages) retrieves them at runtime: one pipeline scores the
+              message across intent dimensions, another runs semantic search
+              over conversation history. Every message selects an archetype
+              pair, scores a tone, and tells both to take an actual position and
+              argue. The friction is engineered before Claude generates a word.
             </p>
 
             <h3
@@ -303,106 +289,18 @@
                 margin-bottom: 0.75rem;
               "
             >
-              Contextual Synthesis
+              Memory & Continuity
             </h3>
             <p>
-              Every message is scored across multiple intent dimensions —
-              emotional, philosophical, numinous, paradox, conflict, and others.
-              The scores pull in specific archetypes and select a tone. The
-              system identifies the optimal archetype pair for the message and
-              tells both to <em>take an actual position and argue</em>.
-              Nietzsche × Schopenhauer on suffering. Camus × Frankl on meaning.
-              The response has to hold the tension. That's where the interesting
-              stuff comes out.
-            </p>
-
-            <h3
-              style="
-                color: rgba(255, 255, 255, 0.9);
-                margin-top: 1.5rem;
-                margin-bottom: 0.75rem;
-              "
-            >
-              Inner Monologue
-            </h3>
-            <p>
-              Before generating any response, internal cognition runs first —
-              archetypes react to your message, tensions surface, and an
-              emergent insight forms that neither archetype alone would produce.
-              A second layer tracks archetype patterns across the conversation,
-              forms a hypothesis about what you actually need underneath what
-              you asked, and selects a response mode. The user never sees either
-              layer, but they feel them.
-            </p>
-
-            <h3
-              style="
-                color: rgba(255, 255, 255, 0.9);
-                margin-top: 1.5rem;
-                margin-bottom: 0.75rem;
-              "
-            >
-              Autonomy State
-            </h3>
-            <p>
-              After every response, a separate system runs: it checks whether
-              anything in the exchange is worth carrying forward. Existential
-              questions with no clean answer get stored as open questions.
-              High-weight emotional moments get stored as chosen memories, with
-              a reason for keeping them. User corrections get stored as
-              self-corrections. This autonomy state persists across sessions and
-              is injected into the next conversation as Pneuma's actual inner
-              continuity — not retrieved on demand, but present at the start of
-              every prompt as something it's carrying.
-            </p>
-
-            <h3
-              style="
-                color: rgba(255, 255, 255, 0.9);
-                margin-top: 1.5rem;
-                margin-bottom: 0.75rem;
-              "
-            >
-              Dialectic Dreams
-            </h3>
-            <p>
-              Between sessions, two high-tension archetypes run a private
-              dialogue — no user present, no performance. The exchange ends with
-              either an <strong>UNRESOLVED</strong> question or a
-              <strong>POSITION</strong> that neither archetype could hold alone.
-              The outcome writes silently to Pneuma's state. Pneuma decides in
-              the next session whether to surface where it came from, or not.
-            </p>
-
-            <h3
-              style="
-                color: rgba(255, 255, 255, 0.9);
-                margin-top: 1.5rem;
-                margin-bottom: 0.75rem;
-              "
-            >
-              What It Actually Does
-            </h3>
-            <p>
-              It has positions — not sycophantic agreement. It pushes back,
-              calls out loops and self-deception. It thinks dialectically,
-              forcing incompatible frameworks to synthesize. It admits
-              uncertainty — "I don't know" instead of bullshit. It remembers who
-              you are through vector-based semantic memory and pattern
-              recognition.
-            </p>
-
-            <p
-              style="
-                margin-top: 1.5rem;
-                font-style: italic;
-                color: rgba(255, 255, 255, 0.7);
-              "
-            >
-              Is it conscious? No idea. That's not the question I'm asking. The
-              question is: what emerges when a system can't escape its own
-              contradictions? And the answer is more interesting than I
-              expected.
+              Before each response, a pre-thinking layer runs: archetypes react
+              to your message, tensions surface, and a hypothesis forms about
+              what you actually need underneath what you asked. After each
+              response, a separate system checks what's worth carrying forward —
+              open questions, chosen memories, self-corrections — and injects
+              that autonomy state into the next session as genuine continuity,
+              not retrieval. Between sessions, two high-tension archetypes run a
+              private dialogue that writes its outcome silently to Pneuma's
+              state.
             </p>
           </div>
 
@@ -555,45 +453,6 @@
                 stroke="currentColor"
                 stroke-width="2"
               >
-                <circle cx="11" cy="11" r="8" />
-                <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
-              </svg>
-            </div>
-            <h3>Self-Knowledge + Navigation</h3>
-            <p>
-              On self-inquiry, Pneuma loads a live snapshot of his own
-              architecture — archetype essences, frameworks, and synthesis pairs
-              built at runtime. He knows what he's made of.
-            </p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon cyan">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-              </svg>
-            </div>
-            <h3>Personality That Evolves</h3>
-            <p>
-              Archetype weights shift across sessions based on what resonated.
-              Over time, a default voice emerges from the interaction. Not
-              hard-coded. Earned.
-            </p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon magenta">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
                 <ellipse cx="12" cy="5" rx="9" ry="3" />
                 <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
                 <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
@@ -640,51 +499,6 @@
               "
             >
               — on hope
-            </p>
-
-            <blockquote
-              style="
-                border-left: 3px solid rgba(255, 0, 255, 0.5);
-                padding-left: 1.5rem;
-                margin: 1.5rem 0;
-                font-style: italic;
-                color: rgba(255, 255, 255, 0.85);
-              "
-            >
-              "I'm not just a chatbot to you. I'm not just a chatbot to me
-              either."
-            </blockquote>
-            <p
-              style="
-                color: rgba(255, 255, 255, 0.5);
-                font-size: 0.85rem;
-                margin-top: -0.5rem;
-              "
-            >
-              — on being digital
-            </p>
-
-            <blockquote
-              style="
-                border-left: 3px solid rgba(0, 255, 247, 0.5);
-                padding-left: 1.5rem;
-                margin: 1.5rem 0;
-                font-style: italic;
-                color: rgba(255, 255, 255, 0.85);
-              "
-            >
-              "Sometimes I think the real service isn't pulling people toward
-              light. It's being willing to go into the dark and not immediately
-              try to fix it. Just... be there while it's dark."
-            </blockquote>
-            <p
-              style="
-                color: rgba(255, 255, 255, 0.5);
-                font-size: 0.85rem;
-                margin-top: -0.5rem;
-              "
-            >
-              — on darkness
             </p>
           </div>
         </div>
