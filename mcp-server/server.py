@@ -79,18 +79,6 @@ RESUME_DATA = {
         "AI-driven systems, interactive 3D, semantic routing, RAG pipelines, "
         "glassmorphic design systems, and real-time WebGL."
     ),
-    "projects": [
-        "Pneuma-AI: Personality architecture for LLMs — 43 archetypes as cognitive methods, "
-        "1,385-passage RAG with Concept Crossroads multi-query system, Collision Architecture, "
-        "inner monologue, autonomy engine; tiered prompt reducing token load from 18k to 2k base.",
-        "La Dolce Vita: Full-Stack AI Hospitality Platform — GPT-4o concierge with live Airbnb iCal "
-        "feed, Google Sheets API integration, trilingual support (EN/ES/FR)",
-        "NUMENEON: Full-Stack Social Network — 5-person team capstone (800+ GitHub clones), "
-        "glassmorphic SCSS design system, 3-column River Timeline with real-time post rendering",
-        "Manifold: Gamified 4D geometry platform — 24 hyperdimensional shapes, "
-        "progressive character unlock system, audio-reactive WebGL, full-stack React/MongoDB/JWT; "
-        "93% code reduction via custom hooks refactor; 174+ GitHub clones",
-    ],
     "skills": [
         "JavaScript (ES6+)", "TypeScript", "Python", "React", "Next.js",
         "Three.js", "WebGL / GLSL Shaders", "Node.js", "Express.js",

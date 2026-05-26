@@ -1,4 +1,4 @@
-// Mobile hamburger menu toggle
+// Mobile hamburger menu toggle — shared across about, resume, and project pages
 (function () {
   const hamburgerBtn = document.getElementById("hamburgerBtn");
   const sideNav = document.querySelector(".side-nav");
