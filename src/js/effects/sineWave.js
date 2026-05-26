@@ -6,6 +6,7 @@ function SineWaveGenerator(options) {
   if (!this.waves.length) throw "No waves specified";
 
   this.direction = -1; // 👈 control wave direction here
+  this.isHomePage = window.location.pathname.includes("home");
 
   this._resizeWidth();
   window.addEventListener("resize", this._resizeWidth.bind(this));
@@ -109,8 +110,6 @@ SineWaveGenerator.prototype.update = function (time) {
   this._lastFrame = now;
   this.time += 0.007 * this.direction; // 👈 dynamic direction
 
-  // Page-aware reactivity: home page is more reactive
-  this.isHomePage = window.location.pathname.includes("home");
   const smoothing = this.isHomePage ? 0.15 : 0.1; // home more snappy
   this.smoothMouseX += (this.mouseX - this.smoothMouseX) * smoothing;
   this.smoothMouseY += (this.mouseY - this.smoothMouseY) * smoothing;
@@ -322,17 +321,3 @@ window.waveGen = new SineWaveGenerator({
     }
   },
 });
-
-// This file has moved to js/sineWave.js
-// Please update your HTML <script> tag to:
-// <script src="js/sineWave.js"></script>
-
-// Add a fourth card beneath the three, styled as requested
-const container = document.querySelector(".container");
-if (container) {
-  const moreCard = document.createElement("div");
-  moreCard.className = "card more-card";
-  moreCard.innerHTML = '<span class="glitch" data-text="more">more</span>';
-  container.appendChild(moreCard);
-} // how to add more words to the more card
-//

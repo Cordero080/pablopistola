@@ -467,7 +467,6 @@ function buildChatUI() {
       #mcp-chat-panel { width: 290px; height: 400px; }
       #mcp-chat-toggle { width: 40px; height: 40px; }
       #mcp-chat-toggle svg { width: 18px; height: 18px; }
-      #mcp-chat-toggle::after { width: 40px; height: 40px; }
     }
   `;
   document.head.appendChild(style);

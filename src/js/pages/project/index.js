@@ -1,17 +1,3 @@
-// Shared init for project detail pages: sine wave background + hamburger menu
-document.addEventListener("DOMContentLoaded", () => {
-  // Initialize sine wave background
-  const canvas = document.getElementById("waves");
-  if (canvas && typeof SineWave !== "undefined") {
-    new SineWave(canvas, {
-      speed: 0.008,
-      amplitude: 40,
-      wavelength: 0.015,
-      strokeStyle: "rgba(0, 255, 247, 0.08)",
-    });
-  }
-});
-
 // Mobile hamburger menu toggle
 (function () {
   const hamburgerBtn = document.getElementById("hamburgerBtn");
