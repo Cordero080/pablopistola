@@ -121,12 +121,9 @@
           span.style.transform = "scaleX(1)";
         }, i * 40);
       });
-    // Toggle theme back once unflip finishes
+    // Unflip letters only — theme stays as-is until next hover
     const totalDelay = (spans.length - 1) * 40 + 350;
     setTimeout(() => {
-      if (flipped && typeof window.toggleComplementaryColors === "function") {
-        window.toggleComplementaryColors();
-      }
       flipped = false;
     }, totalDelay);
   }
