@@ -104,6 +104,8 @@
             window.toggleComplementaryColors();
           }
           flipped = true;
+          // Mobile: auto-unmirror after theme settles — one tap = full cycle
+          if (isMobile()) setTimeout(flipOut, 300);
         }, totalDelay);
       },
       isMobile() ? 0 : 500,
@@ -125,6 +127,20 @@
     const totalDelay = (spans.length - 1) * 40 + 350;
     setTimeout(() => {
       flipped = false;
+      // Remove spans so CSS gradient re-renders in whatever mode is active
+      const plain = title.textContent;
+      title.innerHTML = plain
+        .split("")
+        .map((ch) =>
+          ch === " "
+            ? `<span style="display:inline-block;width:0.35em"> </span>`
+            : ch,
+        )
+        .join("");
+      title.style.background = "";
+      title.style.webkitTextFillColor = "";
+      title.style.backgroundClip = "";
+      title.style.webkitBackgroundClip = "";
     }, totalDelay);
   }
 
@@ -136,9 +152,9 @@
     if (!isMobile()) flipOut();
   });
 
-  // Mobile: tap toggles
+  // Mobile: one tap = full mirror-then-unmirror cycle; ignore taps mid-animation
   title.addEventListener("click", () => {
-    if (!isMobile()) return;
-    flipped ? flipOut() : flipIn();
+    if (!isMobile() || flipped) return;
+    flipIn();
   });
 })();

@@ -110,13 +110,15 @@
     transform 0.3s ease;
 }
 
-.hero-title:hover {
-  --ht-a: #ffffff;
-  --ht-b: #c0d0dc;
-  --ht-c: #7a8f9e;
-  --ht-d: #1a2028;
-  --ht-e: #000000;
-  transform: scale(1.03) translateY(-2px);
+@media (hover: hover) {
+  .hero-title:hover {
+    --ht-a: #ffffff;
+    --ht-b: #c0d0dc;
+    --ht-c: #7a8f9e;
+    --ht-d: #1a2028;
+    --ht-e: #000000;
+    transform: scale(1.03) translateY(-2px);
+  }
 }
 
 .hero-subtitle {

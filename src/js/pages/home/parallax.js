@@ -130,6 +130,11 @@ document.addEventListener("DOMContentLoaded", () => {
     letterVectors = [];
     heroTitleEl.innerHTML = originalTitleHTML;
     heroTitleEl.style.textShadow = "";
+    // Clear inline styles set by ensureSpans() so CSS gradient takes back control
+    heroTitleEl.style.background = "";
+    heroTitleEl.style.webkitTextFillColor = "";
+    heroTitleEl.style.backgroundClip = "";
+    heroTitleEl.style.webkitBackgroundClip = "";
   }
 
   // === Unified RAF loop — three depth layers + decomposition ===

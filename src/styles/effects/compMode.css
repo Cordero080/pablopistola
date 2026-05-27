@@ -159,30 +159,33 @@ body.complementary-colors .hero-title .flip-ltr {
 }
 
 /* On hover (flip-back in progress) restore the bright gradient as a visual cue */
-body.complementary-colors .hero-title:hover {
-  --ht-a: #ffffff;
-  --ht-b: #c0d0dc;
-  --ht-c: #7a8f9e;
-  --ht-d: #1a2028;
-  --ht-e: #000000;
-  background: linear-gradient(
-    to bottom,
-    var(--ht-a) 0%,
-    var(--ht-b) 25%,
-    var(--ht-c) 50%,
-    var(--ht-d) 75%,
-    var(--ht-e) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: none;
-}
+/* Only on real hover devices — mobile :hover persists on tap and causes wrong colors */
+@media (hover: hover) {
+  body.complementary-colors .hero-title:hover {
+    --ht-a: #ffffff;
+    --ht-b: #c0d0dc;
+    --ht-c: #7a8f9e;
+    --ht-d: #1a2028;
+    --ht-e: #000000;
+    background: linear-gradient(
+      to bottom,
+      var(--ht-a) 0%,
+      var(--ht-b) 25%,
+      var(--ht-c) 50%,
+      var(--ht-d) 75%,
+      var(--ht-e) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: none;
+  }
 
-body.complementary-colors .hero-title:hover .flip-ltr {
-  --ht-a: #ffffff;
-  --ht-b: #c0d0dc;
-  --ht-c: #7a8f9e;
-  --ht-d: #1a2028;
-  --ht-e: #000000;
+  body.complementary-colors .hero-title:hover .flip-ltr {
+    --ht-a: #ffffff;
+    --ht-b: #c0d0dc;
+    --ht-c: #7a8f9e;
+    --ht-d: #1a2028;
+    --ht-e: #000000;
+  }
 }
