@@ -140,7 +140,7 @@ if (heroSection) {
 
     // ── Vertical position ── [mobile, tablet (≤900), desktop]
     // More negative = lower on screen. Adjust to align with hero text.
-    const bracketY = isMobileView ? -0.55 : W <= 900 ? 0.05 : -0.28;
+    const bracketY = isMobileView ? -0.55 : W <= 900 ? -0.28 : -0.28;
     leftBracket.position.y = bracketY;
     rightBracket.position.y = bracketY;
     rightBracket.position.z = -0.23; // slight depth offset on right bracket
