@@ -119,20 +119,63 @@ body.complementary-colors #waves {
 	z-index: 1;
 }
 
-/* Hero title: solid black in comp mode — high contrast against vivid background */
+/* Hero title: aluminum holographic black in comp mode */
 body.complementary-colors .hero-title {
-	background: none;
-	-webkit-background-clip: unset;
-	background-clip: unset;
-	-webkit-text-fill-color: #000;
-	color: #000;
+	--ht-a: #0c0e0f;
+	--ht-b: #1e2428;
+	--ht-c: #374047;
+	--ht-d: #161b1f;
+	--ht-e: #060809;
+	background: linear-gradient(
+		to bottom,
+		var(--ht-a) 0%,
+		var(--ht-b) 25%,
+		var(--ht-c) 50%,
+		var(--ht-d) 75%,
+		var(--ht-e) 100%
+	);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
 	text-shadow: none;
 	animation: none;
 }
 
+/* Spans created by the flip animation carry their own gradient via var(--ht-*).
+   With @property inherits:false those vars don't cascade down, so set them here. */
+body.complementary-colors .hero-title .flip-ltr {
+	--ht-a: #0c0e0f;
+	--ht-b: #1e2428;
+	--ht-c: #374047;
+	--ht-d: #161b1f;
+	--ht-e: #060809;
+}
+
+/* On hover (flip-back in progress) restore the bright gradient as a visual cue */
 body.complementary-colors .hero-title:hover {
-	background: none;
-	-webkit-text-fill-color: #000;
-	color: #000;
+	--ht-a: #ffffff;
+	--ht-b: #c0d0dc;
+	--ht-c: #7a8f9e;
+	--ht-d: #1a2028;
+	--ht-e: #000000;
+	background: linear-gradient(
+		to bottom,
+		var(--ht-a) 0%,
+		var(--ht-b) 25%,
+		var(--ht-c) 50%,
+		var(--ht-d) 75%,
+		var(--ht-e) 100%
+	);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
 	animation: none;
+}
+
+body.complementary-colors .hero-title:hover .flip-ltr {
+	--ht-a: #ffffff;
+	--ht-b: #c0d0dc;
+	--ht-c: #7a8f9e;
+	--ht-d: #1a2028;
+	--ht-e: #000000;
 }

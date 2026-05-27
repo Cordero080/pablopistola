@@ -156,6 +156,38 @@ SineWaveGenerator.prototype.drawSine = function (time, options, waveIndex) {
   } = options;
 
   const ctx = this.ctx;
+
+  // -------------------------------------------------
+  // APEX FADE (wave 0 only)
+  // Fades out the centre of the thick wave when
+  // its crest reaches the top of its arc, then
+  // fades back in as it descends.
+  //
+  // Tweak these values to change the feel:
+  //   proximity threshold  -> the -0.6 below sets when fade starts
+  //                          (higher = later / shorter fade window)
+  //   fade depth           -> the 0.9 multiplier sets how invisible
+  //                          it gets at peak (0 = invisible, 1 = full)
+  //   fade speed           -> the 0.03 EMA factor sets how fast it
+  //                          transitions (lower = slower / lazier)
+  //   edge protection      -> the 0.18 / 0.82 stops below set how
+  //                          far in from each end the fade begins
+  // -------------------------------------------------
+  if (waveIndex === 0) {
+    const yAxis0 = this.height / 2;
+    const cx = time * this.speed + (-yAxis0 + this.waveWidth / 2) / wavelength;
+    const s = Math.sin(cx); // -1 = crest (highest on screen), +1 = trough
+
+    // proximity: 0 when wave is below threshold, ramps to 1 at full crest
+    const proximity = Math.max(0, (-s - 0.6) / 0.4); // <- tweak -0.6 threshold here
+
+    // targetFade: 1 = fully visible, ~0.1 = near-invisible at peak
+    const targetFade = 1 - proximity * 0.9; // <- tweak 0.9 fade depth here
+
+    if (this._apexFade === undefined) this._apexFade = 1;
+    this._apexFade += (targetFade - this._apexFade) * 0.03; // <- tweak 0.03 speed here
+  }
+
   ctx.beginPath();
   ctx.lineWidth = lineWidth * this.dpr;
   ctx.strokeStyle = strokeStyle;
@@ -220,13 +252,45 @@ SineWaveGenerator.prototype.drawSine = function (time, options, waveIndex) {
       const yMid = (points[i].y + points[i + 1].y) / 2;
       ctx.quadraticCurveTo(points[i].x, points[i].y, xMid, yMid);
     }
-    // Connect to last point
     const last = points[points.length - 1];
     ctx.lineTo(last.x, last.y);
   }
 
   ctx.lineTo(this.width, yAxis);
   ctx.stroke();
+
+  // -------------------------------------------------
+  // APEX FADE erase pass (wave 0 only)
+  // The destination-out rect erases the centre zone.
+  // -------------------------------------------------
+  if (waveIndex === 0 && this._apexFade < 0.99) {
+    const eraseAmount = 1 - this._apexFade; // 0 = no erase, up to ~0.9
+
+    // Horizontal gradient: transparent at edges -> opaque in centre
+    // 0.18 / 0.82 stops = protected end-zones    <- tweak edge protection here
+    // 0.35 / 0.65 stops = where full erase begins <- tweak fade-in width here
+    const grad = ctx.createLinearGradient(
+      this.waveLeft,
+      0,
+      this.waveLeft + this.waveWidth,
+      0,
+    );
+    grad.addColorStop(0,    "rgba(0,0,0,0)");
+    grad.addColorStop(0.18, "rgba(0,0,0,0)");
+    grad.addColorStop(0.35, `rgba(0,0,0,${eraseAmount.toFixed(3)})`);
+    grad.addColorStop(0.5,  `rgba(0,0,0,${eraseAmount.toFixed(3)})`);
+    grad.addColorStop(0.65, `rgba(0,0,0,${eraseAmount.toFixed(3)})`);
+    grad.addColorStop(0.82, "rgba(0,0,0,0)");
+    grad.addColorStop(1,    "rgba(0,0,0,0)");
+    ctx.save();
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, this.width, this.height);
+    ctx.restore();
+  }
+  // -------------------------------------------------
+  // END APEX FADE
+  // -------------------------------------------------
 };
 
 SineWaveGenerator.prototype.loop = function () {
@@ -243,7 +307,7 @@ window.waveGen = new SineWaveGenerator({
     {
       timeModifier: 1,
       lineWidth: 20.5,
-      amplitude: 150,
+      amplitude: 130,
       wavelength: 300,
       segmentLength: 20,
       attraction: 1,
@@ -266,7 +330,7 @@ window.waveGen = new SineWaveGenerator({
     {
       timeModifier: 1,
       lineWidth: 0.5,
-      amplitude: 120,
+      amplitude: 150,
       wavelength: 150,
       segmentLength: 10,
       attraction: 1,

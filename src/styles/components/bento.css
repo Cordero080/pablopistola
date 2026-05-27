@@ -56,7 +56,7 @@
   align-items: center;
   gap: 3.5rem;
   padding: 3rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(233, 24, 24, 0.04);
 }
 .project-row:last-child {
   border-bottom: none;

@@ -57,14 +57,4 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     };
 
-  // Hero title click to toggle comp mode
-  const heroTitle = document.getElementById("heroTitle");
-  if (heroTitle) {
-    heroTitle.style.cursor = "pointer";
-    heroTitle.addEventListener("click", () => {
-      if (typeof window.toggleComplementaryColors === "function") {
-        window.toggleComplementaryColors();
-      }
-    });
-  }
 });
