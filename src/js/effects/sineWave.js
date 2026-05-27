@@ -275,13 +275,13 @@ SineWaveGenerator.prototype.drawSine = function (time, options, waveIndex) {
       this.waveLeft + this.waveWidth,
       0,
     );
-    grad.addColorStop(0,    "rgba(0,0,0,0)");
+    grad.addColorStop(0, "rgba(0,0,0,0)");
     grad.addColorStop(0.18, "rgba(0,0,0,0)");
     grad.addColorStop(0.35, `rgba(0,0,0,${eraseAmount.toFixed(3)})`);
-    grad.addColorStop(0.5,  `rgba(0,0,0,${eraseAmount.toFixed(3)})`);
+    grad.addColorStop(0.5, `rgba(0,0,0,${eraseAmount.toFixed(3)})`);
     grad.addColorStop(0.65, `rgba(0,0,0,${eraseAmount.toFixed(3)})`);
     grad.addColorStop(0.82, "rgba(0,0,0,0)");
-    grad.addColorStop(1,    "rgba(0,0,0,0)");
+    grad.addColorStop(1, "rgba(0,0,0,0)");
     ctx.save();
     ctx.globalCompositeOperation = "destination-out";
     ctx.fillStyle = grad;

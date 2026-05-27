@@ -73,7 +73,7 @@
       .map((ch) =>
         ch === " "
           ? `<span style="display:inline-block;width:0.35em"> </span>`
-          : `<span class="flip-ltr" style="${spanStyle}">${ch}</span>`
+          : `<span class="flip-ltr" style="${spanStyle}">${ch}</span>`,
       )
       .join("");
     title.style.webkitTextFillColor = "unset";
@@ -88,33 +88,39 @@
   function flipIn() {
     clearTimeout(flipTimeout);
     // Wait for CSS gradient transition to settle, then flip letters
-    flipTimeout = setTimeout(() => {
-      ensureSpans();
-      const spans = Array.from(title.querySelectorAll(".flip-ltr"));
-      spans.forEach((span, i) => {
+    flipTimeout = setTimeout(
+      () => {
+        ensureSpans();
+        const spans = Array.from(title.querySelectorAll(".flip-ltr"));
+        spans.forEach((span, i) => {
+          setTimeout(() => {
+            span.style.transform = "scaleX(-1)";
+          }, i * 55);
+        });
+        // Activate theme once last letter finishes flipping
+        const totalDelay = (spans.length - 1) * 55 + 350;
         setTimeout(() => {
-          span.style.transform = "scaleX(-1)";
-        }, i * 55);
-      });
-      // Activate theme once last letter finishes flipping
-      const totalDelay = (spans.length - 1) * 55 + 350;
-      setTimeout(() => {
-        if (typeof window.toggleComplementaryColors === "function") {
-          window.toggleComplementaryColors();
-        }
-        flipped = true;
-      }, totalDelay);
-    }, isMobile() ? 0 : 500); // no gradient settle delay on mobile
+          if (typeof window.toggleComplementaryColors === "function") {
+            window.toggleComplementaryColors();
+          }
+          flipped = true;
+        }, totalDelay);
+      },
+      isMobile() ? 0 : 500,
+    ); // no gradient settle delay on mobile
   }
 
   function flipOut() {
     clearTimeout(flipTimeout);
     const spans = Array.from(title.querySelectorAll(".flip-ltr"));
-    spans.slice().reverse().forEach((span, i) => {
-      setTimeout(() => {
-        span.style.transform = "scaleX(1)";
-      }, i * 40);
-    });
+    spans
+      .slice()
+      .reverse()
+      .forEach((span, i) => {
+        setTimeout(() => {
+          span.style.transform = "scaleX(1)";
+        }, i * 40);
+      });
     // Toggle theme back once unflip finishes
     const totalDelay = (spans.length - 1) * 40 + 350;
     setTimeout(() => {
@@ -126,8 +132,12 @@
   }
 
   // Desktop: hover
-  title.addEventListener("mouseenter", () => { if (!isMobile()) flipIn(); });
-  title.addEventListener("mouseleave", () => { if (!isMobile()) flipOut(); });
+  title.addEventListener("mouseenter", () => {
+    if (!isMobile()) flipIn();
+  });
+  title.addEventListener("mouseleave", () => {
+    if (!isMobile()) flipOut();
+  });
 
   // Mobile: tap toggles
   title.addEventListener("click", () => {

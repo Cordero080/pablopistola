@@ -8,6 +8,9 @@
 @import url("https://use.typekit.net/fpe8zfm.css");
 @import url("https://use.typekit.net/pnd4foc.css");
 
+/* === GOOGLE FONTS === */
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+
 /* === LOCAL FONTS === */
 @font-face {
   font-family: "Future Z";

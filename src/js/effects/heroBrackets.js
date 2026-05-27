@@ -121,23 +121,17 @@ if (heroSection) {
     rightBracket.scale.set(s, s, s);
 
     let offsetWorld;
-    if (isMobileView) {
-      // ── MOBILE TWEAKS ─────────────────────────────────────────────────────
-      // Horizontal spread: fraction of world width (0 = center, 0.5 = viewport edge)
-      // Increase to push brackets further apart, decrease to bring them closer
-      offsetWorld = worldW * 0.465;
-      // ─────────────────────────────────────────────────────────────────────
-    } else {
-      const heroTitle = heroSection.querySelector(".hero-title");
-      const halfContentPx = heroTitle
-        ? heroTitle.getBoundingClientRect().width / 2
-        : W * 0.28;
-      offsetWorld = Math.min((halfContentPx + 32) * pxToWorld, worldW * 0.46);
-    }
+    // Both mobile and desktop: hug the actual title width
+    const heroTitle = heroSection.querySelector(".hero-title");
+    const halfContentPx = heroTitle
+      ? heroTitle.getBoundingClientRect().width / 2
+      : W * 0.28;
+    const padding = isMobileView ? 18 : 32; // tighter gap on mobile
+    offsetWorld = Math.min((halfContentPx + padding) * pxToWorld, worldW * 0.46);
 
     leftBracket.position.x = -offsetWorld;
     rightBracket.position.x = offsetWorld;
-    const bracketY = isMobileView ? -0.45 : W <= 900 ? 0.05 : -0.28;
+    const bracketY = isMobileView ? -0.37 : W <= 900 ? 0.05 : -0.32;
     leftBracket.position.y = bracketY;
     rightBracket.position.y = bracketY;
     rightBracket.position.z = -0.23;

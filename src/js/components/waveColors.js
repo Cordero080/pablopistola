@@ -56,5 +56,4 @@ document.addEventListener("DOMContentLoaded", function () {
         if (window.stopFeatherEffect) window.stopFeatherEffect();
       }
     };
-
 });
