@@ -185,13 +185,7 @@ if (heroSection) {
 
   // ── Complementary color mode — invert bracket material ──────────────────────
   function applyCompMode(active) {
-    if (active) {
-      material.color.set(0xfafafa); // near-white body
-      material.specular.set(0x111111); // dark specular — edges go dark
-    } else {
-      material.color.set(0x050505); // near-black body
-      material.specular.set(0xffffff); // white specular — edges catch light
-    }
+    canvas.style.display = active ? "none" : "";
     material.needsUpdate = true;
   }
 
