@@ -13,7 +13,7 @@ function initEasterEggColors() {
     window.waveGen.width,
     0,
   );
-  gradient.addColorStop(0, "#022513");
+  gradient.addColorStop(0, "#022513cd");
   gradient.addColorStop(0.2, "#00ff80");
   gradient.addColorStop(0.5, "#ffaa00");
   gradient.addColorStop(1, "#ff4500");

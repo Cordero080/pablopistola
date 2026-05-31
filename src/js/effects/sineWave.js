@@ -152,7 +152,7 @@ SineWaveGenerator.prototype.drawSine = function (time, options, waveIndex) {
     // Per-wave attraction properties
     attraction = 1, // 1 = normal pull toward cursor, -1 = repel, 0 = no effect
     attractionStrength = 1, // multiplier for how strong the attraction is
-    attractionRadius = 350, // how far the influence reaches
+    attractionRadius = 100, // how far the influence reaches
   } = options;
 
   const ctx = this.ctx;
@@ -301,12 +301,12 @@ SineWaveGenerator.prototype.loop = function () {
 
 window.waveGen = new SineWaveGenerator({
   el: document.getElementById("waves"),
-  speed: 0.6, // slowed down for a calmer vibe
+  speed: 0.4, // slowed down for a calmer vibe
   waves: [
     // Wave 1: Heavy leader - very slow due to mass
     {
       timeModifier: 1,
-      lineWidth: 20.5,
+      lineWidth: 25.5,
       amplitude: 130,
       wavelength: 300,
       segmentLength: 20,
@@ -318,7 +318,7 @@ window.waveGen = new SineWaveGenerator({
     // Wave 2: Light ribbon - quick to respond
     {
       timeModifier: 1,
-      lineWidth: 1,
+      lineWidth: 2,
       amplitude: 100,
       wavelength: 100,
       attraction: 1,
