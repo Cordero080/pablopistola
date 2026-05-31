@@ -40,6 +40,58 @@ if (!isMobile) {
   document.addEventListener("DOMContentLoaded", updateParallax);
 }
 
+// Gel tilt on card image panels — desktop only
+if (!isMobile) {
+  const TILT_MAX = 3.5;
+  const lerp = (a, b, t) => a + (b - a) * t;
+
+  projectRows.forEach((row) => {
+    const card = row.querySelector(".project-card-link");
+    if (!card) return;
+
+    let tx = 0,
+      ty = 0,
+      cx = 0,
+      cy = 0;
+    let rafId = null;
+    let active = false;
+
+    function tick() {
+      cx = lerp(cx, tx, 0.1);
+      cy = lerp(cy, ty, 0.1);
+      card.style.transform = `perspective(700px) rotateX(${cx}deg) rotateY(${cy}deg)`;
+      const done = Math.abs(cx - tx) < 0.01 && Math.abs(cy - ty) < 0.01;
+      if (done) {
+        cx = tx;
+        cy = ty;
+        if (!active) card.style.transform = "";
+        rafId = null;
+      } else {
+        rafId = requestAnimationFrame(tick);
+      }
+    }
+
+    function startTick() {
+      if (!rafId) rafId = requestAnimationFrame(tick);
+    }
+
+    card.addEventListener("mousemove", (e) => {
+      const r = card.getBoundingClientRect();
+      tx = -((e.clientY - r.top) / r.height - 0.5) * 2 * TILT_MAX;
+      ty = ((e.clientX - r.left) / r.width - 0.5) * 2 * TILT_MAX;
+      active = true;
+      startTick();
+    });
+
+    card.addEventListener("mouseleave", () => {
+      tx = 0;
+      ty = 0;
+      active = false;
+      startTick();
+    });
+  });
+}
+
 // Inject WATCH DEMO or COMING SOON below each View Project CTA
 function injectDemoLinks() {
   document.querySelectorAll(".project-card-info").forEach((info) => {
