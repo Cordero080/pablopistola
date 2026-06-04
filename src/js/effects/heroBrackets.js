@@ -135,15 +135,15 @@ if (heroSection) {
       worldW * 0.46, // hard cap: never wider than 46% of world width
     );
 
-    leftBracket.position.x = -offsetWorld;
+    leftBracket.position.x = -offsetWorld + 0.18;
     rightBracket.position.x = offsetWorld;
 
     // ── Vertical position ── [mobile, tablet (≤900), desktop]
     // More negative = lower on screen. Adjust to align with hero text.
-    const bracketY = isMobileView ? -0.55 : W <= 900 ? -0.28 : -0.35;
+    const bracketY = isMobileView ? -0.48 : W <= 900 ? -0.28 : -0.34;
     leftBracket.position.y = bracketY;
     rightBracket.position.y = bracketY;
-    rightBracket.position.z = -0.23; // slight depth offset on right bracket
+    rightBracket.position.z = -0.23;
   }
 
   // ── Animation — very subtle tilt, face-on ───────────────────────────────────

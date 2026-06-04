@@ -38,6 +38,7 @@
   position: relative;
   z-index: 2;
   text-align: center;
+  width: min(700px, 100%);
   max-width: 700px;
   margin: 0 auto;
   display: flex;
@@ -121,7 +122,7 @@
 
 .hero-subtitle {
   font-family: "IBM Plex Sans", sans-serif;
-  font-size: clamp(0.8rem, 2vw, 1rem);
+  font-size: clamp(0.87rem, 2.16vw, 1.08rem);
   font-weight: 300;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -132,9 +133,10 @@
 
 .hero-underline {
   display: block;
-  width: 60%;
+  width: 90%;
   height: 3px;
   margin: 0.18em auto 1.2em auto;
+  transform: translateX(-7px);
   background: linear-gradient(90deg, #00fff7, #cc00ff);
   background-size: 200% 100%;
   border-radius: 3px;
@@ -363,10 +365,14 @@
     letter-spacing: 0.1em;
   }
   .hero-subtitle {
-    font-size: 0.58rem;
+    font-size: 0.67rem;
     letter-spacing: 0.08em;
     white-space: normal;
     text-align: center;
+  }
+  .hero-underline {
+    width: 82%;
+    transform: translateX(0);
   }
   .hero-section {
     min-height: auto;
