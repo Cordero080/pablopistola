@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sketchy, But Keeps Spinning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Orbitron:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="src/styles/pages/landing/landing.css" />
+  <style>
+    ::-webkit-scrollbar { width: 0.625rem; height: 0.625rem; }
+    ::-webkit-scrollbar-thumb {
+      background: #111;
+      border-radius: 0.3125rem;
+      box-shadow: inset 0.125rem 0.125rem 0.125rem rgba(255,255,255,.25),
+                  inset -0.125rem -0.125rem 0.125rem rgba(0,0,0,.25);
+      cursor: default;
+    }
+    ::-webkit-scrollbar-track { background: #333; }
+    ::selection { background: #fff; color: #333; }
+
+    html, body {
+      height: 100vh; height: 100dvh;
+      margin: 0; overflow: hidden;
+    }
+    body {
+      display: grid;
+      grid-template-rows: 100dvh;
+      font-family: system-ui, sans-serif;
+    }
+    canvas, .editor, #controls { grid-row: 1; grid-column: 1; }
+    .canvas-veil {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.38);
+      z-index: 0;
+      pointer-events: none;
+    }
+    canvas {
+      --canvas-z-index: -1;
+      width: 100%; height: auto;
+      object-fit: contain;
+      background: black;
+      touch-action: none;
+      z-index: var(--canvas-z-index);
+    }
+    .editor, .overlay, #error {
+      font-family: 'Courier New', Courier, monospace;
+      background: repeating-linear-gradient(0deg,#000a,#1119,#000a .25rem);
+      padding: 1em;
+    }
+    .editor { color: #fefefe; tab-size: 2; border: none; resize: none; }
+    .editor:focus { outline: none; }
+    #error {
+      grid-row: 2; grid-column: 1;
+      margin: 0; padding-block: 0; padding-top: .5em;
+      color: firebrick; overflow: auto; text-wrap: pretty;
+    }
+    #indicator {
+      visibility: hidden;
+      position: absolute;
+      top: calc(var(--top,0px) - var(--scroll-top,0px));
+      width: 0; height: 0;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-left: 10px solid firebrick;
+      transform: translateY(-25%);
+    }
+    .overlay { position: absolute; top: 0; left: 0; right: 0; margin: 0; }
+    .editor, .overlay { font-size: 1rem; line-height: 1.2; white-space: pre; }
+    #controls { position: fixed; top: 1em; right: 2em; }
+    .controls {
+      position: relative; display: flex; gap: 1.5em;
+      padding: .5em 1.25em; background: #1111; border-radius: 4px;
+    }
+    .controls::before, .controls::after {
+      content: ''; position: absolute; z-index: -1; inset: 0;
+      transform: scale(.95); border-radius: inherit; opacity: 0;
+    }
+    .controls::before { background: #aef; animation: pulse 2s infinite; }
+    .controls::after { background: #fefefe66; transition: transform 200ms ease-in-out; }
+    .controls:hover::before { opacity: 1; transform: scale(.98); filter: blur(2px); }
+    .controls:hover::after  { opacity: 1; transform: scale(1.025, 1.1); }
+    .controls:hover { background: #111f; }
+    @keyframes pulse {
+      0%   { transform: scale(1); }
+      50%  { transform: scale(1.0125); }
+      100% { transform: scale(1); }
+    }
+    .hidden { display: none !important; }
+    .opaque { opacity: 1 !important; background: #111 !important; }
+    input {
+      all: unset; opacity: .2; filter: saturate(0) invert(1);
+      cursor: pointer; transition: opacity 200ms ease-in-out; padding: .25em .5em;
+    }
+    input:hover { opacity: 1; }
+    .icon { text-align: center; line-height: 1; }
+    #btnToggleView      { width: 1.25em; }
+    #btnToggleView::after           { content: '👁'; }
+    #btnToggleView:checked::after   { content: '✏️'; }
+    #btnToggleResolution::after         { content: '1️⃣'; }
+    #btnToggleResolution:checked::after { content: '2️⃣'; }
+    #btnReset::after { content: '⏮️'; }
+  </style>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+  <div class="canvas-veil"></div>
+
+  <div class="enter-identity" aria-hidden="true">
+    <h1 class="enter-identity-title" id="landingTitle"></h1>
+    <p class="enter-identity-subtitle">
+      FULL-STACK SOFTWARE ENGINEER · AI SYSTEMS & LLM ARCHITECTURE
+    </p>
+  </div>
+  <textarea id="codeEditor" class="editor" spellcheck="false" autocorrect="off" autocapitalize="off" translate="no" oninput="render()"></textarea>
+  <pre id="error"></pre>
+  <div id="indicator"></div>
+  <div id="controls">
+    <div class="controls">
+      <input id="btnToggleView" class="icon" type="checkbox" name="toggleView" onclick="toggleView()">
+      <input id="btnToggleResolution" class="icon" type="checkbox" name="toggleResolution" onchange="toggleResolution()">
+      <input id="btnReset" class="icon" type="checkbox" name="reset" onclick="reset()">
+    </div>
+  </div>
+
+  <script type="x-shader/x-fragment">#version 300 es
+precision highp float;
+out vec4 O;
+uniform float time;
+uniform vec2 resolution;
+uniform vec2 move;
+#define FC gl_FragCoord.xy
+#define R resolution
+#define T time
+#define N normalize
+#define S smoothstep
+#define MN min(R.x,R.y)
+#define rot(a) mat2(cos((a)-vec4(0,11,33,0)))
+#define csqr(a) vec2(a.x*a.x-a.y*a.y,2.*a.x*a.y)
+
+float rnd(vec3 p) {
+  p=fract(p*vec3(12.9898,78.233,156.34));
+  p+=dot(p,p+34.56);
+  return fract(p.x*p.y*p.z);
+}
+
+float swirls(in vec3 p) {
+  float d=.0;
+  vec3 c=p;
+  for(float i=min(.0,time); i<9.; i++) {   // ← 9. = complexity (more = richer, slower)
+    p=.7*abs(p)/dot(p,p)-.7;              // ← .7 = swirl arm tightness
+    p.yz=csqr(p.yz);
+    p=p.zxy;
+    d+=exp(-25.*abs(dot(p,c)));           // ← 19. = line sharpness (higher = thinner)
+  }
+  return d;
+}
+
+vec3 march(in vec3 p, vec3 rd) {
+  float d=.2,                             // ← .2 = ray step size (smaller = more detail)
+  t=.0, c=.0, k=mix(.9,1.,rnd(rd)),
+  maxd=length(p)-1.;
+  vec3 col=vec3(0);
+  for(float i=min(.0,time); i<120.; i++) { // ← 120. = max ray steps (more = deeper)
+    t+=d*exp(-2.*c)*k;
+    c=swirls(p+rd*t);
+    if (t<5e-2 || t>maxd) break;
+    col+=vec3(c*c, c/4.05, c)*8e-3;      // ← COLOR (R,G,B)×brightness | orange: vec3(c,c/2.,c/8.) | red: vec3(c,c/4.,c/8.) | purple: vec3(c,c/4.,c) | brightness: 8e-3
+  }
+  return col;
+}
+
+float rnd(vec2 p) {
+  p=fract(p*vec2(12.9898,78.233));
+  p+=dot(p,p+34.56);
+  return fract(p.x*p.y);
+}
+
+vec3 sky(vec2 p, bool anim) {
+  p.x-=.17-(anim?2e-4*T:.0);  // ← 2e-4 = star drift speed
+  p*=500.;                     // ← 100. = star density
+  vec2 id=floor(p), gv=fract(p)-.5;
+  float n=rnd(id), d=length(gv);
+  if (n<.975) return vec3(0);  // ← .975 = star threshold (higher = fewer stars)
+  return vec3(S(3e-2*n,1e-3*n,d*d));
+}
+
+void cam(inout vec3 p) {
+  p.yz*=rot(move.y*6.3/MN-T*.015);   // ← T*.015  = vertical auto-rotation speed
+  p.xz*=rot(-move.x*6.3/MN+T*.008); // ← T*.008 = horizontal auto-rotation speed
+}
+
+void main() {
+  vec2 uv=(FC-.5*R)/MN - vec2(0.02, 0.); // ← vec2(x,y) = position offset
+
+  vec3 col=vec3(0),
+  p=vec3(0,0,-19),                        // ← -16 = zoom (more negative = zoomed out)
+  rd=N(vec3(uv,1)), rdd=rd;
+
+  cam(p); cam(rd);
+  col=march(p,rd);
+  col=S(-.2,.9,col);                      // ← S(black-point, white-point, col)
+
+  vec2 sn=.5+vec2(atan(rdd.x,rdd.z),atan(length(rdd.xz),rdd.y))/6.28318;
+  // col=max(col,vec3(sky(sn,true)+sky(2.+sn*2.,true))); // stars — uncomment to bring back
+
+  float t=min((time-.5)*.8,1.);           // ← .3 = fade-in speed on load
+
+  uv=FC/R*2.-1.;
+  uv*=.82;                                // ← .7 = vignette radius (smaller = tighter)
+  float v=pow(dot(uv,uv),1.8);            // ← 1.8 = vignette falloff hardness
+  col=mix(col,vec3(0),v);
+  col=mix(vec3(0),col,t);
+  col=max(col,.08);                       // ← .08 = ambient floor / min brightness
+
+  O=vec4(col,1);
+}</script>
+
+  <script src="src/js/effects/mandalaWave.js" defer></script>
+  <script src="src/js/pages/landing/glitch.js" defer></script>
+</html>
