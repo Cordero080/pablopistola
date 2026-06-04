@@ -25,17 +25,21 @@ setTimeout(() => {
   document.getElementById("enterBtn").classList.add("visible");
 }, 1500);
 
-// Handle enter click - dissolve then navigate
+// Handle enter click - scanline collapse then navigate
 document.getElementById("enterBtn").addEventListener("click", (e) => {
   e.preventDefault();
   sessionStorage.setItem("skippedLanding", "true");
 
-  document.getElementById("enterBtn").classList.remove("visible");
-  document.querySelector(".landing-container").classList.add("dissolving");
-  document.getElementById("waves").classList.add("dissolving");
-  document.querySelector(".enter-identity")?.classList.add("dissolving");
+  const btn = document.getElementById("enterBtn");
+  btn.classList.add("collapsing");
+
+  setTimeout(() => {
+    document.querySelector(".landing-container").classList.add("dissolving");
+    document.getElementById("waves").classList.add("dissolving");
+    document.querySelector(".enter-identity")?.classList.add("dissolving");
+  }, 500);
 
   setTimeout(() => {
     window.location.href = "/home.html";
-  }, 1000);
+  }, 1100);
 });
