@@ -478,7 +478,7 @@ function buildChatUI() {
     <div id="mcp-chat-panel">
       <div id="mcp-chat-header">
         <div class="mcp-status-dot" id="mcp-status-dot"></div>
-        <span>Portfolio AI</span>
+        <span>Pneuma</span>
         <button id="mcp-chat-close" aria-label="Close">
           <svg viewBox="0 0 14 14"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg>
         </button>
@@ -516,12 +516,22 @@ function buildChatUI() {
   // Start pulsing immediately
   toggle.classList.add("pulse-active");
 
+  let hasGreeted = false;
+
   toggle.addEventListener("click", () => {
     panel.classList.toggle("open");
     if (panel.classList.contains("open")) {
       // Panel opened — stop pulse
       toggle.classList.remove("pulse-active");
       input.focus();
+
+      if (!hasGreeted) {
+        hasGreeted = true;
+        appendMessage(
+          "assistant",
+          "I'm Pneuma. Ask me anything about Pablo — or want to know about a few hidden features of this site?",
+        );
+      }
     } else {
       // Panel closed — resume pulse after a short pause
       setTimeout(() => toggle.classList.add("pulse-active"), 800);
