@@ -156,6 +156,7 @@ faces.forEach((face, fi) => {
 const clock = new THREE.Clock();
 
 (function loop() {
+  if (window.__stopRubix) return;
   requestAnimationFrame(loop);
   const delta = clock.getDelta();
   const ct = clock.elapsedTime;

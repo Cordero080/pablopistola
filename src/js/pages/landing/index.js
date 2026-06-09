@@ -33,6 +33,7 @@ document.getElementById("enterBtn").addEventListener("click", (e) => {
 
   const btn = document.getElementById("enterBtn");
   btn.classList.add("collapsing");
+  window.__stopRubix = true;
 
   setTimeout(() => {
     document.querySelector(".landing-container").classList.add("dissolving");
@@ -42,5 +43,5 @@ document.getElementById("enterBtn").addEventListener("click", (e) => {
 
   setTimeout(() => {
     window.location.href = "/home.html";
-  }, 1100);
+  }, 900);
 });

@@ -77,8 +77,8 @@
 }
 
 .hero-title {
-  font-family: "Audiowide", sans-serif;
-  font-weight: 700;
+  font-family: "tachyon", sans-serif;
+  font-weight: 900;
   font-style: normal;
   font-size: clamp(2rem, 4vw, 4rem);
   background: linear-gradient(
@@ -342,7 +342,7 @@
     text-align: center;
   }
   .hero-title {
-    font-size: clamp(2.5rem, 6vw, 3.2rem);
+    font-size: clamp(2rem, 5.5vw, 3rem);
   }
   .hero-subtitle {
     font-size: 0.6rem;
@@ -361,8 +361,8 @@
     text-align: center;
   }
   .hero-title {
-    font-size: clamp(1.45rem, 7.5vw, 2.5rem);
-    letter-spacing: 0.1em;
+    font-size: clamp(1.1rem, 6.5vw, 2rem);
+    letter-spacing: 0.06em;
   }
   .hero-subtitle {
     font-size: 0.67rem;
