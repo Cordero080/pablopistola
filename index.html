@@ -64,7 +64,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Orbitron:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Audiowide&family=Inter:wght@300;400;500&family=Orbitron:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
 
@@ -88,8 +88,25 @@
       </p>
     </div>
 
-    <a href="/home.html" class="enter-btn" id="enterBtn"><span>enter</span></a>
+    <div class="enter-btn" id="enterBtn">
+      <div class="enter-btn__accent enter-btn__accent--left"></div>
+      <div class="enter-btn__center">
+        <span
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            style="display: block; margin: 0 auto"
+          >
+            <path d="M8 5v14l11-7z" /></svg
+        ></span>
+      </div>
+      <div class="enter-btn__accent enter-btn__accent--right"></div>
+    </div>
 
+    <script type="module" src="src/js/effects/rubixBackground.js"></script>
     <script src="src/js/effects/sineWave.js"></script>
     <script src="src/js/pages/landing/glitch.js" defer></script>
     <script src="src/js/pages/landing/index.js" defer></script>

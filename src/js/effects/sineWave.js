@@ -307,7 +307,7 @@ window.waveGen = new SineWaveGenerator({
     {
       timeModifier: 1,
       lineWidth: 25.5,
-      amplitude: 130,
+      amplitude: 150,
       wavelength: 300,
       segmentLength: 20,
       attraction: 1,

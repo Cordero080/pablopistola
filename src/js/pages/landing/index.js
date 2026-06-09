@@ -17,7 +17,8 @@ if (!stayMode && !isStandalone && sessionStorage.getItem("skippedLanding")) {
 // Zen mode: reposition button and change text
 if (stayMode) {
   document.body.classList.add("zen-mode");
-  document.querySelector("#enterBtn span").textContent = "back";
+  document.querySelector("#enterBtn span").innerHTML =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" style="display:block;margin:0 auto;"><path d="M11 18V6l-8.5 6 8.5 6zm.5-6 8.5 6V6l-8.5 6z"/></svg>`;
 }
 
 // Show enter button after 1.5s

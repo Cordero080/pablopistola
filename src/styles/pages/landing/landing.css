@@ -74,7 +74,7 @@ body {
   z-index: 2;
   pointer-events: none;
   touch-action: none; /* Prevent touch interference */
-  opacity: 0.35;
+  opacity: 0.25;
 }
 
 /* Landing Container */
@@ -99,6 +99,10 @@ body.zen-mode .enter-btn {
   left: 50%;
   transform: translateX(-50%);
   writing-mode: horizontal-tb;
+}
+
+body.zen-mode .enter-btn__center span {
+  color: rgba(160, 165, 180, 0.55);
 }
 
 /* Scanline Dissolve Overlay */
@@ -277,98 +281,113 @@ body.zen-mode .enter-btn {
   transform: translateX(-50%);
   z-index: 100;
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5px;
+  align-items: stretch;
   font-family: "aktiv-grotesk", sans-serif;
   font-size: 0.7rem;
   font-weight: 400;
-  text-decoration: none;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   cursor: pointer;
-  background: linear-gradient(
-    90deg,
-    rgba(0, 255, 247, 0.6),
-    rgba(255, 0, 255, 0.6)
-  );
-  border: none;
-  box-shadow: none;
-  text-shadow: none;
-  border-radius: 0;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  clip-path: polygon(
-    14px 0%,
-    calc(100% - 14px) 0%,
-    100% 14px,
-    100% calc(100% - 14px),
-    calc(100% - 14px) 100%,
-    14px 100%,
-    0% calc(100% - 14px),
-    0% 14px
-  );
   transition:
     opacity 0.8s ease,
     letter-spacing 0.4s ease,
     filter 0.4s ease;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.85))
-    drop-shadow(0 2px 2px rgba(0, 0, 0, 0.95));
+  filter: drop-shadow(0 0 1px rgba(100, 160, 255, 0.55))
+    drop-shadow(0 3px 0 rgba(8, 18, 55, 0.9))
+    drop-shadow(0 6px 0 rgba(5, 12, 40, 0.7))
+    drop-shadow(0 9px 0 rgba(3, 8, 28, 0.5))
+    drop-shadow(0 13px 6px rgba(0, 0, 0, 0.7));
   opacity: 0;
   pointer-events: none;
 }
 
-.enter-btn span {
-  display: block;
-  padding: 0.55rem 2rem;
-  background:
-    linear-gradient(145deg, #221d27, #000000),
-    radial-gradient(
-      circle at 30% 30%,
-      rgba(255, 255, 255, 0.08),
-      transparent 50%
-    ),
-    radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.5), transparent 50%),
-    linear-gradient(
-      45deg,
-      rgba(138, 43, 226, 0.06),
-      rgba(0, 212, 255, 0.05),
-      rgba(138, 43, 226, 0.06)
-    );
-  background-size:
+/* Shared piece background */
+.enter-btn__accent,
+.enter-btn__center {
+  background: linear-gradient(145deg, #080810, #000000);
+  border-top: 1px solid rgba(180, 210, 255, 0.32);
+  border-bottom: 7px solid rgba(0, 4, 18, 0.95);
+  position: relative;
+}
+
+.enter-btn__accent::after,
+.enter-btn__center::after {
+  content: "";
+  position: absolute;
+  inset: auto 5px 5px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 150, 255, 0.85),
+    rgba(0, 220, 255, 0.7),
+    transparent
+  );
+  pointer-events: none;
+}
+
+/* Left tab — Pneumata-style: bevels top-right + bottom-left, right edge straight */
+.enter-btn__accent {
+  transition:
+    opacity 0.25s ease,
+    filter 0.25s ease,
+    transform 0.6s cubic-bezier(0.25, 0, 0.1, 1);
+}
+
+.enter-btn__accent--left {
+  width: 22px;
+  flex-shrink: 0;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 8px) 0,
+    100% 8px,
     100% 100%,
-    150% 150%,
-    150% 150%,
-    200% 200%;
-  background-blend-mode: overlay, multiply, overlay;
-  color: rgba(255, 255, 255, 0.45);
+    8px 100%,
+    0 calc(100% - 8px)
+  );
+  margin-right: -6px;
+  z-index: 1;
+}
+
+/* Center panel — angled joint on left (exposes left tab), bevel on right */
+.enter-btn__center {
+  z-index: 2;
+  transition: filter 0.25s ease;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 8px) 0,
+    100% 8px,
+    100% 100%,
+    8px 100%,
+    8px 8px
+  );
+}
+
+.enter-btn__center span {
+  display: block;
+  padding: 0.32rem 2.2rem;
+  color: rgba(255, 255, 255, 0.5);
   transition:
     color 0.4s ease,
     letter-spacing 0.4s ease;
   letter-spacing: inherit;
+}
+
+/* Right tab — angled joint on left side (sits on top of center) */
+.enter-btn__accent--right {
+  width: 22px;
+  flex-shrink: 0;
   clip-path: polygon(
-    12px 0%,
-    calc(100% - 12px) 0%,
-    100% 12px,
-    100% calc(100% - 12px),
-    calc(100% - 12px) 100%,
-    12px 100%,
-    0% calc(100% - 12px),
-    0% 12px
+    8px 0,
+    calc(100% - 8px) 0,
+    100% 8px,
+    100% 100%,
+    8px 100%,
+    8px 8px,
+    0 0
   );
-  /* Fade edges so the gradient border bleeds through softly */
-  -webkit-mask-image: radial-gradient(
-    ellipse 88% 78% at center,
-    black 55%,
-    rgba(0, 0, 0, 0.5) 78%,
-    transparent 100%
-  );
-  mask-image: radial-gradient(
-    ellipse 88% 78% at center,
-    black 55%,
-    rgba(0, 0, 0, 0.5) 78%,
-    transparent 100%
-  );
+  margin-left: -6px;
+  z-index: 3;
 }
 
 .enter-btn.visible {
@@ -380,10 +399,18 @@ body.zen-mode .enter-btn {
 @keyframes enterPulse {
   0%,
   100% {
-    filter: drop-shadow(0 0 4px rgba(0, 255, 247, 0.3));
+    filter: drop-shadow(0 0 1px rgba(100, 160, 255, 0.55))
+      drop-shadow(0 3px 0 rgba(8, 18, 55, 0.9))
+      drop-shadow(0 6px 0 rgba(5, 12, 40, 0.7))
+      drop-shadow(0 9px 0 rgba(3, 8, 28, 0.5))
+      drop-shadow(0 13px 6px rgba(0, 0, 0, 0.7));
   }
   50% {
-    filter: drop-shadow(0 0 10px rgba(255, 0, 255, 0.5));
+    filter: drop-shadow(0 0 1.5px rgba(100, 170, 255, 0.7))
+      drop-shadow(0 3px 0 rgba(8, 18, 55, 0.9))
+      drop-shadow(0 6px 0 rgba(5, 12, 40, 0.7))
+      drop-shadow(0 9px 0 rgba(3, 8, 28, 0.5))
+      drop-shadow(0 13px 6px rgba(0, 0, 0, 0.7));
   }
 }
 
@@ -391,21 +418,34 @@ body.zen-mode .enter-btn {
   letter-spacing: 0.55em;
   animation: none;
   transform: translateX(-50%);
-  filter: drop-shadow(0 0 12px rgba(0, 255, 247, 0.6));
+  filter: drop-shadow(0 0 2px rgba(120, 180, 255, 0.8))
+    drop-shadow(0 3px 0 rgba(8, 18, 55, 0.9))
+    drop-shadow(0 6px 0 rgba(5, 12, 40, 0.7))
+    drop-shadow(0 9px 0 rgba(3, 8, 28, 0.5))
+    drop-shadow(0 13px 6px rgba(0, 0, 0, 0.7));
 }
 
-.enter-btn:hover span {
+.enter-btn:hover .enter-btn__accent {
+  filter: brightness(0.45);
+}
+
+.enter-btn:hover .enter-btn__center {
+  filter: brightness(1.2);
+}
+
+.enter-btn:hover .enter-btn__center span {
   color: rgba(255, 255, 255, 0.9);
 }
 
-.enter-btn:active span {
+.enter-btn:active .enter-btn__center span {
   color: rgba(255, 255, 255, 0.5);
 }
 
 @keyframes btnScanlineCollapse {
   0% {
     transform: translateX(-50%) scaleY(1) scaleX(1);
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.85))
+    filter: drop-shadow(0 0 1px rgba(100, 160, 255, 0.55))
+      drop-shadow(0 4px 8px rgba(0, 0, 0, 0.85))
       drop-shadow(0 2px 2px rgba(0, 0, 0, 0.95));
   }
   55% {
@@ -425,6 +465,17 @@ body.zen-mode .enter-btn {
 .enter-btn.collapsing {
   animation: btnScanlineCollapse 0.5s cubic-bezier(0.4, 0, 1, 1) forwards;
   pointer-events: none;
+}
+
+.enter-btn:hover .enter-btn__accent--left {
+  transform: scaleX(0);
+  transform-origin: right center;
+}
+
+.enter-btn:hover .enter-btn__accent--right {
+  transform: scaleX(0);
+  transform-origin: left center;
+  z-index: 1;
 }
 
 /* ============================================
@@ -458,6 +509,9 @@ body.zen-mode .enter-btn {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  text-shadow:
+    0 40px 60px rgba(0, 0, 0, 1),
+    0 20px 30px rgba(0, 0, 0, 0.9);
 }
 
 .title-letter--space {
