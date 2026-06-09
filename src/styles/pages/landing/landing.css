@@ -74,7 +74,7 @@ body {
   z-index: 2;
   pointer-events: none;
   touch-action: none; /* Prevent touch interference */
-  opacity: 0.25;
+  opacity: 0.38;
 }
 
 /* Landing Container */
@@ -310,22 +310,6 @@ body.zen-mode .enter-btn__center span {
   position: relative;
 }
 
-.enter-btn__accent::after,
-.enter-btn__center::after {
-  content: "";
-  position: absolute;
-  inset: auto 5px 5px;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(0, 150, 255, 0.85),
-    rgba(0, 220, 255, 0.7),
-    transparent
-  );
-  pointer-events: none;
-}
-
 /* Left tab — Pneumata-style: bevels top-right + bottom-left, right edge straight */
 .enter-btn__accent {
   transition:
@@ -505,7 +489,7 @@ body.zen-mode .enter-btn__center span {
   animation: letterFadeInGlitch 7s linear forwards;
   position: relative;
   /* Silver metallic gradient — one letter at a time */
-  background: linear-gradient(180deg, #ffffff 20%, #8a9dac 100%);
+  background: linear-gradient(180deg, #ffffff 30%, #b8c8d4 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
