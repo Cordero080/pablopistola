@@ -6,7 +6,7 @@
 import * as THREE from "three";
 
 const heroSection = document.querySelector(".hero-section");
-if (heroSection) {
+if (heroSection && window.innerWidth > 600) {
   // ── Canvas overlay ──────────────────────────────────────────────────────────
   const canvas = document.createElement("canvas");
   canvas.style.cssText = `
