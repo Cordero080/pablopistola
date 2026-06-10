@@ -53,27 +53,27 @@
 @property --ht-a {
   syntax: "<color>";
   inherits: false;
-  initial-value: #e8edf2;
+  initial-value: #ffffff;
 }
 @property --ht-b {
   syntax: "<color>";
   inherits: false;
-  initial-value: #7a8f9e;
+  initial-value: #e4ecf0;
 }
 @property --ht-c {
   syntax: "<color>";
   inherits: false;
-  initial-value: #ffffff;
+  initial-value: #c8d4de;
 }
 @property --ht-d {
   syntax: "<color>";
   inherits: false;
-  initial-value: #889eb0;
+  initial-value: #a8b8c4;
 }
 @property --ht-e {
   syntax: "<color>";
   inherits: false;
-  initial-value: #708494;
+  initial-value: #708090;
 }
 
 .hero-title {
@@ -113,8 +113,8 @@
 
 .hero-title:hover {
   --ht-a: #ffffff;
-  --ht-b: #c0d0dc;
-  --ht-c: #7a8f9e;
+  --ht-b: #b8c8d4;
+  --ht-c: #506070;
   --ht-d: #1a2028;
   --ht-e: #000000;
   transform: scale(1.03) translateY(-2px);
