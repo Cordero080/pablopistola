@@ -135,8 +135,7 @@
   display: block;
   width: 90%;
   height: 3px;
-  margin: 0.18em auto 1.2em auto;
-  transform: translateX(-7px);
+  margin: 0.18em 0 1.2em 0;
   background: linear-gradient(90deg, #00fff7, #cc00ff);
   background-size: 200% 100%;
   border-radius: 3px;

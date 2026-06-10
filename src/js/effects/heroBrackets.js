@@ -138,9 +138,14 @@ if (heroSection && window.innerWidth > 600) {
     leftBracket.position.x = -offsetWorld + 0.18;
     rightBracket.position.x = offsetWorld;
 
-    // ── Vertical position ── [mobile, tablet (≤900), desktop]
-    // More negative = lower on screen. Adjust to align with hero text.
-    const bracketY = isMobileView ? -0.48 : W <= 900 ? -0.28 : -0.34;
+    // ── Vertical position — anchored to hero title center ──────────────────
+    // Derived from the title's actual DOM position so edits elsewhere never shift brackets.
+    const heroRect = heroSection.getBoundingClientRect();
+    const titleRect = heroTitle ? heroTitle.getBoundingClientRect() : null;
+    const titleCenterPx = titleRect
+      ? titleRect.top - heroRect.top + titleRect.height / 2
+      : H / 2;
+    const bracketY = (H / 2 - titleCenterPx) * pxToWorld;
     leftBracket.position.y = bracketY;
     rightBracket.position.y = bracketY;
     rightBracket.position.z = -0.23;
