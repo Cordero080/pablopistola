@@ -1,5 +1,63 @@
 import * as THREE from "three";
 
+// ─────────────────────────────────────────────────────────────────────────────
+// COLOR PALETTE — edit here; hex values render as swatches in your IDE
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Panel body base color (very dark, mostly transparent)
+const PANEL_COLOR = "#050508"; // near-black with blue cast
+const PANEL_EMISSIVE = "#050508"; // self-glow base (same as body)
+
+// Dynamic glow weights — blue-dominant by design (R < G < B)
+// Raise a channel to shift the live glow hue toward that color
+const GLOW_COLOR_R = 0.6; // color  · red   weight
+const GLOW_COLOR_G = 0.7; // color  · green weight
+const GLOW_COLOR_B = 1.0; // color  · blue  weight ← dominant
+const GLOW_EMIT_R = 0.4; // emissive · red   weight
+const GLOW_EMIT_G = 0.5; // emissive · green weight
+const GLOW_EMIT_B = 1.0; // emissive · blue  weight ← dominant
+
+// Face edge line colors — one per cube face, shown as swatches
+// Order: front · back · right · left · top · bottom
+const FACE_EDGE_COLORS = [
+  "#0a0e2e", // front  — pink
+  "#050413", // back   — magenta
+  "#000a38", // right  — blue
+  "#061010", // left   — cyan
+  "#08050f", // top    — teal
+  "#020033", // bottom — purple
+];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// OPACITY TUNING
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Panel fill opacity: base + center-boost * distFromCenter + wave-boost * |wave|
+const PANEL_OPACITY_BASE = 0.05;
+const PANEL_OPACITY_CENTER = 0.05; // extra opacity toward face center
+const PANEL_OPACITY_WAVE = 0.025; // extra opacity when wave is active
+
+// Edge line opacity: same structure as panels
+const EDGE_OPACITY_BASE = 0.06;
+const EDGE_OPACITY_CENTER = 0.06;
+const EDGE_OPACITY_WAVE = 0.025;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// MOTION TUNING
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Cube rotation speeds (radians/second per axis)
+const ROT_Y = 0.018; // yaw   — primary spin
+const ROT_X = 0.008; // pitch — slow tilt
+const ROT_Z = 0.012; // roll  — subtle twist
+
+// Wave displacement: fraction of cubeSize panels travel when waving
+const WAVE_AMPLITUDE = 0.55; // 0 = flat faces, higher = more ripple
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SETUP
+// ─────────────────────────────────────────────────────────────────────────────
+
 const canvas = document.createElement("canvas");
 canvas.style.cssText = `
   position: fixed;
@@ -22,6 +80,7 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(100, 1, 0.5, 100);
 camera.position.z = 4;
 
+// Lighting — purely structural, colors come from material/emissive above
 scene.add(new THREE.AmbientLight(0xffffff, 0.3));
 const dLight = new THREE.DirectionalLight(0xffffff, 2);
 dLight.position.set(5, 6, 5);
@@ -37,12 +96,15 @@ function resize() {
 resize();
 window.addEventListener("resize", resize);
 
-// Build cube with waving panels (ported from RubixOverlay)
+// ─────────────────────────────────────────────────────────────────────────────
+// CUBE GEOMETRY
+// ─────────────────────────────────────────────────────────────────────────────
+
 const cubeSize = window.innerWidth <= 600 ? 2.4 * 0.9 : 2.4;
-const grid = 13;
+const grid = 13; // panels per row/col per face — higher = denser grid
 const panelSz = (cubeSize / grid) * 0.98;
 const off = cubeSize / 2;
-const waveAmp = cubeSize * 0.35;
+const waveAmp = cubeSize * WAVE_AMPLITUDE;
 
 const faces = [
   {
@@ -86,9 +148,10 @@ const panels = [];
 faces.forEach((face, fi) => {
   for (let row = 0; row < grid; row++) {
     for (let col = 0; col < grid; col++) {
+      // ── Panel fill ──────────────────────────────────────────────────────────
       const mat = new THREE.MeshStandardMaterial({
-        color: new THREE.Color("#050508"),
-        emissive: new THREE.Color("#050508"),
+        color: new THREE.Color(PANEL_COLOR),
+        emissive: new THREE.Color(PANEL_EMISSIVE),
         emissiveIntensity: 0.2,
         metalness: 0.9,
         roughness: 0.3,
@@ -101,7 +164,8 @@ faces.forEach((face, fi) => {
       const gridOff = (grid - 1) / 2;
       const localX = (col - gridOff) * (cubeSize / grid);
       const localY = (row - gridOff) * (cubeSize / grid);
-      // Distance from face center (0=edge, 1=center)
+
+      // 0 at edge, 1 at face center — used to boost center brightness
       const distFromCenter =
         1 -
         Math.sqrt(
@@ -109,6 +173,7 @@ faces.forEach((face, fi) => {
             Math.pow((row - gridOff) / gridOff, 2),
         ) /
           Math.SQRT2;
+
       mesh.position.copy(face.pos);
       mesh.lookAt(face.pos.clone().add(face.dir));
       const right = new THREE.Vector3()
@@ -116,24 +181,15 @@ faces.forEach((face, fi) => {
         .normalize();
       mesh.position.add(right.clone().multiplyScalar(localX));
       mesh.position.add(face.up.clone().multiplyScalar(localY));
-      // Glowing edge outline per panel
+
+      // ── Edge outline ─────────────────────────────────────────────────────────
       const edgeGeo = new THREE.EdgesGeometry(
         new THREE.PlaneGeometry(panelSz * 0.97, panelSz * 0.97),
       );
-      // Muted theme colors per face: pink, magenta, blue, cyan, teal, purple
-      const faceColors = [
-        [0.18, 0.04, 0.1], // pink
-        [0.18, 0.0, 0.18], // magenta
-        [0.0, 0.04, 0.22], // blue
-        [0.0, 0.18, 0.18], // cyan
-        [0.0, 0.15, 0.14], // teal
-        [0.1, 0.0, 0.2], // purple
-      ];
-      const [cr, cg, cb] = faceColors[fi];
       const edgeMat = new THREE.LineBasicMaterial({
-        color: new THREE.Color(cr, cg, cb),
+        color: new THREE.Color(FACE_EDGE_COLORS[fi]),
         transparent: true,
-        opacity: 0.06 + distFromCenter * 0.06,
+        opacity: EDGE_OPACITY_BASE + distFromCenter * EDGE_OPACITY_CENTER,
       });
       const edgeMesh = new THREE.LineSegments(edgeGeo, edgeMat);
 
@@ -152,7 +208,10 @@ faces.forEach((face, fi) => {
   }
 });
 
-// Animation
+// ─────────────────────────────────────────────────────────────────────────────
+// ANIMATION LOOP
+// ─────────────────────────────────────────────────────────────────────────────
+
 const clock = new THREE.Clock();
 
 (function loop() {
@@ -161,9 +220,10 @@ const clock = new THREE.Clock();
   const delta = clock.getDelta();
   const ct = clock.elapsedTime;
 
-  root.rotation.y += delta * 0.018;
-  root.rotation.x += delta * 0.008;
-  root.rotation.z += delta * 0.012;
+  // ── Cube rotation ────────────────────────────────────────────────────────
+  root.rotation.y += delta * ROT_Y;
+  root.rotation.x += delta * ROT_X;
+  root.rotation.z += delta * ROT_Z;
 
   for (const {
     mesh,
@@ -171,26 +231,40 @@ const clock = new THREE.Clock();
     basePos,
     dir,
     phase,
-    fi,
     distFromCenter,
   } of panels) {
+    // ── Wave displacement ──────────────────────────────────────────────────
     const wave1 = Math.sin(ct * 0.3 + phase) * 0.5;
     const wave2 = Math.sin(ct * 0.41 + phase * 1.3) * 0.5;
-    const wave3 = Math.sin(ct * 0.45 + fi) * 0.2;
+    const wave3 = Math.sin(ct * 0.45 + phase) * 0.2;
     const disp = (wave1 + wave2 + wave3) * waveAmp;
     mesh.position.copy(basePos).addScaledVector(dir, disp);
     edgeMesh.position.copy(mesh.position);
     edgeMesh.quaternion.copy(mesh.quaternion);
 
+    // ── Live glow color ────────────────────────────────────────────────────
     const glow = distFromCenter * 0.06 + Math.abs(wave1) * 0.04;
-    mesh.material.color.setRGB(glow * 0.6, glow * 0.7, glow);
-    mesh.material.emissive.setRGB(glow * 0.4, glow * 0.5, glow);
+    mesh.material.color.setRGB(
+      glow * GLOW_COLOR_R,
+      glow * GLOW_COLOR_G,
+      glow * GLOW_COLOR_B,
+    );
+    mesh.material.emissive.setRGB(
+      glow * GLOW_EMIT_R,
+      glow * GLOW_EMIT_G,
+      glow * GLOW_EMIT_B,
+    );
     mesh.material.emissiveIntensity = 0.5 + distFromCenter * 0.4;
-    mesh.material.opacity =
-      0.05 + distFromCenter * 0.05 + Math.abs(wave1) * 0.025;
 
+    // ── Panel opacity ──────────────────────────────────────────────────────
+    mesh.material.opacity =
+      PANEL_OPACITY_BASE +
+      distFromCenter * PANEL_OPACITY_CENTER +
+      Math.abs(wave1) * PANEL_OPACITY_WAVE;
     edgeMesh.material.opacity =
-      0.05 + distFromCenter * 0.05 + Math.abs(wave1) * 0.025;
+      EDGE_OPACITY_BASE +
+      distFromCenter * EDGE_OPACITY_CENTER +
+      Math.abs(wave1) * EDGE_OPACITY_WAVE;
   }
 
   renderer.render(scene, camera);
