@@ -22,7 +22,7 @@ const GLOW_EMIT_B = 1.0; // emissive · blue  weight ← dominant
 const FACE_EDGE_COLORS = [
   "#0a0e2e", // front  — pink
   "#050413", // back   — magenta
-  "#000a38", // right  — blue
+  "#16266b", // right  — blue
   "#061010", // left   — cyan
   "#08050f", // top    — teal
   "#020033", // bottom — purple
@@ -266,7 +266,7 @@ const clock = new THREE.Clock();
     edgeMesh.scale.copy(mesh.scale);
 
     // ── F: face-hue gradient + live glow ──────────────────────────────────
-    const glow = distFromCenter * 0.06 + Math.abs(wave1) * 0.04;
+    const glow = distFromCenter * 0.095 + Math.abs(wave1) * 0.04;
     const cosH = Math.cos(hueAngle);
     const sinH = Math.sin(hueAngle);
     mesh.material.color.setRGB(
