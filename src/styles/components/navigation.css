@@ -302,13 +302,18 @@
 .side-nav-link.orb-highlight {
   background: rgba(0, 255, 247, 0.18);
   box-shadow: 0 0 16px rgba(0, 255, 247, 0.25);
-  transition: background 0.4s ease, box-shadow 0.4s ease;
+  transition:
+    background 0.4s ease,
+    box-shadow 0.4s ease;
 }
 .side-nav-link.orb-highlight .nav-icon {
   color: #00fff7;
   filter: drop-shadow(0 0 12px rgba(0, 255, 247, 0.9));
   transform: scale(1.2);
-  transition: color 0.4s ease, filter 0.4s ease, transform 0.4s ease;
+  transition:
+    color 0.4s ease,
+    filter 0.4s ease,
+    transform 0.4s ease;
 }
 
 /* Exit link styling */
@@ -620,7 +625,9 @@
 }
 
 @keyframes ringGradientShift {
-  0%, 55%, 100% {
+  0%,
+  55%,
+  100% {
     background: linear-gradient(135deg, #00fff7, #cc00ff, #ff00ff);
     filter: brightness(1);
     transform: scale(1);
