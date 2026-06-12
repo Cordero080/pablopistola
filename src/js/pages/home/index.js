@@ -112,7 +112,9 @@
         spans.forEach((span, i) => {
           setTimeout(() => {
             const isInverted = span.classList.contains("title-inverted-v");
-            span.style.transform = isInverted ? "scaleX(-1) scaleY(-1)" : "scaleX(-1)";
+            span.style.transform = isInverted
+              ? "scaleX(-1) scaleY(-1)"
+              : "scaleX(-1)";
           }, i * 55);
         });
         // Activate theme once last letter finishes flipping
@@ -139,7 +141,9 @@
       .forEach((span, i) => {
         setTimeout(() => {
           const isInverted = span.classList.contains("title-inverted-v");
-          span.style.transform = isInverted ? "scaleX(1) scaleY(-1)" : "scaleX(1)";
+          span.style.transform = isInverted
+            ? "scaleX(1) scaleY(-1)"
+            : "scaleX(1)";
         }, i * 40);
       });
     // Unflip letters only — theme stays as-is until next hover

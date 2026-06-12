@@ -785,27 +785,40 @@ body.zen-mode .enter-btn__center span {
 }
 
 @keyframes letterFadeInInvertGlitch {
-  0% { opacity: 0; transform: scaleY(-1); }
-  5% { opacity: 0; transform: scaleY(-1); }
+  0% {
+    opacity: 0;
+    transform: scaleY(-1);
+  }
+  5% {
+    opacity: 0;
+    transform: scaleY(-1);
+  }
   5.5% {
     opacity: 1;
     transform: scaleY(-1) translateX(3px);
     filter: blur(4px) brightness(1.5);
-    text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff;
+    text-shadow:
+      2px 0 #ff00ff,
+      -2px 0 #00ffff;
     clip-path: ellipse(80% 40% at 50% 50%);
   }
   5.8% {
     opacity: 1;
     transform: scaleY(-1) translateX(-3px);
     filter: blur(2px) invert(1);
-    text-shadow: 4px 0 #ffee00, -4px 0 #0066ff;
+    text-shadow:
+      4px 0 #ffee00,
+      -4px 0 #0066ff;
     clip-path: none;
   }
   6% {
     opacity: 1;
     transform: scaleY(-1) translateX(100px) skewX(-700deg);
     filter: blur(10px);
-    text-shadow: -3px 0 #ff3333, 3px 0 #33ff33, 0 0 10px rgba(255,255,255,0.5);
+    text-shadow:
+      -3px 0 #ff3333,
+      3px 0 #33ff33,
+      0 0 10px rgba(255, 255, 255, 0.5);
   }
   6.3% {
     opacity: 0.6;
@@ -824,8 +837,14 @@ body.zen-mode .enter-btn__center span {
     text-shadow: none;
     clip-path: none;
   }
-  40% { opacity: 1; transform: scaleY(-1); }
-  100% { opacity: 1; transform: scaleY(-1); }
+  40% {
+    opacity: 1;
+    transform: scaleY(-1);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(-1);
+  }
 }
 
 @keyframes letterFadeInFlipGlitch {
