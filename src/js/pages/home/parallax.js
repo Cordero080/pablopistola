@@ -100,9 +100,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const chars = [];
     heroTitleEl.childNodes.forEach((node) => {
       if (node.nodeType === Node.TEXT_NODE) {
-        node.textContent.split("").forEach((ch) => chars.push({ ch, inverted: false }));
+        node.textContent
+          .split("")
+          .forEach((ch) => chars.push({ ch, inverted: false }));
       } else if (node.nodeType === Node.ELEMENT_NODE) {
-        node.textContent.split("").forEach((ch) => chars.push({ ch, inverted: node.classList.contains("title-inverted-v") }));
+        node.textContent
+          .split("")
+          .forEach((ch) =>
+            chars.push({
+              ch,
+              inverted: node.classList.contains("title-inverted-v"),
+            }),
+          );
       }
     });
 
@@ -126,7 +135,9 @@ document.addEventListener("DOMContentLoaded", () => {
           staggerOffset,
         });
         vecIdx++;
-        const invertStyle = inverted ? "position:relative;top:-0.12em;transform:scaleY(-1);transform-origin:center 50%;" : "";
+        const invertStyle = inverted
+          ? "position:relative;top:-0.12em;transform:scaleY(-1);transform-origin:center 50%;"
+          : "";
         return `<span class="d-ltr" style="display:inline-block;${invertStyle}-webkit-text-fill-color:${color};color:${color}">${ch}</span>`;
       })
       .join("");
