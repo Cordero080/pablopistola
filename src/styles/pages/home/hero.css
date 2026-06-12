@@ -344,25 +344,10 @@
 
 .title-inverted-v {
   display: inline-block;
-  transform: scaleY(-1) translateY(0.15em);
-  transform-origin: center 55%;
-  background: linear-gradient(
-    to bottom,
-    var(--ht-a) 0%,
-    var(--ht-b) 15%,
-    var(--ht-c) 50%,
-    var(--ht-d) 75%,
-    var(--ht-e) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.title-inverted-v {
-  display: inline-block;
-  transform: scaleY(-1) translateY(0.15em);
-  transform-origin: center 55%;
+  position: relative;
+  top: -0.12em;
+  transform: scaleY(-1);
+  transform-origin: center 50%;
   background: linear-gradient(
     to bottom,
     var(--ht-a) 0%,
@@ -406,7 +391,7 @@
     letter-spacing: 0.06em;
   }
   .title-inverted-v {
-    transform: scaleY(-1) translateY(0.05em);
+    top: -0.06em;
   }
   .hero-subtitle {
     font-size: 0.67rem;
