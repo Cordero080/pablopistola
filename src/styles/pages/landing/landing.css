@@ -530,6 +530,16 @@ body.zen-mode .enter-btn__center span {
   animation: letterFadeInFlipGlitch 4s linear forwards;
 }
 
+.title-letter--invert-v {
+  position: relative;
+  top: -0.02em;
+  animation: letterFadeInInvertGlitch 7s linear forwards;
+}
+
+.title-letter--invert-v:hover {
+  transform: scaleY(-1) translateX(2px);
+}
+
 /* Hover */
 .title-letter:hover {
   filter: brightness(1.2);
@@ -620,7 +630,8 @@ body.zen-mode .enter-btn__center span {
 
 /* Replay states */
 .enter-identity-title.landing-title--reset .title-letter,
-.enter-identity-title.landing-title--reset .title-letter--flip {
+.enter-identity-title.landing-title--reset .title-letter--flip,
+.enter-identity-title.landing-title--reset .title-letter--invert-v {
   animation: none !important;
   opacity: 0 !important;
 }
@@ -632,6 +643,11 @@ body.zen-mode .enter-btn__center span {
 
 .enter-identity-title.landing-title--replay .title-letter--flip {
   animation: letterFadeInFlipGlitch 2s linear forwards !important;
+  animation-delay: 0s !important;
+}
+
+.enter-identity-title.landing-title--replay .title-letter--invert-v {
+  animation: letterFadeInInvertGlitch 2s linear forwards !important;
   animation-delay: 0s !important;
 }
 
@@ -766,6 +782,50 @@ body.zen-mode .enter-btn__center span {
   100% {
     opacity: 1;
   }
+}
+
+@keyframes letterFadeInInvertGlitch {
+  0% { opacity: 0; transform: scaleY(-1); }
+  5% { opacity: 0; transform: scaleY(-1); }
+  5.5% {
+    opacity: 1;
+    transform: scaleY(-1) translateX(3px);
+    filter: blur(4px) brightness(1.5);
+    text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff;
+    clip-path: ellipse(80% 40% at 50% 50%);
+  }
+  5.8% {
+    opacity: 1;
+    transform: scaleY(-1) translateX(-3px);
+    filter: blur(2px) invert(1);
+    text-shadow: 4px 0 #ffee00, -4px 0 #0066ff;
+    clip-path: none;
+  }
+  6% {
+    opacity: 1;
+    transform: scaleY(-1) translateX(100px) skewX(-700deg);
+    filter: blur(10px);
+    text-shadow: -3px 0 #ff3333, 3px 0 #33ff33, 0 0 10px rgba(255,255,255,0.5);
+  }
+  6.3% {
+    opacity: 0.6;
+    transform: scaleY(-1) translateX(-50px);
+    filter: blur(3px) invert(0.5);
+  }
+  6.5% {
+    opacity: 0.4;
+    transform: scaleY(-1) translateX(100px);
+    filter: blur(0.5px);
+  }
+  7% {
+    opacity: 1;
+    transform: scaleY(-1);
+    filter: none;
+    text-shadow: none;
+    clip-path: none;
+  }
+  40% { opacity: 1; transform: scaleY(-1); }
+  100% { opacity: 1; transform: scaleY(-1); }
 }
 
 @keyframes letterFadeInFlipGlitch {
@@ -943,8 +1003,34 @@ body.zen-mode .enter-btn__center span {
     letter-spacing: 0.06em;
   }
 
+  .title-letter--invert-v {
+    top: -0.01em;
+  }
+
   .enter-identity-subtitle {
     font-size: clamp(0.55rem, 2vw, 0.8rem);
     letter-spacing: 0.15em;
   }
+}
+
+/* ============================================
+   COMPLEMENTARY / COMP MODE OVERRIDES
+   ============================================ */
+
+body.complementary-colors .title-letter--invert-v {
+  background: #000000;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.complementary-colors .enter-identity-title {
+  font-weight: 900;
+}
+
+body.complementary-colors .enter-identity-subtitle {
+  background: #ffffff;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

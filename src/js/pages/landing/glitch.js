@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const span = document.createElement("span");
     const isSpace = letter === " ";
     const isFlipped = index === 0 || index === letters.length - 1;
+    const isInvertedV = index === 1; // The "V" in PVBLO
     const colorVariant = colorVariants[index % colorVariants.length];
 
     // Build class list
@@ -48,6 +49,9 @@ document.addEventListener("DOMContentLoaded", () => {
       classes.push(`title-letter--${colorVariant}`);
       if (isFlipped) {
         classes.push("title-letter--flip");
+      }
+      if (isInvertedV) {
+        classes.push("title-letter--invert-v");
       }
     }
 

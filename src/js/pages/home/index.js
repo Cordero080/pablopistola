@@ -75,7 +75,7 @@
           node.classList.contains("title-inverted-v")
         ) {
           // Re-wrap the inverted V as a flip-ltr span that also carries the invert class
-          return `<span class="flip-ltr title-inverted-v" style="${style};position:relative;top:-0.12em;transform:scaleY(-1);transform-origin:center 50%;">${node.textContent}</span>`;
+          return `<span class="flip-ltr title-inverted-v" style="${style};position:relative;top:-0.02em;transform:scaleY(-1);transform-origin:center 50%;">${node.textContent}</span>`;
         }
         const text = node.textContent;
         return text
@@ -111,7 +111,8 @@
         const spans = Array.from(title.querySelectorAll(".flip-ltr"));
         spans.forEach((span, i) => {
           setTimeout(() => {
-            span.style.transform = "scaleX(-1)";
+            const isInverted = span.classList.contains("title-inverted-v");
+            span.style.transform = isInverted ? "scaleX(-1) scaleY(-1)" : "scaleX(-1)";
           }, i * 55);
         });
         // Activate theme once last letter finishes flipping
@@ -137,7 +138,8 @@
       .reverse()
       .forEach((span, i) => {
         setTimeout(() => {
-          span.style.transform = "scaleX(1)";
+          const isInverted = span.classList.contains("title-inverted-v");
+          span.style.transform = isInverted ? "scaleX(1) scaleY(-1)" : "scaleX(1)";
         }, i * 40);
       });
     // Unflip letters only — theme stays as-is until next hover

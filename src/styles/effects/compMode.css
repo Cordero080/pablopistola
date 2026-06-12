@@ -189,3 +189,24 @@ body.complementary-colors .hero-title .flip-ltr {
     --ht-e: #000000;
   }
 }
+
+/* Inverted V: black in comp mode */
+body.complementary-colors .hero-title .title-inverted-v {
+  background: linear-gradient(to bottom, #0c0e0f 0%, #1e2428 15%, #374047 50%, #161b1f 75%, #060809 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Hero title: heavier weight in comp mode */
+body.complementary-colors .hero-title {
+  font-weight: 900;
+}
+
+/* Hero subtitle: white in comp mode */
+body.complementary-colors .hero-subtitle {
+  background: #ffffff;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
