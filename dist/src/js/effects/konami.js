@@ -5,11 +5,10 @@
  * Effect layers (all run simultaneously):
  *  1. RGB channel desync  — three copies of the page tinted R/G/B slide apart
  *  2. Canvas crack lines  — jagged fracture lines drawn across the screen
- *  3. Shard explosion     — 160 particles from random screen edges + center
- *  4. Scanline flicker    — rapid white-line overlay flashes
- *  5. Body filter chaos   — CSS filter pulses hue/invert on the whole page
- *  6. Wave spike          — sinewave reverses + maxes out speed
- *  7. Terminal message    — "// SYSTEM FAILURE" message at bottom
+ *  3. Scanline flicker    — rapid white-line overlay flashes
+ *  4. Body filter chaos   — CSS filter pulses hue/invert on the whole page
+ *  5. Wave spike          — sinewave reverses + maxes out speed
+ *  6. Terminal message    — "// SYSTEM FAILURE" message at bottom
  */
 
 (function () {
@@ -43,7 +42,6 @@
 
     rgbDesync();
     crackCanvas();
-    shardExplosion(160);
     scanlineFlicker();
     bodyFilterChaos();
     waveSpike();
@@ -152,76 +150,6 @@
     }
 
     drawCrack(ctx, nx, ny, angle + jitter, remainingLen - actual, depth + 1);
-  }
-
-  // ── 3. Shard explosion ──────────────────────────────────────────────────
-  function shardExplosion(count) {
-    const W = window.innerWidth;
-    const H = window.innerHeight;
-    const colors = [
-      "#00ffff", "#ff00cc", "#ffffff", "#6b7bff",
-      "#ff006e", "#00ff7f", "#ffff00", "#ff4444",
-    ];
-
-    for (let i = 0; i < count; i++) {
-      setTimeout(() => {
-        const p = document.createElement("div");
-
-        // Shards come from multiple origins (epicenter + screen edges)
-        const origin = Math.random();
-        let ox, oy;
-        if (origin < 0.4) {
-          // Center cluster
-          ox = W * 0.5 + (Math.random() - 0.5) * W * 0.3;
-          oy = H * 0.5 + (Math.random() - 0.5) * H * 0.3;
-        } else {
-          // Random edge
-          const edge = Math.floor(Math.random() * 4);
-          ox = edge === 0 ? 0 : edge === 1 ? W : Math.random() * W;
-          oy = edge === 2 ? 0 : edge === 3 ? H : Math.random() * H;
-        }
-
-        const angle = Math.random() * Math.PI * 2;
-        const vel   = 120 + Math.random() * 380;
-        const tx    = Math.cos(angle) * vel;
-        const ty    = Math.sin(angle) * vel;
-
-        // Mix of round particles and sharp rectangular shards
-        const isShard = Math.random() < 0.4;
-        const w = isShard ? 2 + Math.random() * 3 : 3 + Math.random() * 5;
-        const h = isShard ? w * (3 + Math.random() * 6) : w;
-        const rot = Math.random() * 360;
-
-        const color    = colors[Math.floor(Math.random() * colors.length)];
-        const duration = 700 + Math.random() * 900;
-
-        p.style.cssText = `
-          position:fixed;
-          left:${ox}px; top:${oy}px;
-          width:${w}px; height:${h}px;
-          background:${color};
-          border-radius:${isShard ? "1px" : "50%"};
-          pointer-events:none;
-          z-index:999995;
-          box-shadow:0 0 ${w * 4}px ${color};
-          transform:rotate(${rot}deg);
-          transition:
-            transform ${duration}ms cubic-bezier(0.1,0,0.8,1),
-            opacity ${duration}ms ease;
-          opacity:1;
-        `;
-        document.body.appendChild(p);
-
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            p.style.transform = `translate(${tx}px,${ty}px) rotate(${rot + 180 + Math.random() * 360}deg) scale(0.1)`;
-            p.style.opacity = "0";
-          });
-        });
-
-        setTimeout(() => p.remove(), duration + 50);
-      }, Math.random() * 200);
-    }
   }
 
   // ── 4. Scanline flicker ─────────────────────────────────────────────────

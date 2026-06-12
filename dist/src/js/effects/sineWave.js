@@ -6,6 +6,7 @@ function SineWaveGenerator(options) {
   if (!this.waves.length) throw "No waves specified";
 
   this.direction = -1; // 👈 control wave direction here
+  this.isHomePage = window.location.pathname.includes("home");
 
   this._resizeWidth();
   window.addEventListener("resize", this._resizeWidth.bind(this));
@@ -75,24 +76,6 @@ function SineWaveGenerator(options) {
       this.direction *= -1;
     }
   });
-  // Mobile scroll performance - reduce animation during scroll
-  this.isScrolling = false;
-  this.scrollTimeout = null;
-  this.isMobile = window.innerWidth <= 768;
-
-  if (this.isMobile) {
-    window.addEventListener(
-      "scroll",
-      () => {
-        this.isScrolling = true;
-        clearTimeout(this.scrollTimeout);
-        this.scrollTimeout = setTimeout(() => {
-          this.isScrolling = false;
-        }, 80);
-      },
-      { passive: true },
-    );
-  }
 }
 
 // Defaults
@@ -127,8 +110,6 @@ SineWaveGenerator.prototype.update = function (time) {
   this._lastFrame = now;
   this.time += 0.007 * this.direction; // 👈 dynamic direction
 
-  // Page-aware reactivity: home page is more reactive
-  this.isHomePage = window.location.pathname.includes("home");
   const smoothing = this.isHomePage ? 0.15 : 0.1; // home more snappy
   this.smoothMouseX += (this.mouseX - this.smoothMouseX) * smoothing;
   this.smoothMouseY += (this.mouseY - this.smoothMouseY) * smoothing;
@@ -171,10 +152,42 @@ SineWaveGenerator.prototype.drawSine = function (time, options, waveIndex) {
     // Per-wave attraction properties
     attraction = 1, // 1 = normal pull toward cursor, -1 = repel, 0 = no effect
     attractionStrength = 1, // multiplier for how strong the attraction is
-    attractionRadius = 350, // how far the influence reaches
+    attractionRadius = 100, // how far the influence reaches
   } = options;
 
   const ctx = this.ctx;
+
+  // -------------------------------------------------
+  // APEX FADE (wave 0 only)
+  // Fades out the centre of the thick wave when
+  // its crest reaches the top of its arc, then
+  // fades back in as it descends.
+  //
+  // Tweak these values to change the feel:
+  //   proximity threshold  -> the -0.6 below sets when fade starts
+  //                          (higher = later / shorter fade window)
+  //   fade depth           -> the 0.9 multiplier sets how invisible
+  //                          it gets at peak (0 = invisible, 1 = full)
+  //   fade speed           -> the 0.03 EMA factor sets how fast it
+  //                          transitions (lower = slower / lazier)
+  //   edge protection      -> the 0.18 / 0.82 stops below set how
+  //                          far in from each end the fade begins
+  // -------------------------------------------------
+  if (waveIndex === 0) {
+    const yAxis0 = this.height / 2;
+    const cx = time * this.speed + (-yAxis0 + this.waveWidth / 2) / wavelength;
+    const s = Math.sin(cx); // -1 = crest (highest on screen), +1 = trough
+
+    // proximity: 0 when wave is below threshold, ramps to 1 at full crest
+    const proximity = Math.max(0, (-s - 0.6) / 0.4); // <- tweak -0.6 threshold here
+
+    // targetFade: 1 = fully visible, ~0.1 = near-invisible at peak
+    const targetFade = 1 - proximity * 0.9; // <- tweak 0.9 fade depth here
+
+    if (this._apexFade === undefined) this._apexFade = 1;
+    this._apexFade += (targetFade - this._apexFade) * 0.03; // <- tweak 0.03 speed here
+  }
+
   ctx.beginPath();
   ctx.lineWidth = lineWidth * this.dpr;
   ctx.strokeStyle = strokeStyle;
@@ -239,22 +252,48 @@ SineWaveGenerator.prototype.drawSine = function (time, options, waveIndex) {
       const yMid = (points[i].y + points[i + 1].y) / 2;
       ctx.quadraticCurveTo(points[i].x, points[i].y, xMid, yMid);
     }
-    // Connect to last point
     const last = points[points.length - 1];
     ctx.lineTo(last.x, last.y);
   }
 
   ctx.lineTo(this.width, yAxis);
   ctx.stroke();
+
+  // -------------------------------------------------
+  // APEX FADE erase pass (wave 0 only)
+  // The destination-out rect erases the centre zone.
+  // -------------------------------------------------
+  if (waveIndex === 0 && this._apexFade < 0.99) {
+    const eraseAmount = 1 - this._apexFade; // 0 = no erase, up to ~0.9
+
+    // Horizontal gradient: transparent at edges -> opaque in centre
+    // 0.18 / 0.82 stops = protected end-zones    <- tweak edge protection here
+    // 0.35 / 0.65 stops = where full erase begins <- tweak fade-in width here
+    const grad = ctx.createLinearGradient(
+      this.waveLeft,
+      0,
+      this.waveLeft + this.waveWidth,
+      0,
+    );
+    grad.addColorStop(0, "rgba(0,0,0,0)");
+    grad.addColorStop(0.18, "rgba(0,0,0,0)");
+    grad.addColorStop(0.35, `rgba(0,0,0,${eraseAmount.toFixed(3)})`);
+    grad.addColorStop(0.5, `rgba(0,0,0,${eraseAmount.toFixed(3)})`);
+    grad.addColorStop(0.65, `rgba(0,0,0,${eraseAmount.toFixed(3)})`);
+    grad.addColorStop(0.82, "rgba(0,0,0,0)");
+    grad.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.save();
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, this.width, this.height);
+    ctx.restore();
+  }
+  // -------------------------------------------------
+  // END APEX FADE
+  // -------------------------------------------------
 };
 
 SineWaveGenerator.prototype.loop = function () {
-  // Skip rendering during mobile scroll for performance
-  if (this.isMobile && this.isScrolling) {
-    requestAnimationFrame(this.loop.bind(this));
-    return;
-  }
-
   this.clear();
   this.update();
   requestAnimationFrame(this.loop.bind(this));
@@ -262,12 +301,12 @@ SineWaveGenerator.prototype.loop = function () {
 
 window.waveGen = new SineWaveGenerator({
   el: document.getElementById("waves"),
-  speed: 0.6, // slowed down for a calmer vibe
+  speed: 0.4, // slowed down for a calmer vibe
   waves: [
     // Wave 1: Heavy leader - very slow due to mass
     {
       timeModifier: 1,
-      lineWidth: 20.5,
+      lineWidth: 25.5,
       amplitude: 150,
       wavelength: 300,
       segmentLength: 20,
@@ -279,7 +318,7 @@ window.waveGen = new SineWaveGenerator({
     // Wave 2: Light ribbon - quick to respond
     {
       timeModifier: 1,
-      lineWidth: 1,
+      lineWidth: 2,
       amplitude: 100,
       wavelength: 100,
       attraction: 1,
@@ -291,7 +330,7 @@ window.waveGen = new SineWaveGenerator({
     {
       timeModifier: 1,
       lineWidth: 0.5,
-      amplitude: 120,
+      amplitude: 150,
       wavelength: 150,
       segmentLength: 10,
       attraction: 1,
@@ -346,17 +385,3 @@ window.waveGen = new SineWaveGenerator({
     }
   },
 });
-
-// This file has moved to js/sineWave.js
-// Please update your HTML <script> tag to:
-// <script src="js/sineWave.js"></script>
-
-// Add a fourth card beneath the three, styled as requested
-const container = document.querySelector(".container");
-if (container) {
-  const moreCard = document.createElement("div");
-  moreCard.className = "card more-card";
-  moreCard.innerHTML = '<span class="glitch" data-text="more">more</span>';
-  container.appendChild(moreCard);
-} // how to add more words to the more card
-//

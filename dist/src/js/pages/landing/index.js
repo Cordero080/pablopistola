@@ -17,7 +17,8 @@ if (!stayMode && !isStandalone && sessionStorage.getItem("skippedLanding")) {
 // Zen mode: reposition button and change text
 if (stayMode) {
   document.body.classList.add("zen-mode");
-  document.querySelector("#enterBtn span").textContent = "back";
+  document.querySelector("#enterBtn span").innerHTML =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" style="display:block;margin:0 auto;"><path d="M11 18V6l-8.5 6 8.5 6zm.5-6 8.5 6V6l-8.5 6z"/></svg>`;
 }
 
 // Show enter button after 1.5s
@@ -25,17 +26,22 @@ setTimeout(() => {
   document.getElementById("enterBtn").classList.add("visible");
 }, 1500);
 
-// Handle enter click - dissolve then navigate
+// Handle enter click - scanline collapse then navigate
 document.getElementById("enterBtn").addEventListener("click", (e) => {
   e.preventDefault();
   sessionStorage.setItem("skippedLanding", "true");
 
-  document.getElementById("enterBtn").classList.remove("visible");
-  document.querySelector(".landing-container").classList.add("dissolving");
-  document.getElementById("waves").classList.add("dissolving");
-  document.querySelector(".enter-identity")?.classList.add("dissolving");
+  const btn = document.getElementById("enterBtn");
+  btn.classList.add("collapsing");
+  window.__stopRubix = true;
+
+  setTimeout(() => {
+    document.querySelector(".landing-container").classList.add("dissolving");
+    document.getElementById("waves").classList.add("dissolving");
+    document.querySelector(".enter-identity")?.classList.add("dissolving");
+  }, 500);
 
   setTimeout(() => {
     window.location.href = "/home.html";
-  }, 1000);
+  }, 900);
 });

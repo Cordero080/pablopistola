@@ -1,7 +1,5 @@
 // Custom Cursor System
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("Creating custom cursor system...");
-
   // Create cursor elements
   const cursorMain = document.createElement("div");
   cursorMain.className = "cursor-main";
@@ -18,8 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
   document.body.appendChild(cursorMain);
   document.body.appendChild(cursorFollow);
   document.body.appendChild(cursorGlow);
-
-  console.log("Cursor elements created:", cursorMain, cursorFollow, cursorGlow);
 
   let mouseX = window.innerWidth / 2,
     mouseY = window.innerHeight / 2;

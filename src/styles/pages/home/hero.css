@@ -123,11 +123,19 @@
 .hero-subtitle {
   font-family: "IBM Plex Sans", sans-serif;
   font-size: clamp(0.87rem, 2.16vw, 1.08rem);
-  font-weight: 300;
+  font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   white-space: nowrap;
-  color: rgba(255, 255, 255, 0.6);
+  background: linear-gradient(
+    90deg,
+    rgb(114, 175, 255),
+    rgba(74, 193, 248, 0.84),
+    rgba(249, 142, 224, 0.938)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin: 0.5em 0 0.8em 0;
 }
 

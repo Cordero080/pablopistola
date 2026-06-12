@@ -293,8 +293,22 @@
   transition: height 0.3s ease;
 }
 
-.side-nav-link:hover::before {
+.side-nav-link:hover::before,
+.side-nav-link.orb-highlight::before {
   height: 70%;
+}
+
+/* Nav scan highlight — graceful fade in/out via transition on .nav-icon */
+.side-nav-link.orb-highlight {
+  background: rgba(0, 255, 247, 0.18);
+  box-shadow: 0 0 16px rgba(0, 255, 247, 0.25);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+.side-nav-link.orb-highlight .nav-icon {
+  color: #00fff7;
+  filter: drop-shadow(0 0 12px rgba(0, 255, 247, 0.9));
+  transform: scale(1.2);
+  transition: color 0.4s ease, filter 0.4s ease, transform 0.4s ease;
 }
 
 /* Exit link styling */
@@ -602,6 +616,33 @@
   transition:
     transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
     opacity 0.35s ease;
+  animation: ringGradientShift 9s ease-in-out infinite;
+}
+
+@keyframes ringGradientShift {
+  0%, 55%, 100% {
+    background: linear-gradient(135deg, #00fff7, #cc00ff, #ff00ff);
+    filter: brightness(1);
+    transform: scale(1);
+  }
+  65% {
+    background: linear-gradient(135deg, #72afff, #cc00ff, #f98ee0);
+    filter: brightness(1.5);
+    transform: scale(1.12);
+  }
+  80% {
+    background: linear-gradient(135deg, #00fff7, #cc00ff, #ff00ff);
+    filter: brightness(0.7);
+    transform: scale(0.88);
+  }
+  92% {
+    filter: brightness(1);
+    transform: scale(1);
+  }
+}
+
+.hamburger-btn.active .hamburger-line {
+  animation: none;
 }
 
 .hamburger-line:nth-child(1) {

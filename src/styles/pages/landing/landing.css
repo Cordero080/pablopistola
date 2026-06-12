@@ -246,14 +246,14 @@ body.zen-mode .enter-btn__center span {
 .enter-identity-subtitle {
   font-family: "Space Grotesk", sans-serif;
   font-size: clamp(0.75rem, 1.4vw, 1rem);
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   background: linear-gradient(
     90deg,
-    rgba(0, 212, 255, 1),
-    rgba(200, 80, 255, 1),
-    rgba(0, 212, 255, 1)
+    rgb(114, 175, 255),
+    rgba(74, 193, 248, 0.84),
+    rgba(249, 142, 224, 0.938)
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

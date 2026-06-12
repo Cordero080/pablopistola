@@ -6,7 +6,7 @@
 import * as THREE from "three";
 
 const heroSection = document.querySelector(".hero-section");
-if (heroSection) {
+if (heroSection && window.innerWidth > 600) {
   // ── Canvas overlay ──────────────────────────────────────────────────────────
   const canvas = document.createElement("canvas");
   canvas.style.cssText = `
@@ -115,29 +115,37 @@ if (heroSection) {
     const worldW = worldH * camera.aspect;
     const pxToWorld = worldH / H;
 
+    // ── Scale ── [mobile, tablet (≤900), desktop]
+    // Increase to make brackets larger, decrease to shrink them.
     const scaleFactor = isMobileView ? 0.19 : W <= 900 ? 0.2 : 0.18;
     const s = (H * scaleFactor * pxToWorld) / 2.2;
     leftBracket.scale.set(s, s, s);
     rightBracket.scale.set(s, s, s);
 
     let offsetWorld;
-    if (isMobileView) {
-      // ── MOBILE TWEAKS ─────────────────────────────────────────────────────
-      // Horizontal spread: fraction of world width (0 = center, 0.5 = viewport edge)
-      // Increase to push brackets further apart, decrease to bring them closer
-      offsetWorld = worldW * 0.465;
-      // ─────────────────────────────────────────────────────────────────────
-    } else {
-      const heroTitle = heroSection.querySelector(".hero-title");
-      const halfContentPx = heroTitle
-        ? heroTitle.getBoundingClientRect().width / 2
-        : W * 0.28;
-      offsetWorld = Math.min((halfContentPx + 32) * pxToWorld, worldW * 0.46);
-    }
+    // ── Horizontal gap ── pixels of space between title edge and bracket
+    // Increase padding to push brackets further out from the title.
+    const heroTitle = heroSection.querySelector(".hero-title");
+    const halfContentPx = heroTitle
+      ? heroTitle.getBoundingClientRect().width / 2
+      : W * 0.28;
+    const padding = isMobileView ? 18 : 32; // [mobile, desktop] — tighter gap on mobile
+    offsetWorld = Math.min(
+      (halfContentPx + padding) * pxToWorld,
+      worldW * 0.46, // hard cap: never wider than 46% of world width
+    );
 
-    leftBracket.position.x = -offsetWorld;
+    leftBracket.position.x = -offsetWorld + 0.18;
     rightBracket.position.x = offsetWorld;
-    const bracketY = isMobileView ? -0.45 : W <= 900 ? 0.05 : -0.28;
+
+    // ── Vertical position — anchored to hero title center ──────────────────
+    // Derived from the title's actual DOM position so edits elsewhere never shift brackets.
+    const heroRect = heroSection.getBoundingClientRect();
+    const titleRect = heroTitle ? heroTitle.getBoundingClientRect() : null;
+    const titleCenterPx = titleRect
+      ? titleRect.top - heroRect.top + titleRect.height / 2
+      : H / 2;
+    const bracketY = (H / 2 - titleCenterPx) * pxToWorld;
     leftBracket.position.y = bracketY;
     rightBracket.position.y = bracketY;
     rightBracket.position.z = -0.23;
@@ -182,13 +190,7 @@ if (heroSection) {
 
   // ── Complementary color mode — invert bracket material ──────────────────────
   function applyCompMode(active) {
-    if (active) {
-      material.color.set(0xfafafa); // near-white body
-      material.specular.set(0x111111); // dark specular — edges go dark
-    } else {
-      material.color.set(0x050505); // near-black body
-      material.specular.set(0xffffff); // white specular — edges catch light
-    }
+    canvas.style.display = active ? "none" : "";
     material.needsUpdate = true;
   }
 

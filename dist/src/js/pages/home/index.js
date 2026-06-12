@@ -45,3 +45,116 @@
   }
   window.addEventListener("scroll", onScroll, { passive: true });
 })();
+
+// ── Title letter flip + alternate theme activation ──
+// Desktop: hover triggers gradient fade → letters mirror one by one → theme activates
+// Mobile:  tap triggers the same sequence
+// Unflip (+ theme toggle back) happens on mouse-leave / second tap.
+(function () {
+  const title = document.getElementById("heroTitle");
+  if (!title) return;
+
+  const isMobile = () => window.matchMedia("(hover: none)").matches;
+
+  const spanStyle = [
+    "display:inline-block",
+    "background:linear-gradient(to bottom,var(--ht-a) 0%,var(--ht-b) 25%,var(--ht-c) 50%,var(--ht-d) 75%,var(--ht-e) 100%)",
+    "-webkit-background-clip:text",
+    "background-clip:text",
+    "-webkit-text-fill-color:transparent",
+    "transition:transform 0.35s cubic-bezier(0.4,0,0.2,1)",
+  ].join(";");
+
+  function ensureSpans() {
+    if (title.querySelector(".flip-ltr")) return;
+    const text = title.textContent;
+    title.innerHTML = text
+      .split("")
+      .map((ch) =>
+        ch === " "
+          ? `<span style="display:inline-block;width:0.35em"> </span>`
+          : `<span class="flip-ltr" style="${spanStyle}">${ch}</span>`,
+      )
+      .join("");
+    title.style.webkitTextFillColor = "unset";
+    title.style.backgroundClip = "unset";
+    title.style.webkitBackgroundClip = "unset";
+    title.style.background = "none";
+  }
+
+  let flipTimeout = null;
+  let flipped = false;
+
+  function flipIn() {
+    clearTimeout(flipTimeout);
+    // Wait for CSS gradient transition to settle, then flip letters
+    flipTimeout = setTimeout(
+      () => {
+        ensureSpans();
+        const spans = Array.from(title.querySelectorAll(".flip-ltr"));
+        spans.forEach((span, i) => {
+          setTimeout(() => {
+            span.style.transform = "scaleX(-1)";
+          }, i * 55);
+        });
+        // Activate theme once last letter finishes flipping
+        const totalDelay = (spans.length - 1) * 55 + 350;
+        setTimeout(() => {
+          if (typeof window.toggleComplementaryColors === "function") {
+            window.toggleComplementaryColors();
+          }
+          flipped = true;
+          // Mobile: auto-unmirror after theme settles — one tap = full cycle
+          if (isMobile()) setTimeout(flipOut, 300);
+        }, totalDelay);
+      },
+      isMobile() ? 0 : 500,
+    ); // no gradient settle delay on mobile
+  }
+
+  function flipOut() {
+    clearTimeout(flipTimeout);
+    const spans = Array.from(title.querySelectorAll(".flip-ltr"));
+    spans
+      .slice()
+      .reverse()
+      .forEach((span, i) => {
+        setTimeout(() => {
+          span.style.transform = "scaleX(1)";
+        }, i * 40);
+      });
+    // Unflip letters only — theme stays as-is until next hover
+    const totalDelay = (spans.length - 1) * 40 + 350;
+    setTimeout(() => {
+      flipped = false;
+      // Remove spans so CSS gradient re-renders in whatever mode is active
+      const plain = title.textContent;
+      title.innerHTML = plain
+        .split("")
+        .map((ch) =>
+          ch === " "
+            ? `<span style="display:inline-block;width:0.35em"> </span>`
+            : ch,
+        )
+        .join("");
+      title.style.background = "";
+      title.style.webkitTextFillColor = "";
+      title.style.backgroundClip = "";
+      title.style.webkitBackgroundClip = "";
+    }, totalDelay);
+  }
+
+  // Desktop: hover
+  title.addEventListener("mouseenter", () => {
+    if (!isMobile()) flipIn();
+  });
+  title.addEventListener("mouseleave", () => {
+    if (!isMobile()) flipOut();
+  });
+
+  // Mobile: one tap = full mirror-then-unmirror cycle; ignore taps mid-animation
+  title.addEventListener("click", () => {
+    if (!isMobile() || flipped) return;
+    flipIn();
+  });
+})();

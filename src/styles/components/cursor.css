@@ -110,7 +110,6 @@
     quantum-ripple-spinY 43.2s infinite cubic-bezier(0.77, 0, 0.18, 1),
     quantum-ripple-focal 14.4s infinite linear;
   filter: blur(1px) brightness(1) saturate(1.9);
-  position: relative;
 }
 .quantum-ripple::after {
   content: "";
