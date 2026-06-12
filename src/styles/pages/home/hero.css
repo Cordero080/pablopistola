@@ -391,7 +391,7 @@
     letter-spacing: 0.06em;
   }
   .title-inverted-v {
-    top: 0.01em;
+    top: -0.1em;
   }
   .hero-subtitle {
     font-size: 0.67rem;
