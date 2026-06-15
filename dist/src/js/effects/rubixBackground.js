@@ -22,7 +22,7 @@ const GLOW_EMIT_B = 1.0; // emissive · blue  weight ← dominant
 const FACE_EDGE_COLORS = [
   "#0a0e2e", // front  — pink
   "#050413", // back   — magenta
-  "#000a38", // right  — blue
+  "#16266b", // right  — blue
   "#061010", // left   — cyan
   "#08050f", // top    — teal
   "#020033", // bottom — purple
@@ -52,7 +52,16 @@ const ROT_X = 0.008; // pitch — slow tilt
 const ROT_Z = 0.012; // roll  — subtle twist
 
 // Wave displacement: fraction of cubeSize panels travel when waving
-const WAVE_AMPLITUDE = 0.55; // 0 = flat faces, higher = more ripple
+const WAVE_AMPLITUDE = 0.8; // 0 = flat faces, higher = more ripple
+
+// Panel self-spin (rad/s, scaled by sin(phase) per panel → alternating directions)
+const PANEL_SPIN_SPEED = 0.25;
+
+// Scale breathe amplitude — panels pulse ±this fraction with the wave
+const SCALE_BREATHE = 0.12;
+
+// Face hue offsets (radians) — shifts glow hue per face and across the grid
+const FACE_HUE_OFFSETS = [0, 0.5, 1.0, 1.5, 2.2, 2.8];
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SETUP
@@ -193,14 +202,17 @@ faces.forEach((face, fi) => {
       });
       const edgeMesh = new THREE.LineSegments(edgeGeo, edgeMat);
 
+      const phase = fi * 0.5 + row * 0.3 + col * 0.2;
       panels.push({
         mesh,
         edgeMesh,
         basePos: mesh.position.clone(),
         dir: face.dir.clone(),
-        phase: fi * 0.5 + row * 0.3 + col * 0.2,
+        phase,
         fi,
         distFromCenter,
+        spinRate: Math.sin(phase) * PANEL_SPIN_SPEED,
+        hueAngle: FACE_HUE_OFFSETS[fi] + (row + col) / (grid * 1.5),
       });
       root.add(mesh);
       root.add(edgeMesh);
@@ -232,6 +244,8 @@ const clock = new THREE.Clock();
     dir,
     phase,
     distFromCenter,
+    spinRate,
+    hueAngle,
   } of panels) {
     // ── Wave displacement ──────────────────────────────────────────────────
     const wave1 = Math.sin(ct * 0.3 + phase) * 0.5;
@@ -239,19 +253,30 @@ const clock = new THREE.Clock();
     const wave3 = Math.sin(ct * 0.45 + phase) * 0.2;
     const disp = (wave1 + wave2 + wave3) * waveAmp;
     mesh.position.copy(basePos).addScaledVector(dir, disp);
+
+    // ── A: self-spin ───────────────────────────────────────────────────────
+    mesh.rotateZ(delta * spinRate);
+
+    // ── B: scale breathe ──────────────────────────────────────────────────
+    const scale = 1 + wave1 * SCALE_BREATHE;
+    mesh.scale.setScalar(scale);
+
     edgeMesh.position.copy(mesh.position);
     edgeMesh.quaternion.copy(mesh.quaternion);
+    edgeMesh.scale.copy(mesh.scale);
 
-    // ── Live glow color ────────────────────────────────────────────────────
-    const glow = distFromCenter * 0.06 + Math.abs(wave1) * 0.04;
+    // ── F: face-hue gradient + live glow ──────────────────────────────────
+    const glow = distFromCenter * 0.095 + Math.abs(wave1) * 0.04;
+    const cosH = Math.cos(hueAngle);
+    const sinH = Math.sin(hueAngle);
     mesh.material.color.setRGB(
-      glow * GLOW_COLOR_R,
-      glow * GLOW_COLOR_G,
+      glow * (GLOW_COLOR_R + 0.2 * cosH),
+      glow * (GLOW_COLOR_G + 0.2 * sinH),
       glow * GLOW_COLOR_B,
     );
     mesh.material.emissive.setRGB(
-      glow * GLOW_EMIT_R,
-      glow * GLOW_EMIT_G,
+      glow * (GLOW_EMIT_R + 0.15 * cosH),
+      glow * (GLOW_EMIT_G + 0.15 * sinH),
       glow * GLOW_EMIT_B,
     );
     mesh.material.emissiveIntensity = 0.5 + distFromCenter * 0.4;

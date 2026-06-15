@@ -144,6 +144,7 @@ body.complementary-colors .hero-title {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0.3px rgba(0, 0, 0, 0.45);
   text-shadow: none;
   animation: none;
 }

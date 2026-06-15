@@ -127,6 +127,16 @@ SineWaveGenerator.prototype.update = function (time) {
     time = this.time;
   }
 
+  // ── Suck-pulse clock ────────────────────────────────────────────────────────
+  // Fires every SUCK_INTERVAL seconds. Uses |sin|^SUCK_SHARP so the wave
+  // spends most of its time at 0 (normal) and briefly spikes to 1 (sucked in).
+  const SUCK_INTERVAL = 18; // seconds between suck events
+  const SUCK_SHARP = 12; // higher = sharper spike, faster snap-back
+  const ct = now / 1000;
+  const suckRaw = Math.abs(Math.sin((ct / SUCK_INTERVAL) * Math.PI));
+  this._suck = Math.pow(suckRaw, SUCK_SHARP);
+  // ────────────────────────────────────────────────────────────────────────────
+
   for (let i = 0; i < this.waves.length; i++) {
     const wave = this.waves[i];
     const modifier = wave.timeModifier || 1;
@@ -188,8 +198,15 @@ SineWaveGenerator.prototype.drawSine = function (time, options, waveIndex) {
     this._apexFade += (targetFade - this._apexFade) * 0.03; // <- tweak 0.03 speed here
   }
 
+  // ── Suck: amplitude collapse + line thinning ───────────────────────────────
+  // suck = 0 → normal wave; suck = 1 → collapsed to centerline, hair-thin
+  const suck = this._suck ?? 0;
+  const suckedAmplitude = amplitude * (1 - suck * 0.92);
+  const suckedLineWidth = lineWidth * (1 - suck * 0.75);
+  // ────────────────────────────────────────────────────────────────────────────
+
   ctx.beginPath();
-  ctx.lineWidth = lineWidth * this.dpr;
+  ctx.lineWidth = suckedLineWidth * this.dpr;
   ctx.strokeStyle = strokeStyle;
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
@@ -205,7 +222,7 @@ SineWaveGenerator.prototype.drawSine = function (time, options, waveIndex) {
     const segmentX = i + this.waveLeft;
     const waveX = time * this.speed + (-yAxis + i) / wavelength;
     const waveY = Math.sin(waveX);
-    const easedAmp = this.ease(i / this.waveWidth, amplitude);
+    const easedAmp = this.ease(i / this.waveWidth, suckedAmplitude);
 
     // Use per-wave delayed mouse position for ribboning effect
     const cursorX = this.waveMouseX[waveIndex] ?? this.width / 2 / this.dpr;

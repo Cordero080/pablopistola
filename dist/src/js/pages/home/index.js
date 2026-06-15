@@ -65,17 +65,34 @@
     "transition:transform 0.35s cubic-bezier(0.4,0,0.2,1)",
   ].join(";");
 
+  // Rebuild title HTML as flip-ltr spans, preserving any .title-inverted-v child
+  function buildSpanHTML(invertedStyle) {
+    const style = invertedStyle || spanStyle;
+    return Array.from(title.childNodes)
+      .map((node) => {
+        if (
+          node.nodeType === Node.ELEMENT_NODE &&
+          node.classList.contains("title-inverted-v")
+        ) {
+          // Re-wrap the inverted V as a flip-ltr span that also carries the invert class
+          return `<span class="flip-ltr title-inverted-v" style="${style};position:relative;top:-0.02em;transform:scaleY(-1);transform-origin:center 50%;">${node.textContent}</span>`;
+        }
+        const text = node.textContent;
+        return text
+          .split("")
+          .map((ch) =>
+            ch === " "
+              ? `<span style="display:inline-block;width:0.35em"> </span>`
+              : `<span class="flip-ltr" style="${style}">${ch}</span>`,
+          )
+          .join("");
+      })
+      .join("");
+  }
+
   function ensureSpans() {
     if (title.querySelector(".flip-ltr")) return;
-    const text = title.textContent;
-    title.innerHTML = text
-      .split("")
-      .map((ch) =>
-        ch === " "
-          ? `<span style="display:inline-block;width:0.35em"> </span>`
-          : `<span class="flip-ltr" style="${spanStyle}">${ch}</span>`,
-      )
-      .join("");
+    title.innerHTML = buildSpanHTML();
     title.style.webkitTextFillColor = "unset";
     title.style.backgroundClip = "unset";
     title.style.webkitBackgroundClip = "unset";
@@ -94,7 +111,10 @@
         const spans = Array.from(title.querySelectorAll(".flip-ltr"));
         spans.forEach((span, i) => {
           setTimeout(() => {
-            span.style.transform = "scaleX(-1)";
+            const isInverted = span.classList.contains("title-inverted-v");
+            span.style.transform = isInverted
+              ? "scaleX(-1) scaleY(-1)"
+              : "scaleX(-1)";
           }, i * 55);
         });
         // Activate theme once last letter finishes flipping
@@ -120,23 +140,18 @@
       .reverse()
       .forEach((span, i) => {
         setTimeout(() => {
-          span.style.transform = "scaleX(1)";
+          const isInverted = span.classList.contains("title-inverted-v");
+          span.style.transform = isInverted
+            ? "scaleX(1) scaleY(-1)"
+            : "scaleX(1)";
         }, i * 40);
       });
     // Unflip letters only — theme stays as-is until next hover
     const totalDelay = (spans.length - 1) * 40 + 350;
     setTimeout(() => {
       flipped = false;
-      // Remove spans so CSS gradient re-renders in whatever mode is active
-      const plain = title.textContent;
-      title.innerHTML = plain
-        .split("")
-        .map((ch) =>
-          ch === " "
-            ? `<span style="display:inline-block;width:0.35em"> </span>`
-            : ch,
-        )
-        .join("");
+      // Restore original HTML — plain text chars + the inverted-V span
+      title.innerHTML = 'P<span class="title-inverted-v">V</span>BLO C0RDERO';
       title.style.background = "";
       title.style.webkitTextFillColor = "";
       title.style.backgroundClip = "";

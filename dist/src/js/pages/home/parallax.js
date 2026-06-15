@@ -95,18 +95,36 @@ document.addEventListener("DOMContentLoaded", () => {
   function buildDecomposition() {
     if (decomposed || !heroTitleEl) return;
     decomposed = true;
-    const chars = originalTitleHTML.split("");
+
+    // Walk child nodes so we don't split HTML tag strings character by character
+    const chars = [];
+    heroTitleEl.childNodes.forEach((node) => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        node.textContent
+          .split("")
+          .forEach((ch) => chars.push({ ch, inverted: false }));
+      } else if (node.nodeType === Node.ELEMENT_NODE) {
+        node.textContent
+          .split("")
+          .forEach((ch) =>
+            chars.push({
+              ch,
+              inverted: node.classList.contains("title-inverted-v"),
+            }),
+          );
+      }
+    });
+
     let vecIdx = 0;
     heroTitleEl.innerHTML = chars
-      .map((char) => {
-        if (char === " ")
+      .map(({ ch, inverted }) => {
+        if (ch === " ")
           return `<span style="display:inline-block;width:0.35em"> </span>`;
         const angle = Math.random() * Math.PI * 2;
         const dist = 70 + Math.random() * 130;
         const color = accentColors[vecIdx % accentColors.length];
-        // Each letter gets its own stagger threshold offset (0–0.18 range)
         const staggerOffset =
-          (vecIdx / chars.filter((c) => c !== " ").length) *
+          (vecIdx / chars.filter((c) => c.ch !== " ").length) *
           0.18 *
           Math.random();
         letterVectors.push({
@@ -117,7 +135,10 @@ document.addEventListener("DOMContentLoaded", () => {
           staggerOffset,
         });
         vecIdx++;
-        return `<span class="d-ltr" style="display:inline-block;-webkit-text-fill-color:${color};color:${color}">${char}</span>`;
+        const invertStyle = inverted
+          ? "position:relative;top:-0.12em;transform:scaleY(-1);transform-origin:center 50%;"
+          : "";
+        return `<span class="d-ltr" style="display:inline-block;${invertStyle}-webkit-text-fill-color:${color};color:${color}">${ch}</span>`;
       })
       .join("");
     letterSpans = Array.from(heroTitleEl.querySelectorAll(".d-ltr"));
