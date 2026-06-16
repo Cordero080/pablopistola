@@ -1,71 +1,165 @@
 import * as THREE from "three";
 
-// ─────────────────────────────────────────────────────────────────────────────
-// COLOR PALETTE — edit here; hex values render as swatches in your IDE
-// ─────────────────────────────────────────────────────────────────────────────
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║  🎨  COLOR PALETTE                                                       ║
+// ║  The base color of each flat panel and sphere orb.                       ║
+// ║  These are very dark on purpose — the glow colors below do the work.     ║
+// ║                                                                          ║
+// ║  PANEL_COLOR    → the fill color of each tile (hex)                      ║
+// ║  PANEL_EMISSIVE → how much the panel "glows" on its own before glow math ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 
-// Panel body base color (very dark, mostly transparent)
-const PANEL_COLOR = "#050508"; // near-black with blue cast
-const PANEL_EMISSIVE = "#050508"; // self-glow base (same as body)
+const PANEL_COLOR = "#050508"; // near-black with a subtle blue cast
+const PANEL_EMISSIVE = "#050508"; // keep this the same as PANEL_COLOR
 
-// Dynamic glow weights — blue-dominant by design (R < G < B)
-// Raise a channel to shift the live glow hue toward that color
-const GLOW_COLOR_R = 0.6; // color  · red   weight
-const GLOW_COLOR_G = 0.7; // color  · green weight
-const GLOW_COLOR_B = 1.0; // color  · blue  weight ← dominant
-const GLOW_EMIT_R = 0.4; // emissive · red   weight
-const GLOW_EMIT_G = 0.5; // emissive · green weight
-const GLOW_EMIT_B = 1.0; // emissive · blue  weight ← dominant
+// 🌈  LIVE GLOW — applied per-panel each frame based on wave + position
+//
+//  Each channel is a 0–1 multiplier. Higher = more of that color in the glow.
+//  R < G < B by default → blue-dominant. Want purple? raise R. Want teal? lower R.
+//  These only affect the dynamic glow, not the base color above.
 
-// Face edge line colors — one per cube face, shown as swatches
-// Order: front · back · right · left · top · bottom
+const GLOW_COLOR_R = 0.6; // red  contribution to panel color glow
+const GLOW_COLOR_G = 0.7; // green contribution
+const GLOW_COLOR_B = 1.0; // blue  contribution  ← dominant, keep this highest
+
+const GLOW_EMIT_R = 0.4; // red  contribution to self-emissive glow
+const GLOW_EMIT_G = 0.5; // green contribution
+const GLOW_EMIT_B = 1.0; // blue  contribution  ← dominant
+
+// 🖊️  EDGE LINE COLORS — one hex per face of the cube
+//
+//  Order is: front · back · right · left · top · bottom
+//  These are the thin outlines around each flat tile.
+
 const FACE_EDGE_COLORS = [
-  "#0a0e2e", // front  — pink
-  "#050413", // back   — magenta
-  "#16266b", // right  — blue
-  "#061010", // left   — cyan
-  "#08050f", // top    — teal
-  "#020033", // bottom — purple
+  "#06147f", // front  face edges
+  "#050413", // back   face edges
+  "#16266b", // right  face edges
+  "#432a8b", // left   face edges
+  "#08050f", // top    face edges
+  "#330015", // bottom face edges
 ];
 
-// ─────────────────────────────────────────────────────────────────────────────
-// OPACITY TUNING
-// ─────────────────────────────────────────────────────────────────────────────
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║  👁️  OPACITY / TRANSPARENCY                                              ║
+// ║  All values are 0–1. 0 = fully invisible, 1 = fully opaque.             ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 
-// Panel fill opacity: base + center-boost * distFromCenter + wave-boost * |wave|
-const PANEL_OPACITY_BASE = 0.05;
-const PANEL_OPACITY_CENTER = 0.05; // extra opacity toward face center
-const PANEL_OPACITY_WAVE = 0.025; // extra opacity when wave is active
+// Flat panel fill opacity
+//  BASE   → minimum opacity every panel always has
+//  CENTER → extra opacity added toward the center of each face (brighter center)
+//  WAVE   → extra opacity added when the wave is at its peak
 
-// Edge line opacity: same structure as panels
+const PANEL_OPACITY_BASE = 0.15;
+const PANEL_OPACITY_CENTER = 0.05;
+const PANEL_OPACITY_WAVE = 0.025;
+
+// Edge line opacity — same three knobs, for the outline lines
+
 const EDGE_OPACITY_BASE = 0.06;
 const EDGE_OPACITY_CENTER = 0.06;
 const EDGE_OPACITY_WAVE = 0.025;
 
-// ─────────────────────────────────────────────────────────────────────────────
-// MOTION TUNING
-// ─────────────────────────────────────────────────────────────────────────────
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║  🌀  MOTION — rotation, wave, spin, scale                                ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 
-// Cube rotation speeds (radians/second per axis)
-const ROT_Y = 0.018; // yaw   — primary spin
-const ROT_X = 0.008; // pitch — slow tilt
-const ROT_Z = 0.012; // roll  — subtle twist
+// 🔄  CUBE ROTATION — how fast the whole cube slowly spins (radians/second)
+//  Lower = slower. Set to 0 to freeze that axis.
 
-// Wave displacement: fraction of cubeSize panels travel when waving
-const WAVE_AMPLITUDE = 0.8; // 0 = flat faces, higher = more ripple
+const ROT_Y = 0.0171; // left–right spin (yaw)   ← main visible spin
+const ROT_X = 0.0076; // up–down tilt   (pitch)
+const ROT_Z = 0.0114; // clockwise roll (roll)
 
-// Panel self-spin (rad/s, scaled by sin(phase) per panel → alternating directions)
-const PANEL_SPIN_SPEED = 0.25;
+// 🌊  WAVE — panels ripple in and out from the face surface
+//  WAVE_AMPLITUDE: how far panels travel. 0 = flat/no ripple, 1.5 = very dramatic
 
-// Scale breathe amplitude — panels pulse ±this fraction with the wave
+const WAVE_AMPLITUDE = 0.8;
+
+// 🌀  PANEL SELF-SPIN — each flat tile slowly rotates on its own axis
+//  Higher = faster spinning tiles. 0 = no spin. Panels alternate direction.
+
+const PANEL_SPIN_SPEED = 0.2375; // slightly slower than before
+
+// 💓  SCALE BREATHE — tiles gently pulse in size with the wave
+//  0 = no size pulse, 0.3 = very noticeable pulse
+
 const SCALE_BREATHE = 0.12;
 
-// Face hue offsets (radians) — shifts glow hue per face and across the grid
-const FACE_HUE_OFFSETS = [0, 0.5, 1.0, 1.5, 2.2, 2.8];
+// 🌈  HUE SHIFT — each face starts at a different color angle, creating variety
 
-// ─────────────────────────────────────────────────────────────────────────────
-// SETUP
-// ─────────────────────────────────────────────────────────────────────────────
+const FACE_HUE_OFFSETS = [0, 3.5, 1.0, 1.5, 2.2, 2.8];
+
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║  🔮  MORPH — flat panel tiles ↔ sphere orbs                              ║
+// ║                                                                          ║
+// ║  CUBE_HOLD   → how many seconds to stay as flat panels before morphing   ║
+// ║  MORPH_DUR   → how many seconds the morph transition takes               ║
+// ║  SPHERE_HOLD → how many seconds to stay as spheres before morphing back  ║
+// ║                                                                          ║
+// ║  MORPH_CYCLE is calculated automatically — don't edit it directly.       ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
+const CUBE_HOLD = 14; // seconds showing flat panels
+const MORPH_DUR = 4; // seconds for the morph transition
+const SPHERE_HOLD = 8; // seconds showing sphere orbs
+
+const MORPH_CYCLE = CUBE_HOLD + MORPH_DUR + SPHERE_HOLD + MORPH_DUR; // auto
+
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║  🌐  SPHERE ORB OPTIONS                                                  ║
+// ║                                                                          ║
+// ║  ORB_HUE_SPEED → how fast the orbs slowly shift color while in sphere   ║
+// ║                  form. In radians/second. 0.12 = very subtle.            ║
+// ║                  0 = no shift, 0.5 = noticeable cycling.                 ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
+const ORB_HUE_SPEED = 0.12; // radians/second — only active during sphere phase
+
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║  🕸️  CONNECTION LINES                                                    ║
+// ║                                                                          ║
+// ║  During the sphere phase, thin lines briefly connect adjacent orbs,      ║
+// ║  forming a glowing lattice across each face, then fade away.             ║
+// ║                                                                          ║
+// ║  CONN_DELAY → seconds into the sphere phase before lines appear          ║
+// ║  CONN_DUR   → total seconds the lines are visible (including fades)      ║
+// ║  CONN_COLOR → hex color of the connecting lines                          ║
+// ║  CONN_MAX_OPACITY → how bright the lines get at their peak (0–1)         ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
+const CONN_DELAY = 2; // seconds into sphere phase before lines appear
+const CONN_DUR = 3; // total seconds lines are visible
+const CONN_COLOR = 0x6633cc; // cyan — matches the site accent color
+const CONN_MAX_OPACITY = 0.15; // subtle; raise for more visible lines
+
+// ─── DO NOT EDIT below this line unless you know Three.js ──────────────────
+
+function smoothstep(x) {
+  x = Math.max(0, Math.min(1, x));
+  return x * x * (3 - 2 * x);
+}
+
+function getMorphT(elapsed) {
+  const c = elapsed % MORPH_CYCLE;
+  if (c < CUBE_HOLD) return 0;
+  if (c < CUBE_HOLD + MORPH_DUR) return smoothstep((c - CUBE_HOLD) / MORPH_DUR);
+  if (c < CUBE_HOLD + MORPH_DUR + SPHERE_HOLD) return 1;
+  return smoothstep(1 - (c - CUBE_HOLD - MORPH_DUR - SPHERE_HOLD) / MORPH_DUR);
+}
+
+// Returns 0–1 opacity for the connection lines based on where we are in the cycle
+function getConnOpacity(c) {
+  const start = CUBE_HOLD + MORPH_DUR + CONN_DELAY;
+  const t = c - start;
+  if (t < 0 || t > CONN_DUR) return 0;
+  const p = t / CONN_DUR;
+  if (p < 1 / 6) return smoothstep(p * 6); // fade in  (first ~0.5s)
+  if (p > 5 / 6) return smoothstep((1 - p) * 6); // fade out (last  ~0.5s)
+  return 1;
+}
+
+// ─── Setup ──────────────────────────────────────────────────────────────────
 
 const canvas = document.createElement("canvas");
 canvas.style.cssText = `
@@ -89,7 +183,6 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(100, 1, 0.5, 100);
 camera.position.z = 4;
 
-// Lighting — purely structural, colors come from material/emissive above
 scene.add(new THREE.AmbientLight(0xffffff, 0.3));
 const dLight = new THREE.DirectionalLight(0xffffff, 2);
 dLight.position.set(5, 6, 5);
@@ -105,15 +198,14 @@ function resize() {
 resize();
 window.addEventListener("resize", resize);
 
-// ─────────────────────────────────────────────────────────────────────────────
-// CUBE GEOMETRY
-// ─────────────────────────────────────────────────────────────────────────────
-
-const cubeSize = window.innerWidth <= 600 ? 2.4 * 0.9 : 2.4;
-const grid = 13; // panels per row/col per face — higher = denser grid
+const cubeSize = window.innerWidth <= 600 ? 2 * 0.9 : 2.4;
+const grid = 17;
 const panelSz = (cubeSize / grid) * 0.98;
 const off = cubeSize / 2;
 const waveAmp = cubeSize * WAVE_AMPLITUDE;
+
+const planeGeo = new THREE.PlaneGeometry(panelSz, panelSz);
+const orbGeo = new THREE.SphereGeometry(panelSz * 0.46, 7, 5);
 
 const faces = [
   {
@@ -151,13 +243,23 @@ const faces = [
 const root = new THREE.Group();
 scene.add(root);
 
-const planeGeo = new THREE.PlaneGeometry(panelSz, panelSz);
 const panels = [];
 
 faces.forEach((face, fi) => {
   for (let row = 0; row < grid; row++) {
     for (let col = 0; col < grid; col++) {
-      // ── Panel fill ──────────────────────────────────────────────────────────
+      const gridOff = (grid - 1) / 2;
+      const localX = (col - gridOff) * (cubeSize / grid);
+      const localY = (row - gridOff) * (cubeSize / grid);
+
+      const distFromCenter =
+        1 -
+        Math.sqrt(
+          Math.pow((col - gridOff) / gridOff, 2) +
+            Math.pow((row - gridOff) / gridOff, 2),
+        ) /
+          Math.SQRT2;
+
       const mat = new THREE.MeshStandardMaterial({
         color: new THREE.Color(PANEL_COLOR),
         emissive: new THREE.Color(PANEL_EMISSIVE),
@@ -170,18 +272,6 @@ faces.forEach((face, fi) => {
         depthWrite: false,
       });
       const mesh = new THREE.Mesh(planeGeo, mat);
-      const gridOff = (grid - 1) / 2;
-      const localX = (col - gridOff) * (cubeSize / grid);
-      const localY = (row - gridOff) * (cubeSize / grid);
-
-      // 0 at edge, 1 at face center — used to boost center brightness
-      const distFromCenter =
-        1 -
-        Math.sqrt(
-          Math.pow((col - gridOff) / gridOff, 2) +
-            Math.pow((row - gridOff) / gridOff, 2),
-        ) /
-          Math.SQRT2;
 
       mesh.position.copy(face.pos);
       mesh.lookAt(face.pos.clone().add(face.dir));
@@ -191,7 +281,6 @@ faces.forEach((face, fi) => {
       mesh.position.add(right.clone().multiplyScalar(localX));
       mesh.position.add(face.up.clone().multiplyScalar(localY));
 
-      // ── Edge outline ─────────────────────────────────────────────────────────
       const edgeGeo = new THREE.EdgesGeometry(
         new THREE.PlaneGeometry(panelSz * 0.97, panelSz * 0.97),
       );
@@ -202,27 +291,77 @@ faces.forEach((face, fi) => {
       });
       const edgeMesh = new THREE.LineSegments(edgeGeo, edgeMat);
 
+      const orbMat = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(PANEL_COLOR),
+        emissive: new THREE.Color(PANEL_EMISSIVE),
+        emissiveIntensity: 0.2,
+        metalness: 0.9,
+        roughness: 0.2,
+        transparent: true,
+        opacity: 0,
+        depthWrite: false,
+      });
+      const orbMesh = new THREE.Mesh(orbGeo, orbMat);
+      orbMesh.position.copy(mesh.position);
+      orbMesh.scale.setScalar(0);
+
       const phase = fi * 0.5 + row * 0.3 + col * 0.2;
+
       panels.push({
         mesh,
         edgeMesh,
+        orbMesh,
+        mat,
+        orbMat,
+        edgeMat,
         basePos: mesh.position.clone(),
         dir: face.dir.clone(),
         phase,
-        fi,
         distFromCenter,
         spinRate: Math.sin(phase) * PANEL_SPIN_SPEED,
         hueAngle: FACE_HUE_OFFSETS[fi] + (row + col) / (grid * 1.5),
       });
+
       root.add(mesh);
       root.add(edgeMesh);
+      root.add(orbMesh);
     }
   }
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
-// ANIMATION LOOP
-// ─────────────────────────────────────────────────────────────────────────────
+// ─── Connection lines — built once, positions updated each frame ─────────────
+//
+//  Each entry is [panelIndex1, panelIndex2] for a horizontal or vertical neighbor
+//  pair within the same face. Lines connect adjacent orb positions.
+
+const connections = [];
+for (let fi = 0; fi < 6; fi++) {
+  const base = fi * grid * grid;
+  for (let row = 0; row < grid; row++) {
+    for (let col = 0; col < grid; col++) {
+      const idx = base + row * grid + col;
+      if (col < grid - 1) connections.push([idx, idx + 1]); // right neighbor
+      if (row < grid - 1) connections.push([idx, idx + grid]); // bottom neighbor
+    }
+  }
+}
+
+const connBuf = new Float32Array(connections.length * 6); // 2 pts × 3 floats each
+const connAttr = new THREE.BufferAttribute(connBuf, 3);
+connAttr.setUsage(THREE.DynamicDrawUsage);
+const connGeo = new THREE.BufferGeometry();
+connGeo.setAttribute("position", connAttr);
+
+const connMat = new THREE.LineBasicMaterial({
+  color: CONN_COLOR,
+  transparent: true,
+  opacity: 0,
+  depthWrite: false,
+});
+const connLines = new THREE.LineSegments(connGeo, connMat);
+root.add(connLines);
+
+// ─── Animation loop ──────────────────────────────────────────────────────────
 
 const clock = new THREE.Clock();
 
@@ -232,64 +371,115 @@ const clock = new THREE.Clock();
   const delta = clock.getDelta();
   const ct = clock.elapsedTime;
 
-  // ── Cube rotation ────────────────────────────────────────────────────────
+  const morphT = getMorphT(ct);
+  const flatT = 1 - morphT;
+  const orbT = morphT;
+
+  // Hue drift applied only to orbs and only while in sphere form
+  const orbHueDrift = ct * ORB_HUE_SPEED * morphT;
+
   root.rotation.y += delta * ROT_Y;
   root.rotation.x += delta * ROT_X;
   root.rotation.z += delta * ROT_Z;
 
-  for (const {
-    mesh,
-    edgeMesh,
-    basePos,
-    dir,
-    phase,
-    distFromCenter,
-    spinRate,
-    hueAngle,
-  } of panels) {
-    // ── Wave displacement ──────────────────────────────────────────────────
-    const wave1 = Math.sin(ct * 0.3 + phase) * 0.5;
-    const wave2 = Math.sin(ct * 0.41 + phase * 1.3) * 0.5;
-    const wave3 = Math.sin(ct * 0.45 + phase) * 0.2;
+  for (const p of panels) {
+    const {
+      mesh,
+      edgeMesh,
+      orbMesh,
+      mat,
+      orbMat,
+      edgeMat,
+      basePos,
+      dir,
+      phase,
+      distFromCenter,
+      hueAngle,
+    } = p;
+
+    // Wave frequencies scaled 5% slower than original
+    const wave1 = Math.sin(ct * 0.285 + phase) * 0.5;
+    const wave2 = Math.sin(ct * 0.3895 + phase * 1.3) * 0.5;
+    const wave3 = Math.sin(ct * 0.4275 + phase) * 0.2;
     const disp = (wave1 + wave2 + wave3) * waveAmp;
     mesh.position.copy(basePos).addScaledVector(dir, disp);
 
-    // ── A: self-spin ───────────────────────────────────────────────────────
-    mesh.rotateZ(delta * spinRate);
+    mesh.rotateZ(delta * p.spinRate);
 
-    // ── B: scale breathe ──────────────────────────────────────────────────
-    const scale = 1 + wave1 * SCALE_BREATHE;
-    mesh.scale.setScalar(scale);
+    const breathe = 1 + wave1 * SCALE_BREATHE;
+    mesh.scale.setScalar(breathe * flatT);
+    orbMesh.position.copy(mesh.position);
+    orbMesh.scale.setScalar(breathe * orbT);
 
     edgeMesh.position.copy(mesh.position);
     edgeMesh.quaternion.copy(mesh.quaternion);
-    edgeMesh.scale.copy(mesh.scale);
+    edgeMesh.scale.setScalar(breathe * flatT);
 
-    // ── F: face-hue gradient + live glow ──────────────────────────────────
+    // Panel glow — uses base hueAngle
     const glow = distFromCenter * 0.095 + Math.abs(wave1) * 0.04;
     const cosH = Math.cos(hueAngle);
     const sinH = Math.sin(hueAngle);
-    mesh.material.color.setRGB(
-      glow * (GLOW_COLOR_R + 0.2 * cosH),
-      glow * (GLOW_COLOR_G + 0.2 * sinH),
+
+    const cr = glow * (GLOW_COLOR_R + 0.2 * cosH);
+    const cg = glow * (GLOW_COLOR_G + 0.2 * sinH);
+    const cb = glow * GLOW_COLOR_B;
+    const er = glow * (GLOW_EMIT_R + 0.15 * cosH);
+    const eg = glow * (GLOW_EMIT_G + 0.15 * sinH);
+    const eb = glow * GLOW_EMIT_B;
+    const emitInt = 0.5 + distFromCenter * 0.4;
+
+    mat.color.setRGB(cr, cg, cb);
+    mat.emissive.setRGB(er, eg, eb);
+    mat.emissiveIntensity = emitInt;
+
+    // Orb glow — adds the slow hue drift on top
+    const orbH = hueAngle + orbHueDrift;
+    const cosHOrb = Math.cos(orbH);
+    const sinHOrb = Math.sin(orbH);
+    orbMat.color.setRGB(
+      glow * (GLOW_COLOR_R + 0.2 * cosHOrb),
+      glow * (GLOW_COLOR_G + 0.2 * sinHOrb),
       glow * GLOW_COLOR_B,
     );
-    mesh.material.emissive.setRGB(
-      glow * (GLOW_EMIT_R + 0.15 * cosH),
-      glow * (GLOW_EMIT_G + 0.15 * sinH),
+    orbMat.emissive.setRGB(
+      glow * (GLOW_EMIT_R + 0.15 * cosHOrb),
+      glow * (GLOW_EMIT_G + 0.15 * sinHOrb),
       glow * GLOW_EMIT_B,
     );
-    mesh.material.emissiveIntensity = 0.5 + distFromCenter * 0.4;
+    orbMat.emissiveIntensity = emitInt;
 
-    // ── Panel opacity ──────────────────────────────────────────────────────
-    mesh.material.opacity =
+    const baseOp =
       PANEL_OPACITY_BASE +
       distFromCenter * PANEL_OPACITY_CENTER +
       Math.abs(wave1) * PANEL_OPACITY_WAVE;
-    edgeMesh.material.opacity =
-      EDGE_OPACITY_BASE +
-      distFromCenter * EDGE_OPACITY_CENTER +
-      Math.abs(wave1) * EDGE_OPACITY_WAVE;
+    mat.opacity = baseOp * flatT;
+    orbMat.opacity = baseOp * 2 * orbT;
+    edgeMat.opacity =
+      (EDGE_OPACITY_BASE +
+        distFromCenter * EDGE_OPACITY_CENTER +
+        Math.abs(wave1) * EDGE_OPACITY_WAVE) *
+      flatT;
+  }
+
+  // ── Connection lines — update positions and opacity ───────────────────────
+  const connOpacity = getConnOpacity(ct % MORPH_CYCLE) * CONN_MAX_OPACITY;
+  connMat.opacity = connOpacity;
+
+  if (connOpacity > 0) {
+    // Update line endpoints from current orb positions
+    for (let i = 0; i < connections.length; i++) {
+      const [i1, i2] = connections[i];
+      const p1 = panels[i1].mesh.position;
+      const p2 = panels[i2].mesh.position;
+      const o = i * 6;
+      connBuf[o] = p1.x;
+      connBuf[o + 1] = p1.y;
+      connBuf[o + 2] = p1.z;
+      connBuf[o + 3] = p2.x;
+      connBuf[o + 4] = p2.y;
+      connBuf[o + 5] = p2.z;
+    }
+    connAttr.needsUpdate = true;
   }
 
   renderer.render(scene, camera);

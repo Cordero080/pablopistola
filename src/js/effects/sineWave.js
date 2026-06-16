@@ -135,6 +135,14 @@ SineWaveGenerator.prototype.update = function (time) {
   const ct = now / 1000;
   const suckRaw = Math.abs(Math.sin((ct / SUCK_INTERVAL) * Math.PI));
   this._suck = Math.pow(suckRaw, SUCK_SHARP);
+
+  // Flip direction once when wave goes flat, reset flag when wave recovers
+  if (this._suck > 0.9 && !this._dirFlipped) {
+    this.direction *= -1;
+    this._dirFlipped = true;
+  } else if (this._suck < 0.1) {
+    this._dirFlipped = false;
+  }
   // ────────────────────────────────────────────────────────────────────────────
 
   for (let i = 0; i < this.waves.length; i++) {

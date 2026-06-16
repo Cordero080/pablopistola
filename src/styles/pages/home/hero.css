@@ -26,8 +26,8 @@
   z-index: 0;
   background: radial-gradient(
     ellipse 80% 60% at 50% 40%,
-    #02797927 0%,
-    #2304ab1b 60%,
+    #042a497f 0%,
+    #15026c29 60%,
     transparent 100%
   );
   pointer-events: none;
@@ -95,6 +95,7 @@
   background-clip: text;
   -webkit-text-stroke: 0.3px rgba(255, 255, 255, 0.449);
   letter-spacing: 0.1em;
+  margin-left: -0.1em;
   margin-bottom: 0.2em;
   line-height: 1.05;
   position: relative;

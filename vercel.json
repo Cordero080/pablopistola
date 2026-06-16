@@ -9,6 +9,11 @@
     { "source": "/about", "destination": "/about.html" },
     { "source": "/resume", "destination": "/resume.html" },
     { "source": "/skills", "destination": "/skills.html" },
-    { "source": "/art", "destination": "/art.html" }
+    { "source": "/art", "destination": "/art.html" },
+    { "source": "/lab", "destination": "/lab.html" },
+    {
+      "source": "/models/xenotchi/:path*",
+      "destination": "https://transcendence-3-d-v2.vercel.app/models/:path*"
+    }
   ]
 }

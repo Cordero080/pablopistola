@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-ZL1CZZKRKD"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-ZL1CZZKRKD");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab | Pablo Cordero — Animation Gallery</title>
+    <meta
+      name="description"
+      content="Animation and interactive demo gallery — sine waves, 3D virtual pets, geometry explorations, and more by Pablo Cordero."
+    />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://pvblocordero.com/lab" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Lab | Pablo Cordero" />
+    <meta
+      property="og:description"
+      content="Interactive animation gallery — Xenotchi 3D pet, Manifold geometry, Tic-Trap-Toe, sine wave playground."
+    />
+    <meta property="og:url" content="https://pvblocordero.com/lab" />
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/icons/icon-192.png"
+    />
+
+    <link rel="stylesheet" href="src/styles/main.css" />
+    <link rel="stylesheet" href="src/styles/pages/lab/lab.css" />
+    <script src="src/js/utils/compMode.js" defer></script>
+    <script src="src/js/utils/serviceWorker.js" defer></script>
+    <script src="src/js/utils/analytics.js" defer></script>
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div class="page-loader" id="pageLoader" aria-hidden="true">
+      <div class="loader-scanline"></div>
+      <span class="loader-text">Loading</span>
+      <div class="loader-dots">
+        <span class="loader-dot"></span>
+        <span class="loader-dot"></span>
+        <span class="loader-dot"></span>
+      </div>
+    </div>
+
+    <nav class="side-nav" role="navigation" aria-label="Main navigation">
+      <div class="side-nav-logo">
+        <span class="logo-text">PC</span>
+      </div>
+      <div class="side-nav-links">
+        <a class="side-nav-link" href="/home" aria-label="Home">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          <span class="nav-label">Home</span>
+        </a>
+        <a class="side-nav-link" href="/about" aria-label="About">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <span class="nav-label">About</span>
+        </a>
+        <a class="side-nav-link" href="/home#projects" aria-label="Projects">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+          </svg>
+          <span class="nav-label">Projects</span>
+        </a>
+        <a class="side-nav-link" href="/skills" aria-label="Skills">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+          </svg>
+          <span class="nav-label">Skills</span>
+        </a>
+        <a class="side-nav-link active" href="/lab" aria-label="Lab">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M9 3h6M9 3v6.5L5 18a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1l-4-8.5V3"
+            />
+            <path d="M7.5 14h9" />
+          </svg>
+          <span class="nav-label">Lab</span>
+        </a>
+        <a class="side-nav-link" href="/home#contact" aria-label="Contact">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          <span class="nav-label">Contact</span>
+        </a>
+        <a class="side-nav-link" href="/resume" aria-label="Resume">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+          </svg>
+          <span class="nav-label">Resume</span>
+        </a>
+        <a
+          class="side-nav-link exit-link"
+          href="/?stay"
+          aria-label="Zen Mode - Waves"
+          title="Return to wave playground"
+        >
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M2 12c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+            <path d="M2 6c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+            <path d="M2 18c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+          </svg>
+          <span class="zen-tooltip"></span>
+        </a>
+      </div>
+      <div class="side-nav-glow"></div>
+    </nav>
+
+    <!-- Mobile Hamburger -->
+    <button
+      class="hamburger-btn"
+      id="hamburgerBtn"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <div class="hamburger-icon">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </div>
+    </button>
+
+    <!-- Lab Hero -->
+    <header class="lab-hero">
+      <p class="lab-eyebrow">Animation &amp; Interaction</p>
+      <h1 class="lab-title">LAB</h1>
+      <p class="lab-subtitle">Live demos · Interactive experiments</p>
+    </header>
+
+    <!-- Demo Grid -->
+    <main class="lab-grid">
+      <!-- 1. Xenotchi -->
+      <div class="lab-card">
+        <div class="lab-card-visual">
+          <span class="lab-card-badge">3D · FBX</span>
+          <img
+            src="/images/projects/transcendence.webp"
+            alt="Xenotchi 3D virtual pet"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="lab-card-info">
+          <h2 class="lab-card-title">Xenotchi</h2>
+          <p class="lab-card-tech">Three.js · FBX Animations · Stage Toggle</p>
+          <p class="lab-card-desc">
+            A 3D virtual pet with real-time FBX skeletal animations. Switch
+            between Blue and Green evolution stages. Feed, dance, sleep, and
+            train your Xenotchi.
+          </p>
+          <div class="lab-card-actions">
+            <a class="lab-card-cta" href="/projects/lab/xenotchi">Launch</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Sine Wave -->
+      <div class="lab-card">
+        <div class="lab-card-visual">
+          <span class="lab-card-badge">Canvas</span>
+          <img
+            src="/images/projects/transcendence/pneuma/pneuma-landing.webp"
+            alt="Sine wave playground"
+            loading="lazy"
+            decoding="async"
+            style="filter: brightness(0.5) hue-rotate(200deg)"
+          />
+        </div>
+        <div class="lab-card-info">
+          <h2 class="lab-card-title">Sine Wave</h2>
+          <p class="lab-card-tech">Canvas 2D · Mouse Tracking · Wave Physics</p>
+          <p class="lab-card-desc">
+            Five layered sine waves with per-wave cursor attraction, amplitude
+            breathing, and a periodic suck-collapse that reverses flow
+            direction. Spacebar toggles direction manually.
+          </p>
+          <div class="lab-card-actions">
+            <a class="lab-card-cta" href="/projects/lab/sine-wave">Launch</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Tic-Trap-Toe -->
+      <div class="lab-card">
+        <div class="lab-card-visual">
+          <span class="lab-card-badge">Game · 3D</span>
+          <img
+            src="/images/projects/tic-trap-toe/dark-mode-confetti.png"
+            alt="Tic-Trap-Toe game"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="lab-card-info">
+          <h2 class="lab-card-title">Tic-Trap-Toe</h2>
+          <p class="lab-card-tech">Three.js · 6-Face Cube · Minimax AI</p>
+          <p class="lab-card-desc">
+            Tic-tac-toe on all six faces of a rotating 3D cube. Minimax AI with
+            depth-limited search. Play versus the AI or watch AI vs AI unfold.
+          </p>
+          <div class="lab-card-actions">
+            <a
+              class="lab-card-cta"
+              href="https://tic-trap-toe.vercel.app/"
+              target="_blank"
+              rel="noopener"
+              >Launch</a
+            >
+            <a
+              class="lab-card-external"
+              href="https://github.com/Cordero080/tic-trap-toe"
+              target="_blank"
+              rel="noopener"
+              >GitHub ↗</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Manifold -->
+      <div class="lab-card">
+        <div class="lab-card-visual">
+          <span class="lab-card-badge">WebGL · React</span>
+          <img
+            src="/images/projects/nexus-geom-lab/manifold-landing.png"
+            alt="Manifold 4D geometry explorer"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="lab-card-info">
+          <h2 class="lab-card-title">Manifold</h2>
+          <p class="lab-card-tech">
+            React Three Fiber · 24 Shapes · Custom Shaders
+          </p>
+          <p class="lab-card-desc">
+            A gamified 4D geometry explorer. Wireframe and solid render modes,
+            dynamic color shifts, and unlock progression across 24
+            higher-dimensional shapes.
+          </p>
+          <div class="lab-card-actions">
+            <a
+              class="lab-card-cta"
+              href="https://manifold-3d.vercel.app/"
+              target="_blank"
+              rel="noopener"
+              >▶ Play</a
+            >
+            <a
+              class="lab-card-external"
+              href="https://github.com/Cordero080/nexus-geom-lab"
+              target="_blank"
+              rel="noopener"
+              >GitHub ↗</a
+            >
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="src/js/pages/home/loader.js" defer></script>
+    <script src="src/js/pages/home/mobileMenu.js" defer></script>
+    <script src="src/js/components/cursor.js" defer></script>
+  </body>
+</html>

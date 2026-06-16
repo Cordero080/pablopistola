@@ -3,9 +3,9 @@ import { resolve } from "path";
 import { globSync } from "glob";
 import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 
-// Find all HTML files at root and in projects/
+// Find all HTML files at root and in projects/ (including subdirs)
 const rootHtmlFiles = globSync("*.html");
-const projectHtmlFiles = globSync("projects/*.html");
+const projectHtmlFiles = globSync("projects/**/*.html");
 const allHtmlFiles = [...rootHtmlFiles, ...projectHtmlFiles];
 
 // Plugin to copy src/js (including subdirectories) to dist/src/js
@@ -54,6 +54,13 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true,
+    proxy: {
+      "/models/xenotchi": {
+        target: "https://transcendence-3-d-v2.vercel.app",
+        changeOrigin: true,
+        rewrite: (path) => path.replace("/models/xenotchi", "/models"),
+      },
+    },
   },
 
   resolve: {
