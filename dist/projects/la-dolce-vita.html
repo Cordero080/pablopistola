@@ -33,8 +33,8 @@
     <script src="../src/js/effects/sineWave.js" defer></script>
     <!-- Vercel Analytics (only loads on Vercel) -->
     <script src="../src/js/utils/analytics.js" defer></script>
-    <link rel="stylesheet" crossorigin href="/assets/main-BANZByUO.css">
-    <link rel="stylesheet" crossorigin href="/assets/project-BLC6Z8Y8.css">
+    <link rel="stylesheet" crossorigin href="/assets/main-BZcoJVkm.css">
+    <link rel="stylesheet" crossorigin href="/assets/project-CYZLrZMl.css">
   </head>
   <body>
     <canvas id="waves"></canvas>
@@ -103,26 +103,6 @@
           </svg>
           <span class="nav-label">Skills</span>
         </a>
-        <a class="side-nav-link" href="/art" aria-label="Art">
-          <svg
-            class="nav-icon"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
-            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
-            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
-            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
-            <path
-              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"
-            />
-          </svg>
-          <span class="nav-label">Art</span>
-        </a>
         <a class="side-nav-link" href="/home#contact" aria-label="Contact">
           <svg
             class="nav-icon"
@@ -177,7 +157,6 @@
             <path d="M2 6c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
             <path d="M2 18c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
           </svg>
-          <span class="nav-label">Zen</span>
         </a>
       </div>
       <div class="side-nav-glow"></div>
@@ -190,7 +169,8 @@
           <a href="/home" class="back-link">← Back to Projects</a>
           <h1 class="project-title">LA DOLCE VITA</h1>
           <p class="project-tagline">
-            Premium villa experience — real client, real deployment
+            AI hospitality platform — GPT-4o concierge, live Airbnb iCal feed,
+            Google Sheets integration, trilingual (EN/ES/FR).
           </p>
         </div>
       </section>
@@ -278,10 +258,8 @@
               of the property and gives them direct marketing control.
             </p>
             <p>
-              The site is designed to feel like the property itself: unhurried,
-              elegant, and genuinely helpful. When guests are ready to book,
-              they're redirected to the Airbnb listing. The goal is brand
-              differentiation, not Airbnb replacement.
+              The site gives guests a direct channel to explore the property —
+              amenities, photos, local info — then redirects to Airbnb to book.
             </p>
 
             <h3>Core Engineering</h3>
@@ -321,8 +299,8 @@
               Glassmorphic UI with warm platinum brushed-metal accents. Ken
               Burns photo gallery with keyboard and touch navigation. Custom
               availability calendar with blocked-date rendering. Scroll-driven
-              parallax transitions between page sections. Mobile-first,
-              fully responsive across all breakpoints.
+              parallax transitions between page sections. Mobile-first, fully
+              responsive across all breakpoints.
             </p>
 
             <h3>Architecture</h3>
@@ -330,15 +308,15 @@
               <div class="tech-row">
                 <span class="tech-feature">Keyword Routing</span>
                 <span class="tech-impl"
-                  >Common questions answered instantly via pattern matching —
-                  no AI call, zero latency.</span
+                  >Common questions answered instantly via pattern matching — no
+                  AI call, zero latency.</span
                 >
               </div>
               <div class="tech-row">
                 <span class="tech-feature">Date Parser</span>
                 <span class="tech-impl"
-                  >Natural language date extraction checked against live
-                  Airbnb iCal feed in real time.</span
+                  >Natural language date extraction checked against live Airbnb
+                  iCal feed in real time.</span
                 >
               </div>
               <div class="tech-row">
@@ -360,8 +338,8 @@
                 <span class="tech-feature">Deployment</span>
                 <span class="tech-impl"
                   >React on Vercel, Express on Render, full CI/CD pipeline.
-                  Vercel rewrites <code>/api/*</code> to Render so no
-                  hardcoded URLs.</span
+                  Vercel rewrites <code>/api/*</code> to Render so no hardcoded
+                  URLs.</span
                 >
               </div>
             </div>
@@ -400,12 +378,8 @@
       </section>
     </main>
 
-
-    
-    
-
     <script src="../src/js/pages/project/gallery.js" defer></script>
-    <script src="../src/js/pages/project/index.js" defer></script>
+    <script src="../src/js/pages/shared/hamburgerMenu.js" defer></script>
     <script src="../src/js/components/cursor.js" defer></script>
     <script src="../src/js/effects/orb.js" defer></script>
   </body>

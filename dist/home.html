@@ -61,7 +61,7 @@
     />
 
     <!-- PWA Manifest -->
-    <link rel="manifest" href="/assets/manifest-CPwuCC7F.json" />
+    <link rel="manifest" href="/assets/manifest-CiUCo8kX.json" />
 
     <script type="application/ld+json">
       {
@@ -112,9 +112,10 @@
     <script src="src/js/utils/serviceWorker.js" defer></script>
     <script src="src/js/pages/home/parallax.js" defer></script>
     <script src="src/js/utils/analytics.js" defer></script>
-    <script type="module" crossorigin src="/assets/home-CoNT_T6O.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/home-BXJz71HV.css">
-    <link rel="stylesheet" crossorigin href="/assets/main-BANZByUO.css">
+    <script type="module" crossorigin src="/assets/home-BDWk_8I3.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/three.module-CA44nllG.js">
+    <link rel="stylesheet" crossorigin href="/assets/home-_EskS5Oo.css">
+    <link rel="stylesheet" crossorigin href="/assets/main-BZcoJVkm.css">
   </head>
   <body>
     <!-- Accessibility: Skip to main content -->
@@ -245,7 +246,7 @@
           </svg>
           <span class="nav-label">Skills</span>
         </a>
-        <a class="side-nav-link" href="/art" aria-label="Art">
+        <a class="side-nav-link" href="/lab" aria-label="Lab">
           <svg
             class="nav-icon"
             viewBox="0 0 24 24"
@@ -255,15 +256,12 @@
             stroke-linecap="round"
             stroke-linejoin="round"
           >
-            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
-            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
-            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
-            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
             <path
-              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"
+              d="M9 3h6M9 3v6.5L5 18a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1l-4-8.5V3"
             />
+            <path d="M7.5 14h9" />
           </svg>
-          <span class="nav-label">Art</span>
+          <span class="nav-label">Lab</span>
         </a>
         <a class="side-nav-link" href="#contact" aria-label="Contact">
           <svg
@@ -320,8 +318,8 @@
             <path d="M2 6c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
             <path d="M2 18c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
           </svg>
-          <span class="nav-label">Zen</span>
-          <span class="zen-tooltip">Interactive wave experience</span>
+
+          <span class="zen-tooltip"></span>
         </a>
       </div>
       <div class="side-nav-glow"></div>
@@ -345,11 +343,13 @@
     <section class="hero-section">
       <div class="hero-bg-glow"></div>
       <div class="hero-content">
-        <h1 class="hero-title" id="heroTitle">PVBLO C0RDERO</h1>
+        <h1 class="hero-title" id="heroTitle">
+          P<span class="title-inverted-v">V</span>BLO C0RDERO
+        </h1>
         <p class="hero-subtitle">
           FULL-STACK SOFTWARE ENGINEER · AI SYSTEMS & LLM ARCHITECTURE
         </p>
-        <span class="hero-underline" id="heroUnderline"></span>
+        <!-- <span class="hero-underline" id="heroUnderline"></span> -->
       </div>
     </section>
     <!-- End Hero Section -->
@@ -361,56 +361,7 @@
       <a href="#projects" class="hero-cta">PROJECTS</a>
     </div>
     <section class="projects-section" id="projects">
-      <!-- Row 1: image LEFT, text RIGHT -->
-      <div class="project-row project-row--left" style="--card-accent: #ff207a">
-        <a href="/projects/numeneon-light" class="project-card-link">
-          <div class="project-card-media">
-            <img
-              src="/images/projects/numeneon-light.webp"
-              alt="Numeneon Light"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-        </a>
-        <div
-          class="project-card-info"
-          data-youtube="https://youtu.be/J5xXlOPNZAQ"
-        >
-          <h2 class="project-card-title">Numeneon</h2>
-          <p class="project-card-description">Neopunk Social Platform</p>
-          <a href="/projects/numeneon-light" class="project-card-cta"
-            >View Project</a
-          >
-        </div>
-      </div>
-
-      <!-- Row 2: image RIGHT, text LEFT -->
-      <div
-        class="project-row project-row--right"
-        style="--card-accent: #9050ff"
-      >
-        <a href="/projects/numeneon" class="project-card-link">
-          <div class="project-card-media">
-            <img
-              src="/images/projects/numeneon.webp"
-              alt="Numeneon Dark"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-        </a>
-        <div
-          class="project-card-info"
-          data-youtube="https://youtu.be/J5xXlOPNZAQ"
-        >
-          <h2 class="project-card-title">Numeneon</h2>
-          <p class="project-card-description">React • Django • WebSockets</p>
-          <a href="/projects/numeneon" class="project-card-cta">View Project</a>
-        </div>
-      </div>
-
-      <!-- Row 3: image LEFT, text RIGHT -->
+      <!-- 1. Pneuma -->
       <div class="project-row project-row--left" style="--card-accent: #00d4ff">
         <a href="/projects/pneuma" class="project-card-link">
           <div class="project-card-media">
@@ -426,21 +377,185 @@
         <div class="project-card-info" data-youtube="">
           <h2 class="project-card-title">Pneuma</h2>
           <p class="project-card-description">
-            AI Personality Engine • 46 Archetypes
+            LLM Cognitive Architecture • 44 Archetypes • Claude API • OpenAI •
+            React • Express • MongoDB
           </p>
-          <a href="/projects/pneuma" class="project-card-cta">View Project</a>
+          <div class="project-card-actions">
+            <a href="/projects/pneuma" class="project-card-cta">View Project</a>
+            <a
+              href="https://github.com/Cordero080/pneuma-ai"
+              class="project-card-github"
+              target="_blank"
+              rel="noopener"
+              aria-label="GitHub repository"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"
+                />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
 
-      <!-- Row 4: image RIGHT, text LEFT -->
+      <!-- 2. La Dolce Vita -->
       <div
         class="project-row project-row--right"
-        style="--card-accent: #aa55ff"
+        style="--card-accent: #ff9ec8"
       >
+        <a href="/projects/la-dolce-vita" class="project-card-link">
+          <div class="project-card-media">
+            <span class="project-card-label">Client</span>
+            <img
+              src="/images/projects/la-dolce-vita/dolce-home.png"
+              alt="La Dolce Vita"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </a>
+        <div class="project-card-info" data-youtube="">
+          <h2 class="project-card-title">La Dolce Vita</h2>
+          <p class="project-card-description">
+            Freelance Luxury Villa Site • AI Concierge • Live Airbnb Calendar •
+            React
+          </p>
+          <div class="project-card-actions">
+            <a href="/projects/la-dolce-vita" class="project-card-cta"
+              >View Project</a
+            >
+            <a
+              href="https://www.ladolcevitabeach.com/"
+              class="project-card-cta"
+              target="_blank"
+              rel="noopener"
+              >Live Site</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Numeneon -->
+      <div class="project-row project-row--left" style="--card-accent: #9050ff">
+        <a href="/projects/numeneon" class="project-card-link">
+          <div class="project-card-media">
+            <img
+              src="/images/projects/numeneon-light.webp"
+              alt="Numeneon Dark"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </a>
+        <div
+          class="project-card-info"
+          data-youtube="https://youtu.be/J5xXlOPNZAQ"
+        >
+          <h2 class="project-card-title">Numeneon</h2>
+          <p class="project-card-description">
+            River Timeline Social Network • React • Python • Django
+          </p>
+          <div class="project-card-actions">
+            <a href="/projects/numeneon" class="project-card-cta"
+              >View Project</a
+            >
+            <a
+              href="https://numeneon-frontend.vercel.app/"
+              class="project-card-cta"
+              target="_blank"
+              rel="noopener"
+              >Live Site</a
+            >
+            <a
+              href="https://github.com/Cordero080/Numeneon-frontend"
+              class="project-card-github"
+              target="_blank"
+              rel="noopener"
+              aria-label="GitHub repository"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Xenochi -->
+      <div
+        class="project-row project-row--right"
+        style="--card-accent: #ff8c00"
+      >
+        <a href="/projects/transcendence" class="project-card-link">
+          <div class="project-card-media">
+            <img
+              src="/images/projects/transcendence.webp"
+              alt="Transcendence Pet Sim"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </a>
+        <div class="project-card-info" data-youtube="">
+          <h2 class="project-card-title">XENOCHI</h2>
+          <p class="project-card-description">
+            3D Virtual Pet • JS • Three.js + Blender
+          </p>
+          <div class="project-card-actions">
+            <a href="/projects/transcendence" class="project-card-cta"
+              >View Project</a
+            >
+            <a
+              href="https://transcendence-3-d-v2.vercel.app/"
+              class="project-card-cta"
+              target="_blank"
+              rel="noopener"
+              >Live Site</a
+            >
+            <a
+              href="https://github.com/Cordero080/Transcendence-3D-v2"
+              class="project-card-github"
+              target="_blank"
+              rel="noopener"
+              aria-label="GitHub repository"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Pneumata -->
+      <div class="project-row project-row--left" style="--card-accent: #aa55ff">
         <a href="/projects/pneumata" class="project-card-link">
           <div class="project-card-media">
             <img
-              src="/images/projects/pneumata/01-logic-mode.png"
+              src="/images/projects/pneumata/DarkModeLightMode.png"
               alt="Pneumata"
               loading="lazy"
               decoding="async"
@@ -455,35 +570,147 @@
           <p class="project-card-description">
             Interactive 3D Anatomy • React Three Fiber
           </p>
-          <a href="/projects/pneumata" class="project-card-cta">View Project</a>
+          <div class="project-card-actions">
+            <a href="/projects/pneumata" class="project-card-cta"
+              >View Project</a
+            >
+            <a
+              href="https://pneumata.vercel.app/"
+              class="project-card-cta"
+              target="_blank"
+              rel="noopener"
+              >Live Site</a
+            >
+            <a
+              href="https://github.com/Cordero080/Pneumata"
+              class="project-card-github"
+              target="_blank"
+              rel="noopener"
+              aria-label="GitHub repository"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"
+                />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
 
-      <!-- Row 5: image LEFT, text RIGHT (Featured) -->
-      <div class="project-row project-row--left" style="--card-accent: #ff8c00">
-        <a href="/projects/transcendence" class="project-card-link">
+      <!-- 6. Manifold -->
+      <div
+        class="project-row project-row--right"
+        style="--card-accent: #00fff7"
+      >
+        <a href="/projects/nexus-geom-lab" class="project-card-link">
           <div class="project-card-media">
-            <span class="project-card-label">Featured</span>
             <img
-              src="/images/projects/transcendence.webp"
-              alt="Transcendence Pet Sim"
+              src="/images/projects/nexus-geom-lab/manifold-landing.png"
+              alt="Manifold"
               loading="lazy"
               decoding="async"
             />
           </div>
         </a>
         <div class="project-card-info" data-youtube="">
-          <h2 class="project-card-title">Transcendence</h2>
+          <h2 class="project-card-title">Manifold</h2>
           <p class="project-card-description">
-            3D Virtual Pet • Three.js + Blender
+            Gamified 4D Geometry Explorer • 24 Shapes • React Three Fiber
           </p>
-          <a href="/projects/transcendence" class="project-card-cta"
-            >View Project</a
-          >
+          <div class="project-card-actions">
+            <a href="/projects/nexus-geom-lab" class="project-card-cta"
+              >View Project</a
+            >
+            <a
+              href="https://manifold-3d.vercel.app/"
+              class="project-card-cta"
+              target="_blank"
+              rel="noopener"
+              >Live Site</a
+            >
+            <a
+              href="https://github.com/Cordero080/nexus-geom-lab"
+              class="project-card-github"
+              target="_blank"
+              rel="noopener"
+              aria-label="GitHub repository"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"
+                />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
 
-      <!-- Row 6: image RIGHT, text LEFT -->
+      <!-- 7. Tic-Trap-Toe -->
+      <div class="project-row project-row--left" style="--card-accent: #5500ff">
+        <a href="/projects/tic-trap-toe" class="project-card-link">
+          <div class="project-card-media">
+            <span class="project-card-label">Game</span>
+            <img
+              src="/images/projects/tic-trap-toe/dark-mode-confetti.png"
+              alt="Tic-Trap-Toe"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </a>
+        <div class="project-card-info" data-youtube="">
+          <h2 class="project-card-title">Tic-Trap-Toe</h2>
+          <p class="project-card-description">
+            6-Face Cube • Three.js • Vanilla JS
+          </p>
+          <div class="project-card-actions">
+            <a href="/projects/tic-trap-toe" class="project-card-cta"
+              >View Project</a
+            >
+            <a
+              href="https://tic-trap-toe.vercel.app/"
+              class="project-card-cta"
+              target="_blank"
+              rel="noopener"
+              >Live Site</a
+            >
+            <a
+              href="https://github.com/Cordero080/tic-trap-toe"
+              class="project-card-github"
+              target="_blank"
+              rel="noopener"
+              aria-label="GitHub repository"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8+ remaining projects -->
       <div
         class="project-row project-row--right"
         style="--card-accent: #00ff88"
@@ -501,37 +728,35 @@
         </a>
         <div class="project-card-info" data-youtube="">
           <h2 class="project-card-title">Nucat</h2>
-          <p class="project-card-description">AI Cat Generator • React</p>
-          <a href="/projects/nucat" class="project-card-cta">View Project</a>
-        </div>
-      </div>
-
-      <!-- Row 7: image LEFT, text RIGHT -->
-      <div class="project-row project-row--left" style="--card-accent: #00fff7">
-        <a href="/projects/nexus-geom-lab" class="project-card-link">
-          <div class="project-card-media">
-            <img
-              src="/images/projects/nexus-geom-lab.webp"
-              alt="Nexus Geom Lab"
-              loading="lazy"
-              decoding="async"
-            />
+          <p class="project-card-description">
+            ASCII Point Cloud Renderer • ~20K Particles • React
+          </p>
+          <div class="project-card-actions">
+            <a href="/projects/nucat" class="project-card-cta">View Project</a>
+            <a
+              href="https://github.com/Cordero080/nucat"
+              class="project-card-github"
+              target="_blank"
+              rel="noopener"
+              aria-label="GitHub repository"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"
+                />
+              </svg>
+            </a>
           </div>
-        </a>
-        <div class="project-card-info" data-youtube="">
-          <h2 class="project-card-title">Nexus Geom Lab</h2>
-          <p class="project-card-description">Interactive 4D Shapes • WebGL</p>
-          <a href="/projects/nexus-geom-lab" class="project-card-cta"
-            >View Project</a
-          >
         </div>
       </div>
 
-      <!-- Row 8: image RIGHT, text LEFT -->
-      <div
-        class="project-row project-row--right"
-        style="--card-accent: #ff4500"
-      >
+      <div class="project-row project-row--left" style="--card-accent: #ff4500">
         <a href="/projects/dojo-crud" class="project-card-link">
           <div class="project-card-media">
             <img
@@ -551,8 +776,10 @@
         </div>
       </div>
 
-      <!-- Row 9: image LEFT, text RIGHT -->
-      <div class="project-row project-row--left" style="--card-accent: #ffd700">
+      <div
+        class="project-row project-row--right"
+        style="--card-accent: #ffd700"
+      >
         <a href="/projects/bookshelf" class="project-card-link">
           <div class="project-card-media">
             <img
@@ -565,39 +792,15 @@
         </a>
         <div class="project-card-info" data-youtube="">
           <h2 class="project-card-title">Bookshelf</h2>
-          <p class="project-card-description">Particle System • Three.js</p>
+          <p class="project-card-description">
+            Living Library • Words Decompose Into Quantum Particles • React
+          </p>
           <a href="/projects/bookshelf" class="project-card-cta"
             >View Project</a
           >
         </div>
       </div>
 
-      <!-- Row 10: image RIGHT, text LEFT (Client) -->
-      <div
-        class="project-row project-row--right"
-        style="--card-accent: #ff9ec8"
-      >
-        <a href="/projects/la-dolce-vita" class="project-card-link">
-          <div class="project-card-media">
-            <span class="project-card-label">Client</span>
-            <img
-              src="/images/projects/la-dolce-vita/dolce-home.png"
-              alt="La Dolce Vita"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-        </a>
-        <div class="project-card-info" data-youtube="">
-          <h2 class="project-card-title">La Dolce Vita</h2>
-          <p class="project-card-description">AI Concierge • React + OpenAI</p>
-          <a href="/projects/la-dolce-vita" class="project-card-cta"
-            >View Project</a
-          >
-        </div>
-      </div>
-
-      <!-- Row 11: image LEFT, text RIGHT -->
       <div class="project-row project-row--left" style="--card-accent: #a8f0ac">
         <a href="/projects/instvnce-blog" class="project-card-link">
           <div class="project-card-media">
@@ -616,33 +819,6 @@
             Developer Log • Neopunk Terminal
           </p>
           <a href="/projects/instvnce-blog" class="project-card-cta"
-            >View Project</a
-          >
-        </div>
-      </div>
-
-      <!-- Row 12: image RIGHT, text LEFT (Game) -->
-      <div
-        class="project-row project-row--right"
-        style="--card-accent: #5500ff"
-      >
-        <a href="/projects/tic-trap-toe" class="project-card-link">
-          <div class="project-card-media">
-            <span class="project-card-label">Game</span>
-            <img
-              src="/images/projects/tic-trap-toe/rotation-angle.jpg"
-              alt="Tic-Trap-Toe"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-        </a>
-        <div class="project-card-info" data-youtube="">
-          <h2 class="project-card-title">Tic-Trap-Toe</h2>
-          <p class="project-card-description">
-            6-Face Cube • Three.js • Vanilla JS
-          </p>
-          <a href="/projects/tic-trap-toe" class="project-card-cta"
             >View Project</a
           >
         </div>
@@ -723,5 +899,6 @@
     <script src="src/js/components/bentoCards.js" defer></script>
     <script src="src/js/pages/home/index.js" defer></script>
     <script src="src/js/utils/mcpBridge.js" defer></script>
+    <script src="src/js/pages/home/orbNavScan.js" defer></script>
   </body>
 </html>

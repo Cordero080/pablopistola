@@ -1,0 +1,495 @@
+@import url("https://fonts.googleapis.com/css2?family=Doto:wght@400;700;900&family=Audiowide&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Audiowide", "Doto", sans-serif;
+  background:
+    linear-gradient(rgba(62, 23, 255, 0.827), rgba(4, 2, 14, 0.65)),
+    radial-gradient(
+      ellipse at 90% 50%,
+      rgba(0, 180, 220, 0.494) 0%,
+      rgba(81, 0, 180, 0.818) 20%,
+      rgba(180, 0, 141, 0.823) 40%,
+      rgba(139, 31, 31, 0.55) 60%,
+      rgba(68, 23, 156, 0.9) 80%,
+      #322879 100%
+    );
+  color: #fff;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* ── Back link ── */
+.back-link {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 9999;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(0, 255, 247, 0.65);
+  text-decoration: none;
+  padding: 6px 12px;
+  border: 1px solid rgba(0, 255, 247, 0.2);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+}
+.back-link:hover {
+  color: #00fff7;
+  border-color: rgba(0, 255, 247, 0.5);
+}
+
+/* ── Stage tabs ── */
+.stage-tabs {
+  display: flex;
+  flex-shrink: 0;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.stage-tab {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 10px 28px;
+  border: none;
+  background: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.stage-tab[data-stage="blue"].active {
+  background: rgba(0, 140, 255, 0.2);
+  color: rgb(100, 200, 255);
+  box-shadow: inset 0 -2px 0 rgb(0, 140, 255);
+}
+.stage-tab[data-stage="green"].active {
+  background: rgba(0, 220, 100, 0.2);
+  color: rgb(80, 220, 130);
+  box-shadow: inset 0 -2px 0 rgb(0, 220, 100);
+}
+.stage-tab:not(.active):hover {
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ── Header ── */
+.xeno-header {
+  text-align: center;
+  padding: 6px 0 2px;
+  margin-top: 52px;
+  flex-shrink: 0;
+  z-index: 2;
+}
+.xeno-header h1 {
+  font-family: "Doto", "Audiowide", sans-serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  letter-spacing: 12px;
+  color: oklch(87.87% 0.211 149.57 / 0.923);
+  text-shadow: 0 0 10px rgba(0, 255, 200, 0.5);
+  animation: floatUpDown 5s ease-in-out infinite;
+}
+@keyframes floatUpDown {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* ── Layout ── */
+.scaling-root {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  max-width: 1000px;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  z-index: 2;
+}
+
+/* ── Pet container ── */
+#pet-container {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 8px 0 0;
+  box-shadow: 0 0 25px rgba(0, 180, 255, 0.15);
+  border: 3px solid oklch(70.1% 0.322 328.36 / 0.3);
+  background:
+    url("/images/xenotchi-bg.jpg") 68% center / 115% auto no-repeat,
+    #000;
+}
+#pet-container canvas {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  z-index: 2;
+  background: transparent;
+}
+#pet-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at 6% 80%,
+    rgba(0, 200, 255, 0.28) 0%,
+    transparent 38%
+  );
+  animation: flickerCyan 23s linear infinite;
+}
+#pet-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse at 94% 82%,
+      rgba(0, 180, 220, 0.24) 0%,
+      transparent 32%
+    ),
+    radial-gradient(
+      ellipse at 90% 30%,
+      rgba(200, 0, 180, 0.2) 0%,
+      transparent 30%
+    );
+  animation: flickerRight 17s linear infinite;
+}
+@keyframes flickerCyan {
+  0%,
+  68%,
+  100% {
+    opacity: 0.5;
+  }
+  70% {
+    opacity: 1;
+  }
+  71% {
+    opacity: 0.15;
+  }
+  72% {
+    opacity: 0.85;
+  }
+  73% {
+    opacity: 0.3;
+  }
+  74% {
+    opacity: 0.7;
+  }
+}
+@keyframes flickerRight {
+  0%,
+  52%,
+  100% {
+    opacity: 0.5;
+  }
+  54% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 0.1;
+  }
+  56% {
+    opacity: 0.9;
+  }
+  57% {
+    opacity: 0.2;
+  }
+  58% {
+    opacity: 0.75;
+  }
+}
+
+/* ── Loading spinner ── */
+#scene-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  gap: 12px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: rgba(0, 255, 247, 0.7);
+  text-transform: uppercase;
+  transition: opacity 0.4s ease;
+}
+#scene-loading.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.loading-ring {
+  width: 36px;
+  height: 36px;
+  border: 2px solid rgba(0, 255, 247, 0.15);
+  border-top-color: rgba(0, 255, 247, 0.8);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Info box ── */
+.infoBox {
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  border: 3px solid oklch(70.1% 0.322 328.36 / 0.3);
+  border-radius: 5px;
+  min-height: 80px;
+  overflow: hidden;
+  margin-top: 6px;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.4),
+    0 8px 28px rgba(0, 0, 0, 0.25);
+}
+.infoBox-controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  padding: 10px 20px;
+  gap: 10px;
+  width: 45%;
+  background: oklch(10% 0.05 280 / 0.15);
+  backdrop-filter: blur(2px);
+  border-radius: 5px;
+}
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ── Buttons ── */
+.Buttons {
+  font-family: "Audiowide", sans-serif;
+  color: #fff;
+  background-color: rgba(0, 0, 200, 0.7);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 4px;
+  width: 88px;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 0.5em;
+  font-weight: bold;
+  padding: 0;
+  margin: 0 1px;
+  border: none;
+  cursor: pointer;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.1s ease;
+}
+.Buttons:hover {
+  transform: perspective(200px) rotateX(1deg) rotateY(1deg) scale(1);
+  box-shadow: 0 12px 12px rgba(0, 200, 255, 0.3);
+  z-index: 2;
+}
+.Buttons:active {
+  transform: scale(0.96);
+}
+.Buttons:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+.feed-btn:hover {
+  box-shadow: 0 12px 12px oklch(84.201% 0.2819 142.495 / 0.843);
+}
+.dance-btn:hover {
+  box-shadow: 0 12px 12px oklch(71.798% 0.26888 325.169 / 0.843);
+}
+.sleep-btn:hover {
+  box-shadow: 0 12px 12px oklch(71.171% 0.15989 239.246 / 0.843);
+}
+.train-btn:hover {
+  box-shadow: 0 12px 12px oklch(65.025% 0.26522 357.482 / 0.731);
+}
+
+/* ── Stat bars ── */
+.stat-bar-container {
+  width: 88px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.stat-bar {
+  height: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.stat-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+}
+.hunger-bar .stat-bar-fill {
+  background: linear-gradient(90deg, #00cc44, #00ff88);
+}
+.fun-bar .stat-bar-fill {
+  background: linear-gradient(90deg, #aa00ff, #ff00cc);
+}
+.sleep-bar .stat-bar-fill {
+  background: linear-gradient(90deg, #0044ff, #00aaff);
+}
+.power-bar .stat-bar-fill {
+  background: linear-gradient(90deg, #ff4400, #ffcc00);
+}
+
+#hungerBar {
+  width: 82%;
+}
+#funBar {
+  width: 90%;
+}
+#sleepBar {
+  width: 70%;
+}
+#powerBar {
+  width: 95%;
+}
+
+.stat-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.5rem;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+/* ── Pet chat ── */
+.infoBox_petChat {
+  flex: 1;
+  padding: 10px 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+  font-family: "Doto", "Audiowide", monospace;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  line-height: 1.4;
+  border-radius: 5px;
+  border-left: 3px solid oklch(85% 0.25 195 / 0.8);
+  overflow-wrap: break-word;
+  word-break: break-word;
+  overflow: hidden;
+  background: linear-gradient(
+    45deg,
+    oklch(73.033% 0.19383 352.633),
+    oklch(76.162% 0.1228 258.17),
+    oklch(70.428% 0.18362 300.278),
+    oklch(89.385% 0.19155 151.458),
+    oklch(82.405% 0.12878 64.68),
+    oklch(73.033% 0.19383 352.633)
+  );
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  animation: gradientShift 8s ease infinite;
+}
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  #pet-container {
+    background:
+      url("/images/xenotchi-bg.jpg") 65% center / cover no-repeat,
+      #000;
+  }
+  .infoBox {
+    flex-direction: column;
+  }
+  .infoBox-controls {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 8px 10px;
+    gap: 6px;
+  }
+  .button-container {
+    flex: 1;
+    height: 55px;
+  }
+  .Buttons {
+    width: 100%;
+    font-size: 0.42em;
+    letter-spacing: 2px;
+    height: 36px;
+  }
+  .stat-bar-container {
+    width: 100%;
+  }
+  .infoBox_petChat {
+    border-left: none;
+    border-top: 3px solid oklch(85% 0.25 195 / 0.5);
+  }
+}
+@media (max-width: 480px) {
+  .Buttons {
+    width: 72px;
+    height: 30px;
+    font-size: 0.45rem;
+    letter-spacing: 2px;
+  }
+}

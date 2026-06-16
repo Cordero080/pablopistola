@@ -1,0 +1,77 @@
+/* Exit Button Container - Fixed positioning for ScrambleButton */
+
+.exitButtonContainer {
+  /* Position - Fixed to bottom left of viewport */
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  z-index: 1000;
+
+  /* Fade out by default */
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  /* Override ScrambleButton font to use Orbitron */
+  button {
+    font-family: 'Orbitron', monospace !important;
+    min-width: 100px;
+    letter-spacing: 0.1em;
+    padding: 8px 20px;
+
+    span {
+      font-family: 'Orbitron', monospace !important;
+      letter-spacing: 0.1em;
+    }
+  }
+}
+
+/* No additional styles needed - ScrambleButton handles all styling */
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .exitButtonContainer {
+    bottom: 40px;
+    left: 25px;
+
+    button {
+      min-width: 120px;
+      font-size: 13px;
+    }
+  }
+}
+
+/* Mobile Landscape & Small Tablets (481px - 768px) */
+@media (max-width: 768px) and (min-width: 481px) {
+  .exitButtonContainer {
+    bottom: 30px;
+    left: 20px;
+
+    button {
+      min-width: 110px;
+      font-size: 12px;
+      padding: 10px 16px;
+    }
+  }
+}
+
+/* Mobile Portrait (<= 480px) */
+@media (max-width: 480px) {
+  .exitButtonContainer {
+    bottom: 20px;
+    left: 15px;
+
+    button {
+      min-width: 90px;
+      font-size: 11px;
+      padding: 8px 12px;
+    }
+  }
+}

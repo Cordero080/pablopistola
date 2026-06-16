@@ -1,0 +1,148 @@
+.audioToggleContainer {
+  position: fixed;
+  top: 100px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1000;
+  font-family: 'Orbitron', monospace;
+}
+
+.toggleButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  font-family: 'Orbitron', monospace;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(12px);
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  line-height: 1;
+  min-width: 36px;
+  box-shadow:
+    0 0 0 2px rgba(0, 255, 255, 0.3),
+    0 8px 32px rgba(0, 255, 255, 0.15),
+    0 0 60px rgba(255, 0, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.toggleButton:hover {
+  box-shadow:
+    0 0 0 2px rgba(0, 255, 255, 0.6),
+    0 12px 48px rgba(0, 255, 255, 0.25),
+    0 0 80px rgba(255, 0, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
+  color: #00ffff;
+}
+
+.toggleButton.active {
+  border-color: rgba(0, 255, 255, 0.8);
+  background: rgba(0, 255, 255, 0.1);
+  color: #00ffff;
+  box-shadow:
+    0 12px 48px rgba(0, 255, 255, 0.35),
+    0 0 80px rgba(0, 255, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.toggleButton.detecting {
+  animation: pulse 1s ease-in-out infinite;
+  border-color: rgba(0, 255, 100, 0.8);
+  color: #00ff88;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(0, 255, 100, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 255, 100, 0.9);
+  }
+}
+
+.icon {
+  font-size: 18px;
+}
+
+.label {
+  font-size: 12px;
+}
+
+/* Frequency Visualizer */
+.visualizer {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(12px);
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  box-shadow:
+    0 8px 32px rgba(0, 255, 255, 0.15),
+    0 0 60px rgba(255, 0, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  clip-path: polygon(
+    14px 0,
+    100% 0,
+    100% calc(100% - 14px),
+    calc(100% - 14px) 100%,
+    0 100%,
+    0 14px
+  );
+  border-radius: 0;
+  transform: scale(0.9);
+}
+
+.frequencyBar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+
+.barLabel {
+  font-size: 9px;
+  color: #00ffff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.barTrackVertical {
+  width: 12px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.barFillVertical {
+  width: 100%;
+  transition: height 0.1s ease;
+  border-radius: 3px;
+  box-shadow: 0 0 10px currentColor;
+}
+
+.toggleButton:active {
+  transform: translateX(0);
+}
+
+@media (max-width: 768px) {
+  .audioToggleContainer {
+    top: 72px;
+    right: 16px;
+  }
+}

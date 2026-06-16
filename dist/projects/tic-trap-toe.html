@@ -1,4 +1,4 @@
-<!doctype html>
+1<!doctype html>
 <html lang="en">
   <head>
     <!-- Google tag (gtag.js) -->
@@ -32,8 +32,8 @@
     />
     <script src="../src/js/effects/sineWave.js" defer></script>
     <script src="../src/js/utils/analytics.js" defer></script>
-    <link rel="stylesheet" crossorigin href="/assets/main-BANZByUO.css">
-    <link rel="stylesheet" crossorigin href="/assets/project-BLC6Z8Y8.css">
+    <link rel="stylesheet" crossorigin href="/assets/main-BZcoJVkm.css">
+    <link rel="stylesheet" crossorigin href="/assets/project-CYZLrZMl.css">
   </head>
   <body>
     <canvas id="waves"></canvas>
@@ -102,26 +102,6 @@
           </svg>
           <span class="nav-label">Skills</span>
         </a>
-        <a class="side-nav-link" href="/art" aria-label="Art">
-          <svg
-            class="nav-icon"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
-            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
-            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
-            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
-            <path
-              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"
-            />
-          </svg>
-          <span class="nav-label">Art</span>
-        </a>
         <a class="side-nav-link" href="/home#contact" aria-label="Contact">
           <svg
             class="nav-icon"
@@ -176,7 +156,6 @@
             <path d="M2 6c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
             <path d="M2 18c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
           </svg>
-          <span class="nav-label">Zen</span>
         </a>
       </div>
       <div class="side-nav-glow"></div>
@@ -203,9 +182,8 @@
           <a href="/home" class="back-link">← Back to Projects</a>
           <h1 class="project-title">TIC-TRAP-TOE</h1>
           <p class="project-tagline">
-            Tic-tac-toe is a solved game. This isn't. Six boards, one rotating
-            cube — the rotation takes away your ability to stall, force a draw,
-            or even choose which game you're in.
+            Multi-board tic-tac-toe on a rotating 3D cube — six simultaneous
+            games, Vanilla JS.
           </p>
 
           <div class="project-links">
@@ -217,10 +195,6 @@
               <span>GitHub</span>
             </a>
           </div>
-          <p class="project-note">
-            <strong>Desktop Only</strong> — Requires mouse input for raycasting
-            click detection on the 3D cube faces.
-          </p>
         </div>
       </section>
 
@@ -228,8 +202,8 @@
       <section class="project-gallery">
         <div class="gallery-main">
           <img
-            src="/images/projects/tic-trap-toe/title-cube-overview.png"
-            alt="Tic-Trap-Toe title and rotating cube overview"
+            src="/images/projects/tic-trap-toe/dark-mode-landing.png"
+            alt="Tic-Trap-Toe landing screen with robot mascot"
             class="gallery-hero-img"
             style="object-fit: contain; aspect-ratio: auto; background: #0a0a0f"
             loading="eager"
@@ -237,50 +211,34 @@
         </div>
         <div class="gallery-thumbs">
           <img
-            src="/images/projects/tic-trap-toe/title-cube-overview.png"
-            alt="3D title and cube overview"
+            src="/images/projects/tic-trap-toe/dark-mode-landing.png"
+            alt="Landing screen"
             class="thumb active"
-            data-full="/images/projects/tic-trap-toe/title-cube-overview.png"
+            data-full="/images/projects/tic-trap-toe/dark-mode-landing.png"
+            style="object-fit: contain; background: #0a0a0f"
+            loading="eager"
+          />
+          <img
+            src="/images/projects/tic-trap-toe/dark-mode-draw.png"
+            alt="Dark mode gameplay — draw state"
+            class="thumb"
+            data-full="/images/projects/tic-trap-toe/dark-mode-draw.png"
             style="object-fit: contain; background: #0a0a0f"
             loading="lazy"
           />
           <img
-            src="/images/projects/tic-trap-toe/active-face-gameplay.png"
-            alt="Active face with X and O marks placed"
+            src="/images/projects/tic-trap-toe/lightmode-gameplay.png"
+            alt="Light mode gameplay"
             class="thumb"
-            data-full="/images/projects/tic-trap-toe/active-face-gameplay.png"
-            style="object-fit: contain; background: #0a0a0f"
+            data-full="/images/projects/tic-trap-toe/lightmode-gameplay.png"
+            style="object-fit: contain; background: #f5f5f5"
             loading="lazy"
           />
           <img
-            src="/images/projects/tic-trap-toe/gold-win-bar.png"
-            alt="Golden win bar striking through winning marks"
+            src="/images/projects/tic-trap-toe/dark-mode-confetti.png"
+            alt="Win state with confetti"
             class="thumb"
-            data-full="/images/projects/tic-trap-toe/gold-win-bar.png"
-            style="object-fit: contain; background: #0a0a0f"
-            loading="lazy"
-          />
-          <img
-            src="/images/projects/tic-trap-toe/confetti-face-win.png"
-            alt="Confetti burst on face win"
-            class="thumb"
-            data-full="/images/projects/tic-trap-toe/confetti-face-win.png"
-            style="object-fit: contain; background: #0a0a0f"
-            loading="lazy"
-          />
-          <img
-            src="/images/projects/tic-trap-toe/holographic-won-face.png"
-            alt="Holographic metallic overlay on won face"
-            class="thumb"
-            data-full="/images/projects/tic-trap-toe/holographic-won-face.png"
-            style="object-fit: contain; background: #0a0a0f"
-            loading="lazy"
-          />
-          <img
-            src="/images/projects/tic-trap-toe/match-win-score.jpg"
-            alt="Match win score with yellow-red stripe"
-            class="thumb"
-            data-full="/images/projects/tic-trap-toe/match-win-score.jpg"
+            data-full="/images/projects/tic-trap-toe/dark-mode-confetti.png"
             style="object-fit: contain; background: #0a0a0f"
             loading="lazy"
           />
@@ -439,7 +397,7 @@
     </main>
 
     <script src="../src/js/pages/project/gallery.js" defer></script>
-    <script src="../src/js/pages/project/index.js" defer></script>
+    <script src="../src/js/pages/shared/hamburgerMenu.js" defer></script>
     <script src="../src/js/components/cursor.js" defer></script>
     <script src="../src/js/effects/orb.js" defer></script>
   </body>

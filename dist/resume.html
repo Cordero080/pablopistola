@@ -56,8 +56,8 @@
     />
     <script src="src/js/effects/sineWave.js" defer></script>
     <script src="src/js/utils/analytics.js" defer></script>
-    <link rel="stylesheet" crossorigin href="/assets/main-BANZByUO.css">
-    <link rel="stylesheet" crossorigin href="/assets/project-BLC6Z8Y8.css">
+    <link rel="stylesheet" crossorigin href="/assets/main-BZcoJVkm.css">
+    <link rel="stylesheet" crossorigin href="/assets/project-CYZLrZMl.css">
     <link rel="stylesheet" crossorigin href="/assets/about-DoUB7iMx.css">
   </head>
   <body>
@@ -128,7 +128,7 @@
           </svg>
           <span class="nav-label">Skills</span>
         </a>
-        <a class="side-nav-link" href="/art" aria-label="Art">
+        <a class="side-nav-link" href="/lab" aria-label="Lab">
           <svg
             class="nav-icon"
             viewBox="0 0 24 24"
@@ -138,15 +138,12 @@
             stroke-linecap="round"
             stroke-linejoin="round"
           >
-            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
-            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
-            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
-            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
             <path
-              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"
+              d="M9 3h6M9 3v6.5L5 18a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1l-4-8.5V3"
             />
+            <path d="M7.5 14h9" />
           </svg>
-          <span class="nav-label">Art</span>
+          <span class="nav-label">Lab</span>
         </a>
         <a class="side-nav-link" href="/home#contact" aria-label="Contact">
           <svg
@@ -234,7 +231,7 @@
           </p>
           <div class="project-links" style="margin-top: 1.5rem">
             <a
-              href="https://drive.google.com/file/d/1iEoQCp3m2ZZDaxE2-epOEPVpB-fXCUP2/view?usp=sharing"
+              href="https://drive.google.com/file/d/1Q1M2KrZGgtPYPmj7cFsK8SFAoGeYAG5e/view?usp=sharing"
               target="_blank"
               class="hero-cta"
               >[ VIEW PDF ]</a
@@ -268,17 +265,17 @@
               Python, React, Django, Node.js, Express.js
             </li>
             <li>
+              <strong>AI & Data:</strong> Anthropic Claude API, OpenAI API, RAG
+              Pipelines, Vector Embeddings, Cosine Similarity, MongoDB,
+              PostgreSQL
+            </li>
+            <li>
               <strong>3D & Creative:</strong> Three.js, React Three Fiber,
-              Blender, GLSL Shaders, Web Audio API, FFT Audio Analysis,
-              Audio-Reactive Visuals
+              Blender, GLSL Shaders, Web Audio API
             </li>
             <li>
-              <strong>Design & Product:</strong> UI/UX Strategy, Product
-              Roadmapping, Adobe Creative Suite, Technical Spec Writing
-            </li>
-            <li>
-              <strong>Backend & Data:</strong> PostgreSQL, MongoDB, RESTful
-              APIs, Django REST Framework, JWT Auth, WebSockets
+              <strong>Backend & Infrastructure:</strong> RESTful APIs, Django
+              REST Framework, JWT Auth, WebSockets, Vercel, Render, CI/CD
             </li>
             <li>
               <strong>Development:</strong> Git, Vite, SCSS, Jest, Responsive
@@ -319,119 +316,162 @@
           <h2>Featured Projects</h2>
 
           <div class="project-highlight">
-            <h3>La Dolce Vita — Full-Stack Engineer & Product Lead</h3>
-            <p class="project-stack">React • Express • OpenAI • MongoDB</p>
+            <h3>Pneuma-AI — LLM Cognitive Orchestration System</h3>
+            <p class="project-stack">Node.js • React • Claude API</p>
             <p>
-              Production AI concierge platform deployed for a real client — live
-              booking integration with Airbnb calendar sync
+              Cognitive reasoning layer that shapes LLM behavior before
+              generation — not a wrapper, a reasoning layer
             </p>
             <ul class="project-bullets">
               <li>
-                Integrated OpenAI GPT-4o with Google Sheets API to power a
-                dynamic, multilingual guest support chatbot
+                3-layer archetype routing (cosine similarity, momentum
+                weighting, fusion history) across 46 thinkers
               </li>
               <li>
-                Engineered a natural language date parser and iCal availability
-                checker for real-time Airbnb calendar sync
+                525-passage RAG from 21 primary source texts, retrieved by
+                semantic similarity at runtime
               </li>
               <li>
-                Shipped full CI/CD pipeline with React on Vercel and Express on
-                Render; mobile-first responsive UI across all breakpoints
+                Tiered prompt architecture reducing token load from 18k to ~2k
+                via conditional block loading
+              </li>
+              <li>
+                Dialectical synthesis engine with antithetical, complementary,
+                and cross-domain collision modes
+              </li>
+            </ul>
+          </div>
+
+          <div class="project-highlight">
+            <h3>La Dolce Vita — Full-Stack AI Hospitality Platform</h3>
+            <p class="project-stack">React • Node.js • OpenAI API</p>
+            <p>
+              Production web app for a luxury Dominican Republic villa with
+              AI-powered guest concierge
+            </p>
+            <ul class="project-bullets">
+              <li>
+                Built embedded AI chat widget powered by GPT-4o with dynamic
+                system prompts injecting live property data and calendar
+                availability at request time
+              </li>
+              <li>
+                Integrated Airbnb iCal feed parsed server-side for real-time
+                booking awareness in both UI and AI context
+              </li>
+              <li>
+                Connected Google Sheets API for client-editable property content
+                without code changes
+              </li>
+            </ul>
+          </div>
+
+          <div class="project-highlight">
+            <h3>Pneumata — Lead Developer</h3>
+            <p class="project-stack">Three.js • React • Blender</p>
+            <p>
+              Interactive 3D human anatomy visualization mapping biological
+              systems to computer architecture
+            </p>
+            <ul class="project-bullets">
+              <li>
+                Built 37+ navigable organ nodes with bidirectional
+                spine-to-organ hover highlighting and color-coded system
+                categories
+              </li>
+              <li>
+                Implemented physiological Breathing Mode with real-time 1:4
+                breath-to-heartbeat animation ratio
+              </li>
+              <li>
+                Engineered spinal cord auto-trace via GLB armature sampling with
+                24 vertebral discs color-coded by innervated organ system
               </li>
             </ul>
           </div>
 
           <div class="project-highlight">
             <h3>NUMENEON — Full-Stack Engineer & UI Lead</h3>
-            <p class="project-stack">
-              React • Django • PostgreSQL • WebSockets
-            </p>
-            <p>
-              Full-stack neopunk social media platform — 58% engagement rate, 4m
-              37s avg. session
-            </p>
-            <ul class="project-bullets">
-              <li>
-                Designed 3-column "River Timeline" layout to reduce cognitive
-                overload and sustain deep content exploration
-              </li>
-              <li>
-                Architected glassmorphic SCSS design system and coordinated
-                cross-functional delivery across auth, friends, and messaging
-                workstreams
-              </li>
-            </ul>
-          </div>
-
-          <div class="project-highlight">
-            <h3>Pneuma — LLM Cognitive Orchestration System</h3>
-            <p class="project-stack">React • Node.js • Claude API</p>
-            <p>
-              Production cognitive architecture that intercepts and shapes LLM
-              reasoning before generation — not a wrapper, a reasoning layer
-            </p>
-            <ul class="project-bullets">
-              <li>
-                Implemented 3-layer archetype routing (cosine similarity →
-                momentum → fusion history) across 46 thinkers
-              </li>
-              <li>
-                Built 525-passage RAG knowledge base from 21 primary source
-                texts, retrieved at runtime by semantic similarity
-              </li>
-              <li>
-                Engineered tiered prompt architecture reducing token load from
-                18k to ~2k via intent-scored conditional block loading
-              </li>
-              <li>
-                Designed dialectical synthesis engine with antithetical,
-                complementary, and cross-domain collision modes
-              </li>
-              <li>
-                Integrated 3-layer memory: vector embeddings (semantic recall),
-                structured cross-session memory, and conversation persistence
-              </li>
-            </ul>
-          </div>
-
-          <div class="project-highlight">
-            <h3>Nexus Geom Lab — Lead Developer</h3>
-            <p class="project-stack">Three.js • React • Web Audio API</p>
-            <p>
-              Interactive 3D visualization platform for 4D geometry exploration
-            </p>
-            <ul class="project-bullets">
-              <li>
-                Rendered 24 interactive 4D geometries — tesseracts, quantum
-                manifolds, polychorons — with custom wireframe shaders and
-                orbital camera controls
-              </li>
-              <li>
-                Built real-time FFT audio analyzer (bass/mids/highs at 60fps)
-                driving audio-reactive 3D geometry via Web Audio API
-              </li>
-              <li>
-                Implemented progressive unlock system and gamification layer to
-                drive user engagement
-              </li>
-            </ul>
-          </div>
-
-          <div class="project-highlight">
-            <h3>Dojo — Full-Stack Engineer</h3>
             <p class="project-stack">React • Django • PostgreSQL</p>
+            <p>
+              Cyberpunk social media platform — 5-person team capstone (800+
+              GitHub clones)
+            </p>
             <ul class="project-bullets">
               <li>
-                Modeled a traditional Goju-Ryu syllabus into a structured
-                digital curriculum — tracking kata, bunkai, and kumite
-                progression per student
+                Led architecture and UI strategy; defined product roadmap and
+                sized tasks across XL/L/M/S tiers
               </li>
               <li>
-                Implemented soft-delete recovery and form validation to ensure
-                data integrity across all training records
+                Built 3-column River Timeline with real-time post rendering and
+                glassmorphic SCSS design system
               </li>
             </ul>
           </div>
+
+          <div class="project-highlight">
+            <h3>Xenochi — Lead Developer</h3>
+            <p class="project-stack">Three.js • React Three Fiber • Blender</p>
+            <ul class="project-bullets">
+              <li>
+                Tamagotchi-inspired 3D evolution sim with full Blender → FBX →
+                Three.js animation pipeline (32 rigged animations)
+              </li>
+              <li>
+                Built game state machine with stat decay, evolution triggers,
+                and care-cycle progression across 5 stages
+              </li>
+              <li>
+                Created hidden Battle Arena using React Three Fiber with 4
+                interactive 3D scenes and GLSL shader effects
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Professional Experience Section -->
+        <section class="about-section">
+          <h2>Professional Experience</h2>
+          <ul class="evolution-list">
+            <li>
+              <strong>Independent Software Consultant</strong> — Self-Employed
+              <span class="date-range">2025–Present</span>
+              <br />
+              <span class="experience-detail"
+                >Scoping, building, and shipping production AI and full-stack
+                systems for clients end-to-end</span
+              >
+            </li>
+            <li>
+              <strong>Martial Arts Instructor</strong> — Traditional Okinawan
+              Martial Arts
+              <span class="date-range">2018–Present</span>
+              <br />
+              <span class="experience-detail"
+                >3rd-degree black belt; developed curriculum roadmaps and
+                student progression systems</span
+              >
+            </li>
+            <li>
+              <strong>Visual Artist</strong> — Independent
+              <span class="date-range">2006–2024</span>
+              <br />
+              <span class="experience-detail"
+                >Commission painting, fine art restoration, gallery hosting, and
+                digital art</span
+              >
+            </li>
+            <li>
+              <strong>Legal Interpreter (Spanish)</strong> — NY Public School
+              System / USCIS
+              <span class="date-range">2005–2024</span>
+              <br />
+              <span class="experience-detail"
+                >High-stakes simultaneous translation for legal proceedings and
+                educational settings</span
+              >
+            </li>
+          </ul>
         </section>
 
         <!-- Education Section -->
@@ -440,7 +480,7 @@
           <ul class="evolution-list">
             <li>
               <strong>General Assembly</strong> — Software Engineering Immersive
-              (Graduated)
+              (95.8%)
               <span class="date-range">Feb 2026</span>
             </li>
             <li>
@@ -455,85 +495,20 @@
           </ul>
         </section>
 
-        <!-- Professional Experience Section -->
-        <section class="about-section">
-          <h2>Professional Experience</h2>
-          <ul class="evolution-list">
-            <li>
-              <strong>Independent Software Consultant</strong> — Self-Employed
-              <span class="date-range">2025–Present</span>
-              <br />
-              <span class="experience-detail"
-                >Shipping production AI and full-stack systems for clients, from
-                scoping through delivery — including a multilingual AI concierge
-                with live booking integration (OpenAI, MongoDB,
-                Vercel/Render)</span
-              >
-            </li>
-            <li>
-              <strong>Technical Product Manager</strong> — NUMENEON
-              <span class="date-range">2025–2026</span>
-              <br />
-              <span class="experience-detail"
-                >Directed architecture, UI strategy, and product roadmap for a
-                5-person team — wrote pseudocode specs, sized tasks across
-                XL/L/M/S tiers, and coordinated delivery across backend, auth,
-                and messaging workstreams; platform reached 800+ GitHub clones
-                and 58% engagement rate post-launch</span
-              >
-            </li>
-            <li>
-              <strong>Martial Arts Instructor</strong> — Traditional Okinawan
-              Martial Arts
-              <span class="date-range">2018–Present</span>
-              <br />
-              <span class="experience-detail"
-                >3rd-degree black belt (Shorei-kan lineage); designed structured
-                curriculum and student progression systems — same methodology
-                applied to engineering workflow and technical
-                documentation</span
-              >
-            </li>
-            <li>
-              <strong>Legal Interpreter (Spanish)</strong> — NY Public School
-              System / USCIS
-              <span class="date-range">2005–2024</span>
-              <br />
-              <span class="experience-detail"
-                >Delivered simultaneous and consecutive translation in
-                high-stakes legal and educational settings — developed precision
-                communication habits now applied to technical writing and API
-                design</span
-              >
-            </li>
-            <li>
-              <strong>Technical Designer</strong> — K.H. (Kids Headquarters)
-              <span class="date-range">2005–2006</span>
-              <br />
-              <span class="experience-detail"
-                >Authored technical specifications and enforced production
-                standards for global apparel manufacturing — early foundation
-                for systems thinking and precise documentation</span
-              >
-            </li>
-          </ul>
-        </section>
-
         <!-- Additional Section -->
         <section class="about-section">
           <h2>Additional</h2>
           <p>
             3,000+ GitHub contributions across 10+ shipped projects • Bilingual
-            English/Spanish (Professional) • 20+ Years Martial Arts (Shorei-kan
-            Lineage) • Visual Artist 2006–2024 (commission, restoration,
-            gallery, digital) • Classical Oil Painting • Guitar & Bass
+            English/Spanish (Professional) • 20+ Years Martial Arts (Goju-Ryu
+            Lineage) • Classical Oil Painting • Guitar & Bass
           </p>
         </section>
       </div>
     </main>
 
     <!-- Scripts -->
-    <script src="src/js/pages/about/index.js" defer></script>
+    <script src="src/js/pages/shared/hamburgerMenu.js" defer></script>
     <script src="src/js/components/cursor.js" defer></script>
     <script src="src/js/effects/orb.js" defer></script>
   </body>

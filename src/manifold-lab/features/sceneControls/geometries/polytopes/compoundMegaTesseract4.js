@@ -1,0 +1,196 @@
+import * as THREE from 'three';
+import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils';
+import { createTesseractWithFaces, stableStringify } from '../../utils/geometryHelpers';
+
+// Cache built geometries to avoid recomputing the expensive sweep on reselection.
+const geometryCache = new Map();
+const CACHE_LABEL = 'compoundMegaTesseractAxisShift';
+
+function createCacheKey(options) {
+  if (!options || typeof options !== 'object') return 'default';
+  try {
+    const signature = stableStringify(options);
+    return signature === '{}' ? 'default' : `opts:${signature}`;
+  } catch (error) {
+    // Failed to stringify options for cache
+    return null;
+  }
+}
+
+function cloneUserData(data = {}) {
+  const cloned = { ...data };
+  for (const key of Object.keys(cloned)) {
+    const value = cloned[key];
+    if (Array.isArray(value)) cloned[key] = value.slice();
+  }
+  return cloned;
+}
+
+function cloneWithUserData(source) {
+  const geometryClone = source.clone();
+  geometryClone.userData = cloneUserData(source.userData);
+  return geometryClone;
+}
+
+export function createCompoundMegaTesseractAxisShift(options = {}) {
+  const axisKey = options.cpdMega4Axis || 'x';
+  const translationStep =
+    typeof options.cpdMega4TranslationStep === 'number'
+      ? Math.max(0.0005, options.cpdMega4TranslationStep)
+      : 0.012;
+  const layerGap =
+    typeof options.cpdMega4LayerGap === 'number' ? Math.max(0, options.cpdMega4LayerGap) : 0.075;
+  const baseOffset =
+    typeof options.cpdMega4BaseOffset === 'number'
+      ? Math.max(0, options.cpdMega4BaseOffset)
+      : 0.015;
+  const twistStep =
+    typeof options.cpdMega4TwistStep === 'number' ? options.cpdMega4TwistStep : Math.PI / 9;
+  const radialStep =
+    typeof options.cpdMega4RadialStep === 'number' ? Math.max(0, options.cpdMega4RadialStep) : 0.05;
+  const sweepScales =
+    Array.isArray(options.cpdMega4Scales) && options.cpdMega4Scales.length >= 2
+      ? options.cpdMega4Scales
+      : [1.0, 0.82, 0.64, 0.46];
+
+  const normalizedOptions = {
+    axisKey,
+    translationStep,
+    layerGap,
+    baseOffset,
+    twistStep,
+    radialStep,
+    sweepScales,
+  };
+  const cacheKey = createCacheKey(normalizedOptions);
+  const cachedGeometry = cacheKey ? geometryCache.get(cacheKey) : null;
+  if (cachedGeometry) return cloneWithUserData(cachedGeometry);
+
+  const axisMap = {
+    x: new THREE.Vector3(1, 0, 0),
+    y: new THREE.Vector3(0, 1, 0),
+    z: new THREE.Vector3(0, 0, 1),
+  };
+  const translationAxis = (axisMap[axisKey] || axisMap.z).clone().normalize();
+
+  const upVector = new THREE.Vector3(0, 1, 0);
+  const fallback = new THREE.Vector3(1, 0, 0);
+  let radialBasis = new THREE.Vector3().crossVectors(translationAxis, upVector);
+  if (radialBasis.lengthSq() < 1e-5) {
+    radialBasis = new THREE.Vector3().crossVectors(translationAxis, fallback);
+  }
+  radialBasis.normalize();
+
+  const basePrimary = createTesseractWithFaces(2.0, 1.5, Math.PI / 8);
+  const baseRotated = createTesseractWithFaces(2.0, 1.5, Math.PI / 8 + Math.PI / 4);
+
+  const sweepOffset = Math.PI / 5;
+  const diagonalTilt = Math.PI / 6;
+
+  const sweeps = [];
+
+  const addSweep = (scale, startOffset) => {
+    const scaledPrimary = basePrimary.clone();
+    const scaledRotated = baseRotated.clone();
+    scaledPrimary.scale(scale, scale, scale);
+    scaledRotated.scale(scale, scale, scale);
+
+    const sweepGeoms = [];
+
+    const pushGeom = (geom, patternStep) => {
+      const instance = geom.clone();
+
+      const twistAngle = patternStep * twistStep;
+      if (twistAngle !== 0) {
+        const twistQuat = new THREE.Quaternion().setFromAxisAngle(translationAxis, twistAngle);
+        instance.applyQuaternion(twistQuat);
+      }
+
+      const radialMagnitude = startOffset * 0.6 + Math.abs(patternStep) * radialStep;
+      if (radialMagnitude > 0.0001) {
+        const radialDirection = radialBasis.clone().applyAxisAngle(translationAxis, twistAngle);
+        if (patternStep < 0) radialDirection.negate();
+        instance.translate(
+          radialDirection.x * radialMagnitude,
+          radialDirection.y * radialMagnitude,
+          radialDirection.z * radialMagnitude
+        );
+      }
+
+      const axialMagnitude = startOffset + Math.abs(patternStep) * translationStep;
+      const axialDirection = patternStep >= 0 ? 1 : -1;
+      instance.translate(
+        translationAxis.x * axialMagnitude * axialDirection,
+        translationAxis.y * axialMagnitude * axialDirection,
+        translationAxis.z * axialMagnitude * axialDirection
+      );
+
+      sweepGeoms.push(instance);
+    };
+
+    pushGeom(scaledPrimary, 0);
+
+    const tiltedRotated = scaledRotated.clone();
+    tiltedRotated.rotateX(diagonalTilt);
+    pushGeom(tiltedRotated, 1);
+
+    const posPrimary = scaledPrimary.clone();
+    posPrimary.rotateZ(sweepOffset);
+    pushGeom(posPrimary, -1);
+
+    const posRotated = scaledRotated.clone();
+    posRotated.rotateZ(sweepOffset);
+    pushGeom(posRotated, 2);
+
+    const negPrimary = scaledPrimary.clone();
+    negPrimary.rotateZ(-sweepOffset);
+    pushGeom(negPrimary, -2);
+
+    const negRotated = scaledRotated.clone();
+    negRotated.rotateZ(-sweepOffset);
+    pushGeom(negRotated, 3);
+
+    sweeps.push(...sweepGeoms);
+  };
+
+  const sweepOffsets = sweepScales.map((_, index) => baseOffset + layerGap * index);
+
+  sweepScales.forEach((scale, index) => {
+    addSweep(scale, sweepOffsets[index]);
+  });
+
+  const mergedCompoundMega = mergeGeometries(sweeps, false);
+  mergedCompoundMega.scale(0.8, 0.8, 0.8);
+  mergedCompoundMega.computeVertexNormals();
+
+  mergedCompoundMega.userData.isCompound = true;
+  mergedCompoundMega.userData.isCpdTesseract = true;
+  mergedCompoundMega.userData.baseType = 'BoxGeometry';
+  mergedCompoundMega.userData.isMegaTesseract = true;
+  mergedCompoundMega.userData.isCompoundMegaTesseract = true;
+  mergedCompoundMega.userData.componentCount = sweeps.length;
+  mergedCompoundMega.userData.variant = 'axis-radial-twist';
+  mergedCompoundMega.userData.translationStep = translationStep;
+  mergedCompoundMega.userData.layerGap = layerGap;
+  mergedCompoundMega.userData.baseOffset = baseOffset;
+  mergedCompoundMega.userData.translationAxis = axisKey;
+  mergedCompoundMega.userData.sweepScales = sweepScales;
+  mergedCompoundMega.userData.twistStep = twistStep;
+  mergedCompoundMega.userData.radialStep = radialStep;
+  mergedCompoundMega.userData.optionSignature = normalizedOptions;
+
+  if (cacheKey) geometryCache.set(cacheKey, mergedCompoundMega);
+
+  return cloneWithUserData(mergedCompoundMega);
+}
+
+export const metadata = {
+  name: 'cpd-megatesseract-4',
+  displayName: '💎💎💎 Compound Mega-Tesseract IV',
+  category: 'polytopes',
+  description: 'Radial step sweep with axial twist for spiral resonance bands',
+  isCompound: true,
+  isSuperCompound: true,
+  isUltraCompound: true,
+  defaultOptions: {},
+};

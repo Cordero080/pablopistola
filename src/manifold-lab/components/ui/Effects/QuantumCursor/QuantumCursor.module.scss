@@ -1,0 +1,190 @@
+.cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  pointer-events: none !important;
+  z-index: 99999;
+  transition: opacity 0.3s ease;
+  will-change: transform;
+  /* Background, box-shadow and size will be set dynamically by JavaScript */
+}
+
+/* Global style for cursor ID to ensure it works with JavaScript selection */
+:global(#cursor) {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  pointer-events: none !important;
+  z-index: 99999;
+  transition: opacity 0.3s ease;
+  will-change: transform;
+  /* Background, box-shadow and size will be set dynamically by JavaScript */
+}
+
+.gravityField {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+  opacity: 0.7;
+  transform: translate(-50%, -50%);
+}
+
+:global(#gravity-field) {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+  opacity: 0.7;
+  transform: translate(-50%, -50%);
+}
+
+.dimensionalRift {
+  position: fixed;
+  width: 30px;
+  height: 1px;
+  background: linear-gradient(
+    190deg,
+    transparent 0%,
+    #00ffff 10%,
+    #ff00cc 50%,
+    #ff8400 90%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 15px #00ffff,
+    0 0 25px #ff00cc;
+  pointer-events: none;
+  z-index: 99994;
+  opacity: 0;
+  transition: opacity 0.2s;
+  transform: translate(-50%, -50%);
+}
+
+:global(#dimensional-rift) {
+  position: fixed;
+  width: 30px;
+  height: 1px;
+  background: linear-gradient(
+    190deg,
+    transparent 0%,
+    #00ffff 10%,
+    #ff00cc 50%,
+    #ff8400 90%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 15px #00ffff,
+    0 0 25px #ff00cc;
+  pointer-events: none;
+  z-index: 99994;
+  opacity: 0;
+  transition: opacity 0.2s;
+  transform: translate(-50%, -50%);
+}
+
+:global(#wormhole) {
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99995;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0);
+  background: radial-gradient(
+    circle,
+    rgba(0, 255, 255, 0.8) 0%,
+    rgba(255, 0, 204, 0.6) 30%,
+    rgba(138, 43, 226, 0.4) 60%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 20px rgba(0, 255, 255, 0.8),
+    0 0 40px rgba(255, 0, 204, 0.6),
+    0 0 60px rgba(138, 43, 226, 0.4),
+    inset 0 0 30px rgba(0, 255, 255, 0.3);
+  border: 2px solid rgba(0, 255, 255, 0.5);
+}
+
+.quantumParticle {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99997;
+  background: radial-gradient(circle, #00ffff 0%, #ff00cc 100%);
+  opacity: 0.8;
+  box-shadow:
+    0 0 4px #00ffff,
+    0 0 8px #ff00cc;
+  transition: opacity 0.2s;
+}
+
+:global(.energy-wave) {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid #00ffff;
+  background: rgba(0, 255, 255, 0.6);
+  box-shadow: 0 0 8px #00ffff;
+  pointer-events: none;
+  z-index: 99996;
+  opacity: 0.5;
+}
+
+/* Trail particles for smooth cursor following effect */
+:global(.trail-particle) {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99995;
+  opacity: 0;
+  transition: opacity 0.15s ease-out; /* FASTER fade */
+  transform: translate(-50%, -50%);
+  will-change: transform, opacity;
+  backface-visibility: hidden; /* PERFORMANCE: Prevents subpixel rendering issues */
+}
+
+/* Global classes for dynamically created elements */
+:global(.quantum-particle) {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99997;
+  background: radial-gradient(circle, #00ffff 0%, #ff00cc 100%);
+  opacity: 0.8;
+  box-shadow:
+    0 0 4px #00ffff,
+    0 0 8px #ff00cc;
+  transition: opacity 0.2s;
+}
+
+:global(.energy-wave) {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1.5px solid #00ffff;
+  background: rgba(0, 255, 255, 0.6);
+  box-shadow: 0 0 6px #00ffff;
+  pointer-events: none;
+  z-index: 99996;
+  opacity: 0.5;
+}

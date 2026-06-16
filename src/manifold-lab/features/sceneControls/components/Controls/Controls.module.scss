@@ -1,0 +1,801 @@
+/* Controls Side Panel Styles (CSS Modules version) */
+.controls * {
+  font-size: 12px; /* Reduced from 14px */
+  cursor: auto !important; /* Ensure controls always show cursor and override any global settings */
+}
+
+/* Simple control panel for Step 1 */
+.controls {
+  position: absolute;
+  top: 100px; /* Increased from 20px */
+  left: -30px; /* Moved further left for more space */
+  width: 300px; /* Increased for better readability */
+  max-height: 108vh; /* Control the maximum height - adjust this value to your preference */
+  background: rgba(0, 0, 0, 0.25); /* Slightly darker to compensate for less blur */
+  color: rgba(255, 255, 255, 0.9);
+  padding: 18px 16px; /* Reduced from 24px 20px */
+  backdrop-filter: blur(6px); /* Reduced from 12px for better scroll performance */
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  /* Gentler geometric shape - more subtle corner cuts */
+  clip-path: polygon(0% 10%, 10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%);
+  border-radius: 0;
+  z-index: 10001;
+  overflow-y: auto;
+  overflow-x: visible; /* Changed from hidden to visible to allow dropdowns */
+  box-shadow:
+    0 8px 32px rgba(0, 255, 255, 0.15),
+    0 0 60px rgba(255, 0, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  /* Smooth transition for hide/show */
+  transition:
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s ease,
+    all 0.3s ease;
+  /* Performance optimization for scrolling */
+  will-change: scroll-position;
+  transform: translateZ(0) scale(0.7);
+  transform-origin: top center;
+  /* Allow content to overflow for dropdowns */
+  contain: layout style; /* Instead of contain: strict which clips overflow */
+}
+
+.controls:hover {
+  border-color: rgba(0, 255, 255, 0.6);
+  box-shadow:
+    0 12px 48px rgba(0, 255, 255, 0.25),
+    0 0 80px rgba(255, 0, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Hidden state - slide out to the left */
+.controlsHidden {
+  transform: translateX(-100%) scale(0.7);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Toggle Button Styles */
+.controlsToggleBtn {
+  position: absolute;
+  top: 100px;
+  background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(12px);
+  border: none;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  padding: 8px 12px;
+  cursor: pointer;
+  z-index: 1001;
+  box-shadow:
+    0 0 0 2px rgba(0, 255, 255, 0.3),
+    0 8px 32px rgba(0, 255, 255, 0.15),
+    0 0 60px rgba(255, 0, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  font-family: 'Orbitron', monospace;
+  font-weight: 600;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  border-radius: 4px;
+}
+
+.controlsToggleBtn:hover {
+  box-shadow:
+    0 0 0 2px rgba(0, 255, 255, 0.6),
+    0 12px 48px rgba(0, 255, 255, 0.25),
+    0 0 80px rgba(255, 0, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
+}
+
+/* Hide button (inside panel, top area) */
+.controlsToggleBtnHide {
+  position: absolute;
+  top: 12px;
+  left: 30px;
+  padding: 6px 10px;
+  font-size: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-width: 30px;
+}
+
+.controlsToggleText {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.controlsToggleBtnHide:hover {
+  background: rgba(255, 0, 100, 0.3);
+  border-color: rgba(255, 0, 100, 0.4);
+  color: #ff3366;
+  text-shadow: 0 0 8px rgba(255, 0, 100, 0.6);
+}
+
+/* Show button (floating on left side when hidden) */
+.controlsToggleBtnShow {
+  left: 10px;
+}
+
+.controls label,
+.controls .sectionHeader {
+  font-size: 16px; /* Adjusted font size for labels and section headers */
+}
+
+.controls label {
+  display: block;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* First label in section - reduce top margin */
+.sectionContent > label:first-child {
+  margin-top: 12px;
+}
+
+/* Value display styling */
+.valueDisplay {
+  color: #00ffff;
+  font-weight: 700;
+  font-size: 14px;
+  margin-left: 8px;
+  text-shadow: 0 0 4px rgba(0, 255, 255, 0.4);
+}
+
+.controls input[type='range'] {
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 255, 255, 0.2) 0%,
+    rgba(0, 255, 255, 0.4) 50%,
+    rgba(255, 0, 255, 0.4) 100%
+  );
+  border-radius: 3px;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1; /* Lower than dropdown z-index */
+  /* Mobile touch support - critical for slider to work on touch devices */
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.controls input[type='range']:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 255, 255, 0.3) 0%,
+    rgba(0, 255, 255, 0.5) 50%,
+    rgba(255, 0, 255, 0.5) 100%
+  );
+}
+
+.controls input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 22px;
+  background: linear-gradient(135deg, #00ffff, #ff00ff);
+  border-radius: 10%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  /* Larger touch target for mobile */
+  touch-action: manipulation;
+}
+
+.controls input[type='range']::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.controls input[type='range']::-webkit-slider-thumb:active {
+  transform: scale(1.1);
+}
+
+.controls input[type='range']::-moz-range-thumb {
+  width: 18px;
+  height: 22px;
+  background: linear-gradient(135deg, #00ffff, #ff00ff);
+  border: none;
+  border-radius: 10%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  touch-action: manipulation;
+}
+
+.controls input[type='range']::-moz-range-thumb:hover {
+  transform: scale(1.2);
+}
+
+.controls input[type='range']::-moz-range-thumb:active {
+  transform: scale(1.1);
+}
+
+.controls input[type='range']::-moz-range-track {
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 255, 255, 0.2) 0%,
+    rgba(0, 255, 255, 0.4) 50%,
+    rgba(255, 0, 255, 0.4) 100%
+  );
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* ThreeScene container styles */
+.threeSceneContainer {
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Controls styling for collapsible sections */
+.controls hr {
+  margin: 20px 0;
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(78, 205, 196, 0.5) 50%, transparent 100%);
+}
+
+.sectionHeader {
+  padding: 12px 16px;
+  margin: 32px 0 8px 0; /* Increased top margin from 16px to 32px to create space above section headers */
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 6px;
+  user-select: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 1; /* Lower z-index so dropdowns from previous section appear on top */
+}
+
+/* Add subtle shine effect on hover */
+.sectionHeader::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  transition: left 0.5s ease;
+}
+
+.sectionHeader:hover::before {
+  left: 100%;
+}
+
+.sectionHeader:hover {
+  transform: translateX(2px);
+}
+
+.sectionHeaderMaterialOpen {
+  background: rgba(0, 0, 0, 0.093);
+  backdrop-filter: blur(30px);
+  color: #00ffff;
+  border: 1px solid rgba(0, 255, 255, 0.4);
+  clip-path: polygon(
+    14px 0,
+    100% 0,
+    100% calc(100% - 14px),
+    calc(100% - 14px) 100%,
+    0 100%,
+    0 14px
+  );
+}
+
+.sectionHeaderMaterialClosed {
+  background: rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(20px);
+  color: rgba(0, 255, 255, 0.7);
+  border: 1px solid rgba(0, 255, 255, 0.25);
+  clip-path: polygon(
+    14px 0,
+    100% 0,
+    100% calc(100% - 14px),
+    calc(100% - 14px) 100%,
+    0 100%,
+    0 14px
+  );
+}
+
+.sectionHeaderSceneOpen {
+  background: rgba(0, 0, 0, 0.093);
+  backdrop-filter: blur(30px);
+  color: #00ffff;
+  border: 1px solid rgba(0, 255, 255, 0.4);
+  clip-path: polygon(
+    14px 0,
+    100% 0,
+    100% calc(100% - 14px),
+    calc(100% - 14px) 100%,
+    0 100%,
+    0 14px
+  );
+}
+
+.sectionHeaderSceneClosed {
+  background: rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(20px);
+  color: rgba(0, 255, 255, 0.7);
+  border: 1px solid rgba(0, 255, 255, 0.25);
+  clip-path: polygon(
+    14px 0,
+    100% 0,
+    100% calc(100% - 14px),
+    calc(100% - 14px) 100%,
+    0 100%,
+    0 14px
+  );
+}
+
+.sectionHeaderLightingOpen {
+  background: rgba(0, 0, 0, 0.093);
+  backdrop-filter: blur(30px);
+  color: #00ffff;
+  border: 1px solid rgba(0, 255, 255, 0.4);
+  clip-path: polygon(
+    14px 0,
+    100% 0,
+    100% calc(100% - 14px),
+    calc(100% - 14px) 100%,
+    0 100%,
+    0 14px
+  );
+}
+
+.sectionHeaderLightingClosed {
+  background: rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(20px);
+  color: rgba(0, 255, 255, 0.7);
+  border: 1px solid rgba(0, 255, 255, 0.25);
+  clip-path: polygon(
+    14px 0,
+    100% 0,
+    100% calc(100% - 14px),
+    calc(100% - 14px) 100%,
+    0 100%,
+    0 14px
+  );
+}
+
+.sectionContent {
+  transition:
+    max-height 0.3s ease,
+    opacity 0.3s ease,
+    padding 0.3s ease;
+  padding-left: 12px;
+  padding-right: 8px;
+}
+
+.sectionContentOpen {
+  opacity: 1;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  overflow: visible; /* Allow dropdowns to overflow when open */
+}
+
+.sectionContentClosed {
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow: hidden; /* Hide content during collapse animation */
+}
+
+/* Section-specific max-heights */
+/* CRITICAL: These values must be large enough to prevent content clipping
+   Issue: overflow: hidden on sections clips content, but is needed for collapse animation
+   Solution: Set max-height high enough for all nested controls to be visible
+   Material Properties: Contains many subsections (Color, Wireframe, Vertices, etc.)
+   Camera/Scene: Contains Animation Style dropdown + Orb Speed + Object Speed sliders
+   Increased values to accommodate expanded dropdowns - panel itself scrolls via overflow-y: auto */
+.sectionContentMaterialOpen {
+  max-height: 1800px; /* Increased from 1200px for dropdown space */
+}
+
+.sectionContentSceneOpen {
+  max-height: 1800px; /* Increased from 1200px for dropdown space */
+}
+
+.sectionContentLightingOpen {
+  max-height: 1200px; /* Increased from 800px for dropdown space */
+}
+
+.sectionContentClosed {
+  max-height: 0px;
+}
+
+/* Subsection Headers (nested within main sections) */
+.subSectionHeader {
+  padding: 8px 12px;
+  margin: 12px 0 4px 0;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 4px;
+  user-select: none;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.subSectionHeaderOpen {
+  background: rgba(0, 255, 255, 0.1);
+  color: rgba(0, 255, 255, 0.9);
+  border-left: 2px solid rgba(0, 255, 255, 0.5);
+}
+
+.subSectionHeaderClosed {
+  background: rgba(0, 0, 0, 0.2);
+  color: rgba(255, 255, 255, 0.6);
+  border-left: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.subSectionHeaderOpen:hover,
+.subSectionHeaderClosed:hover {
+  background: rgba(0, 255, 255, 0.15);
+  color: rgba(0, 255, 255, 1);
+  border-left-color: rgba(0, 255, 255, 0.7);
+}
+
+/* Subsection Content */
+.subSectionContent {
+  transition:
+    max-height 0.3s ease,
+    opacity 0.3s ease,
+    padding 0.3s ease;
+  padding-left: 8px;
+}
+
+.subSectionContentOpen {
+  max-height: 900px; /* Increased from 600px for dropdown space */
+  opacity: 1;
+  padding-top: 4px;
+  padding-bottom: 8px;
+  overflow: visible; /* Allow dropdowns to overflow when open */
+}
+
+.subSectionContentClosed {
+  max-height: 0px;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow: hidden; /* Hide content during collapse animation */
+}
+
+/* Select dropdown styling - now using CustomSelect component */
+/* Styles removed as CustomSelect component has its own module styles */
+
+/* Color input styling */
+.controls input[type='color'] {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 0;
+  border: 2px solid rgba(78, 205, 196, 0.4);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.controls input[type='color']:hover {
+  border-color: rgba(0, 255, 255, 0.6);
+  box-shadow: 0 0 16px rgba(0, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+.controls input[type='color']::-webkit-color-swatch-wrapper {
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+}
+
+.controls input[type='color']::-webkit-color-swatch {
+  border: none;
+  border-radius: 6px;
+}
+
+.controls input[type='color']::-moz-color-swatch {
+  border: none;
+  border-radius: 6px;
+}
+
+.controls input[type='color']:active {
+  transform: scale(0.95);
+  border: 3px solid rgba(78, 205, 196, 0.8);
+  box-shadow:
+    0 0 0 3px rgba(78, 205, 196, 0.3),
+    0 0 20px rgba(78, 205, 196, 0.5),
+    inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.controls input[type='color']:focus {
+  outline: none;
+  border: 2px solid rgba(78, 205, 196, 0.6);
+  box-shadow: 0 0 15px rgba(78, 205, 196, 0.4);
+}
+
+/* Modern futuristic scrollbar styling */
+:global(.controls)::-webkit-scrollbar {
+  width: 4px;
+}
+
+:global(.controls)::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+}
+
+:global(.controls)::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #00ffff, #ff00ff);
+  border-radius: 2px;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+:global(.controls)::-webkit-scrollbar-thumb:hover {
+  box-shadow:
+    0 0 15px rgba(0, 255, 255, 1),
+    0 0 30px rgba(255, 0, 255, 0.8);
+}
+
+:global(.controls)::-webkit-scrollbar-thumb:active {
+  box-shadow:
+    0 0 20px rgba(0, 255, 255, 1),
+    0 0 35px rgba(255, 0, 255, 0.9);
+}
+
+/* Firefox scrollbar styling */
+.controls {
+  scrollbar-width: auto;
+  scrollbar-color: #5f74eddd rgba(0, 0, 0, 0.2);
+}
+
+.futuristicCheckboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1em;
+  margin: 40px 0;
+  cursor: pointer;
+  padding-bottom: 20px;
+  justify-content: center;
+}
+
+.futuristicCheckbox {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #7fdfff;
+  background: linear-gradient(135deg, #1b4ac0 60%, #7fdfff 100%);
+  box-shadow: 0 2px 8px rgba(127, 223, 255, 0.15);
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+  position: relative;
+}
+
+.futuristicCheckbox:checked {
+  border-color: #00ffe5b4;
+  background: linear-gradient(135deg, #00ffe568 60%, #222a3f 100%);
+}
+
+.futuristicCustomCheckbox {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+
+.futuristicCheckbox:checked + .futuristicCustomCheckbox {
+  box-shadow: 0 0 0 4px #00ffe5bd inset;
+}
+
+.futuristicCheckboxText {
+  position: relative;
+  top: -8px;
+  color: #7fdfff;
+  font-weight: bold;
+}
+
+/* Apply default colors to material property swatches */
+.materialSwatchBase {
+  background-color: #ff6f61; /* Warm coral */
+}
+
+.materialSwatchSpecular {
+  background-color: #6fa3ff; /* Cool sky blue */
+}
+
+.materialSwatchWireframe {
+  background-color: #ffd700; /* Warm gold */
+}
+
+.materialSwatchHyperframeSpiral {
+  background-color: #00ffcc; /* Cool aqua */
+}
+
+/* Spacing for last control in material section */
+.lastMaterialControl {
+  margin-bottom: 90px;
+}
+
+/* Spacing for scene section header */
+.sceneHeaderSpacing {
+  margin-top: 30px;
+}
+
+.materialSwatchHyperframeEdge {
+  background-color: #ff4500; /* Warm orange-red */
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .controls {
+    width: 260px;
+    max-height: 70vh;
+    padding: 20px 16px;
+    left: 15px;
+  }
+
+  .controls * {
+    font-size: 13px;
+  }
+
+  .sectionHeader {
+    font-size: 14px;
+  }
+}
+
+/* Mobile Landscape & Small Tablets (481px - 768px) */
+@media (max-width: 768px) and (min-width: 481px) {
+  .controlsToggleBtn {
+    top: 72px;
+  }
+
+  .controlsToggleBtnHide {
+    top: 12px;
+  }
+
+  .controls {
+    left: -10px;
+    top: 62px;
+    width: 260px;
+    max-height: 95vh;
+    transform: translateZ(0) scale(0.72);
+    transform-origin: top left;
+    padding: 16px 14px;
+  }
+
+  .controlsHidden {
+    transform: translateX(-100%) scale(0.72);
+  }
+
+  .controls * {
+    font-size: 12px;
+  }
+
+  .sectionHeader {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .sectionContentMaterialOpen,
+  .sectionContentSceneOpen {
+    max-height: 1500px;
+  }
+
+  .subSectionContentOpen {
+    max-height: 700px;
+  }
+}
+
+/* Mobile Portrait (<= 480px) */
+@media (max-width: 480px) {
+  .controlsToggleBtn {
+    top: 72px;
+  }
+
+  .controlsToggleBtnHide {
+    top: 12px;
+  }
+
+  .controls {
+    left: -10px;
+    top: 62px;
+    width: 240px;
+    max-height: 95vh;
+    transform: translateZ(0) scale(0.7);
+    transform-origin: top left;
+    padding: 12px 10px;
+    z-index: 2000;
+    overflow-y: auto;
+  }
+
+  .controlsHidden {
+    transform: translateX(-100%) scale(0.7);
+  }
+
+  .controls * {
+    font-size: 11px;
+  }
+
+  .sectionHeader {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .sectionContentMaterialOpen,
+  .sectionContentSceneOpen {
+    max-height: 1200px; /* Increased for dropdown space */
+  }
+
+  .subSectionContentOpen {
+    max-height: 600px; /* Increased for dropdown space */
+  }
+
+  /* Make control rows stack vertically on very small screens */
+  .controlRow {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* Larger touch targets for sliders on mobile */
+  .controls input[type='range'] {
+    height: 12px;
+    margin: 16px 0;
+  }
+
+  .controls input[type='range']::-webkit-slider-thumb {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+  }
+
+  .controls input[type='range']::-moz-range-thumb {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+  }
+}

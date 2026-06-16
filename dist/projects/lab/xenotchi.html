@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xenotchi — Lab Demo | Pablo Cordero</title>
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.178.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.178.0/examples/jsm/"
+        }
+      }
+    </script>
+    <script type="module" crossorigin src="/assets/projects/lab/xenotchi-BgQixOaW.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/three.module-CA44nllG.js">
+    <link rel="stylesheet" crossorigin href="/assets/xenotchi-BuG4ixhu.css">
+  </head>
+
+  <body>
+    <a class="back-link" href="/lab">← Lab</a>
+
+    <header class="xeno-header">
+      <h1>XENOCHI</h1>
+    </header>
+
+    <div class="scaling-root">
+      <div id="pet-container">
+        <div id="scene-loading">
+          <div class="loading-ring"></div>
+          <span>Loading model…</span>
+        </div>
+      </div>
+
+      <div class="infoBox">
+        <div class="infoBox-controls">
+          <div class="button-container">
+            <button class="Buttons feed-btn" id="feed-button">FEED</button>
+            <div class="stat-bar-container">
+              <div class="stat-bar hunger-bar">
+                <div class="stat-bar-fill" id="hungerBar"></div>
+              </div>
+              <span class="stat-label">Hunger: 8</span>
+            </div>
+          </div>
+          <div class="button-container">
+            <button class="Buttons dance-btn" id="dance-button">DANCE</button>
+            <div class="stat-bar-container">
+              <div class="stat-bar fun-bar">
+                <div class="stat-bar-fill" id="funBar"></div>
+              </div>
+              <span class="stat-label">Fun: 9</span>
+            </div>
+          </div>
+          <div class="button-container">
+            <button class="Buttons sleep-btn" id="sleep-button">SLEEP</button>
+            <div class="stat-bar-container">
+              <div class="stat-bar sleep-bar">
+                <div class="stat-bar-fill" id="sleepBar"></div>
+              </div>
+              <span class="stat-label">Sleep: 7</span>
+            </div>
+          </div>
+          <div class="button-container">
+            <button class="Buttons train-btn" id="power-button">TRAIN</button>
+            <div class="stat-bar-container">
+              <div class="stat-bar power-bar">
+                <div class="stat-bar-fill" id="powerBar"></div>
+              </div>
+              <span class="stat-label">Power: 10</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="infoBox_petChat" id="petChat">
+          Hello! I am your Xenotchi. Select a stage and press a button!
+        </div>
+      </div>
+    </div>
+
+    <div class="stage-tabs" role="tablist">
+      <button
+        class="stage-tab active"
+        data-stage="blue"
+        role="tab"
+        aria-selected="true"
+      >
+        Blue
+      </button>
+      <button
+        class="stage-tab"
+        data-stage="green"
+        role="tab"
+        aria-selected="false"
+      >
+        Green
+      </button>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,285 @@
+/* ============================================
+   SpeedControl Component Styles
+   ============================================ */
+
+.speed-control-container {
+  position: absolute;
+  bottom: 12px;
+  right: 20px;
+  transform: scale(0.65);
+  transform-origin: bottom right;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 255, 255, 0.25);
+  border-radius: 8px;
+  padding: 6px 8px;
+  min-width: 220px;
+  z-index: 100;
+  font-family: 'Orbitron', 'JetBrains Mono', monospace;
+  box-shadow:
+    0 4px 16px rgba(0, 255, 255, 0.1),
+    0 0 30px rgba(255, 0, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.speed-control-container:hover {
+  border-color: rgba(0, 255, 255, 0.6);
+  box-shadow:
+    0 12px 48px rgba(0, 255, 255, 0.25),
+    0 0 80px rgba(255, 0, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Header */
+.speed-control-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.speed-control-label {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #00ffff, #ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.speed-control-value {
+  font-size: 18px;
+  font-weight: 900;
+  color: #00ffff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  min-width: 50px;
+  text-align: right;
+}
+
+/* Slider */
+.speed-control-slider-wrapper {
+  margin-bottom: 16px;
+}
+
+.speed-control-slider {
+  width: 98%;
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 255, 255, 0.2) 0%,
+    rgba(0, 255, 255, 0.4) 50%,
+    rgba(255, 0, 255, 0.4) 100%
+  );
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.speed-control-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 14px;
+  background: linear-gradient(135deg, #00ffff, #ff00ff);
+  border-radius: 10%;
+  cursor: pointer;
+  box-shadow:
+    0 0 10px rgba(0, 255, 255, 0.8),
+    0 0 20px rgba(255, 0, 255, 0.6);
+  transition: all 0.2s ease;
+}
+
+.speed-control-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow:
+    0 0 15px rgba(0, 255, 255, 1),
+    0 0 30px rgba(255, 0, 255, 0.8);
+}
+
+.speed-control-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #00ffff, #ff00ff);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow:
+    0 0 10px rgba(0, 255, 255, 0.8),
+    0 0 20px rgba(255, 0, 255, 0.6);
+  transition: all 0.2s ease;
+}
+
+.speed-control-slider::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  box-shadow:
+    0 0 15px rgba(0, 255, 255, 1),
+    0 0 30px rgba(255, 0, 255, 0.8);
+}
+
+/* Markers */
+.speed-control-markers {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2px;
+  padding: 0 2px;
+}
+
+.speed-marker {
+  font-size: 1px;
+  color: rgba(0, 255, 255, 0.5);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Preset Buttons */
+.speed-control-presets {
+  display: flex;
+  gap: 15px;
+  justify-content: space-around;
+}
+
+.speed-preset-btn {
+  flex: 1;
+  padding: 4px 4px;
+  background: rgba(0, 255, 255, 0.1);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 8px;
+  color: #00ffff;
+  font-family: 'Orbitron', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  pointer-events: auto !important;
+}
+
+.speed-preset-btn:hover {
+  background: rgba(0, 255, 255, 0.2);
+  border-color: rgba(0, 255, 255, 0.6);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
+}
+
+.speed-preset-btn:active {
+  transform: translateY(0);
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .speed-control-container {
+    min-width: 240px;
+    right: 20px;
+  }
+
+  .speed-control-label,
+  .speed-control-value {
+    font-size: 11px;
+  }
+
+  .speed-control-slider {
+    height: 4px;
+  }
+}
+
+/* Mobile Landscape & Small Tablets (481px - 768px) */
+@media (max-width: 768px) and (min-width: 481px) {
+  .speed-control-container {
+    min-width: 220px;
+    right: 15px;
+    padding: 6px 4px;
+  }
+
+  .speed-control-label,
+  .speed-control-value {
+    font-size: 10px;
+  }
+
+  .speed-control-slider {
+    height: 3px;
+  }
+}
+
+/* Mobile Portrait (<= 480px) */
+@media (max-width: 480px) {
+  .speed-control-container {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    left: auto;
+    top: auto;
+    transform: none;
+    min-width: unset;
+    width: 100%;
+    padding: 6px 8px;
+    margin-top: 10px;
+  }
+
+  /* Hide header label on mobile - value is sufficient */
+  .speed-control-header {
+    justify-content: flex-end;
+    margin-bottom: 6px;
+  }
+
+  .speed-control-label {
+    display: none;
+  }
+
+  .speed-control-value {
+    font-size: 12px;
+  }
+
+  .speed-control-slider {
+    height: 4px;
+  }
+
+  /* Hide slider markers on mobile */
+  .speed-control-markers {
+    display: none;
+  }
+
+  .speed-control-presets {
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  /* Compact preset buttons - no text labels */
+  .speed-preset-btn {
+    padding: 8px 12px;
+    font-size: 10px;
+    flex: 1;
+  }
+}
+
+/* Tablet and larger mobile (481px - 768px) */
+@media (max-width: 768px) and (min-width: 481px) {
+  .speed-control-container {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    left: auto;
+    min-width: unset;
+    width: 100%;
+    transform: none;
+    margin-top: 10px;
+  }
+
+  .speed-control-label {
+    display: none;
+  }
+
+  .speed-control-markers {
+    display: none;
+  }
+}

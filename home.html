@@ -104,6 +104,16 @@
     <link rel="stylesheet" href="src/styles/main.css" />
     <link rel="stylesheet" href="src/styles/effects/feathers.css" />
     <link rel="stylesheet" href="src/styles/effects/compMode.css?v=4" />
+    <link rel="stylesheet" href="src/styles/pages/home/enhancements.css" />
+    <!-- Enhancement libraries (GSAP) — must precede scrollReveal init script -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"
+      defer
+    ></script>
     <script src="src/js/effects/sineWave.js" defer></script>
     <script type="module" src="src/js/effects/heroBrackets.js"></script>
     <script src="src/js/effects/easterEggSineWave.js" defer></script>
@@ -360,6 +370,21 @@
     <div class="projects-scroll-cta">
       <a href="#projects" class="hero-cta">PROJECTS</a>
     </div>
+
+    <!-- Marquee Belt -->
+    <div class="marquee-belt" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="marquee-content"
+          >CREATIVE TECHNOLOGIST · THREE.JS · PYTHON · BLENDER · REACT · CLAUDE
+          API · GSAP · WEBGL · NODE.JS · MONGODB · VANILLA JS &nbsp;</span
+        >
+        <span class="marquee-content" aria-hidden="true"
+          >CREATIVE TECHNOLOGIST · THREE.JS · PYTHON · BLENDER · REACT · CLAUDE
+          API · GSAP · WEBGL · NODE.JS · MONGODB · VANILLA JS &nbsp;</span
+        >
+      </div>
+    </div>
+
     <section class="projects-section" id="projects">
       <!-- 1. Pneuma -->
       <div class="project-row project-row--left" style="--card-accent: #00d4ff">
@@ -374,7 +399,11 @@
             />
           </div>
         </a>
-        <div class="project-card-info" data-youtube="">
+        <div
+          class="project-card-info"
+          data-youtube=""
+          data-meta="2025 · AI / LLM"
+        >
           <h2 class="project-card-title">Pneuma</h2>
           <p class="project-card-description">
             LLM Cognitive Architecture • 44 Archetypes • Claude API • OpenAI •
@@ -421,7 +450,11 @@
             />
           </div>
         </a>
-        <div class="project-card-info" data-youtube="">
+        <div
+          class="project-card-info"
+          data-youtube=""
+          data-meta="2024 · Web · Client"
+        >
           <h2 class="project-card-title">La Dolce Vita</h2>
           <p class="project-card-description">
             Freelance Luxury Villa Site • AI Concierge • Live Airbnb Calendar •
@@ -457,6 +490,7 @@
         <div
           class="project-card-info"
           data-youtube="https://youtu.be/J5xXlOPNZAQ"
+          data-meta="2024 · Full-Stack · Social"
         >
           <h2 class="project-card-title">Numeneon</h2>
           <p class="project-card-description">
@@ -504,14 +538,18 @@
         <a href="/projects/transcendence" class="project-card-link">
           <div class="project-card-media">
             <img
-              src="/images/projects/transcendence.webp"
-              alt="Transcendence Pet Sim"
+              src="/images/xenochi.png"
+              alt="Xenochi 3D virtual pet"
               loading="lazy"
               decoding="async"
             />
           </div>
         </a>
-        <div class="project-card-info" data-youtube="">
+        <div
+          class="project-card-info"
+          data-youtube=""
+          data-meta="2025 · 3D / Game"
+        >
           <h2 class="project-card-title">XENOCHI</h2>
           <p class="project-card-description">
             3D Virtual Pet • JS • Three.js + Blender
@@ -565,6 +603,7 @@
         <div
           class="project-card-info"
           data-youtube="https://youtu.be/Xkbkwlv8HA4"
+          data-meta="2024 · 3D · Medical"
         >
           <h2 class="project-card-title">Pneumata</h2>
           <p class="project-card-description">
@@ -619,7 +658,11 @@
             />
           </div>
         </a>
-        <div class="project-card-info" data-youtube="">
+        <div
+          class="project-card-info"
+          data-youtube=""
+          data-meta="2024 · 3D · Math"
+        >
           <h2 class="project-card-title">Manifold</h2>
           <p class="project-card-description">
             Gamified 4D Geometry Explorer • 24 Shapes • React Three Fiber
@@ -671,7 +714,11 @@
             />
           </div>
         </a>
-        <div class="project-card-info" data-youtube="">
+        <div
+          class="project-card-info"
+          data-youtube=""
+          data-meta="2024 · 3D · Game"
+        >
           <h2 class="project-card-title">Tic-Trap-Toe</h2>
           <p class="project-card-description">
             6-Face Cube • Three.js • Vanilla JS
@@ -726,7 +773,11 @@
             />
           </div>
         </a>
-        <div class="project-card-info" data-youtube="">
+        <div
+          class="project-card-info"
+          data-youtube=""
+          data-meta="2024 · Creative Coding"
+        >
           <h2 class="project-card-title">Nucat</h2>
           <p class="project-card-description">
             ASCII Point Cloud Renderer • ~20K Particles • React
@@ -767,7 +818,11 @@
             />
           </div>
         </a>
-        <div class="project-card-info" data-youtube="">
+        <div
+          class="project-card-info"
+          data-youtube=""
+          data-meta="2023 · Full-Stack"
+        >
           <h2 class="project-card-title">Dojo Crud</h2>
           <p class="project-card-description">Martial Arts Tracker • Django</p>
           <a href="/projects/dojo-crud" class="project-card-cta"
@@ -790,7 +845,11 @@
             />
           </div>
         </a>
-        <div class="project-card-info" data-youtube="">
+        <div
+          class="project-card-info"
+          data-youtube=""
+          data-meta="2023 · Full-Stack"
+        >
           <h2 class="project-card-title">Bookshelf</h2>
           <p class="project-card-description">
             Living Library • Words Decompose Into Quantum Particles • React
@@ -813,7 +872,11 @@
             />
           </div>
         </a>
-        <div class="project-card-info" data-youtube="">
+        <div
+          class="project-card-info"
+          data-youtube=""
+          data-meta="2024 · Blog · Design"
+        >
           <h2 class="project-card-title">INSTVNCE</h2>
           <p class="project-card-description">
             Developer Log • Neopunk Terminal
@@ -900,5 +963,6 @@
     <script src="src/js/pages/home/index.js" defer></script>
     <script src="src/js/utils/mcpBridge.js" defer></script>
     <script src="src/js/pages/home/orbNavScan.js" defer></script>
+    <script src="src/js/pages/home/scrollReveal.js" defer></script>
   </body>
 </html>

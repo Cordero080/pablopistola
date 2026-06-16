@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import { resolve } from "path";
 import { globSync } from "glob";
 import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from "fs";
+import react from "@vitejs/plugin-react";
 
 // Find all HTML files at root and in projects/ (including subdirs)
 const rootHtmlFiles = globSync("*.html");
@@ -37,7 +38,7 @@ function copyJsPlugin() {
 export default defineConfig({
   root: ".",
   publicDir: "public",
-  plugins: [copyJsPlugin()],
+  plugins: [react(), copyJsPlugin()],
 
   build: {
     outDir: "dist",
@@ -65,6 +66,7 @@ export default defineConfig({
 
   resolve: {
     alias: {
+      "@ml": resolve(__dirname, "src/manifold-lab"),
       "@": resolve(__dirname, "src"),
       "@styles": resolve(__dirname, "src/styles"),
       "@js": resolve(__dirname, "src/js"),

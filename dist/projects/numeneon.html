@@ -33,8 +33,8 @@
     <script src="../src/js/effects/sineWave.js" defer></script>
     <!-- Vercel Analytics (only loads on Vercel) -->
     <script src="../src/js/utils/analytics.js" defer></script>
-    <link rel="stylesheet" crossorigin href="/assets/main-BANZByUO.css">
-    <link rel="stylesheet" crossorigin href="/assets/project-BLC6Z8Y8.css">
+    <link rel="stylesheet" crossorigin href="/assets/main-BZcoJVkm.css">
+    <link rel="stylesheet" crossorigin href="/assets/project-CYZLrZMl.css">
   </head>
   <body>
     <canvas id="waves"></canvas>
@@ -103,26 +103,6 @@
           </svg>
           <span class="nav-label">Skills</span>
         </a>
-        <a class="side-nav-link" href="/art" aria-label="Art">
-          <svg
-            class="nav-icon"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
-            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
-            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
-            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
-            <path
-              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"
-            />
-          </svg>
-          <span class="nav-label">Art</span>
-        </a>
         <a class="side-nav-link" href="/home#contact" aria-label="Contact">
           <svg
             class="nav-icon"
@@ -177,7 +157,6 @@
             <path d="M2 6c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
             <path d="M2 18c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
           </svg>
-          <span class="nav-label">Zen</span>
         </a>
       </div>
       <div class="side-nav-glow"></div>
@@ -190,10 +169,8 @@
           <a href="/home" class="back-link">← Back to Projects</a>
           <h1 class="project-title">NUMENEON</h1>
           <p class="project-tagline">
-            A neopunk social network built for people, not algorithms<br />
-            <span style="font-size: 0.9em; opacity: 0.8"
-              >Dark Mode — Cyberpunk Neon Theme</span
-            >
+            Full-stack social network — React, Node, MongoDB, glassmorphic SCSS
+            design system, 3-column River Timeline.
           </p>
           <p
             class="project-tagline"
@@ -236,93 +213,137 @@
       <section class="project-gallery">
         <div class="gallery-main">
           <img
-            src="/images/projects/numeneon-dark/story-learning-dark.png"
-            alt="Numeneon Dark Mode - Story Learning"
+            src="/images/projects/numeneon-light/profile-light.png"
+            alt="Numeneon Light Mode - Profile"
             class="gallery-hero-img"
             loading="eager"
           />
         </div>
         <div class="gallery-thumbs">
+          <!-- Light mode -->
+          <img
+            src="/images/projects/numeneon-light/profile-light.png"
+            alt="Profile — Light Mode"
+            class="thumb active"
+            data-full="/images/projects/numeneon-light/profile-light.png"
+            loading="eager"
+          />
+          <img
+            src="/images/projects/numeneon-light/feed-light.png"
+            alt="Feed — Light Mode"
+            class="thumb"
+            data-full="/images/projects/numeneon-light/feed-light.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/numeneon-light/river-timeline-light.png"
+            alt="River Timeline — Light Mode"
+            class="thumb"
+            data-full="/images/projects/numeneon-light/river-timeline-light.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/numeneon-light/story-learning-light.png"
+            alt="Story Learning — Light Mode"
+            class="thumb"
+            data-full="/images/projects/numeneon-light/story-learning-light.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/numeneon-light/wave-chart-light.png"
+            alt="Wave Chart — Light Mode"
+            class="thumb"
+            data-full="/images/projects/numeneon-light/wave-chart-light.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/numeneon-light/heatmap-light.png"
+            alt="Heatmap — Light Mode"
+            class="thumb"
+            data-full="/images/projects/numeneon-light/heatmap-light.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/numeneon-light/friends-light.png"
+            alt="Friends — Light Mode"
+            class="thumb"
+            data-full="/images/projects/numeneon-light/friends-light.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/numeneon-light/message-light.png"
+            alt="Messages — Light Mode"
+            class="thumb"
+            data-full="/images/projects/numeneon-light/message-light.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/numeneon-light/mystudio-light.png"
+            alt="My Studio — Light Mode"
+            class="thumb"
+            data-full="/images/projects/numeneon-light/mystudio-light.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/numeneon-light/about-light.png"
+            alt="About — Light Mode"
+            class="thumb"
+            data-full="/images/projects/numeneon-light/about-light.png"
+            loading="lazy"
+          />
+          <!-- Dark mode -->
           <img
             src="/images/projects/numeneon-dark/story-learning-dark.png"
-            alt="Story Learning"
-            class="thumb active"
+            alt="Story Learning — Dark Mode"
+            class="thumb"
             data-full="/images/projects/numeneon-dark/story-learning-dark.png"
             loading="lazy"
           />
           <img
-            src="/images/projects/numeneon-dark/daily-learning-dark.png"
-            alt="Daily Learning"
-            class="thumb"
-            data-full="/images/projects/numeneon-dark/daily-learning-dark.png"
-            loading="lazy"
-          />
-          <img
             src="/images/projects/numeneon-dark/profile-dark.png"
-            alt="Profile"
+            alt="Profile — Dark Mode"
             class="thumb"
             data-full="/images/projects/numeneon-dark/profile-dark.png"
             loading="lazy"
           />
           <img
             src="/images/projects/numeneon-dark/wave-chart-dark.png"
-            alt="Wave Chart"
+            alt="Wave Chart — Dark Mode"
             class="thumb"
             data-full="/images/projects/numeneon-dark/wave-chart-dark.png"
             loading="lazy"
           />
           <img
             src="/images/projects/numeneon-dark/heatmap-dark.png"
-            alt="Heatmap"
+            alt="Heatmap — Dark Mode"
             class="thumb"
             data-full="/images/projects/numeneon-dark/heatmap-dark.png"
             loading="lazy"
           />
           <img
-            src="/images/projects/numeneon-dark/about-dark.png"
-            alt="About"
-            class="thumb"
-            data-full="/images/projects/numeneon-dark/about-dark.png"
-            loading="lazy"
-          />
-          <img
             src="/images/projects/numeneon-dark/friends-dark.png"
-            alt="Friends"
+            alt="Friends — Dark Mode"
             class="thumb"
             data-full="/images/projects/numeneon-dark/friends-dark.png"
             loading="lazy"
           />
           <img
-            src="/images/projects/numeneon-dark/mystudio.png"
-            alt="My Studio"
-            class="thumb"
-            data-full="/images/projects/numeneon-dark/mystudio.png"
-            loading="lazy"
-          />
-          <img
-            src="/images/projects/numeneon-dark/mystudio-dark-friends.png"
-            alt="My Studio Friends"
-            class="thumb"
-            data-full="/images/projects/numeneon-dark/mystudio-dark-friends.png"
-            loading="lazy"
-          />
-          <img
             src="/images/projects/numeneon-dark/message-dark.png"
-            alt="Message"
+            alt="Messages — Dark Mode"
             class="thumb"
             data-full="/images/projects/numeneon-dark/message-dark.png"
             loading="lazy"
           />
           <img
-            src="/images/projects/numeneon-dark/bio-darkmode.png"
-            alt="Bio"
+            src="/images/projects/numeneon-dark/mystudio.png"
+            alt="My Studio — Dark Mode"
             class="thumb"
-            data-full="/images/projects/numeneon-dark/bio-darkmode.png"
+            data-full="/images/projects/numeneon-dark/mystudio.png"
             loading="lazy"
           />
           <img
             src="/images/projects/numeneon-dark/search-dark.png"
-            alt="Search"
+            alt="Search — Dark Mode"
             class="thumb"
             data-full="/images/projects/numeneon-dark/search-dark.png"
             loading="lazy"
@@ -361,12 +382,10 @@
           <div class="about-description">
             <h2>About</h2>
             <p>
-              Numeneon is a neopunk social platform built on a simple premise:
-              feeds should serve people, not harvest attention. It replaces the
-              standard infinite scroll with the
-              <strong>River Timeline</strong> — a three-column chronological
-              feed where each friend gets their own row, capped at 12 posts per
-              category. You can actually finish catching up.
+              Numeneon is a full-stack social platform centered on a
+              chronological feed. It replaces infinite scroll with the
+              <strong>River Timeline</strong> — a three-column layout where each
+              friend gets their own row, capped at 12 posts per category.
             </p>
 
             <h3 style="color: #00fff7; margin-top: 1.5rem">
@@ -396,13 +415,13 @@
             </p>
 
             <h3 style="color: #ff00cc; margin-top: 1.5rem">
-              Anti-Viral Feed Algorithm
+              Smart Feed Algorithm
             </h3>
             <p>
-              The Smart Feed surfaces underseen posts — 50% chronological, 30%
-              boosted (underexposed creators), 20% hot. Anti-viral by design:
-              the more something spreads, the more it gets throttled. Outrage
-              doesn't win the algorithm here.
+              The Smart Feed weights posts by recency and exposure: 50%
+              chronological, 30% boosted (low-reach creators), 20% trending.
+              Viral spread is throttled — the more widely something has already
+              been seen, the lower its ranking.
             </p>
 
             <h3 style="color: #00fff7; margin-top: 1.5rem">
@@ -439,21 +458,18 @@
             <div class="detail-card">
               <h3>My Role</h3>
               <p>
-                <strong>Co-Lead & System Architect</strong> on a 4-person team.
-                Designed full-stack architecture for both frontend and backend,
-                authored pseudocode specifications guiding the entire team's
-                implementation. Led wireframing and UI strategy, architected
-                dual-theme system (light/dark modes). Built the River Timeline
-                UI, Profile Card flip with contribution heatmap, Activity
-                Visualization (Wave Chart + Heatmap), Messaging Modal, mobile
-                responsiveness, and the comprehensive SCSS design system with
-                glassmorphic styling.
+                <strong>Lead Designer & Architect.</strong> Designed the
+                full-stack architecture (frontend and backend), led wireframing
+                and UI strategy, and built the dual-theme system, River
+                Timeline, Profile Card with contribution heatmap, Wave Chart,
+                Heatmap, Messaging Modal, mobile responsiveness, and the full
+                SCSS design system.
               </p>
             </div>
 
             <div class="detail-card">
               <h3>Project Type</h3>
-              <p>Collaborative Bootcamp Project</p>
+              <p>Bootcamp Project</p>
             </div>
           </div>
         </div>
@@ -994,7 +1010,7 @@
     </main>
 
     <script src="../src/js/pages/project/gallery.js" defer></script>
-    <script src="../src/js/pages/project/index.js" defer></script>
+    <script src="../src/js/pages/shared/hamburgerMenu.js" defer></script>
     <script src="../src/js/components/cursor.js" defer></script>
     <script src="../src/js/effects/orb.js" defer></script>
   </body>

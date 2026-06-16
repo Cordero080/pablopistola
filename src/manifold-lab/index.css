@@ -1,0 +1,26 @@
+/* ============================================
+   Modular CSS Architecture
+   
+   Organization:
+   - core/: Foundation (fonts, reset, animations)
+   - layout/: Structural components (cursor, navigation)
+   - shared/: Reusable UI elements (titles, buttons)
+   - components/: Page-specific styles (homepage)
+   ============================================ */
+
+/* Core Foundation */
+@import './styles/core/fonts.css';
+@import './styles/core/reset.css';
+@import './styles/core/animations.css';
+
+/* Layout Components */
+@import './styles/layout/cursor.css';
+@import './styles/layout/navigation.css';
+
+/* Shared UI Elements */
+@import './styles/shared/buttons.css';
+@import './components/ui/InvertedLetterText/invertedLetters.scss';
+
+/* Page-Specific Components */
+@import './styles/homepage.scss';
+@import './styles/titles.scss';

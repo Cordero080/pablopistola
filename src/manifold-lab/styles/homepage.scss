@@ -1,0 +1,244 @@
+/* ============================================
+   HomePage-Specific Component Styles
+   ============================================ */
+
+/* Subtitle and Coordinates */
+.quantum-subtitle {
+  font-size: 11px;
+  color: #00ffff;
+  margin-bottom: calc(40px - 3vh);
+  margin-top: -25px;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 1.8px;
+  opacity: 0.8;
+}
+
+.manifold-label {
+  font-size: 13px;
+  color: #00ffff;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 1px;
+  opacity: 0.6;
+  margin-top: 10px;
+  margin-top: -10px;
+  display: inline-block;
+  transform: translateY(60px) !important;
+}
+
+/* Hero Stats */
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: calc(-15px + 4vh);
+  margin-bottom: 8px; /* Add space before buttons */
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-label {
+  font-size: 7.5px;
+  color: #4a9999;
+  opacity: 0.6;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-size: 14px; /* Increased from 12.5px */
+  color: #5dbaba;
+  opacity: 0.8;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Parallax Container */
+.parallax-container {
+  width: 100%;
+  margin-top: 70px;
+  overflow-x: hidden;
+}
+
+/* Quantum manifold slow warp — own rhythm, shrinks/grows/distorts */
+@keyframes manifoldDrift {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0) scale(1) skewY(0deg);
+  }
+  15% {
+    transform: translateX(-50%) translateY(-60px) scale(0.88) skewY(1.5deg);
+  }
+  35% {
+    transform: translateX(-50%) translateY(-140px) scale(0.75) skewY(-2.5deg) skewX(1deg);
+  }
+  55% {
+    transform: translateX(-50%) translateY(-90px) scale(0.92) skewY(2deg) skewX(-1.5deg);
+  }
+  70% {
+    transform: translateX(-50%) translateY(-200px) scale(0.7) skewY(-1deg);
+  }
+  85% {
+    transform: translateX(-50%) translateY(-80px) scale(0.85) skewY(1deg);
+  }
+}
+
+.manifold-drift {
+  animation: manifoldDrift 38s ease-in-out infinite;
+}
+
+/* Hessian polychoron slow drift — fills space left by removed <p> */
+@keyframes hessianDrift {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0) scale(1) skewX(0deg);
+  }
+  20% {
+    transform: translateX(-50%) translateY(-160px) scale(1.08) skewX(1.5deg);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-420px) scale(1.18) skewX(-2deg);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-550px) scale(1.22) skewX(0deg);
+  }
+  65% {
+    transform: translateX(-50%) translateY(-400px) scale(1.14) skewX(2deg);
+  }
+  80% {
+    transform: translateX(-50%) translateY(-180px) scale(1.06) skewX(-1deg);
+  }
+}
+
+.hessian-drift {
+  animation: hessianDrift 26s ease-in-out infinite;
+}
+
+/* Default desktop with navbar - title position */
+.title-wrapper {
+  margin-top: -20px;
+}
+
+/* When no navbar (not authenticated) - move title and manifold up */
+.no-nav .title-wrapper {
+  margin-top: 30px;
+}
+
+.no-nav .manifold-label {
+  transform: translateY(-25px);
+}
+
+/* ====================================
+   RESPONSIVE BREAKPOINTS
+   ==================================== */
+
+/* Tablet: 768px - 1024px */
+@media (max-width: 1024px) {
+  .title-wrapper {
+    margin-top: -10px;
+  }
+
+  .quantum-subtitle {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    margin-bottom: calc(30px - 2vh);
+  }
+
+  .coordinates {
+    font-size: 12px;
+  }
+
+  .hero-stats {
+    gap: 30px;
+    margin-top: calc(-10px + 3vh);
+  }
+
+  .stat-label {
+    font-size: 7px;
+  }
+
+  .stat-value {
+    font-size: 11.5px;
+  }
+}
+
+/* Mobile Landscape: 481px - 767px */
+@media (max-width: 767px) {
+  .title-wrapper {
+    margin-top: -60px;
+  }
+
+  .no-nav .title-wrapper {
+    margin-top: -80px;
+  }
+
+  .manifold-label {
+    transform: translateY(25px) !important;
+  }
+
+  .quantum-subtitle {
+    font-size: 9px;
+    letter-spacing: 1.2px;
+    margin-bottom: calc(25px - 2vh);
+    margin-top: -15px;
+  }
+
+  .coordinates {
+    font-size: 11px;
+  }
+
+  .hero-stats {
+    gap: 20px;
+    margin-top: calc(-5px + 2vh);
+    flex-wrap: wrap;
+  }
+
+  .stat-label {
+    font-size: 6.5px;
+  }
+
+  .stat-value {
+    font-size: 10.5px;
+  }
+}
+
+/* Mobile Portrait: < 480px */
+@media (max-width: 480px) {
+  .title-wrapper {
+    margin-top: -60px;
+  }
+
+  .no-nav .title-wrapper {
+    margin-top: -80px;
+  }
+
+  .manifold-label {
+    transform: translateY(18px) !important;
+  }
+
+  .quantum-subtitle {
+    font-size: 8px;
+    letter-spacing: 1px;
+    margin-bottom: calc(20px - 1vh);
+    margin-top: -10px;
+  }
+
+  .coordinates {
+    font-size: 10px;
+  }
+
+  .hero-stats {
+    gap: 15px;
+    margin-top: calc(0px + 1vh);
+  }
+
+  .stat-label {
+    font-size: 6px;
+  }
+
+  .stat-value {
+    font-size: 9.5px;
+  }
+}

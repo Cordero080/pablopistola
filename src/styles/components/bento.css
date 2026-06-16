@@ -10,6 +10,7 @@
   margin: 0 auto;
   position: relative;
   z-index: 2;
+  counter-reset: project-counter;
 }
 
 /* Full-width glass panel behind the projects content */
@@ -57,6 +58,23 @@
   gap: 3.5rem;
   padding: 3rem 0;
   border-bottom: 1px solid rgba(233, 24, 24, 0.04);
+  position: relative;
+  counter-increment: project-counter;
+}
+
+.project-row::before {
+  content: counter(project-counter, decimal-leading-zero);
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: "Audiowide", sans-serif;
+  font-size: clamp(4.5rem, 9vw, 8rem);
+  color: rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+  z-index: 0;
+  line-height: 1;
+  user-select: none;
 }
 .project-row:last-child {
   border-bottom: none;
@@ -111,11 +129,11 @@
 /* On hover: image shifts toward the text, emerging from the gradient fade */
 .project-row--left .project-card-link:hover .project-card-media img {
   transform: scale(1.12) translateX(12px);
-  filter: brightness(0.7);
+  filter: brightness(1.05);
 }
 .project-row--right .project-card-link:hover .project-card-media img {
   transform: scale(1.12) translateX(-12px);
-  filter: brightness(0.7);
+  filter: brightness(1.05);
 }
 
 /* ── TEXT SIDE ── */
@@ -126,6 +144,18 @@
   gap: 1rem;
   padding-left: 2.5rem;
   border-left: 2px solid var(--card-accent, #00fff7);
+  position: relative;
+  z-index: 1;
+}
+
+.project-card-info[data-meta]::before {
+  content: attr(data-meta);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.28);
+  display: block;
 }
 .project-row--right .project-card-info {
   border-left: none;
