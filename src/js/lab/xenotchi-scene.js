@@ -140,6 +140,106 @@ const container = document.getElementById("pet-container");
 const loadingEl = document.getElementById("scene-loading");
 const chatEl = document.getElementById("petChat");
 
+function getCatMaskData() {
+  if (!activeModel) return null;
+  const box = new THREE.Box3().setFromObject(activeModel);
+  const center = box.getCenter(new THREE.Vector3());
+  const layoutW = container.offsetWidth || 600;
+  const layoutH = container.offsetHeight || 400;
+  const project = (vec) => {
+    const v = vec.clone().project(camera);
+    return { x: (v.x * 0.5 + 0.5) * layoutW, y: (-v.y * 0.5 + 0.5) * layoutH };
+  };
+  const screenCenter = project(center);
+  const screenTop = project(new THREE.Vector3(center.x, box.max.y, center.z));
+  const screenBottom = project(
+    new THREE.Vector3(center.x, box.min.y, center.z),
+  );
+  const screenLeft = project(new THREE.Vector3(box.min.x, center.y, center.z));
+  const screenRight = project(new THREE.Vector3(box.max.x, center.y, center.z));
+  return {
+    xPct: (screenCenter.x / layoutW) * 100,
+    yPct: (screenCenter.y / layoutH) * 100,
+    width: Math.max(80, Math.abs(screenRight.x - screenLeft.x)),
+    height: Math.max(100, Math.abs(screenBottom.y - screenTop.y)),
+  };
+}
+
+function triggerGlitchStutter(duration = 120) {
+  const overlay = document.getElementById("glitchOverlay");
+  const overlay2 = document.getElementById("glitchOverlay2");
+  if (!overlay) return;
+
+  const catData = getCatMaskData();
+  const layoutW = container.offsetWidth || 600;
+  const layoutH = container.offsetHeight || 400;
+
+  if (catData) {
+    const w = Math.max(catData.width * 2.5, layoutW * 0.38);
+    const h = Math.max(catData.height * 2.5, layoutH * 0.55);
+    [overlay, overlay2].forEach((el) => {
+      if (!el) return;
+      el.style.left = `${catData.xPct}%`;
+      el.style.top = `${catData.yPct}%`;
+      el.style.width = `${w}px`;
+      el.style.height = `${h}px`;
+      el.style.transform = "translate(-50%, -50%)";
+    });
+  }
+
+  [overlay, overlay2].forEach((el) => {
+    if (!el) return;
+    const scanlines = el.querySelector(".stutter-scanlines");
+    const staticEl = el.querySelector(".stutter-static");
+    const flash = el.querySelector(".stutter-flash");
+    if (scanlines) {
+      scanlines.style.display = "block";
+      scanlines.style.animation =
+        "xeno-stutterScan 0.08s linear infinite, xeno-scanlinesWarp 1.2s linear infinite";
+      scanlines.style.opacity = "1";
+    }
+    if (staticEl) {
+      staticEl.style.display = "block";
+      staticEl.style.animation =
+        "xeno-stutterStatic 0.07s linear infinite, xeno-staticWarp 2.2s linear infinite";
+      staticEl.style.opacity = "0.9";
+    }
+    if (flash) {
+      flash.style.display = "block";
+      flash.style.animation =
+        "xeno-stutterFlash 0.1s ease-out, xeno-flashWarp 1.7s linear infinite";
+      flash.style.opacity = "1";
+    }
+    el.classList.add("active");
+    el.style.opacity = "1";
+    el.style.filter = "saturate(400%) brightness(250%) contrast(150%)";
+  });
+
+  setTimeout(() => {
+    [overlay, overlay2].forEach((el) => {
+      if (!el) return;
+      el.style.opacity = "0";
+      el.querySelector(".stutter-scanlines").style.opacity = "0";
+      el.querySelector(".stutter-static").style.opacity = "0";
+      el.querySelector(".stutter-flash").style.opacity = "0";
+      setTimeout(() => {
+        el.classList.remove("active");
+        el.style.filter = "";
+        ["stutter-scanlines", "stutter-static", "stutter-flash"].forEach(
+          (cls) => {
+            const child = el.querySelector(`.${cls}`);
+            if (child) {
+              child.style.display = "none";
+              child.style.animation = "";
+              child.style.opacity = "";
+            }
+          },
+        );
+      }, 600);
+    });
+  }, duration);
+}
+
 function init() {
   clock = new THREE.Clock();
   scene = new THREE.Scene();
@@ -321,6 +421,8 @@ async function doAction(action) {
   setButtonsDisabled(true);
   chatEl.textContent = chatLines[action] ?? "…";
 
+  triggerGlitchStutter(90);
+
   if (action === "dance") {
     const bgMusic = document.getElementById("bg-music");
     if (bgMusic) bgMusic.pause();
@@ -362,7 +464,10 @@ async function doAction(action) {
   }
 
   const duration = await loadAnim(action, false);
-  if (duration > 0) await delay(Math.min(duration, 7000));
+  const cap = action === "dance" ? 15000 : 7000;
+  if (duration > 0) await delay(Math.min(duration, cap));
+
+  triggerGlitchStutter(150);
 
   if (action === "dance") {
     const radianceAudio = document.getElementById("radiance-music");
