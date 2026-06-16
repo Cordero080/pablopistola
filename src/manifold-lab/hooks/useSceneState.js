@@ -38,11 +38,11 @@ export function useSceneState() {
   // SCENE BEHAVIOR STATE
   // ============================================
   const [cameraView, setCameraView] = useState("free");
-  const [environment, setEnvironment] = useState("matrix");
+  const [environment, setEnvironment] = useState("space");
   const [environmentHue, setEnvironmentHue] = useState(0); // Hue rotation for environment (0-360)
   const [objectCount, setObjectCount] = useState(1);
   const [animationStyle, setAnimationStyle] = useState("rotate");
-  const [objectType, setObjectType] = useState("icosahedron");
+  const [objectType, setObjectType] = useState("compound600cell");
 
   // ============================================
   // LIGHTING STATE

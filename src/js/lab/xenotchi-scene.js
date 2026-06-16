@@ -23,6 +23,12 @@ const animConfig = {
       position: [0, -3, -6.5],
       rotationY: Math.PI / 9,
     },
+    dance2: {
+      file: "cat_FREEZE.fbx",
+      scale: [0.0027, 0.0027, 0.0027],
+      position: [-1.5, -3, -6.7],
+      rotationY: Math.PI / 7,
+    },
     sleep: {
       file: "SLEEP.fbx",
       scale: [0.0018, 0.0018, 0.0018],
@@ -34,6 +40,12 @@ const animConfig = {
       scale: [0.00189, 0.00189, 0.00189],
       position: [0, -1.9, -4],
       rotationY: Math.PI / 9,
+    },
+    train2: {
+      file: "cat_knee-upper.fbx",
+      scale: [0.0019, 0.0019, 0.0019],
+      position: [0, -2, -5],
+      rotationY: Math.PI / -9,
     },
   },
   green: {
@@ -55,6 +67,12 @@ const animConfig = {
       position: [7, -6, -20.9],
       rotationY: Math.PI / -6,
     },
+    dance2: {
+      file: "Salsa.fbx",
+      scale: [0.00392, 0.00392, 0.00392],
+      position: [0, -5, -9.7],
+      rotationY: Math.PI / 16,
+    },
     sleep: {
       file: "green_sleep.fbx",
       scale: [0.00539, 0.00539, 0.00539],
@@ -66,6 +84,12 @@ const animConfig = {
       scale: [0.0039, 0.0039, 0.0039],
       position: [-3.5, -5.2, -18],
       rotationY: Math.PI / 12,
+    },
+    train2: {
+      file: "green_back_k.fbx",
+      scale: [0.0112, 0.0112, 0.0112],
+      position: [10, -16, -43],
+      rotationY: Math.PI / -7,
     },
   },
 };
@@ -87,6 +111,8 @@ let loadToken = 0;
 let currentStage = "blue";
 let busy = false;
 let themeStarted = false;
+const danceIndices = { blue: 0, green: 0 };
+const trainIndices = { blue: 0, green: 0 };
 
 function playSound(id, src, delayMs, { volume = 1, playbackRate = 1 } = {}) {
   setTimeout(() => {
@@ -126,12 +152,29 @@ const trainSoundCues = {
       playbackRate: 3.7,
     },
   ],
+  "blue:train2": [
+    {
+      id: "fighting-voice",
+      src: "/music/fighting_voice.wav",
+      delay: 3200,
+      volume: 1.0,
+      playbackRate: 1.5,
+    },
+  ],
   "green:train": [
     {
       id: "green-grunt",
       src: "/music/green_grunt2.wav",
       delay: 700,
       volume: 0.8,
+    },
+  ],
+  "green:train2": [
+    {
+      id: "green-grunt",
+      src: "/music/green_grunt.wav",
+      delay: 990,
+      volume: 1.0,
     },
   ],
 };
@@ -421,6 +464,18 @@ async function doAction(action) {
   setButtonsDisabled(true);
   chatEl.textContent = chatLines[action] ?? "…";
 
+  // Resolve dance/train variants (cycle between base and variant 2)
+  let animKey = action;
+  if (action === "dance") {
+    const idx = danceIndices[currentStage];
+    animKey = idx % 2 === 0 ? "dance" : "dance2";
+    danceIndices[currentStage] = idx + 1;
+  } else if (action === "train") {
+    const idx = trainIndices[currentStage];
+    animKey = idx % 2 === 0 ? "train" : "train2";
+    trainIndices[currentStage] = idx + 1;
+  }
+
   triggerGlitchStutter(90);
 
   if (action === "dance") {
@@ -454,7 +509,7 @@ async function doAction(action) {
       stutterMaskAudio.play().catch(() => {});
     }
     if (action === "train") {
-      for (const c of trainSoundCues[`${currentStage}:train`] ?? []) {
+      for (const c of trainSoundCues[`${currentStage}:${animKey}`] ?? []) {
         playSound(c.id, c.src, c.delay, {
           volume: c.volume,
           playbackRate: c.playbackRate,
@@ -463,7 +518,7 @@ async function doAction(action) {
     }
   }
 
-  const duration = await loadAnim(action, false);
+  const duration = await loadAnim(animKey, false);
   const cap = action === "dance" ? 15000 : 7000;
   if (duration > 0) await delay(Math.min(duration, cap));
 
