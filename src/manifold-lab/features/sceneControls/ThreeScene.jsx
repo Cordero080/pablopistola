@@ -1,4 +1,4 @@
-import { updateEnvironment } from './threeSetup/environmentSetup';
+import { updateEnvironment } from "./threeSetup/environmentSetup";
 import {
   __UP,
   __Q,
@@ -9,27 +9,35 @@ import {
   __Inv,
   nearestVertexIndex,
   updateThickWireframeCylinders,
-} from './utils/geometryHelpers';
-import React, { useRef, useEffect } from 'react';
-import './ThreeScene.css';
+} from "./utils/geometryHelpers";
+import React, { useRef, useEffect } from "react";
+import "./ThreeScene.css";
 
 // CORE INFRASTRUCTURE HOOKS - Run ONCE on mount, create fundamental Three.js objects
-import { useSceneInitialization } from './hooks/core/useSceneInitialization';
-import { useObjectManager } from './hooks/core/useObjectManager';
+import { useSceneInitialization } from "./hooks/core/useSceneInitialization";
+import { useObjectManager } from "./hooks/core/useObjectManager";
 
 // PROPERTY UPDATE HOOKS - React to prop changes, modify existing objects
-import { useCameraController } from './hooks/updates/useCameraController';
-import { useMaterialUpdates } from './hooks/updates/useMaterialUpdates';
-import { useLightingUpdates } from './hooks/updates/useLightingUpdates';
+import { useCameraController } from "./hooks/updates/useCameraController";
+import { useMaterialUpdates } from "./hooks/updates/useMaterialUpdates";
+import { useLightingUpdates } from "./hooks/updates/useLightingUpdates";
 
 // VISUAL EFFECTS HOOKS - Add environmental effects and lighting
-import { useMetalnessLighting } from './hooks/effects/useMetalnessLighting';
-import { useMouseTracking, useEnvironmentUpdate } from './hooks/effects/useSceneEffects';
-import { useNebulaParticles } from './hooks/effects/useNebulaParticles';
+import { useMetalnessLighting } from "./hooks/effects/useMetalnessLighting";
+import {
+  useMouseTracking,
+  useEnvironmentUpdate,
+} from "./hooks/effects/useSceneEffects";
+import { useNebulaParticles } from "./hooks/effects/useNebulaParticles";
 
 // USER INTERACTION HOOKS - Handle animation loops and user input
-import { useAnimationLoop } from './hooks/interaction/useAnimationLoop';
-import { useObjectInteraction } from './hooks/interaction/useObjectInteraction';
+import { useAnimationLoop } from "./hooks/interaction/useAnimationLoop";
+import { useObjectInteraction } from "./hooks/interaction/useObjectInteraction";
+
+// AUDIO REACTIVITY
+import { useAudioAnalyzer } from "@ml/features/audio/hooks/useAudioAnalyzer";
+import { useAudioReactive } from "@ml/features/audio/hooks/useAudioReactive";
+import AudioToggle from "@ml/features/audio/components/AudioToggle";
 
 // ThreeScene: 3D renderer that receives a config object from App.jsx
 function ThreeScene({ config, onScaleChange }) {
@@ -126,7 +134,7 @@ function ThreeScene({ config, onScaleChange }) {
       directionalLightX,
       directionalLightY,
       directionalLightZ,
-    }
+    },
   );
 
   useObjectManager(
@@ -140,7 +148,7 @@ function ThreeScene({ config, onScaleChange }) {
       wireframeIntensity,
       hyperframeColor,
       hyperframeLineColor,
-    }
+    },
   );
 
   // 2. VISUAL EFFECTS - Add environmental effects
@@ -173,54 +181,84 @@ function ThreeScene({ config, onScaleChange }) {
       directionalLightY,
       directionalLightZ,
       metalness,
-    }
+    },
   );
 
   // 4. USER INTERACTION - Handle mouse-over object rotation and animation loop
   const { getUserRotation, decayUserRotations } = useObjectInteraction(
     { sceneRef, cameraRef, rendererRef },
     onScaleChange,
-    scale
+    scale,
   );
 
   useAnimationLoop(
-    { rendererRef, sceneRef, cameraRef, animationIdRef, objectsRef, objectSpeedRef, orbSpeedRef },
+    {
+      rendererRef,
+      sceneRef,
+      cameraRef,
+      animationIdRef,
+      objectsRef,
+      objectSpeedRef,
+      orbSpeedRef,
+    },
     { animationStyle, cameraView },
-    { getUserRotation, decayUserRotations }
+    { getUserRotation, decayUserRotations },
+  );
+
+  // 5. AUDIO REACTIVITY
+  const {
+    bass,
+    mids,
+    highs,
+    overall,
+    isActive: isAudioActive,
+    toggleAudio,
+  } = useAudioAnalyzer();
+  const audioData = { bass, mids, highs, overall };
+  useAudioReactive(
+    objectsRef,
+    audioData,
+    isAudioActive,
+    baseColor,
+    hyperframeColor,
+    hyperframeLineColor,
   );
 
   // Map environment to CSS background class
   function getBackgroundClass(env) {
     switch (env) {
-      case 'nebula':
-        return 'bg-gradient bg-gradient-nebula';
-      case 'space':
-        return 'bg-gradient bg-gradient-space';
-      case 'sunset':
-        return 'bg-gradient bg-gradient-sunset';
-      case 'matrix':
-        return 'bg-gradient bg-gradient-matrix';
+      case "nebula":
+        return "bg-gradient bg-gradient-nebula";
+      case "space":
+        return "bg-gradient bg-gradient-space";
+      case "sunset":
+        return "bg-gradient bg-gradient-sunset";
+      case "matrix":
+        return "bg-gradient bg-gradient-matrix";
       default:
-        return 'bg-gradient bg-gradient-default';
+        return "bg-gradient bg-gradient-default";
     }
   }
 
   return (
     <div
       style={{
-        position: 'relative',
-        width: '100%',
-        height: '100vh',
-        minHeight: '100vh',
+        position: "relative",
+        width: "100%",
+        height: "100vh",
+        minHeight: "100vh",
       }}
     >
       {/* Background overlay with hue shift */}
       <div
         className={getBackgroundClass(environment)}
         style={{
-          pointerEvents: 'none',
-          '--hue-shift': `${environmentHue}deg`,
-          filter: environment === 'matrix' ? 'none' : `hue-rotate(${environmentHue}deg)`,
+          pointerEvents: "none",
+          "--hue-shift": `${environmentHue}deg`,
+          filter:
+            environment === "matrix"
+              ? "none"
+              : `hue-rotate(${environmentHue}deg)`,
         }}
       />
       {/* Three.js canvas container - NOT affected by hue shift */}
@@ -228,28 +266,34 @@ function ThreeScene({ config, onScaleChange }) {
         ref={mountRef}
         className="three-scene-container"
         style={{
-          position: 'relative',
+          position: "relative",
           zIndex: 2,
-          width: '100%',
-          height: '100%',
+          width: "100%",
+          height: "100%",
         }}
       />
       {/* Foreground layer that bleeds over 3D objects (space environment only) */}
-      {environment === 'space' && (
+      {environment === "space" && (
         <div
           className="bg-gradient-space-foreground"
           style={{
-            position: 'absolute',
+            position: "absolute",
             top: 0,
             left: 0,
-            width: '100%',
-            height: '100%',
+            width: "100%",
+            height: "100%",
             zIndex: 3,
-            pointerEvents: 'none',
+            pointerEvents: "none",
             filter: `hue-rotate(${environmentHue}deg)`,
           }}
         />
       )}
+      {/* Audio reactivity toggle */}
+      <AudioToggle
+        isActive={isAudioActive}
+        onToggle={toggleAudio}
+        audioData={audioData}
+      />
     </div>
   );
 }

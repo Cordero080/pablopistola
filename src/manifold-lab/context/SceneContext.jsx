@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
+import React, { createContext, useContext, useState, useCallback } from "react";
 
 /**
  * Scene Context - Manages scene state across the application
@@ -20,11 +20,11 @@ export function SceneProvider({ children }) {
   // Scene state
   const [currentSceneId, setCurrentSceneId] = useState(null);
   const [sceneOwner, setSceneOwner] = useState(null); // User ID who owns the scene
-  const [sceneName, setSceneName] = useState('');
+  const [sceneName, setSceneName] = useState("");
   const [loadedConfig, setLoadedConfig] = useState(null); // Store loaded scene config
 
   // Scene mode: 'fresh', 'loaded', 'remixed'
-  const [sceneMode, setSceneMode] = useState('fresh');
+  const [sceneMode, setSceneMode] = useState("fresh");
 
   /**
    * Determine if current user owns the loaded scene
@@ -35,7 +35,7 @@ export function SceneProvider({ children }) {
     (currentUserId) => {
       return sceneOwner && sceneOwner === currentUserId;
     },
-    [sceneOwner]
+    [sceneOwner],
   );
 
   /**
@@ -52,36 +52,14 @@ export function SceneProvider({ children }) {
 
     // Determine scene mode
     if (currentUserId && scene.userId === currentUserId) {
-      setSceneMode('loaded'); // User is editing their own scene
+      setSceneMode("loaded"); // User is editing their own scene
     } else {
-      setSceneMode('remixed'); // User is remixing someone else's scene
+      setSceneMode("remixed"); // User is remixing someone else's scene
     }
 
     // Return the config so caller can apply it
     return scene.config || {};
   }, []);
-
-  /**
-   * Delete scene
-   * @param {string} sceneId - ID of scene to delete
-   * @param {string} token - JWT auth token
-   * @returns {Promise<void>}
-   */
-  const deleteScene = useCallback(
-    async (sceneId, token) => {
-      // Import the deleteScene API function at the top of the file
-      const { deleteScene: deleteSceneAPI } = await import('../services/sceneApi');
-
-      // Call the real API
-      await deleteSceneAPI(sceneId, token);
-
-      // If deleting current scene, reset context
-      if (sceneId === currentSceneId) {
-        resetScene();
-      }
-    },
-    [currentSceneId]
-  );
 
   /**
    * Reset to fresh state (new scene)
@@ -91,9 +69,9 @@ export function SceneProvider({ children }) {
     //dependencies can be simply defined as variables or states used inside the function that if changed should recreate the function, an example of a dependency is currentSceneId in the deleteScene function above
     setCurrentSceneId(null);
     setSceneOwner(null);
-    setSceneName('');
+    setSceneName("");
     setLoadedConfig(null);
-    setSceneMode('fresh');
+    setSceneMode("fresh");
   }, []);
 
   const value = {
@@ -109,14 +87,15 @@ export function SceneProvider({ children }) {
 
     // Actions
     loadScene,
-    deleteScene,
     resetScene,
 
     // Setters
     setSceneName,
   };
 
-  return <SceneContext.Provider value={value}>{children}</SceneContext.Provider>;
+  return (
+    <SceneContext.Provider value={value}>{children}</SceneContext.Provider>
+  );
 }
 
 /**
@@ -125,7 +104,7 @@ export function SceneProvider({ children }) {
 export function useScene() {
   const context = useContext(SceneContext);
   if (!context) {
-    throw new Error('useScene must be used within a SceneProvider');
+    throw new Error("useScene must be used within a SceneProvider");
   }
   return context;
 }
