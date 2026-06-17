@@ -133,7 +133,7 @@
     90deg,
     rgb(114, 175, 255),
     rgba(74, 193, 248, 0.84),
-    rgba(249, 142, 224, 0.938)
+    rgba(229, 134, 207, 0.938)
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -424,7 +424,7 @@
   }
 
   .projects-scroll-cta {
-    margin: 0 auto 2rem;
-    transform: translateY(3rem);
+    margin: 0 auto 1rem;
+    transform: translateY(1.5rem);
   }
 }
