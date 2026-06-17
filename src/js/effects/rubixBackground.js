@@ -50,9 +50,9 @@ const FACE_EDGE_COLORS = [
 //  CENTER → extra opacity added toward the center of each face (brighter center)
 //  WAVE   → extra opacity added when the wave is at its peak
 
-const PANEL_OPACITY_BASE = 0.15;
-const PANEL_OPACITY_CENTER = 0.05;
-const PANEL_OPACITY_WAVE = 0.025;
+const PANEL_OPACITY_BASE = 0.42;
+const PANEL_OPACITY_CENTER = 0.14;
+const PANEL_OPACITY_WAVE = 0.03;
 
 // Edge line opacity — same three knobs, for the outline lines
 
@@ -100,7 +100,7 @@ const FACE_HUE_OFFSETS = [0, 3.5, 1.0, 1.5, 2.2, 2.8];
 // ║  MORPH_CYCLE is calculated automatically — don't edit it directly.       ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
-const CUBE_HOLD = 14; // seconds showing flat panels
+const CUBE_HOLD = 5; // seconds showing flat panels
 const MORPH_DUR = 4; // seconds for the morph transition
 const SPHERE_HOLD = 8; // seconds showing sphere orbs
 
@@ -260,14 +260,17 @@ faces.forEach((face, fi) => {
         ) /
           Math.SQRT2;
 
-      const mat = new THREE.MeshStandardMaterial({
+      const mat = new THREE.MeshPhysicalMaterial({
         color: new THREE.Color(PANEL_COLOR),
         emissive: new THREE.Color(PANEL_EMISSIVE),
         emissiveIntensity: 0.2,
-        metalness: 0.9,
-        roughness: 0.3,
+        metalness: 0.95,
+        roughness: 0.06,
+        iridescence: 0.6,
+        iridescenceIOR: 1.8,
+        iridescenceThicknessRange: [100, 400],
         transparent: true,
-        opacity: 0.12,
+        opacity: 0.42,
         side: THREE.DoubleSide,
         depthWrite: false,
       });

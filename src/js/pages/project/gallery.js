@@ -40,3 +40,15 @@ document
       thumb.classList.add("active");
     });
   });
+
+// Belt loop filler — clone track items until width exceeds 3× the container
+requestAnimationFrame(() => {
+  const track = document.querySelector(".project-links-track");
+  if (!track) return;
+  const belt = track.parentElement;
+  const original = track.innerHTML;
+  let guard = 0;
+  while (track.scrollWidth < belt.offsetWidth * 3 && guard++ < 12) {
+    track.innerHTML += original;
+  }
+});

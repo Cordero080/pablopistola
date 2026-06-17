@@ -31,20 +31,18 @@ body:has(.project-page) #waves {
 /* Back Link */
 .back-link {
   display: inline-block;
-  color: var(--accent-cyan);
-  font-family: "aktiv-grotesk", sans-serif;
-  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.3);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
   text-decoration: none;
-  margin-bottom: 2rem;
-  transition: all 0.3s ease;
-  letter-spacing: 0.05em;
-  position: relative;
-  left: -1%;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
 .back-link:hover {
-  color: var(--accent-magenta);
-  text-shadow: 0 0 10px var(--accent-magenta);
+  color: var(--accent-cyan);
 }
 
 /* ==========================================
@@ -57,41 +55,186 @@ body:has(.project-page) #waves {
 }
 
 .project-title {
-  font-family: "Audiowide", sans-serif;
-  font-weight: 700;
+  font-family: "tachyon", sans-serif;
+  font-weight: 900;
   font-style: normal;
-  font-size: clamp(1.5rem, 5vw, 2.5rem);
-  letter-spacing: 0.05em;
-  margin-bottom: 1rem;
+  font-size: clamp(1.8rem, 5.5vw, 3rem);
+  letter-spacing: 0.08em;
+  margin-bottom: 0;
   background: linear-gradient(
     90deg,
     #ff207a,
     #9050ff,
-    #00d4ff,
+    #9bc5ce,
     #1060c0,
     #9050ff,
-    #ff207a
+    #cbafbb
   );
   background-size: 300% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: heroGradientMoveAlt 12s ease-in-out infinite;
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    black 60%,
-    rgba(0, 0, 0, 0.3) 100%
+}
+
+.project-title::before {
+  content: "// CASE STUDY";
+  display: block;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.2);
+  animation: none;
+}
+
+.project-title::after {
+  content: "";
+  display: block;
+  width: 44px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(144, 80, 255, 0.7),
+    rgba(0, 212, 255, 0.7),
+    transparent
   );
-  mask-image: linear-gradient(to bottom, black 60%, rgba(0, 0, 0, 0.3) 100%);
+  margin: 0.6rem auto 1.2rem;
+  border-radius: 1px;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  animation: none;
 }
 
 .project-tagline {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: clamp(0.7rem, 1.25vw, 0.83rem);
+  color: rgba(255, 255, 255, 0.55);
+  max-width: 520px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.9;
+  letter-spacing: 0.04em;
+}
+
+/* Project Links Belt — scrolling conveyor of action buttons */
+.project-links-belt {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 4px;
+  margin: 0 0 2.5rem;
+  position: relative;
+  background:
+    linear-gradient(145deg, #221d27, #000000),
+    radial-gradient(
+      circle at 30% 30%,
+      rgba(255, 255, 255, 0.1),
+      transparent 50%
+    ),
+    radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.5), transparent 50%),
+    linear-gradient(
+      45deg,
+      rgba(138, 43, 226, 0.05),
+      rgba(0, 212, 255, 0.05),
+      rgba(138, 43, 226, 0.05)
+    );
+  background-size:
+    100% 100%,
+    150% 150%,
+    150% 150%,
+    200% 200%;
+  background-blend-mode: overlay, multiply, overlay;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.6),
+    inset 0 1px 2px rgba(255, 255, 255, 0.1),
+    0 0 12px rgba(0, 212, 255, 0.12);
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 7%,
+    black 93%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 7%,
+    black 93%,
+    transparent 100%
+  );
+}
+
+.project-links-belt:hover .project-links-track {
+  animation-play-state: paused;
+}
+
+
+.project-links-track {
+  display: flex;
+  width: max-content;
+  gap: 0;
+  align-items: stretch;
+  animation: project-links-scroll 32s linear infinite;
+  will-change: transform;
+  background: transparent;
+}
+
+/* Hairline divider between each button */
+.belt-sep {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2.5rem;
+  user-select: none;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.belt-sep svg {
+  width: 22px;
+  height: 22px;
+  opacity: 0.3;
+}
+
+@keyframes project-links-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Buttons inside belt: project-card-cta style — bare text, no bg */
+.project-links-belt .project-btn {
+  mask-image: none;
+  -webkit-mask-image: none;
+  border-radius: 0;
+  padding: 14px 28px;
   font-family: "IBM Plex Sans", sans-serif;
-  font-size: clamp(0.75rem, 1.4vw, 0.95rem);
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
   color: rgba(255, 255, 255, 0.5);
-  max-width: 600px;
-  margin: 0 auto 2rem;
-  line-height: 1.6;
+  background: none;
+  box-shadow: none;
+}
+
+.project-links-belt .project-btn::before {
+  display: none;
+}
+
+.project-links-belt .project-btn:hover {
+  color: var(--card-accent, #00fff7);
+  letter-spacing: 0.32em;
+  background: none;
 }
 
 /* Project Links / Buttons */
@@ -519,23 +662,22 @@ body:has(.project-page) #waves {
 }
 
 .about-description h4 {
-  font-family: "IBM Plex Sans", sans-serif;
-  font-size: 0.875rem;
-  background: linear-gradient(90deg, #ff006e, #8338ec, #07429f);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: heroGradientMoveAlt 8s linear infinite;
-  margin: 1.5rem 0 0.75rem;
-  letter-spacing: 0.1em;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--accent-cyan);
+  -webkit-text-fill-color: var(--accent-cyan);
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  animation: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+  margin: 2.25rem 0 0.6rem;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    black 30%,
-    rgba(0, 0, 0, 0.3) 100%
-  );
-  mask-image: linear-gradient(to bottom, black 30%, rgba(0, 0, 0, 0.3) 100%);
+  padding-left: 0.85rem;
+  border-left: 1.5px solid rgba(0, 212, 255, 0.45);
 }
 
 /* Technical Deep Dive Table */
@@ -1373,7 +1515,7 @@ body:has(.project-page) #waves {
 
   .project-title {
     text-align: center;
-    font-size: clamp(2rem, 10vw, 2.8rem);
+    font-size: clamp(1.8rem, 10vw, 2.8rem);
   }
 
   .project-tagline {
@@ -1467,7 +1609,7 @@ body:has(.project-page) #waves {
   }
 
   .project-title {
-    font-size: clamp(2rem, 10vw, 2.8rem);
+    font-size: clamp(1.8rem, 10vw, 2.8rem);
   }
 
   .colors {
