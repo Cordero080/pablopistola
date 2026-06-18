@@ -665,6 +665,78 @@
           </div>
         </section>
 
+        <!-- AI Engineering Practice Section -->
+        <section class="about-section">
+          <h2>AI Engineering Practice</h2>
+          <p>
+            I work with AI coding assistants the way a careful engineer should:
+            I don't just run the AI and trust the output. I built infrastructure
+            around it.
+          </p>
+          <p>
+            The reason is straightforward: AI assistants are fast and capable,
+            but they make mistakes that are easy to miss if you're moving
+            quickly. A hardcoded API key in a commit. A function that got
+            corrupted during a large edit session. A pattern that's inconsistent
+            with the rest of the codebase. These aren't hypothetical — they're
+            things that happened and that my tooling caught.
+          </p>
+          <p>
+            The setup takes maybe ten minutes to explain but it changes the risk
+            profile of working with AI significantly. The AI writes code. The
+            infrastructure reviews it. I make the calls.
+          </p>
+
+          <div class="system-manifesto">
+            <div class="manifesto-header">
+              <span class="manifesto-title">[ AUTOMATED INFRASTRUCTURE ]</span>
+            </div>
+
+            <div class="system-output">
+              <div class="output-header">
+                // PostToolUse Hooks — fire on every file edit, every project
+              </div>
+
+              <div class="output-item">
+                <span class="output-label">Security Audit:</span>
+                <span class="output-value"
+                  >A scanner runs automatically in the background on every edit.
+                  Checks for exposed API keys, unsafe database queries, and
+                  hardcoded secrets. CRITICAL findings block the next step and
+                  require a fix before continuing — permanently, across all
+                  projects.</span
+                >
+              </div>
+
+              <div class="output-item">
+                <span class="output-label"
+                  >Code Review (<code>/audit</code>):</span
+                >
+                <span class="output-value"
+                  >A slash command that points at any file and returns a
+                  structured analysis: is this doing too much? Is this logic
+                  duplicated? Is there dead code nobody calls? Read-only — it
+                  reports, never modifies. This is what caught a template
+                  literal corruption that silently consumed 400 lines of code as
+                  a string — the kind of error grep and linters miss
+                  entirely.</span
+                >
+              </div>
+
+              <div class="output-item">
+                <span class="output-label">Architecture Diagram:</span>
+                <span class="output-value"
+                  >When any of 13 tracked architecture files change, a script
+                  parses their real import statements, builds a live call graph,
+                  and rewrites the architecture doc automatically. The diagram
+                  is derived from actual source — not hardcoded. Documentation
+                  that stays current without me thinking about it.</span
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- Technical Philosophy Section -->
         <section class="about-section">
           <h2>Technical Philosophy</h2>

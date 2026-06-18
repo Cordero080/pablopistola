@@ -50,8 +50,8 @@ const FACE_EDGE_COLORS = [
 //  CENTER → extra opacity added toward the center of each face (brighter center)
 //  WAVE   → extra opacity added when the wave is at its peak
 
-const PANEL_OPACITY_BASE = 0.42;
-const PANEL_OPACITY_CENTER = 0.14;
+const PANEL_OPACITY_BASE = 0.44;
+const PANEL_OPACITY_CENTER = 0.15;
 const PANEL_OPACITY_WAVE = 0.03;
 
 // Edge line opacity — same three knobs, for the outline lines
@@ -183,7 +183,7 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(100, 1, 0.5, 100);
 camera.position.z = 4;
 
-scene.add(new THREE.AmbientLight(0xffffff, 0.3));
+scene.add(new THREE.AmbientLight(0xffffff, 0.55));
 const dLight = new THREE.DirectionalLight(0xffffff, 2);
 dLight.position.set(5, 6, 5);
 scene.add(dLight);
@@ -405,15 +405,14 @@ const clock = new THREE.Clock();
     const wave2 = Math.sin(ct * 0.3895 + phase * 1.3) * 0.5;
     const wave3 = Math.sin(ct * 0.4275 + phase) * 0.2;
     const disp = (wave1 + wave2 + wave3) * waveAmp;
-    mesh.position.copy(basePos).addScaledVector(dir, disp);
+    const breathe = 1 + wave1 * SCALE_BREATHE;
 
     mesh.rotateZ(delta * p.spinRate);
 
-    const breathe = 1 + wave1 * SCALE_BREATHE;
+    mesh.position.copy(basePos).addScaledVector(dir, disp);
     mesh.scale.setScalar(breathe * flatT);
     orbMesh.position.copy(mesh.position);
     orbMesh.scale.setScalar(breathe * orbT);
-
     edgeMesh.position.copy(mesh.position);
     edgeMesh.quaternion.copy(mesh.quaternion);
     edgeMesh.scale.setScalar(breathe * flatT);
@@ -429,7 +428,7 @@ const clock = new THREE.Clock();
     const er = glow * (GLOW_EMIT_R + 0.15 * cosH);
     const eg = glow * (GLOW_EMIT_G + 0.15 * sinH);
     const eb = glow * GLOW_EMIT_B;
-    const emitInt = 0.5 + distFromCenter * 0.4;
+    const emitInt = 0.2 + distFromCenter * 0.15;
 
     mat.color.setRGB(cr, cg, cb);
     mat.emissive.setRGB(er, eg, eb);
