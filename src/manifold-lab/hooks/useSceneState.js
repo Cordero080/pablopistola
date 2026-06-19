@@ -42,7 +42,7 @@ export function useSceneState() {
   const [environmentHue, setEnvironmentHue] = useState(0); // Hue rotation for environment (0-360)
   const [objectCount, setObjectCount] = useState(1);
   const [animationStyle, setAnimationStyle] = useState("rotate");
-  const [objectType, setObjectType] = useState("compound600cell");
+  const [objectType, setObjectType] = useState("600cell");
 
   // ============================================
   // LIGHTING STATE

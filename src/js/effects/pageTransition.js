@@ -13,6 +13,8 @@ function smoothstep(x) {
   return x * x * (3 - 2 * x);
 }
 
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
 function build() {
   canvasEl = document.createElement("canvas");
   canvasEl.style.cssText =
@@ -24,14 +26,17 @@ function build() {
     antialias: false,
     alpha: true,
   });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
   renderer.setClearColor(0x000000, 0);
 
   scene = new THREE.Scene();
-  scene.add(new THREE.AmbientLight(0xffffff, 0.5));
-  const dl = new THREE.DirectionalLight(0xffffff, 3);
-  dl.position.set(3, 4, 5);
-  scene.add(dl);
+
+  if (!isMobile) {
+    scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+    const dl = new THREE.DirectionalLight(0xffffff, 3);
+    dl.position.set(3, 4, 5);
+    scene.add(dl);
+  }
 
   camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 10);
   camera.position.z = 5;
@@ -66,15 +71,20 @@ function rebuildPanels() {
   for (let row = 0; row < ROWS; row++) {
     for (let col = 0; col < COLS; col++) {
       const geo = new THREE.PlaneGeometry(tileW * 0.99, tileH * 0.99);
-      const mat = new THREE.MeshPhysicalMaterial({
-        color: new THREE.Color("#060409"),
-        metalness: 0.95,
-        roughness: 0.06,
-        iridescence: 0.55,
-        iridescenceIOR: 1.8,
-        iridescenceThicknessRange: [100, 400],
-        depthWrite: false,
-      });
+      const mat = isMobile
+        ? new THREE.MeshBasicMaterial({
+            color: new THREE.Color("#060409"),
+            depthWrite: false,
+          })
+        : new THREE.MeshPhysicalMaterial({
+            color: new THREE.Color("#060409"),
+            metalness: 0.95,
+            roughness: 0.06,
+            iridescence: 0.55,
+            iridescenceIOR: 1.8,
+            iridescenceThicknessRange: [100, 400],
+            depthWrite: false,
+          });
       const mesh = new THREE.Mesh(geo, mat);
       mesh.position.set(
         -aspect + tileW * (col + 0.5),
