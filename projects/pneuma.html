@@ -300,13 +300,14 @@
               <strong>43 thinkers</strong> — Schopenhauer, Watts, Camus, Jung,
               Rumi, Feynman, Kafka, Aurelius — but not as personas to switch
               between. They're thinking methods grounded in verbatim passages
-              from actual source texts. A dual-pipeline RAG system (1,385
-              passages) retrieves them at runtime: one pipeline scores the
-              message across intent dimensions, another runs semantic search
-              over conversation history. Every message selects an archetype
-              pair, scores a tone, and tells both to take a conceptual position
-              and argue- causing a friction that is engineered before Claude
-              generates a word.
+              from actual source texts. Agentic RAG (1,385 passages) retrieves
+              them at runtime: semantic routing decides which of 43 knowledge
+              bases to query based on the input — parallel concept×thinker
+              queries across ~60 philosophical dimensions, with fallback
+              handling for out-of-scope inputs. Every message selects an
+              archetype pair, scores a tone, and tells both to take a conceptual
+              position and argue — friction engineered before Claude generates a
+              word.
             </p>
 
             <h3
