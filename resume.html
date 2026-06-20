@@ -317,17 +317,23 @@
           <h2>Featured Projects</h2>
 
           <div class="project-highlight">
-            <h3>Pneuma-AI — Compound AI System</h3>
+            <h3>Pneuma-AI — Multi-LLM Compound AI System</h3>
             <p class="project-stack">
               Node.js • React • Claude API • OpenAI Embeddings • Hume AI
             </p>
             <p>
-              Compound AI system with agentic control logic — the LLM decides
-              which philosophical archetype handles a query rather than
-              following a hardcoded path, combining reasoning, RAG retrieval,
-              and persistent vector memory
+              Multi-LLM compound AI system — LLMs call other LLMs as tools. Four
+              model calls per response within a single agentic pipeline,
+              organized around a cognitive architecture rather than a prompt
+              template
             </p>
             <ul class="project-bullets">
+              <li>
+                Multi-LLM architecture: intent scoring (Claude), archetype
+                routing (OpenAI embeddings), emotion detection (Hume AI), and
+                generation (Claude) — four separate model calls, LLMs acting as
+                tools within the orchestration layer
+              </li>
               <li>
                 Semantic archetype routing (cosine similarity over 43
                 embeddings) + momentum weighting + fusion history — agentic path
@@ -337,10 +343,6 @@
                 1,385-passage RAG across 43 thinker knowledge bases; parallel
                 concept×thinker queries across ~60 philosophical dimensions at
                 runtime
-              </li>
-              <li>
-                Tiered system prompt reducing token load from 18k to ~2k base
-                via conditional block loading by intent score
               </li>
               <li>
                 Dialectical synthesis engine — 1,764 pre-mapped archetype
