@@ -119,7 +119,8 @@
   object-fit: cover;
   display: block;
   filter: brightness(0.82);
-  transform: scale(1.08);
+  /* scale(1.14) gives ~7% travel budget on each side for the parallax drift */
+  transform: scale(1.14) translateY(var(--py, 0px));
   transition:
     filter 0.5s ease,
     transform 0.5s ease;
@@ -128,11 +129,11 @@
 
 /* On hover: image shifts toward the text, emerging from the gradient fade */
 .project-row--left .project-card-link:hover .project-card-media img {
-  transform: scale(1.12) translateX(12px);
+  transform: scale(1.18) translateX(12px) translateY(var(--py, 0px));
   filter: brightness(1.05);
 }
 .project-row--right .project-card-link:hover .project-card-media img {
-  transform: scale(1.12) translateX(-12px);
+  transform: scale(1.18) translateX(-12px) translateY(var(--py, 0px));
   filter: brightness(1.05);
 }
 

@@ -114,7 +114,7 @@
       src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"
       defer
     ></script>
-    <script src="src/js/effects/sineWave.js" defer></script>
+    <script type="module" src="src/js/pages/home/homeOrchestrator.js"></script>
     <script type="module" src="src/js/effects/heroBrackets.js"></script>
     <script src="src/js/effects/easterEggSineWave.js" defer></script>
     <script src="src/js/effects/feathers.js" defer></script>
@@ -966,10 +966,5 @@
     <script src="src/js/utils/mcpBridge.js" defer></script>
     <script src="src/js/pages/home/orbNavScan.js" defer></script>
     <script src="src/js/pages/home/scrollReveal.js" defer></script>
-
-    <script type="module">
-      import { init } from "/src/js/effects/pageTransition.js";
-      init();
-    </script>
   </body>
 </html>
