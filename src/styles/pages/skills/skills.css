@@ -3,7 +3,6 @@
    ========================================== */
 
 .skills-page {
-  margin-left: 60px;
   min-height: 100vh;
   padding: 3rem 0 2rem;
 }
@@ -42,8 +41,7 @@
   background: rgba(6, 8, 18, 0.45);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  /* Push glass flush against the side nav (body has 60px padding + skills-page has 60px margin) */
-  margin-left: -60px;
+  margin-left: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -224,7 +222,6 @@
 }
 
 /* ── RESPONSIVE ── */
-/* At ≤768px body loses padding-left: 60px, so skills-page margin-left alone positions content — no double offset */
 @media (max-width: 768px) {
   .ticker-rows {
     margin-left: 0;

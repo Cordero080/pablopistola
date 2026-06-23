@@ -135,10 +135,10 @@ nav,
   z-index: 2;
 }
 
-/* Adjust body for side nav */
+/* Adjust body for top nav */
 body {
-  padding-left: 60px;
-  padding-top: 0;
+  padding-left: 0;
+  padding-top: 64px;
 }
 
 /* ========== RESPONSIVE - TABLET ========== */

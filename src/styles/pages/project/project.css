@@ -22,7 +22,6 @@ body:has(.project-page) #waves {
 }
 
 .project-page {
-  margin-left: 60px;
   min-height: 100vh;
   padding: 2rem 4rem;
   background: transparent;
@@ -175,7 +174,6 @@ body:has(.project-page) #waves {
 .project-links-belt:hover .project-links-track {
   animation-play-state: paused;
 }
-
 
 .project-links-track {
   display: flex;

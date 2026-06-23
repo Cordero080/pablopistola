@@ -117,13 +117,13 @@
   }
 }
 
-/* --- Side Navigation - Left Fixed --- */
+/* --- Top Navigation --- */
 .side-nav {
   position: fixed;
   top: 0;
   left: 0;
-  width: 60px;
-  height: 100vh;
+  width: 100%;
+  height: 60px;
   /* Match hero-cta dark holographic style */
   background:
     linear-gradient(145deg, #221d27, #000000),
@@ -151,39 +151,30 @@
     50% 50%;
   background-blend-mode: overlay, multiply, overlay;
   backdrop-filter: blur(10px);
-  box-shadow:
-    4px 0 8px rgba(0, 0, 0, 0.8),
-    inset -1px 0 3px rgba(255, 255, 255, 0.2),
-    inset 1px 0 3px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
-  padding: 1rem 0;
+  padding: 0 1.5rem;
   z-index: 10000;
+  clip-path: inset(0 round 0 0 44% 44% / 0 0 58% 58%);
   transition:
-    width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    border-radius 0.4s ease;
-  border-radius: 0 0 100% 0 / 0 0 60% 0;
-  overflow: hidden;
+    height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    clip-path 0.4s ease;
 }
 
 .side-nav:hover {
-  width: 130px;
-  border-radius: 0 0 100% 0 / 0 0 60% 0;
+  height: 90px;
+  clip-path: inset(0 round 0 0 44% 44% / 0 0 68% 68%);
 }
 
 .side-nav-logo {
-  margin-bottom: 0.5rem;
-  padding-left: 18px;
-  width: 100%;
+  margin-right: 0;
+  padding-left: 0;
+  padding-top: 8px;
+  flex-shrink: 0;
   display: flex;
-  justify-content: flex-start;
-  transition: padding-left 0.3s ease;
-}
-
-.side-nav:hover .side-nav-logo {
-  justify-content: flex-start;
-  padding-left: 18px;
+  align-items: center;
 }
 
 .side-nav .logo-text {
@@ -210,24 +201,23 @@
 
 .side-nav-links {
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  flex-direction: row;
+  justify-content: center;
   align-items: flex-start;
-  width: 100%;
-  padding-left: 8px;
-  padding-bottom: 240px;
+  gap: 3rem;
   flex: 1;
+  padding: 8px 0 0;
 }
 
 .side-nav-link {
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  gap: 12px;
-  width: calc(100% - 16px);
-  height: 38px;
-  padding: 0 10px;
+  justify-content: center;
+  gap: 3px;
+  height: auto;
+  padding: 5px 12px;
   text-decoration: none;
   transition: all 0.3s ease;
   border-radius: 12px;
@@ -237,7 +227,7 @@
   background: rgba(0, 255, 247, 0.1);
 }
 
-/* Nav label - hidden by default, shown on nav hover */
+/* Nav label - hidden by default, slides down on nav hover */
 .nav-label {
   font-family: "Orbitron", sans-serif;
   font-size: 0.55rem;
@@ -247,7 +237,7 @@
   text-transform: uppercase;
   white-space: nowrap;
   opacity: 0;
-  transform: translateX(-10px);
+  transform: translateY(-4px);
   transition:
     opacity 0.3s ease 0.1s,
     transform 0.3s ease 0.1s;
@@ -255,7 +245,7 @@
 
 .side-nav:hover .nav-label {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateY(0);
 }
 
 .side-nav-link:hover .nav-label {
@@ -279,49 +269,55 @@
 
 /* Removed external tooltip - text now appears inside nav on hover */
 
-/* Active state glow line */
+/* Active state glow line — bottom horizontal */
 .side-nav-link::before {
   content: "";
   position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 3px;
-  height: 0;
-  background: linear-gradient(180deg, #00ffff, #ff00ff);
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #00ffff, #ff00ff);
   border-radius: 2px;
-  transition: height 0.3s ease;
+  transition: width 0.3s ease;
 }
 
 .side-nav-link:hover::before,
 .side-nav-link.orb-highlight::before {
-  height: 70%;
+  width: 70%;
 }
 
-/* Nav scan highlight — graceful fade in/out via transition on .nav-icon */
+/* Nav scan highlight — icon-only gentle pulse, no div background */
 .side-nav-link.orb-highlight {
-  background: rgba(0, 255, 247, 0.18);
-  box-shadow: 0 0 16px rgba(0, 255, 247, 0.25);
-  transition:
-    background 0.4s ease,
-    box-shadow 0.4s ease;
+  background: none;
+  box-shadow: none;
 }
 .side-nav-link.orb-highlight .nav-icon {
   color: #00fff7;
-  filter: drop-shadow(0 0 12px rgba(0, 255, 247, 0.9));
-  transform: scale(1.2);
+  animation: iconPulse 2.5s ease-in-out infinite;
   transition:
     color 0.4s ease,
-    filter 0.4s ease,
     transform 0.4s ease;
 }
 
-/* Exit link styling */
+@keyframes iconPulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 4px rgba(0, 255, 247, 0.4));
+    opacity: 0.75;
+  }
+  50% {
+    filter: drop-shadow(0 0 10px rgba(0, 179, 255, 0.85));
+    opacity: 1;
+  }
+}
+
+/* Exit link — rightmost flex item, mirrors the PC logo on the left */
 .side-nav-link.exit-link {
-  margin-left: -2px;
-  margin-right: 20px;
+  flex-shrink: 0;
   opacity: 0.8;
-  max-width: 50px;
+  padding: 8px 8px 5px;
 }
 
 .side-nav-link.exit-link .nav-icon {
@@ -342,10 +338,11 @@
 /* Zen tooltip */
 .zen-tooltip {
   position: absolute;
-  left: 100%;
+  right: 100%;
+  left: auto;
   top: 50%;
   transform: translateY(-50%);
-  margin-left: 12px;
+  margin-right: 12px;
   padding: 0.4rem 0.8rem;
   background: rgba(0, 0, 0, 0.85);
   border: 1px solid rgba(0, 255, 247, 0.3);
@@ -366,70 +363,36 @@
   visibility: visible;
 }
 
-/* Curved glow that follows the nav border-radius */
 .side-nav-glow {
-  position: absolute;
+  position: fixed;
   top: 0;
-  right: -1px;
-  width: 2px;
-  height: 100%;
+  left: 0;
+  width: 100%;
+  height: 62px;
   pointer-events: none;
-  overflow: visible;
-  transition: opacity 0.3s ease;
-}
-
-/* Hide glow when nav expands */
-.side-nav:hover .side-nav-glow {
-  opacity: 0;
-}
-
-.side-nav-glow::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 2px;
-  /* Stop before the curve - nav curves at ~60% from bottom */
-  height: 40%;
+  z-index: 9999;
   background: linear-gradient(
-    180deg,
-    transparent,
-    rgba(0, 255, 255, 0.5) 50%,
-    rgba(255, 0, 255, 0.5)
+    90deg,
+    transparent 0%,
+    rgba(0, 255, 247, 0.95) 12%,
+    rgba(255, 0, 255, 0.95) 100%
   );
+  clip-path: inset(0 round 0 0 44% 44% / 0 0 56% 56%);
   animation: sideGlow 4s ease-in-out infinite;
+  transition:
+    height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    clip-path 0.4s ease;
 }
 
-/* Curved part using SVG-like approach with box-shadow on a curved element */
-.side-nav-glow::after {
-  content: "";
-  position: absolute;
-  top: 40%;
-  right: 0;
-  width: 60px;
-  height: 60%;
-  border-right: 2px solid transparent;
-  border-bottom: none;
-  border-radius: 0 0 100% 0 / 0 0 100% 0;
-  background: linear-gradient(
-      180deg,
-      rgba(255, 0, 255, 0.5),
-      rgba(0, 255, 255, 0.5) 50%,
-      transparent
-    )
-    border-box;
-  -webkit-mask:
-    linear-gradient(#fff 0 0) padding-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  animation: sideGlow 4s ease-in-out infinite;
+.side-nav:hover ~ .side-nav-glow {
+  height: 92px;
+  clip-path: inset(0 round 0 0 44% 44% / 0 0 67% 67%);
 }
 
 @keyframes sideGlow {
   0%,
   100% {
-    opacity: 0.3;
+    opacity: 0.75;
   }
   50% {
     opacity: 1;
@@ -450,6 +413,7 @@
     align-items: flex-start;
     padding: 1.5rem 0;
     border-radius: 0 0 100% 0 / 0 0 60% 0;
+    clip-path: none;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -545,8 +509,12 @@
     display: none;
   }
 
-  .side-nav-glow {
+  .side-nav-link.exit-link {
     display: none;
+  }
+
+  .side-nav-glow {
+    display: none !important;
   }
 
   /* Hamburger Button */
