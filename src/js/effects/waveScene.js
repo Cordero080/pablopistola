@@ -82,12 +82,12 @@ function gradientColor(t) {
 // baseOpacity: starting opacity; scroll will scale this up as visitor goes deeper
 const WAVE_CONFIGS = [
   {
-    halfWidth: 12.75,
-    amplitude: 150,
+    halfWidth: 20,
+    amplitude: 90,
     wavelength: 300,
-    timeModifier: 1,
+    timeModifier: .2,
     isRibbon: true,
-    baseOpacity: 1.0,
+    baseOpacity: .35,
     attraction: 1,
     attractionStrength: 0.12,
     attractionDelay: 0.004,
@@ -133,7 +133,7 @@ const WAVE_CONFIGS = [
     isRibbon: false,
     baseOpacity: 0.25,
     attraction: 1,
-    attractionStrength: 0.5,
+    attractionStrength: 0.8,
     attractionDelay: 0.06,
     attractionRadius: 300,
   },
@@ -147,7 +147,7 @@ const HALFPI = Math.PI / 2;
 
 // Suck-pulse: every SUCK_INTERVAL seconds all waves collapse inward, then reverse.
 const SUCK_INTERVAL = 18;
-const SUCK_SHARP = 12;
+const SUCK_SHARP = 2;
 
 // ─── WaveScene class ─────────────────────────────────────────────────────────
 //
@@ -401,7 +401,7 @@ export default class WaveScene {
 
     this._bloomPass = new UnrealBloomPass(
       new THREE.Vector2(this._width, this._height),
-      0.5, // strength:  how intense the glow is (we animate this from scroll)
+      0.4, // strength:  how intense the glow is (we animate this from scroll)
       0.8, // radius:    how far the glow spreads outward
       0.05, // luminanceThreshold: pixels above this brightness get a halo
       //                        0.05 = almost everything glows; 0.9 = only near-white

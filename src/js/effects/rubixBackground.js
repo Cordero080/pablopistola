@@ -74,7 +74,7 @@ const ROT_Z = 0.0100; // clockwise roll (roll)
 // 🌊  WAVE — panels ripple in and out from the face surface
 //  WAVE_AMPLITUDE: how far panels travel. 0 = flat/no ripple, 1.5 = very dramatic
 
-const WAVE_AMPLITUDE = 0.38;
+const WAVE_AMPLITUDE = 0.28;
 
 // 🌀  PANEL SELF-SPIN — each flat tile slowly rotates on its own axis
 //  Higher = faster spinning tiles. 0 = no spin. Panels alternate direction.
@@ -100,7 +100,7 @@ const FACE_HUE_OFFSETS = [0, 3.5, 1.0, 1.5, 2.2, 2.8];
 // ║  MORPH_CYCLE is calculated automatically — don't edit it directly.       ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
-const CUBE_HOLD = 1; // seconds showing flat panels
+const CUBE_HOLD = 0.9; // seconds showing flat panels
 const MORPH_DUR = 4; // seconds for the morph transition
 const SPHERE_HOLD = 3; // seconds showing sphere orbs
 
@@ -114,7 +114,7 @@ const MORPH_CYCLE = CUBE_HOLD + MORPH_DUR + SPHERE_HOLD + MORPH_DUR; // auto
 // ║                  0 = no shift, 0.5 = noticeable cycling.                 ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
-const ORB_HUE_SPEED = 0.12; // radians/second — only active during sphere phase
+const ORB_HUE_SPEED = 0.5; // radians/second — only active during sphere phase
 
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║  🕸️  CONNECTION LINES                                                    ║
