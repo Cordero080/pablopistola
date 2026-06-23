@@ -226,6 +226,10 @@
   background: none;
 }
 
+.side-nav-link--current {
+  display: none;
+}
+
 /* Nav label - hidden by default, slides down on nav hover */
 .nav-label {
   font-family: "Orbitron", sans-serif;
@@ -616,7 +620,7 @@
   0%,
   55%,
   100% {
-    background: linear-gradient(135deg, #00fff7, #cc00ff, #ff00ff);
+    background: linear-gradient(135deg, #00fff7, #c503f6, #ff00ff);
     filter: brightness(1);
     transform: scale(1);
   }

@@ -29,7 +29,7 @@
   gsap.set(".marquee-belt", { opacity: 0 });
 
   gsap.to(".marquee-belt", {
-    opacity: 1,
+    opacity: .7,
     duration: 1.4,
     ease: "power2.out",
     scrollTrigger: {

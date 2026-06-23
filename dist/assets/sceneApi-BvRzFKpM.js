@@ -1,1 +1,0 @@
-const o="",n=async(r,a)=>{try{const t=`${o}/api/scenes/${r}`,e=await fetch(t,{method:"DELETE",headers:{Authorization:`Bearer ${a}`}});if(!e.ok)throw new Error(`HTTP error! Status: ${e.status}`);return await e.json()}catch{throw new Error("Failed to delete scene. Please try again.")}};export{n as deleteScene};

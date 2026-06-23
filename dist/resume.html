@@ -56,8 +56,8 @@
     />
     <script src="src/js/effects/sineWave.js" defer></script>
     <script src="src/js/utils/analytics.js" defer></script>
-    <link rel="stylesheet" crossorigin href="/assets/main-BZcoJVkm.css">
-    <link rel="stylesheet" crossorigin href="/assets/project-CYZLrZMl.css">
+    <link rel="stylesheet" crossorigin href="/assets/main-Vm8dtqNs.css">
+    <link rel="stylesheet" crossorigin href="/assets/project-Iu9o7pDT.css">
     <link rel="stylesheet" crossorigin href="/assets/about-DoUB7iMx.css">
   </head>
   <body>
@@ -181,27 +181,23 @@
           </svg>
           <span class="nav-label">Resume</span>
         </a>
-        <a
-          class="side-nav-link exit-link"
-          href="/"
-          aria-label="Exit to Landing"
-        >
-          <svg
-            class="nav-icon"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-            <polyline points="16 17 21 12 16 7" />
-            <line x1="21" y1="12" x2="9" y2="12" />
-          </svg>
-          <span class="nav-label">Exit</span>
-        </a>
       </div>
+      <a class="side-nav-link exit-link" href="/" aria-label="Exit to Landing">
+        <svg
+          class="nav-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+          <polyline points="16 17 21 12 16 7" />
+          <line x1="21" y1="12" x2="9" y2="12" />
+        </svg>
+        <span class="nav-label">Exit</span>
+      </a>
       <div class="side-nav-glow"></div>
     </nav>
 
@@ -231,7 +227,7 @@
           </p>
           <div class="project-links" style="margin-top: 1.5rem">
             <a
-              href="https://drive.google.com/file/d/1Q1M2KrZGgtPYPmj7cFsK8SFAoGeYAG5e/view?usp=sharing"
+              href="https://drive.google.com/file/d/1cgm0oYXitd7kRN9Bpp05rwXUUWGCuXot/view?usp=sharing"
               target="_blank"
               class="hero-cta"
               >[ VIEW PDF ]</a
@@ -247,12 +243,13 @@
           <h2>Profile</h2>
           <p>
             Full-Stack Software Engineer with production experience building
-            AI-integrated web applications for clients. Combines strong
-            front-end craft (React, Three.js, SCSS design systems) with backend
-            architecture (Django, Node.js, PostgreSQL) and hands-on AI systems
-            work including RAG pipelines, semantic routing, and LLM
-            orchestration. Seeking a full-stack or AI engineering role where I
-            can ship at a high pace in a collaborative environment.
+            compound AI systems and AI-integrated web applications for clients.
+            Combines strong front-end craft (React, Three.js, SCSS design
+            systems) with backend architecture (Django, Node.js, PostgreSQL) and
+            hands-on AI systems work including RAG pipelines, agentic control
+            logic, semantic routing, and LLM orchestration. Seeking a full-stack
+            or AI engineering role where I can ship at a high pace in a
+            collaborative environment.
           </p>
         </section>
 
@@ -265,9 +262,9 @@
               Python, React, Django, Node.js, Express.js
             </li>
             <li>
-              <strong>AI & Data:</strong> Anthropic Claude API, OpenAI API, RAG
-              Pipelines, Vector Embeddings, Cosine Similarity, MongoDB,
-              PostgreSQL
+              <strong>AI & Data:</strong> Anthropic Claude API, OpenAI API,
+              Model Context Protocol (MCP), RAG Pipelines, Agentic Control
+              Logic, Vector Embeddings, Cosine Similarity, MongoDB, PostgreSQL
             </li>
             <li>
               <strong>3D & Creative:</strong> Three.js, React Three Fiber,
@@ -289,12 +286,14 @@
           <h2>Certifications</h2>
           <ul class="evolution-list">
             <li>
-              <strong>Model Context Protocol: Advanced Topics</strong>,
-              Anthropic Academy — 2026
+              <strong>Generative AI in Software Development</strong>, IBM /
+              Coursera — 2026
             </li>
             <li>
-              <strong>Introduction to Model Context Protocol</strong>, Anthropic
-              Academy — 2026
+              <strong>MCP Advanced Topics</strong>, Anthropic Academy — 2026
+            </li>
+            <li>
+              <strong>Introduction to MCP</strong>, Anthropic Academy — 2026
             </li>
             <li>
               <strong>AI Fluency: Framework & Foundations</strong>, Anthropic
@@ -316,28 +315,38 @@
           <h2>Featured Projects</h2>
 
           <div class="project-highlight">
-            <h3>Pneuma-AI — LLM Cognitive Orchestration System</h3>
-            <p class="project-stack">Node.js • React • Claude API</p>
+            <h3>Pneuma-AI — Multi-LLM Compound AI System</h3>
+            <p class="project-stack">
+              Node.js • React • Claude API • OpenAI Embeddings • Hume AI
+            </p>
             <p>
-              Cognitive reasoning layer that shapes LLM behavior before
-              generation — not a wrapper, a reasoning layer
+              Multi-LLM compound AI system — LLMs call other LLMs as tools. Four
+              model calls per response within a single agentic pipeline,
+              organized around a cognitive architecture rather than a prompt
+              template
             </p>
             <ul class="project-bullets">
               <li>
-                3-layer archetype routing (cosine similarity, momentum
-                weighting, fusion history) across 46 thinkers
+                Multi-LLM architecture: intent scoring (Claude), archetype
+                routing (OpenAI embeddings), emotion detection (Hume AI), and
+                generation (Claude) — four separate model calls, LLMs acting as
+                tools within the orchestration layer
               </li>
               <li>
-                525-passage RAG from 21 primary source texts, retrieved by
-                semantic similarity at runtime
+                Semantic archetype routing (cosine similarity over 43
+                embeddings) + momentum weighting + fusion history — agentic path
+                selection, not hardcoded dispatch
               </li>
               <li>
-                Tiered prompt architecture reducing token load from 18k to ~2k
-                via conditional block loading
+                Agentic RAG: 1,385 passages across 43 thinker knowledge bases;
+                semantic routing decides which source to query based on input —
+                parallel concept×thinker queries across ~60 philosophical
+                dimensions, with fallback handling for out-of-scope inputs
               </li>
               <li>
-                Dialectical synthesis engine with antithetical, complementary,
-                and cross-domain collision modes
+                Dialectical synthesis engine — 1,764 pre-mapped archetype
+                tension pairs; antithetical, complementary, and cross-domain
+                collision modes
               </li>
             </ul>
           </div>

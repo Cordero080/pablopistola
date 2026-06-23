@@ -60,8 +60,8 @@
     />
     <script src="src/js/effects/sineWave.js" defer></script>
     <script src="src/js/utils/analytics.js" defer></script>
-    <link rel="stylesheet" crossorigin href="/assets/main-BZcoJVkm.css">
-    <link rel="stylesheet" crossorigin href="/assets/project-CYZLrZMl.css">
+    <link rel="stylesheet" crossorigin href="/assets/main-Vm8dtqNs.css">
+    <link rel="stylesheet" crossorigin href="/assets/project-Iu9o7pDT.css">
     <link rel="stylesheet" crossorigin href="/assets/about-DoUB7iMx.css">
   </head>
   <body>
@@ -190,26 +190,26 @@
           </svg>
           <span class="nav-label">Resume</span>
         </a>
-        <a
-          class="side-nav-link exit-link"
-          href="/?stay"
-          aria-label="Zen Mode - Waves"
-        >
-          <svg
-            class="nav-icon"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M2 12c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
-            <path d="M2 6c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
-            <path d="M2 18c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
-          </svg>
-        </a>
       </div>
+      <a
+        class="side-nav-link exit-link"
+        href="/?stay"
+        aria-label="Zen Mode - Waves"
+      >
+        <svg
+          class="nav-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M2 12c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+          <path d="M2 6c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+          <path d="M2 18c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+        </svg>
+      </a>
       <div class="side-nav-glow"></div>
     </nav>
 
@@ -323,20 +323,16 @@
           <div class="project-highlight">
             <h3>Pneuma</h3>
             <p>
-              An experimental AI personality architecture for LLMs — a
-              multi-layer cognitive system that shapes how the model thinks
-              before it speaks. 46 philosophical archetypes selected via 3-layer
-              routing (cosine similarity → momentum weighting → fusion history)
-              and forced into dialectical collision across 1,764 pre-mapped
-              tension pairs. Personality evolves across sessions through
-              archetype momentum decay — weights shift over time, producing an
-              emergent default voice that isn't hard-coded. 3-layer memory
-              system: vector embeddings for semantic recall, structured
-              cross-session memory, and full conversation persistence. Between
-              sessions, archetypes run private dialectic dialogues that write
-              silently to system state. On self-inquiry, Pneuma loads a live
-              snapshot of its own architecture and can navigate its source files
-              mid-conversation.
+              A multi-LLM compound AI system — LLMs calling other LLMs as tools.
+              Four model calls per response: intent classification (Claude),
+              archetype routing (OpenAI embeddings), emotion detection (Hume
+              AI), and generation (Claude). 43 philosophical archetypes selected
+              via semantic routing and forced into dialectical collision across
+              1,764 pre-mapped tension pairs. Personality evolves across
+              sessions through archetype momentum decay — weights shift over
+              time, producing an emergent voice that isn't hard-coded. 3-layer
+              memory system: vector embeddings for semantic recall, structured
+              cross-session memory, and full conversation persistence.
             </p>
             <span class="tech-achievement"
               >Collision Engine: 1,764 archetype tension pairs</span
@@ -661,6 +657,78 @@
             <div class="stat-item">
               <span class="stat-number">32</span>
               <span class="stat-label">Custom Animations</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- AI Engineering Practice Section -->
+        <section class="about-section">
+          <h2>AI Engineering Practice</h2>
+          <p>
+            I work with AI coding assistants the way a careful engineer should:
+            I don't just run the AI and trust the output. I built infrastructure
+            around it.
+          </p>
+          <p>
+            The reason is straightforward: AI assistants are fast and capable,
+            but they make mistakes that are easy to miss if you're moving
+            quickly. A hardcoded API key in a commit. A function that got
+            corrupted during a large edit session. A pattern that's inconsistent
+            with the rest of the codebase. These aren't hypothetical — they're
+            things that happened and that my tooling caught.
+          </p>
+          <p>
+            The setup takes maybe ten minutes to explain but it changes the risk
+            profile of working with AI significantly. The AI writes code. The
+            infrastructure reviews it. I make the calls.
+          </p>
+
+          <div class="system-manifesto">
+            <div class="manifesto-header">
+              <span class="manifesto-title">[ AUTOMATED INFRASTRUCTURE ]</span>
+            </div>
+
+            <div class="system-output">
+              <div class="output-header">
+                // PostToolUse Hooks — fire on every file edit, every project
+              </div>
+
+              <div class="output-item">
+                <span class="output-label">Security Audit:</span>
+                <span class="output-value"
+                  >A scanner runs automatically in the background on every edit.
+                  Checks for exposed API keys, unsafe database queries, and
+                  hardcoded secrets. CRITICAL findings block the next step and
+                  require a fix before continuing — permanently, across all
+                  projects.</span
+                >
+              </div>
+
+              <div class="output-item">
+                <span class="output-label"
+                  >Code Review (<code>/audit</code>):</span
+                >
+                <span class="output-value"
+                  >A slash command that points at any file and returns a
+                  structured analysis: is this doing too much? Is this logic
+                  duplicated? Is there dead code nobody calls? Read-only — it
+                  reports, never modifies. This is what caught a template
+                  literal corruption that silently consumed 400 lines of code as
+                  a string — the kind of error grep and linters miss
+                  entirely.</span
+                >
+              </div>
+
+              <div class="output-item">
+                <span class="output-label">Architecture Diagram:</span>
+                <span class="output-value"
+                  >When any of 13 tracked architecture files change, a script
+                  parses their real import statements, builds a live call graph,
+                  and rewrites the architecture doc automatically. The diagram
+                  is derived from actual source — not hardcoded. Documentation
+                  that stays current without me thinking about it.</span
+                >
+              </div>
             </div>
           </div>
         </section>

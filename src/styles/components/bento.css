@@ -422,6 +422,45 @@
   }
 }
 
+/* ── PROJECT ACCENT COLORS ── */
+.project-row--pneuma {
+  --card-accent: #00d4ff;
+}
+.project-row--la-dolce-vita {
+  --card-accent: #ff9ec8;
+}
+.project-row--numeneon {
+  --card-accent: #9050ff;
+}
+.project-row--xenochi {
+  --card-accent: #ff8c00;
+}
+.project-row--pneumata {
+  --card-accent: #aa55ff;
+}
+.project-row--manifold {
+  --card-accent: #00fff7;
+}
+.project-row--tic-trap-toe {
+  --card-accent: #5500ff;
+}
+.project-row--nucat {
+  --card-accent: #00ff88;
+}
+.project-row--dojo-crud {
+  --card-accent: #ff4500;
+}
+.project-row--bookshelf {
+  --card-accent: #ffd700;
+}
+.project-row--instvnce {
+  --card-accent: #a8f0ac;
+}
+
+.project-img--bright {
+  filter: brightness(1.05);
+}
+
 /* ── REDUCED MOTION ── */
 @media (prefers-reduced-motion: reduce) {
   .project-card-link,

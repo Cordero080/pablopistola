@@ -150,19 +150,6 @@ SineWaveGenerator.prototype.update = function (time) {
     const modifier = wave.timeModifier || 1;
     this.drawSine(time * modifier, wave, i);
   }
-
-  // Edge fade — erases left and right margins so waves dissolve into the void.
-  // Adjust the 0.12 / 0.88 stops to widen or narrow the fade zone.
-  const edgeFade = this.ctx.createLinearGradient(0, 0, this.width, 0);
-  edgeFade.addColorStop(0, "rgba(0,0,0,1)");
-  edgeFade.addColorStop(0.12, "rgba(0,0,0,0)");
-  edgeFade.addColorStop(0.88, "rgba(0,0,0,0)");
-  edgeFade.addColorStop(1, "rgba(0,0,0,1)");
-  this.ctx.save();
-  this.ctx.globalCompositeOperation = "destination-out";
-  this.ctx.fillStyle = edgeFade;
-  this.ctx.fillRect(0, 0, this.width, this.height);
-  this.ctx.restore();
 };
 
 // Math constants
@@ -344,21 +331,21 @@ window.waveGen = new SineWaveGenerator({
     // Wave 1: Heavy leader - very slow due to mass
     {
       timeModifier: 1,
-      lineWidth: 25.5,
-      amplitude: 150,
+      lineWidth: 7.5,
+      amplitude: 300,
       wavelength: 300,
       segmentLength: 20,
-      attraction: 1,
-      attractionStrength: 0.12,
-      attractionDelay: 0.004, // extremely slow - massive, barely reacts
+      attraction: 3,
+      attractionStrength: 0.1,
+      attractionDelay: 0.001, // extremely slow - massive, barely reacts
       attractionRadius: 280,
     },
     // Wave 2: Light ribbon - quick to respond
     {
       timeModifier: 1,
-      lineWidth: 2,
+      lineWidth: 3,
       amplitude: 100,
-      wavelength: 100,
+      wavelength: 600,
       attraction: 1,
       attractionStrength: 0.8,
       attractionDelay: 0.12, // faster - light
@@ -367,8 +354,8 @@ window.waveGen = new SineWaveGenerator({
     // Wave 3: Snappy thin line
     {
       timeModifier: 1,
-      lineWidth: 0.5,
-      amplitude: 150,
+      lineWidth: 1.5,
+      amplitude: 300,
       wavelength: 150,
       segmentLength: 10,
       attraction: 1,
@@ -379,7 +366,7 @@ window.waveGen = new SineWaveGenerator({
     // Wave 4: Medium ribbon
     {
       timeModifier: 1,
-      lineWidth: 1.3,
+      lineWidth: 1,
       amplitude: 100,
       wavelength: 100,
       segmentLength: 10,
@@ -392,9 +379,9 @@ window.waveGen = new SineWaveGenerator({
     {
       timeModifier: 1,
       lineWidth: 0.3,
-      amplitude: 50,
+      amplitude: 300,
       wavelength: 80,
-      segmentLength: 20,
+      segmentLength: 100,
       attraction: 1,
       attractionStrength: 0.5,
       attractionDelay: 0.06, // lighter than thick wave
@@ -405,8 +392,8 @@ window.waveGen = new SineWaveGenerator({
     const gradient = this.ctx.createLinearGradient(0, 0, this.width, 0);
     gradient.addColorStop(0, "pink");
     gradient.addColorStop(0.2, "magenta");
-    gradient.addColorStop(0.5, "blue");
-    gradient.addColorStop(1, "turquoise");
+    gradient.addColorStop(0.8, "blue");
+    gradient.addColorStop(0, "turquoise");
 
     const isHomePage = window.location.pathname.includes("home");
     if (isHomePage) {

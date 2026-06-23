@@ -101,7 +101,15 @@
       }
     </script>
 
-    <script src="src/js/effects/sineWave.js" defer></script>
+    <!-- Enhancement libraries (GSAP) — must precede scrollReveal init script -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"
+      defer
+    ></script>
     <script src="src/js/effects/easterEggSineWave.js" defer></script>
     <script src="src/js/effects/feathers.js" defer></script>
     <script src="src/js/components/waveColors.js" defer></script>
@@ -112,10 +120,10 @@
     <script src="src/js/utils/serviceWorker.js" defer></script>
     <script src="src/js/pages/home/parallax.js" defer></script>
     <script src="src/js/utils/analytics.js" defer></script>
-    <script type="module" crossorigin src="/assets/home-BDWk_8I3.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/three.module-CA44nllG.js">
-    <link rel="stylesheet" crossorigin href="/assets/home-_EskS5Oo.css">
-    <link rel="stylesheet" crossorigin href="/assets/main-BZcoJVkm.css">
+    <script type="module" crossorigin src="/assets/home-BtP8L2-X.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/three.module-Bb4hdJ5L.js">
+    <link rel="stylesheet" crossorigin href="/assets/home-nWSxFRMv.css">
+    <link rel="stylesheet" crossorigin href="/assets/main-Vm8dtqNs.css">
   </head>
   <body>
     <!-- Accessibility: Skip to main content -->
@@ -299,31 +307,53 @@
           </svg>
           <span class="nav-label">Resume</span>
         </a>
-        <a
-          class="side-nav-link exit-link"
-          href="/?stay"
-          aria-label="Zen Mode - Waves"
-          title="Return to wave playground"
-        >
-          <svg
-            class="nav-icon"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M2 12c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
-            <path d="M2 6c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
-            <path d="M2 18c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
-          </svg>
-
-          <span class="zen-tooltip"></span>
-        </a>
       </div>
-      <div class="side-nav-glow"></div>
+      <a
+        class="side-nav-link exit-link"
+        href="/?stay"
+        aria-label="Zen Mode - Waves"
+        title="Return to wave playground"
+      >
+        <svg
+          class="nav-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M2 12c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+          <path d="M2 6c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+          <path d="M2 18c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+        </svg>
+        <span class="zen-tooltip"></span>
+      </a>
     </nav>
+    <svg
+      class="side-nav-glow"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 100 100"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <linearGradient id="nav-glow-g" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#00fff7" stop-opacity="0" />
+          <stop offset=".12" stop-color="#00fff7" />
+          <stop offset=".88" stop-color="#ff00ff" />
+          <stop offset="1" stop-color="#ff00ff" stop-opacity="0" />
+        </linearGradient>
+      </defs>
+      <path
+        class="nav-glow-path"
+        fill="none"
+        stroke="url(#nav-glow-g)"
+        stroke-width="2"
+        vector-effect="non-scaling-stroke"
+      />
+    </svg>
 
     <!-- Mobile Hamburger Button -->
     <button
@@ -360,7 +390,24 @@
     <div class="projects-scroll-cta">
       <a href="#projects" class="hero-cta">PROJECTS</a>
     </div>
+
     <section class="projects-section" id="projects">
+      <!-- Marquee Belt — tech stack header above cards -->
+      <div class="marquee-belt" aria-hidden="true">
+        <div class="marquee-track">
+          <span class="marquee-content"
+            >CREATIVE TECHNOLOGIST · THREE.JS · PYTHON · BLENDER · REACT ·
+            CLAUDE API · GSAP · WEBGL · NODE.JS · MONGODB · VANILLA JS · OPENAI
+            · HUME AI · ELEVENLABS · MCP &nbsp;</span
+          >
+          <span class="marquee-content" aria-hidden="true"
+            >CREATIVE TECHNOLOGIST · THREE.JS · PYTHON · BLENDER · REACT ·
+            CLAUDE API · GSAP · WEBGL · NODE.JS · MONGODB · VANILLA JS · OPENAI
+            · HUME AI · ELEVENLABS · MCP &nbsp;</span
+          >
+        </div>
+      </div>
+
       <!-- 1. Pneuma -->
       <div class="project-row project-row--left" style="--card-accent: #00d4ff">
         <a href="/projects/pneuma" class="project-card-link">
@@ -374,11 +421,15 @@
             />
           </div>
         </a>
-        <div class="project-card-info" data-youtube="">
+        <div
+          class="project-card-info"
+          data-youtube=""
+          data-meta="2025 · AI / LLM"
+        >
           <h2 class="project-card-title">Pneuma</h2>
           <p class="project-card-description">
-            LLM Cognitive Architecture • 44 Archetypes • Claude API • OpenAI •
-            React • Express • MongoDB
+            Multi-LLM Compound AI System — LLMs calling other LLMs as tools. 4
+            model calls, vector RAG, 43 archetypes in forced collision.
           </p>
           <div class="project-card-actions">
             <a href="/projects/pneuma" class="project-card-cta">View Project</a>
@@ -421,7 +472,11 @@
             />
           </div>
         </a>
-        <div class="project-card-info" data-youtube="">
+        <div
+          class="project-card-info"
+          data-youtube=""
+          data-meta="2024 · Web · Client"
+        >
           <h2 class="project-card-title">La Dolce Vita</h2>
           <p class="project-card-description">
             Freelance Luxury Villa Site • AI Concierge • Live Airbnb Calendar •
@@ -457,6 +512,7 @@
         <div
           class="project-card-info"
           data-youtube="https://youtu.be/J5xXlOPNZAQ"
+          data-meta="2024 · Full-Stack · Social"
         >
           <h2 class="project-card-title">Numeneon</h2>
           <p class="project-card-description">
@@ -504,14 +560,18 @@
         <a href="/projects/transcendence" class="project-card-link">
           <div class="project-card-media">
             <img
-              src="/images/projects/transcendence.webp"
-              alt="Transcendence Pet Sim"
+              src="/images/xenochi.png"
+              alt="Xenochi 3D virtual pet"
               loading="lazy"
               decoding="async"
             />
           </div>
         </a>
-        <div class="project-card-info" data-youtube="">
+        <div
+          class="project-card-info"
+          data-youtube=""
+          data-meta="2025 · 3D / Game"
+        >
           <h2 class="project-card-title">XENOCHI</h2>
           <p class="project-card-description">
             3D Virtual Pet • JS • Three.js + Blender
@@ -565,6 +625,7 @@
         <div
           class="project-card-info"
           data-youtube="https://youtu.be/Xkbkwlv8HA4"
+          data-meta="2024 · 3D · Medical"
         >
           <h2 class="project-card-title">Pneumata</h2>
           <p class="project-card-description">
@@ -619,7 +680,11 @@
             />
           </div>
         </a>
-        <div class="project-card-info" data-youtube="">
+        <div
+          class="project-card-info"
+          data-youtube=""
+          data-meta="2024 · 3D · Math"
+        >
           <h2 class="project-card-title">Manifold</h2>
           <p class="project-card-description">
             Gamified 4D Geometry Explorer • 24 Shapes • React Three Fiber
@@ -671,7 +736,11 @@
             />
           </div>
         </a>
-        <div class="project-card-info" data-youtube="">
+        <div
+          class="project-card-info"
+          data-youtube=""
+          data-meta="2024 · 3D · Game"
+        >
           <h2 class="project-card-title">Tic-Trap-Toe</h2>
           <p class="project-card-description">
             6-Face Cube • Three.js • Vanilla JS
@@ -726,7 +795,11 @@
             />
           </div>
         </a>
-        <div class="project-card-info" data-youtube="">
+        <div
+          class="project-card-info"
+          data-youtube=""
+          data-meta="2024 · Creative Coding"
+        >
           <h2 class="project-card-title">Nucat</h2>
           <p class="project-card-description">
             ASCII Point Cloud Renderer • ~20K Particles • React
@@ -767,7 +840,11 @@
             />
           </div>
         </a>
-        <div class="project-card-info" data-youtube="">
+        <div
+          class="project-card-info"
+          data-youtube=""
+          data-meta="2023 · Full-Stack"
+        >
           <h2 class="project-card-title">Dojo Crud</h2>
           <p class="project-card-description">Martial Arts Tracker • Django</p>
           <a href="/projects/dojo-crud" class="project-card-cta"
@@ -790,7 +867,11 @@
             />
           </div>
         </a>
-        <div class="project-card-info" data-youtube="">
+        <div
+          class="project-card-info"
+          data-youtube=""
+          data-meta="2023 · Full-Stack"
+        >
           <h2 class="project-card-title">Bookshelf</h2>
           <p class="project-card-description">
             Living Library • Words Decompose Into Quantum Particles • React
@@ -813,7 +894,11 @@
             />
           </div>
         </a>
-        <div class="project-card-info" data-youtube="">
+        <div
+          class="project-card-info"
+          data-youtube=""
+          data-meta="2024 · Blog · Design"
+        >
           <h2 class="project-card-title">INSTVNCE</h2>
           <p class="project-card-description">
             Developer Log • Neopunk Terminal
@@ -900,5 +985,6 @@
     <script src="src/js/pages/home/index.js" defer></script>
     <script src="src/js/utils/mcpBridge.js" defer></script>
     <script src="src/js/pages/home/orbNavScan.js" defer></script>
+    <script src="src/js/pages/home/scrollReveal.js" defer></script>
   </body>
 </html>

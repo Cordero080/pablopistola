@@ -50,14 +50,14 @@ const FACE_EDGE_COLORS = [
 //  CENTER → extra opacity added toward the center of each face (brighter center)
 //  WAVE   → extra opacity added when the wave is at its peak
 
-const PANEL_OPACITY_BASE = 0.18;
+const PANEL_OPACITY_BASE = 0.08
 const PANEL_OPACITY_CENTER = 0.15;
 const PANEL_OPACITY_WAVE = 0.03;
 
 // Edge line opacity — same three knobs, for the outline lines
 
 const EDGE_OPACITY_BASE = 0.06;
-const EDGE_OPACITY_CENTER = 0.06;
+const EDGE_OPACITY_CENTER = 0.6;
 const EDGE_OPACITY_WAVE = 0.025;
 
 // ╔══════════════════════════════════════════════════════════════════════════╗
@@ -67,9 +67,9 @@ const EDGE_OPACITY_WAVE = 0.025;
 // 🔄  CUBE ROTATION — how fast the whole cube slowly spins (radians/second)
 //  Lower = slower. Set to 0 to freeze that axis.
 
-const ROT_Y = 0.0171; // left–right spin (yaw)   ← main visible spin
+const ROT_Y = 0.0151; // left–right spin (yaw)   ← main visible spin
 const ROT_X = 0.0076; // up–down tilt   (pitch)
-const ROT_Z = 0.0114; // clockwise roll (roll)
+const ROT_Z = 0.0100; // clockwise roll (roll)
 
 // 🌊  WAVE — panels ripple in and out from the face surface
 //  WAVE_AMPLITUDE: how far panels travel. 0 = flat/no ripple, 1.5 = very dramatic
@@ -100,9 +100,9 @@ const FACE_HUE_OFFSETS = [0, 3.5, 1.0, 1.5, 2.2, 2.8];
 // ║  MORPH_CYCLE is calculated automatically — don't edit it directly.       ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
-const CUBE_HOLD = 7; // seconds showing flat panels
+const CUBE_HOLD = 1; // seconds showing flat panels
 const MORPH_DUR = 4; // seconds for the morph transition
-const SPHERE_HOLD = 8; // seconds showing sphere orbs
+const SPHERE_HOLD = 3; // seconds showing sphere orbs
 
 const MORPH_CYCLE = CUBE_HOLD + MORPH_DUR + SPHERE_HOLD + MORPH_DUR; // auto
 
@@ -198,7 +198,7 @@ function resize() {
 resize();
 window.addEventListener("resize", resize);
 
-const cubeSize = window.innerWidth <= 600 ? 2 * 0.9 : 2.4;
+const cubeSize = window.innerWidth <= 600 ? 2 * 1.1 : 3.0;
 const grid = 17;
 const panelSz = (cubeSize / grid) * 0.98;
 const off = cubeSize / 2;

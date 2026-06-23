@@ -103,23 +103,7 @@
   white-space: nowrap;
   word-break: normal;
   opacity: 0.99;
-  cursor: pointer;
-  transition:
-    --ht-a 0.5s ease,
-    --ht-b 0.5s ease,
-    --ht-c 0.5s ease,
-    --ht-d 0.5s ease,
-    --ht-e 0.5s ease,
-    transform 0.3s ease;
-}
-
-.hero-title:hover {
-  --ht-a: #ffffff;
-  --ht-b: #b8c8d4;
-  --ht-c: #506070;
-  --ht-d: #1a2028;
-  --ht-e: #000000;
-  transform: scale(1.03) translateY(-2px);
+  cursor: default;
 }
 
 .hero-subtitle {
@@ -361,6 +345,12 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+.title-inverted-v:hover {
+  transform: scaleY(1);
 }
 
 /* Hero responsive styles */

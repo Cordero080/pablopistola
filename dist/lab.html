@@ -41,8 +41,8 @@
     <script src="src/js/utils/compMode.js" defer></script>
     <script src="src/js/utils/serviceWorker.js" defer></script>
     <script src="src/js/utils/analytics.js" defer></script>
-    <link rel="stylesheet" crossorigin href="/assets/lab-D6F3sUSm.css">
-    <link rel="stylesheet" crossorigin href="/assets/main-BZcoJVkm.css">
+    <link rel="stylesheet" crossorigin href="/assets/lab-BnPiQTxs.css">
+    <link rel="stylesheet" crossorigin href="/assets/main-Vm8dtqNs.css">
   </head>
   <body>
     <!-- Loading Screen -->
@@ -173,28 +173,28 @@
           </svg>
           <span class="nav-label">Resume</span>
         </a>
-        <a
-          class="side-nav-link exit-link"
-          href="/?stay"
-          aria-label="Zen Mode - Waves"
-          title="Return to wave playground"
-        >
-          <svg
-            class="nav-icon"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M2 12c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
-            <path d="M2 6c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
-            <path d="M2 18c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
-          </svg>
-          <span class="zen-tooltip"></span>
-        </a>
       </div>
+      <a
+        class="side-nav-link exit-link"
+        href="/?stay"
+        aria-label="Zen Mode - Waves"
+        title="Return to wave playground"
+      >
+        <svg
+          class="nav-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M2 12c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+          <path d="M2 6c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+          <path d="M2 18c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+        </svg>
+        <span class="zen-tooltip"></span>
+      </a>
       <div class="side-nav-glow"></div>
     </nav>
 
@@ -212,111 +212,81 @@
       </div>
     </button>
 
-    <!-- Lab Hero -->
-    <header class="lab-hero">
-      <p class="lab-eyebrow">Animation &amp; Interaction</p>
-      <h1 class="lab-title">LAB</h1>
-      <p class="lab-subtitle">Live demos · Interactive experiments</p>
-    </header>
+    <!-- Lab Index -->
+    <div class="lab-container">
+      <header class="lab-header">
+        <h1 class="lab-header-title">LAB</h1>
+        <span class="lab-header-count">03 experiments</span>
+      </header>
 
-    <!-- Demo Grid -->
-    <main class="lab-grid">
-      <!-- 1. Xenotchi -->
-      <div class="lab-card">
-        <div class="lab-card-visual">
-          <span class="lab-card-badge">3D · FBX</span>
-          <img
-            src="/images/projects/transcendence.webp"
-            alt="Xenotchi 3D virtual pet"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-        <div class="lab-card-info">
-          <h2 class="lab-card-title">Xenotchi</h2>
-          <p class="lab-card-tech">Three.js · FBX Animations · Stage Toggle</p>
-          <p class="lab-card-desc">
-            A 3D virtual pet with real-time FBX skeletal animations. Switch
-            between Blue and Green evolution stages. Feed, dance, sleep, and
-            train your Xenotchi.
-          </p>
-          <div class="lab-card-actions">
-            <a class="lab-card-cta" href="/projects/lab/xenotchi">Launch</a>
-          </div>
-        </div>
-      </div>
+      <main class="lab-index" role="main" aria-label="Lab experiments">
+        <div class="lab-rule"></div>
 
-      <!-- 3. Tic-Trap-Toe -->
-      <div class="lab-card">
-        <div class="lab-card-visual">
-          <span class="lab-card-badge">Game · 3D</span>
-          <img
-            src="/images/projects/tic-trap-toe/dark-mode-confetti.png"
-            alt="Tic-Trap-Toe game"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-        <div class="lab-card-info">
-          <h2 class="lab-card-title">Tic-Trap-Toe</h2>
-          <p class="lab-card-tech">Three.js · 6-Face Cube · Minimax AI</p>
-          <p class="lab-card-desc">
-            Tic-tac-toe on all six faces of a rotating 3D cube. Minimax AI with
-            depth-limited search. Play versus the AI or watch AI vs AI unfold.
-          </p>
-          <div class="lab-card-actions">
-            <a
-              class="lab-card-cta"
-              href="https://tic-trap-toe.vercel.app/"
-              target="_blank"
-              rel="noopener"
-              >Launch</a
-            >
-            <a
-              class="lab-card-external"
-              href="https://github.com/Cordero080/tic-trap-toe"
-              target="_blank"
-              rel="noopener"
-              >GitHub ↗</a
+        <a class="lab-row" href="/projects/lab/xenotchi" data-num="01">
+          <span class="lab-row-num">01</span>
+          <div class="lab-row-body">
+            <span class="lab-row-name">Xenotchi</span>
+            <span class="lab-row-desc"
+              >3D virtual pet — FBX skeletal animations · stage toggle</span
             >
           </div>
-        </div>
-      </div>
+          <span class="lab-row-tech">3D · FBX</span>
+          <span class="lab-row-arrow">→</span>
+          <div
+            class="lab-row-preview"
+            style="background-image: url(&quot;/images/xenochi.png&quot;)"
+          ></div>
+        </a>
 
-      <!-- 4. Manifold -->
-      <div class="lab-card">
-        <div class="lab-card-visual">
-          <span class="lab-card-badge">WebGL · React</span>
-          <img
-            src="/images/projects/nexus-geom-lab/manifold-landing.png"
-            alt="Manifold 4D geometry explorer"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-        <div class="lab-card-info">
-          <h2 class="lab-card-title">Manifold</h2>
-          <p class="lab-card-tech">
-            React Three Fiber · 24 Shapes · Custom Shaders
-          </p>
-          <p class="lab-card-desc">
-            A gamified 4D geometry explorer. Wireframe and solid render modes,
-            dynamic color shifts, and unlock progression across 24
-            higher-dimensional shapes.
-          </p>
-          <div class="lab-card-actions">
-            <a class="lab-card-cta" href="/projects/lab/manifold">Launch</a>
-            <a
-              class="lab-card-external"
-              href="https://github.com/Cordero080/nexus-geom-lab"
-              target="_blank"
-              rel="noopener"
-              >GitHub ↗</a
+        <div class="lab-rule"></div>
+
+        <a class="lab-row" href="/projects/lab/manifold" data-num="02">
+          <span class="lab-row-num">02</span>
+          <div class="lab-row-body">
+            <span class="lab-row-name">Manifold</span>
+            <span class="lab-row-desc"
+              >4D geometry explorer — 24 shapes · custom shaders</span
             >
           </div>
-        </div>
-      </div>
-    </main>
+          <span class="lab-row-tech">WebGL · React</span>
+          <span class="lab-row-arrow">→</span>
+          <div
+            class="lab-row-preview"
+            style="
+              background-image: url(&quot;/images/projects/nexus-geom-lab/manifold-landing.png&quot;);
+            "
+          ></div>
+        </a>
+
+        <div class="lab-rule"></div>
+
+        <a
+          class="lab-row"
+          href="https://tic-trap-toe.vercel.app/"
+          target="_blank"
+          rel="noopener"
+          data-num="03"
+        >
+          <span class="lab-row-num">03</span>
+          <div class="lab-row-body">
+            <span class="lab-row-name">Tic-Trap-Toe</span>
+            <span class="lab-row-desc"
+              >Tic-tac-toe on all 6 faces of a 3D cube — Minimax AI</span
+            >
+          </div>
+          <span class="lab-row-tech">Game · 3D</span>
+          <span class="lab-row-arrow">→</span>
+          <div
+            class="lab-row-preview"
+            style="
+              background-image: url(&quot;/images/projects/tic-trap-toe/dark-mode-confetti.png&quot;);
+            "
+          ></div>
+        </a>
+
+        <div class="lab-rule"></div>
+      </main>
+    </div>
 
     <script src="src/js/pages/home/loader.js" defer></script>
     <script src="src/js/pages/home/mobileMenu.js" defer></script>

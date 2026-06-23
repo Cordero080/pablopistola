@@ -15,9 +15,9 @@
         }
       }
     </script>
-    <script type="module" crossorigin src="/assets/projects/lab/xenotchi-BgQixOaW.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/three.module-CA44nllG.js">
-    <link rel="stylesheet" crossorigin href="/assets/xenotchi-BuG4ixhu.css">
+    <script type="module" crossorigin src="/assets/projects/lab/xenotchi-B2TWYM3g.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/three.module-Bb4hdJ5L.js">
+    <link rel="stylesheet" crossorigin href="/assets/xenotchi-DpT6ybqd.css">
   </head>
 
   <body>
@@ -32,6 +32,16 @@
         <div id="scene-loading">
           <div class="loading-ring"></div>
           <span>Loading model…</span>
+        </div>
+        <div id="glitchOverlay" class="glitch-stutter-overlay">
+          <div class="stutter-scanlines"></div>
+          <div class="stutter-static"></div>
+          <div class="stutter-flash"></div>
+        </div>
+        <div id="glitchOverlay2" class="glitch-stutter-overlay glitch-inverted">
+          <div class="stutter-scanlines"></div>
+          <div class="stutter-static"></div>
+          <div class="stutter-flash"></div>
         </div>
       </div>
 
@@ -99,6 +109,9 @@
         Green
       </button>
     </div>
+
+    <audio id="bg-music" src="/music/3dC_theme.mp3" loop preload="auto"></audio>
+    <audio id="stutterMask" src="/music/stutterMask.wav" preload="auto"></audio>
 
   </body>
 </html>

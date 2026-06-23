@@ -288,6 +288,26 @@
   }
 }
 
+/* ── TICKER SPEEDS ── */
+.ticker-row[data-cat="languages"] .ticker-track {
+  --speed: 32s;
+}
+.ticker-row[data-cat="frontend"] .ticker-track {
+  --speed: 22s;
+}
+.ticker-row[data-cat="backend"] .ticker-track {
+  --speed: 36s;
+}
+.ticker-row[data-cat="creative"] .ticker-track {
+  --speed: 34s;
+}
+.ticker-row[data-cat="devops"] .ticker-track {
+  --speed: 26s;
+}
+.ticker-row[data-cat="ai"] .ticker-track {
+  --speed: 30s;
+}
+
 @keyframes skillsTitleShift {
   0% {
     background-position: 100% 50%;
