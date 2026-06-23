@@ -150,7 +150,6 @@
     50% 50%,
     50% 50%;
   background-blend-mode: overlay, multiply, overlay;
-  backdrop-filter: blur(10px);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: row;
@@ -224,7 +223,7 @@
 }
 
 .side-nav-link:hover {
-  background: rgba(0, 255, 247, 0.1);
+  background: none;
 }
 
 /* Nav label - hidden by default, slides down on nav hover */
@@ -328,7 +327,7 @@
 
 .side-nav-link.exit-link:hover {
   opacity: 1;
-  background: rgba(0, 255, 247, 0.15);
+  background: none;
 }
 
 .side-nav-link.exit-link:hover .nav-icon {
@@ -364,29 +363,38 @@
 }
 
 .side-nav-glow {
+  display: block;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 62px;
+  height: 63px;
   pointer-events: none;
-  z-index: 9999;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(0, 255, 247, 0.95) 12%,
-    rgba(255, 0, 255, 0.95) 100%
-  );
-  clip-path: inset(0 round 0 0 44% 44% / 0 0 56% 56%);
+  z-index: 10001;
+  overflow: visible;
+  background: none;
+  transition: height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   animation: sideGlow 4s ease-in-out infinite;
-  transition:
-    height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    clip-path 0.4s ease;
+}
+
+/* viewBox 0 0 100 100 — x-units are % of width, y-units are % of element height.
+   Default: nav 60px, glow 63px. Hover: nav 90px, glow 93px.
+   Arc ry in SVG units = ry_px / (element_height / 100) so screen pixels always match. */
+.nav-glow-path {
+  d: path(
+    "M 0,40 A 44,55.24 0 0 0 44,95.24 L 56,95.24 A 44,55.24 0 0 0 100,40"
+  );
+  transition: d 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .side-nav:hover ~ .side-nav-glow {
-  height: 92px;
-  clip-path: inset(0 round 0 0 44% 44% / 0 0 67% 67%);
+  height: 93px;
+}
+
+.side-nav:hover ~ .side-nav-glow .nav-glow-path {
+  d: path(
+    "M 0,30.97 A 44,65.81 0 0 0 44,96.77 L 56,96.77 A 44,65.81 0 0 0 100,30.97"
+  );
 }
 
 @keyframes sideGlow {
@@ -429,6 +437,17 @@
     width: 240px;
   }
 
+  .side-nav:hover,
+  .side-nav.menu-open:hover {
+    height: 100vh;
+    height: 100dvh;
+    clip-path: none;
+  }
+
+  .side-nav:hover ~ .side-nav-glow {
+    height: 63px;
+  }
+
   .side-nav-logo {
     display: flex;
     justify-content: center;
@@ -458,6 +477,7 @@
     width: 100%;
     height: auto;
     padding: 0.75rem 0;
+    align-items: flex-start;
     border-radius: 0;
     opacity: 0;
     transform: translateY(20px);
@@ -684,6 +704,38 @@
     0 0 50px rgba(255, 0, 255, 0.4),
     0 0 80px rgba(0, 255, 247, 0.2),
     inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile nav gradient border — traces border-radius with cyan→magenta, same as desktop glow */
+@media (max-width: 768px) {
+  .side-nav::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 0 0 100% 0 / 0 0 60% 0;
+    padding: 0 1.5px 0 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      #00fff7 5%,
+      #cc00ff 90%,
+      transparent 100%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .side-nav.menu-open::after {
+    opacity: 1;
+    animation: sideGlow 4s ease-in-out infinite;
+  }
 }
 
 /* Scanline effect on mobile menu */

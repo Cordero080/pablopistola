@@ -7,7 +7,7 @@
   padding: 1rem 0;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  margin: 0.5rem 0 2.5rem;
+  margin: 4rem 0 2.5rem;
   cursor: default;
   position: relative;
   z-index: 5;
@@ -50,6 +50,8 @@
   }
 }
 
+/* ── Card tilt ── */
+/* transform + transition are set dynamically by cardTilt.js per mouse event */
 .project-card-link {
   transform-style: preserve-3d;
   will-change: transform;

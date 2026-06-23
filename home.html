@@ -332,7 +332,30 @@
         <span class="zen-tooltip"></span>
       </a>
     </nav>
-    <div class="side-nav-glow"></div>
+    <svg
+      class="side-nav-glow"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 100 100"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <linearGradient id="nav-glow-g" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#00fff7" stop-opacity="0" />
+          <stop offset=".12" stop-color="#00fff7" />
+          <stop offset=".88" stop-color="#ff00ff" />
+          <stop offset="1" stop-color="#ff00ff" stop-opacity="0" />
+        </linearGradient>
+      </defs>
+      <path
+        class="nav-glow-path"
+        fill="none"
+        stroke="url(#nav-glow-g)"
+        stroke-width="2"
+        vector-effect="non-scaling-stroke"
+      />
+    </svg>
 
     <!-- Mobile Hamburger Button -->
     <button
@@ -370,23 +393,23 @@
       <a href="#projects" class="hero-cta">PROJECTS</a>
     </div>
 
-    <!-- Marquee Belt -->
-    <div class="marquee-belt" aria-hidden="true">
-      <div class="marquee-track">
-        <span class="marquee-content"
-          >CREATIVE TECHNOLOGIST · THREE.JS · PYTHON · BLENDER · REACT · CLAUDE
-          API · GSAP · WEBGL · NODE.JS · MONGODB · VANILLA JS · OPENAI · HUME AI
-          · ELEVENLABS · MCP &nbsp;</span
-        >
-        <span class="marquee-content" aria-hidden="true"
-          >CREATIVE TECHNOLOGIST · THREE.JS · PYTHON · BLENDER · REACT · CLAUDE
-          API · GSAP · WEBGL · NODE.JS · MONGODB · VANILLA JS · OPENAI · HUME AI
-          · ELEVENLABS · MCP &nbsp;</span
-        >
-      </div>
-    </div>
-
     <section class="projects-section" id="projects">
+      <!-- Marquee Belt — tech stack header above cards -->
+      <div class="marquee-belt" aria-hidden="true">
+        <div class="marquee-track">
+          <span class="marquee-content"
+            >CREATIVE TECHNOLOGIST · THREE.JS · PYTHON · BLENDER · REACT ·
+            CLAUDE API · GSAP · WEBGL · NODE.JS · MONGODB · VANILLA JS · OPENAI
+            · HUME AI · ELEVENLABS · MCP &nbsp;</span
+          >
+          <span class="marquee-content" aria-hidden="true"
+            >CREATIVE TECHNOLOGIST · THREE.JS · PYTHON · BLENDER · REACT ·
+            CLAUDE API · GSAP · WEBGL · NODE.JS · MONGODB · VANILLA JS · OPENAI
+            · HUME AI · ELEVENLABS · MCP &nbsp;</span
+          >
+        </div>
+      </div>
+
       <!-- 1. Pneuma -->
       <div class="project-row project-row--left" style="--card-accent: #00d4ff">
         <a href="/projects/pneuma" class="project-card-link">

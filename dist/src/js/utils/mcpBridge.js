@@ -248,6 +248,67 @@ function buildChatUI() {
       }
     }
 
+    /* ── SUGGESTION STATE — gold/amber rings ──────────────────
+     * Faster cycle (9s vs 12s green), same 1/3 stagger (3s apart).
+     * Brighter starting opacity (0.85 vs 0.75) for urgency.
+     * Mid-expansion shifts amber → deep orange instead of cyan → purple.
+     */
+    #mcp-chat-toggle.suggestion-active .ring:nth-child(1) {
+      animation: chat-ripple-gold 9s ease-out infinite;
+      animation-delay: 0s;
+    }
+    #mcp-chat-toggle.suggestion-active .ring:nth-child(2) {
+      animation: chat-ripple-gold 9s ease-out infinite;
+      animation-delay: 3s;
+    }
+    #mcp-chat-toggle.suggestion-active .ring:nth-child(3) {
+      animation: chat-ripple-gold 9s ease-out infinite;
+      animation-delay: 6s;
+    }
+
+    /* Icon glow in gold — same percentage structure as icon-glow,
+       just swapped to amber. 9s cycle, rings fire at 0%, 33%, 66%. */
+    #mcp-chat-toggle.suggestion-active svg {
+      animation: icon-glow-gold 9s linear infinite;
+    }
+
+    @keyframes icon-glow-gold {
+      0%   { color: rgba(255, 185, 30, 0.95); filter: drop-shadow(0 0 8px rgba(255, 160, 20, 0.9)); }
+      25%  { color: rgba(255, 255, 255, 0.5); filter: none; }
+      33%  { color: rgba(255, 185, 30, 0.95); filter: drop-shadow(0 0 8px rgba(255, 160, 20, 0.9)); }
+      58%  { color: rgba(255, 255, 255, 0.5); filter: none; }
+      66%  { color: rgba(255, 185, 30, 0.95); filter: drop-shadow(0 0 8px rgba(255, 160, 20, 0.9)); }
+      91%  { color: rgba(255, 255, 255, 0.5); filter: none; }
+      100% { color: rgba(255, 255, 255, 0.5); filter: none; }
+    }
+
+    @keyframes chat-ripple-gold {
+      0%   {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.85;
+        border-radius: 50%;
+        border-color: rgba(255, 200, 50, 0.85);
+      }
+      8%   { border-radius: 48% 52% 50% 50% / 50% 50% 52% 48%; }
+      15%  {
+        border-radius: 52% 48% 49% 51% / 48% 52% 50% 50%;
+        border-color: rgba(255, 100, 0, 0.45);
+      }
+      22%  {
+        border-radius: 50%;
+        border-color: rgba(255, 200, 50, 0.15);
+      }
+      25%  {
+        transform: translate(-50%, -50%) scale(2.2);
+        opacity: 0;
+        border-radius: 50%;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(2.2);
+        opacity: 0;
+      }
+    }
+
     #mcp-chat-toggle:hover {
       transform: scale(1.1);
       box-shadow:
@@ -610,7 +671,9 @@ if (document.readyState === "loading") {
 //  PUBLIC API  (for use from browser console or other scripts)
 //
 //  window.mcpBridge.sendMessage("tell me about Pneuma")
-//  window.mcpBridge.toggleTheme()  ← fires locally without AI
+//  window.mcpBridge.toggleTheme()         ← fires locally without AI
+//  window.mcpBridge.testSuggestionState() ← preview gold/amber rings
+//  window.mcpBridge.testIdleState()       ← restore green rings
 // ─────────────────────────────────────────────────────────
 
 window.mcpBridge = {
@@ -619,5 +682,17 @@ window.mcpBridge = {
     if (typeof window.toggleComplementaryColors === "function") {
       window.toggleComplementaryColors();
     }
+  },
+  testSuggestionState: () => {
+    const toggle = document.getElementById("mcp-chat-toggle");
+    if (!toggle) return;
+    toggle.classList.remove("pulse-active");
+    toggle.classList.add("suggestion-active");
+  },
+  testIdleState: () => {
+    const toggle = document.getElementById("mcp-chat-toggle");
+    if (!toggle) return;
+    toggle.classList.remove("suggestion-active");
+    toggle.classList.add("pulse-active");
   },
 };

@@ -50,9 +50,9 @@ const FACE_EDGE_COLORS = [
 //  CENTER → extra opacity added toward the center of each face (brighter center)
 //  WAVE   → extra opacity added when the wave is at its peak
 
-const PANEL_OPACITY_BASE = 0.15;
-const PANEL_OPACITY_CENTER = 0.05;
-const PANEL_OPACITY_WAVE = 0.025;
+const PANEL_OPACITY_BASE = 0.18;
+const PANEL_OPACITY_CENTER = 0.15;
+const PANEL_OPACITY_WAVE = 0.03;
 
 // Edge line opacity — same three knobs, for the outline lines
 
@@ -74,7 +74,7 @@ const ROT_Z = 0.0114; // clockwise roll (roll)
 // 🌊  WAVE — panels ripple in and out from the face surface
 //  WAVE_AMPLITUDE: how far panels travel. 0 = flat/no ripple, 1.5 = very dramatic
 
-const WAVE_AMPLITUDE = 0.8;
+const WAVE_AMPLITUDE = 0.38;
 
 // 🌀  PANEL SELF-SPIN — each flat tile slowly rotates on its own axis
 //  Higher = faster spinning tiles. 0 = no spin. Panels alternate direction.
@@ -84,7 +84,7 @@ const PANEL_SPIN_SPEED = 0.2375; // slightly slower than before
 // 💓  SCALE BREATHE — tiles gently pulse in size with the wave
 //  0 = no size pulse, 0.3 = very noticeable pulse
 
-const SCALE_BREATHE = 0.12;
+const SCALE_BREATHE = 0.05;
 
 // 🌈  HUE SHIFT — each face starts at a different color angle, creating variety
 
@@ -100,7 +100,7 @@ const FACE_HUE_OFFSETS = [0, 3.5, 1.0, 1.5, 2.2, 2.8];
 // ║  MORPH_CYCLE is calculated automatically — don't edit it directly.       ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
-const CUBE_HOLD = 14; // seconds showing flat panels
+const CUBE_HOLD = 7; // seconds showing flat panels
 const MORPH_DUR = 4; // seconds for the morph transition
 const SPHERE_HOLD = 8; // seconds showing sphere orbs
 
@@ -183,8 +183,8 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(100, 1, 0.5, 100);
 camera.position.z = 4;
 
-scene.add(new THREE.AmbientLight(0xffffff, 0.3));
-const dLight = new THREE.DirectionalLight(0xffffff, 2);
+scene.add(new THREE.AmbientLight(0xffffff, 0.2));
+const dLight = new THREE.DirectionalLight(0xffffff, 1.1);
 dLight.position.set(5, 6, 5);
 scene.add(dLight);
 
@@ -260,14 +260,17 @@ faces.forEach((face, fi) => {
         ) /
           Math.SQRT2;
 
-      const mat = new THREE.MeshStandardMaterial({
+      const mat = new THREE.MeshPhysicalMaterial({
         color: new THREE.Color(PANEL_COLOR),
         emissive: new THREE.Color(PANEL_EMISSIVE),
         emissiveIntensity: 0.2,
-        metalness: 0.9,
-        roughness: 0.3,
+        metalness: 0.45,
+        roughness: 0.35,
+        iridescence: 0.5,
+        iridescenceIOR: 1.8,
+        iridescenceThicknessRange: [100, 400],
         transparent: true,
-        opacity: 0.12,
+        opacity: 0.42,
         side: THREE.DoubleSide,
         depthWrite: false,
       });
@@ -397,20 +400,18 @@ const clock = new THREE.Clock();
       hueAngle,
     } = p;
 
-    // Wave frequencies scaled 5% slower than original
-    const wave1 = Math.sin(ct * 0.285 + phase) * 0.5;
-    const wave2 = Math.sin(ct * 0.3895 + phase * 1.3) * 0.5;
-    const wave3 = Math.sin(ct * 0.4275 + phase) * 0.2;
+    const wave1 = Math.sin(ct * 0.19 + phase) * 0.5;
+    const wave2 = Math.sin(ct * 0.26 + phase * 1.3) * 0.5;
+    const wave3 = Math.sin(ct * 0.29 + phase) * 0.2;
     const disp = (wave1 + wave2 + wave3) * waveAmp;
-    mesh.position.copy(basePos).addScaledVector(dir, disp);
+    const breathe = 1 + wave1 * SCALE_BREATHE;
 
     mesh.rotateZ(delta * p.spinRate);
 
-    const breathe = 1 + wave1 * SCALE_BREATHE;
+    mesh.position.copy(basePos).addScaledVector(dir, disp);
     mesh.scale.setScalar(breathe * flatT);
     orbMesh.position.copy(mesh.position);
     orbMesh.scale.setScalar(breathe * orbT);
-
     edgeMesh.position.copy(mesh.position);
     edgeMesh.quaternion.copy(mesh.quaternion);
     edgeMesh.scale.setScalar(breathe * flatT);
@@ -426,7 +427,7 @@ const clock = new THREE.Clock();
     const er = glow * (GLOW_EMIT_R + 0.15 * cosH);
     const eg = glow * (GLOW_EMIT_G + 0.15 * sinH);
     const eb = glow * GLOW_EMIT_B;
-    const emitInt = 0.5 + distFromCenter * 0.4;
+    const emitInt = 0.2 + distFromCenter * 0.15;
 
     mat.color.setRGB(cr, cg, cb);
     mat.emissive.setRGB(er, eg, eb);

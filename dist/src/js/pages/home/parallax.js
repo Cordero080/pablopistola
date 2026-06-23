@@ -96,7 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (decomposed || !heroTitleEl) return;
     decomposed = true;
 
-    // Walk child nodes so we don't split HTML tag strings character by character
     const chars = [];
     heroTitleEl.childNodes.forEach((node) => {
       if (node.nodeType === Node.TEXT_NODE) {

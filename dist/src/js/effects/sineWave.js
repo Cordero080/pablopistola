@@ -150,6 +150,19 @@ SineWaveGenerator.prototype.update = function (time) {
     const modifier = wave.timeModifier || 1;
     this.drawSine(time * modifier, wave, i);
   }
+
+  // Edge fade — erases left and right margins so waves dissolve into the void.
+  // Adjust the 0.12 / 0.88 stops to widen or narrow the fade zone.
+  const edgeFade = this.ctx.createLinearGradient(0, 0, this.width, 0);
+  edgeFade.addColorStop(0, "rgba(0,0,0,1)");
+  edgeFade.addColorStop(0.12, "rgba(0,0,0,0)");
+  edgeFade.addColorStop(0.88, "rgba(0,0,0,0)");
+  edgeFade.addColorStop(1, "rgba(0,0,0,1)");
+  this.ctx.save();
+  this.ctx.globalCompositeOperation = "destination-out";
+  this.ctx.fillStyle = edgeFade;
+  this.ctx.fillRect(0, 0, this.width, this.height);
+  this.ctx.restore();
 };
 
 // Math constants
