@@ -182,11 +182,16 @@ if (heroSection && window.innerWidth > 600) {
   );
 
   // ── Init ────────────────────────────────────────────────────────────────────
-  window.addEventListener("resize", resize);
-  requestAnimationFrame(() => {
-    resize();
-    animate();
-  });
+  window.addEventListener("resize", () => requestAnimationFrame(resize));
+
+  // Wait for fonts before first measurement — early calls get wrong title width
+  const start = () =>
+    requestAnimationFrame(() => {
+      resize();
+      animate();
+    });
+  if (document.fonts?.ready) document.fonts.ready.then(start);
+  else start();
 
   // ── Complementary color mode — invert bracket material ──────────────────────
   function applyCompMode(active) {

@@ -122,7 +122,7 @@ SineWaveGenerator.prototype.update = function (time) {
 
   // Suck-pulse: collapses waves to centerline every SUCK_INTERVAL seconds
   const SUCK_INTERVAL = 18;
-  const SUCK_SHARP = 12;
+  const SUCK_SHARP = 10;
   const ct = now / 1000;
   const suckRaw = Math.abs(Math.sin((ct / SUCK_INTERVAL) * Math.PI));
   this._suck = Math.pow(suckRaw, SUCK_SHARP);
@@ -130,7 +130,7 @@ SineWaveGenerator.prototype.update = function (time) {
   if (this._suck > 0.9 && !this._dirFlipped) {
     this.direction *= -1;
     this._dirFlipped = true;
-  } else if (this._suck < 0.1) {
+  } else if (this._suck < 0.9) {
     this._dirFlipped = false;
   }
 
@@ -158,6 +158,7 @@ SineWaveGenerator.prototype.drawSine = function (time, options, waveIndex) {
     attraction = 1,
     attractionStrength = 1,
     attractionRadius = 100,
+    opacity = 1,
   } = options;
 
   const ctx = this.ctx;
@@ -176,6 +177,8 @@ SineWaveGenerator.prototype.drawSine = function (time, options, waveIndex) {
   const suckedAmplitude = amplitude * (1 - suck * 0.92);
   const suckedLineWidth = lineWidth * (1 - suck * 0.75);
 
+  ctx.save();
+  ctx.globalAlpha = opacity;
   ctx.beginPath();
   ctx.lineWidth = suckedLineWidth * this.dpr;
   ctx.strokeStyle = strokeStyle;
@@ -236,6 +239,7 @@ SineWaveGenerator.prototype.drawSine = function (time, options, waveIndex) {
 
   ctx.lineTo(this.width, yAxis);
   ctx.stroke();
+  ctx.restore();
 
   if (waveIndex === 0 && this._apexFade < 0.99) {
     const eraseAmount = 1 - this._apexFade;
