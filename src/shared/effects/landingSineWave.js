@@ -6,7 +6,7 @@ window.waveGen = new SineWaveGenerator({
   waves: [
     // Wave 1: Heavy leader — very slow due to mass
     {
-      timeModifier: 1,
+      timeModifier: 3,
       lineWidth: 10.5,
       amplitude: 300,
       wavelength: 300,
@@ -25,7 +25,7 @@ window.waveGen = new SineWaveGenerator({
       attraction: 1,
       attractionStrength: 0.8,
       attractionDelay: 0.12,
-      attractionRadius: 400,
+      attractionRadius: 200,
     },
     // Wave 3: Snappy thin line
     {
