@@ -1,0 +1,539 @@
+/* ============================================
+   TITLE LETTER ANIMATION SYSTEM
+   Ported from Numeneon — glitch.js populates letters dynamically
+   ============================================ */
+
+/* Override title to flex container for per-letter spans */
+.enter-identity-title {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  pointer-events: auto;
+}
+
+/* Allow hover through the pointer-events: none container */
+.enter-identity {
+  pointer-events: none;
+}
+.enter-identity-title {
+  pointer-events: auto;
+}
+
+.title-letter {
+  display: inline-block;
+  opacity: 0;
+  animation: letterFadeInGlitch 7s linear forwards;
+  position: relative;
+  /* Silver metallic gradient — one letter at a time */
+  background: linear-gradient(180deg, #ffffff 30%, #b8c8d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow:
+    0 40px 60px rgba(0, 0, 0, 1),
+    0 20px 30px rgba(0, 0, 0, 0.9);
+}
+
+.title-letter--space {
+  display: inline-block;
+  width: 0.4em;
+  opacity: 1;
+  animation: none;
+}
+
+/* Scanline overlay on each letter */
+.title-letter::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.3) 2px,
+    rgba(0, 0, 0, 0.3) 4px
+  );
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Flipped letters (first and last) — start mirrored, flip to normal */
+.title-letter--flip {
+  animation: letterFadeInFlipGlitch 4s linear forwards;
+}
+
+.title-letter--invert-v {
+  position: relative;
+  top: -0.02em;
+  animation: letterFadeInInvertGlitch 7s linear forwards;
+}
+
+.title-letter--invert-v:hover {
+  transform: scaleY(-1) translateX(2px);
+}
+
+/* Hover */
+.title-letter:hover {
+  filter: brightness(1.2);
+  transform: translateX(2px);
+  transition:
+    filter var(--hover-delay, 0.08s),
+    text-shadow var(--hover-delay, 0.08s),
+    transform var(--hover-delay, 0.08s);
+}
+
+.title-letter:hover::before {
+  opacity: 0.6;
+  animation: letterScanSweep 0.3s ease-in-out;
+  animation-delay: var(--hover-delay, 0.08s);
+}
+
+/* Long hover ghost duplicate */
+.title-letter:hover::after {
+  content: attr(data-letter);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    #ffffff 22%,
+    rgba(79, 88, 88, 0.699) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  pointer-events: none;
+  opacity: 0;
+  animation: longHoverGlitch 0.6s ease-in-out 1s;
+}
+
+.title-letter--flip:hover {
+  transform: scaleX(0.95) translateX(-2px);
+}
+
+.title-letter--flip:hover::after {
+  transform: scaleX(-1);
+  animation: longHoverGlitchFlip 0.6s ease-in-out 1s;
+}
+
+/* Per-letter hover color variants */
+.title-letter--magenta:hover {
+  text-shadow:
+    3px 0 #ff00ff,
+    -3px 0 #00ffff;
+}
+.title-letter--cyan:hover {
+  text-shadow:
+    3px 0 #1a73e7,
+    -3px 0 #1ae784;
+}
+.title-letter--aqua:hover {
+  text-shadow:
+    3px 0 #1ae784,
+    -3px 0 #dc08bc;
+}
+.title-letter--purple:hover {
+  text-shadow:
+    3px 0 #a783ff,
+    -3px 0 #00ffff;
+}
+.title-letter--blue:hover {
+  text-shadow:
+    3px 0 #0066ff,
+    -3px 0 #ffee00;
+}
+.title-letter--orange:hover {
+  text-shadow:
+    3px 0 #ff8c00,
+    -3px 0 #a783ff;
+}
+.title-letter--pink:hover {
+  text-shadow:
+    3px 0 #ff69b4,
+    -3px 0 #00ffff;
+}
+.title-letter--green:hover {
+  text-shadow:
+    3px 0 #33ff33,
+    -3px 0 #ff00ff;
+}
+
+/* Replay states */
+.enter-identity-title.landing-title--reset .title-letter,
+.enter-identity-title.landing-title--reset .title-letter--flip,
+.enter-identity-title.landing-title--reset .title-letter--invert-v {
+  animation: none !important;
+  opacity: 0 !important;
+}
+
+.enter-identity-title.landing-title--replay .title-letter {
+  animation: letterFadeInGlitch 3.5s linear forwards !important;
+  animation-delay: 0s !important;
+}
+
+.enter-identity-title.landing-title--replay .title-letter--flip {
+  animation: letterFadeInFlipGlitch 2s linear forwards !important;
+  animation-delay: 0s !important;
+}
+
+.enter-identity-title.landing-title--replay .title-letter--invert-v {
+  animation: letterFadeInInvertGlitch 2s linear forwards !important;
+  animation-delay: 0s !important;
+}
+
+/* ============================================
+   GLITCH KEYFRAMES
+   ============================================ */
+
+@keyframes letterFadeInGlitch {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 0;
+  }
+  5.5% {
+    opacity: 1;
+    transform: translateX(3px);
+    filter: blur(4px) brightness(1.5);
+    text-shadow:
+      2px 0 #ff00ff,
+      -2px 0 #00ffff;
+    clip-path: ellipse(80% 40% at 50% 50%);
+  }
+  5.8% {
+    opacity: 1;
+    transform: translateX(-3px);
+    filter: blur(2px) invert(1);
+    text-shadow:
+      4px 0 #ffee00,
+      -4px 0 #0066ff;
+    clip-path: polygon(
+      10% 5%,
+      25% 0%,
+      35% 10%,
+      30% 25%,
+      15% 20%,
+      65% 5%,
+      85% 0%,
+      95% 15%,
+      85% 30%,
+      70% 25%,
+      35% 40%,
+      50% 35%,
+      65% 45%,
+      60% 60%,
+      45% 65%,
+      35% 55%,
+      15% 75%,
+      30% 70%,
+      45% 80%,
+      40% 95%,
+      20% 100%,
+      5% 85%,
+      70% 70%,
+      90% 75%,
+      95% 90%,
+      80% 100%,
+      65% 90%
+    );
+  }
+  6% {
+    opacity: 1;
+    transform: translateX(100px) skewX(-700deg);
+    filter: blur(10px);
+    text-shadow:
+      -3px 0 #ff3333,
+      3px 0 #33ff33,
+      0 0 10px rgba(255, 255, 255, 0.5);
+    clip-path: polygon(
+      0 0%,
+      30% 0%,
+      30% 25%,
+      0 25%,
+      40% 5%,
+      70% 5%,
+      70% 30%,
+      40% 30%,
+      75% 0%,
+      100% 0%,
+      100% 20%,
+      75% 20%,
+      10% 40%,
+      50% 40%,
+      50% 65%,
+      10% 65%,
+      55% 45%,
+      95% 45%,
+      95% 70%,
+      55% 70%,
+      0 75%,
+      35% 75%,
+      35% 100%,
+      0 100%,
+      45% 80%,
+      75% 80%,
+      75% 100%,
+      45% 100%,
+      80% 75%,
+      100% 75%,
+      100% 95%,
+      80% 95%
+    );
+  }
+  6.3% {
+    opacity: 0.6;
+    transform: translateX(-50px);
+    filter: blur(3px) invert(0.5);
+    text-shadow:
+      -2px 0 #ff00ff,
+      2px 0 #00ffff;
+    clip-path: none;
+  }
+  6.5% {
+    opacity: 0.4;
+    transform: translateX(100px);
+    filter: blur(0.5px);
+    text-shadow:
+      1px 0 #ffee00,
+      -1px 0 #0066ff;
+    clip-path: none;
+  }
+  7% {
+    opacity: 1;
+    transform: translateX(0);
+    filter: none;
+    text-shadow: none;
+    clip-path: none;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes letterFadeInInvertGlitch {
+  0% {
+    opacity: 0;
+    transform: scaleY(-1);
+  }
+  5% {
+    opacity: 0;
+    transform: scaleY(-1);
+  }
+  5.5% {
+    opacity: 1;
+    transform: scaleY(-1) translateX(3px);
+    filter: blur(4px) brightness(1.5);
+    text-shadow:
+      2px 0 #ff00ff,
+      -2px 0 #00ffff;
+    clip-path: ellipse(80% 40% at 50% 50%);
+  }
+  5.8% {
+    opacity: 1;
+    transform: scaleY(-1) translateX(-3px);
+    filter: blur(2px) invert(1);
+    text-shadow:
+      4px 0 #ffee00,
+      -4px 0 #0066ff;
+    clip-path: none;
+  }
+  6% {
+    opacity: 1;
+    transform: scaleY(-1) translateX(100px) skewX(-700deg);
+    filter: blur(10px);
+    text-shadow:
+      -3px 0 #ff3333,
+      3px 0 #33ff33,
+      0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  6.3% {
+    opacity: 0.6;
+    transform: scaleY(-1) translateX(-50px);
+    filter: blur(3px) invert(0.5);
+  }
+  6.5% {
+    opacity: 0.4;
+    transform: scaleY(-1) translateX(100px);
+    filter: blur(0.5px);
+  }
+  7% {
+    opacity: 1;
+    transform: scaleY(-1);
+    filter: none;
+    text-shadow: none;
+    clip-path: none;
+  }
+  40% {
+    opacity: 1;
+    transform: scaleY(-1);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(-1);
+  }
+}
+
+@keyframes letterFadeInFlipGlitch {
+  0% {
+    opacity: 0;
+    transform: scaleX(-1);
+  }
+  15% {
+    opacity: 1;
+    transform: scaleX(-1);
+  }
+  15.5% {
+    opacity: 1;
+    transform: scaleX(-1) translateX(-3px);
+    filter: blur(3px) brightness(1.4);
+    text-shadow:
+      3px 0 #ff00ff,
+      -3px 0 #00ffff;
+    clip-path: ellipse(70% 50% at 50% 50%);
+  }
+  16% {
+    opacity: 1;
+    transform: scaleX(-1) translateX(5px);
+    filter: blur(2px) invert(1);
+    text-shadow:
+      5px 0 #ffee00,
+      -5px 0 #0066ff;
+    clip-path: polygon(
+      5% 10%,
+      30% 5%,
+      35% 25%,
+      15% 30%,
+      60% 0%,
+      90% 10%,
+      85% 35%,
+      55% 30%,
+      20% 45%,
+      45% 40%,
+      50% 65%,
+      25% 70%,
+      55% 50%,
+      80% 45%,
+      85% 70%,
+      60% 75%,
+      10% 80%,
+      35% 75%,
+      40% 100%,
+      5% 95%,
+      50% 80%,
+      75% 85%,
+      70% 100%,
+      55% 95%
+    );
+  }
+  16.5% {
+    opacity: 0.7;
+    transform: scaleX(-1) translateX(2px) skewX(10deg);
+    filter: blur(1px) invert(0.3);
+    text-shadow:
+      -2px 0 #ff3333,
+      2px 0 #33ff33;
+    clip-path: none;
+  }
+  17% {
+    opacity: 0.1;
+    transform: scaleX(-1);
+    filter: none;
+    text-shadow: none;
+    clip-path: none;
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes letterScanSweep {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes longHoverGlitch {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  20% {
+    opacity: 1;
+    transform: translateX(4px);
+    filter: blur(1px);
+  }
+  40% {
+    opacity: 0.8;
+    transform: translateX(-6px);
+    filter: blur(2px);
+  }
+  60% {
+    opacity: 0.6;
+    transform: translateX(8px);
+    clip-path: polygon(0 30%, 100% 20%, 100% 50%, 0 60%);
+  }
+  80% {
+    opacity: 0.3;
+    transform: translateX(-2px);
+    filter: blur(3px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+}
+
+@keyframes longHoverGlitchFlip {
+  0% {
+    opacity: 0;
+    transform: scaleX(-1) translateX(0);
+  }
+  20% {
+    opacity: 1;
+    transform: scaleX(-1) translateX(4px);
+    filter: blur(1px);
+  }
+  40% {
+    opacity: 0.8;
+    transform: scaleX(-1) translateX(-6px);
+    filter: blur(2px);
+  }
+  60% {
+    opacity: 0.6;
+    transform: scaleX(-1) translateX(8px);
+  }
+  80% {
+    opacity: 0.3;
+    transform: scaleX(-1) translateX(-2px);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleX(-1) translateX(0);
+  }
+}

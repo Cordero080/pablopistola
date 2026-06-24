@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G4CML32H7J"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-G4CML32H7J");
+    </script>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Pablo Cordero | Enter</title>
+    <meta
+      name="description"
+      content="Enter the interactive portfolio of Pablo Cordero, showcasing full-stack software engineering, creative technology, and immersive web projects."
+    />
+    <meta name="robots" content="noindex,follow" />
+    <link rel="canonical" href="https://pvblocordero.com/home" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Pablo Pistola" />
+    <meta property="og:title" content="Pablo Cordero | Enter" />
+    <meta
+      property="og:description"
+      content="Enter the interactive portfolio of Pablo Cordero, showcasing full-stack software engineering, creative technology, and immersive web projects."
+    />
+    <meta property="og:url" content="https://pvblocordero.com/" />
+    <meta property="og:image" content="/images/projects/transcendence.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Pablo Cordero | Enter" />
+    <meta
+      name="twitter:description"
+      content="Enter the interactive portfolio of Pablo Cordero, showcasing full-stack software engineering, creative technology, and immersive web projects."
+    />
+    <meta name="twitter:image" content="/images/projects/transcendence.webp" />
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#00fff7" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucент"
+    />
+    <meta name="apple-mobile-web-app-title" content="Pablo Cordero" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/icons/icon-192.png"
+    />
+    <link rel="manifest" href="/manifest.json" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Audiowide&family=Inter:wght@300;400;500&family=Orbitron:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="https://use.typekit.net/bcf3pbe.css" />
+    <link rel="prefetch" href="/home" />
+    <link rel="stylesheet" href="/src/pages/landing/landing.css" />
+    <script src="/src/js/utils/analytics.js" defer></script>
+    <script src="/src/js/utils/serviceWorker.js" defer></script>
+  </head>
+  <body>
+    <canvas id="waves"></canvas>
+
+    <div class="landing-container"></div>
+
+    <!-- Curtain reveal overlay -->
+    <div class="curtain-overlay" id="curtainOverlay"></div>
+
+    <div class="enter-identity" aria-hidden="true">
+      <h1 class="enter-identity-title" id="landingTitle"></h1>
+      <p class="enter-identity-subtitle">
+        FULL-STACK SOFTWARE ENGINEER · AI SYSTEMS & LLM ARCHITECTURE
+      </p>
+    </div>
+
+    <div class="enter-btn" id="enterBtn">
+      <div class="enter-btn__accent enter-btn__accent--left"></div>
+      <div class="enter-btn__center">
+        <span
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            style="display: block; margin: 0 auto; position: relative; top: 2px"
+          >
+            <defs>
+              <linearGradient id="pwrGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#c040ff" />
+                <stop offset="50%" stop-color="#4080ff" />
+                <stop offset="100%" stop-color="#00e5ff" />
+              </linearGradient>
+            </defs>
+            <path
+              fill="url(#pwrGrad)"
+              d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"
+            /></svg
+        ></span>
+      </div>
+      <div class="enter-btn__accent enter-btn__accent--right"></div>
+    </div>
+
+    <script
+      type="module"
+      src="/src/pages/landing/scripts/rubix/index.js"
+    ></script>
+    <script src="/src/shared/effects/sineWave.js"></script>
+    <script src="/src/shared/effects/landingSineWave.js"></script>
+    <script src="/src/pages/landing/scripts/glitch.js" defer></script>
+    <script src="/src/pages/landing/scripts/index.js" defer></script>
+  </body>
+</html>

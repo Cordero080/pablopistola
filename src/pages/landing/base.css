@@ -1,0 +1,75 @@
+@import url("https://use.typekit.net/fpe8zfm.css");
+@import url("https://use.typekit.net/pnd4foc.css");
+
+@font-face {
+  font-family: "Future Z";
+  src: url("/fonts/Future%20Z.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --font-display: "Orbitron", sans-serif;
+  --text-primary: #fffdfd;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(5, 5, 15, 1) 0%,
+      rgba(15, 15, 30, 1) 50%,
+      rgba(5, 5, 15, 1) 100%
+    ),
+    linear-gradient(
+      45deg,
+      rgba(100, 100, 255, 0.08) 0%,
+      rgba(255, 0, 255, 0.05) 25%,
+      rgba(0, 255, 255, 0.05) 50%,
+      rgba(255, 100, 255, 0.08) 75%,
+      rgba(100, 100, 255, 0.08) 100%
+    );
+  background-size:
+    100% 100%,
+    400% 400%;
+  animation: holographicShift 15s ease infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: var(--font-display);
+}
+
+@keyframes holographicShift {
+  0%,
+  100% {
+    background-position:
+      0% 50%,
+      0% 50%;
+  }
+  50% {
+    background-position:
+      100% 50%,
+      100% 50%;
+  }
+}
+
+/* Sine wave canvas background */
+#waves {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  touch-action: none; /* Prevent touch interference */
+  opacity: 0.38;
+}

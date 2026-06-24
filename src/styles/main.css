@@ -1,34 +1,33 @@
 /**
  * main.css
- * Master stylesheet that imports all modular CSS files in the correct order
- * 
+ * Global stylesheet — shared across all pages.
+ * Page-specific CSS (hero, bento, skills, etc.) is imported directly by each page's HTML.
+ *
  * STRUCTURE:
- * 1. Design tokens (colors, fonts, spacing, variables)
+ * 1. Variables (colors, fonts, spacing)
  * 2. Base styles (body, html, scrollbar, parallax)
- * 3. Page components (loader, hero, cursor, glitch, waves)
- * 4. Navigation (side nav, hamburger, audio toggle)
- * 5. Content sections (bento grid, contact)
- * 6. Utilities (accessibility, spacebar prompt)
+ * 3. Shared components (loader, cursor, glitch, waves)
+ * 4. Navigation
+ * 5. Contact section
+ * 6. Utilities
  */
 
-/* === DESIGN TOKENS === */
-@import url("./tokens.css");
+/* === VARIABLES === */
+@import url("./variables.css");
 
 /* === BASE === */
 @import url("./base/base.css");
 
-/* === PAGE COMPONENTS === */
-@import url("./components/loader.css");
-@import url("./pages/home/hero.css");
-@import url("./components/cursor.css");
+/* === SHARED COMPONENTS === */
+@import url("../shared/loader/loader.css");
+@import url("../shared/cursor/cursor.css");
 @import url("./effects/glitch.css");
-@import url("./effects/waves.css");
+@import url("../shared/effects/waves.css");
 
 /* === NAVIGATION === */
-@import url("./components/navigation.css");
+@import url("../shared/nav/navigation.css");
 
-/* === CONTENT SECTIONS === */
-@import url("./components/bento.css");
+/* === CONTACT === */
 @import url("./components/contact.css");
 
 /* === UTILITIES === */

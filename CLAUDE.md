@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Architecture
+
+The `front-end-architecture` skill is always active for this project. Apply it whenever placing any file — page, script, stylesheet, or shared utility. See `~/.claude/skills/front-end-architecture/SKILL.md` for the zone rules and decision formula.
+
 ## Commands
 
 ```bash
