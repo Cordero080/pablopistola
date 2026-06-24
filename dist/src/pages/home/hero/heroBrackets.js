@@ -140,12 +140,15 @@ if (heroSection && window.innerWidth > 600) {
 
     // ── Vertical position — anchored to hero title center ──────────────────
     // Derived from the title's actual DOM position so edits elsewhere never shift brackets.
+    // FULL SCREEN
     const heroRect = heroSection.getBoundingClientRect();
     const titleRect = heroTitle ? heroTitle.getBoundingClientRect() : null;
     const titleCenterPx = titleRect
       ? titleRect.top - heroRect.top + titleRect.height / 2
       : H / 2;
-    const bracketY = (H / 2 - titleCenterPx) * pxToWorld;
+    const bracketY =
+      (H / 2 - titleCenterPx) * pxToWorld +
+      (W > 1000 ? 0.55 : W > 900 ? 0.55 : 0);
     leftBracket.position.y = bracketY;
     rightBracket.position.y = bracketY;
     rightBracket.position.z = -0.23;

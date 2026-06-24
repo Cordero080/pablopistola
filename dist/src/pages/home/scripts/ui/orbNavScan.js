@@ -5,8 +5,8 @@
 
 (function () {
   const DELAY_MS = 10000; // when the sequence first triggers
-  const STEP_MS = 450; // delay between each icon
-  const HOLD_MS = 700; // how long each icon stays highlighted
+  const STEP_MS = 100; // delay between each icon
+  const HOLD_MS = 250; // how long each icon stays highlighted
   const REPEAT_MS = 50000; // repeat interval (0 = once only)
 
   const links = Array.from(document.querySelectorAll(".side-nav-link"));
