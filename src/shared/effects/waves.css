@@ -13,7 +13,7 @@
   z-index: 1;
   pointer-events: none;
   touch-action: none; /* Prevent touch interference */
-  opacity: 0.55;
+  opacity: 0.45;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }

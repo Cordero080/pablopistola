@@ -25,7 +25,7 @@
   animation: letterFadeInGlitch 7s linear forwards;
   position: relative;
   /* Silver metallic gradient — one letter at a time */
-  background: linear-gradient(180deg, #ffffff 30%, #b8c8d4 100%);
+  background: linear-gradient(180deg, #f8eff2 30%, #b8c8d4 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

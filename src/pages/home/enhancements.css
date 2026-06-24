@@ -50,6 +50,17 @@
   }
 }
 
+@media (min-width: 1000px) {
+  .marquee-belt {
+    padding: 1.6rem 0;
+    margin: 5rem 0 3.5rem;
+  }
+  .marquee-content {
+    font-size: 0.85rem;
+    letter-spacing: 0.32em;
+  }
+}
+
 /* ── Card tilt ── */
 /* transform + transition are set dynamically by cardTilt.js per mouse event */
 .project-card-link {

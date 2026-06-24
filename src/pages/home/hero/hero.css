@@ -17,6 +17,19 @@
   z-index: 2;
   overflow: visible;
 }
+
+@media (min-width: 1000px) {
+  .hero-section {
+    padding-top: 13vh;
+    margin-bottom: 2rem;
+  }
+  .hero-content {
+    max-width: 900px;
+  }
+  .home-bio {
+    max-width: 680px;
+  }
+}
 .hero-bg-glow {
   position: absolute;
   top: 0;

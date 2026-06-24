@@ -58,12 +58,21 @@ export default defineConfig({
     react(),
     copyJsPlugin(),
     {
-      name: "landing-dev-rewrite",
+      name: "dev-rewrites",
       configureServer(server) {
         server.middlewares.use((req, _res, next) => {
-          if (req.url === "/" || req.url === "/index.html") {
-            req.url = "/src/pages/landing/index.html";
-          }
+          const rewrites = {
+            "/": "/src/pages/landing/index.html",
+            "/index.html": "/src/pages/landing/index.html",
+            "/home": "/src/pages/home/index.html",
+            "/about": "/src/pages/about/index.html",
+            "/resume": "/src/pages/resume/index.html",
+            "/skills": "/src/pages/skills/index.html",
+            "/art": "/src/pages/art/index.html",
+            "/lab": "/src/pages/lab/index.html",
+          };
+          const base = req.url.split("?")[0];
+          if (rewrites[base]) req.url = rewrites[base];
           next();
         });
       },

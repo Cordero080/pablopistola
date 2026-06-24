@@ -19,7 +19,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.setClearColor(0x000000, 0);
 
 export const scene = new THREE.Scene();
-export const camera = new THREE.PerspectiveCamera(100, 1, 0.5, 100);
+export const camera = new THREE.PerspectiveCamera(92, 1, 0.5, 100);
 camera.position.z = 4;
 
 scene.add(new THREE.AmbientLight(0xffffff, 0.2));

@@ -13,7 +13,7 @@ import {
 } from "./config.js";
 
 const cubeSize = window.innerWidth <= 600 ? 2 * 1.1 : 3.0;
-const grid = 23;
+const grid = 13;
 const panelSz = (cubeSize / grid) * 0.98;
 const off = cubeSize / 2;
 export const waveAmp = cubeSize * WAVE_AMPLITUDE;
@@ -78,7 +78,7 @@ faces.forEach((face, fi) => {
         color: new THREE.Color(PANEL_COLOR),
         emissive: new THREE.Color(PANEL_EMISSIVE),
         emissiveIntensity: 0.2,
-        metalness: 0.45,
+        metalness: 0.95,
         roughness: 0.35,
         iridescence: 0.5,
         iridescenceIOR: 1.8,

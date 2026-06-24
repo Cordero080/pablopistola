@@ -98,7 +98,7 @@ export const FACE_HUE_OFFSETS = [0, 3.5, 1.0, 1.5, 2.2, 2.8];
 // ║  MORPH_CYCLE is calculated automatically — don't edit it directly.       ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
-export const CUBE_HOLD = 0.9; // seconds showing flat panels
+export const CUBE_HOLD = 2; // seconds showing flat panels
 export const MORPH_DUR = 4; // seconds for the morph transition
 export const SPHERE_HOLD = 3; // seconds showing sphere orbs
 

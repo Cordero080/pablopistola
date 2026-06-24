@@ -13,6 +13,23 @@
   counter-reset: project-counter;
 }
 
+@media (min-width: 1000px) {
+  .projects-section {
+    padding: 5rem 5rem 10rem;
+    max-width: 1500px;
+  }
+  .project-row {
+    gap: 5rem;
+    padding: 4rem 0;
+  }
+  .project-card-info {
+    padding-left: 3.5rem;
+  }
+  .project-row--right .project-card-info {
+    padding-right: 3.5rem;
+  }
+}
+
 /* Full-width glass panel behind the projects content */
 .projects-section::before {
   content: "";
