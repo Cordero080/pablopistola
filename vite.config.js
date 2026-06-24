@@ -1,7 +1,13 @@
 import { defineConfig } from "vite";
 import { resolve } from "path";
 import { globSync } from "glob";
-import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from "fs";
+import {
+  copyFileSync,
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  writeFileSync,
+} from "fs";
 import react from "@vitejs/plugin-react";
 
 // Find all HTML files: root (index.html + misc), src/pages/**, and projects/**
@@ -47,6 +53,25 @@ function copyJsPlugin() {
       console.log(
         `Copied ${jsCount} from src/js, ${sharedCount} from src/shared, ${pagesCount} from src/pages (MCP_URL: ${mcpUrl})`,
       );
+
+      // Copy page HTML files to flat root paths so Vercel cleanUrls can serve
+      // /home → dist/home.html without needing custom rewrites.
+      const pageMap = {
+        "dist/src/pages/landing/index.html": "dist/index.html",
+        "dist/src/pages/home/index.html": "dist/home.html",
+        "dist/src/pages/about/index.html": "dist/about.html",
+        "dist/src/pages/resume/index.html": "dist/resume.html",
+        "dist/src/pages/skills/index.html": "dist/skills.html",
+        "dist/src/pages/art/index.html": "dist/art.html",
+        "dist/src/pages/lab/index.html": "dist/lab.html",
+        "dist/src/pages/404/index.html": "dist/404.html",
+      };
+      for (const [src, dest] of Object.entries(pageMap)) {
+        const srcPath = resolve(__dirname, src);
+        const destPath = resolve(__dirname, dest);
+        if (existsSync(srcPath)) copyFileSync(srcPath, destPath);
+      }
+      console.log("Copied page HTML files to dist root for clean URL routing.");
     },
   };
 }

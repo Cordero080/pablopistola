@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-ZL1CZZKRKD"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-ZL1CZZKRKD");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume | Pablo Cordero</title>
+    <meta
+      name="description"
+      content="View Pablo Cordero's resume with software engineering experience, technical skills, project highlights, and professional background."
+    />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://pvblocordero.com/resume" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Pablo Pistola" />
+    <meta property="og:title" content="Resume | Pablo Cordero" />
+    <meta
+      property="og:description"
+      content="View Pablo Cordero's resume with software engineering experience, technical skills, project highlights, and professional background."
+    />
+    <meta property="og:url" content="https://pvblocordero.com/resume" />
+    <meta property="og:image" content="/images/projects/transcendence.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Resume | Pablo Cordero" />
+    <meta
+      name="twitter:description"
+      content="View Pablo Cordero's resume with software engineering experience, technical skills, project highlights, and professional background."
+    />
+    <meta name="twitter:image" content="/images/projects/transcendence.webp" />
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/icons/icon-192.png"
+    />
+    <!-- Thornwood font from Adobe -->
+    <link rel="stylesheet" href="https://use.typekit.net/fpe8zfm.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="/src/shared/effects/sineWave.js" defer></script>
+    <script src="/src/shared/effects/innerSineWave.js" defer></script>
+    <script src="/src/js/utils/analytics.js" defer></script>
+    <link rel="stylesheet" crossorigin href="/assets/main-C74O945K.css">
+    <link rel="stylesheet" crossorigin href="/assets/project-Iu9o7pDT.css">
+    <link rel="stylesheet" crossorigin href="/assets/about-DoUB7iMx.css">
+  </head>
+  <body>
+    <canvas id="waves"></canvas>
+
+    <!-- Side Navigation -->
+    <nav class="side-nav" role="navigation" aria-label="Main navigation">
+      <div class="side-nav-logo">
+        <span class="logo-text" data-text="PC">PC</span>
+      </div>
+      <div class="side-nav-links">
+        <a class="side-nav-link" href="/home" aria-label="Home">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          <span class="nav-label">Home</span>
+        </a>
+        <a class="side-nav-link" href="/about" aria-label="About">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <span class="nav-label">About</span>
+        </a>
+        <a class="side-nav-link" href="/home#projects" aria-label="Projects">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+          </svg>
+          <span class="nav-label">Projects</span>
+        </a>
+        <a class="side-nav-link" href="/skills" aria-label="Skills">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+          </svg>
+          <span class="nav-label">Skills</span>
+        </a>
+        <a class="side-nav-link" href="/lab" aria-label="Lab">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M9 3h6M9 3v6.5L5 18a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1l-4-8.5V3"
+            />
+            <path d="M7.5 14h9" />
+          </svg>
+          <span class="nav-label">Lab</span>
+        </a>
+        <a class="side-nav-link" href="/home#contact" aria-label="Contact">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          <span class="nav-label">Contact</span>
+        </a>
+        <a class="side-nav-link active" href="/resume" aria-label="Resume">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+          </svg>
+          <span class="nav-label">Resume</span>
+        </a>
+      </div>
+      <a
+        class="side-nav-link exit-link"
+        href="/?stay"
+        aria-label="Exit to Landing"
+      >
+        <svg
+          class="nav-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+          <polyline points="16 17 21 12 16 7" />
+          <line x1="21" y1="12" x2="9" y2="12" />
+        </svg>
+        <span class="nav-label">Exit</span>
+      </a>
+      <div class="side-nav-glow"></div>
+    </nav>
+
+    <!-- Mobile Hamburger Button -->
+    <button
+      class="hamburger-btn"
+      id="hamburgerBtn"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <div class="hamburger-icon">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </div>
+    </button>
+
+    <main class="project-page">
+      <!-- Hero Section -->
+      <section class="project-hero">
+        <div class="project-hero-content">
+          <a href="/home" class="back-link">← Back to Home</a>
+          <h1 class="about-title">Resume</h1>
+          <p class="about-name">Pablo Cordero</p>
+          <p class="project-tagline">
+            Full-Stack Software Engineer · AI Systems & LLM Architecture
+          </p>
+          <div class="project-links" style="margin-top: 1.5rem">
+            <a
+              href="https://drive.google.com/file/d/1cgm0oYXitd7kRN9Bpp05rwXUUWGCuXot/view?usp=sharing"
+              target="_blank"
+              class="hero-cta"
+              >[ VIEW PDF ]</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Resume Content -->
+      <div class="about-content">
+        <!-- Profile Section -->
+        <section class="about-section">
+          <h2>Profile</h2>
+          <p>
+            Full-Stack Software Engineer with production experience building
+            compound AI systems and AI-integrated web applications for clients.
+            Combines strong front-end craft (React, Three.js, SCSS design
+            systems) with backend architecture (Django, Node.js, PostgreSQL) and
+            hands-on AI systems work including RAG pipelines, agentic control
+            logic, semantic routing, and LLM orchestration. Seeking a full-stack
+            or AI engineering role where I can ship at a high pace in a
+            collaborative environment.
+          </p>
+        </section>
+
+        <!-- Technical Skills Section -->
+        <section class="about-section">
+          <h2>Technical Skills</h2>
+          <ul class="evolution-list">
+            <li>
+              <strong>Languages & Frameworks:</strong> JavaScript (ES6+),
+              Python, React, Django, Node.js, Express.js
+            </li>
+            <li>
+              <strong>AI & Data:</strong> Anthropic Claude API, OpenAI API,
+              Model Context Protocol (MCP), RAG Pipelines, Agentic Control
+              Logic, Vector Embeddings, Cosine Similarity, MongoDB, PostgreSQL
+            </li>
+            <li>
+              <strong>3D & Creative:</strong> Three.js, React Three Fiber,
+              Blender, GLSL Shaders, Web Audio API
+            </li>
+            <li>
+              <strong>Backend & Infrastructure:</strong> RESTful APIs, Django
+              REST Framework, JWT Auth, WebSockets, Vercel, Render, CI/CD
+            </li>
+            <li>
+              <strong>Development:</strong> Git, Vite, SCSS, Jest, Responsive
+              Design, Mobile-First Architecture
+            </li>
+          </ul>
+        </section>
+
+        <!-- Certifications Section -->
+        <section class="about-section">
+          <h2>Certifications</h2>
+          <ul class="evolution-list">
+            <li>
+              <strong>Generative AI in Software Development</strong>, IBM /
+              Coursera — 2026
+            </li>
+            <li>
+              <strong>MCP Advanced Topics</strong>, Anthropic Academy — 2026
+            </li>
+            <li>
+              <strong>Introduction to MCP</strong>, Anthropic Academy — 2026
+            </li>
+            <li>
+              <strong>AI Fluency: Framework & Foundations</strong>, Anthropic
+              Academy — 2026
+            </li>
+            <li>
+              <strong>Building with the Claude API</strong>, Anthropic Academy —
+              2026
+            </li>
+            <li>
+              <strong>Claude Code in Action</strong>, Anthropic Academy — 2026
+            </li>
+            <li><strong>Claude 101</strong>, Anthropic Academy — 2026</li>
+          </ul>
+        </section>
+
+        <!-- Featured Projects Section -->
+        <section class="about-section">
+          <h2>Featured Projects</h2>
+
+          <div class="project-highlight">
+            <h3>Pneuma-AI — Multi-LLM Compound AI System</h3>
+            <p class="project-stack">
+              Node.js • React • Claude API • OpenAI Embeddings • Hume AI
+            </p>
+            <p>
+              Multi-LLM compound AI system — LLMs call other LLMs as tools. Four
+              model calls per response within a single agentic pipeline,
+              organized around a cognitive architecture rather than a prompt
+              template
+            </p>
+            <ul class="project-bullets">
+              <li>
+                Multi-LLM architecture: intent scoring (Claude), archetype
+                routing (OpenAI embeddings), emotion detection (Hume AI), and
+                generation (Claude) — four separate model calls, LLMs acting as
+                tools within the orchestration layer
+              </li>
+              <li>
+                Semantic archetype routing (cosine similarity over 43
+                embeddings) + momentum weighting + fusion history — agentic path
+                selection, not hardcoded dispatch
+              </li>
+              <li>
+                Agentic RAG: 1,385 passages across 43 thinker knowledge bases;
+                semantic routing decides which source to query based on input —
+                parallel concept×thinker queries across ~60 philosophical
+                dimensions, with fallback handling for out-of-scope inputs
+              </li>
+              <li>
+                Dialectical synthesis engine — 1,764 pre-mapped archetype
+                tension pairs; antithetical, complementary, and cross-domain
+                collision modes
+              </li>
+            </ul>
+          </div>
+
+          <div class="project-highlight">
+            <h3>La Dolce Vita — Full-Stack AI Hospitality Platform</h3>
+            <p class="project-stack">React • Node.js • OpenAI API</p>
+            <p>
+              Production web app for a luxury Dominican Republic villa with
+              AI-powered guest concierge
+            </p>
+            <ul class="project-bullets">
+              <li>
+                Built embedded AI chat widget powered by GPT-4o with dynamic
+                system prompts injecting live property data and calendar
+                availability at request time
+              </li>
+              <li>
+                Integrated Airbnb iCal feed parsed server-side for real-time
+                booking awareness in both UI and AI context
+              </li>
+              <li>
+                Connected Google Sheets API for client-editable property content
+                without code changes
+              </li>
+            </ul>
+          </div>
+
+          <div class="project-highlight">
+            <h3>Pneumata — Lead Developer</h3>
+            <p class="project-stack">Three.js • React • Blender</p>
+            <p>
+              Interactive 3D human anatomy visualization mapping biological
+              systems to computer architecture
+            </p>
+            <ul class="project-bullets">
+              <li>
+                Built 37+ navigable organ nodes with bidirectional
+                spine-to-organ hover highlighting and color-coded system
+                categories
+              </li>
+              <li>
+                Implemented physiological Breathing Mode with real-time 1:4
+                breath-to-heartbeat animation ratio
+              </li>
+              <li>
+                Engineered spinal cord auto-trace via GLB armature sampling with
+                24 vertebral discs color-coded by innervated organ system
+              </li>
+            </ul>
+          </div>
+
+          <div class="project-highlight">
+            <h3>NUMENEON — Full-Stack Engineer & UI Lead</h3>
+            <p class="project-stack">React • Django • PostgreSQL</p>
+            <p>
+              Cyberpunk social media platform — 5-person team capstone (800+
+              GitHub clones)
+            </p>
+            <ul class="project-bullets">
+              <li>
+                Led architecture and UI strategy; defined product roadmap and
+                sized tasks across XL/L/M/S tiers
+              </li>
+              <li>
+                Built 3-column River Timeline with real-time post rendering and
+                glassmorphic SCSS design system
+              </li>
+            </ul>
+          </div>
+
+          <div class="project-highlight">
+            <h3>Xenochi — Lead Developer</h3>
+            <p class="project-stack">Three.js • React Three Fiber • Blender</p>
+            <ul class="project-bullets">
+              <li>
+                Tamagotchi-inspired 3D evolution sim with full Blender → FBX →
+                Three.js animation pipeline (32 rigged animations)
+              </li>
+              <li>
+                Built game state machine with stat decay, evolution triggers,
+                and care-cycle progression across 5 stages
+              </li>
+              <li>
+                Created hidden Battle Arena using React Three Fiber with 4
+                interactive 3D scenes and GLSL shader effects
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Professional Experience Section -->
+        <section class="about-section">
+          <h2>Professional Experience</h2>
+          <ul class="evolution-list">
+            <li>
+              <strong>Independent Software Consultant</strong> — Self-Employed
+              <span class="date-range">2025–Present</span>
+              <br />
+              <span class="experience-detail"
+                >Scoping, building, and shipping production AI and full-stack
+                systems for clients end-to-end</span
+              >
+            </li>
+            <li>
+              <strong>Martial Arts Instructor</strong> — Traditional Okinawan
+              Martial Arts
+              <span class="date-range">2018–Present</span>
+              <br />
+              <span class="experience-detail"
+                >3rd-degree black belt; developed curriculum roadmaps and
+                student progression systems</span
+              >
+            </li>
+            <li>
+              <strong>Visual Artist</strong> — Independent
+              <span class="date-range">2006–2024</span>
+              <br />
+              <span class="experience-detail"
+                >Commission painting, fine art restoration, gallery hosting, and
+                digital art</span
+              >
+            </li>
+            <li>
+              <strong>Legal Interpreter (Spanish)</strong> — NY Public School
+              System / USCIS
+              <span class="date-range">2005–2024</span>
+              <br />
+              <span class="experience-detail"
+                >High-stakes simultaneous translation for legal proceedings and
+                educational settings</span
+              >
+            </li>
+          </ul>
+        </section>
+
+        <!-- Education Section -->
+        <section class="about-section">
+          <h2>Education</h2>
+          <ul class="evolution-list">
+            <li>
+              <strong>General Assembly</strong> — Software Engineering Immersive
+              (95.8%)
+              <span class="date-range">Feb 2026</span>
+            </li>
+            <li>
+              <strong>Fashion Institute of Technology</strong> — Humanities &
+              Fine Arts
+              <span class="date-range">2006–2008</span>
+            </li>
+            <li>
+              <strong>Art Students League</strong> — Classical Realism & Anatomy
+              <span class="date-range">2006–2020</span>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Additional Section -->
+        <section class="about-section">
+          <h2>Additional</h2>
+          <p>
+            3,000+ GitHub contributions across 10+ shipped projects • Bilingual
+            English/Spanish (Professional) • 20+ Years Martial Arts (Goju-Ryu
+            Lineage) • Classical Oil Painting • Guitar & Bass
+          </p>
+        </section>
+      </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="/src/shared/nav/hamburger.js" defer></script>
+    <script src="/src/shared/cursor/cursor.js" defer></script>
+    <script src="/src/shared/effects/orb.js" defer></script>
+  </body>
+</html>
