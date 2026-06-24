@@ -1,0 +1,1089 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-ZL1CZZKRKD"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-ZL1CZZKRKD");
+    </script>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Art Gallery | Pablo Pistola</title>
+    <meta
+      name="description"
+      content="Browse Pablo Pistola's digital art gallery featuring experimental visual work, generative aesthetics, and creative coding explorations."
+    />
+    <meta name="robots" content="noindex,nofollow" />
+    <link rel="canonical" href="https://pvblocordero.com/art" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Pablo Pistola" />
+    <meta property="og:title" content="Art Gallery | Pablo Pistola" />
+    <meta
+      property="og:description"
+      content="Browse Pablo Pistola's digital art gallery featuring experimental visual work, generative aesthetics, and creative coding explorations."
+    />
+    <meta property="og:url" content="https://pvblocordero.com/art" />
+    <meta property="og:image" content="/images/projects/transcendence.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Art Gallery | Pablo Pistola" />
+    <meta
+      name="twitter:description"
+      content="Browse Pablo Pistola's digital art gallery featuring experimental visual work, generative aesthetics, and creative coding explorations."
+    />
+    <meta name="twitter:image" content="/images/projects/transcendence.webp" />
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/icons/icon-192.webp"
+    />
+    <link rel="stylesheet" crossorigin href="/assets/index-dAe16crh.css">
+    <link rel="stylesheet" crossorigin href="/assets/main-DtFcTsp0.css">
+    <link rel="stylesheet" crossorigin href="/assets/typography-BCVjiliM.css">
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Sine Wave Canvas -->
+    <canvas id="waves"></canvas>
+
+    <!-- Parallax Background -->
+    <div class="parallax-bg-overlay" aria-hidden="true">
+      <div class="parallax-ellipse"></div>
+    </div>
+
+    <!-- Side Navigation -->
+    <nav class="side-nav" role="navigation" aria-label="Main navigation">
+      <div class="side-nav-logo">
+        <span class="logo-text" data-text="PC">PC</span>
+      </div>
+      <div class="side-nav-links">
+        <a class="side-nav-link" href="/home" aria-label="Home">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          <span class="nav-label">Home</span>
+        </a>
+        <a class="side-nav-link" href="/about" aria-label="About">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <span class="nav-label">About</span>
+        </a>
+        <a class="side-nav-link" href="/home#projects" aria-label="Projects">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+          </svg>
+          <span class="nav-label">Projects</span>
+        </a>
+        <a class="side-nav-link" href="/skills" aria-label="Skills">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+          </svg>
+          <span class="nav-label">Skills</span>
+        </a>
+        <a
+          class="side-nav-link"
+          href="/art"
+          aria-label="Art"
+          style="display: none"
+        >
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+            <path
+              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"
+            />
+          </svg>
+          <span class="nav-label">Art</span>
+        </a>
+        <a class="side-nav-link" href="/lab" aria-label="Lab">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M9 3h6M9 3v6.5L5 18a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1l-4-8.5V3"
+            />
+            <path d="M7.5 14h9" />
+          </svg>
+          <span class="nav-label">Lab</span>
+        </a>
+        <a class="side-nav-link" href="/home#contact" aria-label="Contact">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          <span class="nav-label">Contact</span>
+        </a>
+        <a class="side-nav-link" href="/resume" aria-label="Resume">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+          </svg>
+          <span class="nav-label">Resume</span>
+        </a>
+      </div>
+      <a
+        class="side-nav-link exit-link"
+        href="/?stay"
+        aria-label="Zen Mode - Waves"
+      >
+        <svg
+          class="nav-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M2 12c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+          <path d="M2 6c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+          <path d="M2 18c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+        </svg>
+      </a>
+      <div class="side-nav-glow"></div>
+    </nav>
+
+    <!-- Mobile Hamburger Button -->
+    <button
+      class="hamburger-btn"
+      id="hamburgerBtn"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <div class="hamburger-icon">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </div>
+    </button>
+
+    <main id="main-content" class="gallery-container" role="main">
+      <header class="gallery-header">
+        <h1 class="gallery-title">Art Gallery</h1>
+        <p class="gallery-subtitle">
+          A collection of digital creations and AI-assisted explorations
+        </p>
+      </header>
+
+      <!-- ==================== DIGITAL ART ==================== -->
+
+      <!-- Digital: Glitch -->
+      <section class="gallery-section" aria-labelledby="digital-glitch-heading">
+        <h2 id="digital-glitch-heading" class="section-title">
+          Digital — Glitch
+        </h2>
+        <div
+          class="gallery-slider"
+          role="region"
+          aria-label="Digital glitch art"
+        >
+          <div class="gallery-track">
+            <figure class="gallery-item" data-category="digital-glitch">
+              <img
+                src="/images/art-optimized/digital/glitch/Bipolar-invert.webp"
+                alt="Bipolar Invert"
+                loading="lazy"
+              />
+              <figcaption>Bipolar Invert</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-glitch">
+              <img
+                src="/images/art-optimized/digital/glitch/Bipolar-pink.webp"
+                alt="Bipolar Pink"
+                loading="lazy"
+              />
+              <figcaption>Bipolar Pink</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-glitch">
+              <img
+                src="/images/art-optimized/digital/glitch/Bipolar-teal.webp"
+                alt="Bipolar Teal"
+                loading="lazy"
+              />
+              <figcaption>Bipolar Teal</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-glitch">
+              <img
+                src="/images/art-optimized/digital/glitch/Colors-4.8.1.webp"
+                alt="Colors 4.8.1"
+                loading="lazy"
+              />
+              <figcaption>Colors 4.8.1</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-glitch">
+              <img
+                src="/images/art-optimized/digital/glitch/Colors-magenta.webp"
+                alt="Colors Magenta"
+                loading="lazy"
+              />
+              <figcaption>Colors Magenta</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-glitch">
+              <img
+                src="/images/art-optimized/digital/glitch/colors-genesis.webp"
+                alt="Colors Genesis"
+                loading="lazy"
+              />
+              <figcaption>Colors Genesis</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-glitch">
+              <img
+                src="/images/art-optimized/digital/glitch/Coloroffset.webp"
+                alt="Color Offset"
+                loading="lazy"
+              />
+              <figcaption>Color Offset</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-glitch">
+              <img
+                src="/images/art-optimized/digital/glitch/chaos-glitch.webp"
+                alt="Chaos Glitch"
+                loading="lazy"
+              />
+              <figcaption>Chaos Glitch</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-glitch">
+              <img
+                src="/images/art-optimized/digital/glitch/horizontal-glitch.webp"
+                alt="Horizontal Glitch"
+                loading="lazy"
+              />
+              <figcaption>Horizontal Glitch</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- Digital: Patterns -->
+      <section
+        class="gallery-section"
+        aria-labelledby="digital-patterns-heading"
+      >
+        <h2 id="digital-patterns-heading" class="section-title">
+          Digital — Patterns
+        </h2>
+        <div
+          class="gallery-slider"
+          role="region"
+          aria-label="Digital pattern art"
+        >
+          <div class="gallery-track">
+            <figure class="gallery-item" data-category="digital-patterns">
+              <img
+                src="/images/art-optimized/digital/patterns/triad.webp"
+                alt="Triad"
+                loading="lazy"
+              />
+              <figcaption>Triad</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-patterns">
+              <img
+                src="/images/art-optimized/digital/patterns/triad-2.webp"
+                alt="Triad II"
+                loading="lazy"
+              />
+              <figcaption>Triad II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-patterns">
+              <img
+                src="/images/art-optimized/digital/patterns/triad-3.webp"
+                alt="Triad III"
+                loading="lazy"
+              />
+              <figcaption>Triad III</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-patterns">
+              <img
+                src="/images/art-optimized/digital/patterns/triad-3-1.webp"
+                alt="Triad III-I"
+                loading="lazy"
+              />
+              <figcaption>Triad III-I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-patterns">
+              <img
+                src="/images/art-optimized/digital/patterns/trias-pattern.webp"
+                alt="Trias Pattern"
+                loading="lazy"
+              />
+              <figcaption>Trias Pattern</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-patterns">
+              <img
+                src="/images/art-optimized/digital/patterns/PEACOCK-warp.webp"
+                alt="Peacock Warp"
+                loading="lazy"
+              />
+              <figcaption>Peacock Warp</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- Digital: Figures & Paintings -->
+      <section
+        class="gallery-section"
+        aria-labelledby="digital-figures-heading"
+      >
+        <h2 id="digital-figures-heading" class="section-title">
+          Digital — Figures & Paintings
+        </h2>
+        <div
+          class="gallery-slider"
+          role="region"
+          aria-label="Digital figures and paintings"
+        >
+          <div class="gallery-track">
+            <figure class="gallery-item" data-category="digital-figures">
+              <img
+                src="/images/art-optimized/digital/figures/arthur.webp"
+                alt="Arthur"
+                loading="lazy"
+              />
+              <figcaption>Arthur</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-figures">
+              <img
+                src="/images/art-optimized/digital/figures/africa.webp"
+                alt="Africa"
+                loading="lazy"
+              />
+              <figcaption>Africa</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-figures">
+              <img
+                src="/images/art-optimized/digital/figures/Bud.webp"
+                alt="Bud"
+                loading="lazy"
+              />
+              <figcaption>Bud</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-figures">
+              <img
+                src="/images/art-optimized/digital/figures/Kayo.webp"
+                alt="Kayo"
+                loading="lazy"
+              />
+              <figcaption>Kayo</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-figures">
+              <img
+                src="/images/art-optimized/digital/figures/digital-01.webp"
+                alt="Digital Study I"
+                loading="lazy"
+              />
+              <figcaption>Digital Study I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-figures">
+              <img
+                src="/images/art-optimized/digital/figures/digital-02.webp"
+                alt="Digital Study II"
+                loading="lazy"
+              />
+              <figcaption>Digital Study II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-figures">
+              <img
+                src="/images/art-optimized/digital/figures/Cristobal.webp"
+                alt="Cristobal"
+                loading="lazy"
+              />
+              <figcaption>Cristobal</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="digital-figures">
+              <img
+                src="/images/art-optimized/digital/figures/Boseman.webp"
+                alt="Boseman"
+                loading="lazy"
+              />
+              <figcaption>Boseman</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== AI FUSION ==================== -->
+
+      <!-- AI Fusion: Characters -->
+      <section class="gallery-section" aria-labelledby="ai-characters-heading">
+        <h2 id="ai-characters-heading" class="section-title">
+          AI Fusion — Characters
+        </h2>
+        <div class="gallery-slider" role="region" aria-label="AI character art">
+          <div class="gallery-track">
+            <figure class="gallery-item" data-category="ai-characters">
+              <img
+                src="/images/art-optimized/ai-fusion/characters/ninja-01.webp"
+                alt="Ninja I"
+                loading="lazy"
+              />
+              <figcaption>Ninja I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-characters">
+              <img
+                src="/images/art-optimized/ai-fusion/characters/ninja-02.webp"
+                alt="Ninja II"
+                loading="lazy"
+              />
+              <figcaption>Ninja II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-characters">
+              <img
+                src="/images/art-optimized/ai-fusion/characters/ninja-03.webp"
+                alt="Ninja III"
+                loading="lazy"
+              />
+              <figcaption>Ninja III</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-characters">
+              <img
+                src="/images/art-optimized/ai-fusion/characters/ninja-04.webp"
+                alt="Ninja IV"
+                loading="lazy"
+              />
+              <figcaption>Ninja IV</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-characters">
+              <img
+                src="/images/art-optimized/ai-fusion/characters/spy-infiltrator-01.webp"
+                alt="Spy Infiltrator I"
+                loading="lazy"
+              />
+              <figcaption>Spy Infiltrator I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-characters">
+              <img
+                src="/images/art-optimized/ai-fusion/characters/spy-infiltrator-02.webp"
+                alt="Spy Infiltrator II"
+                loading="lazy"
+              />
+              <figcaption>Spy Infiltrator II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-characters">
+              <img
+                src="/images/art-optimized/ai-fusion/characters/spy-infiltrator-03.webp"
+                alt="Spy Infiltrator III"
+                loading="lazy"
+              />
+              <figcaption>Spy Infiltrator III</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-characters">
+              <img
+                src="/images/art-optimized/ai-fusion/characters/engineer-01.webp"
+                alt="Engineer I"
+                loading="lazy"
+              />
+              <figcaption>Engineer I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-characters">
+              <img
+                src="/images/art-optimized/ai-fusion/characters/engineer-02.webp"
+                alt="Engineer II"
+                loading="lazy"
+              />
+              <figcaption>Engineer II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-characters">
+              <img
+                src="/images/art-optimized/ai-fusion/characters/engineer-03.webp"
+                alt="Engineer III"
+                loading="lazy"
+              />
+              <figcaption>Engineer III</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-characters">
+              <img
+                src="/images/art-optimized/ai-fusion/characters/urban-scavenger-01.webp"
+                alt="Urban Scavenger I"
+                loading="lazy"
+              />
+              <figcaption>Urban Scavenger I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-characters">
+              <img
+                src="/images/art-optimized/ai-fusion/characters/urban-scavenger-02.webp"
+                alt="Urban Scavenger II"
+                loading="lazy"
+              />
+              <figcaption>Urban Scavenger II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-characters">
+              <img
+                src="/images/art-optimized/ai-fusion/characters/wilderness-tracker.webp"
+                alt="Wilderness Tracker"
+                loading="lazy"
+              />
+              <figcaption>Wilderness Tracker</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI Fusion: Portraits -->
+      <section class="gallery-section" aria-labelledby="ai-portraits-heading">
+        <h2 id="ai-portraits-heading" class="section-title">
+          AI Fusion — Portraits
+        </h2>
+        <div class="gallery-slider" role="region" aria-label="AI portrait art">
+          <div class="gallery-track">
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art-optimized/ai-fusion/portraits/Oracle.webp"
+                alt="Oracle"
+                loading="lazy"
+              />
+              <figcaption>Oracle</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art-optimized/ai-fusion/portraits/portrait-godlike.webp"
+                alt="Godlike"
+                loading="lazy"
+              />
+              <figcaption>Godlike</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art-optimized/ai-fusion/portraits/dual-eyes-01.webp"
+                alt="Dual Eyes I"
+                loading="lazy"
+              />
+              <figcaption>Dual Eyes I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art-optimized/ai-fusion/portraits/dual-eyes-02.webp"
+                alt="Dual Eyes II"
+                loading="lazy"
+              />
+              <figcaption>Dual Eyes II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art-optimized/ai-fusion/portraits/future-punk-01.webp"
+                alt="Future Punk I"
+                loading="lazy"
+              />
+              <figcaption>Future Punk I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art-optimized/ai-fusion/portraits/future-punk-02.webp"
+                alt="Future Punk II"
+                loading="lazy"
+              />
+              <figcaption>Future Punk II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art-optimized/ai-fusion/portraits/future-punk-03.webp"
+                alt="Future Punk III"
+                loading="lazy"
+              />
+              <figcaption>Future Punk III</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art-optimized/ai-fusion/portraits/punk-avatar.webp"
+                alt="Punk Avatar"
+                loading="lazy"
+              />
+              <figcaption>Punk Avatar</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art-optimized/ai-fusion/portraits/portrait-hyperreal-01.webp"
+                alt="Hyperreal I"
+                loading="lazy"
+              />
+              <figcaption>Hyperreal I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art-optimized/ai-fusion/portraits/portrait-hyperreal-02.webp"
+                alt="Hyperreal II"
+                loading="lazy"
+              />
+              <figcaption>Hyperreal II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art-optimized/ai-fusion/portraits/portrait-hyperreal-04.webp"
+                alt="Hyperreal IV"
+                loading="lazy"
+              />
+              <figcaption>Hyperreal IV</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art-optimized/ai-fusion/portraits/portrait-hyperreal-05.webp"
+                alt="Hyperreal V"
+                loading="lazy"
+              />
+              <figcaption>Hyperreal V</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art-optimized/ai-fusion/portraits/portrait-hyperreal-06.webp"
+                alt="Hyperreal VI"
+                loading="lazy"
+              />
+              <figcaption>Hyperreal VI</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art-optimized/ai-fusion/portraits/portrait-hyperreal-07.webp"
+                alt="Hyperreal VII"
+                loading="lazy"
+              />
+              <figcaption>Hyperreal VII</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art-optimized/ai-fusion/portraits/portrait-hyperreal-08.webp"
+                alt="Hyperreal VIII"
+                loading="lazy"
+              />
+              <figcaption>Hyperreal VIII</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art-optimized/ai-fusion/portraits/portrait-hyperreal-09.webp"
+                alt="Hyperreal IX"
+                loading="lazy"
+              />
+              <figcaption>Hyperreal IX</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-portraits">
+              <img
+                src="/images/art-optimized/ai-fusion/portraits/portrait-hyperreal-10.webp"
+                alt="Hyperreal X"
+                loading="lazy"
+              />
+              <figcaption>Hyperreal X</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI Fusion: Ethereal -->
+      <section class="gallery-section" aria-labelledby="ai-ethereal-heading">
+        <h2 id="ai-ethereal-heading" class="section-title">
+          AI Fusion — Ethereal
+        </h2>
+        <div class="gallery-slider" role="region" aria-label="AI ethereal art">
+          <div class="gallery-track">
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art-optimized/ai-fusion/ethereal/luminous-being-01.webp"
+                alt="Luminous Being I"
+                loading="lazy"
+              />
+              <figcaption>Luminous Being I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art-optimized/ai-fusion/ethereal/luminous-being-02.webp"
+                alt="Luminous Being II"
+                loading="lazy"
+              />
+              <figcaption>Luminous Being II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art-optimized/ai-fusion/ethereal/luminous-being-03.webp"
+                alt="Luminous Being III"
+                loading="lazy"
+              />
+              <figcaption>Luminous Being III</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art-optimized/ai-fusion/ethereal/luminous-being-04.webp"
+                alt="Luminous Being IV"
+                loading="lazy"
+              />
+              <figcaption>Luminous Being IV</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art-optimized/ai-fusion/ethereal/luminous-being-05.webp"
+                alt="Luminous Being V"
+                loading="lazy"
+              />
+              <figcaption>Luminous Being V</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art-optimized/ai-fusion/ethereal/luminous-being-06.webp"
+                alt="Luminous Being VI"
+                loading="lazy"
+              />
+              <figcaption>Luminous Being VI</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art-optimized/ai-fusion/ethereal/luminous-being-07.webp"
+                alt="Luminous Being VII"
+                loading="lazy"
+              />
+              <figcaption>Luminous Being VII</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art-optimized/ai-fusion/ethereal/abstract-humanoid-01.webp"
+                alt="Abstract Humanoid I"
+                loading="lazy"
+              />
+              <figcaption>Abstract Humanoid I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art-optimized/ai-fusion/ethereal/abstract-humanoid-02.webp"
+                alt="Abstract Humanoid II"
+                loading="lazy"
+              />
+              <figcaption>Abstract Humanoid II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art-optimized/ai-fusion/ethereal/abstract-humanoid-03.webp"
+                alt="Abstract Humanoid III"
+                loading="lazy"
+              />
+              <figcaption>Abstract Humanoid III</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art-optimized/ai-fusion/ethereal/abstract-humanoid-04.webp"
+                alt="Abstract Humanoid IV"
+                loading="lazy"
+              />
+              <figcaption>Abstract Humanoid IV</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art-optimized/ai-fusion/ethereal/abstract-humanoid-05.webp"
+                alt="Abstract Humanoid V"
+                loading="lazy"
+              />
+              <figcaption>Abstract Humanoid V</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art-optimized/ai-fusion/ethereal/abstract-humanoid-06.webp"
+                alt="Abstract Humanoid VI"
+                loading="lazy"
+              />
+              <figcaption>Abstract Humanoid VI</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art-optimized/ai-fusion/ethereal/colossal-arm-01.webp"
+                alt="Colossal Arm I"
+                loading="lazy"
+              />
+              <figcaption>Colossal Arm I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art-optimized/ai-fusion/ethereal/colossal-arm-02.webp"
+                alt="Colossal Arm II"
+                loading="lazy"
+              />
+              <figcaption>Colossal Arm II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art-optimized/ai-fusion/ethereal/colossal-arm-03.webp"
+                alt="Colossal Arm III"
+                loading="lazy"
+              />
+              <figcaption>Colossal Arm III</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art-optimized/ai-fusion/ethereal/colossal-arm-04.webp"
+                alt="Colossal Arm IV"
+                loading="lazy"
+              />
+              <figcaption>Colossal Arm IV</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art-optimized/ai-fusion/ethereal/grounded-figure-01.webp"
+                alt="Grounded Figure I"
+                loading="lazy"
+              />
+              <figcaption>Grounded Figure I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art-optimized/ai-fusion/ethereal/grounded-figure-02.webp"
+                alt="Grounded Figure II"
+                loading="lazy"
+              />
+              <figcaption>Grounded Figure II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art-optimized/ai-fusion/ethereal/futuristic-humanoid-01.webp"
+                alt="Futuristic Humanoid I"
+                loading="lazy"
+              />
+              <figcaption>Futuristic Humanoid I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art-optimized/ai-fusion/ethereal/futuristic-humanoid-02.webp"
+                alt="Futuristic Humanoid II"
+                loading="lazy"
+              />
+              <figcaption>Futuristic Humanoid II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art-optimized/ai-fusion/ethereal/futuristic-figure-01.webp"
+                alt="Futuristic Figure I"
+                loading="lazy"
+              />
+              <figcaption>Futuristic Figure I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art-optimized/ai-fusion/ethereal/futuristic-figure-02.webp"
+                alt="Futuristic Figure II"
+                loading="lazy"
+              />
+              <figcaption>Futuristic Figure II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art-optimized/ai-fusion/ethereal/surreal-humanoid.webp"
+                alt="Surreal Humanoid"
+                loading="lazy"
+              />
+              <figcaption>Surreal Humanoid</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art-optimized/ai-fusion/ethereal/translucent-metallic.webp"
+                alt="Translucent Metallic"
+                loading="lazy"
+              />
+              <figcaption>Translucent Metallic</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-ethereal">
+              <img
+                src="/images/art-optimized/ai-fusion/ethereal/dynamic-web-bg.webp"
+                alt="Dynamic Web"
+                loading="lazy"
+              />
+              <figcaption>Dynamic Web</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI Fusion: Sketches -->
+      <section class="gallery-section" aria-labelledby="ai-sketches-heading">
+        <h2 id="ai-sketches-heading" class="section-title">
+          AI Fusion — Sketches
+        </h2>
+        <div class="gallery-slider" role="region" aria-label="AI sketch art">
+          <div class="gallery-track">
+            <figure class="gallery-item" data-category="ai-sketches">
+              <img
+                src="/images/art-optimized/ai-fusion/sketches/sketch-pencil.webp"
+                alt="Pencil Sketch"
+                loading="lazy"
+              />
+              <figcaption>Pencil Sketch</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-sketches">
+              <img
+                src="/images/art-optimized/ai-fusion/sketches/sketch-complete-01.webp"
+                alt="Complete Sketch I"
+                loading="lazy"
+              />
+              <figcaption>Complete Sketch I</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-sketches">
+              <img
+                src="/images/art-optimized/ai-fusion/sketches/sketch-complete-02.webp"
+                alt="Complete Sketch II"
+                loading="lazy"
+              />
+              <figcaption>Complete Sketch II</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-sketches">
+              <img
+                src="/images/art-optimized/ai-fusion/sketches/sketch-complete-03.webp"
+                alt="Complete Sketch III"
+                loading="lazy"
+              />
+              <figcaption>Complete Sketch III</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-sketches">
+              <img
+                src="/images/art-optimized/ai-fusion/sketches/sketch-complete-04.webp"
+                alt="Complete Sketch IV"
+                loading="lazy"
+              />
+              <figcaption>Complete Sketch IV</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-sketches">
+              <img
+                src="/images/art-optimized/ai-fusion/sketches/sketch-complete-05.webp"
+                alt="Complete Sketch V"
+                loading="lazy"
+              />
+              <figcaption>Complete Sketch V</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-sketches">
+              <img
+                src="/images/art-optimized/ai-fusion/sketches/sketch-complete-06.webp"
+                alt="Complete Sketch VI"
+                loading="lazy"
+              />
+              <figcaption>Complete Sketch VI</figcaption>
+            </figure>
+            <figure class="gallery-item" data-category="ai-sketches">
+              <img
+                src="/images/art-optimized/ai-fusion/sketches/sketch-complete-07.webp"
+                alt="Complete Sketch VII"
+                loading="lazy"
+              />
+              <figcaption>Complete Sketch VII</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <a href="/home" class="back-link" aria-label="Go back to home page">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <path d="M19 12H5M12 19l-7-7 7-7" />
+        </svg>
+        Back
+      </a>
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div
+      class="lightbox"
+      id="lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Image viewer"
+    >
+      <button class="lightbox-close" aria-label="Close image viewer">
+        &times;
+      </button>
+      <button class="lightbox-prev" aria-label="Previous image">
+        &#10094;
+      </button>
+      <button class="lightbox-next" aria-label="Next image">&#10095;</button>
+      <figure class="lightbox-content">
+        <img src="" alt="" id="lightbox-img" />
+        <figcaption id="lightbox-caption"></figcaption>
+      </figure>
+    </div>
+
+    <script src="/src/shared/effects/sineWave.js"></script>
+    <script src="/src/pages/art/index.js" defer></script>
+    <script src="/src/shared/cursor/cursor.js" defer></script>
+  </body>
+</html>

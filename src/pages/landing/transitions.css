@@ -1,0 +1,123 @@
+/* Landing Container */
+.landing-container {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+/* Zen mode - keep button at bottom center, same as normal landing */
+body.zen-mode .enter-btn {
+  top: auto;
+  right: auto;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  writing-mode: horizontal-tb;
+}
+
+body.zen-mode .enter-btn__center span {
+  color: rgba(160, 165, 180, 0.55);
+}
+
+/* Scanline Dissolve Overlay */
+.curtain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.curtain-overlay.curtain-closing {
+  opacity: 1;
+}
+
+/* Scanline dissolve on landing container */
+.landing-container.dissolving {
+  animation: scanlineDissolve 1s ease-out forwards;
+}
+
+.landing-container.dissolving::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -10%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(
+    0deg,
+    transparent 0%,
+    transparent 40.5%,
+    rgba(2, 8, 118, 0.213) 49.5%,
+    rgba(0, 24, 24, 0.15) 50.5%,
+    transparent 30.5%,
+    transparent 100%
+  );
+  animation: scanlineSweep 2.5s ease-out forwards;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@keyframes scanlineDissolve {
+  0% {
+    opacity: 1;
+    filter: blur(0px) brightness(1);
+  }
+  20% {
+    opacity: 0.95;
+    filter: blur(0px) brightness(1);
+  }
+  40% {
+    opacity: 0.8;
+    filter: blur(0.3px) brightness(1.02);
+  }
+  60% {
+    opacity: 0.5;
+    filter: blur(0.6px) brightness(1.05);
+  }
+  80% {
+    opacity: 0.25;
+    filter: blur(1px) brightness(1.08);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(2px) brightness(1.1);
+  }
+}
+
+@keyframes scanlineSweep {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+/* Also dissolve the wave canvas */
+#waves.dissolving {
+  animation: scanlineDissolve 1s ease-out forwards;
+}
+
+/* Also dissolve the identity text */
+.enter-identity.dissolving {
+  animation: scanlineDissolve 1s ease-out forwards;
+}

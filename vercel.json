@@ -5,12 +5,13 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/home", "destination": "/home.html" },
-    { "source": "/about", "destination": "/about.html" },
-    { "source": "/resume", "destination": "/resume.html" },
-    { "source": "/skills", "destination": "/skills.html" },
-    { "source": "/art", "destination": "/art.html" },
-    { "source": "/lab", "destination": "/lab.html" },
+    { "source": "/", "destination": "/src/pages/landing/index.html" },
+    { "source": "/home", "destination": "/src/pages/home/index.html" },
+    { "source": "/about", "destination": "/src/pages/about/index.html" },
+    { "source": "/resume", "destination": "/src/pages/resume/index.html" },
+    { "source": "/skills", "destination": "/src/pages/skills/index.html" },
+    { "source": "/art", "destination": "/src/pages/art/index.html" },
+    { "source": "/lab", "destination": "/src/pages/lab/index.html" },
     {
       "source": "/models/xenotchi/:path*",
       "destination": "https://transcendence-3-d-v2.vercel.app/models/:path*"

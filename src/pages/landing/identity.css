@@ -1,0 +1,310 @@
+/* Identity text — anchored in upper half, above the wave */
+.enter-identity {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 90;
+  text-align: center;
+  pointer-events: none;
+  width: min(96vw, 1000px);
+  opacity: 0.85;
+}
+
+.enter-identity-title {
+  font-family: "Future Z", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: clamp(2rem, 4vw, 4rem);
+  text-align: center;
+  width: 100%;
+  background: linear-gradient(
+    135deg,
+    #f0f4f6 5%,
+    #7a8f9e 15%,
+    #ffffff 30%,
+    #889eb0 45%,
+    #e8edf2 60%,
+    #708494 75%,
+    #f2f5f7 90%,
+    #8a9dac 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: #fff;
+  letter-spacing: 0.12em;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.enter-identity-subtitle {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(0.75rem, 1.4vw, 1rem);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: linear-gradient(
+    90deg,
+    rgb(114, 175, 255),
+    rgba(74, 193, 248, 0.84),
+    rgba(249, 142, 224, 0.938)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0.5em 0 0;
+  opacity: 0;
+  animation: subtitleFadeIn 0.6s ease-out 2s forwards;
+}
+
+@keyframes subtitleFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.enter-btn {
+  position: fixed;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: inline-flex;
+  align-items: stretch;
+  font-family: "aktiv-grotesk", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    opacity 0.8s ease,
+    letter-spacing 0.4s ease,
+    filter 0.4s ease;
+  filter: drop-shadow(0 0 1px rgba(22, 38, 63, 0.857))
+    drop-shadow(0 3px 0 rgba(8, 18, 55, 0.9))
+    drop-shadow(0 6px 0 rgba(5, 12, 40, 0.7))
+    drop-shadow(0 9px 0 rgba(3, 8, 28, 0.5))
+    drop-shadow(0 13px 6px rgba(0, 0, 0, 0.7));
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Shared piece background */
+.enter-btn__accent,
+.enter-btn__center {
+  background: linear-gradient(145deg, #1b1b39e5, #010001);
+  border-top: 1px solid rgba(180, 210, 255, 0.32);
+  border-bottom: 7px solid rgba(0, 4, 18, 0.95);
+  position: relative;
+}
+
+/* Left tab — Pneumata-style: bevels top-right + bottom-left, right edge straight */
+.enter-btn__accent {
+  transition:
+    opacity 0.25s ease,
+    filter 0.25s ease,
+    transform 0.6s cubic-bezier(0.25, 0, 0.1, 1);
+}
+
+.enter-btn__accent--left {
+  width: 22px;
+  flex-shrink: 0;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 8px) 0,
+    100% 8px,
+    100% 100%,
+    8px 100%,
+    0 calc(100% - 8px)
+  );
+  margin-right: -6px;
+  z-index: 1;
+}
+
+/* Center panel — angled joint on left (exposes left tab), bevel on right */
+.enter-btn__center {
+  z-index: 2;
+  transition: filter 0.25s ease;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 8px) 0,
+    100% 8px,
+    100% 100%,
+    8px 100%,
+    8px 8px
+  );
+}
+
+.enter-btn__center span {
+  display: block;
+  padding: 0.46rem 1.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  transition:
+    color 0.4s ease,
+    letter-spacing 0.4s ease;
+  letter-spacing: inherit;
+}
+
+/* Right tab — angled joint on left side (sits on top of center) */
+.enter-btn__accent--right {
+  width: 22px;
+  flex-shrink: 0;
+  clip-path: polygon(
+    8px 0,
+    calc(100% - 8px) 0,
+    100% 8px,
+    100% 100%,
+    8px 100%,
+    8px 8px,
+    0 0
+  );
+  margin-left: -6px;
+  z-index: 3;
+}
+
+.enter-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+  animation: enterPulse 4s ease-in-out infinite;
+}
+
+@keyframes enterPulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 1px rgba(100, 160, 255, 0.55))
+      drop-shadow(0 3px 0 rgba(8, 18, 55, 0.9))
+      drop-shadow(0 6px 0 rgba(5, 12, 40, 0.7))
+      drop-shadow(0 9px 0 rgba(3, 8, 28, 0.5))
+      drop-shadow(0 13px 6px rgba(0, 0, 0, 0.7));
+  }
+  50% {
+    filter: drop-shadow(0 0 1.5px rgba(100, 170, 255, 0.7))
+      drop-shadow(0 3px 0 rgba(8, 18, 55, 0.9))
+      drop-shadow(0 6px 0 rgba(5, 12, 40, 0.7))
+      drop-shadow(0 9px 0 rgba(3, 8, 28, 0.5))
+      drop-shadow(0 13px 6px rgba(0, 0, 0, 0.7));
+  }
+}
+
+.enter-btn:hover {
+  letter-spacing: 0.55em;
+  animation: none;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 0 2px rgba(120, 180, 255, 0.8))
+    drop-shadow(0 3px 0 rgba(8, 18, 55, 0.9))
+    drop-shadow(0 6px 0 rgba(5, 12, 40, 0.7))
+    drop-shadow(0 9px 0 rgba(3, 8, 28, 0.5))
+    drop-shadow(0 13px 6px rgba(0, 0, 0, 0.7));
+}
+
+.enter-btn:hover .enter-btn__accent {
+  filter: brightness(0.45);
+}
+
+.enter-btn:hover .enter-btn__center {
+  filter: brightness(1.2);
+}
+
+.enter-btn:hover .enter-btn__center span {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.enter-btn:active .enter-btn__center span {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes btnScanlineCollapse {
+  0% {
+    transform: translateX(-50%) scaleY(1) scaleX(1);
+    filter: drop-shadow(0 0 1px rgba(100, 160, 255, 0.55))
+      drop-shadow(0 4px 8px rgba(0, 0, 0, 0.85))
+      drop-shadow(0 2px 2px rgba(0, 0, 0, 0.95));
+  }
+  55% {
+    transform: translateX(-50%) scaleY(0.06) scaleX(1.08);
+    filter: brightness(2) drop-shadow(0 0 12px rgba(0, 255, 247, 0.9));
+  }
+  75% {
+    transform: translateX(-50%) scaleY(0.06) scaleX(1.08);
+    filter: brightness(2.5) drop-shadow(0 0 16px rgba(0, 255, 247, 0.8));
+  }
+  100% {
+    transform: translateX(-50%) scaleY(0) scaleX(0);
+    filter: brightness(4) drop-shadow(0 0 24px rgba(0, 255, 247, 0.5));
+  }
+}
+
+.enter-btn.collapsing {
+  animation: btnScanlineCollapse 0.5s cubic-bezier(0.4, 0, 1, 1) forwards;
+  pointer-events: none;
+}
+
+.enter-btn:hover .enter-btn__accent--left {
+  transform: scaleX(0);
+  transform-origin: right center;
+}
+
+.enter-btn:hover .enter-btn__accent--right {
+  transform: scaleX(0);
+  transform-origin: left center;
+  z-index: 1;
+}
+
+@media (min-width: 769px) and (max-width: 1100px) {
+  .enter-identity-title {
+    font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+    letter-spacing: 0.1em;
+  }
+}
+
+@media (max-width: 768px) {
+  .enter-identity {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+  }
+
+  .enter-identity-title {
+    font-size: clamp(1rem, 6vw, 2.4rem);
+    letter-spacing: 0.06em;
+  }
+
+  .title-letter--invert-v {
+    top: -0.01em;
+  }
+
+  .enter-identity-subtitle {
+    font-size: clamp(0.55rem, 2vw, 0.8rem);
+    letter-spacing: 0.15em;
+  }
+}
+
+/* ============================================
+   COMPLEMENTARY / COMP MODE OVERRIDES
+   ============================================ */
+
+body.complementary-colors .title-letter--invert-v {
+  background: #000000;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.complementary-colors .enter-identity-title {
+  font-weight: 900;
+}
+
+body.complementary-colors .enter-identity-subtitle {
+  background: #ffffff;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
