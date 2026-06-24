@@ -1,4 +1,4 @@
-const CACHE_NAME = "pablo-pistola-1782281458832";
+const CACHE_NAME = "pablo-pistola-1782316088174";
 const ASSETS_TO_CACHE = [
   "/",
   "/home.html",
