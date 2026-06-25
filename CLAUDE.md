@@ -36,6 +36,8 @@ Vanilla JS + CSS static site built with Vite, deployed to Vercel at `pvblocorder
 
 **CSS** (`src/styles/`): Modular CSS files imported per-page. Design tokens live in `tokens.css`. Typography uses IBM Plex Sans. Component styles (cursor, loader, nav, bento grid, glitch, waves) are separate files.
 
+**Mobile responsive convention:** Mobile overrides live in a separate `*.mobile.css` file alongside each component's base file (e.g. `navigation.css` + `navigation.mobile.css`). The mobile file is imported immediately after the base file in `main.css` (or the page's own stylesheet). Never mix `@media` blocks into a base stylesheet — keep base files desktop-only, mobile files media-query-only. Breakpoints: 900px (tablet) and 600px (mobile).
+
 **3D/graphics:** Three.js + custom GLSL shaders used in specific project pages (e.g. `transcendence.html`, `nexus-geom-lab.html`).
 
 **Build note:** A custom Vite plugin (`copyJsPlugin` in `vite.config.js`) copies `src/js/` to `dist/src/js/` post-build, since some pages reference JS files directly rather than through Vite's module graph.

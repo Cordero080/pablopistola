@@ -26,6 +26,7 @@
 
 /* === NAVIGATION === */
 @import url("../shared/nav/navigation.css");
+@import url("../shared/nav/navigation.mobile.css");
 
 /* === CONTACT === */
 @import url("./components/contact.css");
