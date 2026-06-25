@@ -98,7 +98,7 @@ export const FACE_HUE_OFFSETS = [0, 3.5, 1.0, 1.5, 2.2, 2.8];
 // ║  MORPH_CYCLE is calculated automatically — don't edit it directly.       ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
-export const CUBE_HOLD = 2; // seconds showing flat panels
+export const CUBE_HOLD = 3; // seconds showing flat panels
 export const MORPH_DUR = 4; // seconds for the morph transition
 export const SPHERE_HOLD = 3; // seconds showing sphere orbs
 
@@ -129,4 +129,4 @@ export const ORB_HUE_SPEED = 0.5; // radians/second — only active during spher
 export const CONN_DELAY = 2; // seconds into sphere phase before lines appear
 export const CONN_DUR = 3; // total seconds lines are visible
 export const CONN_COLOR = "#6633cc"; // cyan — matches the site accent color
-export const CONN_MAX_OPACITY = 0.11; // subtle; raise for more visible lines
+export const CONN_MAX_OPACITY = 0.31; // subtle; raise for more visible lines

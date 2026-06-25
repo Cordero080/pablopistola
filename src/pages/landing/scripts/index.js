@@ -21,10 +21,37 @@ if (stayMode) {
     `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" style="display:block;margin:0 auto;"><path d="M11 18V6l-8.5 6 8.5 6zm.5-6 8.5 6V6l-8.5 6z"/></svg>`;
 }
 
-// Show enter button after 1.5s
+// Typewriter subtitle — starts as name is forming (~3.8s)
+setTimeout(() => {
+  const subtitle = document.querySelector(".enter-identity-subtitle");
+  if (!subtitle) return;
+  const text = subtitle.textContent.trim();
+  subtitle.textContent = "";
+  subtitle.style.opacity = "1";
+  subtitle.style.animation = "none";
+  let i = 0;
+  const interval = setInterval(() => {
+    subtitle.textContent += text[i];
+    i++;
+    if (i >= text.length) clearInterval(interval);
+  }, 38);
+}, 3800);
+
+// Fade in sine wave as title starts animating (~3.2s)
+setTimeout(() => {
+  const waves = document.getElementById("waves");
+  if (!waves) return;
+  requestAnimationFrame(() =>
+    requestAnimationFrame(() => {
+      waves.style.opacity = "0.38";
+    }),
+  );
+}, 3200);
+
+// Show enter button after full sequence (~6.5s)
 setTimeout(() => {
   document.getElementById("enterBtn").classList.add("visible");
-}, 1500);
+}, 6500);
 
 // Handle enter click - scanline collapse then navigate
 document.getElementById("enterBtn").addEventListener("click", (e) => {

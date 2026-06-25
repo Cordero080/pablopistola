@@ -220,6 +220,9 @@
 .ticker-row[data-cat="devops"] {
   --row-accent: #00ff88;
 }
+.ticker-row[data-cat="ai"] {
+  --row-accent: #a78bfa;
+}
 
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {

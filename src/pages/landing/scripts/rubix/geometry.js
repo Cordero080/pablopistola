@@ -124,6 +124,17 @@ faces.forEach((face, fi) => {
 
       const phase = fi * 0.5 + row * 0.3 + col * 0.2;
 
+      // Random scatter position — each panel starts far from origin
+      const sTheta = Math.random() * Math.PI * 2;
+      const sPhi = Math.acos(2 * Math.random() - 1);
+      const sR = 12 + Math.random() * 6;
+      const scatterPos = new THREE.Vector3(
+        sR * Math.sin(sPhi) * Math.cos(sTheta),
+        sR * Math.sin(sPhi) * Math.sin(sTheta),
+        sR * Math.cos(sPhi)
+      );
+      const stagger = (phase % (Math.PI * 2)) / (Math.PI * 2);
+
       panels.push({
         mesh,
         edgeMesh,
@@ -137,6 +148,8 @@ faces.forEach((face, fi) => {
         distFromCenter,
         spinRate: Math.sin(phase) * PANEL_SPIN_SPEED,
         hueAngle: FACE_HUE_OFFSETS[fi] + (row + col) / (grid * 1.5),
+        scatterPos,
+        stagger,
       });
 
       root.add(mesh);

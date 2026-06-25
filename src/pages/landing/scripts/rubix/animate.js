@@ -41,6 +41,9 @@ function smoothstep(x) {
   return x * x * (3 - 2 * x);
 }
 
+const INTRO_DUR = 3.0;    // seconds for panels to assemble
+const INTRO_STAGGER = 0.6; // max time offset between first and last panel
+
 function getMorphT(elapsed) {
   const c = elapsed % MORPH_CYCLE;
   if (c < CUBE_HOLD) return 0;
@@ -79,6 +82,8 @@ const clock = new THREE.Clock();
   root.rotation.x += delta * ROT_X;
   root.rotation.z += delta * ROT_Z;
 
+
+
   for (const p of panels) {
     const {
       mesh,
@@ -94,7 +99,7 @@ const clock = new THREE.Clock();
       hueAngle,
     } = p;
 
-    const wave1 = Math.sin(ct * 0.19 + phase) * 0.5;
+    const wave1 = Math.sin(ct * .19 + phase) * .5;
     const wave2 = Math.sin(ct * 0.26 + phase * 1.3) * 0.5;
     const wave3 = Math.sin(ct * 0.29 + phase) * 0.2;
     const disp = (wave1 + wave2 + wave3) * waveAmp;
@@ -102,7 +107,19 @@ const clock = new THREE.Clock();
 
     mesh.rotateZ(delta * p.spinRate);
 
-    mesh.position.copy(basePos).addScaledVector(dir, disp);
+    // Intro assembly — panels fly from random scatter toward their basePos
+    const introProgress = Math.min(Math.max(
+      (ct - p.stagger * INTRO_STAGGER) / INTRO_DUR, 0), 1);
+    const introEase = smoothstep(introProgress);
+
+    const tX = basePos.x + dir.x * disp;
+    const tY = basePos.y + dir.y * disp;
+    const tZ = basePos.z + dir.z * disp;
+    mesh.position.set(
+      p.scatterPos.x + (tX - p.scatterPos.x) * introEase,
+      p.scatterPos.y + (tY - p.scatterPos.y) * introEase,
+      p.scatterPos.z + (tZ - p.scatterPos.z) * introEase
+    );
     mesh.scale.setScalar(breathe * flatT);
     orbMesh.position.copy(mesh.position);
     orbMesh.scale.setScalar(breathe * orbT);
@@ -132,13 +149,13 @@ const clock = new THREE.Clock();
     const cosHOrb = Math.cos(orbH);
     const sinHOrb = Math.sin(orbH);
     orbMat.color.setRGB(
-      glow * (GLOW_COLOR_R + 0.2 * cosHOrb),
-      glow * (GLOW_COLOR_G + 0.2 * sinHOrb),
+      glow * (GLOW_COLOR_R + 0.5 * cosHOrb),
+      glow * (GLOW_COLOR_G + 0.5 * sinHOrb),
       glow * GLOW_COLOR_B,
     );
     orbMat.emissive.setRGB(
-      glow * (GLOW_EMIT_R + 0.15 * cosHOrb),
-      glow * (GLOW_EMIT_G + 0.15 * sinHOrb),
+      glow * (GLOW_EMIT_R + .20 * cosHOrb),
+      glow * (GLOW_EMIT_G + 0.20 * sinHOrb),
       glow * GLOW_EMIT_B,
     );
     orbMat.emissiveIntensity = emitInt;
@@ -147,13 +164,13 @@ const clock = new THREE.Clock();
       PANEL_OPACITY_BASE +
       distFromCenter * PANEL_OPACITY_CENTER +
       Math.abs(wave1) * PANEL_OPACITY_WAVE;
-    mat.opacity = baseOp * flatT;
-    orbMat.opacity = baseOp * 2 * orbT;
+    mat.opacity = baseOp * flatT * introEase;
+    orbMat.opacity = baseOp * 2 * orbT * introEase;
     edgeMat.opacity =
       (EDGE_OPACITY_BASE +
         distFromCenter * EDGE_OPACITY_CENTER +
         Math.abs(wave1) * EDGE_OPACITY_WAVE) *
-      flatT;
+      flatT * introEase;
   }
 
   // ── Connection lines — update positions and opacity ───────────────────────

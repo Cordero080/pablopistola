@@ -6,11 +6,11 @@ window.waveGen = new SineWaveGenerator({
   waves: [
     // Wave 1: Heavy leader — very slow due to mass
     {
-      timeModifier: 6,
+      timeModifier: 2,
       lineWidth: 11.5,
-      amplitude: 180,
+      amplitude: 260,
       wavelength: 300,
-      opacity: 0.3,
+      opacity: .7,
       segmentLength: 20,
       attraction: 3,
       attractionStrength: 0.1,
@@ -23,7 +23,7 @@ window.waveGen = new SineWaveGenerator({
       lineWidth: 3,
       amplitude: 100,
       wavelength: 600,
-      opacity: 1,
+      opacity: .8,
       attraction: 1,
       attractionStrength: 0.8,
       attractionDelay: 0.12,
@@ -36,7 +36,7 @@ window.waveGen = new SineWaveGenerator({
       amplitude: 150,
       wavelength: 150,
       segmentLength: 10,
-      opacity: 1,
+      opacity: 2,
       attraction: 1,
       attractionStrength: 0.7,
       attractionDelay: 0.18,

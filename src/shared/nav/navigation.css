@@ -123,6 +123,7 @@
   top: 0;
   left: 0;
   width: 100%;
+  box-sizing: border-box;
   height: 60px;
   /* Match hero-cta dark holographic style */
   background:
@@ -316,9 +317,11 @@
   }
 }
 
-/* Exit link — rightmost flex item, mirrors the PC logo on the left */
+/* Exit link — absolutely positioned so it's always visible within the nav */
 .side-nav-link.exit-link {
-  flex-shrink: 0;
+  position: absolute;
+  right: 1.5rem;
+  top: 0;
   opacity: 0.8;
   padding: 8px 8px 5px;
 }
@@ -326,7 +329,8 @@
 .side-nav-link.exit-link .nav-icon {
   width: 20px;
   height: 20px;
-  color: rgba(0, 255, 247, 0.6);
+  color: #00fff7;
+  filter: drop-shadow(0 0 4px rgba(0, 255, 247, 0.45));
 }
 
 .side-nav-link.exit-link:hover {
@@ -335,7 +339,16 @@
 }
 
 .side-nav-link.exit-link:hover .nav-icon {
-  stroke: #00fff7;
+  color: #00fff7;
+  filter: drop-shadow(0 0 8px rgba(0, 255, 247, 0.7));
+}
+
+.side-nav-link.exit-link .nav-label {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.side-nav-link.exit-link:hover .nav-label {
+  color: rgba(0, 255, 247, 0.6);
 }
 
 /* Zen tooltip */
@@ -534,7 +547,12 @@
   }
 
   .side-nav-link.exit-link {
-    display: none;
+    position: static;
+    right: auto;
+    top: auto;
+    margin-top: auto;
+    padding-left: 1rem;
+    justify-content: flex-start;
   }
 
   .side-nav-glow {

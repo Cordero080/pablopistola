@@ -15,7 +15,7 @@
   font-family: "Future Z", sans-serif;
   font-weight: 700;
   font-style: normal;
-  font-size: clamp(2rem, 4vw, 4rem);
+  font-size: clamp(2.5rem, 5.5vw, 5.5rem);
   text-align: center;
   width: 100%;
   background: linear-gradient(
@@ -40,7 +40,7 @@
 
 .enter-identity-subtitle {
   font-family: "Space Grotesk", sans-serif;
-  font-size: clamp(0.75rem, 1.4vw, 1rem);
+  font-size: clamp(0.8rem, 1.6vw, 1.15rem);
   font-weight: 500;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -55,18 +55,6 @@
   background-clip: text;
   margin: 0.5em 0 0;
   opacity: 0;
-  animation: subtitleFadeIn 0.6s ease-out 2s forwards;
-}
-
-@keyframes subtitleFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .enter-btn {
@@ -100,7 +88,7 @@
 .enter-btn__accent,
 .enter-btn__center {
   background: linear-gradient(145deg, #1b1b39e5, #010001);
-  border-top: 1px solid rgba(180, 210, 255, 0.32);
+  border-top: 1px solid rgba(143, 88, 252, 0.326);
   border-bottom: 7px solid rgba(0, 4, 18, 0.95);
   position: relative;
 }
@@ -110,7 +98,7 @@
   transition:
     opacity 0.25s ease,
     filter 0.25s ease,
-    transform 0.6s cubic-bezier(0.25, 0, 0.1, 1);
+    transform 0.3s cubic-bezier(0.25, 0, 0.1, 1);
 }
 
 .enter-btn__accent--left {
@@ -178,14 +166,14 @@
 @keyframes enterPulse {
   0%,
   100% {
-    filter: drop-shadow(0 0 1px rgba(100, 160, 255, 0.55))
+    filter: drop-shadow(0 0 1px rgba(57, 70, 251, 0.357))
       drop-shadow(0 3px 0 rgba(8, 18, 55, 0.9))
       drop-shadow(0 6px 0 rgba(5, 12, 40, 0.7))
       drop-shadow(0 9px 0 rgba(3, 8, 28, 0.5))
       drop-shadow(0 13px 6px rgba(0, 0, 0, 0.7));
   }
   50% {
-    filter: drop-shadow(0 0 1.5px rgba(100, 170, 255, 0.7))
+    filter: drop-shadow(0 0 1.5px rgba(83, 108, 222, 0.79))
       drop-shadow(0 3px 0 rgba(8, 18, 55, 0.9))
       drop-shadow(0 6px 0 rgba(5, 12, 40, 0.7))
       drop-shadow(0 9px 0 rgba(3, 8, 28, 0.5))
@@ -273,7 +261,7 @@
   }
 
   .enter-identity-title {
-    font-size: clamp(1rem, 6vw, 2.4rem);
+    font-size: clamp(1.2rem, 6.8vw, 2.8rem);
     letter-spacing: 0.06em;
   }
 
@@ -282,8 +270,9 @@
   }
 
   .enter-identity-subtitle {
-    font-size: clamp(0.55rem, 2vw, 0.8rem);
-    letter-spacing: 0.15em;
+    font-size: clamp(0.58rem, 2.5vw, 0.9rem);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
   }
 }
 

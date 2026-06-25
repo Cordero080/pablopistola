@@ -54,7 +54,7 @@ function copyJsPlugin() {
         `Copied ${jsCount} from src/js, ${sharedCount} from src/shared, ${pagesCount} from src/pages (MCP_URL: ${mcpUrl})`,
       );
 
-      // Copy page HTML files to flat root paths so Vercel cleanUrls can serve
+      // Copy page HTML files to flat root paths so ====Vercel cleanUrls=== can serve
       // /home → dist/home.html without needing custom rewrites.
       const pageMap = {
         "dist/src/pages/landing/index.html": "dist/index.html",

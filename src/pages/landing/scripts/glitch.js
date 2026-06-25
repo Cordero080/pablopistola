@@ -19,8 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
     "green",
   ];
 
-  // Base delay to wait for page load
-  const BASE_DELAY = 0.8;
+  // Base delay: wait for rubix assembly to finish (~3s)
+  const BASE_DELAY = 3.2;
 
   // Calculate delays using Weyl sequence
   const letters = TITLE_TEXT.split("");
