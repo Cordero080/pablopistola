@@ -34,6 +34,7 @@ import {
   EDGE_OPACITY_CENTER,
   EDGE_OPACITY_WAVE,
   SCALE_BREATHE,
+  ORB_SEPARATION,
 } from "./config.js";
 
 function smoothstep(x) {
@@ -63,6 +64,18 @@ function getConnOpacity(c) {
   return 1;
 }
 
+// Returns 0–1 eased progress for the orb separation arc within the sphere hold.
+// Orbs push out along their face normal during the first 30%, hold, then reunite.
+function getSeparationT(c) {
+  const start = CUBE_HOLD + MORPH_DUR;
+  const end = start + SPHERE_HOLD;
+  if (c < start || c >= end) return 0;
+  const t = (c - start) / SPHERE_HOLD;
+  if (t < 0.3) return smoothstep(t / 0.3);
+  if (t > 0.7) return smoothstep((1 - t) / 0.3);
+  return 1;
+}
+
 const clock = new THREE.Clock();
 
 (function loop() {
@@ -77,6 +90,10 @@ const clock = new THREE.Clock();
 
   // Hue drift applied only to orbs and only while in sphere form
   const orbHueDrift = ct * ORB_HUE_SPEED * morphT;
+
+  // Separation: outward push along face normals during sphere hold
+  const c = ct % MORPH_CYCLE;
+  const sepOffset = getSeparationT(c) * ORB_SEPARATION;
 
   root.rotation.y += delta * ROT_Y;
   root.rotation.x += delta * ROT_X;
@@ -121,7 +138,12 @@ const clock = new THREE.Clock();
       p.scatterPos.z + (tZ - p.scatterPos.z) * introEase,
     );
     mesh.scale.setScalar(breathe * flatT);
-    orbMesh.position.copy(mesh.position);
+    // Orbs push outward along the face normal during the sphere hold phase
+    orbMesh.position.set(
+      mesh.position.x + dir.x * sepOffset,
+      mesh.position.y + dir.y * sepOffset,
+      mesh.position.z + dir.z * sepOffset,
+    );
     orbMesh.scale.setScalar(breathe * orbT);
     edgeMesh.position.copy(mesh.position);
     edgeMesh.quaternion.copy(mesh.quaternion);
@@ -138,7 +160,7 @@ const clock = new THREE.Clock();
     const er = glow * (GLOW_EMIT_R + 0.15 * cosH);
     const eg = glow * (GLOW_EMIT_G + 0.15 * sinH);
     const eb = glow * GLOW_EMIT_B;
-    const emitInt = 0.2 + distFromCenter * 0.15;
+    const emitInt = 0.5 + distFromCenter * 0.15;
 
     mat.color.setRGB(cr, cg, cb);
     mat.emissive.setRGB(er, eg, eb);
@@ -154,8 +176,8 @@ const clock = new THREE.Clock();
       glow * GLOW_COLOR_B,
     );
     orbMat.emissive.setRGB(
-      glow * (GLOW_EMIT_R + 0.2 * cosHOrb),
-      glow * (GLOW_EMIT_G + 0.2 * sinHOrb),
+      glow * (GLOW_EMIT_R + 0.3 * cosHOrb),
+      glow * (GLOW_EMIT_G + 0.3 * sinHOrb),
       glow * GLOW_EMIT_B,
     );
     orbMat.emissiveIntensity = emitInt;
@@ -179,11 +201,11 @@ const clock = new THREE.Clock();
   connMat.opacity = connOpacity;
 
   if (connOpacity > 0) {
-    // Update line endpoints from current orb positions
+    // Update line endpoints from orb positions (includes separation offset)
     for (let i = 0; i < connections.length; i++) {
       const [i1, i2] = connections[i];
-      const p1 = panels[i1].mesh.position;
-      const p2 = panels[i2].mesh.position;
+      const p1 = panels[i1].orbMesh.position;
+      const p2 = panels[i2].orbMesh.position;
       const o = i * 6;
       connBuf[o] = p1.x;
       connBuf[o + 1] = p1.y;

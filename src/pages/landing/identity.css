@@ -7,7 +7,7 @@
   z-index: 90;
   text-align: center;
   pointer-events: none;
-  width: min(96vw, 1000px);
+  width: min(96vw, 1400px);
   opacity: 0.85;
 }
 

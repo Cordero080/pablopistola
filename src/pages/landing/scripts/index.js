@@ -41,7 +41,7 @@ setTimeout(() => {
 // Show enter button after full sequence (~5s)
 setTimeout(() => {
   document.getElementById("enterBtn").classList.add("visible");
-}, 5000);
+}, 4000);
 
 // Handle enter click - scanline collapse then navigate
 document.getElementById("enterBtn").addEventListener("click", (e) => {

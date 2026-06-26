@@ -19,7 +19,7 @@ const off = cubeSize / 2;
 export const waveAmp = cubeSize * WAVE_AMPLITUDE;
 
 const planeGeo = new THREE.PlaneGeometry(panelSz, panelSz);
-const orbGeo = new THREE.SphereGeometry(panelSz * 0.46, 7, 5);
+const orbGeo = new THREE.SphereGeometry(panelSz * 0.46, 18, 12);
 
 const faces = [
   {
@@ -108,12 +108,14 @@ faces.forEach((face, fi) => {
       });
       const edgeMesh = new THREE.LineSegments(edgeGeo, edgeMat);
 
-      const orbMat = new THREE.MeshStandardMaterial({
+      const orbMat = new THREE.MeshPhysicalMaterial({
         color: new THREE.Color(PANEL_COLOR),
         emissive: new THREE.Color(PANEL_EMISSIVE),
         emissiveIntensity: 0.2,
-        metalness: 0.9,
-        roughness: 0.2,
+        metalness: 0.88,
+        roughness: 0.06,
+        clearcoat: 0.7,
+        clearcoatRoughness: 0.04,
         transparent: true,
         opacity: 0,
         depthWrite: false,
@@ -131,7 +133,7 @@ faces.forEach((face, fi) => {
       const scatterPos = new THREE.Vector3(
         sR * Math.sin(sPhi) * Math.cos(sTheta),
         sR * Math.sin(sPhi) * Math.sin(sTheta),
-        sR * Math.cos(sPhi)
+        sR * Math.cos(sPhi),
       );
       const stagger = (phase % (Math.PI * 2)) / (Math.PI * 2);
 

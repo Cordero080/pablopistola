@@ -120,9 +120,23 @@ if (heroSection) {
 
     // ── Horizontal position — anchored to hero title edge ────────────────────
     const heroTitle = heroSection.querySelector(".hero-title");
-    const halfContentPx = heroTitle
-      ? heroTitle.getBoundingClientRect().width / 2
-      : W * 0.28;
+    // Measure the actual rendered text width via Range so brackets track the
+    // text content width, not the full-width block element
+    let halfContentPx;
+    const spans = heroTitle?.querySelectorAll(
+      ".title-letter:not(.title-letter--space)",
+    );
+    if (spans && spans.length > 0) {
+      const first = spans[0].getBoundingClientRect();
+      const last = spans[spans.length - 1].getBoundingClientRect();
+      halfContentPx = (last.right - first.left) / 2;
+    } else if (heroTitle && heroTitle.firstChild) {
+      const range = document.createRange();
+      range.selectNodeContents(heroTitle);
+      halfContentPx = range.getBoundingClientRect().width / 2;
+    } else {
+      halfContentPx = W * 0.28;
+    }
     const offsetWorld = Math.min(
       (halfContentPx + 28) * pxToWorld,
       worldW * 0.46,
@@ -162,23 +176,23 @@ if (heroSection) {
   }
 
   // ── Fade out on scroll — counterscroll keeps brackets pinned while fading ──
-  window.addEventListener(
-    "scroll",
-    () => {
-      const rect = heroSection.getBoundingClientRect();
-      const heroH = heroSection.offsetHeight;
-      const scrolledPx = Math.max(0, -rect.top);
-      // fade starts when hero top hits 0, fully gone at 40% scrolled
-      const ratio = Math.min(1, scrolledPx / (heroH * 0.4));
-      canvas.style.opacity = 1 - ratio;
-      // counteract parent scroll so brackets stay visually fixed in place
-      canvas.style.transform = `translateY(${scrolledPx}px)`;
-    },
-    { passive: true },
-  );
+  function updateScroll() {
+    const rect = heroSection.getBoundingClientRect();
+    const heroH = heroSection.offsetHeight;
+    const scrolledPx = Math.max(0, -rect.top);
+    const ratio = Math.min(1, scrolledPx / (heroH * 0.4));
+    canvas.style.opacity = 1 - ratio;
+    canvas.style.transform = `translateY(${scrolledPx}px)`;
+  }
+  window.addEventListener("scroll", updateScroll, { passive: true });
 
   // ── Init ────────────────────────────────────────────────────────────────────
-  window.addEventListener("resize", () => requestAnimationFrame(resize));
+  window.addEventListener("resize", () =>
+    requestAnimationFrame(() => {
+      resize();
+      updateScroll();
+    }),
+  );
 
   // Wait for fonts before first measurement — early calls get wrong title width
   const start = () =>

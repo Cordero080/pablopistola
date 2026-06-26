@@ -87,6 +87,13 @@
     title.appendChild(span);
   });
 
+  // Inline styles beat any cached CSS (service worker) — prevent wrapping
+  title.style.display = "block";
+  title.style.width = "100%";
+  title.style.whiteSpace = "nowrap";
+  title.style.textAlign = "center";
+  title.style.overflow = "visible";
+
   // Click → glitch → compMode toggle
   let animating = false;
   title.addEventListener("click", () => {
