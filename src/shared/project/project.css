@@ -50,7 +50,6 @@ body:has(.project-page) #waves {
 .project-hero {
   padding: 4rem 0 2rem;
   text-align: center;
-  padding-right: 8%;
 }
 
 .project-title {
@@ -403,7 +402,6 @@ body:has(.project-page) #waves {
   padding: 2rem 0 4rem;
   max-width: 1200px;
   margin: 0 auto;
-  transform: translateX(-3%);
 }
 
 .gallery-main {

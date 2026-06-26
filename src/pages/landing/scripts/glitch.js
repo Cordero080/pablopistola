@@ -19,8 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
     "green",
   ];
 
-  // Base delay: wait for rubix assembly to finish (~3s)
-  const BASE_DELAY = 3.2;
+  // Base delay: wait for rubix assembly to finish (~2s)
+  const BASE_DELAY = 2.2;
 
   // Calculate delays using Weyl sequence
   const letters = TITLE_TEXT.split("");
@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
               const originalIndex = [...titleElement.children].indexOf(span);
               span.style.animationDelay = `${letterDelays[originalIndex]}s`;
             });
-          }, 4000);
+          }, 3000);
         });
       });
     }

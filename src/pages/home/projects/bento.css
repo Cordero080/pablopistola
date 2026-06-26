@@ -271,33 +271,95 @@
   z-index: 3;
 }
 
-/* ── ENTRY ANIMATIONS ── */
-.project-card-link,
-.project-card-info {
+/* ── ENTRY + HOVER RECEDE ── */
+
+/*
+ * Individual CSS transform properties (translate, scale) are used for
+ * entry/recede so that `transform` stays free for the real-time velocity
+ * tilt (--scroll-tilt) written by velocityTilt.js each rAF tick.
+ * Individual properties compose with `transform`: translate × scale × transform.
+ */
+
+.project-row {
   opacity: 0;
+  translate: 0 40px;
+  scale: 0.88;
+  filter: blur(6px);
   transition:
-    opacity 0.8s ease,
-    transform 0.8s ease;
-}
-.project-row--left .project-card-link {
-  transform: translateX(-50px);
-}
-.project-row--left .project-card-info {
-  transform: translateX(50px);
-  transition-delay: 0.12s;
-}
-.project-row--right .project-card-link {
-  transform: translateX(50px);
-}
-.project-row--right .project-card-info {
-  transform: translateX(-50px);
-  transition-delay: 0.12s;
+    opacity 0.7s ease,
+    translate 0.75s ease,
+    scale 0.75s ease,
+    filter 0.75s ease;
 }
 
-.project-row.visible .project-card-link,
-.project-row.visible .project-card-info {
+.project-row.cinematic-visible {
   opacity: 1;
-  transform: translateX(0);
+  translate: none;
+  scale: 1;
+  filter: none;
+  /* Velocity tilt — no transition so it tracks scroll in real-time */
+  transform: perspective(1200px) rotateX(var(--scroll-tilt, 0deg));
+  transition:
+    opacity 0.7s ease,
+    translate 0.75s ease,
+    scale 0.75s ease,
+    filter 0.75s ease;
+}
+
+/* Previous card recedes when the NEXT card is hovered */
+.project-row.cinematic-visible:has(+ .project-row:hover) {
+  opacity: 0.2;
+  scale: 0.9;
+  filter: blur(1.9px);
+  transition:
+    opacity 0.65s ease,
+    scale 0.65s ease,
+    filter 0.65s ease;
+}
+
+/* Mobile: skip filter + tilt; use scroll-active recede instead of :hover */
+@media (max-width: 768px) {
+  .project-row {
+    filter: none;
+    translate: 0 30px;
+    scale: 0.9;
+  }
+  .project-row.cinematic-visible {
+    transform: none;
+  }
+  .project-row.cinematic-visible:has(+ .project-row.scroll-active) {
+    opacity: 0.25;
+    scale: 0.93;
+    transition:
+      opacity 0.5s ease,
+      scale 0.5s ease;
+  }
+}
+
+/* ── WITHIN-CARD DEPTH PARALLAX ── */
+
+/*
+ * cardDepth.js sets --depth-x / --depth-y on each row on mousemove.
+ * Each text layer reads the vars with a different multiplier, creating
+ * the illusion that title/description/actions float at different Z-depths.
+ * Desktop only — no touch equivalent.
+ */
+@media (min-width: 769px) {
+  .project-card-title {
+    transform: translate(var(--depth-x, 0px), calc(var(--depth-y, 0px) * 0.6));
+  }
+  .project-card-description {
+    transform: translate(
+      calc(var(--depth-x, 0px) * 0.6),
+      calc(var(--depth-y, 0px) * 0.4)
+    );
+  }
+  .project-card-actions {
+    transform: translate(
+      calc(var(--depth-x, 0px) * 0.3),
+      calc(var(--depth-y, 0px) * 0.2)
+    );
+  }
 }
 
 /* ── TABLET ── */
@@ -360,15 +422,6 @@
   .project-row--right .project-card-media {
     -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
     mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-  }
-  /* No horizontal slide on mobile — just fade up */
-  .project-card-link,
-  .project-card-info {
-    transform: translateY(20px);
-  }
-  .project-row.visible .project-card-link,
-  .project-row.visible .project-card-info {
-    transform: translateY(0);
   }
 }
 
@@ -480,11 +533,18 @@
 
 /* ── REDUCED MOTION ── */
 @media (prefers-reduced-motion: reduce) {
-  .project-card-link,
-  .project-card-info {
-    transition: none;
-    opacity: 1;
-    transform: none;
+  .project-row {
+    opacity: 1 !important;
+    translate: none !important;
+    scale: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+  .project-card-title,
+  .project-card-description,
+  .project-card-actions {
+    transform: none !important;
   }
   .project-card-coming-soon {
     animation: none;

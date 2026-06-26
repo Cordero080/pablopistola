@@ -41,7 +41,7 @@ function smoothstep(x) {
   return x * x * (3 - 2 * x);
 }
 
-const INTRO_DUR = 3.0;    // seconds for panels to assemble
+const INTRO_DUR = 2.0; // seconds for panels to assemble
 const INTRO_STAGGER = 0.6; // max time offset between first and last panel
 
 function getMorphT(elapsed) {
@@ -82,8 +82,6 @@ const clock = new THREE.Clock();
   root.rotation.x += delta * ROT_X;
   root.rotation.z += delta * ROT_Z;
 
-
-
   for (const p of panels) {
     const {
       mesh,
@@ -99,7 +97,7 @@ const clock = new THREE.Clock();
       hueAngle,
     } = p;
 
-    const wave1 = Math.sin(ct * .19 + phase) * .5;
+    const wave1 = Math.sin(ct * 0.19 + phase) * 0.5;
     const wave2 = Math.sin(ct * 0.26 + phase * 1.3) * 0.5;
     const wave3 = Math.sin(ct * 0.29 + phase) * 0.2;
     const disp = (wave1 + wave2 + wave3) * waveAmp;
@@ -108,8 +106,10 @@ const clock = new THREE.Clock();
     mesh.rotateZ(delta * p.spinRate);
 
     // Intro assembly — panels fly from random scatter toward their basePos
-    const introProgress = Math.min(Math.max(
-      (ct - p.stagger * INTRO_STAGGER) / INTRO_DUR, 0), 1);
+    const introProgress = Math.min(
+      Math.max((ct - p.stagger * INTRO_STAGGER) / INTRO_DUR, 0),
+      1,
+    );
     const introEase = smoothstep(introProgress);
 
     const tX = basePos.x + dir.x * disp;
@@ -118,7 +118,7 @@ const clock = new THREE.Clock();
     mesh.position.set(
       p.scatterPos.x + (tX - p.scatterPos.x) * introEase,
       p.scatterPos.y + (tY - p.scatterPos.y) * introEase,
-      p.scatterPos.z + (tZ - p.scatterPos.z) * introEase
+      p.scatterPos.z + (tZ - p.scatterPos.z) * introEase,
     );
     mesh.scale.setScalar(breathe * flatT);
     orbMesh.position.copy(mesh.position);
@@ -154,8 +154,8 @@ const clock = new THREE.Clock();
       glow * GLOW_COLOR_B,
     );
     orbMat.emissive.setRGB(
-      glow * (GLOW_EMIT_R + .20 * cosHOrb),
-      glow * (GLOW_EMIT_G + 0.20 * sinHOrb),
+      glow * (GLOW_EMIT_R + 0.2 * cosHOrb),
+      glow * (GLOW_EMIT_G + 0.2 * sinHOrb),
       glow * GLOW_EMIT_B,
     );
     orbMat.emissiveIntensity = emitInt;
@@ -170,7 +170,8 @@ const clock = new THREE.Clock();
       (EDGE_OPACITY_BASE +
         distFromCenter * EDGE_OPACITY_CENTER +
         Math.abs(wave1) * EDGE_OPACITY_WAVE) *
-      flatT * introEase;
+      flatT *
+      introEase;
   }
 
   // ── Connection lines — update positions and opacity ───────────────────────

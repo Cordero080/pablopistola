@@ -21,13 +21,13 @@ if (stayMode) {
     `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" style="display:block;margin:0 auto;"><path d="M11 18V6l-8.5 6 8.5 6zm.5-6 8.5 6V6l-8.5 6z"/></svg>`;
 }
 
-// Fade in subtitle as name is forming (~3.8s)
+// Fade in subtitle as name is forming (~2.8s)
 setTimeout(() => {
   const subtitle = document.querySelector(".enter-identity-subtitle");
   if (subtitle) subtitle.style.opacity = "1";
-}, 3800);
+}, 2800);
 
-// Fade in sine wave as title starts animating (~3.2s)
+// Fade in sine wave as title starts animating (~2.2s)
 setTimeout(() => {
   const waves = document.getElementById("waves");
   if (!waves) return;
@@ -36,12 +36,12 @@ setTimeout(() => {
       waves.style.opacity = "0.38";
     }),
   );
-}, 3200);
+}, 2200);
 
-// Show enter button after full sequence (~6.5s)
+// Show enter button after full sequence (~5s)
 setTimeout(() => {
   document.getElementById("enterBtn").classList.add("visible");
-}, 6500);
+}, 5000);
 
 // Handle enter click - scanline collapse then navigate
 document.getElementById("enterBtn").addEventListener("click", (e) => {

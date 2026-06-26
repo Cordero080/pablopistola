@@ -2,6 +2,11 @@
    SKILLS PAGE — Ticker Rows Layout
    ========================================== */
 
+/* Canvas sits above the ticker content so backdrop-filter doesn't blur it away */
+#waves {
+  z-index: 3;
+}
+
 .skills-page {
   min-height: 100vh;
   padding: 3rem 0 2rem;
@@ -103,11 +108,11 @@
   border-left: 2px solid var(--row-accent);
   margin-left: 0.5rem;
   font-family: "Orbitron", sans-serif;
-  font-size: 0.72rem;
+  font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--row-accent) 45%, white);
+  color: color-mix(in srgb, var(--row-accent) 45%, rgb(237, 172, 199));
   opacity: 1;
   white-space: nowrap;
   user-select: none;
@@ -188,7 +193,7 @@
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.402);
   transition:
     color 0.2s ease,
     text-shadow 0.2s ease;

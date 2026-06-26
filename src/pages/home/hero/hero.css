@@ -65,27 +65,27 @@
 /* Animatable gradient stops for the title — enables smooth cross-fade between states */
 @property --ht-a {
   syntax: "<color>";
-  inherits: false;
+  inherits: true;
   initial-value: #ffffff;
 }
 @property --ht-b {
   syntax: "<color>";
-  inherits: false;
+  inherits: true;
   initial-value: #e4ecf0;
 }
 @property --ht-c {
   syntax: "<color>";
-  inherits: false;
+  inherits: true;
   initial-value: #c8d4de;
 }
 @property --ht-d {
   syntax: "<color>";
-  inherits: false;
+  inherits: true;
   initial-value: #a8b8c4;
 }
 @property --ht-e {
   syntax: "<color>";
-  inherits: false;
+  inherits: true;
   initial-value: #708090;
 }
 
@@ -117,6 +117,44 @@
   word-break: normal;
   opacity: 0.99;
   cursor: default;
+}
+
+.hero-title:hover {
+  cursor: pointer;
+}
+
+/* ── Letter spans inside the hero title ────────────────────────────────────── */
+/* Override landing glitch.css defaults: letters start visible with no entry anim */
+.hero-title .title-letter {
+  background: linear-gradient(
+    to bottom,
+    var(--ht-a) 0%,
+    var(--ht-b) 15%,
+    var(--ht-c) 50%,
+    var(--ht-d) 75%,
+    var(--ht-e) 100%
+  );
+  background-size: 100% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+  opacity: 1;
+  animation: none;
+}
+
+/* Reset phase: instantly hide all letters before replay fires */
+.hero-title.landing-title--reset .title-letter {
+  animation: none !important;
+  opacity: 0 !important;
+}
+
+/* Replay phase: fire the exact landing-page glitch keyframes, sped up to 1s */
+.hero-title.landing-title--replay .title-letter:not(.title-letter--flip) {
+  animation: letterFadeInGlitch 3.5s linear forwards !important;
+}
+.hero-title.landing-title--replay .title-letter--flip {
+  animation: letterFadeInFlipGlitch 3.5s linear forwards !important;
 }
 
 .hero-subtitle {

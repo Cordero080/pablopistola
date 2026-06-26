@@ -10,8 +10,8 @@
 
 .cursor-main {
   position: fixed;
-  width: 15px;
-  height: 15px;
+  width: 20px;
+  height: 20px;
   border: 3px solid #f8f8f9;
   background: rgba(107, 123, 255, 0.3);
   border-radius: 50%;

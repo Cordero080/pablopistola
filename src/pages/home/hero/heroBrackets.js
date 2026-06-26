@@ -6,7 +6,7 @@
 import * as THREE from "three";
 
 const heroSection = document.querySelector(".hero-section");
-if (heroSection && window.innerWidth > 600) {
+if (heroSection) {
   // ── Canvas overlay ──────────────────────────────────────────────────────────
   const canvas = document.createElement("canvas");
   canvas.style.cssText = `
@@ -108,47 +108,40 @@ if (heroSection && window.innerWidth > 600) {
     camera.aspect = W / H;
     camera.updateProjectionMatrix();
 
-    const isMobileView = W <= 600;
-
     const vFov = (camera.fov * Math.PI) / 180;
     const worldH = 2 * Math.tan(vFov / 2) * camera.position.z;
     const worldW = worldH * camera.aspect;
     const pxToWorld = worldH / H;
 
-    // ── Scale ── [mobile, tablet (≤900), desktop]
-    // Increase to make brackets larger, decrease to shrink them.
-    const scaleFactor = isMobileView ? 0.19 : W <= 900 ? 0.2 : 0.18;
-    const s = (H * scaleFactor * pxToWorld) / 2.2;
+    // ── Scale — consistent across all breakpoints ────────────────────────────
+    const s = (H * 0.19 * pxToWorld) / 2.2;
     leftBracket.scale.set(s, s, s);
     rightBracket.scale.set(s, s, s);
 
-    let offsetWorld;
-    // ── Horizontal gap ── pixels of space between title edge and bracket
-    // Increase padding to push brackets further out from the title.
+    // ── Horizontal position — anchored to hero title edge ────────────────────
     const heroTitle = heroSection.querySelector(".hero-title");
     const halfContentPx = heroTitle
       ? heroTitle.getBoundingClientRect().width / 2
       : W * 0.28;
-    const padding = isMobileView ? 18 : 32; // [mobile, desktop] — tighter gap on mobile
-    offsetWorld = Math.min(
-      (halfContentPx + padding) * pxToWorld,
-      worldW * 0.46, // hard cap: never wider than 46% of world width
+    const offsetWorld = Math.min(
+      (halfContentPx + 28) * pxToWorld,
+      worldW * 0.46,
     );
 
     leftBracket.position.x = -offsetWorld + 0.18;
     rightBracket.position.x = offsetWorld;
 
-    // ── Vertical position — anchored to hero title center ──────────────────
-    // Derived from the title's actual DOM position so edits elsewhere never shift brackets.
-    // FULL SCREEN
+    // ── Vertical position — anchored to hero title center ────────────────────
+    // scrollReveal.js applies y:48 (translateY 48px) to #heroTitle via GSAP
+    // immediateRender before this resize() runs. getBoundingClientRect()
+    // includes that transform, so titleCenterPx reads 48px too low.
+    // Adding 48 back converts the measured position to the natural layout position.
     const heroRect = heroSection.getBoundingClientRect();
     const titleRect = heroTitle ? heroTitle.getBoundingClientRect() : null;
     const titleCenterPx = titleRect
       ? titleRect.top - heroRect.top + titleRect.height / 2
       : H / 2;
-    const bracketY =
-      (H / 2 - titleCenterPx) * pxToWorld +
-      (W > 1000 ? 0.55 : W > 900 ? 0.55 : 0);
+    const bracketY = (H / 2 - titleCenterPx + 48) * pxToWorld;
     leftBracket.position.y = bracketY;
     rightBracket.position.y = bracketY;
     rightBracket.position.z = -0.23;

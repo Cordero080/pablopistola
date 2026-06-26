@@ -46,130 +46,86 @@
   window.addEventListener("scroll", onScroll, { passive: true });
 })();
 
-// ── Title letter flip + alternate theme activation ──
-// Desktop: hover triggers gradient fade → letters mirror one by one → theme activates
-// Mobile:  tap triggers the same sequence
-// Unflip (+ theme toggle back) happens on mouse-leave / second tap.
+// ── Hero title: wrap letters + click → glitch → compMode toggle ──
 (function () {
   const title = document.getElementById("heroTitle");
   if (!title) return;
 
-  const isMobile = () => window.matchMedia("(hover: none)").matches;
+  const TITLE_TEXT = "PVBLO C0RDERO";
+  const PHI = (1 + Math.sqrt(5)) / 2;
+  const colorVariants = [
+    "magenta",
+    "cyan",
+    "aqua",
+    "purple",
+    "blue",
+    "orange",
+    "pink",
+    "green",
+  ];
 
-  const spanStyle = [
-    "display:inline-block",
-    "background:linear-gradient(to bottom,var(--ht-a) 0%,var(--ht-b) 25%,var(--ht-c) 50%,var(--ht-d) 75%,var(--ht-e) 100%)",
-    "-webkit-background-clip:text",
-    "background-clip:text",
-    "-webkit-text-fill-color:transparent",
-    "transition:transform 0.35s cubic-bezier(0.4,0,0.2,1)",
-  ].join(";");
+  // Wrap each character in a .title-letter span (same structure as landing glitch.js)
+  title.textContent = "";
+  TITLE_TEXT.split("").forEach((letter, index) => {
+    const span = document.createElement("span");
+    const isSpace = letter === " ";
+    const isFlipped = index === 0 || index === TITLE_TEXT.length - 1;
+    const colorVariant = colorVariants[index % colorVariants.length];
 
-  // Rebuild title HTML as flip-ltr spans, preserving any .title-inverted-v child
-  function buildSpanHTML(invertedStyle) {
-    const style = invertedStyle || spanStyle;
-    return Array.from(title.childNodes)
-      .map((node) => {
-        if (
-          node.nodeType === Node.ELEMENT_NODE &&
-          node.classList.contains("title-inverted-v")
-        ) {
-          // Re-wrap the inverted V as a flip-ltr span that also carries the invert class
-          return `<span class="flip-ltr title-inverted-v" style="${style};position:relative;top:-0.02em;transform:scaleY(-1);transform-origin:center 50%;">${node.textContent}</span>`;
-        }
-        const text = node.textContent;
-        return text
-          .split("")
-          .map((ch) =>
-            ch === " "
-              ? `<span style="display:inline-block;width:0.35em"> </span>`
-              : `<span class="flip-ltr" style="${style}">${ch}</span>`,
-          )
-          .join("");
-      })
-      .join("");
-  }
+    if (isSpace) {
+      span.className = "title-letter title-letter--space";
+    } else {
+      const classes = ["title-letter", `title-letter--${colorVariant}`];
+      if (isFlipped) classes.push("title-letter--flip");
+      // Preserve title-inverted-v on V for compMode.css targeting
+      if (index === 1) classes.push("title-inverted-v");
+      span.className = classes.join(" ");
+      span.setAttribute("data-letter", letter);
+    }
 
-  function ensureSpans() {
-    if (title.querySelector(".flip-ltr")) return;
-    title.innerHTML = buildSpanHTML();
-    title.style.webkitTextFillColor = "unset";
-    title.style.backgroundClip = "unset";
-    title.style.webkitBackgroundClip = "unset";
-    title.style.background = "none";
-  }
+    span.textContent = letter;
+    title.appendChild(span);
+  });
 
-  let flipTimeout = null;
-  let flipped = false;
+  // Click → glitch → compMode toggle
+  let animating = false;
+  title.addEventListener("click", () => {
+    if (animating) return;
+    animating = true;
 
-  function flipIn() {
-    clearTimeout(flipTimeout);
-    // Wait for CSS gradient transition to settle, then flip letters
-    flipTimeout = setTimeout(
-      () => {
-        ensureSpans();
-        const spans = Array.from(title.querySelectorAll(".flip-ltr"));
-        spans.forEach((span, i) => {
-          setTimeout(() => {
-            const isInverted = span.classList.contains("title-inverted-v");
-            span.style.transform = isInverted
-              ? "scaleX(-1) scaleY(-1)"
-              : "scaleX(-1)";
-          }, i * 55);
+    // Phase 1: instantly hide all letters
+    title.classList.add("landing-title--reset");
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        // Phase 2: fire glitch animations with Weyl-sequence stagger
+        title.classList.remove("landing-title--reset");
+        title.classList.add("landing-title--replay");
+
+        const letterSpans = title.querySelectorAll(
+          ".title-letter:not(.title-letter--space)",
+        );
+        letterSpans.forEach((span, i) => {
+          const weyl = ((i + 1) * PHI) % 1;
+          span.style.animationDelay = `${weyl * 0.3}s`;
         });
-        // Activate theme once last letter finishes flipping
-        const totalDelay = (spans.length - 1) * 55 + 350;
+
+        // Toggle compMode once glitch visually completes (~650ms)
         setTimeout(() => {
           if (typeof window.toggleComplementaryColors === "function") {
             window.toggleComplementaryColors();
           }
-          flipped = true;
-          // Mobile: auto-unmirror after theme settles — one tap = full cycle
-          if (isMobile()) setTimeout(flipOut, 300);
-        }, totalDelay);
-      },
-      isMobile() ? 0 : 500,
-    ); // no gradient settle delay on mobile
-  }
+        }, 650);
 
-  function flipOut() {
-    clearTimeout(flipTimeout);
-    const spans = Array.from(title.querySelectorAll(".flip-ltr"));
-    spans
-      .slice()
-      .reverse()
-      .forEach((span, i) => {
+        // Cleanup: restore visible state, unlock for next click (after 3.5s anim + max stagger)
         setTimeout(() => {
-          const isInverted = span.classList.contains("title-inverted-v");
-          span.style.transform = isInverted
-            ? "scaleX(1) scaleY(-1)"
-            : "scaleX(1)";
-        }, i * 40);
+          title.classList.remove("landing-title--replay");
+          letterSpans.forEach((span) => {
+            span.style.animationDelay = "";
+          });
+          animating = false;
+        }, 3900);
       });
-    // Unflip letters only — theme stays as-is until next hover
-    const totalDelay = (spans.length - 1) * 40 + 350;
-    setTimeout(() => {
-      flipped = false;
-      // Restore original HTML — plain text chars + the inverted-V span
-      title.innerHTML = 'P<span class="title-inverted-v">V</span>BLO C0RDERO';
-      title.style.background = "";
-      title.style.webkitTextFillColor = "";
-      title.style.backgroundClip = "";
-      title.style.webkitBackgroundClip = "";
-    }, totalDelay);
-  }
-
-  // Desktop: hover
-  title.addEventListener("mouseenter", () => {
-    if (!isMobile()) flipIn();
-  });
-  title.addEventListener("mouseleave", () => {
-    if (!isMobile()) flipOut();
-  });
-
-  // Mobile: one tap = full mirror-then-unmirror cycle; ignore taps mid-animation
-  title.addEventListener("click", () => {
-    if (!isMobile() || flipped) return;
-    flipIn();
+    });
   });
 })();
