@@ -52,13 +52,19 @@ document.getElementById("enterBtn").addEventListener("click", (e) => {
   btn.classList.add("collapsing");
   window.__stopRubix = true;
 
+  // Prefetch home immediately so it loads during the animation
+  const prefetch = document.createElement("link");
+  prefetch.rel = "prefetch";
+  prefetch.href = "/home";
+  document.head.appendChild(prefetch);
+
   setTimeout(() => {
     document.querySelector(".landing-container").classList.add("dissolving");
     document.getElementById("waves").classList.add("dissolving");
     document.querySelector(".enter-identity")?.classList.add("dissolving");
-  }, 500);
+  }, 250);
 
   setTimeout(() => {
     window.location.href = "/home";
-  }, 900);
+  }, 600);
 });
