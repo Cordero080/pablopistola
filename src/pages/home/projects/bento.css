@@ -68,6 +68,13 @@
   }
 }
 
+@media (max-width: 900px) {
+  .projects-section::before {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
 /* ── ROW ── */
 .project-row {
   display: flex;

@@ -85,9 +85,9 @@ const WAVE_CONFIGS = [
     halfWidth: 20,
     amplitude: 90,
     wavelength: 300,
-    timeModifier: .2,
+    timeModifier: 0.2,
     isRibbon: true,
-    baseOpacity: .75,
+    baseOpacity: 0.75,
     attraction: 1,
     attractionStrength: 0.12,
     attractionDelay: 0.004,
@@ -401,12 +401,14 @@ export default class WaveScene {
 
     this._bloomPass = new UnrealBloomPass(
       new THREE.Vector2(this._width, this._height),
-      0.4, // strength:  how intense the glow is (we animate this from scroll)
-      0.8, // radius:    how far the glow spreads outward
-      0.05, // luminanceThreshold: pixels above this brightness get a halo
-      //                        0.05 = almost everything glows; 0.9 = only near-white
+      0.4, // strength
+      0.5, // radius — tighter glow, fewer jagged halos
+      0.05, // luminanceThreshold
     );
     this._composer.addPass(this._bloomPass);
+    // Sync composer buffers to physical pixels so bloom isn't half-res on retina
+    const dpr = this._renderer.getPixelRatio();
+    this._composer.setSize(this._width * dpr, this._height * dpr);
   }
 
   // ── Events ──────────────────────────────────────────────────────────────────
@@ -454,7 +456,8 @@ export default class WaveScene {
     this._height = window.innerHeight;
 
     this._renderer.setSize(this._width, this._height);
-    this._composer.setSize(this._width, this._height);
+    const dpr = this._renderer.getPixelRatio();
+    this._composer.setSize(this._width * dpr, this._height * dpr);
 
     // Update the camera frustum to match the new window size.
     // Without updateProjectionMatrix(), the camera ignores the new values.

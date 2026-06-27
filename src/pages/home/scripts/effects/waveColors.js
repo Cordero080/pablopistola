@@ -7,7 +7,9 @@ function updateMinimalParallaxOverlay() {
   if (!overlay) return;
   overlay.style.transform = `translateY(${window.scrollY * 0.25}px)`;
 }
-window.addEventListener("scroll", updateMinimalParallaxOverlay);
+window.addEventListener("scroll", updateMinimalParallaxOverlay, {
+  passive: true,
+});
 document.addEventListener("DOMContentLoaded", updateMinimalParallaxOverlay);
 
 // ── Scroll-based hue rotation on the sine wave canvas ───────────────────────
@@ -20,7 +22,7 @@ function updateBentoCards() {
   const canvas = document.getElementById("waves");
   if (canvas) canvas.style.filter = `hue-rotate(${hue}deg)`;
 }
-window.addEventListener("scroll", updateBentoCards);
+window.addEventListener("scroll", updateBentoCards, { passive: true });
 document.addEventListener("DOMContentLoaded", updateBentoCards);
 
 // ── R key — reverse wave direction ──────────────────────────────────────────

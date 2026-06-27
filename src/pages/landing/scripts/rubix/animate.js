@@ -43,6 +43,11 @@ function smoothstep(x) {
   return x * x * (3 - 2 * x);
 }
 
+function easeOutCubic(x) {
+  x = Math.max(0, Math.min(1, x));
+  return 1 - Math.pow(1 - x, 3);
+}
+
 const INTRO_DUR = 2.0; // seconds for panels to assemble
 const INTRO_STAGGER = 0.6; // max time offset between first and last panel
 
@@ -142,7 +147,7 @@ const clock = new THREE.Clock();
       Math.max((ct - p.stagger * INTRO_STAGGER) / INTRO_DUR, 0),
       1,
     );
-    const introEase = smoothstep(introProgress);
+    const introEase = easeOutCubic(introProgress);
 
     const tX = basePos.x + dir.x * disp;
     const tY = basePos.y + dir.y * disp;
