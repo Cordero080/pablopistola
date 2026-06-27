@@ -9,6 +9,7 @@ import {
   connMat,
   waveAmp,
 } from "./geometry.js";
+
 import {
   CUBE_HOLD,
   MORPH_DUR,
@@ -65,15 +66,23 @@ function getConnOpacity(c) {
 }
 
 // Returns 0–1 eased progress for the orb separation arc within the sphere hold.
-// Orbs push out along their face normal during the first 30%, hold, then reunite.
+// Orbs drift outward very slowly over 75% of SPHERE_HOLD, then return over the last 25%.
 function getSeparationT(c) {
   const start = CUBE_HOLD + MORPH_DUR;
   const end = start + SPHERE_HOLD;
   if (c < start || c >= end) return 0;
   const t = (c - start) / SPHERE_HOLD;
-  if (t < 0.3) return smoothstep(t / 0.3);
-  if (t > 0.7) return smoothstep((1 - t) / 0.3);
+  if (t < 0.75) return smoothstep(t / 0.75); // very slow push-out (first 75%)
+  return smoothstep((1 - t) / 0.25); // drift back (last 25%)
   return 1;
+}
+
+// Panels extrude into cubes mid-way through the cube hold phase
+function getBoxT(c) {
+  if (c < 2.5 || c >= CUBE_HOLD) return 0;
+  if (c < 5) return smoothstep((c - 2.5) / 2.5);
+  if (c < 6.5) return 1;
+  return smoothstep((CUBE_HOLD - c) / 1.5);
 }
 
 const clock = new THREE.Clock();
@@ -94,19 +103,25 @@ const clock = new THREE.Clock();
   // Separation: outward push along face normals during sphere hold
   const c = ct % MORPH_CYCLE;
   const sepOffset = getSeparationT(c) * ORB_SEPARATION;
+  const boxT = getBoxT(c);
 
-  root.rotation.y += delta * ROT_Y;
-  root.rotation.x += delta * ROT_X;
-  root.rotation.z += delta * ROT_Z;
+  const ry = Math.sin(ct * 0.11) * 0.5 + 0.5;
+  const rx = Math.sin(ct * 0.17 + 2.1) * 0.5 + 0.5;
+  const rz = Math.sin(ct * 0.13 + 4.2) * 0.5 + 0.5;
+  root.rotation.y += delta * ROT_Y * (0.08 + 0.92 * ry);
+  root.rotation.x += delta * ROT_X * (0.08 + 0.92 * rx);
+  root.rotation.z += delta * ROT_Z * (0.08 + 0.92 * rz);
 
   for (const p of panels) {
     const {
       mesh,
       edgeMesh,
       orbMesh,
+      boxMesh,
       mat,
       orbMat,
       edgeMat,
+      boxMat,
       basePos,
       dir,
       phase,
@@ -144,10 +159,23 @@ const clock = new THREE.Clock();
       mesh.position.y + dir.y * sepOffset,
       mesh.position.z + dir.z * sepOffset,
     );
-    orbMesh.scale.setScalar(breathe * orbT);
+    const wobble = orbT * 0.18;
+    const sx = 1 + wobble * Math.sin(ct * 2.1 + phase);
+    const sy = 1 + wobble * Math.sin(ct * 1.7 + phase * 1.4);
+    const sz = 1 + wobble * Math.sin(ct * 2.5 + phase * 0.7);
+    orbMesh.scale.set(
+      breathe * orbT * sx,
+      breathe * orbT * sy,
+      breathe * orbT * sz,
+    );
     edgeMesh.position.copy(mesh.position);
     edgeMesh.quaternion.copy(mesh.quaternion);
     edgeMesh.scale.setScalar(breathe * flatT);
+
+    // Box extrusion — grows depth along face normal during cube hold
+    boxMesh.position.copy(mesh.position);
+    boxMesh.quaternion.copy(mesh.quaternion);
+    boxMesh.scale.set(breathe * flatT, breathe * flatT, (0.001 + boxT) * flatT);
 
     // Panel glow — uses base hueAngle
     const glow = distFromCenter * 0.095 + Math.abs(wave1) * 0.04;
@@ -165,6 +193,9 @@ const clock = new THREE.Clock();
     mat.color.setRGB(cr, cg, cb);
     mat.emissive.setRGB(er, eg, eb);
     mat.emissiveIntensity = emitInt;
+    boxMat.color.setRGB(cr, cg, cb);
+    boxMat.emissive.setRGB(er, eg, eb);
+    boxMat.emissiveIntensity = emitInt;
 
     // Orb glow — adds the slow hue drift on top
     const orbH = hueAngle + orbHueDrift;
@@ -186,7 +217,8 @@ const clock = new THREE.Clock();
       PANEL_OPACITY_BASE +
       distFromCenter * PANEL_OPACITY_CENTER +
       Math.abs(wave1) * PANEL_OPACITY_WAVE;
-    mat.opacity = baseOp * flatT * introEase;
+    mat.opacity = baseOp * Math.max(0, 1 - boxT) * flatT * introEase;
+    boxMat.opacity = boxT * 0.18 * flatT * introEase;
     orbMat.opacity = baseOp * 2 * orbT * introEase;
     edgeMat.opacity =
       (EDGE_OPACITY_BASE +

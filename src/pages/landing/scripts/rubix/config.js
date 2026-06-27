@@ -65,9 +65,9 @@ export const EDGE_OPACITY_WAVE = 0.5;
 // 🔄  CUBE ROTATION — how fast the whole cube slowly spins (radians/second)
 //  Lower = slower. Set to 0 to freeze that axis.
 
-export const ROT_Y = 0.01; // left–right spin (yaw)   ← main visible spin
-export const ROT_X = 0.0076; // up–down tilt   (pitch)
-export const ROT_Z = 0.01; // clockwise roll (roll)
+export const ROT_Y = 0.09; // left–right spin (yaw)
+export const ROT_X = 0.07; // up–down tilt   (pitch)
+export const ROT_Z = 0.05; // clockwise roll (roll)
 
 // 🌊  WAVE — panels ripple in and out from the face surface
 //  WAVE_AMPLITUDE: how far panels travel. 0 = flat/no ripple, 1.5 = very dramatic
@@ -100,7 +100,7 @@ export const FACE_HUE_OFFSETS = [0, 3.5, 1.0, 1.5, 2.2, 2.8];
 
 export const CUBE_HOLD = 8; // seconds showing flat panels
 export const MORPH_DUR = 4; // seconds for the morph transition
-export const SPHERE_HOLD = 3; // seconds showing sphere orbs
+export const SPHERE_HOLD = 8; // seconds showing sphere orbs
 
 export const MORPH_CYCLE = CUBE_HOLD + MORPH_DUR + SPHERE_HOLD + MORPH_DUR; // auto
 
