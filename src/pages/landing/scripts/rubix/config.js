@@ -86,7 +86,7 @@ export const SCALE_BREATHE = 0.3;
 
 // 🌈  HUE SHIFT — each face starts at a different color angle, creating variety
 
-export const FACE_HUE_OFFSETS = [0, 3.5, 1.0, 1.5, 2.2, 2.8];
+export const FACE_HUE_OFFSETS = [0, 1.05, 2.09, 3.14, 4.19, 5.24];
 
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║  🔮  MORPH — flat panel tiles ↔ sphere orbs                              ║
@@ -112,7 +112,7 @@ export const MORPH_CYCLE = CUBE_HOLD + MORPH_DUR + SPHERE_HOLD + MORPH_DUR; // a
 // ║                  0 = no shift, 0.5 = noticeable cycling.                 ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
-export const ORB_HUE_SPEED = 0.5; // radians/second — only active during sphere phase
+export const ORB_HUE_SPEED = 0.12; // radians/second — only active during sphere phase
 
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║  💥  ORB SEPARATION                                                      ║

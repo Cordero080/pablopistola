@@ -4,7 +4,7 @@ window.waveGen = new SineWaveGenerator({
   el: document.getElementById("waves"),
   speed: 0.4,
   waves: [
-    // Wave 1: Heavy leader — noise oscillation shape
+    // Wave 1: Heavy leader — very slow due to mass
     {
       timeModifier: 2,
       lineWidth: 11.5,
@@ -16,7 +16,6 @@ window.waveGen = new SineWaveGenerator({
       attractionStrength: 0.1,
       attractionDelay: 0.001,
       attractionRadius: 280,
-      shape: "noise",
     },
     // Wave 2: Light ribbon — quick to respond
     {

@@ -10,6 +10,7 @@
   width: min(96vw, 1400px);
   opacity: 0.85;
   animation: identityFloat 9s ease-in-out infinite;
+  animation-delay: 3s;
 }
 
 @keyframes identityFloat {

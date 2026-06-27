@@ -19,12 +19,7 @@ const off = cubeSize / 2;
 export const waveAmp = cubeSize * WAVE_AMPLITUDE;
 
 const planeGeo = new THREE.PlaneGeometry(panelSz, panelSz);
-const orbGeo = new THREE.SphereGeometry(panelSz * 0.46, 18, 12);
-const boxGeo = new THREE.BoxGeometry(
-  panelSz * 0.97,
-  panelSz * 0.97,
-  panelSz * 0.97,
-);
+const orbGeo = new THREE.SphereGeometry(panelSz * 0.46, 7, 5);
 
 const faces = [
   {
@@ -83,8 +78,8 @@ faces.forEach((face, fi) => {
         color: new THREE.Color(PANEL_COLOR),
         emissive: new THREE.Color(PANEL_EMISSIVE),
         emissiveIntensity: 0.2,
-        metalness: 1,
-        roughness: 0.35,
+        metalness: 0.95,
+        roughness: 0.06,
         iridescence: 0.5,
         iridescenceIOR: 1.8,
         iridescenceThicknessRange: [100, 400],
@@ -113,14 +108,12 @@ faces.forEach((face, fi) => {
       });
       const edgeMesh = new THREE.LineSegments(edgeGeo, edgeMat);
 
-      const orbMat = new THREE.MeshPhysicalMaterial({
+      const orbMat = new THREE.MeshStandardMaterial({
         color: new THREE.Color(PANEL_COLOR),
         emissive: new THREE.Color(PANEL_EMISSIVE),
         emissiveIntensity: 0.2,
-        metalness: 0.88,
-        roughness: 0.06,
-        clearcoat: 0.7,
-        clearcoatRoughness: 0.04,
+        metalness: 0.9,
+        roughness: 0.2,
         transparent: true,
         opacity: 0,
         depthWrite: false,
@@ -128,24 +121,6 @@ faces.forEach((face, fi) => {
       const orbMesh = new THREE.Mesh(orbGeo, orbMat);
       orbMesh.position.copy(mesh.position);
       orbMesh.scale.setScalar(0);
-
-      const boxMat = new THREE.MeshPhysicalMaterial({
-        color: new THREE.Color(PANEL_COLOR),
-        emissive: new THREE.Color(PANEL_EMISSIVE),
-        emissiveIntensity: 0.2,
-        metalness: 1,
-        roughness: 0.2,
-        iridescence: 0.7,
-        iridescenceIOR: 1.8,
-        iridescenceThicknessRange: [100, 400],
-        transparent: true,
-        opacity: 0,
-        depthWrite: false,
-      });
-      const boxMesh = new THREE.Mesh(boxGeo, boxMat);
-      boxMesh.position.copy(mesh.position);
-      boxMesh.quaternion.copy(mesh.quaternion);
-      boxMesh.scale.set(1, 1, 0.001);
 
       const phase = fi * 0.5 + row * 0.3 + col * 0.2;
 
@@ -164,11 +139,9 @@ faces.forEach((face, fi) => {
         mesh,
         edgeMesh,
         orbMesh,
-        boxMesh,
         mat,
         orbMat,
         edgeMat,
-        boxMat,
         basePos: mesh.position.clone(),
         dir: face.dir.clone(),
         phase,
@@ -182,7 +155,6 @@ faces.forEach((face, fi) => {
       root.add(mesh);
       root.add(edgeMesh);
       root.add(orbMesh);
-      root.add(boxMesh);
     }
   }
 });

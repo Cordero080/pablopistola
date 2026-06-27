@@ -194,14 +194,7 @@ SineWaveGenerator.prototype.drawSine = function (time, options, waveIndex) {
   for (let i = 0; i < this.waveWidth; i += segmentLength) {
     const segmentX = i + this.waveLeft;
     const waveX = time * this.speed + (-yAxis + i) / wavelength;
-    const shape = options.shape || "sine";
-    const waveY =
-      shape === "noise"
-        ? (Math.sin(waveX) +
-            0.4 * Math.sin(2.3 * waveX) +
-            0.15 * Math.sin(5.1 * waveX)) /
-          1.55
-        : Math.sin(waveX);
+    const waveY = Math.sin(waveX);
     const easedAmp = this.ease(i / this.waveWidth, suckedAmplitude);
 
     const cursorX = this.waveMouseX[waveIndex] ?? this.width / 2 / this.dpr;

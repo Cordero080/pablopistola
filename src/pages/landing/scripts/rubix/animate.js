@@ -82,14 +82,6 @@ function getSeparationT(c) {
   return 1;
 }
 
-// Panels extrude into cubes mid-way through the cube hold phase
-function getBoxT(c) {
-  if (c < 2.5 || c >= CUBE_HOLD) return 0;
-  if (c < 5) return smoothstep((c - 2.5) / 2.5);
-  if (c < 6.5) return 1;
-  return smoothstep((CUBE_HOLD - c) / 1.5);
-}
-
 const clock = new THREE.Clock();
 
 (function loop() {
@@ -108,7 +100,6 @@ const clock = new THREE.Clock();
   // Separation: outward push along face normals during sphere hold
   const c = ct % MORPH_CYCLE;
   const sepOffset = getSeparationT(c) * ORB_SEPARATION;
-  const boxT = getBoxT(c);
 
   const ry = Math.sin(ct * 0.11) * 0.5 + 0.5;
   const rx = Math.sin(ct * 0.17 + 2.1) * 0.5 + 0.5;
@@ -122,11 +113,9 @@ const clock = new THREE.Clock();
       mesh,
       edgeMesh,
       orbMesh,
-      boxMesh,
       mat,
       orbMat,
       edgeMat,
-      boxMat,
       basePos,
       dir,
       phase,
@@ -177,15 +166,11 @@ const clock = new THREE.Clock();
     edgeMesh.quaternion.copy(mesh.quaternion);
     edgeMesh.scale.setScalar(breathe * flatT);
 
-    // Box extrusion — grows depth along face normal during cube hold
-    boxMesh.position.copy(mesh.position);
-    boxMesh.quaternion.copy(mesh.quaternion);
-    boxMesh.scale.set(breathe * flatT, breathe * flatT, (0.001 + boxT) * flatT);
-
     // Panel glow — uses base hueAngle
-    const glow = distFromCenter * 0.095 + Math.abs(wave1) * 0.04;
-    const cosH = Math.cos(hueAngle);
-    const sinH = Math.sin(hueAngle);
+    const glow = distFromCenter * 0.095 + (wave1 + 0.5) * 0.04;
+    const globalHue = ct * 0.012;
+    const cosH = Math.cos(hueAngle + globalHue);
+    const sinH = Math.sin(hueAngle + globalHue);
 
     const cr = glow * (GLOW_COLOR_R + 0.2 * cosH);
     const cg = glow * (GLOW_COLOR_G + 0.2 * sinH);
@@ -198,12 +183,9 @@ const clock = new THREE.Clock();
     mat.color.setRGB(cr, cg, cb);
     mat.emissive.setRGB(er, eg, eb);
     mat.emissiveIntensity = emitInt;
-    boxMat.color.setRGB(cr, cg, cb);
-    boxMat.emissive.setRGB(er, eg, eb);
-    boxMat.emissiveIntensity = emitInt;
 
     // Orb glow — adds the slow hue drift on top
-    const orbH = hueAngle + orbHueDrift;
+    const orbH = hueAngle + globalHue + orbHueDrift;
     const cosHOrb = Math.cos(orbH);
     const sinHOrb = Math.sin(orbH);
     orbMat.color.setRGB(
@@ -222,8 +204,7 @@ const clock = new THREE.Clock();
       PANEL_OPACITY_BASE +
       distFromCenter * PANEL_OPACITY_CENTER +
       Math.abs(wave1) * PANEL_OPACITY_WAVE;
-    mat.opacity = baseOp * Math.max(0, 1 - boxT) * flatT * introEase;
-    boxMat.opacity = boxT * 0.18 * flatT * introEase;
+    mat.opacity = baseOp * flatT;
     orbMat.opacity = baseOp * 2 * orbT * introEase;
     edgeMat.opacity =
       (EDGE_OPACITY_BASE +
