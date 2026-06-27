@@ -52,18 +52,10 @@
 .enter-identity-subtitle {
   font-family: "Space Grotesk", sans-serif;
   font-size: clamp(0.8rem, 1.6vw, 1.15rem);
-  font-weight: 500;
-  letter-spacing: 0.15em;
+  font-weight: 300;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  background: linear-gradient(
-    90deg,
-    rgb(114, 175, 255),
-    rgb(74, 193, 248),
-    rgb(249, 142, 224)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: rgba(170, 195, 255, 0.7);
   margin: 0.5em 0 0;
   opacity: 0;
   transition: opacity 1.2s ease;
@@ -306,8 +298,5 @@ body.complementary-colors .enter-identity-title {
 }
 
 body.complementary-colors .enter-identity-subtitle {
-  background: #ffffff;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: rgba(0, 0, 0, 0.6);
 }
