@@ -3,6 +3,26 @@
  * Hero section — desktop base styles only. All @media breakpoints in hero.mobile.css.
  */
 
+.hero-veil {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 25vh;
+  background: linear-gradient(
+    to bottom,
+    rgba(48, 28, 95, 0.96) 0%,
+    rgba(24, 30, 60, 0.82) 40%,
+    rgb(26, 14, 57) 70%,
+    transparent 100%
+  );
+  box-shadow:
+    0 6px 40px rgba(90, 0, 200, 0.12),
+    inset 0 -1px 0 rgba(138, 43, 226, 0.15);
+  pointer-events: none;
+  z-index: 8000;
+}
+
 .hero-section {
   width: 100%;
   min-height: 30vh;

@@ -189,11 +189,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const w = window.innerWidth;
         const shiftX =
           w >= 1400
-            ? "calc(-9rem - 6px)"
+            ? "calc(-5rem)"
             : w >= 1200
               ? "calc(-2rem - 18px)"
               : w >= 901
-                ? "-4rem"
+                ? "0px"
                 : "0px";
         heroContent.style.transform = `
           perspective(1000px)
