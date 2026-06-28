@@ -1,0 +1,118 @@
+/**
+ * hero.mobile.css
+ * All responsive breakpoints for the hero section.
+ * Import immediately after hero.css.
+ * Breakpoints: 1100px (wide desktop shift), 900px (tablet), 600px (mobile)
+ */
+
+/* ── Desktop: shift title+brackets left as one unit ─────────────────────── */
+@media (min-width: 901px) {
+  .hero-content {
+    transform: translateX(-7.4rem);
+  }
+  .hero-subtitle {
+    transform: translateX(6.8rem);
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero-content {
+    transform: translateX(-11rem);
+  }
+  .hero-subtitle {
+    transform: translateX(8.8rem);
+  }
+}
+
+@media (min-width: 1400px) {
+  .hero-content {
+    transform: translateX(-14rem);
+  }
+  .hero-subtitle {
+    transform: translateX(10.8rem);
+  }
+}
+
+/* ── Tablet/mobile: no shift ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero-content {
+    transform: none;
+    margin: 0 auto;
+  }
+}
+
+/* ── Tablet (≤900px): center everything, no bracket zone ─────────────────── */
+@media (max-width: 900px) {
+  .hero-section {
+    min-height: 20vh;
+    padding-top: 7vh;
+    margin-bottom: 1rem;
+  }
+  .hero-content {
+    margin: 0 auto;
+    text-align: center;
+  }
+  .hero-title {
+    font-size: clamp(2rem, 5.5vw, 3rem);
+    margin-left: 0;
+  }
+  .hero-subtitle {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    white-space: normal;
+  }
+  .home-bio {
+    max-width: 520px;
+  }
+}
+
+/* ── Mobile (≤600px): compact, single-column ─────────────────────────────── */
+@media (max-width: 600px) {
+  .hero-section {
+    min-height: auto;
+    padding-top: 3vh;
+    margin-bottom: 0.5rem;
+  }
+  .hero-content {
+    margin: 6vh auto 0;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+  }
+  .hero-title {
+    font-size: clamp(1.1rem, 6.5vw, 2rem);
+    letter-spacing: 0.06em;
+    margin-left: 0;
+  }
+  .title-inverted-v {
+    top: -0.01em;
+  }
+  .hero-subtitle {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    white-space: normal;
+    text-align: center;
+  }
+  .hero-underline {
+    width: 82%;
+    transform: translateX(0);
+  }
+  .hero-cta {
+    font-size: 0.8rem;
+    padding: 11px 28px;
+    letter-spacing: 0.5em;
+  }
+  .projects-scroll-cta {
+    margin: 0 auto 1rem;
+    transform: translateY(1.5rem);
+  }
+  .home-bio {
+    max-width: 100%;
+    padding: 0 1.25rem;
+  }
+  .home-bio p {
+    font-size: 0.75rem;
+  }
+}

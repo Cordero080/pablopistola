@@ -1,9 +1,8 @@
 /**
  * hero.css
- * Hero section with animated title, CTA button, and gradient effects
+ * Hero section — desktop base styles only. All @media breakpoints in hero.mobile.css.
  */
 
-/* HERO SECTION (inspired by thei.care, harmonized with site) */
 .hero-section {
   width: 100%;
   min-height: 30vh;
@@ -11,25 +10,13 @@
   align-items: center;
   justify-content: center;
   margin-top: 0;
-  padding-top: 9vh;
-  margin-bottom: 1rem;
+  padding-top: 13vh;
+  margin-bottom: 2rem;
   position: relative;
   z-index: 2;
   overflow: visible;
 }
 
-@media (min-width: 1000px) {
-  .hero-section {
-    padding-top: 13vh;
-    margin-bottom: 2rem;
-  }
-  .hero-content {
-    max-width: 900px;
-  }
-  .home-bio {
-    max-width: 680px;
-  }
-}
 .hero-bg-glow {
   position: absolute;
   top: 0;
@@ -47,6 +34,7 @@
   filter: blur(20px) brightness(1);
   will-change: transform, opacity;
 }
+
 .hero-content {
   position: relative;
   z-index: 2;
@@ -62,7 +50,8 @@
   transform-style: preserve-3d;
   backface-visibility: hidden;
 }
-/* Animatable gradient stops for the title — enables smooth cross-fade between states */
+
+/* Animatable gradient stops for the title */
 @property --ht-a {
   syntax: "<color>";
   inherits: true;
@@ -108,7 +97,7 @@
   background-clip: text;
   -webkit-text-stroke: 0.3px rgba(187, 187, 189, 0.912);
   letter-spacing: 0.1em;
-  margin-left: -0.1em;
+  margin-left: 0;
   margin-bottom: 0.2em;
   line-height: 1.05;
   position: relative;
@@ -123,7 +112,6 @@
   cursor: pointer;
 }
 
-/* ── Letter spans inside the hero title ────────────────────────────────────── */
 /* Override landing glitch.css defaults: letters start visible with no entry anim */
 .hero-title .title-letter {
   background: linear-gradient(
@@ -143,13 +131,11 @@
   animation: none;
 }
 
-/* Reset phase: instantly hide all letters before replay fires */
 .hero-title.landing-title--reset .title-letter {
   animation: none !important;
   opacity: 0 !important;
 }
 
-/* Replay phase: fire the exact landing-page glitch keyframes, sped up to 1s */
 .hero-title.landing-title--replay .title-letter:not(.title-letter--flip) {
   animation: letterFadeInGlitch 3.5s linear forwards !important;
 }
@@ -159,10 +145,11 @@
 
 .hero-subtitle {
   font-family: "IBM Plex Sans", sans-serif;
-  font-size: clamp(0.87rem, 2.16vw, 1.08rem);
+  font-size: clamp(0.95rem, 1.4vw, 1.35rem);
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  text-align: center;
   white-space: nowrap;
   background: linear-gradient(
     90deg,
@@ -186,14 +173,7 @@
   border-radius: 3px;
   animation: heroUnderlineSlide 8s ease infinite alternate;
 }
-@keyframes heroGradientMoveAlt {
-  0% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
+
 @keyframes heroUnderlineSlide {
   0% {
     background-position: 0% 50%;
@@ -202,6 +182,7 @@
     background-position: 100% 50%;
   }
 }
+
 @keyframes heroUnderlineAnim {
   0% {
     width: 40%;
@@ -219,7 +200,7 @@
 
 .home-bio {
   text-align: center;
-  max-width: 520px;
+  max-width: 680px;
   margin: 0 auto 3rem;
   padding: 0 1.5rem;
   position: relative;
@@ -254,17 +235,6 @@
   border-color: rgba(0, 255, 247, 0.7);
 }
 
-@media (max-width: 600px) {
-  .home-bio {
-    max-width: 100%;
-    padding: 0 1.25rem;
-  }
-
-  .home-bio p {
-    font-size: 0.75rem;
-  }
-}
-
 .projects-scroll-cta {
   display: block;
   text-align: center;
@@ -275,7 +245,7 @@
 
 .hero-cta {
   display: inline-block;
-  padding: 14px 36px;
+  padding: 24px 36px;
   font-family: "IBM Plex Mono", monospace;
   font-size: 0.95rem;
   font-weight: 400;
@@ -290,8 +260,6 @@
   background: none;
   box-shadow: none;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-
-  /* Fade out edges on the text layer too */
   mask-image:
     linear-gradient(
       to right,
@@ -326,14 +294,12 @@
   -webkit-mask-composite: source-in;
 }
 
-/* Background lives here — net mask cuts it without touching the text */
 .hero-cta::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: 4px;
   z-index: -1;
-
   background:
     linear-gradient(145deg, #221d27, #000000),
     radial-gradient(
@@ -402,70 +368,4 @@
 
 .title-inverted-v:hover {
   transform: scaleY(1);
-}
-
-/* Hero responsive styles */
-@media (max-width: 900px) {
-  .hero-content {
-    margin: 0 auto;
-    text-align: center;
-  }
-  .hero-title {
-    font-size: clamp(2rem, 5.5vw, 3rem);
-  }
-  .hero-subtitle {
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    white-space: nowrap;
-  }
-  .hero-section {
-    min-height: 20vh;
-    padding-top: 7vh;
-  }
-}
-@media (max-width: 600px) {
-  .hero-content {
-    margin-left: 0;
-    margin-top: 6vh;
-    text-align: center;
-  }
-  .hero-title {
-    font-size: clamp(1.1rem, 6.5vw, 2rem);
-    letter-spacing: 0.06em;
-  }
-  .title-inverted-v {
-    top: -0.01em;
-  }
-  .hero-subtitle {
-    font-size: 0.67rem;
-    letter-spacing: 0.08em;
-    white-space: normal;
-    text-align: center;
-  }
-  .hero-underline {
-    width: 82%;
-    transform: translateX(0);
-  }
-  .hero-section {
-    min-height: auto;
-    padding-top: 3vh;
-  }
-
-  .hero-content {
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .hero-cta {
-    font-size: 0.75rem;
-    padding: 11px 36px;
-    letter-spacing: 1em;
-  }
-
-  .projects-scroll-cta {
-    margin: 0 auto 1rem;
-    transform: translateY(1.5rem);
-  }
 }

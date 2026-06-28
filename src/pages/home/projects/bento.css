@@ -208,7 +208,7 @@
 /* ── DESCRIPTION ── */
 .project-card-description {
   font-family: "IBM Plex Sans", sans-serif;
-  font-size: clamp(0.8rem, 1.4vw, 1rem);
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
   letter-spacing: 0.12em;
   background: linear-gradient(90deg, var(--card-accent, #00fff7), #ea47ff);
   -webkit-background-clip: text;
@@ -255,8 +255,8 @@
   color: var(--card-accent, #00fff7);
 }
 .project-card-github svg {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
 }
 
 /* ── LABEL BADGE ── */
@@ -393,13 +393,17 @@
 /* ── MOBILE ── */
 @media (max-width: 600px) {
   .projects-section {
-    padding: 2rem 1.5rem 4rem;
+    padding: 0.5rem 1.7rem 4rem;
   }
   .project-row,
   .project-row--right {
     flex-direction: column;
     gap: 1.5rem;
     padding: 2.5rem 0;
+  }
+  .project-row:nth-child(even)::before {
+    right: auto;
+    left: 0;
   }
   .project-card-link {
     flex: none;
@@ -412,7 +416,7 @@
     font-size: 1.4rem;
   }
   .project-card-description {
-    font-size: 0.72rem;
+    font-size: 1.1rem;
   }
   .project-card-info {
     flex: none;
@@ -462,7 +466,7 @@
   letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.28);
+  color: rgba(214, 15, 15, 0.28);
   transition:
     color 0.3s ease,
     letter-spacing 0.3s ease;
@@ -486,7 +490,7 @@
   font-weight: 400;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.536);
   margin-top: 0.4rem;
   animation: comingSoonPulse 2.8s ease-in-out infinite alternate;
 }
@@ -501,25 +505,25 @@
 
 /* ── PROJECT ACCENT COLORS ── */
 .project-row--pneuma {
-  --card-accent: #00d4ff;
+  --card-accent: #00d5ffb8;
 }
 .project-row--pneuma .project-card-media img {
   filter: brightness(1);
 }
 .project-row--la-dolce-vita {
-  --card-accent: #ff9ec8;
+  --card-accent: #ff9ec8d2;
 }
 .project-row--numeneon {
-  --card-accent: #9050ff;
+  --card-accent: #9050ffcf;
 }
 .project-row--xenochi {
-  --card-accent: #ff8c00;
+  --card-accent: #ff8c00c9;
 }
 .project-row--pneumata {
   --card-accent: #aa55ff;
 }
 .project-row--manifold {
-  --card-accent: #00fff7;
+  --card-accent: #007bff;
 }
 .project-row--tic-trap-toe {
   --card-accent: #5500ff;

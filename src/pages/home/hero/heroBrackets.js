@@ -123,6 +123,7 @@ if (heroSection && !window.matchMedia("(max-width: 900px)").matches) {
     // Measure the actual rendered text width via Range so brackets track the
     // text content width, not the full-width block element
     let halfContentPx;
+    let titleCenterOffsetPx = 0;
     const spans = heroTitle?.querySelectorAll(
       ".title-letter:not(.title-letter--space)",
     );
@@ -130,6 +131,7 @@ if (heroSection && !window.matchMedia("(max-width: 900px)").matches) {
       const first = spans[0].getBoundingClientRect();
       const last = spans[spans.length - 1].getBoundingClientRect();
       halfContentPx = (last.right - first.left) / 2;
+      titleCenterOffsetPx = (first.left + last.right) / 2 - (rect.left + W / 2);
     } else if (heroTitle && heroTitle.firstChild) {
       const range = document.createRange();
       range.selectNodeContents(heroTitle);
@@ -141,9 +143,10 @@ if (heroSection && !window.matchMedia("(max-width: 900px)").matches) {
       (halfContentPx + 28) * pxToWorld,
       worldW * 0.46,
     );
+    const centerOffsetWorld = titleCenterOffsetPx * pxToWorld;
 
-    leftBracket.position.x = -offsetWorld + 0.18;
-    rightBracket.position.x = offsetWorld;
+    leftBracket.position.x = -offsetWorld + 0.18 + centerOffsetWorld;
+    rightBracket.position.x = offsetWorld + centerOffsetWorld;
 
     // ── Vertical position — anchored to hero title center ────────────────────
     // scrollReveal.js applies y:48 (translateY 48px) to #heroTitle via GSAP
@@ -187,6 +190,12 @@ if (heroSection && !window.matchMedia("(max-width: 900px)").matches) {
   window.addEventListener("scroll", updateScroll, { passive: true });
 
   // ── Init ────────────────────────────────────────────────────────────────────
+  const mq = window.matchMedia("(max-width: 900px)");
+  function onBreakpointChange(e) {
+    canvas.style.display = e.matches ? "none" : "";
+  }
+  mq.addEventListener("change", onBreakpointChange);
+
   window.addEventListener("resize", () =>
     requestAnimationFrame(() => {
       resize();

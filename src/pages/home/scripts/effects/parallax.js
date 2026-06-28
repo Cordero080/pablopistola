@@ -103,14 +103,12 @@ document.addEventListener("DOMContentLoaded", () => {
           .split("")
           .forEach((ch) => chars.push({ ch, inverted: false }));
       } else if (node.nodeType === Node.ELEMENT_NODE) {
-        node.textContent
-          .split("")
-          .forEach((ch) =>
-            chars.push({
-              ch,
-              inverted: node.classList.contains("title-inverted-v"),
-            }),
-          );
+        node.textContent.split("").forEach((ch) =>
+          chars.push({
+            ch,
+            inverted: node.classList.contains("title-inverted-v"),
+          }),
+        );
       }
     });
 
@@ -188,8 +186,18 @@ document.addEventListener("DOMContentLoaded", () => {
         const rotateX = scrollProgress * 8;
         const blur = scrollProgress * 4;
         const opacity = Math.max(0, 1 - scrollProgress * 1.2);
+        const w = window.innerWidth;
+        const shiftX =
+          w >= 1400
+            ? "calc(-9rem - 6px)"
+            : w >= 1200
+              ? "-7rem"
+              : w >= 901
+                ? "-4rem"
+                : "0px";
         heroContent.style.transform = `
           perspective(1000px)
+          translateX(${shiftX})
           translateY(${translateY}px)
           scale(${scale})
           rotateX(${rotateX}deg)
