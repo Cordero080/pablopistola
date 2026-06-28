@@ -503,6 +503,9 @@
 .project-row--pneuma {
   --card-accent: #00d4ff;
 }
+.project-row--pneuma .project-card-media img {
+  filter: brightness(1);
+}
 .project-row--la-dolce-vita {
   --card-accent: #ff9ec8;
 }

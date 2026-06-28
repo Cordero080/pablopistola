@@ -43,6 +43,12 @@ setTimeout(() => {
   document.getElementById("enterBtn").classList.add("visible");
 }, 4000);
 
+// Prefetch home early — nearly every visitor navigates there
+const prefetch = document.createElement("link");
+prefetch.rel = "prefetch";
+prefetch.href = "/home";
+document.head.appendChild(prefetch);
+
 // Handle enter click - scanline collapse then navigate
 document.getElementById("enterBtn").addEventListener("click", (e) => {
   e.preventDefault();
@@ -51,12 +57,6 @@ document.getElementById("enterBtn").addEventListener("click", (e) => {
   const btn = document.getElementById("enterBtn");
   btn.classList.add("collapsing");
   window.__stopRubix = true;
-
-  // Prefetch home immediately so it loads during the animation
-  const prefetch = document.createElement("link");
-  prefetch.rel = "prefetch";
-  prefetch.href = "/home";
-  document.head.appendChild(prefetch);
 
   setTimeout(() => {
     document.querySelector(".landing-container").classList.add("dissolving");
