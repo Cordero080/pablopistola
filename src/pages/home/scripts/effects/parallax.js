@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
           w >= 1400
             ? "calc(-9rem - 6px)"
             : w >= 1200
-              ? "-7rem"
+              ? "calc(-2rem - 12px)"
               : w >= 901
                 ? "-4rem"
                 : "0px";
