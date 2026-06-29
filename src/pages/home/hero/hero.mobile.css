@@ -31,8 +31,8 @@
     transform: translateX(-14rem);
   }
   .hero-subtitle {
-    transform: translateX(calc(5.2rem - 1px));
-    font-size: 1rem;
+    transform: translateX(calc(6rem - 2px));
+    font-size: 1.07rem;
   }
 }
 
