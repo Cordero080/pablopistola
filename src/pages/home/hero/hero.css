@@ -9,11 +9,12 @@
   left: 0;
   right: 0;
   height: 25vh;
+  
   background: linear-gradient(
     to bottom,
-    rgba(48, 28, 95, 0.96) 0%,
+    rgba(43, 25, 85, 0.96) 0%,
     rgba(24, 30, 60, 0.82) 40%,
-    rgb(26, 14, 57) 70%,
+    rgb(21, 11, 46) 70%,
     transparent 100%
   );
   box-shadow:

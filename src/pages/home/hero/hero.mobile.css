@@ -36,6 +36,13 @@
   }
 }
 
+/* ── 1000–1199px: pull hero up slightly ─────────────────────────────────── */
+@media (min-width: 1000px) and (max-width: 1199px) {
+  .hero-section {
+    padding-top: 9vh;
+  }
+}
+
 /* ── Tablet/mobile: no shift ─────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .hero-content {

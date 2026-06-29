@@ -62,6 +62,12 @@
   }
 }
 
+@media (min-width: 1000px) and (max-width: 1199px) {
+  .marquee-belt {
+    margin-top: -0.5rem;
+  }
+}
+
 @media (min-width: 1400px) {
   .marquee-belt {
     margin-top: 0.5rem;
