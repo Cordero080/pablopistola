@@ -7,8 +7,7 @@
 //   5. src/js/effects/orb.js
 //   6. src/js/utils/compMode.js
 //   7. src/js/effects/magnetic.js
-//   8. src/js/effects/konami.js
-//   9. src/js/utils/serviceWorker.js
+//   8. src/js/utils/serviceWorker.js
 //  10. src/js/pages/home/parallax.js
 //  11. src/js/pages/home/loader.js
 //  12. src/js/pages/home/lazyImages.js
