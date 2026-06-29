@@ -1,6 +1,7 @@
 /**
  * bento.css
- * Cinematic zig-zag scroll layout for project rows
+ * Cinematic zig-zag scroll layout for project rows — desktop base styles only.
+ * All @media breakpoints in bento.mobile.css.
  */
 
 /* ── SECTION ── */
@@ -13,36 +14,17 @@
   counter-reset: project-counter;
 }
 
-@media (min-width: 1000px) {
-  .projects-section {
-    padding: 5rem 5rem 10rem;
-    max-width: 1500px;
-  }
-  .project-row {
-    gap: 5rem;
-    padding: 4rem 0;
-  }
-  .project-card-info {
-    padding-left: 3.5rem;
-  }
-  .project-row--right .project-card-info {
-    padding-right: 3.5rem;
-  }
-}
-
 /* Full-width glass panel behind the projects content */
 .projects-section::before {
   content: "";
   position: absolute;
   inset: 0;
   top: -80px;
-  /* Expand to full viewport width from a centered parent */
   left: calc(-50vw + 50%);
   width: 100vw;
   background: rgba(6, 8, 18, 0.45);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  /* Long gradual fade — starts 80px above section, fully opaque 200px in */
   mask-image: linear-gradient(
     to bottom,
     transparent 0px,
@@ -59,20 +41,6 @@
   );
   z-index: -1;
   pointer-events: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .projects-section::before {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-}
-
-@media (max-width: 900px) {
-  .projects-section::before {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
 }
 
 /* ── ROW ── */
@@ -145,7 +113,6 @@
   object-fit: cover;
   display: block;
   filter: brightness(0.82);
-  /* scale(1.14) gives ~7% travel budget on each side for the parallax drift */
   transform: scale(1.14) translateY(var(--py, 0px));
   transition:
     filter 0.5s ease,
@@ -153,7 +120,7 @@
   will-change: transform;
 }
 
-/* On hover: image shifts toward the text, emerging from the gradient fade */
+/* On hover: image shifts toward the text */
 .project-row--left .project-card-link:hover .project-card-media img {
   transform: scale(1.18) translateX(12px) translateY(var(--py, 0px));
   filter: brightness(1.05);
@@ -281,14 +248,11 @@
 }
 
 /* ── ENTRY + HOVER RECEDE ── */
-
 /*
  * Individual CSS transform properties (translate, scale) are used for
  * entry/recede so that `transform` stays free for the real-time velocity
  * tilt (--scroll-tilt) written by velocityTilt.js each rAF tick.
- * Individual properties compose with `transform`: translate × scale × transform.
  */
-
 .project-row {
   opacity: 0;
   translate: 0 40px;
@@ -306,7 +270,6 @@
   translate: none;
   scale: 1;
   filter: none;
-  /* Velocity tilt — no transition so it tracks scroll in real-time */
   transform: perspective(1200px) rotateX(var(--scroll-tilt, 0deg));
   transition:
     opacity 0.7s ease,
@@ -315,7 +278,6 @@
     filter 0.75s ease;
 }
 
-/* Previous card recedes when the NEXT card is hovered */
 .project-row.cinematic-visible:has(+ .project-row:hover) {
   opacity: 0.2;
   scale: 0.9;
@@ -324,137 +286,6 @@
     opacity 0.65s ease,
     scale 0.65s ease,
     filter 0.65s ease;
-}
-
-/* Mobile: skip filter + tilt; use scroll-active recede instead of :hover */
-@media (max-width: 768px) {
-  .project-row {
-    filter: none;
-    translate: 0 30px;
-    scale: 0.9;
-  }
-  .project-row.cinematic-visible {
-    transform: none;
-  }
-  .project-row.cinematic-visible:has(+ .project-row.scroll-active) {
-    opacity: 0.25;
-    scale: 0.93;
-    transition:
-      opacity 0.5s ease,
-      scale 0.5s ease;
-  }
-}
-
-/* ── WITHIN-CARD DEPTH PARALLAX ── */
-
-/*
- * cardDepth.js sets --depth-x / --depth-y on each row on mousemove.
- * Each text layer reads the vars with a different multiplier, creating
- * the illusion that title/description/actions float at different Z-depths.
- * Desktop only — no touch equivalent.
- */
-@media (min-width: 769px) {
-  .project-card-title {
-    transform: translate(var(--depth-x, 0px), calc(var(--depth-y, 0px) * 0.6));
-  }
-  .project-card-description {
-    transform: translate(
-      calc(var(--depth-x, 0px) * 0.6),
-      calc(var(--depth-y, 0px) * 0.4)
-    );
-  }
-  .project-card-actions {
-    transform: translate(
-      calc(var(--depth-x, 0px) * 0.3),
-      calc(var(--depth-y, 0px) * 0.2)
-    );
-  }
-}
-
-/* ── TABLET ── */
-@media (max-width: 900px) {
-  .projects-section {
-    padding: 3rem 2rem 5rem;
-  }
-  .project-row {
-    gap: 3rem;
-    padding: 3.5rem 0;
-  }
-  .project-card-link {
-    flex: 0 0 50%;
-  }
-  .project-card-info {
-    flex: 0 0 46%;
-    padding-left: 1.5rem;
-  }
-  .project-row--right .project-card-info {
-    padding-right: 1.5rem;
-  }
-}
-
-/* ── MOBILE ── */
-@media (max-width: 600px) {
-  .projects-section {
-    padding: 0.5rem 1.7rem 4rem;
-  }
-  .project-row,
-  .project-row--right {
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 2.5rem 0;
-  }
-  .project-row:nth-child(even)::before {
-    right: auto;
-    left: 0;
-  }
-  .project-card-link {
-    flex: none;
-    width: 100%;
-  }
-  .project-card-media img {
-    aspect-ratio: 21 / 9;
-  }
-  .project-card-title {
-    font-size: 1.4rem;
-  }
-  .project-card-description {
-    font-size: 1.1rem;
-  }
-  .project-card-info {
-    flex: none;
-    width: 100%;
-    padding-left: 1.25rem;
-    padding-right: 0;
-    border-right: none;
-    border-left: 2px solid var(--card-accent, #00fff7);
-    text-align: left;
-    align-items: flex-start;
-  }
-  /* Override horizontal gradient fade — fade to bottom instead */
-  .project-row--left .project-card-media,
-  .project-row--right .project-card-media {
-    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-  }
-}
-
-/* ── DESKTOP-ONLY LIVE SITE ── */
-.project-card-desktop-note {
-  display: none;
-}
-@media (max-width: 600px) {
-  .project-card-cta--desktop-only {
-    display: none;
-  }
-  .project-card-desktop-note {
-    display: inline-block;
-    font-family: "IBM Plex Sans", sans-serif;
-    font-size: 0.6rem;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.22);
-  }
 }
 
 /* ── DEMO LINK ── */
@@ -505,6 +336,11 @@
   }
 }
 
+/* ── DESKTOP-ONLY LIVE SITE ── */
+.project-card-desktop-note {
+  display: none;
+}
+
 /* ── PROJECT ACCENT COLORS ── */
 .project-row--pneuma {
   --card-accent: #00d5ffb8;
@@ -545,25 +381,4 @@
 
 .project-img--bright {
   filter: brightness(1.05);
-}
-
-/* ── REDUCED MOTION ── */
-@media (prefers-reduced-motion: reduce) {
-  .project-row {
-    opacity: 1 !important;
-    translate: none !important;
-    scale: 1 !important;
-    transform: none !important;
-    filter: none !important;
-    transition: none !important;
-  }
-  .project-card-title,
-  .project-card-description,
-  .project-card-actions {
-    transform: none !important;
-  }
-  .project-card-coming-soon {
-    animation: none;
-    opacity: 0.4;
-  }
 }
