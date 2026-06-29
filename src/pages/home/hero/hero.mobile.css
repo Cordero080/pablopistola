@@ -22,6 +22,7 @@
   }
   .hero-subtitle {
     transform: translateX(3.2rem);
+    font-size: 0.95rem;
   }
 }
 
