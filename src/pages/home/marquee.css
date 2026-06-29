@@ -1,6 +1,10 @@
-/* home enhancements — marquee belt + card tilt */
+/**
+ * marquee.css
+ * Skills marquee belt — home page only.
+ * All breakpoints are here alongside the base styles.
+ */
 
-/* ── Marquee Belt ── */
+/* ── Base ── */
 .marquee-belt {
   width: 100%;
   overflow: hidden;
@@ -44,6 +48,7 @@
   }
 }
 
+/* ── Breakpoints ── */
 @media (max-width: 600px) {
   .marquee-belt {
     margin-top: 8.5rem;
@@ -72,11 +77,4 @@
   .marquee-belt {
     margin-top: 0.5rem;
   }
-}
-
-/* ── Card tilt ── */
-/* transform + transition are set dynamically by cardTilt.js per mouse event */
-.project-card-link {
-  transform-style: preserve-3d;
-  will-change: transform;
 }

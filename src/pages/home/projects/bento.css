@@ -114,6 +114,8 @@
   text-decoration: none;
   border-radius: 12px;
   transition: box-shadow 0.35s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 .project-card-link:hover {
   box-shadow:

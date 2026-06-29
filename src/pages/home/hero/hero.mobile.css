@@ -2,11 +2,22 @@
  * hero.mobile.css
  * All responsive breakpoints for the hero section.
  * Import immediately after hero.css.
- * Breakpoints: 1100px (wide desktop shift), 900px (tablet), 600px (mobile)
+ *
+ * Breakpoints (desktop → mobile):
+ *   ≥1400px  — large desktop
+ *   1200–1399px — wide desktop
+ *   1000–1199px — standard desktop
+ *   901–999px   — narrow desktop
+ *   ≤900px   — tablet (no brackets)
+ *   ≤600px   — mobile
+ *
+ * NOTE: .hero-content translateX and .hero-subtitle translateX are set
+ * inline by parallax.js every RAF frame — CSS transforms on those elements
+ * are overridden and serve only as documentation of the tuned values.
  */
 
-/* ── Desktop: shift title+brackets left as one unit ─────────────────────── */
-/* ── Desktop subtitle font sizes — translateX is set by parallax.js ─────── */
+/* ── Desktop subtitle font sizes ────────────────────────────────────────── */
+/* translateX is owned by parallax.js; only font-size lives here            */
 @media (min-width: 901px) {
   .hero-subtitle {
     font-size: 0.72rem;
@@ -32,15 +43,7 @@
   }
 }
 
-/* ── Tablet/mobile: no shift ─────────────────────────────────────────────── */
-@media (max-width: 900px) {
-  .hero-content {
-    transform: none;
-    margin: 0 auto;
-  }
-}
-
-/* ── Tablet (≤900px): center everything, no bracket zone ─────────────────── */
+/* ── Tablet (≤900px): center layout, no bracket zone ────────────────────── */
 @media (max-width: 900px) {
   .hero-section {
     min-height: 20vh;
@@ -48,6 +51,7 @@
     margin-bottom: 1rem;
   }
   .hero-content {
+    transform: none;
     margin: 0 auto;
     text-align: center;
   }
@@ -63,10 +67,6 @@
   .home-bio {
     max-width: 520px;
   }
-}
-
-/* ── Mobile veil: darken to match desktop feel ───────────────────────────── */
-@media (max-width: 900px) {
   .hero-veil {
     height: 13vh;
     background: linear-gradient(
@@ -82,7 +82,7 @@
   }
 }
 
-/* ── Mobile (≤600px): compact, single-column ─────────────────────────────── */
+/* ── Mobile (≤600px): compact single-column ─────────────────────────────── */
 @media (max-width: 600px) {
   .hero-section {
     min-height: auto;
