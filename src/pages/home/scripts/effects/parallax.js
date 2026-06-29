@@ -5,8 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
   const heroContent = document.querySelector(".hero-content");
+  const heroSubtitle = document.querySelector(".hero-subtitle");
   const heroGlow = document.querySelector(".hero-bg-glow");
   const overlay = document.querySelector(".parallax-bg-overlay");
+  let lastBp = null;
 
   let scrollY = 0;
   // Normalized pointer offset: -1 to 1 from viewport center
@@ -187,14 +189,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const blur = scrollProgress * 4;
         const opacity = Math.max(0, 1 - scrollProgress * 1.2);
         const w = window.innerWidth;
+        const bp = w >= 1400 ? 1400 : w >= 1200 ? 1200 : w >= 901 ? 901 : 0;
         const shiftX =
-          w >= 1400
+          bp >= 1400
             ? "calc(-5rem)"
-            : w >= 1200
+            : bp >= 1200
               ? "calc(-2rem - 18px)"
-              : w >= 901
-                ? "0px"
-                : "0px";
+              : "0px";
         heroContent.style.transform = `
           perspective(1000px)
           translateX(${shiftX})
@@ -204,6 +205,24 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
         heroContent.style.opacity = opacity;
         heroContent.style.filter = `blur(${blur}px)`;
+
+        // Subtitle: always in sync with container shift — same frame, no CSS drift
+        const subtitleX =
+          bp >= 1400
+            ? "calc(6rem - 2px)"
+            : bp >= 1200
+              ? "3.2rem"
+              : bp >= 901
+                ? "0.1rem"
+                : "0px";
+        if (heroSubtitle)
+          heroSubtitle.style.transform = `translateX(${subtitleX})`;
+
+        // Notify brackets when breakpoint tier changes so they remeasure immediately
+        if (bp !== lastBp) {
+          lastBp = bp;
+          window.dispatchEvent(new CustomEvent("hero:breakpoint"));
+        }
       }
     }
 

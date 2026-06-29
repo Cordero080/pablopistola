@@ -203,6 +203,14 @@ if (heroSection && !window.matchMedia("(max-width: 900px)").matches) {
     }),
   );
 
+  // Sync with parallax breakpoint changes — remeasure title position immediately
+  window.addEventListener("hero:breakpoint", () =>
+    requestAnimationFrame(() => {
+      resize();
+      updateScroll();
+    }),
+  );
+
   // Wait for fonts before first measurement — early calls get wrong title width
   const start = () =>
     requestAnimationFrame(() => {

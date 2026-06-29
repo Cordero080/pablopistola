@@ -6,32 +6,21 @@
  */
 
 /* ── Desktop: shift title+brackets left as one unit ─────────────────────── */
+/* ── Desktop subtitle font sizes — translateX is set by parallax.js ─────── */
 @media (min-width: 901px) {
-  .hero-content {
-    transform: translateX(-7.4rem);
-  }
   .hero-subtitle {
-    transform: translateX(0.1rem);
     font-size: 0.72rem;
   }
 }
 
 @media (min-width: 1200px) {
-  .hero-content {
-    transform: translateX(-11rem);
-  }
   .hero-subtitle {
-    transform: translateX(3.2rem);
     font-size: 0.95rem;
   }
 }
 
 @media (min-width: 1400px) {
-  .hero-content {
-    transform: translateX(-14rem);
-  }
   .hero-subtitle {
-    transform: translateX(calc(6rem - 2px));
     font-size: 1.07rem;
   }
 }
