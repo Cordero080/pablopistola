@@ -68,6 +68,23 @@
   }
 }
 
+/* ── Mobile veil: darken to match desktop feel ───────────────────────────── */
+@media (max-width: 900px) {
+  .hero-veil {
+    height: 13vh;
+    background: linear-gradient(
+      to bottom,
+      rgba(20, 10, 45, 0.96) 0%,
+      rgba(16, 9, 38, 0.86) 40%,
+      rgb(14, 8, 32) 70%,
+      transparent 100%
+    );
+    box-shadow:
+      0 6px 40px rgba(90, 0, 200, 0.2),
+      inset 0 -1px 0 rgba(138, 43, 226, 0.5);
+  }
+}
+
 /* ── Mobile (≤600px): compact, single-column ─────────────────────────────── */
 @media (max-width: 600px) {
   .hero-section {
@@ -92,9 +109,9 @@
     top: -0.01em;
   }
   .hero-subtitle {
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    white-space: normal;
+    font-size: clamp(0.45rem, 2.6vw, 0.6rem);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
     text-align: center;
   }
   .hero-underline {
@@ -108,7 +125,7 @@
   }
   .projects-scroll-cta {
     margin: 0 auto 1rem;
-    transform: translateY(1.5rem);
+    transform: translateY(calc(7rem - 4px));
   }
   .home-bio {
     max-width: 100%;

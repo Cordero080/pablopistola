@@ -1511,7 +1511,8 @@ body:has(.project-page) #waves {
 
   .project-title {
     text-align: center;
-    font-size: clamp(1.8rem, 10vw, 2.8rem);
+    font-size: clamp(1.4rem, 8vw, 2.8rem);
+    letter-spacing: 0.04em;
   }
 
   .project-tagline {
@@ -1605,7 +1606,8 @@ body:has(.project-page) #waves {
   }
 
   .project-title {
-    font-size: clamp(1.8rem, 10vw, 2.8rem);
+    font-size: clamp(1.2rem, 7.5vw, 2.8rem);
+    letter-spacing: 0.02em;
   }
 
   .colors {

@@ -17,3 +17,9 @@
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
+
+@media (max-width: 600px) {
+  #waves {
+    top: 43%;
+  }
+}
