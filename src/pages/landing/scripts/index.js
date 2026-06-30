@@ -38,6 +38,27 @@ setTimeout(() => {
   );
 }, 2200);
 
+// Glitch title out 2s after button appears
+setTimeout(() => {
+  const title = document.getElementById("landingTitle");
+  if (title) title.classList.add("landing-title--glitch-out");
+}, 6000);
+
+// Brighten subtitle and slide it up to where the title was
+setTimeout(() => {
+  const subtitle = document.querySelector(".enter-identity-subtitle");
+  const title = document.getElementById("landingTitle");
+  if (!subtitle || !title) return;
+
+  subtitle.classList.add("subtitle--bright");
+
+  const titleRect = title.getBoundingClientRect();
+  const subtitleRect = subtitle.getBoundingClientRect();
+  const titleCenterY = titleRect.top + titleRect.height / 2;
+  const subtitleCenterY = subtitleRect.top + subtitleRect.height / 2;
+  subtitle.style.transform = `translateY(${titleCenterY - subtitleCenterY}px)`;
+}, 6500);
+
 // Show enter button after full sequence (~5s)
 setTimeout(() => {
   document.getElementById("enterBtn").classList.add("visible");

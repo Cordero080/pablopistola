@@ -59,7 +59,14 @@
   color: rgba(170, 195, 255, 0.7);
   margin: 0.5em 0 0;
   opacity: 0;
-  transition: opacity 1.2s ease;
+  transition:
+    opacity 1.2s ease,
+    color 1.2s ease,
+    transform 1.8s ease;
+}
+
+.enter-identity-subtitle.subtitle--bright {
+  color: rgba(220, 235, 255, 1);
 }
 
 .enter-btn {
