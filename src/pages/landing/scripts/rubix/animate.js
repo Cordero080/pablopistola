@@ -8,6 +8,7 @@ import {
   connAttr,
   connMat,
   waveAmp,
+  circleUniform,
 } from "./geometry.js";
 
 import {
@@ -84,6 +85,31 @@ function getSeparationT(c) {
 
 const clock = new THREE.Clock();
 
+// Plane shape cycle within the cube-hold phase:
+//   [0 .. 1)        circle → square morph
+//   [1 .. 4)        square hold (3s)
+//   [4 .. 5)        square → circle morph
+//   [5 .. CUBE_HOLD) circle hold
+//   then circle holds through the orb morph and sphere phase
+const SHAPE_C2S_END = 1.0;
+const SHAPE_SQ_HOLD_END = 4.0;
+const SHAPE_S2C_END = 5.0;
+let hasOrbed = false;
+
+function getCircleT(ct, c) {
+  if (!hasOrbed) {
+    // First sequence — assemble as squares, morph to circles at ct=2 over 1s.
+    return smoothstep((ct - 2.0) / 1.0);
+  }
+  if (c < SHAPE_C2S_END) return 1 - smoothstep(c / SHAPE_C2S_END);
+  if (c < SHAPE_SQ_HOLD_END) return 0;
+  if (c < SHAPE_S2C_END)
+    return smoothstep(
+      (c - SHAPE_SQ_HOLD_END) / (SHAPE_S2C_END - SHAPE_SQ_HOLD_END),
+    );
+  return 1;
+}
+
 (function loop() {
   if (window.__stopRubix) return;
   requestAnimationFrame(loop);
@@ -94,6 +120,9 @@ const clock = new THREE.Clock();
   const flatT = 1 - morphT;
   const orbT = morphT;
 
+  // Once orbT has reached its peak at least once, switch to the cyclic shape rhythm.
+  if (morphT > 0.98) hasOrbed = true;
+
   // Hue drift applied only to orbs and only while in sphere form
   const orbHueDrift = ct * ORB_HUE_SPEED * morphT;
 
@@ -101,21 +130,39 @@ const clock = new THREE.Clock();
   const c = ct % MORPH_CYCLE;
   const sepOffset = getSeparationT(c) * ORB_SEPARATION;
 
+  const circleT = getCircleT(ct, c);
+  circleUniform.value = circleT;
+
   const ry = Math.sin(ct * 0.11) * 0.5 + 0.5;
   const rx = Math.sin(ct * 0.17 + 2.1) * 0.5 + 0.5;
   const rz = Math.sin(ct * 0.13 + 4.2) * 0.5 + 0.5;
-  root.rotation.y += delta * ROT_Y * (0.08 + 0.92 * ry);
-  root.rotation.x += delta * ROT_X * (0.08 + 0.92 * rx);
-  root.rotation.z += delta * ROT_Z * (0.08 + 0.92 * rz);
+
+  // Axis-dominance drift — three cosines offset by 120° so dominance smoothly
+  // hands off between X, Y, Z over ~30s. Baseline floor (0.4) keeps every axis
+  // moving so transitions never feel abrupt.
+  const DOM_PERIOD = 30;
+  const dPhase = (ct / DOM_PERIOD) * Math.PI * 2;
+  const TAU3 = (Math.PI * 2) / 3;
+  const dx = Math.cos(dPhase) * 0.5 + 0.5;
+  const dy = Math.cos(dPhase - TAU3) * 0.5 + 0.5;
+  const dz = Math.cos(dPhase - 2 * TAU3) * 0.5 + 0.5;
+  const FLOOR = 0.4;
+  const SPAN = 1 - FLOOR;
+
+  root.rotation.y += delta * ROT_Y * (0.08 + 0.92 * ry) * (FLOOR + SPAN * dy);
+  root.rotation.x += delta * ROT_X * (0.08 + 0.92 * rx) * (FLOOR + SPAN * dx);
+  root.rotation.z += delta * ROT_Z * (0.08 + 0.92 * rz) * (FLOOR + SPAN * dz);
 
   for (const p of panels) {
     const {
       mesh,
       edgeMesh,
       orbMesh,
+      circleEdgeMesh,
       mat,
       orbMat,
       edgeMat,
+      circleEdgeMat,
       basePos,
       dir,
       phase,
@@ -166,6 +213,11 @@ const clock = new THREE.Clock();
     edgeMesh.quaternion.copy(mesh.quaternion);
     edgeMesh.scale.setScalar(breathe * flatT);
 
+    // Circle outline — rides the plane, same scale and orientation.
+    circleEdgeMesh.position.copy(mesh.position);
+    circleEdgeMesh.quaternion.copy(mesh.quaternion);
+    circleEdgeMesh.scale.setScalar(breathe * flatT);
+
     // Panel glow — uses base hueAngle
     const glow = distFromCenter * 0.095 + (wave1 + 0.5) * 0.04;
     const globalHue = ct * 0.012;
@@ -206,12 +258,14 @@ const clock = new THREE.Clock();
       Math.abs(wave1) * PANEL_OPACITY_WAVE;
     mat.opacity = baseOp * flatT;
     orbMat.opacity = baseOp * 2 * orbT * introEase;
-    edgeMat.opacity =
-      (EDGE_OPACITY_BASE +
-        distFromCenter * EDGE_OPACITY_CENTER +
-        Math.abs(wave1) * EDGE_OPACITY_WAVE) *
-      flatT *
-      introEase;
+    const baseEdgeOp =
+      EDGE_OPACITY_BASE +
+      distFromCenter * EDGE_OPACITY_CENTER +
+      Math.abs(wave1) * EDGE_OPACITY_WAVE;
+    // Square outline fades out as the panel circles up.
+    edgeMat.opacity = baseEdgeOp * flatT * introEase * (1 - circleT);
+    // Circle outline fades in alongside.
+    circleEdgeMat.opacity = baseEdgeOp * flatT * introEase * circleT;
   }
 
   // ── Connection lines — update positions and opacity ───────────────────────

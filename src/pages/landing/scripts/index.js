@@ -38,10 +38,30 @@ setTimeout(() => {
   );
 }, 2200);
 
-// Glitch title out 2s after button appears
+// Fade title out 2s after button appears — edges inward toward center
 setTimeout(() => {
   const title = document.getElementById("landingTitle");
-  if (title) title.classList.add("landing-title--glitch-out");
+  if (!title) return;
+  const letters = title.querySelectorAll(".title-letter");
+  const center = (letters.length - 1) / 2;
+
+  // Step 1: lock current opacity so killing the entry animation doesn't snap to 0
+  letters.forEach((span) => {
+    span.style.animation = "none";
+    span.style.opacity = "1";
+  });
+
+  // Step 2: next frame, apply staggered transition to opacity 0
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      letters.forEach((span, i) => {
+        const distFromCenter = Math.abs(i - center);
+        const delay = (center - distFromCenter) * 0.05;
+        span.style.transition = `opacity 0.35s ease-in ${delay.toFixed(3)}s`;
+        span.style.opacity = "0";
+      });
+    });
+  });
 }, 6000);
 
 // Brighten subtitle and slide it up to where the title was
