@@ -149,16 +149,12 @@ if (heroSection && !window.matchMedia("(max-width: 900px)").matches) {
     rightBracket.position.x = offsetWorld + centerOffsetWorld;
 
     // ── Vertical position — anchored to hero title center ────────────────────
-    // scrollReveal.js applies y:48 (translateY 48px) to #heroTitle via GSAP
-    // immediateRender before this resize() runs. getBoundingClientRect()
-    // includes that transform, so titleCenterPx reads 48px too low.
-    // Adding 48 back converts the measured position to the natural layout position.
     const heroRect = heroSection.getBoundingClientRect();
     const titleRect = heroTitle ? heroTitle.getBoundingClientRect() : null;
     const titleCenterPx = titleRect
       ? titleRect.top - heroRect.top + titleRect.height / 2
       : H / 2;
-    const bracketY = (H / 2 - titleCenterPx + 48) * pxToWorld;
+    const bracketY = (H / 2 - titleCenterPx) * pxToWorld;
     leftBracket.position.y = bracketY;
     rightBracket.position.y = bracketY;
     rightBracket.position.z = -0.23;
