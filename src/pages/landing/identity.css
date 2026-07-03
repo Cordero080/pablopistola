@@ -188,6 +188,27 @@
   }
 }
 
+.enter-btn.visible .enter-btn__center span svg {
+  animation: iconPulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes iconPulseGlow {
+  0%,
+  100% {
+    filter: saturate(1) brightness(1) drop-shadow(0 0 0px rgba(0, 229, 255, 0));
+  }
+  50% {
+    filter: saturate(1.9) brightness(1.35)
+      drop-shadow(0 0 4px rgba(0, 229, 255, 0.85));
+  }
+}
+
+.enter-btn:hover .enter-btn__center span svg {
+  animation: none;
+  filter: saturate(1.9) brightness(1.35)
+    drop-shadow(0 0 4px rgba(0, 229, 255, 0.85));
+}
+
 .enter-btn:hover {
   letter-spacing: 0.55em;
   animation: none;
