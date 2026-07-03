@@ -9,18 +9,6 @@
   pointer-events: none;
   width: min(96vw, 1400px);
   opacity: 0.85;
-  animation: identityFloat 9s ease-in-out infinite;
-  animation-delay: 3s;
-}
-
-@keyframes identityFloat {
-  0%,
-  100% {
-    transform: translate(-50%, -50%) translateY(0px);
-  }
-  50% {
-    transform: translate(-50%, -50%) translateY(-9px);
-  }
 }
 
 .enter-identity-title {
