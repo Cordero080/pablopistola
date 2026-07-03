@@ -12,14 +12,39 @@ import {
   CONN_COLOR,
 } from "./config.js";
 
-const cubeSize = window.innerWidth <= 600 ? 2 * 1.1 : 3.0;
+const cubeSize = window.innerWidth <= 600 ? 2 * 1.1 * 0.95 : 3.0 * 0.95;
 const grid = 13;
-const panelSz = (cubeSize / grid) * 0.98;
-const off = cubeSize / 2;
+const panelSz = (cubeSize / grid) * 0.99;
+const off = cubeSize / 2.5;
 export const waveAmp = cubeSize * WAVE_AMPLITUDE;
 
 const planeGeo = new THREE.PlaneGeometry(panelSz, panelSz);
 const orbGeo = new THREE.SphereGeometry(panelSz * 0.46, 7, 5);
+
+// Shared circle-outline geometry, inscribed in the plane (radius = panelSz/2).
+const circleEdgeGeo = (() => {
+  const segments = 45;
+  const r = panelSz * 0.485;
+  const pos = new Float32Array(segments * 2 * 3);
+  for (let i = 0; i < segments; i++) {
+    const a1 = (i / segments) * Math.PI * 2;
+    const a2 = ((i + 1) / segments) * Math.PI * 2;
+    pos[i * 6 + 0] = Math.cos(a1) * r;
+    pos[i * 6 + 1] = Math.sin(a1) * r;
+    pos[i * 6 + 2] = 0;
+    pos[i * 6 + 3] = Math.cos(a2) * r;
+    pos[i * 6 + 4] = Math.sin(a2) * r;
+    pos[i * 6 + 5] = 0;
+  }
+  const g = new THREE.BufferGeometry();
+  g.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+  return g;
+})();
+
+// Shared uniform that morphs the panel shape from square (0) → circle (1).
+// All panel materials wire this same uniform via onBeforeCompile so Three.js
+// dedupes shader compilation and the per-fragment cost is just a mix + discard.
+export const circleUniform = { value: 0 };
 
 const faces = [
   {
@@ -79,7 +104,7 @@ faces.forEach((face, fi) => {
         emissive: new THREE.Color(PANEL_EMISSIVE),
         emissiveIntensity: 0.2,
         metalness: 0.95,
-        roughness: 0.35,
+        roughness: 0.06,
         iridescence: 0.5,
         iridescenceIOR: 1.8,
         iridescenceThicknessRange: [100, 400],
@@ -88,6 +113,23 @@ faces.forEach((face, fi) => {
         side: THREE.DoubleSide,
         depthWrite: false,
       });
+      // Inject a discard-by-distance fragment chunk so the plane can morph
+      // from a square to an inscribed circle via the shared circleUniform.
+      mat.defines = mat.defines || {};
+      mat.defines.USE_UV = "";
+      mat.onBeforeCompile = (shader) => {
+        shader.uniforms.uCirc = circleUniform;
+        shader.fragmentShader =
+          "uniform float uCirc;\n" +
+          shader.fragmentShader.replace(
+            "#include <clipping_planes_fragment>",
+            `#include <clipping_planes_fragment>
+             vec2 _cuv = vUv - 0.5;
+             float _sqD = max(abs(_cuv.x), abs(_cuv.y)) * 2.0;
+             float _ciD = length(_cuv) * 2.0;
+             if (mix(_sqD, _ciD, uCirc) > 1.0) discard;`,
+          );
+      };
       const mesh = new THREE.Mesh(planeGeo, mat);
 
       mesh.position.copy(face.pos);
@@ -122,26 +164,54 @@ faces.forEach((face, fi) => {
       orbMesh.position.copy(mesh.position);
       orbMesh.scale.setScalar(0);
 
+      const circleEdgeMat = new THREE.LineBasicMaterial({
+        color: new THREE.Color(FACE_EDGE_COLORS[fi]),
+        transparent: true,
+        opacity: 0,
+      });
+      const circleEdgeMesh = new THREE.LineSegments(
+        circleEdgeGeo,
+        circleEdgeMat,
+      );
+      circleEdgeMesh.position.copy(mesh.position);
+      circleEdgeMesh.quaternion.copy(mesh.quaternion);
+
       const phase = fi * 0.5 + row * 0.3 + col * 0.2;
+
+      // Random scatter position — each panel starts far from origin
+      const sTheta = Math.random() * Math.PI * 2;
+      const sPhi = Math.acos(2 * Math.random() - 1);
+      const sR = 12 + Math.random() * 6;
+      const scatterPos = new THREE.Vector3(
+        sR * Math.sin(sPhi) * Math.cos(sTheta),
+        sR * Math.sin(sPhi) * Math.sin(sTheta),
+        sR * Math.cos(sPhi),
+      );
+      const stagger = (phase % (Math.PI * 2)) / (Math.PI * 2);
 
       panels.push({
         mesh,
         edgeMesh,
         orbMesh,
+        circleEdgeMesh,
         mat,
         orbMat,
         edgeMat,
+        circleEdgeMat,
         basePos: mesh.position.clone(),
         dir: face.dir.clone(),
         phase,
         distFromCenter,
         spinRate: Math.sin(phase) * PANEL_SPIN_SPEED,
         hueAngle: FACE_HUE_OFFSETS[fi] + (row + col) / (grid * 1.5),
+        scatterPos,
+        stagger,
       });
 
       root.add(mesh);
       root.add(edgeMesh);
       root.add(orbMesh);
+      root.add(circleEdgeMesh);
     }
   }
 });

@@ -21,6 +21,9 @@
 import WaveScene from "./homeSineWave.js";
 import { initProjectParallax } from "./projectParallax.js";
 import { initSectionColorTracker } from "./sectionColorTracker.js";
+import { initCinematicScroll } from "./cinematicScroll.js";
+import { initVelocityTilt } from "./velocityTilt.js";
+import { initCardDepth } from "./cardDepth.js";
 
 // type="module" scripts are deferred by default (they run after HTML is parsed),
 // so document.getElementById will always find the canvas. The DOMContentLoaded
@@ -36,4 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initProjectParallax();
   initSectionColorTracker();
+  initCinematicScroll();
+  initVelocityTilt();
+  initCardDepth();
 });

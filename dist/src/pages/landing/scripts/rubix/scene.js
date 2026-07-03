@@ -1,6 +1,7 @@
 import * as THREE from "three";
 
 const canvas = document.createElement("canvas");
+canvas.id = "rubix-canvas";
 canvas.style.cssText = `
   position: fixed;
   top: 0; left: 0;

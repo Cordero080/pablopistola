@@ -12,10 +12,10 @@ import {
   CONN_COLOR,
 } from "./config.js";
 
-const cubeSize = window.innerWidth <= 600 ? 2 * 1.1 : 3.0;
+const cubeSize = window.innerWidth <= 600 ? 2 * 1.1 * 0.95 : 3.0 * 0.95;
 const grid = 13;
-const panelSz = (cubeSize / grid) * 0.98;
-const off = cubeSize / 2;
+const panelSz = (cubeSize / grid) * 0.99;
+const off = cubeSize / 2.5;
 export const waveAmp = cubeSize * WAVE_AMPLITUDE;
 
 const planeGeo = new THREE.PlaneGeometry(panelSz, panelSz);
@@ -23,7 +23,7 @@ const orbGeo = new THREE.SphereGeometry(panelSz * 0.46, 7, 5);
 
 // Shared circle-outline geometry, inscribed in the plane (radius = panelSz/2).
 const circleEdgeGeo = (() => {
-  const segments = 40;
+  const segments = 45;
   const r = panelSz * 0.485;
   const pos = new Float32Array(segments * 2 * 3);
   for (let i = 0; i < segments; i++) {

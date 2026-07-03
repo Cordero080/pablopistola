@@ -77,6 +77,8 @@ setTimeout(() => {
   const titleCenterY = titleRect.top + titleRect.height / 2;
   const subtitleCenterY = subtitleRect.top + subtitleRect.height / 2;
   subtitle.style.transform = `translateY(${titleCenterY - subtitleCenterY}px)`;
+
+  document.getElementById("enterBtn")?.classList.add("risen");
 }, 6500);
 
 // Show enter button after full sequence (~5s)

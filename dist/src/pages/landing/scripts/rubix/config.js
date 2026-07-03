@@ -54,7 +54,7 @@ export const PANEL_OPACITY_WAVE = 0.03;
 
 // Edge line opacity — same three knobs, for the outline lines
 
-export const EDGE_OPACITY_BASE = 0.06;
+export const EDGE_OPACITY_BASE = 0.13;
 export const EDGE_OPACITY_CENTER = 1;
 export const EDGE_OPACITY_WAVE = 0.5;
 
@@ -65,14 +65,14 @@ export const EDGE_OPACITY_WAVE = 0.5;
 // 🔄  CUBE ROTATION — how fast the whole cube slowly spins (radians/second)
 //  Lower = slower. Set to 0 to freeze that axis.
 
-export const ROT_Y = 0.01; // left–right spin (yaw)   ← main visible spin
-export const ROT_X = 0.0076; // up–down tilt   (pitch)
-export const ROT_Z = 0.01; // clockwise roll (roll)
+export const ROT_Y = 0.09; // left–right spin (yaw)
+export const ROT_X = 0.07; // up–down tilt   (pitch)
+export const ROT_Z = 0.05; // clockwise roll (roll)
 
 // 🌊  WAVE — panels ripple in and out from the face surface
 //  WAVE_AMPLITUDE: how far panels travel. 0 = flat/no ripple, 1.5 = very dramatic
 
-export const WAVE_AMPLITUDE = 0.28;
+export const WAVE_AMPLITUDE = 0.4;
 
 // 🌀  PANEL SELF-SPIN — each flat tile slowly rotates on its own axis
 //  Higher = faster spinning tiles. 0 = no spin. Panels alternate direction.
@@ -82,11 +82,11 @@ export const PANEL_SPIN_SPEED = 0.2375; // slightly slower than before
 // 💓  SCALE BREATHE — tiles gently pulse in size with the wave
 //  0 = no size pulse, 0.3 = very noticeable pulse
 
-export const SCALE_BREATHE = 0.5;
+export const SCALE_BREATHE = 0.3;
 
 // 🌈  HUE SHIFT — each face starts at a different color angle, creating variety
 
-export const FACE_HUE_OFFSETS = [0, 3.5, 1.0, 1.5, 2.2, 2.8];
+export const FACE_HUE_OFFSETS = [0, 1.05, 2.09, 3.14, 4.19, 5.24];
 
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║  🔮  MORPH — flat panel tiles ↔ sphere orbs                              ║
@@ -98,9 +98,9 @@ export const FACE_HUE_OFFSETS = [0, 3.5, 1.0, 1.5, 2.2, 2.8];
 // ║  MORPH_CYCLE is calculated automatically — don't edit it directly.       ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
-export const CUBE_HOLD = 2; // seconds showing flat panels
+export const CUBE_HOLD = 8; // seconds showing flat panels
 export const MORPH_DUR = 4; // seconds for the morph transition
-export const SPHERE_HOLD = 3; // seconds showing sphere orbs
+export const SPHERE_HOLD = 8; // seconds showing sphere orbs
 
 export const MORPH_CYCLE = CUBE_HOLD + MORPH_DUR + SPHERE_HOLD + MORPH_DUR; // auto
 
@@ -112,7 +112,16 @@ export const MORPH_CYCLE = CUBE_HOLD + MORPH_DUR + SPHERE_HOLD + MORPH_DUR; // a
 // ║                  0 = no shift, 0.5 = noticeable cycling.                 ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
-export const ORB_HUE_SPEED = 0.5; // radians/second — only active during sphere phase
+export const ORB_HUE_SPEED = 0.12; // radians/second — only active during sphere phase
+
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║  💥  ORB SEPARATION                                                      ║
+// ║                                                                          ║
+// ║  During the sphere hold, each face's orbs push outward along their face  ║
+// ║  normal, then smoothly reunite. Value is in world units.                 ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
+export const ORB_SEPARATION = 0.52; // world units of outward push per face
 
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║  🕸️  CONNECTION LINES                                                    ║
@@ -127,6 +136,6 @@ export const ORB_HUE_SPEED = 0.5; // radians/second — only active during spher
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
 export const CONN_DELAY = 2; // seconds into sphere phase before lines appear
-export const CONN_DUR = 3; // total seconds lines are visible
+export const CONN_DUR = 2; // total seconds lines are visible
 export const CONN_COLOR = "#6633cc"; // cyan — matches the site accent color
-export const CONN_MAX_OPACITY = 0.11; // subtle; raise for more visible lines
+export const CONN_MAX_OPACITY = 0.3; // subtle; raise for more visible lines

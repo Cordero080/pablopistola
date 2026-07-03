@@ -6,7 +6,7 @@
 import * as THREE from "three";
 
 const heroSection = document.querySelector(".hero-section");
-if (heroSection && window.innerWidth > 600) {
+if (heroSection && !window.matchMedia("(max-width: 900px)").matches) {
   // ── Canvas overlay ──────────────────────────────────────────────────────────
   const canvas = document.createElement("canvas");
   canvas.style.cssText = `
@@ -108,47 +108,57 @@ if (heroSection && window.innerWidth > 600) {
     camera.aspect = W / H;
     camera.updateProjectionMatrix();
 
-    const isMobileView = W <= 600;
-
     const vFov = (camera.fov * Math.PI) / 180;
     const worldH = 2 * Math.tan(vFov / 2) * camera.position.z;
     const worldW = worldH * camera.aspect;
     const pxToWorld = worldH / H;
 
-    // ── Scale ── [mobile, tablet (≤900), desktop]
-    // Increase to make brackets larger, decrease to shrink them.
-    const scaleFactor = isMobileView ? 0.19 : W <= 900 ? 0.2 : 0.18;
-    const s = (H * scaleFactor * pxToWorld) / 2.2;
+    // ── Scale — consistent across all breakpoints ────────────────────────────
+    const s = (H * 0.19 * pxToWorld) / 2.2;
     leftBracket.scale.set(s, s, s);
     rightBracket.scale.set(s, s, s);
 
-    let offsetWorld;
-    // ── Horizontal gap ── pixels of space between title edge and bracket
-    // Increase padding to push brackets further out from the title.
+    // ── Horizontal position — anchored to hero title edge ────────────────────
     const heroTitle = heroSection.querySelector(".hero-title");
-    const halfContentPx = heroTitle
-      ? heroTitle.getBoundingClientRect().width / 2
-      : W * 0.28;
-    const padding = isMobileView ? 18 : 32; // [mobile, desktop] — tighter gap on mobile
-    offsetWorld = Math.min(
-      (halfContentPx + padding) * pxToWorld,
-      worldW * 0.46, // hard cap: never wider than 46% of world width
+    // Measure the actual rendered text width via Range so brackets track the
+    // text content width, not the full-width block element
+    let halfContentPx;
+    let titleCenterOffsetPx = 0;
+    const spans = heroTitle?.querySelectorAll(
+      ".title-letter:not(.title-letter--space)",
     );
+    if (spans && spans.length > 0) {
+      const first = spans[0].getBoundingClientRect();
+      const last = spans[spans.length - 1].getBoundingClientRect();
+      halfContentPx = (last.right - first.left) / 2;
+      titleCenterOffsetPx = (first.left + last.right) / 2 - (rect.left + W / 2);
+    } else if (heroTitle && heroTitle.firstChild) {
+      const range = document.createRange();
+      range.selectNodeContents(heroTitle);
+      halfContentPx = range.getBoundingClientRect().width / 2;
+    } else {
+      halfContentPx = W * 0.28;
+    }
+    const offsetWorld = Math.min(
+      (halfContentPx + 28) * pxToWorld,
+      worldW * 0.46,
+    );
+    const centerOffsetWorld = titleCenterOffsetPx * pxToWorld;
 
-    leftBracket.position.x = -offsetWorld + 0.18;
-    rightBracket.position.x = offsetWorld;
+    leftBracket.position.x = -offsetWorld + 0.18 + centerOffsetWorld;
+    rightBracket.position.x = offsetWorld + centerOffsetWorld;
 
-    // ── Vertical position — anchored to hero title center ──────────────────
-    // Derived from the title's actual DOM position so edits elsewhere never shift brackets.
-    // FULL SCREEN
+    // ── Vertical position — anchored to hero title center ────────────────────
+    // scrollReveal.js applies y:48 (translateY 48px) to #heroTitle via GSAP
+    // immediateRender before this resize() runs. getBoundingClientRect()
+    // includes that transform, so titleCenterPx reads 48px too low.
+    // Adding 48 back converts the measured position to the natural layout position.
     const heroRect = heroSection.getBoundingClientRect();
     const titleRect = heroTitle ? heroTitle.getBoundingClientRect() : null;
     const titleCenterPx = titleRect
       ? titleRect.top - heroRect.top + titleRect.height / 2
       : H / 2;
-    const bracketY =
-      (H / 2 - titleCenterPx) * pxToWorld +
-      (W > 1000 ? 0.55 : W > 900 ? 0.55 : 0);
+    const bracketY = (H / 2 - titleCenterPx + 48) * pxToWorld;
     leftBracket.position.y = bracketY;
     rightBracket.position.y = bracketY;
     rightBracket.position.z = -0.23;
@@ -169,23 +179,37 @@ if (heroSection && window.innerWidth > 600) {
   }
 
   // ── Fade out on scroll — counterscroll keeps brackets pinned while fading ──
-  window.addEventListener(
-    "scroll",
-    () => {
-      const rect = heroSection.getBoundingClientRect();
-      const heroH = heroSection.offsetHeight;
-      const scrolledPx = Math.max(0, -rect.top);
-      // fade starts when hero top hits 0, fully gone at 40% scrolled
-      const ratio = Math.min(1, scrolledPx / (heroH * 0.4));
-      canvas.style.opacity = 1 - ratio;
-      // counteract parent scroll so brackets stay visually fixed in place
-      canvas.style.transform = `translateY(${scrolledPx}px)`;
-    },
-    { passive: true },
-  );
+  function updateScroll() {
+    const rect = heroSection.getBoundingClientRect();
+    const heroH = heroSection.offsetHeight;
+    const scrolledPx = Math.max(0, -rect.top);
+    const ratio = Math.min(1, scrolledPx / (heroH * 0.4));
+    canvas.style.opacity = 1 - ratio;
+    canvas.style.transform = `translateY(${scrolledPx}px)`;
+  }
+  window.addEventListener("scroll", updateScroll, { passive: true });
 
   // ── Init ────────────────────────────────────────────────────────────────────
-  window.addEventListener("resize", () => requestAnimationFrame(resize));
+  const mq = window.matchMedia("(max-width: 900px)");
+  function onBreakpointChange(e) {
+    canvas.style.display = e.matches ? "none" : "";
+  }
+  mq.addEventListener("change", onBreakpointChange);
+
+  window.addEventListener("resize", () =>
+    requestAnimationFrame(() => {
+      resize();
+      updateScroll();
+    }),
+  );
+
+  // Sync with parallax breakpoint changes — remeasure title position immediately
+  window.addEventListener("hero:breakpoint", () =>
+    requestAnimationFrame(() => {
+      resize();
+      updateScroll();
+    }),
+  );
 
   // Wait for fonts before first measurement — early calls get wrong title width
   const start = () =>

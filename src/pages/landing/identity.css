@@ -73,7 +73,8 @@
   position: fixed;
   bottom: 2.5rem;
   left: 50%;
-  transform: translateX(-50%);
+  --btn-lift: 0px;
+  transform: translateX(-50%) translateY(var(--btn-lift));
   z-index: 100;
   display: inline-flex;
   align-items: stretch;
@@ -86,7 +87,8 @@
   transition:
     opacity 0.8s ease,
     letter-spacing 0.4s ease,
-    filter 0.4s ease;
+    filter 0.4s ease,
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1);
   filter: drop-shadow(0 0 1px rgba(22, 38, 63, 0.857))
     drop-shadow(0 3px 0 rgba(8, 18, 55, 0.9))
     drop-shadow(0 6px 0 rgba(5, 12, 40, 0.7))
@@ -94,6 +96,11 @@
     drop-shadow(0 13px 6px rgba(0, 0, 0, 0.7));
   opacity: 0;
   pointer-events: none;
+}
+
+/* One-time rise, synced to the subtitle sliding up into the title's old spot */
+.enter-btn.risen {
+  --btn-lift: -1.75rem;
 }
 
 /* Shared piece background */
@@ -196,7 +203,7 @@
 .enter-btn:hover {
   letter-spacing: 0.55em;
   animation: none;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(var(--btn-lift));
   filter: drop-shadow(0 0 2px rgba(120, 180, 255, 0.8))
     drop-shadow(0 3px 0 rgba(8, 18, 55, 0.9))
     drop-shadow(0 6px 0 rgba(5, 12, 40, 0.7))
@@ -222,21 +229,23 @@
 
 @keyframes btnScanlineCollapse {
   0% {
-    transform: translateX(-50%) scaleY(1) scaleX(1);
+    transform: translateX(-50%) translateY(var(--btn-lift)) scaleY(1) scaleX(1);
     filter: drop-shadow(0 0 1px rgba(100, 160, 255, 0.55))
       drop-shadow(0 4px 8px rgba(0, 0, 0, 0.85))
       drop-shadow(0 2px 2px rgba(0, 0, 0, 0.95));
   }
   55% {
-    transform: translateX(-50%) scaleY(0.06) scaleX(1.08);
+    transform: translateX(-50%) translateY(var(--btn-lift)) scaleY(0.06)
+      scaleX(1.08);
     filter: brightness(2) drop-shadow(0 0 12px rgba(0, 255, 247, 0.9));
   }
   75% {
-    transform: translateX(-50%) scaleY(0.06) scaleX(1.08);
+    transform: translateX(-50%) translateY(var(--btn-lift)) scaleY(0.06)
+      scaleX(1.08);
     filter: brightness(2.5) drop-shadow(0 0 16px rgba(0, 255, 247, 0.8));
   }
   100% {
-    transform: translateX(-50%) scaleY(0) scaleX(0);
+    transform: translateX(-50%) translateY(var(--btn-lift)) scaleY(0) scaleX(0);
     filter: brightness(4) drop-shadow(0 0 24px rgba(0, 255, 247, 0.5));
   }
 }
