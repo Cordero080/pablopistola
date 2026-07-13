@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-ZL1CZZKRKD"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-ZL1CZZKRKD");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Archetope | Pablo Cordero</title>
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/icons/icon-192.png"
+    />
+    <link rel="stylesheet" href="../src/styles/main.css" />
+    <link rel="stylesheet" href="../src/shared/project/project.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="../src/shared/effects/sineWave.js" defer></script>
+    <script src="../src/shared/effects/innerSineWave.js" defer></script>
+    <!-- Vercel Analytics (only loads on Vercel) -->
+    <script src="../src/js/utils/analytics.js" defer></script>
+  </head>
+  <body>
+    <canvas id="waves"></canvas>
+
+    <nav class="side-nav" role="navigation" aria-label="Main navigation">
+      <div class="side-nav-logo">
+        <span class="logo-text" id="myName" data-text="PC">PC</span>
+      </div>
+      <div class="side-nav-links">
+        <a class="side-nav-link" href="/home" aria-label="Home">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          <span class="nav-label">Home</span>
+        </a>
+        <a class="side-nav-link" href="/about" aria-label="About">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <span class="nav-label">About</span>
+        </a>
+        <a class="side-nav-link" href="/home#projects" aria-label="Projects">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+          </svg>
+          <span class="nav-label">Projects</span>
+        </a>
+        <a class="side-nav-link" href="/skills" aria-label="Skills">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+          </svg>
+          <span class="nav-label">Skills</span>
+        </a>
+        <a class="side-nav-link" href="/lab" aria-label="Lab">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M9 3h6M9 3v6.5L5 18a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1l-4-8.5V3"
+            />
+            <path d="M7.5 14h9" />
+          </svg>
+          <span class="nav-label">Lab</span>
+        </a>
+        <a class="side-nav-link" href="/home#contact" aria-label="Contact">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          <span class="nav-label">Contact</span>
+        </a>
+        <a class="side-nav-link" href="/resume" aria-label="Resume">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+          </svg>
+          <span class="nav-label">Resume</span>
+        </a>
+        <a
+          class="side-nav-link exit-link"
+          href="/?stay"
+          aria-label="Zen Mode - Waves"
+        >
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M2 12c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+            <path d="M2 6c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+            <path d="M2 18c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
+          </svg>
+        </a>
+      </div>
+      <div class="side-nav-glow"></div>
+    </nav>
+
+    <main class="project-page">
+      <!-- Hero Section -->
+      <section class="project-hero">
+        <div class="project-hero-content">
+          <a href="/home" class="back-link">← Back to Projects</a>
+          <h1 class="project-title">ARCHETOPE</h1>
+          <p class="project-tagline">
+            Five archetypal AI agents — Tarot figures crossed with Myers-Briggs
+            cognitive styles, contemporary intelligence, and persistent memory —
+            building a shared civilization, one tick at a time.
+          </p>
+
+          <div class="project-links-belt">
+            <div class="project-links-track">
+              <a
+                href="https://github.com/Cordero080/archetope"
+                target="_blank"
+                class="project-btn secondary"
+              >
+                <span>GitHub</span>
+              </a>
+              <span class="belt-sep"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+                  /></svg
+              ></span>
+
+              <a
+                href="https://github.com/Cordero080/archetope"
+                target="_blank"
+                class="project-btn secondary"
+              >
+                <span>GitHub</span>
+              </a>
+              <span class="belt-sep"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+                  /></svg
+              ></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Screenshot Gallery -->
+      <section class="project-gallery">
+        <div class="gallery-main">
+          <img
+            src="/images/projects/archetope/dashboard-top.png"
+            alt="Archetope Dashboard"
+            class="gallery-hero-img"
+            loading="eager"
+            style="object-position: top"
+          />
+        </div>
+        <div class="gallery-thumbs">
+          <img
+            src="/images/projects/archetope/dashboard-top.png"
+            alt="Live Dashboard"
+            class="thumb active"
+            data-full="/images/projects/archetope/dashboard-top.png"
+            loading="lazy"
+            style="object-position: top"
+          />
+          <img
+            src="/images/projects/archetope/agent-focus-tower.png"
+            alt="Agent Focus View"
+            class="thumb"
+            data-full="/images/projects/archetope/agent-focus-tower.png"
+            loading="lazy"
+          />
+          <img
+            src="/images/projects/archetope/gallery.png"
+            alt="Generated Image Gallery"
+            class="thumb"
+            data-full="/images/projects/archetope/gallery.png"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="project-about">
+        <div class="about-grid">
+          <div class="about-description">
+            <h2>About</h2>
+            <p>
+              Every culture that's built gods built the same kind of thing: a
+              figure that's one human trait taken all the way — War, Wisdom,
+              Fertility, Chaos — not a diluted person carrying a bit of
+              everything, but that single trait in its pure, undiluted form.
+              Archetope takes that lineage — Tarot's Major Arcana, the modern
+              descendant Myers-Briggs — and runs an experiment with it: give
+              each pure archetypal form a cognitive style, an LLM, and a modern
+              world, and have them build a civilization together, one tick at a
+              time, with real memory and evolving relationships.
+            </p>
+
+            <h3
+              style="
+                color: rgba(255, 255, 255, 0.9);
+                margin-top: 1.5rem;
+                margin-bottom: 0.75rem;
+              "
+            >
+              The Question
+            </h3>
+            <p>
+              Do small, fixed personality differences — an archetype's
+              light/shadow poles crossed with an MBTI cognitive style — produce
+              distinguishable, consistent group dynamics once agents have
+              persistent memory, a running relationship score with each other,
+              and a shared world they can see the history of, without ever being
+              told what conflict to have?
+            </p>
+
+            <h3
+              style="
+                color: rgba(255, 255, 255, 0.9);
+                margin-top: 1.5rem;
+                margin-bottom: 0.75rem;
+              "
+            >
+              What Showed Up
+            </h3>
+            <p>
+              A stable, unscripted rivalry between The Tower (ENTJ,
+              revolutionary/testing instinct) and The Hierophant (ISTJ,
+              institution-builder) — nobody wrote that conflict into the code;
+              it falls out of the archetype + MBTI pairing. The group's build
+              target escalated on its own, unprompted, from sorting raw
+              materials to considering a spacetime-bending drive. The Star
+              (INFP) independently started challenging the group for building
+              bigger things without agreeing on why. Adding a 5th agent, The
+              Emperor (ESTJ), produced the project's first negative relationship
+              shift — docking a peer's trust and installing a physical
+              kill-switch before letting the group continue.
+            </p>
+          </div>
+
+          <div class="about-details">
+            <div class="detail-card">
+              <h3>Tech Stack</h3>
+              <div class="tech-tags">
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">Express</span>
+                <span class="tech-tag">PostgreSQL</span>
+                <span class="tech-tag">Claude API</span>
+                <span class="tech-tag">OpenAI Images</span>
+              </div>
+            </div>
+
+            <div class="detail-card">
+              <h3>My Role</h3>
+              <p>
+                Solo developer — simulation architecture, archetype/MBTI pairing
+                design, tick loop, live dashboard, image-generation pipeline.
+              </p>
+            </div>
+
+            <div class="detail-card">
+              <h3>Project Type</h3>
+              <p>AI Research / Experimental</p>
+            </div>
+
+            <div class="detail-card">
+              <h3>Timeline</h3>
+              <p>July 2026 – Present (evolving)</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="project-features">
+        <h2>What's Different</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon cyan">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 6v6l4 2" />
+              </svg>
+            </div>
+            <h3>Archetype + MBTI Pairing</h3>
+            <p>
+              Each agent carries a Tarot archetype's light/shadow duality
+              crossed with a fixed Myers-Briggs cognitive style. The pairing,
+              not scripted dialogue, is what produces the group's behavior.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon magenta">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+              </svg>
+            </div>
+            <h3>Stigmergic World-Building</h3>
+            <p>
+              Agents react to a shared, chronological world-state log rather
+              than direct messages. Alongside it, each tick also runs one
+              direct, turn-taking conversation between two agents who read and
+              reply to each other's exact words.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon cyan">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                />
+              </svg>
+            </div>
+            <h3>Persistent Memory & Relationships</h3>
+            <p>
+              Every agent accumulates memory across ticks and holds a running
+              sentiment score with every other agent, shown live as a centered
+              relationship bar.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon magenta">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <h3>The Accidental Control Group</h3>
+            <p>
+              A naming-mismatch bug silently sent the literal text "undefined"
+              in place of every agent's identity for a stretch of the project —
+              and agents still differentiated from each other, consistently,
+              using only the shared log and their own accumulating memory.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon cyan">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="3" />
+                <path
+                  d="M12 2v4M12 18v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M2 12h4M18 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"
+                />
+              </svg>
+            </div>
+            <h3>Opt-in Visualization</h3>
+            <p>
+              Claude crafts a visual prompt from any world-state entry and
+              OpenAI renders it in a consistent minimal-cyberpunk style. Nothing
+              generates automatically, and every image is cached permanently per
+              entry.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon magenta">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <ellipse cx="12" cy="5" rx="9" ry="3" />
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+              </svg>
+            </div>
+            <h3>Live Dashboard</h3>
+            <p>
+              One card per archetype with current light/shadow state and full
+              history, a "Run Next Tick" button, and an "Explain" call that
+              identifies which exact phrase reveals an agent's archetypal
+              signature and why.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sample Outputs -->
+      <section class="project-about" style="padding-top: 0">
+        <div class="about-grid">
+          <div class="about-description">
+            <h2>What It Sounds Like</h2>
+
+            <blockquote
+              style="
+                border-left: 3px solid rgba(0, 255, 247, 0.5);
+                padding-left: 1.5rem;
+                margin: 1.5rem 0;
+                font-style: italic;
+                color: rgba(255, 255, 255, 0.85);
+              "
+            >
+              "Don't know, don't care. Names are jokes; strain gauges aren't.
+              The creator likes 'Zero Point,' fine, that's settled — but the
+              checklist doesn't laugh, it just sits there waiting for the
+              cross-check to close."
+            </blockquote>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.5);
+                font-size: 0.85rem;
+                margin-top: -0.5rem;
+              "
+            >
+              — The Tower, on naming the airframe
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="../src/shared/project/gallery.js" defer></script>
+    <script src="../src/shared/nav/hamburger.js" defer></script>
+    <script src="../src/shared/cursor/cursor.js" defer></script>
+    <script src="../src/shared/effects/orb.js" defer></script>
+  </body>
+</html>

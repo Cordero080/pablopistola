@@ -51,16 +51,17 @@ setTimeout(() => {
     span.style.opacity = "1";
   });
 
-  // Step 2: next frame, apply staggered transition to opacity 0
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      letters.forEach((span, i) => {
-        const distFromCenter = Math.abs(i - center);
-        const delay = (center - distFromCenter) * 0.05;
-        span.style.transition = `opacity 0.35s ease-in ${delay.toFixed(3)}s`;
-        span.style.opacity = "0";
-      });
-    });
+  // Step 2: force a synchronous style flush so the browser commits the locked
+  // opacity before the transition below starts — rAF isn't reliable here since
+  // it stalls in backgrounded tabs or under main-thread load from the rubix/
+  // sine-wave scenes, which left the title stuck visible on top of the subtitle.
+  void title.offsetHeight;
+
+  letters.forEach((span, i) => {
+    const distFromCenter = Math.abs(i - center);
+    const delay = (center - distFromCenter) * 0.05;
+    span.style.transition = `opacity 0.35s ease-in ${delay.toFixed(3)}s`;
+    span.style.opacity = "0";
   });
 }, 6000);
 
@@ -77,6 +78,8 @@ setTimeout(() => {
   const titleCenterY = titleRect.top + titleRect.height / 2;
   const subtitleCenterY = subtitleRect.top + subtitleRect.height / 2;
   subtitle.style.transform = `translateY(${titleCenterY - subtitleCenterY}px)`;
+
+  document.getElementById("enterBtn")?.classList.add("risen");
 }, 6500);
 
 // Show enter button after full sequence (~5s)

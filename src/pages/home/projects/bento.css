@@ -130,6 +130,23 @@
   filter: brightness(1.05);
 }
 
+/* Archetope screenshot has its wordmark in the upper-left corner. No zoom,
+   no fade mask, no extra crop — object-position: top guarantees the full
+   top edge of the source image (where the wordmark lives) is always shown,
+   with any unavoidable aspect-ratio crop pushed entirely to the bottom. */
+.project-row--archetope .project-card-media {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+.project-row--archetope .project-card-media img {
+  object-position: top;
+  transform: none;
+}
+.project-row--archetope .project-card-link:hover .project-card-media img {
+  transform: none;
+  filter: brightness(1.05);
+}
+
 /* ── TEXT SIDE ── */
 .project-card-info {
   flex: 0 0 40%;
