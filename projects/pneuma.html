@@ -287,6 +287,14 @@
               retrieval, deterministic pre/post-processing, and three memory
               layers, organized around a cognitive architecture.
             </p>
+            <p>
+              Before Claude generates a word, the system scores intent, routes
+              the query through 43 archetypes via embedding similarity, forces
+              philosophical tension into synthesis, and injects cross-session
+              memory, then calls Claude with all of that shaping the prompt —
+              the reasoning about how to think happens in this codebase, as
+              opposed to the base model's defaults.
+            </p>
 
             <h3
               style="
@@ -299,15 +307,15 @@
             </h3>
             <p>
               <strong>43 thinkers</strong> — Schopenhauer, Watts, Camus, Jung,
-              Rumi, Feynman, Kafka, Aurelius as thinking methods grounded in verbatim passages
-              from actual source texts. Agentic RAG (1,385 passages) retrieves
-              them at runtime: semantic routing decides which of 43 knowledge
-              bases to query based on the input — parallel concept×thinker
-              queries across ~60 philosophical dimensions, with fallback
-              handling for out-of-scope inputs. Every message selects an
-              archetype pair, scores a tone, and tells both to take a conceptual
-              position and argue — friction engineered before Claude generates a
-              word.
+              Rumi, Feynman, Kafka, Aurelius as thinking methods grounded in
+              verbatim passages from actual source texts. Agentic RAG (1,385
+              passages) retrieves them at runtime: semantic routing decides
+              which of 43 knowledge bases to query based on the input — parallel
+              concept×thinker queries across ~60 philosophical dimensions, with
+              fallback handling for out-of-scope inputs. Every message selects
+              an archetype pair, scores a tone, and tells both to take a
+              conceptual position and argue — friction engineered before Claude
+              generates a word.
             </p>
 
             <h3
