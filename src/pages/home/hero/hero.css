@@ -9,7 +9,7 @@
   left: 0;
   right: 0;
   height: 25vh;
-  
+
   background: linear-gradient(
     to bottom,
     rgba(43, 25, 85, 0.96) 0%,
@@ -104,18 +104,14 @@
   font-weight: 900;
   font-style: normal;
   font-size: clamp(2rem, 4vw, 4rem);
-  background: linear-gradient(
-    to bottom,
-    var(--ht-a) 0%,
-    var(--ht-b) 15%,
-    var(--ht-c) 50%,
-    var(--ht-d) 75%,
-    var(--ht-e) 100%
-  );
-  background-size: 100% 100%;
-  -webkit-background-clip: text;
+  /* No gradient / background-clip:text on this container. The per-letter
+     .hero-title .title-letter spans below carry their own identical gradient.
+     When the container ALSO had background-clip:text, Chrome clipped its
+     gradient to the descendant letters and painted a second, static, unflipped
+     copy of the title — the glitch/ghost over the P. text-fill-color:transparent
+     stays so the h1's own (pre-JS) hardcoded text isn't shown; the stroke stays
+     and is inherited by the letters. */
   -webkit-text-fill-color: transparent;
-  background-clip: text;
   -webkit-text-stroke: 0.3px rgba(187, 187, 189, 0.912);
   letter-spacing: 0.1em;
   margin-left: 0;
@@ -126,7 +122,12 @@
   white-space: nowrap;
   word-break: normal;
   opacity: 0.99;
+  visibility: hidden;
   cursor: default;
+}
+
+.hero-title.home-title-ready {
+  visibility: visible;
 }
 
 .hero-title:hover {

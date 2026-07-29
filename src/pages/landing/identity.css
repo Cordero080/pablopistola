@@ -18,7 +18,24 @@
   font-size: clamp(2.5rem, 5.5vw, 5.5rem);
   text-align: center;
   width: 100%;
-  background: linear-gradient(
+  /* NO background-clip:text / gradient / color here. This <h1> is only a
+     container for the per-letter .title-letter spans (which do their own
+     gradient + transforms). When the h1 itself had background-clip:text, Chrome
+     clipped its gradient to its descendant letters and painted a SECOND, static
+     copy of the whole title — with no per-letter flip, so the V was upright:
+     the "bogus" regular-V title lingering behind the animated one. */
+  letter-spacing: 0.12em;
+  line-height: 1.05;
+  margin: 0;
+}
+
+/* Landing title letters share ONE continuous gradient across the whole title
+   (not one gradient per letter). The gradient image is set here; glitch.js
+   sizes/positions it per letter so the sweep flows across all of them — the
+   same look the old container-clip render had. Landing-only selector; home
+   untouched. background-clip:text already comes from .title-letter. */
+.enter-identity-title .title-letter {
+  background-image: linear-gradient(
     135deg,
     #f0f4f6 5%,
     #7a8f9e 15%,
@@ -29,13 +46,6 @@
     #f2f5f7 90%,
     #8a9dac 100%
   );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: #fff;
-  letter-spacing: 0.12em;
-  line-height: 1.05;
-  margin: 0;
 }
 
 .enter-identity-subtitle {

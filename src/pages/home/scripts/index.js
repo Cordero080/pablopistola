@@ -92,6 +92,7 @@
   title.style.whiteSpace = "nowrap";
   title.style.textAlign = "center";
   title.style.overflow = "visible";
+  title.classList.add("home-title-ready");
 
   // Click → glitch → compMode toggle
   let animating = false;

@@ -117,8 +117,17 @@ export default defineConfig({
   },
 
   server: {
-    port: 3000,
+    // Fresh port = a brand-new origin with no service-worker/cache history
+    // carried over from localhost:3000.
+    port: 5200,
     open: true,
+    // Force the browser to never cache anything served by the dev server, so
+    // edits always show up on save/reload instead of Chrome reusing old files.
+    headers: {
+      "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
+      Pragma: "no-cache",
+      Expires: "0",
+    },
     proxy: {
       "/models/xenotchi": {
         target: "https://transcendence-3-d-v2.vercel.app",

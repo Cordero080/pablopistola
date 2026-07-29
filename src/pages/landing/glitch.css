@@ -25,13 +25,36 @@
   animation: letterFadeInGlitch 7s linear forwards;
   position: relative;
   /* Silver metallic gradient — one letter at a time */
-  background: linear-gradient(180deg, #f8eff2 30%, #b8c8d4 100%);
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #edf2f5 34%,
+    #cbd7df 62%,
+    #f9fbfc 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-shadow:
     0 2px 16px rgba(0, 0, 0, 0.25),
     0 14px 36px rgba(40, 2, 19, 0.22);
+}
+
+/* Keep every landing-page glyph platinum. The complementary-mode rule in
+   identity.css can otherwise replace the inverted V with black, while Chrome
+   may retain that composited result during a repaint. */
+.enter-identity .title-letter,
+body.complementary-colors .enter-identity .title-letter--invert-v {
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #f5f8fa 42%,
+    #e1e9ee 68%,
+    #ffffff 100%
+  ) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
 }
 
 .title-letter--space {

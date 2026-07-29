@@ -1,84 +1,66 @@
-const CACHE_NAME = "pablo-pistola-1782316088174";
-const ASSETS_TO_CACHE = [
-  "/",
-  "/home.html",
-  "/icons/icon-192.png",
-  "/icons/icon-512.png",
-];
+// Self-healing service worker.
+//
+// The browser fetches THIS file fresh (bypassing any active worker's cache)
+// whenever it checks for a service-worker update — which is what lets a new
+// version replace a stuck one. So this version is written to break the exact
+// deadlock that made an old worker keep serving stale files on localhost:
+//   • on localhost: wipe every cache, unregister itself, reload the page —
+//     the dev server then serves everything fresh with no worker in the way;
+//   • on production: network-first (always try the network, fall back to
+//     cache only when offline) and wipe stale caches on activate, so a new
+//     deploy is never masked by an old cached bundle.
+//
+// CACHE_NAME keeps the "pablo-pistola-" prefix so scripts/bump-sw-version.js
+// still rewrites it on build.
+const CACHE_NAME = "pablo-pistola-selfheal-1";
 
-// Install event - cache assets
-self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS_TO_CACHE);
-    }),
-  );
+const isLocalhost =
+  self.location.hostname === "localhost" ||
+  self.location.hostname === "127.0.0.1";
+
+self.addEventListener("install", () => {
   self.skipWaiting();
 });
 
-// Activate event - clean up old caches
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames
-          .filter((name) => name !== CACHE_NAME)
-          .map((name) => caches.delete(name)),
-      );
-    }),
+    (async () => {
+      // Wipe ALL caches — not just old-named ones — so no stale build survives.
+      const keys = await caches.keys();
+      await Promise.all(keys.map((k) => caches.delete(k)));
+
+      if (isLocalhost) {
+        // Remove the worker entirely and reload every controlled tab so dev
+        // serves fresh files with nothing intercepting.
+        await self.registration.unregister();
+        const clients = await self.clients.matchAll({ type: "window" });
+        clients.forEach((c) => c.navigate(c.url));
+        return;
+      }
+
+      await self.clients.claim();
+    })(),
   );
-  self.clients.claim();
 });
 
-// Fetch event - network-first for navigation, cache-first for assets
 self.addEventListener("fetch", (event) => {
-  // Skip cross-origin requests
-  if (!event.request.url.startsWith(self.location.origin)) {
-    return;
-  }
+  // Never intercept on localhost — the dev server is the single source of truth.
+  if (isLocalhost) return;
+  if (event.request.method !== "GET") return;
+  if (!event.request.url.startsWith(self.location.origin)) return;
 
-  // Network-first for navigation requests (HTML pages)
-  if (event.request.mode === "navigate") {
-    event.respondWith(
-      fetch(event.request)
-        .then((response) => {
-          // Cache successful responses
-          if (response && response.status === 200) {
-            const responseToCache = response.clone();
-            caches.open(CACHE_NAME).then((cache) => {
-              cache.put(event.request, responseToCache);
-            });
-          }
-          return response;
-        })
-        .catch(() => {
-          // Fallback to cache if offline
-          return caches.match(event.request);
-        }),
-    );
-    return;
-  }
-
-  // Cache-first for static assets
+  // Network-first: always try fresh; fall back to cache only when offline.
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
-      return fetch(event.request).then((response) => {
-        if (
-          !response ||
-          response.status !== 200 ||
-          event.request.method !== "GET"
-        ) {
-          return response;
+    fetch(event.request)
+      .then((response) => {
+        if (response && response.status === 200) {
+          const copy = response.clone();
+          caches
+            .open(CACHE_NAME)
+            .then((cache) => cache.put(event.request, copy));
         }
-        const responseToCache = response.clone();
-        caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request, responseToCache);
-        });
         return response;
-      });
-    }),
+      })
+      .catch(() => caches.match(event.request)),
   );
 });
