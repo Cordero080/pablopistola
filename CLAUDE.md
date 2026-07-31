@@ -2,6 +2,21 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## CSS RULE — background-clip: text
+
+Never put `background-clip: text` (or `-webkit-background-clip: text`) on an
+element whose visible text lives in **child** elements. Chrome clips the
+container's background onto the descendant letters and paints a frozen ghost
+copy of them (with none of the children's transforms/animation), which sits
+behind the real content — a Chrome-only bug (Safari doesn't do this). Put the
+clip ONLY on the leaf element that directly contains the text (e.g. the
+`.title-letter` spans, not the `.enter-identity-title` / `.hero-title` `<h1>`).
+
+To make a gradient sweep continuously across many leaf elements, keep the clip
+on each leaf and size/offset each one's `background-image` to its position in
+the whole (see `scripts/glitch.js` → `paintContinuousGradient`) — do **not**
+move the clip up to the container.
+
 ## Architecture
 
 The `front-end-architecture` skill is always active for this project. Apply it whenever placing any file — page, script, stylesheet, or shared utility. See `~/.claude/skills/front-end-architecture/SKILL.md` for the zone rules and decision formula.

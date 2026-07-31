@@ -31,10 +31,10 @@ export const GLOW_EMIT_B = 1.0; // blue  contribution  ← dominant
 
 export const FACE_EDGE_COLORS = [
   "#06147f", // front  face edges
-  "#050413", // back   face edges
+  "#1d158f", // back   face edges
   "#16266b", // right  face edges
   "#432a8b", // left   face edges
-  "#08050f", // top    face edges
+  "#3e296f", // top    face edges
   "#330015", // bottom face edges
 ];
 
