@@ -6,6 +6,7 @@
 
 /* ── SECTION ── */
 .projects-section {
+  /* Accent tokens (--accent-rest / --accent-active) come from variables.css */
   padding: 4rem 3rem 8rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -49,7 +50,9 @@
   align-items: center;
   gap: 3.5rem;
   padding: 3rem 0;
-  border-bottom: 1px solid rgba(233, 24, 24, 0.04);
+  /* Steel-tinted hairline (was a leftover red tint) — even the faint lines
+     belong to the accent system */
+  border-bottom: 1px solid rgba(138, 163, 200, 0.08);
   position: relative;
   counter-increment: project-counter;
 }
@@ -61,8 +64,9 @@
   top: 50%;
   transform: translateY(-50%);
   font-family: "Audiowide", sans-serif;
-  font-size: clamp(4.5rem, 9vw, 8rem);
-  color: rgba(255, 255, 255, 0.04);
+  /* Ghost numerals scaled up — presence through scale, not saturation */
+  font-size: clamp(6.5rem, 13vw, 12rem);
+  color: rgba(255, 255, 255, 0.05);
   pointer-events: none;
   z-index: 0;
   line-height: 1;
@@ -155,6 +159,7 @@
   gap: 1rem;
   padding-left: 2.5rem;
   border-left: 2px solid var(--card-accent, #00fff7);
+  transition: border-color 0.3s ease; /* smooth the steel → electric flip */
   position: relative;
   z-index: 1;
 }
@@ -184,7 +189,10 @@
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.75);
+  /* Accent lives on the title (steel → electric via the row-hover flip),
+     keeping it distinct from the off-white description below */
+  color: var(--card-accent, rgba(255, 255, 255, 0.75));
+  transition: color 0.3s ease;
   margin: 0;
   text-shadow:
     0 2px 12px rgba(0, 0, 0, 0.9),
@@ -195,13 +203,14 @@
 .project-card-description {
   font-family: "IBM Plex Sans", sans-serif;
   font-size: clamp(0.95rem, 1.6vw, 1.15rem);
-  letter-spacing: 0.12em;
-  background: linear-gradient(90deg, var(--card-accent, #00fff7), #ea47ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  /* Near-normal tracking — wide letter-spacing is reserved for titles and
+     labels; when everything is spaced, nothing reads as emphasized */
+  letter-spacing: 0.015em;
+  /* Off-white body copy — colored paragraphs are the "generic AI" tell and
+     hurt legibility. Color now lives only in accents (labels, CTA, card rim). */
+  color: rgba(255, 255, 255, 0.82);
   margin: 0;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.95));
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95); /* keep it readable over the busy bg */
 }
 
 /* ── CTA ── */
@@ -344,42 +353,19 @@
   display: none;
 }
 
-/* ── PROJECT ACCENT COLORS ── */
-.project-row--pneuma {
-  --card-accent: #00d5ffb8;
+/* ── ACCENT SYSTEM ── */
+/* One accent, two states, replacing the old per-project rainbow:
+   steel/ice at rest (restraint), deep electric on interaction (punch).
+   Everything downstream (border, badge, CTA, glow) reads --card-accent,
+   so the row-hover flip below recolors the whole card at once. */
+.project-row {
+  --card-accent: var(--accent-rest);
+}
+.project-row:hover {
+  --card-accent: var(--accent-active);
 }
 .project-row--pneuma .project-card-media img {
   filter: brightness(1);
-}
-.project-row--la-dolce-vita {
-  --card-accent: #ff9ec8d2;
-}
-.project-row--numeneon {
-  --card-accent: #9050ffcf;
-}
-.project-row--xenochi {
-  --card-accent: #ff8c00c9;
-}
-.project-row--pneumata {
-  --card-accent: #aa55ff;
-}
-.project-row--manifold {
-  --card-accent: #007bff;
-}
-.project-row--tic-trap-toe {
-  --card-accent: #5500ff;
-}
-.project-row--nucat {
-  --card-accent: #00ff88;
-}
-.project-row--dojo-crud {
-  --card-accent: #ff4500;
-}
-.project-row--bookshelf {
-  --card-accent: #ffd700;
-}
-.project-row--instvnce {
-  --card-accent: #a8f0ac;
 }
 
 .project-img--bright {

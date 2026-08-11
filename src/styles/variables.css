@@ -23,6 +23,11 @@
 
 :root {
   /* === COLORS === */
+  /* Accent system — two-state blue (DESIGN.md §2): steel at rest, electric
+     on interaction. Site-wide source of truth for all pages. */
+  --accent-rest: #9ab3d6;
+  --accent-active: #5d76ff;
+
   /* Accent colors */
   --accent-cyan: #00d4ff;
   --accent-magenta: #ff00cc;

@@ -49,6 +49,8 @@
     <link rel="stylesheet" href="/src/styles/main.css" />
     <link rel="stylesheet" href="/src/shared/project/project.css" />
     <link rel="stylesheet" href="/src/shared/about/about.css" />
+    <!-- Resume-only overrides — scoped to .resume-page, loaded AFTER about.css so it wins -->
+    <link rel="stylesheet" href="/src/pages/resume/resume.css" />
     <!-- Thornwood font from Adobe -->
     <link rel="stylesheet" href="https://use.typekit.net/fpe8zfm.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -220,7 +222,7 @@
       </div>
     </button>
 
-    <main class="project-page">
+    <main class="project-page resume-page">
       <!-- Hero Section -->
       <section class="project-hero">
         <div class="project-hero-content">
@@ -230,31 +232,94 @@
           <p class="project-tagline">
             Full-Stack Software Engineer · AI Systems & LLM Architecture
           </p>
-          <div class="project-links" style="margin-top: 1.5rem">
-            <a
-              href="https://drive.google.com/file/d/1cgm0oYXitd7kRN9Bpp05rwXUUWGCuXot/view?usp=sharing"
-              target="_blank"
-              class="hero-cta"
-              >[ VIEW PDF ]</a
-            >
+          <p class="resume-contact">
+            Charlotte, NC
+            <span class="dot">·</span>
+            <a href="tel:+16466417959">646-641-7959</a>
+          </p>
+          <!-- Links belt — same conveyor component as the project pages,
+               slowed down for the document register (resume.css) -->
+          <div class="project-links-belt" style="margin-top: 1.75rem">
+            <div class="project-links-track">
+              <a
+                href="https://drive.google.com/file/d/1F0NuFtc_CR9eqGyeH-ASnV53yJMHSo-g/view?usp=sharing"
+                target="_blank"
+                rel="noopener"
+                class="project-btn secondary"
+                ><span>View PDF</span></a
+              >
+              <span class="belt-sep">◆</span>
+              <a
+                href="https://github.com/Cordero080"
+                target="_blank"
+                rel="noopener"
+                class="project-btn secondary"
+                ><span>GitHub</span></a
+              >
+              <span class="belt-sep">◆</span>
+              <a
+                href="https://linkedin.com/in/pvblo-corder080"
+                target="_blank"
+                rel="noopener"
+                class="project-btn secondary"
+                ><span>LinkedIn</span></a
+              >
+              <span class="belt-sep">◆</span>
+              <a
+                href="mailto:Cordero080@gmail.com"
+                class="project-btn secondary"
+                ><span>Email</span></a
+              >
+              <span class="belt-sep">◆</span>
+              <!-- Second copy — the track loops at -50%, so content is doubled -->
+              <a
+                href="https://drive.google.com/file/d/1F0NuFtc_CR9eqGyeH-ASnV53yJMHSo-g/view?usp=sharing"
+                target="_blank"
+                rel="noopener"
+                class="project-btn secondary"
+                ><span>View PDF</span></a
+              >
+              <span class="belt-sep">◆</span>
+              <a
+                href="https://github.com/Cordero080"
+                target="_blank"
+                rel="noopener"
+                class="project-btn secondary"
+                ><span>GitHub</span></a
+              >
+              <span class="belt-sep">◆</span>
+              <a
+                href="https://linkedin.com/in/pvblo-corder080"
+                target="_blank"
+                rel="noopener"
+                class="project-btn secondary"
+                ><span>LinkedIn</span></a
+              >
+              <span class="belt-sep">◆</span>
+              <a
+                href="mailto:Cordero080@gmail.com"
+                class="project-btn secondary"
+                ><span>Email</span></a
+              >
+              <span class="belt-sep">◆</span>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- Resume Content -->
       <div class="about-content">
-        <!-- Profile Section -->
+        <!-- Summary Section -->
         <section class="about-section">
-          <h2>Profile</h2>
+          <h2>Summary</h2>
           <p>
-            Full-Stack Software Engineer with production experience building
-            compound AI systems and AI-integrated web applications for clients.
-            Combines strong front-end craft (React, Three.js, SCSS design
-            systems) with backend architecture (Django, Node.js, PostgreSQL) and
-            hands-on AI systems work including RAG pipelines, agentic control
-            logic, semantic routing, and LLM orchestration. Seeking a full-stack
-            or AI engineering role where I can ship at a high pace in a
-            collaborative environment.
+            Full-stack software engineer and designer building AI-integrated,
+            interactive web applications. Two decades as a visual artist drive a
+            design-led approach and creative problem-solving across the stack.
+            Front-end in React, Three.js, and SCSS; backend in Django, Node.js,
+            and PostgreSQL. Hands-on AI systems work: RAG pipelines, semantic
+            routing, and LLM orchestration built from scratch. Targeting
+            full-stack, applied-AI, and product/design engineering roles.
           </p>
         </section>
 
@@ -267,9 +332,9 @@
               Python, React, Django, Node.js, Express.js
             </li>
             <li>
-              <strong>AI & Data:</strong> Anthropic Claude API, OpenAI API,
-              Model Context Protocol (MCP), RAG Pipelines, Agentic Control
-              Logic, Vector Embeddings, Cosine Similarity, MongoDB, PostgreSQL
+              <strong>AI & Data:</strong> Anthropic Claude API, OpenAI API, RAG
+              Pipelines, Vector Embeddings, Cosine Similarity, MongoDB,
+              PostgreSQL
             </li>
             <li>
               <strong>3D & Creative:</strong> Three.js, React Three Fiber,
@@ -291,169 +356,169 @@
           <h2>Certifications</h2>
           <ul class="evolution-list">
             <li>
-              <strong>Generative AI in Software Development</strong>, IBM /
-              Coursera — 2026
+              <strong>Generative AI in Software Development</strong> — IBM /
+              Coursera (2026)
             </li>
             <li>
-              <strong>MCP Advanced Topics</strong>, Anthropic Academy — 2026
+              <strong>Anthropic Academy (2026):</strong> MCP Advanced Topics,
+              Introduction to MCP, AI Fluency: Framework & Foundations, Building
+              with the Claude API, Claude Code in Action, Claude 101
             </li>
-            <li>
-              <strong>Introduction to MCP</strong>, Anthropic Academy — 2026
-            </li>
-            <li>
-              <strong>AI Fluency: Framework & Foundations</strong>, Anthropic
-              Academy — 2026
-            </li>
-            <li>
-              <strong>Building with the Claude API</strong>, Anthropic Academy —
-              2026
-            </li>
-            <li>
-              <strong>Claude Code in Action</strong>, Anthropic Academy — 2026
-            </li>
-            <li><strong>Claude 101</strong>, Anthropic Academy — 2026</li>
           </ul>
         </section>
 
-        <!-- Featured Projects Section -->
+        <!-- Projects Section -->
         <section class="about-section">
-          <h2>Featured Projects</h2>
+          <h2>Projects</h2>
 
           <div class="project-highlight">
-            <h3>Pneuma-AI — Multi-LLM Compound AI System</h3>
+            <h3>
+              Pneuma-AI — Multi-LLM Compound AI System
+              <span class="date-range">2025–Present</span>
+            </h3>
             <p class="project-stack">
-              Node.js • React • Claude API • OpenAI Embeddings • Hume AI
-            </p>
-            <p>
-              Multi-LLM compound AI system — LLMs call other LLMs as tools. Four
-              model calls per response within a single agentic pipeline,
-              organized around a cognitive architecture rather than a prompt
-              template
+              Node.js • React • Claude API • OpenAI Embeddings
             </p>
             <ul class="project-bullets">
               <li>
-                Multi-LLM architecture: intent scoring (Claude), archetype
-                routing (OpenAI embeddings), emotion detection (Hume AI), and
-                generation (Claude) — four separate model calls, LLMs acting as
-                tools within the orchestration layer
+                Compound AI system where LLMs call other LLMs as tools — intent
+                scoring, archetype routing, and generation run as separate model
+                calls within a single agentic pipeline
               </li>
               <li>
-                Semantic archetype routing (cosine similarity over 43
-                embeddings) + momentum weighting + fusion history — agentic path
-                selection, not hardcoded dispatch
+                Semantic archetype routing using cosine similarity over 44
+                archetype embeddings, with momentum weighting and fusion history
+                for path selection rather than hardcoded dispatch
               </li>
               <li>
-                Agentic RAG: 1,385 passages across 43 thinker knowledge bases;
-                semantic routing decides which source to query based on input —
-                parallel concept×thinker queries across ~60 philosophical
-                dimensions, with fallback handling for out-of-scope inputs
+                Agentic RAG over 1,385 passages across 48 thinker knowledge
+                bases, running parallel concept-by-thinker queries across ~80
+                philosophical concepts with fallback handling for out-of-scope
+                inputs
               </li>
               <li>
-                Dialectical synthesis engine — 1,764 pre-mapped archetype
-                tension pairs; antithetical, complementary, and cross-domain
-                collision modes
+                Tiered system prompt that cuts token load from ~18k to ~2k base
+                through conditional block loading by intent score
+              </li>
+              <li>
+                Dialectical synthesis engine driven by 98 hand-authored
+                archetype tension pairs (41 high, 31 medium, 26 low) across
+                antithetical, complementary, and cross-domain collision modes
               </li>
             </ul>
           </div>
 
           <div class="project-highlight">
-            <h3>La Dolce Vita — Full-Stack AI Hospitality Platform</h3>
+            <h3>
+              La Dolce Vita — Full-Stack AI Hospitality Platform
+              <span class="date-range">2025</span>
+            </h3>
             <p class="project-stack">React • Node.js • OpenAI API</p>
-            <p>
-              Production web app for a luxury Dominican Republic villa with
-              AI-powered guest concierge
-            </p>
             <ul class="project-bullets">
               <li>
-                Built embedded AI chat widget powered by GPT-4o with dynamic
-                system prompts injecting live property data and calendar
-                availability at request time
+                Production web app for a Dominican Republic rental villa with an
+                AI-powered guest concierge
               </li>
               <li>
-                Integrated Airbnb iCal feed parsed server-side for real-time
-                booking awareness in both UI and AI context
+                Built an embedded AI chat widget on GPT-4o with dynamic system
+                prompts that inject live property data and calendar availability
+                at request time
               </li>
               <li>
-                Connected Google Sheets API for client-editable property content
-                without code changes
+                Parsed an Airbnb iCal feed server-side for real-time booking
+                awareness in both the UI and the AI context
+              </li>
+              <li>
+                Connected the Google Sheets API so the client can edit property
+                content without code changes
               </li>
             </ul>
           </div>
 
           <div class="project-highlight">
-            <h3>Pneumata — Lead Developer</h3>
+            <h3>
+              Pneumata — Lead Developer
+              <span class="date-range">2025–Present</span>
+            </h3>
             <p class="project-stack">Three.js • React • Blender</p>
-            <p>
-              Interactive 3D human anatomy visualization mapping biological
-              systems to computer architecture
-            </p>
             <ul class="project-bullets">
               <li>
-                Built 37+ navigable organ nodes with bidirectional
-                spine-to-organ hover highlighting and color-coded system
-                categories
+                Interactive 3D anatomy visualization mapping human biological
+                systems to computer hardware architecture
               </li>
               <li>
-                Implemented physiological Breathing Mode with real-time 1:4
-                breath-to-heartbeat animation ratio
+                Built 37 navigable organ nodes across 8 system categories, with
+                bidirectional spine-to-organ hover highlighting
               </li>
               <li>
-                Engineered spinal cord auto-trace via GLB armature sampling with
-                24 vertebral discs color-coded by innervated organ system
+                Implemented a physiological Breathing Mode with a real-time
+                breath-to-heartbeat animation cycle
+              </li>
+              <li>
+                Engineered spinal-cord auto-trace by sampling the GLB mesh at
+                runtime, with 24 vertebral discs color-coded by innervated organ
+                system
               </li>
             </ul>
           </div>
 
           <div class="project-highlight">
-            <h3>NUMENEON — Full-Stack Engineer & UI Lead</h3>
+            <h3>
+              NUMENEON — Full-Stack Engineer & UI Lead
+              <span class="date-range">2025–2026</span>
+            </h3>
             <p class="project-stack">React • Django • PostgreSQL</p>
-            <p>
-              Cyberpunk social media platform — 5-person team capstone (800+
-              GitHub clones)
-            </p>
             <ul class="project-bullets">
               <li>
-                Led architecture and UI strategy; defined product roadmap and
-                sized tasks across XL/L/M/S tiers
+                Cyberpunk social media platform built as a 5-person team
+                capstone
               </li>
               <li>
-                Built 3-column River Timeline with real-time post rendering and
+                Led architecture and UI strategy; defined the product roadmap
+                and sized tasks across XL/L/M/S tiers
+              </li>
+              <li>
+                Built a 3-column timeline with real-time post rendering and a
                 glassmorphic SCSS design system
               </li>
             </ul>
           </div>
 
           <div class="project-highlight">
-            <h3>Xenochi — Lead Developer</h3>
+            <h3>
+              Xenochi — Lead Developer
+              <span class="date-range">2025</span>
+            </h3>
             <p class="project-stack">Three.js • React Three Fiber • Blender</p>
             <ul class="project-bullets">
               <li>
-                Tamagotchi-inspired 3D evolution sim with full Blender → FBX →
+                Tamagotchi-inspired 3D evolution sim with a full Blender → FBX →
                 Three.js animation pipeline (32 rigged animations)
               </li>
               <li>
-                Built game state machine with stat decay, evolution triggers,
+                Built a game state machine with stat decay, evolution triggers,
                 and care-cycle progression across 5 stages
               </li>
               <li>
-                Created hidden Battle Arena using React Three Fiber with 4
+                Created a hidden Battle Arena in React Three Fiber with 4
                 interactive 3D scenes and GLSL shader effects
               </li>
             </ul>
           </div>
         </section>
 
-        <!-- Professional Experience Section -->
+        <!-- Experience Section -->
         <section class="about-section">
-          <h2>Professional Experience</h2>
+          <h2>Experience</h2>
           <ul class="evolution-list">
             <li>
-              <strong>Independent Software Consultant</strong> — Self-Employed
+              <strong>Independent Software Developer</strong> — Self-Employed,
+              Charlotte, NC
               <span class="date-range">2025–Present</span>
               <br />
               <span class="experience-detail"
-                >Scoping, building, and shipping production AI and full-stack
-                systems for clients end-to-end</span
+                >Build and ship production AI and full-stack web applications,
+                including client work</span
               >
             </li>
             <li>
@@ -494,7 +559,7 @@
           <ul class="evolution-list">
             <li>
               <strong>General Assembly</strong> — Software Engineering Immersive
-              (95.8%)
+              (95.8%), Charlotte, NC
               <span class="date-range">Feb 2026</span>
             </li>
             <li>
@@ -513,9 +578,10 @@
         <section class="about-section">
           <h2>Additional</h2>
           <p>
-            3,000+ GitHub contributions across 10+ shipped projects • Bilingual
-            English/Spanish (Professional) • 20+ Years Martial Arts (Goju-Ryu
-            Lineage) • Classical Oil Painting • Guitar & Bass
+            Bilingual English/Spanish (Professional) · Graphic design, digital
+            art & painting · Music production (Ableton, live instrumentation) ·
+            Tools: Blender, Adobe Creative Cloud, SketchUp · 20+ years martial
+            arts (Goju-Ryu lineage)
           </p>
         </section>
       </div>

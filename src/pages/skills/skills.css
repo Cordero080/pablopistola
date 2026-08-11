@@ -24,12 +24,11 @@
   font-size: clamp(1.5rem, 4vw, 2.5rem);
   letter-spacing: 0.05em;
   margin-bottom: 1rem;
-  background: linear-gradient(90deg, #ff006e, #8338ec, #07429f);
-  background-size: 200% 200%;
+  /* Silver-steel material fill — site-wide display-title treatment */
+  background: linear-gradient(180deg, #f4f7fb 0%, #c3d2e4 52%, #93aac9 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: skillsTitleShift 8s linear infinite;
 }
 
 .skills-subtitle {
@@ -112,7 +111,7 @@
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--row-accent) 45%, rgb(237, 172, 199));
+  color: color-mix(in srgb, var(--row-accent) 55%, rgba(255, 255, 255, 0.85));
   opacity: 1;
   white-space: nowrap;
   user-select: none;
@@ -209,24 +208,13 @@
   flex-shrink: 0;
 }
 
-/* Row accent colors */
-.ticker-row[data-cat="languages"] {
-  --row-accent: #00fff7;
+/* Row accent — two-state system (DESIGN.md §2), replacing the old
+   per-category rainbow: steel at rest, electric on interaction */
+.ticker-row {
+  --row-accent: var(--accent-rest);
 }
-.ticker-row[data-cat="frontend"] {
-  --row-accent: #ff207a;
-}
-.ticker-row[data-cat="backend"] {
-  --row-accent: #cc00ff;
-}
-.ticker-row[data-cat="creative"] {
-  --row-accent: #ff6d00;
-}
-.ticker-row[data-cat="devops"] {
-  --row-accent: #00ff88;
-}
-.ticker-row[data-cat="ai"] {
-  --row-accent: #a78bfa;
+.ticker-row:hover {
+  --row-accent: var(--accent-active);
 }
 
 /* ── RESPONSIVE ── */

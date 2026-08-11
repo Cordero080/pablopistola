@@ -41,7 +41,7 @@ body:has(.project-page) #waves {
 }
 
 .back-link:hover {
-  color: var(--accent-cyan);
+  color: var(--accent-active);
 }
 
 /* ==========================================
@@ -59,20 +59,12 @@ body:has(.project-page) #waves {
   font-size: clamp(1.8rem, 5.5vw, 3rem);
   letter-spacing: 0.08em;
   margin-bottom: 0;
-  background: linear-gradient(
-    90deg,
-    #ff207a,
-    #9050ff,
-    #9bc5ce,
-    #1060c0,
-    #9050ff,
-    #cbafbb
-  );
-  background-size: 300% 100%;
+  /* Silver-steel material fill — echoes the landing title's metallic, tinted
+     toward the site accent. Material, not rainbow (DESIGN.md §4). */
+  background: linear-gradient(180deg, #f4f7fb 0%, #c3d2e4 52%, #93aac9 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: heroGradientMoveAlt 12s ease-in-out infinite;
 }
 
 .project-title::before {
@@ -100,8 +92,7 @@ body:has(.project-page) #waves {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(144, 80, 255, 0.7),
-    rgba(0, 212, 255, 0.7),
+    rgba(154, 179, 214, 0.75),
     transparent
   );
   margin: 0.6rem auto 1.2rem;
@@ -229,7 +220,7 @@ body:has(.project-page) #waves {
 }
 
 .project-links-belt .project-btn:hover {
-  color: var(--card-accent, #00fff7);
+  color: var(--card-accent, var(--accent-active));
   letter-spacing: 0.32em;
   background: none;
 }
@@ -491,22 +482,12 @@ body:has(.project-page) #waves {
 .architecture-section h3 {
   font-family: "Orbitron", sans-serif;
   font-size: 0.875rem;
-  background: linear-gradient(90deg, #ff006e, #8338ec, #07429f);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: heroGradientMoveAlt 8s linear infinite;
+  /* Machine-voice label → steel accent, no gradient (DESIGN.md §3) */
+  color: var(--accent-rest);
   margin-bottom: 1rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-align: center;
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    black 30%,
-    rgba(0, 0, 0, 0.3) 100%
-  );
-  mask-image: linear-gradient(to bottom, black 30%, rgba(0, 0, 0, 0.3) 100%);
 }
 
 .architecture-grid {
@@ -541,8 +522,8 @@ body:has(.project-page) #waves {
 
 .architecture-item img.active {
   opacity: 1;
-  border-color: var(--accent-cyan);
-  box-shadow: 0 0 15px rgba(79, 255, 255, 0.4);
+  border-color: var(--accent-active);
+  box-shadow: 0 0 15px rgba(93, 118, 255, 0.45);
 }
 
 .architecture-item .arch-label {
@@ -592,8 +573,8 @@ body:has(.project-page) #waves {
 
 .gallery-thumbs .thumb.active {
   opacity: 1;
-  border-color: var(--accent-cyan);
-  box-shadow: 0 0 15px rgba(79, 255, 255, 0.4);
+  border-color: var(--accent-active);
+  box-shadow: 0 0 15px rgba(93, 118, 255, 0.45);
 }
 
 /* ==========================================
@@ -615,12 +596,8 @@ body:has(.project-page) #waves {
   font-size: clamp(2.4rem, 7vw, 3.5rem);
   font-weight: 300;
   letter-spacing: 0.1em;
-  background: linear-gradient(90deg, #ff207a, #9050ff, #00d4ff, #1060c0);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: heroGradientMoveAlt 8s linear infinite;
+  /* Tier-2 heading: flat steel — sits below the metallic h1 in hierarchy */
+  color: var(--accent-rest);
   margin-bottom: 2rem;
 }
 
@@ -640,19 +617,15 @@ body:has(.project-page) #waves {
 }
 
 .about-description strong {
-  color: var(--accent-cyan);
+  color: var(--accent-rest);
 }
 
 .about-description h3 {
   font-family: "shimano-square", sans-serif;
   font-size: clamp(1.6rem, 5vw, 2.2rem);
   font-weight: 700;
-  background: linear-gradient(90deg, #ff006e, #8338ec, #07429f);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: heroGradientMoveAlt 8s linear infinite;
+  /* Editorial sub-heading inside prose → ink; weight + size carry hierarchy */
+  color: rgba(255, 255, 255, 0.92);
   margin: 2.5rem 0 1rem;
   letter-spacing: 0.08em;
 }
@@ -661,8 +634,8 @@ body:has(.project-page) #waves {
   font-family: "IBM Plex Mono", monospace;
   font-size: 0.7rem;
   font-weight: 500;
-  color: var(--accent-cyan);
-  -webkit-text-fill-color: var(--accent-cyan);
+  color: var(--accent-rest);
+  -webkit-text-fill-color: var(--accent-rest);
   background: none;
   -webkit-background-clip: border-box;
   background-clip: border-box;
@@ -706,7 +679,7 @@ body:has(.project-page) #waves {
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--accent-cyan);
+  color: var(--accent-rest);
   padding: 1rem 1.25rem;
   border-right: 1px solid rgba(0, 212, 255, 0.1);
   display: flex;
@@ -828,21 +801,10 @@ body:has(.project-page) #waves {
 .detail-card h3 {
   font-family: "Orbitron", sans-serif;
   font-size: 0.875rem;
-  background: linear-gradient(90deg, #ff006e, #8338ec, #07429f);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: heroGradientMoveAlt 8s linear infinite;
+  color: var(--accent-rest);
   margin-bottom: 1rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    black 30%,
-    rgba(0, 0, 0, 0.3) 100%
-  );
-  mask-image: linear-gradient(to bottom, black 30%, rgba(0, 0, 0, 0.3) 100%);
 }
 
 .detail-card p {
@@ -986,33 +948,24 @@ body:has(.project-page) #waves {
   stroke-linejoin: round;
 }
 
+/* NOTE: class names are legacy (.cyan/.purple) but both now map to the
+   two-state blue system — rename in HTML when convenient */
 .feature-icon.cyan {
-  color: var(--accent-cyan);
-  filter: drop-shadow(0 0 8px rgba(79, 255, 255, 0.5));
+  color: var(--accent-rest);
+  filter: drop-shadow(0 0 8px rgba(154, 179, 214, 0.45));
 }
 
 .feature-icon.purple {
-  color: var(--accent-magenta);
-  filter: drop-shadow(0 0 8px rgba(233, 78, 200, 0.5));
+  color: var(--accent-active);
+  filter: drop-shadow(0 0 8px rgba(93, 118, 255, 0.45));
 }
 
 .feature-card h3 {
   font-family: "Orbitron", sans-serif;
   font-size: 1.125rem;
-  background: linear-gradient(90deg, #ff006e, #8338ec, #07429f);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: heroGradientMoveAlt 8s linear infinite;
+  color: var(--accent-rest);
   margin-bottom: 0.75rem;
   letter-spacing: 0.05em;
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    black 30%,
-    rgba(0, 0, 0, 0.3) 100%
-  );
-  mask-image: linear-gradient(to bottom, black 30%, rgba(0, 0, 0, 0.3) 100%);
 }
 
 .feature-card p {
@@ -1100,7 +1053,7 @@ body:has(.project-page) #waves {
 .ascii-diagram {
   font-family: "Courier New", monospace;
   font-size: 0.875rem;
-  color: var(--accent-cyan);
+  color: var(--accent-rest);
   white-space: pre;
   line-height: 1.4;
   margin: 0;
@@ -1133,21 +1086,10 @@ body:has(.project-page) #waves {
 .design-effects h3 {
   font-family: "Orbitron", sans-serif;
   font-size: 1rem;
-  background: linear-gradient(90deg, #ff006e, #8338ec, #07429f);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: heroGradientMoveAlt 8s linear infinite;
+  color: var(--accent-rest);
   margin-bottom: 1.5rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    black 30%,
-    rgba(0, 0, 0, 0.3) 100%
-  );
-  mask-image: linear-gradient(to bottom, black 30%, rgba(0, 0, 0, 0.3) 100%);
 }
 
 .colors {
@@ -1200,7 +1142,7 @@ body:has(.project-page) #waves {
   content: "◆";
   position: absolute;
   left: 0;
-  color: var(--accent-cyan);
+  color: var(--accent-rest);
   font-size: 0.625rem;
 }
 
@@ -1240,12 +1182,7 @@ body:has(.project-page) #waves {
 .system-metrics h2 {
   font-family: "Orbitron", sans-serif;
   font-size: clamp(1.25rem, 3vw, 1.75rem);
-  background: linear-gradient(90deg, #00d4ff, #8338ec, #ff006e);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: heroGradientMoveAlt 6s linear infinite;
+  color: var(--accent-rest);
   text-transform: uppercase;
   letter-spacing: 0.15em;
   margin: 0;
@@ -1422,7 +1359,7 @@ body:has(.project-page) #waves {
 .metric-icon svg {
   width: 100%;
   height: 100%;
-  stroke: var(--accent-cyan, #00d4ff);
+  stroke: var(--accent-rest);
   opacity: 0.7;
   filter: drop-shadow(0 0 6px rgba(0, 212, 255, 0.5));
 }
@@ -1441,7 +1378,7 @@ body:has(.project-page) #waves {
 .metric-label {
   font-family: "Orbitron", sans-serif;
   font-size: 0.875rem;
-  color: var(--accent-cyan, #00d4ff);
+  color: var(--accent-rest);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 0.25rem;

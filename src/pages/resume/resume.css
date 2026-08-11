@@ -1,0 +1,193 @@
+/* ==========================================
+   RESUME PAGE — scoped overrides
+   Loaded after about.css. Everything here is
+   gated behind .resume-page so /about is untouched.
+
+   System: black + ONE phosphor green, used sparingly.
+   Kills the rainbow gradient that made the page read
+   as an AI/cyberpunk template.
+   ========================================== */
+
+.resume-page {
+  /* the single accent color of the whole page */
+  --resume-green: #3fe0a0;
+  --resume-green-dim: rgba(63, 224, 160, 0.5);
+  --resume-ink: rgba(255, 255, 255, 0.9); /* headings/body ink */
+}
+
+/* ---- Main title: solid phosphor green, no gradient, no animation ---- */
+.resume-page .about-title {
+  background: none; /* drop the rainbow gradient... */
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: initial; /* ...and let a real color paint the glyphs */
+  color: var(--resume-green);
+  animation: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+  /* no bloom — flat green ink reads more like a document, less like neon */
+}
+
+/* Name under the title: clean off-white, no gradient */
+.resume-page .about-name {
+  background: none;
+  -webkit-text-fill-color: initial;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* Contact line in the hero — monotone, green only on hover */
+.resume-page .resume-contact {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.02em;
+  margin: 0.75rem 0 0;
+  line-height: 1.9;
+}
+.resume-page .resume-contact a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.resume-page .resume-contact a:hover {
+  color: var(--resume-green);
+}
+.resume-page .resume-contact .dot {
+  color: var(--resume-green-dim); /* the single green touch — the separators */
+  margin: 0 0.35rem;
+}
+
+/* ---- Section headings: monotone, left-aligned, with a black-holo divider ---- */
+.resume-page .about-section h2 {
+  background: none;
+  -webkit-text-fill-color: initial;
+  color: var(--resume-ink);
+  animation: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+  text-align: left; /* document feel, not centered-marketing feel */
+  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.85rem;
+  position: relative; /* anchor for the ::after divider */
+}
+
+/* The black holographic divider — same dark material as the nav / cards:
+   a slightly raised dark bar with a bevel sheen + a single green top hairline. */
+.resume-page .about-section h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 5px;
+  border-radius: 3px;
+  background:
+    radial-gradient(
+      circle at 25% 30%,
+      rgba(255, 255, 255, 0.06),
+      transparent 55%
+    ),
+    linear-gradient(145deg, #241f2a, #000000); /* the holographic black */
+  border-top: 1px solid var(--resume-green-dim); /* the lone green glint */
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.08),
+    /* top bevel highlight */ inset 0 -2px 3px rgba(0, 0, 0, 0.7),
+    /* inner shadow = depth */ 0 0 8px rgba(63, 224, 160, 0.1); /* faint outer glow */
+}
+
+/* ---- Body copy: left-aligned, full document width (about.css centers it) ---- */
+.resume-page .about-section p,
+.resume-page .evolution-list li {
+  text-align: left;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Inline emphasis + list bullets → green instead of cyan */
+.resume-page .about-section strong,
+.resume-page .evolution-list li strong {
+  color: var(--resume-green);
+}
+.resume-page .evolution-list li::before {
+  background: var(--resume-green);
+  box-shadow: 0 0 8px var(--resume-green-dim);
+}
+
+/* ---- Project cards ---- */
+/* h3 title: monotone, no rainbow gradient/animation */
+.resume-page .project-highlight h3 {
+  background: none;
+  -webkit-text-fill-color: initial;
+  color: rgba(255, 255, 255, 0.92);
+  animation: none;
+  display: flex; /* keeps the floated date on the same baseline row */
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Card rim: swap the pink/purple/cyan gradient for a subtle green edge.
+   The dark ::after material from about.css is kept as-is. */
+.resume-page .project-highlight::before {
+  background: linear-gradient(
+    135deg,
+    rgba(63, 224, 160, 0.28),
+    rgba(255, 255, 255, 0.05),
+    rgba(63, 224, 160, 0.12)
+  );
+}
+.resume-page .project-highlight:hover::before {
+  background: linear-gradient(
+    135deg,
+    rgba(63, 224, 160, 0.55),
+    rgba(255, 255, 255, 0.12),
+    rgba(63, 224, 160, 0.3)
+  );
+}
+.resume-page .project-highlight:hover {
+  filter: drop-shadow(0 0 10px rgba(63, 224, 160, 0.22))
+    drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8));
+}
+
+/* Stack line + bullet arrows → green accent */
+.resume-page .project-stack {
+  color: var(--resume-green);
+  opacity: 0.75;
+}
+.resume-page .project-bullets li::before {
+  color: var(--resume-green);
+}
+
+/* Date range: quiet grey (it sits inside the green-free monotone system) */
+.resume-page .date-range {
+  color: rgba(255, 255, 255, 0.45);
+  float: none; /* h3 is now flex; no float needed */
+  white-space: nowrap;
+  font-weight: 400;
+}
+
+/* ---- Links belt: document register ---- */
+/* Same conveyor component as the project pages, but a resume shouldn't have
+   fast perpetual motion — halve the speed to a slow drift. */
+.resume-page .project-links-belt {
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.resume-page .project-links-track {
+  animation-duration: 64s;
+}
+.resume-page .belt-sep {
+  font-size: 0.6rem;
+  color: rgba(63, 224, 160, 0.35); /* the page's green, at whisper level */
+}
+/* Belt hover picks up the resume green instead of electric blue */
+.resume-page .project-links-belt .project-btn:hover {
+  color: var(--resume-green);
+}

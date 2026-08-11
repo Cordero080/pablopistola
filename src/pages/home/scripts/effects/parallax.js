@@ -77,6 +77,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // === Letter decomposition setup ===
   const heroTitleEl = document.getElementById("heroTitle");
   const originalTitleHTML = heroTitleEl ? heroTitleEl.innerHTML : "";
+
+  // Subtitle alignment is now pure CSS: .hero-title-group shrink-wraps to the
+  // title and the subtitle fills that box (width === title width at every
+  // breakpoint). JS must NEVER write transforms to the subtitle — clear any
+  // stale inline transform from previous versions.
+  if (heroSubtitle) heroSubtitle.style.transform = "";
   const accentColors = ["#00d4ff", "#ff00cc", "#8338ec", "#00fff7", "#ff006e"];
   let decomposed = false;
   let letterSpans = [];
@@ -206,17 +212,8 @@ document.addEventListener("DOMContentLoaded", () => {
         heroContent.style.opacity = opacity;
         heroContent.style.filter = `blur(${blur}px)`;
 
-        // Subtitle: always in sync with container shift — same frame, no CSS drift
-        const subtitleX =
-          bp >= 1400
-            ? "calc(6rem - 2px)"
-            : bp >= 1200
-              ? "3.2rem"
-              : bp >= 901
-                ? "0.1rem"
-                : "0px";
-        if (heroSubtitle)
-          heroSubtitle.style.transform = `translateX(${subtitleX})`;
+        // Subtitle: no JS positioning — it lives inside .hero-title-group and
+        // is title-width by layout. Do not write transforms to it here.
 
         // Notify brackets when breakpoint tier changes so they remeasure immediately
         if (bp !== lastBp) {

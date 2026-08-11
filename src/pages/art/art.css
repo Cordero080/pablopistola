@@ -24,20 +24,12 @@
   font-weight: 700;
   font-style: normal;
   font-size: clamp(2rem, 5vw, 3.5rem);
-  background: linear-gradient(
-    90deg,
-    #ff207a,
-    #9050ff,
-    #00d4ff,
-    #1060c0,
-    #9050ff,
-    #ff207a
-  );
-  background-size: 300% 100%;
+  /* Silver-steel material — near-monochrome chrome so the artwork is the
+     only saturated thing on this page */
+  background: linear-gradient(180deg, #f4f7fb 0%, #c3d2e4 52%, #93aac9 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: titleGradient 6s linear infinite;
   margin-bottom: 1rem;
   line-height: 1.1;
 }
@@ -71,10 +63,7 @@
   font-weight: 500;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  background: linear-gradient(90deg, #ff207a, #9050ff, #00d4ff, #1060c0);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--accent-rest);
   margin-bottom: 1.5rem;
   padding-left: 1rem;
   position: relative;
@@ -88,7 +77,7 @@
   transform: translateY(-50%);
   width: 3px;
   height: 70%;
-  background: linear-gradient(180deg, #00d4ff, #9050ff);
+  background: var(--accent-rest);
   border-radius: 2px;
 }
 
@@ -107,7 +96,7 @@
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  scrollbar-color: rgba(0, 212, 255, 0.3) transparent;
+  scrollbar-color: rgba(154, 179, 214, 0.3) transparent;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -123,18 +112,14 @@
 .gallery-track::-webkit-scrollbar-thumb {
   background: linear-gradient(
     90deg,
-    rgba(0, 212, 255, 0.4),
-    rgba(138, 43, 226, 0.4)
+    rgba(154, 179, 214, 0.4),
+    rgba(154, 179, 214, 0.4)
   );
   border-radius: 3px;
 }
 
 .gallery-track::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(
-    90deg,
-    rgba(0, 212, 255, 0.6),
-    rgba(138, 43, 226, 0.6)
-  );
+  background: rgba(93, 118, 255, 0.6);
 }
 
 /* Gallery Items */
@@ -154,11 +139,11 @@
   object-fit: cover;
   border-radius: 12px;
   /* Holographic border effect */
-  border: 2px solid rgba(0, 212, 255, 0.3);
+  border: 2px solid rgba(154, 179, 214, 0.3);
   box-shadow:
     0 4px 20px rgba(0, 0, 0, 0.4),
-    0 2px 10px rgba(138, 43, 226, 0.2),
-    0 1px 6px rgba(0, 212, 255, 0.15);
+    0 2px 10px rgba(154, 179, 214, 0.2),
+    0 1px 6px rgba(154, 179, 214, 0.15);
   transition: all 0.4s ease;
 }
 
@@ -167,11 +152,10 @@
 }
 
 .gallery-item:hover img {
-  border-color: rgba(0, 212, 255, 0.7);
+  border-color: rgba(93, 118, 255, 0.7);
   box-shadow:
     0 8px 30px rgba(0, 0, 0, 0.5),
-    0 4px 20px rgba(138, 43, 226, 0.35),
-    0 2px 12px rgba(0, 212, 255, 0.25);
+    0 4px 20px rgba(93, 118, 255, 0.3);
 }
 
 .gallery-item figcaption {
@@ -228,10 +212,10 @@
   max-height: 75vh;
   object-fit: contain;
   border-radius: 8px;
-  border: 2px solid rgba(0, 212, 255, 0.4);
+  border: 2px solid rgba(154, 179, 214, 0.4);
   box-shadow:
     0 8px 40px rgba(0, 0, 0, 0.6),
-    0 4px 20px rgba(138, 43, 226, 0.3);
+    0 4px 20px rgba(154, 179, 214, 0.3);
 }
 
 .lightbox-content figcaption {
@@ -247,7 +231,7 @@
 .lightbox-next {
   position: absolute;
   background: rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(0, 212, 255, 0.3);
+  border: 1px solid rgba(154, 179, 214, 0.3);
   color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
   transition: all 0.3s ease;
@@ -289,8 +273,8 @@
 .lightbox-close:hover,
 .lightbox-prev:hover,
 .lightbox-next:hover {
-  background: rgba(0, 212, 255, 0.2);
-  border-color: rgba(0, 212, 255, 0.6);
+  background: rgba(93, 118, 255, 0.2);
+  border-color: rgba(93, 118, 255, 0.6);
   color: #fff;
 }
 
@@ -331,35 +315,33 @@
     150% 150%,
     200% 200%;
   background-blend-mode: overlay, multiply, overlay;
-  border: 2px solid rgba(0, 212, 255, 0.4);
+  border: 2px solid rgba(154, 179, 214, 0.4);
   box-shadow:
-    0 2px 8px rgba(138, 43, 226, 0.3),
-    0 1px 6px rgba(0, 212, 255, 0.2);
+    0 2px 8px rgba(154, 179, 214, 0.3),
+    0 1px 6px rgba(154, 179, 214, 0.2);
   text-shadow:
-    0 0 5px rgba(138, 43, 226, 0.5),
-    0 0 10px rgba(0, 212, 255, 0.3);
+    0 0 5px rgba(154, 179, 214, 0.5),
+    0 0 10px rgba(154, 179, 214, 0.3);
   transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .back-link:hover {
   color: rgba(255, 255, 255, 1);
-  border-color: rgba(0, 212, 255, 0.8);
+  border-color: rgba(93, 118, 255, 0.8);
   transform: translateY(-3px) scale(1.03);
-  box-shadow:
-    0 4px 12px rgba(0, 212, 255, 0.35),
-    0 6px 16px rgba(138, 43, 226, 0.25);
+  box-shadow: 0 4px 14px rgba(93, 118, 255, 0.3);
 }
 
 .back-link svg {
   width: 16px;
   height: 16px;
   transition: transform 0.3s ease;
-  stroke: #00fff7;
+  stroke: var(--accent-rest);
 }
 
 .back-link:hover svg {
   transform: translateX(-4px);
-  stroke: #00fff7;
+  stroke: var(--accent-active);
 }
 
 /* Accessibility */
@@ -367,7 +349,7 @@
   position: absolute;
   top: -40px;
   left: 0;
-  background: #00fff7;
+  background: var(--accent-rest);
   color: #000;
   padding: 8px 16px;
   z-index: 1000;
