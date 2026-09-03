@@ -147,13 +147,22 @@ async def list_resources() -> list[Resource]:
     return [
         Resource(
             uri="docs://resume",
-            name="Pablo Cordero — Resume & Portfolio",
+            name="Pablo Cordero — Resume",
             description=(
-                "Full resume and portfolio data for Pablo Cordero: "
-                "skills, projects, experience, and personal bio."
+                "Resume data for Pablo Cordero: skills, experience, "
+                "education, certifications, and contact info."
             ),
             mimeType="application/json",
-        )
+        ),
+        Resource(
+            uri="docs://projects",
+            name="Pablo Cordero — Projects",
+            description=(
+                "Curated project portfolio data: architecture, stack, "
+                "metrics, and highlights for each project."
+            ),
+            mimeType="application/json",
+        ),
     ]
 
 
@@ -161,6 +170,8 @@ async def list_resources() -> list[Resource]:
 async def read_resource(uri: str) -> str:
     if uri == "docs://resume":
         return RESUME_JSON
+    if uri == "docs://projects":
+        return PROJECTS_JSON
     raise ValueError(f"Unknown resource URI: {uri}")
 
 

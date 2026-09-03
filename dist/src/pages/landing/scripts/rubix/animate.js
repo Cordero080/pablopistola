@@ -133,9 +133,9 @@ function getCircleT(ct, c) {
   const circleT = getCircleT(ct, c);
   circleUniform.value = circleT;
 
-  const ry = Math.sin(ct * 0.11) * 0.5 + 0.5;
-  const rx = Math.sin(ct * 0.17 + 2.1) * 0.5 + 0.5;
-  const rz = Math.sin(ct * 0.13 + 4.2) * 0.5 + 0.5;
+  const ry = Math.sin(ct * 0.7) * 0.5 + 0.5;
+  const rx = Math.sin(ct * 0.15 + 2.1) * 0.5 + 0.5;
+  const rz = Math.sin(ct * 0.11 + 4.2) * 0.5 + 0.5;
 
   // Axis-dominance drift — three cosines offset by 120° so dominance smoothly
   // hands off between X, Y, Z over ~30s. Baseline floor (0.4) keeps every axis

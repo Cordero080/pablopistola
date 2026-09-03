@@ -71,6 +71,37 @@ document.addEventListener("DOMContentLoaded", () => {
     titleElement.appendChild(span);
   });
 
+  // Make the per-letter gradients read as ONE continuous gradient across the
+  // whole title: size each letter's background to the full title box and shift
+  // it by the letter's layout offset, so each letter shows just its slice of a
+  // single sweep. offsetLeft/Top are layout positions (unaffected by the glitch
+  // transforms), so this stays aligned. Recomputed on resize.
+  function paintContinuousGradient() {
+    const spans = [
+      ...titleElement.querySelectorAll(
+        ".title-letter:not(.title-letter--space)",
+      ),
+    ];
+    if (!spans.length) return;
+    // Span the gradient across the TEXT extent (first letter's left edge to
+    // last letter's right edge), not the much wider h1 box — otherwise the
+    // outer letters land mid-gradient on the dark bands. This way the sweep
+    // runs cleanly from the first letter to the last.
+    const extentLeft = Math.min(...spans.map((s) => s.offsetLeft));
+    const extentRight = Math.max(
+      ...spans.map((s) => s.offsetLeft + s.offsetWidth),
+    );
+    const w = extentRight - extentLeft;
+    const h = titleElement.offsetHeight;
+    if (!w || !h) return;
+    spans.forEach((span) => {
+      span.style.backgroundSize = `${w}px ${h}px`;
+      span.style.backgroundPosition = `${-(span.offsetLeft - extentLeft)}px ${-span.offsetTop}px`;
+    });
+  }
+  requestAnimationFrame(paintContinuousGradient);
+  window.addEventListener("resize", paintContinuousGradient);
+
   // Handle letter hover - trigger replay when all hovered
   function handleLetterHover(index) {
     hoveredLetters.add(index);

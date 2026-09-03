@@ -38,30 +38,32 @@ setTimeout(() => {
   );
 }, 2200);
 
-// Fade title out 2s after button appears — edges inward toward center
+// Glitch title out 2s after button appears — edges inward toward center.
+// Mirrors the entrance's glitch language (see letterGlitchOut in identity.css)
+// but much faster: exits should be snappier than entrances.
 setTimeout(() => {
   const title = document.getElementById("landingTitle");
   if (!title) return;
   const letters = title.querySelectorAll(".title-letter");
   const center = (letters.length - 1) / 2;
 
-  // Step 1: lock current opacity so killing the entry animation doesn't snap to 0
+  // Carry each letter's resting transform through the exit via --tf so the
+  // inverted "V" keeps its scaleY(-1) instead of flipping upright when the
+  // exit keyframes take over the transform property.
   letters.forEach((span) => {
-    span.style.animation = "none";
-    span.style.opacity = "1";
+    const tf = getComputedStyle(span).transform;
+    span.style.setProperty("--tf", tf === "none" ? "translate(0)" : tf);
   });
-
-  // Step 2: force a synchronous style flush so the browser commits the locked
-  // opacity before the transition below starts — rAF isn't reliable here since
-  // it stalls in backgrounded tabs or under main-thread load from the rubix/
-  // sine-wave scenes, which left the title stuck visible on top of the subtitle.
-  void title.offsetHeight;
 
   letters.forEach((span, i) => {
     const distFromCenter = Math.abs(i - center);
     const delay = (center - distFromCenter) * 0.05;
-    span.style.transition = `opacity 0.35s ease-in ${delay.toFixed(3)}s`;
-    span.style.opacity = "0";
+    // Clear the entry animation's inline delay (shorthand reset), then set the
+    // exit stagger. fill-mode:both holds frame 0 (visible, in place) during
+    // each letter's delay and keeps opacity 0 after it finishes.
+    span.style.animation = "";
+    span.style.animationDelay = `${delay.toFixed(3)}s`;
+    span.classList.add("title-letter--out");
   });
 }, 6000);
 
