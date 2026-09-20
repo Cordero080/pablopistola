@@ -12,7 +12,7 @@ Personal portfolio website showcasing software engineering projects, art, and cr
 ## Projects Featured
 
 - **NUMENEON** — Cyberpunk social media platform with River Timeline architecture
-- **Pneuma** — AI personality engine with 31 philosophical archetypes
+- **Pneuma-AI** — AI personality engine with 31 philosophical archetypes
 - **Transcendence** — 3D virtual pet game with Three.js creatures
 - **Nexus Geom Lab** — Interactive 3D polytope visualization platform
 - **Dojo** — Martial arts training tracker

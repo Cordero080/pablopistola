@@ -17,6 +17,50 @@ on each leaf and size/offset each one's `background-image` to its position in
 the whole (see `scripts/glitch.js` → `paintContinuousGradient`) — do **not**
 move the clip up to the container.
 
+## Aesthetic & Voice — read before touching any page or copy
+
+Full spec: `docs/Design/DESIGN.md` (authoritative). The short version every
+model must follow, regardless of which model is running:
+
+**Look: futuristic, high-end, uncluttered. An artist's site, not a template.**
+- One accent, two states: steel `--accent-rest` (#9ab3d6) at rest, electric
+  `--accent-active` (#5d76ff) on interaction. Never per-item colors, never
+  rainbows, never default to cyan. New components read `--card-accent` or the
+  rest/active pair.
+- Body text is monotone off-white (`rgba(255,255,255,0.82)`). Never gradient
+  or accent-colored paragraphs. That is the #1 "generic AI cyberpunk" tell.
+- Presence comes from scale and material (ghost numerals, black-holographic
+  surfaces, chamfered corner cuts, glass blur panels), not saturation.
+- One focal point per viewport. Emphasis by dimming neighbors, not adding glow.
+- Wide tracking (0.2em+) is for titles, eyebrows, labels, CTAs only. Body copy
+  stays at near-normal tracking.
+- Display h1s use the silver-steel fill
+  `linear-gradient(180deg,#f4f7fb,#c3d2e4 52%,#93aac9)`. Hero glitch title,
+  hero subtitle gradient, and sine wave are identity elements and stay as-is.
+- Sine wave is unobstructed only on the landing page. Inner pages blur it
+  behind glass panels.
+- Resume page is the one exception: phosphor green `#3fe0a0` + monotone,
+  "document" register.
+- No inline `style=""` blocks for anything reusable. Put it in the page or
+  shared stylesheet and use tokens from `src/styles/variables.css`.
+- Every desktop CSS change gets its mobile counterpart in the same edit.
+
+**Voice: Pablo's own words, precise, to the point.**
+- No contrast framing: no "not X, but Y", "don't just X", "isn't just X; it's
+  Y", "as opposed to", "most X look like…, this one…". State the thing.
+- No pretentiousness, no aphorisms, no sales lines. Say what was built and
+  what it does with real figures.
+- Figures must match the project source. When in doubt, check the repo
+  before writing a number (see commit cabc64f for the Pneuma-AI audit).
+- Project names: **Pneuma-AI** (the LLM system, URL slug stays
+  `/projects/pneuma`), **Pneumata** (3D anatomy), **Archetope**. Do not
+  shorten Pneuma-AI to Pneuma in copy. The chat widget persona is "Pneuma"
+  and is a separate thing.
+- Do not take screenshots to verify UI changes. Describe the change and let
+  Pablo check in the browser.
+
+---
+
 ## Architecture
 
 The `front-end-architecture` skill is always active for this project. Apply it whenever placing any file — page, script, stylesheet, or shared utility. See `~/.claude/skills/front-end-architecture/SKILL.md` for the zone rules and decision formula.

@@ -253,9 +253,9 @@
             Informed by two decades as a visual artist across abstraction,
             design, and representational art, I treat software as a craft where
             aesthetics and performance are inseparable. As a Full-Stack Engineer
-            and Technical Product Manager, I don't just build features; I
-            architect experiences that balance complex backend logic with
-            intuitive frontend strategy. To me, good design is a functional
+            and Technical Product Manager, I design the experience around each
+            feature, balancing complex backend logic with intuitive frontend
+            strategy. To me, good design is a functional
             requirement—it is the bridge that invites a user to explore, stay
             curious, and engage with a system.
           </p>
@@ -323,7 +323,7 @@
           </div>
 
           <div class="project-highlight">
-            <h3>Pneuma</h3>
+            <h3>Pneuma-AI</h3>
             <p>
               A multi-LLM system where LLMs call other LLMs as tools. Haiku
               classifies intent and judges the finished response. OpenAI
@@ -335,13 +335,53 @@
               hard-coded. Memory runs in three layers: vector embeddings for
               semantic recall, structured cross-session memory, full
               conversation persistence. A cheap judge model scores each
-              response. Below threshold, Pneuma wipes the half-streamed message
+              response. Below threshold, Pneuma-AI wipes the half-streamed message
               off the user's screen and regenerates with the critique injected.
               The critique appends to the volatile half of the system prompt, so
               the retry keeps the cache hit.
             </p>
             <span class="tech-achievement"
               >Collision Engine: 98 archetype tension pairs</span
+            >
+          </div>
+
+          <div class="project-highlight">
+            <h3>Archetope</h3>
+            <p>
+              Five AI agents build a shared civilization together, one tick at
+              a time. Each agent is a Tarot archetype crossed with a
+              Myers-Briggs cognitive style, with its own LLM, persistent
+              memory, and a running relationship score with every other agent.
+              Nothing in the code tells them what to disagree about. The Tower
+              and The Hierophant settled into a stable rivalry on their own.
+              The group's build target escalated from sorting raw materials to
+              a spacetime-bending drive. Adding a fifth agent, The Emperor,
+              produced the first negative relationship shift: it docked a
+              peer's trust and installed a kill-switch before letting the group
+              continue. Node.js and Express run the tick loop, PostgreSQL holds
+              memory and world state, Claude API drives cognition.
+            </p>
+            <span class="tech-achievement"
+              >Stack: Node.js • Express • PostgreSQL • Claude API</span
+            >
+          </div>
+
+          <div class="project-highlight">
+            <h3>Pneumata</h3>
+            <p>
+              An interactive 3D anatomical model that maps the human body to
+              computer hardware. The heart is the power supply, the spinal cord
+              is the PCIe bus, the kidneys are the virtual memory manager. 37
+              organ nodes are placed at runtime from vertex-sampled coordinates
+              on the GLB mesh, each assigned to one of 8 categories. 24
+              vertebral disc markers are auto-traced along the spine and
+              color-coded by the organ system each level innervates. Hover an
+              organ and its spinal lanes light up. Hover a disc and its organs
+              respond. Four view modes: Logic, Power, Breathing, Unified. Live
+              at pneumata.vercel.app.
+            </p>
+            <span class="tech-achievement"
+              >Stack: React • React Three Fiber • Three.js • SCSS</span
             >
           </div>
 
@@ -384,9 +424,8 @@
               is a neopunk terminal: CRT scanlines, holographic chamfered cards,
               and floating 3D metallic <code>{ }</code> braces rendered in WebGL
               via Three.js. Full Markdown support with syntax-highlighted code
-              blocks. The language is intentional — you <em>AIM</em> to publish,
-              you <em>TERMINATE</em> to delete. Most dev blogs look like Medium.
-              This one looks like a monitoring dashboard.
+              blocks. You <em>AIM</em> to publish, you <em>TERMINATE</em> to
+              delete.
             </p>
             <span class="tech-achievement"
               >Stack: React • Three.js • React Router • Express • MongoDB</span
@@ -434,7 +473,7 @@
             </p>
 
             <!-- Achievement Banner -->
-            <div class="achievement-banner" style="margin-top: 1.5rem">
+            <div class="achievement-banner">
               <span class="achievement-icon">◆</span>
               <p>
                 Shipped and deployed a production-ready MVP with
@@ -444,171 +483,28 @@
               </p>
             </div>
 
-            <!-- System Metrics Mini -->
-            <div
-              style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-                gap: 1rem;
-                margin-top: 1.5rem;
-              "
-            >
-              <div
-                style="
-                  background: linear-gradient(
-                    145deg,
-                    rgba(26, 21, 37, 0.9),
-                    rgba(10, 5, 16, 0.9)
-                  );
-                  border: 1px solid rgba(154, 179, 214, 0.3);
-                  border-radius: 8px;
-                  padding: 1rem;
-                  text-align: center;
-                "
-              >
-                <div
-                  style="
-                    font-family: &quot;Orbitron&quot;, monospace;
-                    font-size: 1.1rem;
-                    color: #9ab3d6;
-                    letter-spacing: 0.05em;
-                  "
-                >
-                  [ 4m 37s ]
-                </div>
-                <div
-                  style="
-                    font-family: &quot;IBM Plex Sans&quot;, sans-serif;
-                    font-size: 0.7rem;
-                    color: rgba(255, 255, 255, 0.6);
-                    text-transform: uppercase;
-                    letter-spacing: 0.1em;
-                    margin-top: 0.25rem;
-                  "
-                >
-                  Neural Retention
-                </div>
+            <!-- System metrics: styled by .metric-* in about.css -->
+            <div class="metric-grid">
+              <div class="metric-card">
+                <div class="metric-value">[ 4m 37s ]</div>
+                <div class="metric-label">Neural Retention</div>
               </div>
-              <div
-                style="
-                  background: linear-gradient(
-                    145deg,
-                    rgba(26, 21, 37, 0.9),
-                    rgba(10, 5, 16, 0.9)
-                  );
-                  border: 1px solid rgba(154, 179, 214, 0.3);
-                  border-radius: 8px;
-                  padding: 1rem;
-                  text-align: center;
-                "
-              >
-                <div
-                  style="
-                    font-family: &quot;Orbitron&quot;, monospace;
-                    font-size: 1.1rem;
-                    color: #9ab3d6;
-                    letter-spacing: 0.05em;
-                  "
-                >
-                  [ 1.4K ]
-                </div>
-                <div
-                  style="
-                    font-family: &quot;IBM Plex Sans&quot;, sans-serif;
-                    font-size: 0.7rem;
-                    color: rgba(255, 255, 255, 0.6);
-                    text-transform: uppercase;
-                    letter-spacing: 0.1em;
-                    margin-top: 0.25rem;
-                  "
-                >
-                  System Interactivity
-                </div>
+              <div class="metric-card">
+                <div class="metric-value">[ 1.4K ]</div>
+                <div class="metric-label">System Interactivity</div>
               </div>
-              <div
-                style="
-                  background: linear-gradient(
-                    145deg,
-                    rgba(26, 21, 37, 0.9),
-                    rgba(10, 5, 16, 0.9)
-                  );
-                  border: 1px solid rgba(154, 179, 214, 0.3);
-                  border-radius: 8px;
-                  padding: 1rem;
-                  text-align: center;
-                "
-              >
-                <div
-                  style="
-                    font-family: &quot;Orbitron&quot;, monospace;
-                    font-size: 1.1rem;
-                    color: #9ab3d6;
-                    letter-spacing: 0.05em;
-                  "
-                >
-                  [ 710 ]
-                </div>
-                <div
-                  style="
-                    font-family: &quot;IBM Plex Sans&quot;, sans-serif;
-                    font-size: 0.7rem;
-                    color: rgba(255, 255, 255, 0.6);
-                    text-transform: uppercase;
-                    letter-spacing: 0.1em;
-                    margin-top: 0.25rem;
-                  "
-                >
-                  Network Reach
-                </div>
+              <div class="metric-card">
+                <div class="metric-value">[ 710 ]</div>
+                <div class="metric-label">Network Reach</div>
               </div>
             </div>
 
-            <!-- Performance Metric Badge: Logic to Life Proof -->
-            <div
-              style="
-                margin-top: 1.5rem;
-                background: linear-gradient(
-                  145deg,
-                  rgba(154, 179, 214, 0.08),
-                  rgba(93, 118, 255, 0.06)
-                );
-                border: 1px solid rgba(154, 179, 214, 0.4);
-                border-radius: 8px;
-                padding: 1rem 1.5rem;
-                display: flex;
-                align-items: center;
-                gap: 1rem;
-              "
-            >
-              <span
-                style="
-                  font-family: &quot;Orbitron&quot;, monospace;
-                  font-size: 1.8rem;
-                  color: #5d76ff;
-                  text-shadow: 0 0 18px rgba(93, 118, 255, 0.45);
-                "
-                >58%</span
-              >
+            <!-- Headline metric -->
+            <div class="metric-badge">
+              <span class="metric-badge-value">58%</span>
               <div>
-                <div
-                  style="
-                    font-family: &quot;IBM Plex Sans&quot;, sans-serif;
-                    font-size: 0.75rem;
-                    color: rgba(255, 255, 255, 0.6);
-                    text-transform: uppercase;
-                    letter-spacing: 0.15em;
-                  "
-                >
-                  Engagement Rate
-                </div>
-                <div
-                  style="
-                    font-family: &quot;IBM Plex Sans&quot;, sans-serif;
-                    font-size: 0.85rem;
-                    color: #9ab3d6;
-                    margin-top: 0.25rem;
-                  "
-                >
+                <div class="metric-badge-label">Engagement Rate</div>
+                <div class="metric-badge-note">
                   Logic → Life: Architecture validated by telemetry
                 </div>
               </div>
@@ -676,14 +572,13 @@
             balance, and a translation finding the sense underneath the words.
             AI is the first medium I've worked in where I can build the
             structure and then watch something emerge from it that I didn't
-            script. Pneuma routes a query through 44 philosophical archetypes
+            script. Pneuma-AI routes a query through 44 philosophical archetypes
             and forces tension between them before it answers. I designed the
             friction. The resolution stays open. Archetope gives Tarot
             archetypes crossed with Myers-Briggs types real memory and a shared
             world, then watches unscripted rivalries and alliances fall out of
-            the pairing alone. What draws me to AI, as opposed to treating it as
-            automation, is what happens when you give a system enough structure
-            to think and then get out of its way.
+            the pairing alone. What draws me to AI is what happens when you give a
+            system enough structure to think and then get out of its way.
           </p>
         </section>
 
@@ -691,9 +586,8 @@
         <section class="about-section">
           <h2>AI Engineering Practice</h2>
           <p>
-            I work with AI coding assistants the way a careful engineer should:
-            I don't just run the AI and trust the output. I built infrastructure
-            around it.
+            I work with AI coding assistants the way a careful engineer should.
+            I built infrastructure around them.
           </p>
           <p>
             The reason is straightforward: AI assistants are fast and capable,
@@ -786,16 +680,14 @@
                 <span class="output-label">Optimization:</span>
                 <span class="output-value"
                   ><strong>93% code reduction</strong> in Manifold (2,700 → 199
-                  lines) — every keystroke saved is energy not burned.
-                  Efficiency isn't just performance; it's
-                  <em>responsibility</em>.</span
+                  lines). Every line removed is compute that never runs.</span
                 >
               </div>
 
               <div class="output-item">
                 <span class="output-label">Intentional AI:</span>
                 <span class="output-value"
-                  >Pneuma's orchestration layer spends compute on
+                  >Pneuma-AI's orchestration layer spends compute on
                   <strong>depth and philosophy</strong>. 98 mapped archetype
                   collisions generate tension in the output.</span
                 >
