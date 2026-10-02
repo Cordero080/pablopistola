@@ -61,9 +61,9 @@
     <script src="/src/shared/effects/sineWave.js" defer></script>
     <script src="/src/shared/effects/innerSineWave.js" defer></script>
     <script src="/src/js/utils/analytics.js" defer></script>
-    <link rel="stylesheet" crossorigin href="/assets/main-C74O945K.css">
-    <link rel="stylesheet" crossorigin href="/assets/project-Iu9o7pDT.css">
-    <link rel="stylesheet" crossorigin href="/assets/about-DoUB7iMx.css">
+    <link rel="stylesheet" crossorigin href="/assets/main-CIq1X6dY.css">
+    <link rel="stylesheet" crossorigin href="/assets/project-k32P56Im.css">
+    <link rel="stylesheet" crossorigin href="/assets/about-DgG5yWY7.css">
   </head>
   <body>
     <canvas id="waves"></canvas>
@@ -210,6 +210,7 @@
           <path d="M2 6c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
           <path d="M2 18c2-2 4-3 6-3s4 2 6 3 4 3 6 3 4-1 6-3" />
         </svg>
+        <span class="nav-label">Zen</span>
       </a>
       <div class="side-nav-glow"></div>
     </nav>
@@ -252,9 +253,9 @@
             Informed by two decades as a visual artist across abstraction,
             design, and representational art, I treat software as a craft where
             aesthetics and performance are inseparable. As a Full-Stack Engineer
-            and Technical Product Manager, I don't just build features; I
-            architect experiences that balance complex backend logic with
-            intuitive frontend strategy. To me, good design is a functional
+            and Technical Product Manager, I design the experience around each
+            feature, balancing complex backend logic with intuitive frontend
+            strategy. To me, good design is a functional
             requirement—it is the bridge that invites a user to explore, stay
             curious, and engage with a system.
           </p>
@@ -322,21 +323,65 @@
           </div>
 
           <div class="project-highlight">
-            <h3>Pneuma</h3>
+            <h3>Pneuma-AI</h3>
             <p>
-              A multi-LLM compound AI system — LLMs calling other LLMs as tools.
-              Four model calls per response: intent classification (Claude),
-              archetype routing (OpenAI embeddings), emotion detection (Hume
-              AI), and generation (Claude). 43 philosophical archetypes selected
-              via semantic routing and forced into dialectical collision across
-              1,764 pre-mapped tension pairs. Personality evolves across
-              sessions through archetype momentum decay — weights shift over
-              time, producing an emergent voice that isn't hard-coded. 3-layer
-              memory system: vector embeddings for semantic recall, structured
-              cross-session memory, and full conversation persistence.
+              A multi-LLM system where LLMs call other LLMs as tools. Haiku
+              classifies intent and judges the finished response. OpenAI
+              embeddings route the query to archetypes. Sonnet generates. 44
+              philosophical archetypes are defined, 39 carry embeddings for
+              semantic routing, and a tension map of 98 pre-mapped pairs forces
+              them into dialectical collision. Archetype momentum decays between
+              sessions, so the weights shift and the voice moves without being
+              hard-coded. Memory runs in three layers: vector embeddings for
+              semantic recall, structured cross-session memory, full
+              conversation persistence. A cheap judge model scores each
+              response. Below threshold, Pneuma-AI wipes the half-streamed message
+              off the user's screen and regenerates with the critique injected.
+              The critique appends to the volatile half of the system prompt, so
+              the retry keeps the cache hit.
             </p>
             <span class="tech-achievement"
-              >Collision Engine: 1,764 archetype tension pairs</span
+              >Collision Engine: 98 archetype tension pairs</span
+            >
+          </div>
+
+          <div class="project-highlight">
+            <h3>Archetope</h3>
+            <p>
+              Five AI agents build a shared civilization together, one tick at
+              a time. Each agent is a Tarot archetype crossed with a
+              Myers-Briggs cognitive style, with its own LLM, persistent
+              memory, and a running relationship score with every other agent.
+              Nothing in the code tells them what to disagree about. The Tower
+              and The Hierophant settled into a stable rivalry on their own.
+              The group's build target escalated from sorting raw materials to
+              a spacetime-bending drive. Adding a fifth agent, The Emperor,
+              produced the first negative relationship shift: it docked a
+              peer's trust and installed a kill-switch before letting the group
+              continue. Node.js and Express run the tick loop, PostgreSQL holds
+              memory and world state, Claude API drives cognition.
+            </p>
+            <span class="tech-achievement"
+              >Stack: Node.js • Express • PostgreSQL • Claude API</span
+            >
+          </div>
+
+          <div class="project-highlight">
+            <h3>Pneumata</h3>
+            <p>
+              An interactive 3D anatomical model that maps the human body to
+              computer hardware. The heart is the power supply, the spinal cord
+              is the PCIe bus, the kidneys are the virtual memory manager. 37
+              organ nodes are placed at runtime from vertex-sampled coordinates
+              on the GLB mesh, each assigned to one of 8 categories. 24
+              vertebral disc markers are auto-traced along the spine and
+              color-coded by the organ system each level innervates. Hover an
+              organ and its spinal lanes light up. Hover a disc and its organs
+              respond. Four view modes: Logic, Power, Breathing, Unified. Live
+              at pneumata.vercel.app.
+            </p>
+            <span class="tech-achievement"
+              >Stack: React • React Three Fiber • Three.js • SCSS</span
             >
           </div>
 
@@ -357,7 +402,7 @@
               <div class="architecture-panel blueprint">
                 <img
                   src="/images/projects/nexus-geom-lab/wireframes/wireframe.png"
-                  alt="Nexus Geom Lab System Architecture"
+                  alt="Manifold System Architecture"
                 />
                 <span class="panel-label">The Architecture</span>
               </div>
@@ -379,9 +424,8 @@
               is a neopunk terminal: CRT scanlines, holographic chamfered cards,
               and floating 3D metallic <code>{ }</code> braces rendered in WebGL
               via Three.js. Full Markdown support with syntax-highlighted code
-              blocks. The language is intentional — you <em>AIM</em> to publish,
-              you <em>TERMINATE</em> to delete. Most dev blogs look like Medium.
-              This one looks like a monitoring dashboard.
+              blocks. You <em>AIM</em> to publish, you <em>TERMINATE</em> to
+              delete.
             </p>
             <span class="tech-achievement"
               >Stack: React • Three.js • React Router • Express • MongoDB</span
@@ -429,181 +473,38 @@
             </p>
 
             <!-- Achievement Banner -->
-            <div class="achievement-banner" style="margin-top: 1.5rem">
+            <div class="achievement-banner">
               <span class="achievement-icon">◆</span>
               <p>
-                Solo-engineered and deployed a production-ready MVP with
+                Shipped and deployed a production-ready MVP with
                 <strong>40+ organic users</strong> and
                 <strong>100% uptime</strong> through self-managed cloud
                 infrastructure.
               </p>
             </div>
 
-            <!-- System Metrics Mini -->
-            <div
-              style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-                gap: 1rem;
-                margin-top: 1.5rem;
-              "
-            >
-              <div
-                style="
-                  background: linear-gradient(
-                    145deg,
-                    rgba(26, 21, 37, 0.9),
-                    rgba(10, 5, 16, 0.9)
-                  );
-                  border: 1px solid rgba(0, 212, 255, 0.3);
-                  border-radius: 8px;
-                  padding: 1rem;
-                  text-align: center;
-                "
-              >
-                <div
-                  style="
-                    font-family: &quot;Orbitron&quot;, monospace;
-                    font-size: 1.1rem;
-                    color: #00d4ff;
-                    letter-spacing: 0.05em;
-                  "
-                >
-                  [ 4m 37s ]
-                </div>
-                <div
-                  style="
-                    font-family: &quot;IBM Plex Sans&quot;, sans-serif;
-                    font-size: 0.7rem;
-                    color: rgba(255, 255, 255, 0.6);
-                    text-transform: uppercase;
-                    letter-spacing: 0.1em;
-                    margin-top: 0.25rem;
-                  "
-                >
-                  Neural Retention
-                </div>
+            <!-- System metrics: styled by .metric-* in about.css -->
+            <div class="metric-grid">
+              <div class="metric-card">
+                <div class="metric-value">[ 4m 37s ]</div>
+                <div class="metric-label">Neural Retention</div>
               </div>
-              <div
-                style="
-                  background: linear-gradient(
-                    145deg,
-                    rgba(26, 21, 37, 0.9),
-                    rgba(10, 5, 16, 0.9)
-                  );
-                  border: 1px solid rgba(138, 43, 226, 0.3);
-                  border-radius: 8px;
-                  padding: 1rem;
-                  text-align: center;
-                "
-              >
-                <div
-                  style="
-                    font-family: &quot;Orbitron&quot;, monospace;
-                    font-size: 1.1rem;
-                    color: #8338ec;
-                    letter-spacing: 0.05em;
-                  "
-                >
-                  [ 1.4K ]
-                </div>
-                <div
-                  style="
-                    font-family: &quot;IBM Plex Sans&quot;, sans-serif;
-                    font-size: 0.7rem;
-                    color: rgba(255, 255, 255, 0.6);
-                    text-transform: uppercase;
-                    letter-spacing: 0.1em;
-                    margin-top: 0.25rem;
-                  "
-                >
-                  System Interactivity
-                </div>
+              <div class="metric-card">
+                <div class="metric-value">[ 1.4K ]</div>
+                <div class="metric-label">System Interactivity</div>
               </div>
-              <div
-                style="
-                  background: linear-gradient(
-                    145deg,
-                    rgba(26, 21, 37, 0.9),
-                    rgba(10, 5, 16, 0.9)
-                  );
-                  border: 1px solid rgba(255, 0, 110, 0.3);
-                  border-radius: 8px;
-                  padding: 1rem;
-                  text-align: center;
-                "
-              >
-                <div
-                  style="
-                    font-family: &quot;Orbitron&quot;, monospace;
-                    font-size: 1.1rem;
-                    color: #ff006e;
-                    letter-spacing: 0.05em;
-                  "
-                >
-                  [ 710 ]
-                </div>
-                <div
-                  style="
-                    font-family: &quot;IBM Plex Sans&quot;, sans-serif;
-                    font-size: 0.7rem;
-                    color: rgba(255, 255, 255, 0.6);
-                    text-transform: uppercase;
-                    letter-spacing: 0.1em;
-                    margin-top: 0.25rem;
-                  "
-                >
-                  Network Reach
-                </div>
+              <div class="metric-card">
+                <div class="metric-value">[ 710 ]</div>
+                <div class="metric-label">Network Reach</div>
               </div>
             </div>
 
-            <!-- Performance Metric Badge: Logic to Life Proof -->
-            <div
-              style="
-                margin-top: 1.5rem;
-                background: linear-gradient(
-                  145deg,
-                  rgba(0, 255, 247, 0.08),
-                  rgba(138, 43, 226, 0.08)
-                );
-                border: 1px solid rgba(0, 255, 247, 0.4);
-                border-radius: 8px;
-                padding: 1rem 1.5rem;
-                display: flex;
-                align-items: center;
-                gap: 1rem;
-              "
-            >
-              <span
-                style="
-                  font-family: &quot;Orbitron&quot;, monospace;
-                  font-size: 1.8rem;
-                  color: #00fff7;
-                  text-shadow: 0 0 20px rgba(0, 255, 247, 0.5);
-                "
-                >58%</span
-              >
+            <!-- Headline metric -->
+            <div class="metric-badge">
+              <span class="metric-badge-value">58%</span>
               <div>
-                <div
-                  style="
-                    font-family: &quot;IBM Plex Sans&quot;, sans-serif;
-                    font-size: 0.75rem;
-                    color: rgba(255, 255, 255, 0.6);
-                    text-transform: uppercase;
-                    letter-spacing: 0.15em;
-                  "
-                >
-                  Engagement Rate
-                </div>
-                <div
-                  style="
-                    font-family: &quot;IBM Plex Sans&quot;, sans-serif;
-                    font-size: 0.85rem;
-                    color: #ff00cc;
-                    margin-top: 0.25rem;
-                  "
-                >
+                <div class="metric-badge-label">Engagement Rate</div>
+                <div class="metric-badge-note">
                   Logic → Life: Architecture validated by telemetry
                 </div>
               </div>
@@ -652,7 +553,7 @@
               <span class="stat-label">Contributions</span>
             </div>
             <div class="stat-item">
-              <span class="stat-number">46</span>
+              <span class="stat-number">44</span>
               <span class="stat-label">AI Archetypes</span>
             </div>
             <div class="stat-item">
@@ -662,13 +563,31 @@
           </div>
         </section>
 
+        <!-- What Pulls Me Toward AI Section -->
+        <section class="about-section">
+          <h2>What Pulls Me Toward AI</h2>
+          <p>
+            The throughline across my life is structure in service of something
+            that isn't fully controllable — a composition finding its own
+            balance, and a translation finding the sense underneath the words.
+            AI is the first medium I've worked in where I can build the
+            structure and then watch something emerge from it that I didn't
+            script. Pneuma-AI routes a query through 44 philosophical archetypes
+            and forces tension between them before it answers. I designed the
+            friction. The resolution stays open. Archetope gives Tarot
+            archetypes crossed with Myers-Briggs types real memory and a shared
+            world, then watches unscripted rivalries and alliances fall out of
+            the pairing alone. What draws me to AI is what happens when you give a
+            system enough structure to think and then get out of its way.
+          </p>
+        </section>
+
         <!-- AI Engineering Practice Section -->
         <section class="about-section">
           <h2>AI Engineering Practice</h2>
           <p>
-            I work with AI coding assistants the way a careful engineer should:
-            I don't just run the AI and trust the output. I built infrastructure
-            around it.
+            I work with AI coding assistants the way a careful engineer should.
+            I built infrastructure around them.
           </p>
           <p>
             The reason is straightforward: AI assistants are fast and capable,
@@ -760,20 +679,17 @@
               <div class="output-item">
                 <span class="output-label">Optimization:</span>
                 <span class="output-value"
-                  ><strong>93% code reduction</strong> in Nexus Geom Lab (2,700
-                  → 199 lines) — every keystroke saved is energy not burned.
-                  Efficiency isn't just performance; it's
-                  <em>responsibility</em>.</span
+                  ><strong>93% code reduction</strong> in Manifold (2,700 → 199
+                  lines). Every line removed is compute that never runs.</span
                 >
               </div>
 
               <div class="output-item">
                 <span class="output-label">Intentional AI:</span>
                 <span class="output-value"
-                  >Pneuma's orchestration layer ensures AI compute is spent on
-                  <strong>depth and philosophy</strong> rather than generic
-                  output. 1,764 archetype collisions generate tension, not
-                  tokens.</span
+                  >Pneuma-AI's orchestration layer spends compute on
+                  <strong>depth and philosophy</strong>. 98 mapped archetype
+                  collisions generate tension in the output.</span
                 >
               </div>
             </div>

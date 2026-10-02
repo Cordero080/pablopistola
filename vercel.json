@@ -4,6 +4,14 @@
   "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/",
+      "missing": [{ "type": "query", "key": "stay" }],
+      "destination": "/home",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/models/xenotchi/:path*",

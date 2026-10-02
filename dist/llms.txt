@@ -17,7 +17,7 @@ Portfolio: https://pvblocordero.com
 
 ## Selected projects
 
-**Pneuma — AI Personality Engine**
+**Pneuma-AI — AI Personality Engine**
 An experimental LLM orchestration architecture. 46 philosophical archetypes selected via 3-layer routing (cosine similarity → momentum weighting → fusion history), forced into dialectical collision across 1,764 pre-mapped tension pairs. Personality evolves across sessions through archetype momentum decay. 3-layer memory: vector embeddings, structured cross-session memory, full conversation persistence. Between sessions, archetypes run private dialectic dialogues that write silently to system state.
 
 **Transcendence — 3D Virtual Pet**

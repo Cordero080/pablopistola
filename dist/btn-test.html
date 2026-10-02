@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Button WebKit Diagnostic — round 4 (real environment)</title>
+    <style>
+      /* Round 4: replicate the REAL page conditions the earlier rounds missed —
+     a WebGL canvas animating underneath, position:fixed, and the real
+     class-toggled transitions (opacity/transform/filter). JS below toggles
+     .visible at 0.8s and .risen at 1.8s, like the real page.
+     Wait ~3s after load, then screenshot the bottom row of buttons. */
+      body {
+        margin: 0;
+        background: #0d0d24;
+        color: #9fb6ff;
+        font-family: monospace;
+        min-height: 100vh;
+      }
+      #gl {
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 0;
+      }
+      .label {
+        position: fixed;
+        bottom: 130px;
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        z-index: 200;
+        width: 30%;
+        text-align: center;
+      }
+
+      /* ===== the button pieces (exact copies) ===== */
+      .tb {
+        display: inline-flex;
+        align-items: stretch;
+      }
+      .tb .acc,
+      .tb .ctr {
+        background: linear-gradient(145deg, #222246e5, #010001);
+        border-top: 1px solid rgba(70, 131, 251, 0.36);
+        border-bottom: 7px solid rgba(0, 4, 18, 0.95);
+        position: relative;
+      }
+      .tb .acc-l {
+        width: 22px;
+        flex-shrink: 0;
+        clip-path: polygon(
+          0 0,
+          calc(100% - 8px) 0,
+          100% 8px,
+          100% 100%,
+          8px 100%,
+          0 calc(100% - 8px)
+        );
+        margin-right: -6px;
+        z-index: 1;
+      }
+      .tb .ctr {
+        z-index: 2;
+        clip-path: polygon(
+          0 0,
+          calc(100% - 8px) 0,
+          100% 8px,
+          100% 100%,
+          8px 100%,
+          8px 8px
+        );
+      }
+      .tb .ctr span {
+        display: block;
+        padding: 0.46rem 1.85rem;
+      }
+      .tb .acc-r {
+        width: 22px;
+        flex-shrink: 0;
+        clip-path: polygon(
+          8px 0,
+          calc(100% - 8px) 0,
+          100% 8px,
+          100% 100%,
+          8px 100%,
+          8px 8px,
+          0 0
+        );
+        margin-left: -6px;
+        z-index: 3;
+      }
+
+      .f-blursteps {
+        filter: drop-shadow(0 0 1px rgba(22, 38, 63, 0.857))
+          drop-shadow(0 3px 1px rgba(8, 18, 55, 0.9))
+          drop-shadow(0 6px 1px rgba(5, 12, 40, 0.7))
+          drop-shadow(0 9px 2px rgba(3, 8, 28, 0.5))
+          drop-shadow(0 13px 6px rgba(0, 0, 0, 0.7));
+      }
+
+      /* real button's transition set + lift variable */
+      .real-transitions {
+        --btn-lift: 0px;
+        transition:
+          opacity 0.8s ease,
+          letter-spacing 0.4s ease,
+          filter 0.4s ease,
+          transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+        opacity: 0;
+      }
+      .real-transitions.visible {
+        opacity: 1;
+      }
+      .real-transitions.risen {
+        --btn-lift: -1.75rem;
+      }
+
+      /* F1 — full replica: fixed + transitions + filter ON the flex button */
+      #f1 {
+        position: fixed;
+        bottom: 2.5rem;
+        left: 15%;
+        z-index: 100;
+        transform: translateX(-50%) translateY(var(--btn-lift));
+      }
+
+      /* F2 — same but position:absolute (isolates `fixed`) */
+      #f2 {
+        position: absolute;
+        bottom: 2.5rem;
+        left: 50%;
+        z-index: 100;
+        transform: translateX(-50%) translateY(var(--btn-lift));
+      }
+
+      /* F3 — the fix candidate: fixed + transitions on a WRAPPER, filter on a
+     static inner flex */
+      #f3 {
+        position: fixed;
+        bottom: 2.5rem;
+        left: 85%;
+        z-index: 100;
+        transform: translateX(-50%) translateY(var(--btn-lift));
+      }
+      #f3 .tb {
+        position: static;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="gl"></canvas>
+
+    <div class="label" style="left: 0">
+      F1 — full replica (filter on button)
+    </div>
+    <div class="label" style="left: 35%">F2 — absolute instead of fixed</div>
+    <div class="label" style="left: 70%">
+      F3 — wrapper animated, filter static inner
+    </div>
+
+    <div id="f1" class="tb f-blursteps real-transitions">
+      <div class="acc acc-l"></div>
+      <div class="ctr">
+        <span
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            style="display: block; margin: 0 auto"
+          >
+            <path
+              fill="#4080ff"
+              d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"
+            /></svg
+        ></span>
+      </div>
+      <div class="acc acc-r"></div>
+    </div>
+
+    <div id="f2" class="tb f-blursteps real-transitions">
+      <div class="acc acc-l"></div>
+      <div class="ctr">
+        <span
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            style="display: block; margin: 0 auto"
+          >
+            <path
+              fill="#4080ff"
+              d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"
+            /></svg
+        ></span>
+      </div>
+      <div class="acc acc-r"></div>
+    </div>
+
+    <div id="f3" class="real-transitions">
+      <div class="tb f-blursteps">
+        <div class="acc acc-l"></div>
+        <div class="ctr">
+          <span
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              style="display: block; margin: 0 auto"
+            >
+              <path
+                fill="#4080ff"
+                d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"
+              /></svg
+          ></span>
+        </div>
+        <div class="acc acc-r"></div>
+      </div>
+    </div>
+
+    <script>
+      // Animated WebGL layer underneath, like the rubix scene on the real page.
+      const canvas = document.getElementById("gl");
+      const gl = canvas.getContext("webgl");
+      canvas.width = innerWidth;
+      canvas.height = innerHeight;
+      let t = 0;
+      (function loop() {
+        requestAnimationFrame(loop);
+        t += 0.01;
+        if (gl) {
+          gl.clearColor(0.05 + 0.02 * Math.sin(t), 0.05, 0.14, 1);
+          gl.clear(gl.COLOR_BUFFER_BIT);
+        }
+      })();
+
+      // Same class-toggle sequence as the real page (reveal, then rise).
+      setTimeout(() => {
+        document
+          .querySelectorAll(".real-transitions")
+          .forEach((el) => el.classList.add("visible"));
+      }, 800);
+      setTimeout(() => {
+        document
+          .querySelectorAll(".real-transitions")
+          .forEach((el) => el.classList.add("risen"));
+      }, 1800);
+    </script>
+  </body>
+</html>
