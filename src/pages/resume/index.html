@@ -51,6 +51,7 @@
     <link rel="stylesheet" href="/src/shared/about/about.css" />
     <!-- Resume-only overrides — scoped to .resume-page, loaded AFTER about.css so it wins -->
     <link rel="stylesheet" href="/src/pages/resume/resume.css" />
+    <link rel="stylesheet" href="/src/pages/resume/resume.mobile.css" />
     <!-- Thornwood font from Adobe -->
     <link rel="stylesheet" href="https://use.typekit.net/fpe8zfm.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -230,7 +231,7 @@
           <h1 class="about-title">Resume</h1>
           <p class="about-name">Pablo Cordero</p>
           <p class="project-tagline">
-            Full-Stack Software Engineer · AI Systems & LLM Architecture
+            Full-Stack Software Engineer · Python, JavaScript &amp; Applied AI
           </p>
           <p class="resume-contact">
             Charlotte, NC
@@ -242,7 +243,7 @@
           <div class="project-links-belt" style="margin-top: 1.75rem">
             <div class="project-links-track">
               <a
-                href="https://drive.google.com/file/d/1F0NuFtc_CR9eqGyeH-ASnV53yJMHSo-g/view?usp=sharing"
+                href="https://drive.google.com/file/d/1BtmJ16im2npCEV0bvwciulHu6ie091OE/view?usp=sharing"
                 target="_blank"
                 rel="noopener"
                 class="project-btn secondary"
@@ -273,7 +274,7 @@
               <span class="belt-sep">◆</span>
               <!-- Second copy — the track loops at -50%, so content is doubled -->
               <a
-                href="https://drive.google.com/file/d/1F0NuFtc_CR9eqGyeH-ASnV53yJMHSo-g/view?usp=sharing"
+                href="https://drive.google.com/file/d/1BtmJ16im2npCEV0bvwciulHu6ie091OE/view?usp=sharing"
                 target="_blank"
                 rel="noopener"
                 class="project-btn secondary"
@@ -313,13 +314,12 @@
         <section class="about-section">
           <h2>Summary</h2>
           <p>
-            Full-stack software engineer and designer building AI-integrated,
-            interactive web applications. Two decades as a visual artist drive a
-            design-led approach and creative problem-solving across the stack.
-            Front-end in React, Three.js, and SCSS; backend in Django, Node.js,
-            and PostgreSQL. Hands-on AI systems work: RAG pipelines, semantic
-            routing, and LLM orchestration built from scratch. Targeting
-            full-stack, applied-AI, and product/design engineering roles.
+            Full-stack software engineer building AI-integrated web
+            applications with Python, JavaScript, React, Django, FastAPI, and
+            Node.js. Builds RAG pipelines, semantic routing, MCP servers, and
+            multi-model LLM orchestration from scratch, and ships production
+            client work. Two decades as a visual artist drive a design-led
+            approach across the stack. Bilingual English/Spanish.
           </p>
         </section>
 
@@ -328,41 +328,103 @@
           <h2>Technical Skills</h2>
           <ul class="evolution-list">
             <li>
-              <strong>Languages & Frameworks:</strong> JavaScript (ES6+),
-              Python, React, Django, Node.js, Express.js
+              <strong>Languages:</strong> Python, JavaScript (ES6+),
+              TypeScript, SQL, HTML, CSS/SCSS
             </li>
             <li>
-              <strong>AI & Data:</strong> Anthropic Claude API, OpenAI API, RAG
-              Pipelines, Vector Embeddings, Cosine Similarity, MongoDB,
-              PostgreSQL
+              <strong>Frameworks:</strong> React, Django, Django REST
+              Framework, FastAPI, Node.js, Express.js
             </li>
             <li>
-              <strong>3D & Creative:</strong> Three.js, React Three Fiber,
+              <strong>AI &amp; LLM:</strong> Anthropic Claude API, OpenAI API,
+              Model Context Protocol (MCP), RAG Pipelines, Vector Embeddings,
+              Cosine Similarity, Tool Use, Prompt Engineering
+            </li>
+            <li>
+              <strong>Databases:</strong> PostgreSQL, MongoDB
+            </li>
+            <li>
+              <strong>Backend &amp; Infrastructure:</strong> RESTful APIs, JWT
+              Auth, WebSockets, Server-Sent Events (SSE), Vercel, Render, CI/CD
+            </li>
+            <li>
+              <strong>3D &amp; Creative:</strong> Three.js, React Three Fiber,
               Blender, GLSL Shaders, Web Audio API
             </li>
             <li>
-              <strong>Backend & Infrastructure:</strong> RESTful APIs, Django
-              REST Framework, JWT Auth, WebSockets, Vercel, Render, CI/CD
-            </li>
-            <li>
-              <strong>Development:</strong> Git, Vite, SCSS, Jest, Responsive
+              <strong>Tools:</strong> Git, Vite, Jest, Claude Code, Responsive
               Design, Mobile-First Architecture
             </li>
           </ul>
         </section>
 
-        <!-- Certifications Section -->
+        <!-- Experience Section -->
         <section class="about-section">
-          <h2>Certifications</h2>
+          <h2>Experience</h2>
           <ul class="evolution-list">
             <li>
-              <strong>Generative AI in Software Development</strong> — IBM /
-              Coursera (2026)
+              <strong>Independent Software Developer</strong> — Self-Employed,
+              Charlotte, NC
+              <span class="date-range">2025–Present</span>
+              <ul class="project-bullets">
+                <li>
+                  Built and deployed La Dolce Vita
+                  (<a
+                    href="https://ladolcevitabeach.com"
+                    target="_blank"
+                    rel="noopener"
+                    >ladolcevitabeach.com</a
+                  >), a production trilingual web app for a Dominican Republic
+                  rental villa, using React, Node.js, and the OpenAI API
+                </li>
+                <li>
+                  Built an AI guest concierge on GPT-4o with dynamic system
+                  prompts that inject live property data and calendar
+                  availability at request time
+                </li>
+                <li>
+                  Parsed an Airbnb iCal feed server-side for real-time booking
+                  awareness in both the UI and the AI context
+                </li>
+                <li>
+                  Connected the Google Sheets API so the client can edit
+                  property content without code changes
+                </li>
+                <li>
+                  Built a Python FastAPI backend for an AI portfolio assistant
+                  on the Claude API that also runs as an MCP server, with an
+                  SSE channel that lets the model control the live site UI
+                </li>
+              </ul>
             </li>
             <li>
-              <strong>Anthropic Academy (2026):</strong> MCP Advanced Topics,
-              Introduction to MCP, AI Fluency: Framework & Foundations, Building
-              with the Claude API, Claude Code in Action, Claude 101
+              <strong>Martial Arts Instructor</strong> — Traditional Okinawan
+              Martial Arts
+              <span class="date-range">2018–Present</span>
+              <br />
+              <span class="experience-detail"
+                >3rd-degree black belt; developed curriculum roadmaps and
+                student progression systems</span
+              >
+            </li>
+            <li>
+              <strong>Visual Artist</strong> — Independent
+              <span class="date-range">2006–2024</span>
+              <br />
+              <span class="experience-detail"
+                >Commission painting, fine art restoration, gallery hosting, and
+                digital art</span
+              >
+            </li>
+            <li>
+              <strong>Legal Interpreter (Spanish)</strong> — NY Public School
+              System / USCIS
+              <span class="date-range">2005–2024</span>
+              <br />
+              <span class="experience-detail"
+                >High-stakes simultaneous translation for legal proceedings and
+                educational settings</span
+              >
             </li>
           </ul>
         </section>
@@ -397,40 +459,37 @@
                 inputs
               </li>
               <li>
-                Tiered system prompt that cuts token load from ~18k to ~2k base
+                Tiered system prompt that cuts base token load from ~18k to ~2k
                 through conditional block loading by intent score
               </li>
               <li>
                 Dialectical synthesis engine driven by 98 hand-authored
-                archetype tension pairs (41 high, 31 medium, 26 low) across
-                antithetical, complementary, and cross-domain collision modes
+                archetype tension pairs across antithetical, complementary, and
+                cross-domain collision modes
               </li>
             </ul>
           </div>
 
           <div class="project-highlight">
             <h3>
-              La Dolce Vita — Full-Stack AI Hospitality Platform
-              <span class="date-range">2025</span>
+              NUMENEON — Full-Stack Engineer &amp; UI Lead
+              <span class="date-range">2025–2026</span>
             </h3>
-            <p class="project-stack">React • Node.js • OpenAI API</p>
+            <p class="project-stack">
+              React • Django REST Framework • PostgreSQL
+            </p>
             <ul class="project-bullets">
               <li>
-                Production web app for a Dominican Republic rental villa with an
-                AI-powered guest concierge
+                Cyberpunk social media platform built as a 5-person team
+                capstone
               </li>
               <li>
-                Built an embedded AI chat widget on GPT-4o with dynamic system
-                prompts that inject live property data and calendar availability
-                at request time
+                Led architecture and UI strategy; defined the product roadmap
+                and sized tasks across XL/L/M/S tiers
               </li>
               <li>
-                Parsed an Airbnb iCal feed server-side for real-time booking
-                awareness in both the UI and the AI context
-              </li>
-              <li>
-                Connected the Google Sheets API so the client can edit property
-                content without code changes
+                Built a 3-column timeline with real-time post rendering and a
+                glassmorphic SCSS design system
               </li>
             </ul>
           </div>
@@ -451,35 +510,9 @@
                 bidirectional spine-to-organ hover highlighting
               </li>
               <li>
-                Implemented a physiological Breathing Mode with a real-time
-                breath-to-heartbeat animation cycle
-              </li>
-              <li>
                 Engineered spinal-cord auto-trace by sampling the GLB mesh at
                 runtime, with 24 vertebral discs color-coded by innervated organ
                 system
-              </li>
-            </ul>
-          </div>
-
-          <div class="project-highlight">
-            <h3>
-              NUMENEON — Full-Stack Engineer & UI Lead
-              <span class="date-range">2025–2026</span>
-            </h3>
-            <p class="project-stack">React • Django • PostgreSQL</p>
-            <ul class="project-bullets">
-              <li>
-                Cyberpunk social media platform built as a 5-person team
-                capstone
-              </li>
-              <li>
-                Led architecture and UI strategy; defined the product roadmap
-                and sized tasks across XL/L/M/S tiers
-              </li>
-              <li>
-                Built a 3-column timeline with real-time post rendering and a
-                glassmorphic SCSS design system
               </li>
             </ul>
           </div>
@@ -507,52 +540,6 @@
           </div>
         </section>
 
-        <!-- Experience Section -->
-        <section class="about-section">
-          <h2>Experience</h2>
-          <ul class="evolution-list">
-            <li>
-              <strong>Independent Software Developer</strong> — Self-Employed,
-              Charlotte, NC
-              <span class="date-range">2025–Present</span>
-              <br />
-              <span class="experience-detail"
-                >Build and ship production AI and full-stack web applications,
-                including client work</span
-              >
-            </li>
-            <li>
-              <strong>Martial Arts Instructor</strong> — Traditional Okinawan
-              Martial Arts
-              <span class="date-range">2018–Present</span>
-              <br />
-              <span class="experience-detail"
-                >3rd-degree black belt; developed curriculum roadmaps and
-                student progression systems</span
-              >
-            </li>
-            <li>
-              <strong>Visual Artist</strong> — Independent
-              <span class="date-range">2006–2024</span>
-              <br />
-              <span class="experience-detail"
-                >Commission painting, fine art restoration, gallery hosting, and
-                digital art</span
-              >
-            </li>
-            <li>
-              <strong>Legal Interpreter (Spanish)</strong> — NY Public School
-              System / USCIS
-              <span class="date-range">2005–2024</span>
-              <br />
-              <span class="experience-detail"
-                >High-stakes simultaneous translation for legal proceedings and
-                educational settings</span
-              >
-            </li>
-          </ul>
-        </section>
-
         <!-- Education Section -->
         <section class="about-section">
           <h2>Education</h2>
@@ -563,13 +550,29 @@
               <span class="date-range">Feb 2026</span>
             </li>
             <li>
-              <strong>Fashion Institute of Technology</strong> — Humanities &
+              <strong>Fashion Institute of Technology</strong> — Humanities &amp;
               Fine Arts
               <span class="date-range">2006–2008</span>
             </li>
             <li>
-              <strong>Art Students League</strong> — Classical Realism & Anatomy
+              <strong>Art Students League</strong> — Classical Realism &amp; Anatomy
               <span class="date-range">2006–2020</span>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Certifications Section -->
+        <section class="about-section">
+          <h2>Certifications</h2>
+          <ul class="evolution-list">
+            <li>
+              <strong>IBM / Coursera (2026):</strong> Generative AI in Software
+              Development
+            </li>
+            <li>
+              <strong>Anthropic Academy (2026):</strong> MCP Advanced Topics,
+              Introduction to MCP, AI Fluency: Framework &amp; Foundations,
+              Building with the Claude API, Claude Code in Action, Claude 101
             </li>
           </ul>
         </section>
@@ -578,10 +581,10 @@
         <section class="about-section">
           <h2>Additional</h2>
           <p>
-            Bilingual English/Spanish (Professional) · Graphic design, digital
-            art & painting · Music production (Ableton, live instrumentation) ·
-            Tools: Blender, Adobe Creative Cloud, SketchUp · 20+ years martial
-            arts (Goju-Ryu lineage)
+            Bilingual English/Spanish (Professional) · Music production
+            (Ableton, live instrumentation) · Tools: Blender, Adobe Creative
+            Cloud, SketchUp · 20+ years martial arts (Goju-Ryu lineage) · Guitar
+            &amp; bass
           </p>
         </section>
       </div>

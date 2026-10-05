@@ -191,3 +191,28 @@
 .resume-page .project-links-belt .project-btn:hover {
   color: var(--resume-green);
 }
+
+/* ---- Nested job bullets ----
+   The Independent Software Developer entry carries its own bullet list inside
+   an .evolution-list li. The parent li already spends 2rem of left padding on
+   its dot, so the nested arrows take a smaller second step and drop a shade in
+   weight — the job title stays the dominant line in the entry. */
+.resume-page .evolution-list .project-bullets {
+  margin-top: 0.6rem;
+  margin-bottom: 0.25rem;
+}
+.resume-page .evolution-list .project-bullets li {
+  padding-left: 1.25rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.925rem;
+  color: rgba(255, 255, 255, 0.78);
+}
+/* Inline links in a job bullet (the client site URL) read as the page green */
+.resume-page .evolution-list .project-bullets a {
+  color: var(--resume-green);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(63, 224, 160, 0.3);
+}
+.resume-page .evolution-list .project-bullets a:hover {
+  border-bottom-color: var(--resume-green);
+}

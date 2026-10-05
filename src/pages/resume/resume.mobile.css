@@ -1,0 +1,14 @@
+/* Resume page — mobile overrides only. Media queries live here, never in
+   resume.css. Imported immediately after resume.css in index.html. */
+
+@media (max-width: 600px) {
+  /* Two levels of bullet indent add up on a narrow screen — pull both in so
+     the nested job bullets keep a usable measure. */
+  .resume-page .evolution-list li {
+    padding-left: 1.5rem;
+  }
+  .resume-page .evolution-list .project-bullets li {
+    padding-left: 1.1rem;
+    font-size: 0.875rem;
+  }
+}
