@@ -100,8 +100,14 @@
     letter-spacing: 0.06em;
     margin-left: 0;
   }
+  /* ==========================================================
+     🔧  THE "A" IN PABLO — MOBILE HEIGHT KNOB
+     ==========================================================
+     bigger → DOWN      smaller → UP
+     Desktop value lives in hero.css — keep the two in step.
+     ========================================================== */
   .title-inverted-v {
-    top: -0.01em;
+    top: 0.015em; /* ↑↓ THE KNOB — see banner above */
   }
   .hero-subtitle {
     font-size: clamp(calc(0.48rem - 1.6px), 2.9vw, calc(0.699rem - 1.5px));

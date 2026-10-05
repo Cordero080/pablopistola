@@ -384,10 +384,20 @@
   transition: all 0.1s ease;
 }
 
+/* ============================================================
+   🔧  THE "A" IN PABLO — HEIGHT KNOB
+   ============================================================
+   It's really the V in PVBLO, flipped with scaleY(-1). The flip
+   leaves it floating above the baseline; `top` drops it back.
+
+     bigger → DOWN  (0.08em)      smaller → UP  (0.04em)
+
+   Mobile has its own value in hero.mobile.css — change both.
+   ============================================================ */
 .title-inverted-v {
   display: inline-block;
   position: relative;
-  top: -0.02em;
+  top: 0.015em; /* ↑↓ THE KNOB — see banner above */
   transform: scaleY(-1);
   transform-origin: center 50%;
   background: linear-gradient(
