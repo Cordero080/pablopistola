@@ -196,15 +196,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const opacity = Math.max(0, 1 - scrollProgress * 1.2);
         const w = window.innerWidth;
         const bp = w >= 1400 ? 1400 : w >= 1200 ? 1200 : w >= 901 ? 901 : 0;
-        const shiftX =
-          bp >= 1400
-            ? "calc(-5rem)"
-            : bp >= 1200
-              ? "calc(-2rem - 18px)"
-              : "0px";
         heroContent.style.transform = `
           perspective(1000px)
-          translateX(${shiftX})
           translateY(${translateY}px)
           scale(${scale})
           rotateX(${rotateX}deg)

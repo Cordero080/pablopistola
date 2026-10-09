@@ -60,8 +60,10 @@
   position: relative;
   z-index: 2;
   text-align: center;
-  width: min(700px, 100%);
-  max-width: 700px;
+  /* No px cap: a cap narrower than the title makes the title overflow the
+     title-group, and the subtitle then centers under the capped box. */
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -103,7 +105,7 @@
   font-family: "tachyon", sans-serif;
   font-weight: 900;
   font-style: normal;
-  font-size: clamp(2rem, 4vw, 4rem);
+  font-size: var(--hero-title-size);
   /* No gradient / background-clip:text on this container. The per-letter
      .hero-title .title-letter spans below carry their own identical gradient.
      When the container ALSO had background-clip:text, Chrome clipped its
@@ -169,6 +171,10 @@
    box, so subtitle width === title width at every viewport width. The
    three.js bracket layer can move freely — it never affects this layout. */
 .hero-title-group {
+  /* Single source of truth: the subtitle is a fixed fraction of the title size,
+     so subtitle width stays a constant ~92% of title width at every viewport. */
+  --hero-title-size: clamp(2rem, 4vw, 4rem);
+  --hero-subtitle-ratio: 0.32;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -178,7 +184,7 @@
 
 .hero-subtitle {
   font-family: "IBM Plex Sans", sans-serif;
-  font-size: clamp(0.95rem, 1.4vw, 1.35rem);
+  font-size: calc(var(--hero-title-size) * var(--hero-subtitle-ratio));
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;

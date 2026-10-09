@@ -11,30 +11,10 @@
  *   ≤900px   — tablet (no brackets)
  *   ≤600px   — mobile
  *
- * NOTE: .hero-content translateX and .hero-subtitle translateX are set
- * inline by parallax.js every RAF frame — CSS transforms on those elements
- * are overridden and serve only as documentation of the tuned values.
+ * NOTE: title and subtitle font sizes both derive from --hero-title-size on
+ * .hero-title-group (see hero.css); only that variable and the letter-spacing
+ * change per breakpoint, so the subtitle can never outgrow the title.
  */
-
-/* ── Desktop subtitle font sizes ────────────────────────────────────────── */
-/* translateX is owned by parallax.js; only font-size lives here            */
-@media (min-width: 901px) {
-  .hero-subtitle {
-    font-size: 0.72rem;
-  }
-}
-
-@media (min-width: 1200px) {
-  .hero-subtitle {
-    font-size: 0.95rem;
-  }
-}
-
-@media (min-width: 1400px) {
-  .hero-subtitle {
-    font-size: 1.07rem;
-  }
-}
 
 /* ── 1000–1199px: pull hero up slightly ─────────────────────────────────── */
 @media (min-width: 1000px) and (max-width: 1199px) {
@@ -55,14 +35,15 @@
     margin: 0 auto;
     text-align: center;
   }
+  .hero-title-group {
+    --hero-title-size: clamp(2rem, 5.5vw, 3rem);
+    --hero-subtitle-ratio: 0.33;
+  }
   .hero-title {
-    font-size: clamp(2rem, 5.5vw, 3rem);
     margin-left: 0;
   }
   .hero-subtitle {
-    font-size: 0.75rem;
     letter-spacing: 0.1em;
-    white-space: normal;
   }
   .home-bio {
     max-width: 520px;
@@ -95,8 +76,11 @@
     width: 100%;
     max-width: 100%;
   }
+  .hero-title-group {
+    --hero-title-size: clamp(1.1rem, 6.5vw, 2rem);
+    --hero-subtitle-ratio: 0.35;
+  }
   .hero-title {
-    font-size: clamp(1.1rem, 6.5vw, 2rem);
     letter-spacing: 0.06em;
     margin-left: 0;
   }
@@ -110,7 +94,6 @@
     top: 0.015em; /* ↑↓ THE KNOB — see banner above */
   }
   .hero-subtitle {
-    font-size: clamp(calc(0.48rem - 1.6px), 2.9vw, calc(0.699rem - 1.5px));
     letter-spacing: 0.04em;
     white-space: nowrap;
     text-align: center;
@@ -120,7 +103,7 @@
     transform: translateX(0);
   }
   .hero-cta {
-    font-size:1rem;
+    font-size: 1rem;
     padding: 11px 28px;
     letter-spacing: 0.5em;
   }
