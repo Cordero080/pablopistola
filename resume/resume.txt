@@ -1,6 +1,8 @@
 \documentclass[letterpaper,10pt]{article}
 
 % ---------- Packages ----------
+\usepackage[T1]{fontenc}                  % Font encoding for bold small caps
+\usepackage{lmodern}                      % Latin Modern font (supports bold small caps)
 \usepackage[margin=0.5in]{geometry}
 \usepackage{enumitem}
 \usepackage{titlesec}
@@ -79,18 +81,6 @@ Full-stack software engineer building AI-integrated web applications with Python
   \item 3rd-degree black belt; developed curriculum roadmaps and student progression systems
 \end{itemize}
 
-\vspace{3pt}
-\entry{Visual Artist}{2006 -- 2024}{Independent}{}
-\begin{itemize}
-  \item Commission painting, fine art restoration, gallery hosting, and digital art
-\end{itemize}
-
-\vspace{3pt}
-\entry{Legal Interpreter (Spanish)}{2005 -- 2024}{NY Public School System / USCIS}{}
-\begin{itemize}
-  \item High-stakes simultaneous translation for legal proceedings and educational settings
-\end{itemize}
-
 % ============ PROJECTS ============
 \section{Projects}
 
@@ -133,9 +123,9 @@ Full-stack software engineer building AI-integrated web applications with Python
 
 % ============ EDUCATION ============
 \section{Education}
-\textbf{General Assembly} --- Software Engineering Immersive (95.8\%) \hfill Feb 2026\\
-\textbf{Fashion Institute of Technology} --- Humanities \& Fine Arts \hfill 2006 -- 2008\\
-\textbf{Art Students League} --- Classical Realism \& Anatomy \hfill 2006 -- 2020
+\textbf{General Assembly} --- Software Engineering Immersive (95.8\%) \hfill Feb 2026\\[1pt]
+\textbf{Fashion Institute of Technology} --- Humanities \& Fine Arts\\[1pt]
+\textbf{Art Students League} --- Classical Realism \& Anatomy
 
 % ============ CERTIFICATIONS ============
 \section{Certifications}
@@ -144,6 +134,7 @@ Full-stack software engineer building AI-integrated web applications with Python
 
 % ============ ADDITIONAL ============
 \section{Additional}
-Bilingual English/Spanish (Professional) $\cdot$ Music production (Ableton, live instrumentation) $\cdot$ Tools: Blender, Adobe Creative Cloud, SketchUp $\cdot$ 20+ years martial arts (Goju-Ryu lineage) $\cdot$ Guitar \& bass
+\textbf{Professional Background:} High-Stakes Legal Interpreter (Bilingual English/Spanish) $\cdot$ Commissioned Visual Artist\\[2pt]
+\textbf{Creative Tools \& Interests:} Music production (Ableton, live instrumentation) $\cdot$ 3D Modeling (Blender, SketchUp) $\cdot$ Adobe Creative Cloud $\cdot$ Guitar \& bass
 
 \end{document}
