@@ -51,7 +51,7 @@
 
 % ============ SUMMARY ============
 \section{Summary}
-Full-stack software engineer building AI-integrated web applications with Python, JavaScript, React, Django, FastAPI, and Node.js. Builds RAG pipelines, semantic routing, MCP servers, and multi-model LLM orchestration from scratch, and ships production client work. Two decades as a visual artist drive a design-led approach across the stack. Bilingual English/Spanish.
+Full-stack software engineer building AI-integrated web applications with Python, JavaScript, React, Django, FastAPI, and Node.js. Builds RAG pipelines, semantic routing, MCP servers, and multi-model LLM orchestration from scratch, and ships production client work. A visual-artist background drives a design-led approach across the stack. Bilingual English/Spanish.
 
 % ============ SKILLS ============
 \section{Technical Skills}
@@ -73,12 +73,6 @@ Full-stack software engineer building AI-integrated web applications with Python
   \item Parsed an Airbnb iCal feed server-side for real-time booking awareness in both the UI and the AI context
   \item Integrated the Google Sheets API so the client edits property content without code changes
   \item Built a Python FastAPI backend for an AI portfolio assistant on the Claude API that also runs as an MCP server, with an SSE channel letting the model control the live site UI
-\end{itemize}
-
-\vspace{3pt}
-\entry{Martial Arts Instructor}{2018 -- Present}{Traditional Okinawan Martial Arts}{}
-\begin{itemize}
-  \item 3rd-degree black belt; developed curriculum roadmaps and student progression systems
 \end{itemize}
 
 % ============ PROJECTS ============
@@ -134,7 +128,7 @@ Full-stack software engineer building AI-integrated web applications with Python
 
 % ============ ADDITIONAL ============
 \section{Additional}
-\textbf{Professional Background:} High-Stakes Legal Interpreter (Bilingual English/Spanish) $\cdot$ Commissioned Visual Artist\\[2pt]
+\textbf{Professional Background:} 3rd-degree black belt, Okinawan martial arts instructor $\cdot$ High-Stakes Legal Interpreter (Bilingual English/Spanish) $\cdot$ Commissioned Visual Artist\\[2pt]
 \textbf{Creative Tools \& Interests:} Music production (Ableton, live instrumentation) $\cdot$ 3D Modeling (Blender, SketchUp) $\cdot$ Adobe Creative Cloud $\cdot$ Guitar \& bass
 
 \end{document}
