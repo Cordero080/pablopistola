@@ -12,7 +12,7 @@
 //
 // CACHE_NAME keeps the "pablo-pistola-" prefix so scripts/bump-sw-version.js
 // still rewrites it on build.
-const CACHE_NAME = "pablo-pistola-1792162150389";
+const CACHE_NAME = "pablo-pistola-1792458463739";
 
 const isLocalhost =
   self.location.hostname === "localhost" ||
