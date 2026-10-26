@@ -396,7 +396,17 @@ export default class WaveScene {
     //
     //   Pass 1: RenderPass    → renders the scene normally into a framebuffer
     //   Pass 2: UnrealBloomPass → reads that framebuffer, adds glow, writes to screen
-    this._composer = new EffectComposer(this._renderer);
+    // `antialias: true` on the renderer only covers the DEFAULT framebuffer.
+    // Everything here draws into the composer's render target instead, so the
+    // target itself needs multisampling or the wave comes out with stair-stepped
+    // edges. samples: 4 is the MSAA level.
+    const dpr = this._renderer.getPixelRatio();
+    const rt = new THREE.WebGLRenderTarget(
+      this._width * dpr,
+      this._height * dpr,
+      { type: THREE.HalfFloatType, samples: 4 },
+    );
+    this._composer = new EffectComposer(this._renderer, rt);
     this._composer.addPass(new RenderPass(this._scene, this._camera));
 
     this._bloomPass = new UnrealBloomPass(
@@ -406,9 +416,8 @@ export default class WaveScene {
       0.05, // luminanceThreshold
     );
     this._composer.addPass(this._bloomPass);
-    // Sync composer buffers to physical pixels so bloom isn't half-res on retina
-    const dpr = this._renderer.getPixelRatio();
-    this._composer.setSize(this._width * dpr, this._height * dpr);
+    // setSize() applies the renderer's pixel ratio itself — pass CSS pixels.
+    this._composer.setSize(this._width, this._height);
   }
 
   // ── Events ──────────────────────────────────────────────────────────────────
@@ -456,8 +465,7 @@ export default class WaveScene {
     this._height = window.innerHeight;
 
     this._renderer.setSize(this._width, this._height);
-    const dpr = this._renderer.getPixelRatio();
-    this._composer.setSize(this._width * dpr, this._height * dpr);
+    this._composer.setSize(this._width, this._height);
 
     // Update the camera frustum to match the new window size.
     // Without updateProjectionMatrix(), the camera ignores the new values.

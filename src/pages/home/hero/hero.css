@@ -183,6 +183,9 @@
 }
 
 .hero-subtitle {
+  /* starts hidden; scrollReveal.js fades it in. Without this it paints
+     visible, then gsap snaps it to 0 and fades back — the load flicker. */
+  opacity: 0;
   font-family: "IBM Plex Sans", sans-serif;
   font-size: calc(var(--hero-title-size) * var(--hero-subtitle-ratio));
   font-weight: 500;
@@ -289,6 +292,9 @@
 }
 
 .hero-cta {
+  /* starts hidden; scrollReveal.js fades it in. Without this it paints
+     visible, then gsap snaps it to 0 and fades back — the load flicker. */
+  opacity: 0;
   display: inline-block;
   padding: 24px 36px;
   font-family: "IBM Plex Mono", monospace;

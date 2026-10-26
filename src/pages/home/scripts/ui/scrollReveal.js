@@ -1,6 +1,16 @@
 (function () {
-  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined")
+  // These elements start at opacity:0 in CSS so they don't paint, get snapped
+  // invisible by gsap, and fade back in on load. That means if gsap never
+  // arrives (CDN blocked/offline) nothing would reveal them — so bail by
+  // showing them outright rather than returning into a blank hero.
+  const REVEALED = ".hero-subtitle, .hero-cta, .marquee-belt";
+
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+    document
+      .querySelectorAll(REVEALED)
+      .forEach((el) => (el.style.opacity = "1"));
     return;
+  }
 
   gsap.registerPlugin(ScrollTrigger);
 

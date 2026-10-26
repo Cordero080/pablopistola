@@ -6,6 +6,9 @@
 
 /* ── Base ── */
 .marquee-belt {
+  /* starts hidden; scrollReveal.js fades it in. Without this it paints
+     visible, then gsap snaps it to 0 and fades back — the load flicker. */
+  opacity: 0;
   width: 100%;
   overflow: hidden;
   padding: 1rem 0;
