@@ -26,3 +26,6 @@ mcp-server/*.pyc
 docs/
 .playwright-mcp/
 .env*
+
+# Build output — Vercel runs `npm run build` and generates its own dist/
+dist/
