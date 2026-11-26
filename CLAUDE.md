@@ -115,16 +115,31 @@ Vanilla JS + CSS static site built with Vite, deployed to Vercel at `pvblocorder
 
 2. **Added sonar pulse animation** — the toggle button (`#mcp-chat-toggle`) now has a `::after` pseudo-element that pulses a cyan ring (`rgba(0,255,247,0.65)`) outward every 3.5s via the `chat-sonar` keyframe animation. Controlled by the `.pulse-active` class. Starts active on page load. Stops when panel opens, resumes 800ms after panel closes.
 
-### Why the changes may not be visible on the live site:
+### Service worker caching — RESOLVED, do not re-diagnose
 
-The site uses a **service worker** (`sw.js`) that caches all assets aggressively. Even after a new Vercel deployment, the browser may still be running the old cached `mcpBridge.js`.
+`public/sw.js` routes requests three ways, because the build emits three kinds
+of file:
 
-**Fix for a user seeing the old version:**
-1. Open DevTools → Application → Service Workers → Unregister
-2. Hard refresh (`Cmd+Shift+R`)
+| Tier | Matches | Strategy |
+|---|---|---|
+| 1 | navigations (HTML) | network-first — always the newest page |
+| 2 | `/assets/**` hashed bundles, `/images/**`, `/icons/**`, `/music/**`, media/font extensions | cache-first — zero network |
+| 3 | everything else same-origin (the unhashed `/src/**` scripts) | stale-while-revalidate |
 
-**Fix for all users permanently:**
-The `sw.js` cache name was already bumped to a timestamp (`pablo-pistola-<timestamp>`) in the last commit. This causes the service worker to invalidate the old cache on next visit. Most users will see the update within 24h as their SW update cycle runs.
+Freshness comes from the version bump, not from refetching on every load:
+`scripts/bump-sw-version.js` rewrites `CACHE_NAME` on every build (`prebuild`),
+and `activate` deletes every cache. A deploy empties the cache once, that first
+load refetches, and every load after it is instant. On localhost the worker
+unregisters itself and reloads controlled tabs so the dev server is the only
+source of truth.
+
+**A normal refresh shows the new deploy.** Do not tell Pablo to unregister the
+service worker or hard-refresh — that advice is obsolete and wastes a round
+trip. If something still looks stale, the suspect is Vercel's HTTP cache on the
+HTML, a different layer: check response headers before saying anything.
+
+Do not change the shape of the `const CACHE_NAME = "pablo-pistola-..."` line —
+`bump-sw-version.js` matches it with a regex and fails silently if it moves.
 
 ### Key CSS details for the sonar pulse:
 ```css
